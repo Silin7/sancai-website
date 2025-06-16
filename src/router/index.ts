@@ -7,6 +7,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/home.vue'),
     meta: {
       title: "HOME",
+      fullScreen: false,
     },
   },
   {
@@ -15,6 +16,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/login.vue'),
     meta: {
       title: "LOGIN",
+      fullScreen: true,
     },
   },
 ]

@@ -1,29 +1,11 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 
-onMounted(() => {
-  console.log('-------->', 123)
-})
 </script>
 
 <template>
-  <div class="homepage">
-    <div class="btnbox">
-      <el-button type="primary">Primary</el-button>
-      <el-button type="success">Success</el-button>
-      <el-button type="warning">Warning</el-button>
-      <el-button type="danger">Danger</el-button>
-    </div>
-    <Search style="width: 100px; height: 100px" />
+  <div class="page-main">
+    home
   </div>
 </template>
 
-<style lang="scss" scoped>
-.homepage {
-  border: 1px solid red;
-
-  .btnbox {
-    border: 1px solid red;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
