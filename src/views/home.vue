@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  console.log('-------->', 123)
+})
+</script>
+
 <template>
   <div class="homepage">
     <div class="btnbox">
@@ -6,9 +14,7 @@
       <el-button type="warning">Warning</el-button>
       <el-button type="danger">Danger</el-button>
     </div>
-
-    <Search style="width: 100px; height: 100px;" />
-    123
+    <Search style="width: 100px; height: 100px" />
   </div>
 </template>
 
