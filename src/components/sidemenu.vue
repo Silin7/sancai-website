@@ -7,7 +7,7 @@ import {
 } from '@element-plus/icons-vue'
 
 import router from '@/router/index'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log('handleOpen', key, keyPath)
@@ -19,34 +19,47 @@ const handleClose = (key: string, keyPath: string[]) => {
 onMounted(() => {
   console.log('-------->', router.options.routes)
 })
+const isCollapse: any = ref(false)
+function isCollapseClick() {
+  console.log('-------->', isCollapse.value)
+  isCollapse.value = !isCollapse.value
+}
 </script>
 
 <template>
-  <div>
-    <el-menu @open="handleOpen" @close="handleClose">
-      <!-- <el-sub-menu index="1">
+  <div style="padding: 0 8px;">
+    <div @click="isCollapseClick">折叠</div>
+    <el-menu :collapse="isCollapse" @open="handleOpen" @close="handleClose">
+      <el-sub-menu index="1">
         <template #title>
           <el-icon>
             <location />
           </el-icon>
           <span>Navigator One</span>
         </template>
-<el-menu-item-group title="Group One">
-  <el-menu-item index="1-1">item one</el-menu-item>
-  <el-menu-item index="1-2">item two</el-menu-item>
-</el-menu-item-group>
-<el-menu-item-group title="Group Two">
-  <el-menu-item index="1-3">item three</el-menu-item>
-</el-menu-item-group>
-<el-sub-menu index="1-4">
-  <template #title>item four</template>
-  <el-menu-item index="1-4-1">item one</el-menu-item>
-</el-sub-menu>
-</el-sub-menu> -->
-      <el-menu-item index="1">
-        <el-icon><icon-menu /></el-icon>
-        <span>资料</span>
-      </el-menu-item>
+        <el-menu-item index="1-1">
+          <el-icon><icon-menu /></el-icon>
+          <span>item one</span>
+        </el-menu-item>
+        <el-menu-item index="1-2">
+          <el-icon><icon-menu /></el-icon>
+          <span>item two</span>
+        </el-menu-item>
+        <el-menu-item index="1-3">
+          <el-icon><icon-menu /></el-icon>
+          <span>item three</span>
+        </el-menu-item>
+        <el-sub-menu index="1-4">
+          <template #title>
+            <el-icon><icon-menu /></el-icon>
+            <span>item four</span>
+          </template>
+          <el-menu-item index="1-4-1">
+            <el-icon><icon-menu /></el-icon>
+            <span>item four - one</span>
+          </el-menu-item>
+        </el-sub-menu>
+      </el-sub-menu>
       <el-menu-item index="2">
         <el-icon><icon-menu /></el-icon>
         <span>人</span>
@@ -70,5 +83,44 @@ onMounted(() => {
 <style>
 .el-menu {
   border-right: 0 !important;
+}
+
+.el-menu--popup {
+  border-radius: 5px !important;
+  border: 1px solid red !important;
+}
+
+.el-menu-item span {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  /* width: 90px; */
+}
+
+.el-sub-menu {
+  box-sizing: border-box;
+  margin: 4px 0;
+}
+
+.el-sub-menu__title {
+  box-sizing: border-box;
+  margin: 4px 0;
+  border-radius: 5px;
+}
+
+.el-sub-menu__title:hover {
+  background-color: red !important;
+}
+
+.el-menu-item {
+  box-sizing: border-box;
+  margin: 4px 0;
+  border-radius: 5px;
+}
+
+.el-menu-item:hover {
+  background-color: red !important;
 }
 </style>

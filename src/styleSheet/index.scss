@@ -6,11 +6,8 @@
   border-top: 1px solid #e2e8f0;
 }
 
-.container-side {
-  width: 180px;
-}
-
 .container-main {
+  box-sizing: border-box;
   padding: 20px;
   width: 100%;
   background-color: #f2f2f2;

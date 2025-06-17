@@ -10,9 +10,7 @@ const routeInfo = useRoute()
   <div v-if="!routeInfo.meta.fullScreen">
     <component :is="headmenu" ref="headmenuRef" />
     <div class="container-content">
-      <div class="container-side">
-        <component :is="sidemenu" ref="sidemenuRef" />
-      </div>
+      <component :is="sidemenu" ref="sidemenuRef" />
       <div class="container-main">
         <RouterView />
       </div>
