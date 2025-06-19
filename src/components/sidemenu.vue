@@ -80,47 +80,58 @@ function isCollapseClick() {
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .el-menu {
   border-right: 0 !important;
-}
 
-.el-menu--popup {
-  border-radius: 5px !important;
-  border: 1px solid red !important;
-}
+  .el-menu--popup {
+    border-radius: 5px !important;
+    border: 1px solid rgb(235.9, 245.3, 255) !important;
+  }
 
-.el-menu-item span {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 14px;
-  /* width: 90px; */
-}
+  .el-sub-menu {
+    box-sizing: border-box;
+    margin: 4px 0;
 
-.el-sub-menu {
-  box-sizing: border-box;
-  margin: 4px 0;
-}
+    span {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 120px;
+      text-overflow: ellipsis;
+      font-size: 14px;
+      border: 1px solid red;
+    }
 
-.el-sub-menu__title {
-  box-sizing: border-box;
-  margin: 4px 0;
-  border-radius: 5px;
-}
+    .el-sub-menu__title {
+      box-sizing: border-box;
+      margin: 4px 0;
+      border-radius: 5px;
+    }
 
-.el-sub-menu__title:hover {
-  background-color: red !important;
-}
+    .el-sub-menu__title:hover {
+      background-color: rgb(235.9, 245.3, 255) !important;
+    }
+  }
 
-.el-menu-item {
-  box-sizing: border-box;
-  margin: 4px 0;
-  border-radius: 5px;
-}
+  .el-menu-item {
+    box-sizing: border-box;
+    margin: 4px 0;
+    border-radius: 5px;
 
-.el-menu-item:hover {
-  background-color: red !important;
+    span {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 120px;
+      text-overflow: ellipsis;
+      font-size: 14px;
+      border: 1px solid green;
+    }
+  }
+
+  .el-menu-item:hover {
+    background-color: rgb(235.9, 245.3, 255) !important;
+  }
 }
 </style>
