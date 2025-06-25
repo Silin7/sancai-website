@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import {
+  Fold,
+  Expand,
   Document,
   Menu as IconMenu,
   Location,
   Setting,
 } from '@element-plus/icons-vue'
-
-import router from '@/router/index'
 import { onMounted, ref } from 'vue'
+import router from '@/router/index'
 
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log('handleOpen', key, keyPath)
@@ -27,8 +28,7 @@ function isCollapseClick() {
 </script>
 
 <template>
-  <div style="padding: 0 8px;">
-    <div @click="isCollapseClick">折叠</div>
+  <div class="custom-menu">
     <el-menu :collapse="isCollapse" @open="handleOpen" @close="handleClose">
       <el-sub-menu index="1">
         <template #title>
@@ -39,7 +39,7 @@ function isCollapseClick() {
         </template>
         <el-menu-item index="1-1">
           <el-icon><icon-menu /></el-icon>
-          <span>item one</span>
+          <span>item one one one one one</span>
         </el-menu-item>
         <el-menu-item index="1-2">
           <el-icon><icon-menu /></el-icon>
@@ -77,61 +77,15 @@ function isCollapseClick() {
         <span>机</span>
       </el-menu-item>
     </el-menu>
+    <div class="collapse-box" @click="isCollapseClick">
+      <div class="collapse-icons">
+        <el-icon v-if="isCollapse" color="#000" :size="20">
+          <Expand />
+        </el-icon>
+        <el-icon v-else color="#000" :size="20">
+          <Fold />
+        </el-icon>
+      </div>
+    </div>
   </div>
 </template>
-
-<style lang="scss">
-.el-menu {
-  border-right: 0 !important;
-
-  .el-menu--popup {
-    border-radius: 5px !important;
-    border: 1px solid rgb(235.9, 245.3, 255) !important;
-  }
-
-  .el-sub-menu {
-    box-sizing: border-box;
-    margin: 4px 0;
-
-    span {
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-      max-width: 120px;
-      text-overflow: ellipsis;
-      font-size: 14px;
-      border: 1px solid red;
-    }
-
-    .el-sub-menu__title {
-      box-sizing: border-box;
-      margin: 4px 0;
-      border-radius: 5px;
-    }
-
-    .el-sub-menu__title:hover {
-      background-color: rgb(235.9, 245.3, 255) !important;
-    }
-  }
-
-  .el-menu-item {
-    box-sizing: border-box;
-    margin: 4px 0;
-    border-radius: 5px;
-
-    span {
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-      max-width: 120px;
-      text-overflow: ellipsis;
-      font-size: 14px;
-      border: 1px solid green;
-    }
-  }
-
-  .el-menu-item:hover {
-    background-color: rgb(235.9, 245.3, 255) !important;
-  }
-}
-</style>

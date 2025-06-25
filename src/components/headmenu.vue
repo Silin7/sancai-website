@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="headmenu">
@@ -39,7 +37,6 @@
       font-size: 20px;
       font-weight: 700;
     }
-
   }
 
   .avatar-name {
