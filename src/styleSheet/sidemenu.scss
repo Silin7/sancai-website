@@ -1,0 +1,58 @@
+.custom-menu {
+
+  .el-menu {
+    border-right: 0 !important;
+    --el-menu-level-padding: 10px;
+    --el-menu-base-level-padding: 10px;
+
+    li {
+      width: 180px;
+    }
+
+    .el-menu--popup {
+      border-radius: 5px !important;
+      border: 1px solid rgb(235.9, 245.3, 255) !important;
+    }
+
+    .el-sub-menu {
+      box-sizing: border-box;
+      margin: 4px 0;
+
+      span {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+      }
+
+      .el-sub-menu__title {
+        box-sizing: border-box;
+        margin: 4px 0;
+        border-radius: 5px;
+      }
+
+      .el-sub-menu__title:hover {
+        background-color: rgb(235.9, 245.3, 255) !important;
+      }
+    }
+
+    .el-menu-item {
+      box-sizing: border-box;
+      margin: 4px 0;
+      border-radius: 5px;
+
+      span {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+      }
+    }
+
+    .el-menu-item:hover {
+      background-color: rgb(235.9, 245.3, 255) !important;
+    }
+  }
+}
