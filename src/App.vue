@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import headmenu from '@/components/headmenu.vue'
+import headnav from '@/components/headnav.vue'
 import sidemenu from '@/components/sidemenu.vue'
 
 const routeInfo = useRoute()
@@ -8,7 +8,7 @@ const routeInfo = useRoute()
 
 <template>
   <div v-if="!routeInfo.meta.fullScreen">
-    <component :is="headmenu" ref="headmenuRef" />
+    <component :is="headnav" ref="headnavRef" />
     <div class="container-content">
       <component :is="sidemenu" ref="sidemenuRef" />
       <div class="container-main">
