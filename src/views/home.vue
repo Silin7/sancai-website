@@ -8,6 +8,6 @@
 
 <style lang="scss" scoped>
 .page-main {
-  height: 3000px;
+  height: 1000px;
 }
 </style>

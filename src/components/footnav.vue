@@ -1,7 +1,6 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>footer</div>
+  <div class="footnav">123</div>
 </template>
-
 <style lang="scss" scoped></style>
