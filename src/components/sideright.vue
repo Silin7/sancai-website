@@ -35,8 +35,6 @@ function goTop() {
 </template>
 
 <style lang="scss" scoped>
-// 3b82f6
-// 0ea5e9
 .sideright {
   position: fixed;
   right: 20px;
