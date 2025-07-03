@@ -1,11 +1,13 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="page-main">
-    home
+    <i class="fa fa-calculator" style="font-size: 30px; color: red"></i>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.page-main {
+  height: 3000px;
+}
+</style>

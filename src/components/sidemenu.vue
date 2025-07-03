@@ -17,12 +17,12 @@ const handleClose = (key: string, keyPath: string[]) => {
   console.log('handleClose', key, keyPath)
 }
 
-onMounted(() => {
-  console.log('-------->', router.options.routes)
-})
+// onMounted(() => {
+//   console.log('router.options.routes ', router.options.routes)
+// })
+
 const isCollapse: any = ref(false)
 function isCollapseClick() {
-  console.log('-------->', isCollapse.value)
   isCollapse.value = !isCollapse.value
 }
 </script>
