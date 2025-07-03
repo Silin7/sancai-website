@@ -1,6 +1,8 @@
 @use './app.scss';
+@use './flex.scss';
 @use './root.scss';
 @use './sidemenu.scss';
+@use './wh.scss';
 
 button {
   background: none;
