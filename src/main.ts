@@ -6,6 +6,9 @@ const app = createApp(App)
 // 自定义样式 custom style
 import '@/styleSheet/index.scss'
 
+// font-awesome style
+import 'font-awesome/css/font-awesome.min.css'
+
 // 路由 router
 import router from './router'
 app.use(router)
