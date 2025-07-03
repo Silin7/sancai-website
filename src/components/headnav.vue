@@ -59,31 +59,60 @@ const menuList: any = ref([
   { tetle: '关于三才', path: '/about', name: 'about', children: [] },
   { tetle: '热点资讯', path: '/news', name: 'news', children: [] },
 ])
+
+// 移动端
+const drawer2 = ref(false)
 </script>
 
 <template>
-  <div class="headPositon">
-    <div class="headflex">
-      <div class="headnav">
-        <img style="width: 120px" src="@/assets/logo.png" mode="widthFix" alt="logo" />
-        <div class="menubox">
-          <div
-            v-for="(item, index) in menuList"
-            :key="index"
-            class="menuitem"
-            @click="tabRouterPush(item.name)"
-          >
-            {{ item.tetle }}
+  <div>
+    <div class="headPositon">
+      <div class="headflex">
+        <div
+          class="headnav"
+          :style="
+            windowWidth > 1140 ? 'width: calc(100% - 130px);' : 'justify-content: space-between;'
+          "
+        >
+          <img
+            src="@/assets/logo.png"
+            mode="widthFix"
+            alt="logo"
+            style="width: 120px; margin-bottom: 2px"
+          />
+          <div v-if="windowWidth > 1140" class="menubox">
+            <div
+              v-for="(item, index) in menuList"
+              :key="index"
+              class="menuitem"
+              :style="windowWidth > 1280 ? 'margin-left: 40px;' : 'margin-left: 20px;'"
+              @click="tabRouterPush(item.name)"
+            >
+              <div class="menutitle" :style="selectedTab === item.name ? 'font-weight: 700;' : ''">
+                {{ item.tetle }}
+              </div>
+              <div class="menuheng"></div>
+            </div>
           </div>
-          <div style="color: #fff">{{ selectedTab }}</div>
-          <!-- <div style="color: #fff">{{ windowWidth }}\{{ windowScrollY }}</div> -->
+          <div v-else @click="drawer2 = true">
+            <i class="fa fa-bars" style="font-size: 28px; color: #fff"></i>
+          </div>
+        </div>
+        <div v-if="windowWidth > 1140" class="headbtns">
+          <button class="loginbtn">登录</button>
+          <button class="registerbtn">注册</button>
         </div>
       </div>
-      <div class="headbtns">
-        <button class="loginbtn">登录</button>
-        <button class="registerbtn">注册</button>
-      </div>
     </div>
+    <el-drawer v-model="drawer2" :with-header="false" direction="rtl" size="80%">
+      <div>
+        <div class="culbbox">
+          <i class="fa fa-cube" style="font-size: 16px; color: #165dff"></i>
+        </div>
+        <p style="font-size: 1.25rem; font-weight: 700; color: #012060">新材网</p>
+      </div>
+      <i class="fa fa-times" style="font-size: 28px; color: #6b7280"></i>
+    </el-drawer>
   </div>
 </template>
 
@@ -103,21 +132,58 @@ const menuList: any = ref([
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid red;
 
     .headnav {
-      width: calc(100% - 130px);
+      width: 100%;
       display: flex;
       align-items: center;
 
       .menubox {
+        height: 33px;
         display: flex;
         justify-content: space-around;
+        align-items: flex-end;
 
         .menuitem {
           margin-left: 30px;
-          font-size: var(--title-size);
-          color: #fff;
+          display: flex;
+          flex-flow: column;
+
+          .menutitle {
+            font-size: var(--title-size);
+            color: #fff;
+          }
+
+          .menuheng {
+            margin-top: 2px;
+            width: 0%;
+            height: 2px;
+          }
+        }
+
+        .menuitem:hover {
+          .menutitle {
+            cursor: pointer;
+            color: #165dff;
+          }
+
+          .menuheng {
+            animation: hengChange 0.5s infinite alternate;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+          }
+        }
+
+        @keyframes hengChange {
+          0% {
+            width: 0%;
+            background-color: #165dff;
+          }
+
+          100% {
+            width: 100%;
+            background-color: #165dff;
+          }
         }
       }
     }
