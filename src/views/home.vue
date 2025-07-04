@@ -10,7 +10,7 @@ function goTopCallback() {
 <template>
   <div class="page-main">
     <component :is="sideleft" ref="sideleftRef" />
-    <component :is="sideright" ref="siderightRef" @goTopCallback="goTopCallback" />
+    <!-- <component :is="sideright" ref="siderightRef" @goTopCallback="goTopCallback" /> -->
   </div>
 </template>
 
