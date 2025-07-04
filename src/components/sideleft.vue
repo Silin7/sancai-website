@@ -18,9 +18,7 @@ function expandfunc() {
   if (expandState.value) {
     document.getElementById('content').classList.add('boxanimating2')
     document.getElementById('content').classList.remove('boxanimating1')
-    setTimeout(() => {
-      expandState.value = !expandState.value
-    }, 1800)
+    expandState.value = !expandState.value
   } else {
     document.getElementById('content').classList.add('boxanimating1')
     document.getElementById('content').classList.remove('boxanimating2')
@@ -45,7 +43,7 @@ function expandfunc() {
           hover-stop="true"
           :list="unitList"
           :hover="true"
-          :step="1"
+          :step="0.5"
           :limitScrollNum="4"
         >
           <div v-for="(item, index) in unitList" :key="index" class="unititem">
@@ -100,11 +98,11 @@ function expandfunc() {
   }
 
   .boxanimating1 {
-    animation: expandCollapse1 2s ease-in-out forwards; /* 应用动画并保持结束状态 */
+    animation: expandCollapse1 1s ease-in-out forwards; /* 应用动画并保持结束状态 */
   }
 
   .boxanimating2 {
-    animation: expandCollapse2 2s ease-in-out forwards; /* 应用动画并保持结束状态 */
+    animation: expandCollapse2 1s ease-in-out forwards; /* 应用动画并保持结束状态 */
   }
 
   @keyframes expandCollapse1 {
