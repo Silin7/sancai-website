@@ -9,6 +9,10 @@ import '@/styleSheet/index.scss'
 // font-awesome style
 import 'font-awesome/css/font-awesome.min.css'
 
+// vue3-seamless-scroll
+import vue3SeamlessScroll from 'vue3-seamless-scroll'
+app.use(vue3SeamlessScroll)
+
 // 路由 router
 import router from './router'
 app.use(router)
