@@ -66,12 +66,13 @@ function expandfunc() {
 .sideleft {
   position: fixed;
   left: 20px;
-  bottom: 30vh;
+  bottom: 20vh;
   z-index: 9999;
   width: 188px;
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #fff;
   box-shadow: 0 10px 10px -3px rgb(0 0 0 / 0.1);
+  overflow: hidden;
 
   .thankstop {
     cursor: pointer;

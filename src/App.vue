@@ -9,10 +9,10 @@ const routeInfo = useRoute()
 </script>
 
 <template>
-  <div>
+  <!-- <div>
     <RouterView />
-  </div>
-  <!-- <div v-if="routeInfo.meta.website">
+  </div> -->
+  <div v-if="routeInfo.meta.website">
     <component v-if="routeInfo.meta.hashead" :is="headnav" ref="headnavRef" />
     <RouterView />
     <component v-if="routeInfo.meta.hasfoot" :is="footnav" ref="footnavRef" />
@@ -25,5 +25,5 @@ const routeInfo = useRoute()
         <RouterView />
       </div>
     </div>
-  </div> -->
+  </div>
 </template>
