@@ -14,3 +14,8 @@ button {
   outline: inherit;
   /* 移除默认的focus边框 */
 }
+
+div {
+  box-sizing: border-box;
+  font-family: Inter, system-ui, sans-serif;
+}
