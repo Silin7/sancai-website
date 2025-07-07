@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import backToTop from '@/hooks/backToTop'
 import sideleft from '@/components/sideleft.vue'
 import sideright from '@/components/sideright.vue'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const windowWidth = ref(window.innerWidth)
 
@@ -16,16 +17,12 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWindowWidth)
 })
-
-function goTopCallback() {
-  window.scrollTo(0, 0)
-}
 </script>
 
 <template>
   <div>
-    <!-- <component :is="sideleft" ref="sideleftRef" />
-    <component :is="sideright" ref="siderightRef" @goTopCallback="goTopCallback" /> -->
+    <component :is="sideleft" ref="sideleftRef" />
+    <component :is="sideright" ref="siderightRef" @goTopCallback="backToTop" />
     <div class="homepage">
       <!-- BANNER -->
       <div class="bannerBox">
@@ -767,9 +764,7 @@ function goTopCallback() {
           color: #fff;
           background-color: rgb(22 93 255);
           border-radius: 9999px;
-          box-shadow:
-            0 10px 15px -3px rgb(0 0 0 / 0.1),
-            0 4px 6px -4px rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
         }
 
         .bannerJjfabtn {
@@ -830,7 +825,8 @@ function goTopCallback() {
 
           .bannerRiditem:hover {
             cursor: pointer;
-            box-shadow: 10px 10px 15px -3px rgb(0 0 0 / 0.1);
+            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            animation: jumpUpwards 300ms ease-in-out forwards;
           }
 
           .bannerGridshu {
@@ -885,7 +881,8 @@ function goTopCallback() {
 
           .bannerRiditem:hover {
             cursor: pointer;
-            box-shadow: 10px 10px 15px -3px rgb(0 0 0 / 0.1);
+            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            animation: jumpUpwards 300ms ease-in-out forwards;
           }
 
           .bannerGridshu {
@@ -994,7 +991,7 @@ function goTopCallback() {
     }
 
     .containerInfo {
-      margin: 1rem auto 4rem;
+      margin: 1rem auto 0;
       text-align: center;
       max-width: 42rem;
       color: rgb(75 85 99);
@@ -1002,7 +999,7 @@ function goTopCallback() {
 
     .containerRidbox {
       overflow: hidden;
-      margin-top: 4rem;
+      padding-top: 4rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -1082,7 +1079,8 @@ function goTopCallback() {
 
       .containerRiditem:hover {
         cursor: pointer;
-        box-shadow: 10px 10px 15px -3px rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        animation: jumpUpwards 300ms ease-in-out forwards;
       }
 
       .containerGridshu {
@@ -1136,6 +1134,12 @@ function goTopCallback() {
         border-radius: 9999px;
         background-color: #fff;
       }
+
+      .solutionsSubItem:hover {
+        cursor: pointer;
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        background-color: rgb(243 244 246);
+      }
     }
 
     .solutionsSubBox2 {
@@ -1151,6 +1155,12 @@ function goTopCallback() {
         padding: 0.5rem 1.25rem;
         border-radius: 9999px;
         background-color: #fff;
+      }
+
+      .solutionsSubItem:hover {
+        cursor: pointer;
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        background-color: rgb(243 244 246);
       }
     }
 
@@ -1298,6 +1308,12 @@ function goTopCallback() {
           color: rgb(1 32 96);
         }
       }
+
+      .aiClassitem:hover {
+        cursor: pointer;
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        animation: jumpUpwards 300ms ease-in-out forwards;
+      }
     }
   }
 
@@ -1369,6 +1385,12 @@ function goTopCallback() {
           text-align: center;
           color: rgb(107 114 128);
         }
+      }
+
+      .pyClassitem:hover {
+        cursor: pointer;
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        animation: jumpUpwards 300ms ease-in-out forwards;
       }
     }
   }

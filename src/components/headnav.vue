@@ -119,7 +119,11 @@ const drawerVisible = ref(false)
           </div>
           <p style="">新材网</p>
         </div>
-        <i class="fa fa-times" style="font-size: 28px; color: #6b7280; cursor: pointer;" @click="drawerVisible = false"></i>
+        <i
+          class="fa fa-times"
+          style="font-size: 28px; color: #6b7280; cursor: pointer"
+          @click="drawerVisible = false"
+        ></i>
       </div>
       <div class="mobilecollapse">
         <el-collapse v-model="selectedTab" accordion @change="tabRouterPush">

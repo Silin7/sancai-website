@@ -19,3 +19,14 @@ div {
   box-sizing: border-box;
   font-family: Inter, system-ui, sans-serif;
 }
+
+// 向上跳动
+@keyframes jumpUpwards {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-5px);
+  }
+}
