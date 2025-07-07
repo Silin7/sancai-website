@@ -27,6 +27,7 @@ function goTopCallback() {
     <!-- <component :is="sideleft" ref="sideleftRef" />
     <component :is="sideright" ref="siderightRef" @goTopCallback="goTopCallback" /> -->
     <div class="homepage">
+      <!-- BANNER -->
       <div class="bannerBox">
         <!-- <div class="bannerZzc" /> -->
         <img
@@ -57,7 +58,7 @@ function goTopCallback() {
                       : 'width: 100%'
                 "
               >
-                <div class="bannerFabox">
+                <div class="bannerFabox frcc">
                   <i class="fa fa-database" style="font-size: 20px; color: #fff"></i>
                 </div>
                 <div class="bannerGridright">
@@ -76,7 +77,7 @@ function goTopCallback() {
                       : 'width: 100%'
                 "
               >
-                <div class="bannerFabox">
+                <div class="bannerFabox frcc">
                   <i class="fa fa-calculator" style="font-size: 20px; color: #fff"></i>
                 </div>
                 <div class="bannerGridright">
@@ -95,7 +96,7 @@ function goTopCallback() {
                       : 'width: 100%'
                 "
               >
-                <div class="bannerFabox">
+                <div class="bannerFabox frcc">
                   <i class="fa fa-android" style="font-size: 20px; color: #fff"></i>
                 </div>
                 <div class="bannerGridright">
@@ -114,7 +115,7 @@ function goTopCallback() {
                       : 'width: 100%'
                 "
               >
-                <div class="bannerFabox">
+                <div class="bannerFabox frcc">
                   <i class="fa fa-play-circle" style="font-size: 20px; color: #fff"></i>
                 </div>
                 <div class="bannerGridright">
@@ -126,6 +127,7 @@ function goTopCallback() {
           </div>
         </div>
       </div>
+      <!-- 系统简介 -->
       <div class="featuresBox">
         <div class="featuresImg">
           <img
@@ -203,6 +205,7 @@ function goTopCallback() {
           </div>
         </div>
       </div>
+      <!-- 人材机信价格库 -->
       <div class="containerBox">
         <div class="containerTitle">人材机信价格库</div>
         <div class="containerHeng"></div>
@@ -360,6 +363,7 @@ function goTopCallback() {
           </div>
         </div>
       </div>
+      <!-- 数字化解决方案 -->
       <div class="solutionsBox">
         <div class="solutionsTitle">数字化解决方案</div>
         <div class="solutionsHeng"></div>
@@ -393,6 +397,225 @@ function goTopCallback() {
             <p>
               通过BIM技术实现工程造价的精准计算与动态管理，提高成本控制能力，减少预算超支风险，为项目全生命周期成本管理提供数据支撑。
             </p>
+          </div>
+        </div>
+      </div>
+      <!-- 人工智能应用 -->
+      <div class="aiBox">
+        <div class="aiTitle">人工智能应用</div>
+        <div class="aiHeng"></div>
+        <div class="aiInfo">
+          以数据、算法和算力为核心要素，驱动工程设计、工程施工和运营维护多维度创新应用，为产业转型发展注入新动能
+        </div>
+        <div class="aiSubbox">
+          <div class="aiFabox frcc">
+            <i class="fa fa-cogs" style="font-size: 20px; color: #165dff"></i>
+          </div>
+          <div class="aiSubtitle">工程管理AI应用组价</div>
+        </div>
+        <div class="aiClassbox">
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa frcc">
+              <i class="fa fa-pencil" style="font-size: 20px; color: #165dff"></i>
+            </div>
+            <div class="aiClassitemtext">智能化设计</div>
+          </div>
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa frcc">
+              <i class="fa fa-wrench" style="font-size: 20px; color: #165dff"></i>
+            </div>
+            <div class="aiClassitemtext">辅助设计工具</div>
+          </div>
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa frcc">
+              <i class="fa fa-android" style="font-size: 20px; color: #165dff"></i>
+            </div>
+            <div class="aiClassitemtext">建筑机器人</div>
+          </div>
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa frcc">
+              <i class="fa fa-tasks" style="font-size: 20px; color: #165dff"></i>
+            </div>
+            <div class="aiClassitemtext">施工管理</div>
+          </div>
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa frcc">
+              <i class="fa fa-check-square" style="font-size: 20px; color: #165dff"></i>
+            </div>
+            <div class="aiClassitemtext">辅助质量控制</div>
+          </div>
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa frcc">
+              <i class="fa fa-sliders" style="font-size: 20px; color: #165dff"></i>
+            </div>
+            <div class="aiClassitemtext">智能化控制</div>
+          </div>
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa frcc">
+              <i class="fa fa-bolt" style="font-size: 20px; color: #165dff"></i>
+            </div>
+            <div class="aiClassitemtext">能源管理</div>
+          </div>
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa frcc">
+              <i class="fa fa-expand" style="font-size: 20px; color: #165dff"></i>
+            </div>
+            <div class="aiClassitemtext">场景拓展</div>
+          </div>
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa frcc">
+              <i class="fa fa-random" style="font-size: 20px; color: #165dff"></i>
+            </div>
+            <div class="aiClassitemtext">跨界融合</div>
+          </div>
+        </div>
+        <div class="aiSubbox">
+          <div class="aiFabox2 frcc">
+            <i class="fa fa-calculator" style="font-size: 20px; color: #722ed1"></i>
+          </div>
+          <div class="aiSubtitle">工程管理AI应用组价</div>
+        </div>
+        <div class="aiClassbox">
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa2 frcc">
+              <i class="fa fa-pencil" style="font-size: 20px; color: #722ed1"></i>
+            </div>
+            <div class="aiClassitemtext">智能复核文本</div>
+          </div>
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa2 frcc">
+              <i class="fa fa-wrench" style="font-size: 20px; color: #722ed1"></i>
+            </div>
+            <div class="aiClassitemtext">智能检测漏项</div>
+          </div>
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa2 frcc">
+              <i class="fa fa-android" style="font-size: 20px; color: #722ed1"></i>
+            </div>
+            <div class="aiClassitemtext">智能预警偏离</div>
+          </div>
+          <div
+            class="aiClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(20% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <div class="aiClassitemfa2 frcc">
+              <i class="fa fa-tasks" style="font-size: 20px; color: #722ed1"></i>
+            </div>
+            <div class="aiClassitemtext">智能分析指标</div>
           </div>
         </div>
       </div>
@@ -492,9 +715,6 @@ function goTopCallback() {
               height: 3rem;
               background-color: rgb(22 93 255 / 0.1);
               border-radius: 0.5rem;
-              display: flex;
-              justify-content: center;
-              align-items: center;
             }
 
             .bannerGridright {
@@ -550,9 +770,6 @@ function goTopCallback() {
               height: 3rem;
               background-color: rgb(22 93 255 / 0.1);
               border-radius: 0.5rem;
-              display: flex;
-              justify-content: center;
-              align-items: center;
             }
 
             .bannerGridright {
@@ -786,7 +1003,7 @@ function goTopCallback() {
 
   .solutionsBox {
     position: relative;
-    margin: 6rem auto;
+    margin: 6rem auto 0;
     padding: 0 1rem;
     width: 100%;
     max-width: 1720px;
@@ -886,6 +1103,107 @@ function goTopCallback() {
           max-width: 42rem;
           line-height: 1.5rem;
           color: rgb(255 255 255 / 0.9);
+        }
+      }
+    }
+  }
+
+  .aiBox {
+    position: relative;
+    margin: 6rem auto;
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 1720px;
+
+    .aiTitle {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      color: rgb(1 32 96);
+    }
+
+    .aiHeng {
+      margin: 1rem auto 0;
+      width: 5rem;
+      height: 0.25rem;
+      border-radius: 9999px;
+      background-color: rgb(22 93 255);
+    }
+
+    .aiInfo {
+      margin: 1rem auto 4rem;
+      text-align: center;
+      max-width: 42rem;
+      color: rgb(75 85 99);
+    }
+
+    .aiSubbox {
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+
+      .aiFabox {
+        margin-right: 1rem;
+        width: 3rem;
+        height: 3rem;
+        background-color: rgba(22 93 255 / 0.1);
+        border-radius: 9999px;
+      }
+
+      .aiFabox2 {
+        margin-right: 1rem;
+        width: 3rem;
+        height: 3rem;
+        background-color: rgb(114 46 209 / 0.1);
+        border-radius: 9999px;
+      }
+
+      .aiSubtitle {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 700;
+        color: rgb(1 32 96);
+      }
+    }
+
+    .aiClassbox {
+      margin-bottom: 2.5rem;
+      width: calc(100% + 1.5rem);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      .aiClassitem {
+        margin: 0 1.5rem 1.5rem 0;
+        padding: 1.25rem;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        // background-color: rgb(249 250 251);
+        border-radius: 0.75rem;
+
+        .aiClassitemfa {
+          margin-bottom: 1rem;
+          width: 4rem;
+          height: 4rem;
+          border-radius: 9999px;
+          background-color: rgb(22 93 255 / 0.1);
+        }
+
+        .aiClassitemfa2 {
+          margin-bottom: 1rem;
+          width: 4rem;
+          height: 4rem;
+          border-radius: 9999px;
+          background-color: rgb(114 46 209 / 0.1);
+        }
+
+        .aiClassitemtext {
+          line-height: 1.5rem;
+          font-weight: 500;
+          color: rgb(1 32 96);
         }
       }
     }
