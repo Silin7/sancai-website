@@ -33,7 +33,7 @@ function goTopCallback() {
         <img
           src="@/assets/banner00.jpeg"
           alt="banner"
-          mode="cover"
+          mode="aspectFill"
           :style="['width: 100vw;', windowWidth < 600 ? 'height: 60rem;' : 'height: 44rem;']"
         />
         <div class="bannerAbsolute">
@@ -619,6 +619,98 @@ function goTopCallback() {
           </div>
         </div>
       </div>
+      <!-- 友情链接  -->
+      <div class="pyBox">
+        <div class="pyTitle">友情链接</div>
+        <div class="pyHeng"></div>
+        <div class="pyInfo">与行业领先企业及机构建立合作，共同推动建筑行业数字化转型</div>
+        <div class="pyClassbox">
+          <div
+            class="pyClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <img src="https://picsum.photos/100/100?random=402" alt="" class="pyClassitemfa" />
+            <div class="pyClassitemtext">建筑科技有限公司</div>
+            <div class="pyClassiteminfo">专注建筑科技创新</div>
+          </div>
+          <div
+            class="pyClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <img src="https://picsum.photos/100/100?random=403" alt="" class="pyClassitemfa" />
+            <div class="pyClassitemtext">智能建造研究院</div>
+            <div class="pyClassiteminfo">建筑智能化研究</div>
+          </div>
+          <div
+            class="pyClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <img src="https://picsum.photos/100/100?random=404" alt="" class="pyClassitemfa" />
+            <div class="pyClassitemtext">绿色建材协会</div>
+            <div class="pyClassiteminfo">推广绿色建筑材料</div>
+          </div>
+          <div
+            class="pyClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <img src="https://picsum.photos/100/100?random=405" alt="" class="pyClassitemfa" />
+            <div class="pyClassitemtext">数字工程设计院</div>
+            <div class="pyClassiteminfo">数字化工程设计</div>
+          </div>
+          <div
+            class="pyClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <img src="https://picsum.photos/100/100?random=406" alt="" class="pyClassitemfa" />
+            <div class="pyClassitemtext">智慧城市科技</div>
+            <div class="pyClassiteminfo">智慧城市解决方案</div>
+          </div>
+          <div
+            class="pyClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
+            <img src="https://picsum.photos/100/100?random=407" alt="" class="pyClassitemfa" />
+            <div class="pyClassitemtext">建筑信息研究院</div>
+            <div class="pyClassiteminfo">建筑信息研究应用</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -881,7 +973,7 @@ function goTopCallback() {
 
   .containerBox {
     position: relative;
-    margin: 6rem auto;
+    margin: 6rem auto 0;
     padding: 0 1rem;
     width: 100%;
     max-width: 1720px;
@@ -1110,7 +1202,7 @@ function goTopCallback() {
 
   .aiBox {
     position: relative;
-    margin: 6rem auto;
+    margin: 6rem auto 0;
     padding: 0 1rem;
     width: 100%;
     max-width: 1720px;
@@ -1204,6 +1296,78 @@ function goTopCallback() {
           line-height: 1.5rem;
           font-weight: 500;
           color: rgb(1 32 96);
+        }
+      }
+    }
+  }
+
+  .pyBox {
+    position: relative;
+    margin: 6rem auto 0;
+    padding: 0 1rem 4rem;
+    width: 100%;
+    max-width: 1720px;
+
+    .pyTitle {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      color: rgb(1 32 96);
+    }
+
+    .pyHeng {
+      margin: 1rem auto 0;
+      width: 5rem;
+      height: 0.25rem;
+      border-radius: 9999px;
+      background-color: rgb(22 93 255);
+    }
+
+    .pyInfo {
+      margin: 1rem auto 4rem;
+      text-align: center;
+      max-width: 42rem;
+      color: rgb(75 85 99);
+    }
+
+    .pyClassbox {
+      width: calc(100% + 1.5rem);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      .pyClassitem {
+        margin: 0 1.5rem 1.5rem 0;
+        padding: 1.25rem;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        // background-color: rgb(249 250 251);
+        border-radius: 0.75rem;
+
+        .pyClassitemfa {
+          margin-bottom: 1rem;
+          width: 5rem;
+          height: 5rem;
+          border-radius: 9999px;
+          background-color: rgb(114 46 209 / 0.1);
+        }
+
+        .pyClassitemtext {
+          line-height: 1.5rem;
+          font-weight: 500;
+          text-align: center;
+          color: rgb(1 32 96);
+        }
+
+        .pyClassiteminfo {
+          margin-top: 0.5rem;
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          text-align: center;
+          color: rgb(107 114 128);
         }
       }
     }
