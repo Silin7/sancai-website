@@ -33,7 +33,7 @@ function goTopCallback() {
           src="@/assets/banner00.jpeg"
           alt="banner"
           mode="cover"
-          style="width: 100vw; height: 720px"
+          style="width: 100vw; height: 100%"
         />
         <div class="bannerAbsolute">
           <div class="bannerContent">
@@ -46,8 +46,17 @@ function goTopCallback() {
               </button>
             </div>
             <div class="bannerCompany">杭州三才工程管理咨询有限公司</div>
-            <div v-if="windowWidth > 1000" class="bannerRidbox">
-              <div class="bannerRiditem">
+            <div class="bannerRidbox">
+              <div
+                class="bannerRiditem"
+                :style="
+                  windowWidth > 1000
+                    ? 'width: calc(25% - 1px);'
+                    : windowWidth > 600
+                      ? 'width: calc(50% - 1px);'
+                      : 'width: 100%'
+                "
+              >
                 <div class="bannerFabox">
                   <i class="fa fa-database" style="font-size: 20px; color: #fff"></i>
                 </div>
@@ -56,8 +65,17 @@ function goTopCallback() {
                   <div class="bannerGridinfo">精准数据，助力成本管控</div>
                 </div>
               </div>
-              <div class="bannerGridshu" />
-              <div class="bannerRiditem">
+              <div v-if="windowWidth > 600" class="bannerGridshu" />
+              <div
+                class="bannerRiditem"
+                :style="
+                  windowWidth > 1000
+                    ? 'width: calc(25% - 1px);'
+                    : windowWidth > 600
+                      ? 'width: calc(50% - 1px);'
+                      : 'width: 100%'
+                "
+              >
                 <div class="bannerFabox">
                   <i class="fa fa-calculator" style="font-size: 20px; color: #fff"></i>
                 </div>
@@ -66,8 +84,17 @@ function goTopCallback() {
                   <div class="bannerGridinfo">智能组价，优化方案设计</div>
                 </div>
               </div>
-              <div class="bannerGridshu" />
-              <div class="bannerRiditem">
+              <div v-if="windowWidth > 600" class="bannerGridshu" />
+              <div
+                class="bannerRiditem"
+                :style="
+                  windowWidth > 1000
+                    ? 'width: calc(25% - 1px);'
+                    : windowWidth > 600
+                      ? 'width: calc(50% - 1px);'
+                      : 'width: 100%'
+                "
+              >
                 <div class="bannerFabox">
                   <i class="fa fa-android" style="font-size: 20px; color: #fff"></i>
                 </div>
@@ -76,48 +103,17 @@ function goTopCallback() {
                   <div class="bannerGridinfo">AI赋能，提升运行效率</div>
                 </div>
               </div>
-              <div class="bannerGridshu" />
-              <div class="bannerRiditem">
-                <div class="bannerFabox">
-                  <i class="fa fa-play-circle" style="font-size: 20px; color: #fff"></i>
-                </div>
-                <div class="bannerGridright">
-                  <div class="bannerRidtitle">视频讲解</div>
-                  <div class="bannerGridinfo">直观教学，掌握核心技能</div>
-                </div>
-              </div>
-            </div>
-            <div v-else class="bannerRidbox2">
-              <div class="bannerRiditem">
-                <div class="bannerFabox">
-                  <i class="fa fa-database" style="font-size: 20px; color: #fff"></i>
-                </div>
-                <div class="bannerGridright">
-                  <div class="bannerRidtitle">人材机信价格库</div>
-                  <div class="bannerGridinfo">精准数据，助力成本管控</div>
-                </div>
-              </div>
-              <div class="bannerGridshu" />
-              <div class="bannerRiditem">
-                <div class="bannerFabox">
-                  <i class="fa fa-calculator" style="font-size: 20px; color: #fff"></i>
-                </div>
-                <div class="bannerGridright">
-                  <div class="bannerRidtitle">数据方案组价</div>
-                  <div class="bannerGridinfo">智能组价，优化方案设计</div>
-                </div>
-              </div>
-              <div class="bannerRiditem">
-                <div class="bannerFabox">
-                  <i class="fa fa-android" style="font-size: 20px; color: #fff"></i>
-                </div>
-                <div class="bannerGridright">
-                  <div class="bannerRidtitle">人工智能应用</div>
-                  <div class="bannerGridinfo">AI赋能，提升运行效率</div>
-                </div>
-              </div>
-              <div class="bannerGridshu" />
-              <div class="bannerRiditem">
+              <div v-if="windowWidth > 600" class="bannerGridshu" />
+              <div
+                class="bannerRiditem"
+                :style="
+                  windowWidth > 1000
+                    ? 'width: calc(25% - 1px);'
+                    : windowWidth > 600
+                      ? 'width: calc(50% - 1px);'
+                      : 'width: 100%'
+                "
+              >
                 <div class="bannerFabox">
                   <i class="fa fa-play-circle" style="font-size: 20px; color: #fff"></i>
                 </div>
@@ -213,10 +209,19 @@ function goTopCallback() {
         <div class="containerInfo">
           专注于新型城市基础设施建设的人材机信资源价格数据库，为行业提供精准的成本管控信息
         </div>
-        <div v-if="windowWidth > 1000" class="containerRidbox">
-          <div class="containerRiditem">
+        <div class="containerRidbox">
+          <div
+            class="containerRiditem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(25% - 0.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(50% - 0.5rem);'
+                  : 'width: 100%'
+            "
+          >
             <div class="containerRidimgbox">
-              <img src="@/assets/product02.jpeg" alt="" style="width: 100%; height: 12rem" />
+              <img src="@/assets/product01.jpeg" alt="" style="width: 100%; height: 12rem" />
               <div class="containerRidimgfx frsc">
                 <div class="containerFabox">
                   <i class="fa fa-user" style="font-size: 20px; color: #fff"></i>
@@ -232,6 +237,117 @@ function goTopCallback() {
               <div class="frsc" style="margin-bottom: 0.75rem">
                 <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
                 <div class="containerRidtitle">数字方案论证</div>
+              </div>
+            </div>
+            <div class="containerCkqbbox">
+              <div class="containerCkqbtitle">查看全部</div>
+              <div class="frsc">
+                <div class="containerCkqbxq">详情</div>
+                <i class="fa fa-arrow-right" style="font-size: 1rem; color: #165dff"></i>
+              </div>
+            </div>
+          </div>
+          <div
+            class="containerRiditem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(25% - 0.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(50% - 0.5rem);'
+                  : 'margin-top: 1rem; width: 100%'
+            "
+          >
+            <div class="containerRidimgbox">
+              <img src="@/assets/product02.jpeg" alt="" style="width: 100%; height: 12rem" />
+              <div class="containerRidimgfx frsc">
+                <div class="containerFabox">
+                  <i class="fa fa-cubes" style="font-size: 20px; color: #fff"></i>
+                </div>
+                <div class="containerRidimginfo">材料/设备</div>
+              </div>
+            </div>
+            <div class="containerGridibox">
+              <div class="frsc" style="margin-bottom: 0.75rem">
+                <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
+                <div class="containerRidtitle">城市更新</div>
+              </div>
+              <div class="frsc" style="margin-bottom: 0.75rem">
+                <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
+                <div class="containerRidtitle">四好建设</div>
+              </div>
+            </div>
+            <div class="containerCkqbbox">
+              <div class="containerCkqbtitle">查看全部</div>
+              <div class="frsc">
+                <div class="containerCkqbxq">详情</div>
+                <i class="fa fa-arrow-right" style="font-size: 1rem; color: #165dff"></i>
+              </div>
+            </div>
+          </div>
+          <div
+            class="containerRiditem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(25% - 0.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(50% - 0.5rem);'
+                  : 'margin-top: 1rem; width: 100%'
+            "
+          >
+            <div class="containerRidimgbox">
+              <img src="@/assets/product03.jpeg" alt="" style="width: 100%; height: 12rem" />
+              <div class="containerRidimgfx frsc">
+                <div class="containerFabox">
+                  <i class="fa fa-delicious" style="font-size: 20px; color: #fff"></i>
+                </div>
+                <div class="containerRidimginfo">智能建造装备</div>
+              </div>
+            </div>
+            <div class="containerGridibox">
+              <div class="frsc" style="margin-bottom: 0.75rem">
+                <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
+                <div class="containerRidtitle">租赁</div>
+              </div>
+              <div class="frsc" style="margin-bottom: 0.75rem">
+                <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
+                <div class="containerRidtitle">销售</div>
+              </div>
+            </div>
+            <div class="containerCkqbbox">
+              <div class="containerCkqbtitle">查看全部</div>
+              <div class="frsc">
+                <div class="containerCkqbxq">详情</div>
+                <i class="fa fa-arrow-right" style="font-size: 1rem; color: #165dff"></i>
+              </div>
+            </div>
+          </div>
+          <div
+            class="containerRiditem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(25% - 0.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(50% - 0.5rem);'
+                  : 'margin-top: 1rem; width: 100%'
+            "
+          >
+            <div class="containerRidimgbox">
+              <img src="@/assets/product04.jpeg" alt="" style="width: 100%; height: 12rem" />
+              <div class="containerRidimgfx frsc">
+                <div class="containerFabox">
+                  <i class="fa fa-wifi" style="font-size: 20px; color: #fff"></i>
+                </div>
+                <div class="containerRidimginfo">信息化产品/服务</div>
+              </div>
+            </div>
+            <div class="containerGridibox">
+              <div class="frsc" style="margin-bottom: 0.75rem">
+                <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
+                <div class="containerRidtitle">产品</div>
+              </div>
+              <div class="frsc" style="margin-bottom: 0.75rem">
+                <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
+                <div class="containerRidtitle">服务</div>
               </div>
             </div>
             <div class="containerCkqbbox">
@@ -291,7 +407,7 @@ function goTopCallback() {
   .bannerBox {
     position: relative;
     width: 100vw;
-    height: 720px;
+    height: 100%;
 
     .bannerZzc {
       position: absolute;
@@ -309,15 +425,16 @@ function goTopCallback() {
       left: 0;
       z-index: 2;
       width: 100vw;
-      height: 720px;
+      height: 100%;
+      border: 1px solid red;
 
       .bannerContent {
         margin: 0 auto;
-        padding: 6rem 30px 0;
+        padding: 6rem 30px;
         width: 100%;
         max-width: 1720px;
         height: 720px;
-        border: 1px solid red;
+        border: 1px solid green;
 
         .bannerTitle {
           margin-bottom: 2rem;
@@ -363,13 +480,13 @@ function goTopCallback() {
           overflow: hidden;
           margin-top: 3rem;
           display: flex;
+          flex-wrap: wrap;
           justify-content: space-between;
           align-items: center;
           background-color: rgba(11, 255, 0, 0.1);
           border-radius: 1rem;
 
           .bannerRiditem {
-            width: calc(25% - 1px);
             padding: 1.5rem;
             display: flex;
 
@@ -478,7 +595,7 @@ function goTopCallback() {
   .featuresBox {
     position: relative;
     margin: 6rem auto 0;
-    padding: 0 2rem;
+    padding: 0 1rem;
     width: 100%;
     max-width: 1720px;
 
@@ -551,7 +668,7 @@ function goTopCallback() {
   .containerBox {
     position: relative;
     margin: 6rem auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
     width: 100%;
     max-width: 1720px;
 
@@ -581,12 +698,12 @@ function goTopCallback() {
       overflow: hidden;
       margin-top: 4rem;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
 
       .containerRiditem {
         overflow: hidden;
-        width: calc(25% - 10px);
         background-color: #fff;
         border-radius: 1rem;
 
@@ -673,7 +790,7 @@ function goTopCallback() {
   .solutionsBox {
     position: relative;
     margin: 6rem auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
     width: 100%;
     max-width: 1720px;
 
