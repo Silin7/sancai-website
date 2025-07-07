@@ -16,12 +16,12 @@ const unitList: any = ref([
 
 function expandfunc() {
   if (expandState.value) {
-    document.getElementById('content').classList.add('boxanimating2')
-    document.getElementById('content').classList.remove('boxanimating1')
+    document.getElementById('content')?.classList.add('boxanimating2')
+    document.getElementById('content')?.classList.remove('boxanimating1')
     expandState.value = !expandState.value
   } else {
-    document.getElementById('content').classList.add('boxanimating1')
-    document.getElementById('content').classList.remove('boxanimating2')
+    document.getElementById('content')?.classList.add('boxanimating1')
+    document.getElementById('content')?.classList.remove('boxanimating2')
     expandState.value = !expandState.value
   }
 }
