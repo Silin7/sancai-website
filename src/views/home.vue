@@ -28,12 +28,12 @@ function goTopCallback() {
     <component :is="sideright" ref="siderightRef" @goTopCallback="goTopCallback" /> -->
     <div class="homepage">
       <div class="bannerBox">
-        <div class="bannerZzc" />
+        <!-- <div class="bannerZzc" /> -->
         <img
           src="@/assets/banner00.jpeg"
           alt="banner"
           mode="cover"
-          style="width: 100vw; height: 100%"
+          :style="['width: 100vw;', windowWidth < 600 ? 'height: 60rem;' : 'height: 44rem;']"
         />
         <div class="bannerAbsolute">
           <div class="bannerContent">
@@ -426,15 +426,12 @@ function goTopCallback() {
       z-index: 2;
       width: 100vw;
       height: 100%;
-      border: 1px solid red;
 
       .bannerContent {
         margin: 0 auto;
         padding: 6rem 30px;
         width: 100%;
         max-width: 1720px;
-        height: 720px;
-        border: 1px solid green;
 
         .bannerTitle {
           margin-bottom: 2rem;
