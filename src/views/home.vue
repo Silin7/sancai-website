@@ -23,15 +23,14 @@ onBeforeUnmount(() => {
   <div>
     <component :is="sideleft" ref="sideleftRef" />
     <component :is="sideright" ref="siderightRef" @goTopCallback="backToTop" />
-    <div class="homepage">
+    <div class="homePage">
       <!-- BANNER -->
       <div class="bannerBox">
-        <!-- <div class="bannerZzc" /> -->
         <img
           src="@/assets/banner00.jpeg"
           alt="banner"
           mode="aspectFill"
-          :style="['width: 100vw;', windowWidth < 600 ? 'height: 60rem;' : 'height: 44rem;']"
+          :style="['width: 100vw;', windowWidth < 600 ? 'height: 60rem;' : 'height: 48rem;']"
         />
         <div class="bannerAbsolute">
           <div class="bannerContent">
@@ -713,23 +712,13 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss" scoped>
-.homepage {
+.homePage {
   background-color: #f9fafb;
 
   .bannerBox {
     position: relative;
     width: 100vw;
     height: 100%;
-
-    .bannerZzc {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      width: 100vw;
-      height: 720px;
-      background-image: linear-gradient(to right, #01206090 50%, #e5e7eb90 100%);
-    }
 
     .bannerAbsolute {
       position: absolute;
@@ -741,7 +730,7 @@ onBeforeUnmount(() => {
 
       .bannerContent {
         margin: 0 auto;
-        padding: 6rem 30px;
+        padding: 10rem 30px 6rem;
         width: 100%;
         max-width: 1720px;
 
@@ -794,62 +783,6 @@ onBeforeUnmount(() => {
           border-radius: 1rem;
 
           .bannerRiditem {
-            padding: 1.5rem;
-            display: flex;
-
-            .bannerFabox {
-              width: 3rem;
-              height: 3rem;
-              background-color: rgb(22 93 255 / 0.1);
-              border-radius: 0.5rem;
-            }
-
-            .bannerGridright {
-              margin-left: 1rem;
-
-              .bannerRidtitle {
-                margin-bottom: 0.5rem;
-                font-size: 1.25rem;
-                line-height: 1.75rem;
-                font-weight: 700;
-                color: #fff;
-              }
-
-              .bannerGridinfo {
-                font-size: 1rem;
-                line-height: 1.5rem;
-                color: rgba(255 255 255 / 0.8);
-              }
-            }
-          }
-
-          .bannerRiditem:hover {
-            cursor: pointer;
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
-            animation: jumpUpwards 300ms ease-in-out forwards;
-          }
-
-          .bannerGridshu {
-            width: 1px;
-            height: 5rem;
-            background-image: linear-gradient(to bottom, #1627ff30);
-          }
-        }
-
-        .bannerRidbox2 {
-          overflow: hidden;
-          margin-top: 3rem;
-          padding: 0.5rem;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          align-items: center;
-          background-color: rgba(11, 255, 0, 0.1);
-          border-radius: 1rem;
-
-          .bannerRiditem {
-            flex-shrink: 1;
-            width: calc(50% - 1px);
             padding: 1.5rem;
             display: flex;
 
