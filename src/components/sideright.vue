@@ -58,7 +58,7 @@ function goTop() {
       justify-content: center;
       align-items: center;
       color: #fff;
-      font-size: var(--title-size);
+      font-size: 1.25rem;
       font-weight: 700;
       background-image: linear-gradient(to right, #3b82f6, #0ea5e9);
       border-radius: 24px;

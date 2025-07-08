@@ -174,7 +174,7 @@ const drawerVisible = ref(false)
           flex-flow: column;
 
           .menutitle {
-            font-size: var(--title-size);
+            font-size: 1.25rem;
             color: #fff;
           }
 
@@ -264,7 +264,7 @@ const drawerVisible = ref(false)
 
       p {
         margin: 0 0 0 8px;
-        font-size: var(--title-size);
+        font-size: 1.25rem;
         font-weight: 700;
         color: #012060;
       }
@@ -298,7 +298,7 @@ const drawerVisible = ref(false)
     }
 
     .el-collapse-item__title {
-      font-size: var(--title-size) !important;
+      font-size: 1.25rem !important;
     }
 
     .el-collapse-item__wrap {

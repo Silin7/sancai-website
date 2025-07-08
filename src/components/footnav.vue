@@ -131,7 +131,7 @@ onBeforeUnmount(() => {
     }
 
     .titletext {
-      font-size: var(--title-size);
+      font-size: 1.25rem;
       color: #fff;
       font-weight: 700;
     }
