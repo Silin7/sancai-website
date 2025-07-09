@@ -37,12 +37,14 @@ const handleCurrentChange = (val: number) => {
         src="@/assets/products-banner01.jpeg"
         alt="banner"
         mode="aspectFill"
-        :style="['width: 100vw;', windowWidth < 600 ? 'height: 60rem;' : 'height: 48rem;']"
+        style="width: 100vw; height: 40rem"
       />
       <div class="bannerAbsolute">
         <div class="bannerContent">
-          <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
-          <div class="bannerSubtitle">绿色化 数字化 智能化</div>
+          <div class="bannerTitle">热点资讯</div>
+          <div class="bannerSubtitle">
+            聚焦建筑行业数字化转型，提供最新政策、标准、案例和市场动态
+          </div>
         </div>
       </div>
     </div>

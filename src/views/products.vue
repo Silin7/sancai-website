@@ -152,7 +152,7 @@ const handleCurrentChange = (val: number) => {
         src="@/assets/products-banner01.jpeg"
         alt="banner"
         mode="aspectFill"
-        :style="['width: 100vw;', windowWidth < 600 ? 'height: 60rem;' : 'height: 48rem;']"
+        style="width: 100vw; height: 40rem"
       />
       <div class="bannerAbsolute">
         <div class="bannerContent">
@@ -163,7 +163,7 @@ const handleCurrentChange = (val: number) => {
     </div>
     <div :class="['containerBox', windowWidth > 1140 ? 'containerFx' : '']">
       <div class="containerLeft" :style="windowWidth > 1140 ? 'width: calc(66.7% - 1rem);' : ''">
-        <div class="containerClass">
+        <div class="containerClass" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="containerClassRow">
             <div class="containerClassColActive">全部</div>
             <div class="containerClassCol">人</div>
@@ -186,8 +186,8 @@ const handleCurrentChange = (val: number) => {
             :prefix-icon="Search"
           />
         </div>
-        <div class="containerProducts">
-          <div class="containerProductsTitle">
+        <div class="containerProducts" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+          <div class="containerProductsTitle" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
             <div class="containerProductsTitleText">产品列表</div>
             <div class="containerProductsTitlePxfs">
               <span>排序方式：</span>
@@ -203,7 +203,7 @@ const handleCurrentChange = (val: number) => {
               </el-select>
             </div>
           </div>
-          <div class="containerProductsBox">
+          <div class="containerProductsBox" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
             <div
               class="containerProductsItem"
               :style="windowWidth > 1140 ? 'display: flex; justify-content: space-between;' : ''"
@@ -268,11 +268,11 @@ const handleCurrentChange = (val: number) => {
         </div>
       </div>
       <div class="containerRight" :style="windowWidth > 1140 ? 'width: calc(33.3% - 1rem);' : ''">
-        <div class="containerPice">
+        <div class="containerPice" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="containerPiceTitle">价格趋势</div>
           <div ref="echartsMain" style="width: 100%; height: 320px" />
         </div>
-        <div class="containerHot">
+        <div class="containerHot" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="containerHotTitle">热门产品</div>
           <div class="containerHotItem" v-for="index in 4" :key="index">
             <div class="containerHotLeft">
@@ -336,7 +336,7 @@ const handleCurrentChange = (val: number) => {
 
   .containerBox {
     margin: 0 auto;
-    padding: 6rem 1rem;
+    padding: 4rem 0.5rem;
     width: 100%;
     max-width: 1720px;
 
@@ -352,14 +352,14 @@ const handleCurrentChange = (val: number) => {
         box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
         .containerClassRow {
-          margin-bottom: 1.5rem;
+          margin-bottom: 0.75rem;
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           line-height: 1.5rem;
 
           .containerClassCol {
-            margin-right: 0.75rem;
+            margin:0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
             box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
@@ -372,7 +372,7 @@ const handleCurrentChange = (val: number) => {
           }
 
           .containerClassColActive {
-            margin-right: 0.75rem;
+            margin:0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: #fff;
             background-color: rgb(22 93 255);
@@ -441,7 +441,6 @@ const handleCurrentChange = (val: number) => {
                 margin-bottom: 1rem;
                 line-height: 1.5rem;
                 color: rgb(75 85 99);
-                //
               }
 
               .containerPiClass {
@@ -518,6 +517,13 @@ const handleCurrentChange = (val: number) => {
         color: rgb(1 32 96);
         background-color: #fff;
         box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
+        .containerPiceTitle {
+          margin-bottom: 1.5rem;
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+          font-weight: 700;
+        }
       }
 
       .containerHot {
@@ -592,6 +598,7 @@ const handleCurrentChange = (val: number) => {
   }
 
   .containerFx {
+    padding: 4rem 1rem;
     display: flex;
     justify-content: space-between;
   }

@@ -37,6 +37,7 @@ function tabRouterPush(name: string) {
   })
   store.setSelectedTab(name)
   window.localStorage.setItem('selectedTab', name)
+  drawerVisible.value = false
 }
 
 const menuList: any = ref([
