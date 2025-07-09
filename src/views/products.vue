@@ -148,12 +148,7 @@ const handleCurrentChange = (val: number) => {
   <div class="productsPage">
     <!-- BANNER -->
     <div class="bannerBox">
-      <img
-        src="@/assets/products-banner01.jpeg"
-        alt="banner"
-        mode="aspectFill"
-        style="width: 100vw; height: 40rem"
-      />
+      <img src="@/assets/products-banner01.jpeg" alt="banner" mode="aspectFill" style="width: 100vw; height: 40rem" />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
@@ -165,38 +160,29 @@ const handleCurrentChange = (val: number) => {
       <div class="containerLeft" :style="windowWidth > 1140 ? 'width: calc(66.7% - 1rem);' : ''">
         <div class="containerClass" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="containerClassRow">
-            <div class="containerClassColActive">全部</div>
-            <div class="containerClassCol">人</div>
-            <div class="containerClassCol">材</div>
-            <div class="containerClassCol">机</div>
-            <div class="containerClassCol">信</div>
+            <button class="containerClassColActive">全部</button>
+            <button class="containerClassCol">人</button>
+            <button class="containerClassCol">材</button>
+            <button class="containerClassCol">机</button>
+            <button class="containerClassCol">信</button>
           </div>
           <div class="containerClassRow">
-            <div class="containerClassColActive">全部</div>
-            <div class="containerClassCol">一般建筑</div>
-            <div class="containerClassCol">医疗建筑</div>
-            <div class="containerClassCol">体育场馆</div>
-            <div class="containerClassCol">超高层建筑</div>
+            <button class="containerClassColActive">全部</button>
+            <button class="containerClassCol">一般建筑</button>
+            <button class="containerClassCol">医疗建筑</button>
+            <button class="containerClassCol">体育场馆</button>
+            <button class="containerClassCol">超高层建筑</button>
           </div>
           <!-- 0.75rem -->
-          <el-input
-            v-model="input2"
-            style="width: 100%; height: 50px; font-size: 1rem"
-            placeholder="搜索产品..."
-            :prefix-icon="Search"
-          />
+          <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索产品..."
+            :prefix-icon="Search" />
         </div>
         <div class="containerProducts" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="containerProductsTitle" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
             <div class="containerProductsTitleText">产品列表</div>
             <div class="containerProductsTitlePxfs">
               <span>排序方式：</span>
-              <el-select
-                v-model="selectvalue"
-                placeholder="Select"
-                size="large"
-                style="width: 140px"
-              >
+              <el-select v-model="selectvalue" placeholder="Select" size="large" style="width: 140px">
                 <el-option label="价格从低到高" value="01" />
                 <el-option label="价格从高到低" value="02" />
                 <el-option label="最新更新" value="03" />
@@ -204,65 +190,38 @@ const handleCurrentChange = (val: number) => {
             </div>
           </div>
           <div class="containerProductsBox" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
-            <div
-              class="containerProductsItem"
-              :style="windowWidth > 1140 ? 'display: flex; justify-content: space-between;' : ''"
-              v-for="index in 4"
-              :key="index"
-            >
-              <img
-                src="https://picsum.photos/200/200?random=103"
-                alt=""
-                class="containerPiImg"
-                :style="windowWidth > 1140 ? '' : 'width: 100%;'"
-              />
-              <div
-                class="containerPiBox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
+            <div class="containerProductsItem"
+              :style="windowWidth > 1140 ? 'display: flex; justify-content: space-between;' : ''" v-for="index in 4"
+              :key="index">
+              <img src="https://picsum.photos/200/200?random=103" alt="" class="containerPiImg"
+                :style="windowWidth > 1140 ? '' : 'width: 100%;'" />
+              <div class="containerPiBox" :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'">
                 <div class="containerPiTitle">BIM+多专业碰撞检查</div>
                 <div class="containerPiInfo">基于BIM技术的多专业碰撞检查服务，提前发现设计冲突</div>
                 <div class="containerPiClass">
                   <div class="containerPiCitrm">
                     <i class="fa fa-user-o" style="font-size: 14px; color: rgb(107 114 128)"></i>
-                    <span class="containerPiClassSpan"> 人工服务</span>
+                    <span class="containerPiClassSpan">人工服务</span>
                   </div>
                   <div class="containerPiCitrm">
-                    <i
-                      class="fa fa-building-o"
-                      style="font-size: 14px; color: rgb(107 114 128)"
-                    ></i>
-                    <span class="containerPiClassSpan"> 全建筑类别</span>
+                    <i class="fa fa-building-o" style="font-size: 14px; color: rgb(107 114 128)"></i>
+                    <span class="containerPiClassSpan">全建筑类别</span>
                   </div>
                 </div>
               </div>
-              <div
-                class="containerPiPbox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
+              <div class="containerPiPbox" :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'">
                 <div class="containerPiPice">¥5000</div>
                 <div class="containerPiUnit">/项目</div>
               </div>
-              <div
-                class="containerPiRbox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
-                <div class="containerPiRbtn">查看详情</div>
+              <div class="containerPiRbox" :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'">
+                <button class="containerPiRbtn">查看详情</button>
               </div>
             </div>
             <div class="containerPagination">
               <!-- total, sizes, prev, pager, next, jumper -->
-              <el-pagination
-                v-model:current-page="currentPage2"
-                v-model:page-size="pageSize2"
-                :page-sizes="[100, 200, 300, 400]"
-                size="default"
-                background
-                layout="prev, pager, next"
-                :total="400"
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-              />
+              <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2"
+                :page-sizes="[100, 200, 300, 400]" size="default" background layout="prev, pager, next" :total="400"
+                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
             </div>
           </div>
         </div>
@@ -285,7 +244,9 @@ const handleCurrentChange = (val: number) => {
             <div class="containerHpice">¥8000</div>
           </div>
           <div class="containerHMore">
-            <span>查看更多热门产品</span>
+            <button>
+              查看更多热门产品
+            </button>
             <i class="fa fa-angle-right" style="margin-left: 0.25rem; font-size: 1.5rem"></i>
           </div>
         </div>
@@ -294,7 +255,7 @@ const handleCurrentChange = (val: number) => {
   </div>
 </template>
 
-<style lang="scss  " scoped>
+<style lang="scss" scoped>
 .productsPage {
   background-color: #f9fafb;
 
@@ -349,7 +310,7 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
 
         .containerClassRow {
           margin-bottom: 0.75rem;
@@ -359,10 +320,10 @@ const handleCurrentChange = (val: number) => {
           line-height: 1.5rem;
 
           .containerClassCol {
-            margin:0 0.75rem 0.75rem 0;
+            margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
             border-radius: 9999px;
           }
 
@@ -372,7 +333,7 @@ const handleCurrentChange = (val: number) => {
           }
 
           .containerClassColActive {
-            margin:0 0.75rem 0.75rem 0;
+            margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: #fff;
             background-color: rgb(22 93 255);
@@ -387,7 +348,7 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
 
         .containerProductsTitle {
           margin-bottom: 1.5rem;
@@ -516,7 +477,7 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
 
         .containerPiceTitle {
           margin-bottom: 1.5rem;
@@ -531,7 +492,7 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
 
         .containerHotTitle {
           margin-bottom: 1.5rem;
@@ -541,6 +502,7 @@ const handleCurrentChange = (val: number) => {
         }
 
         .containerHotItem {
+          cursor: pointer;
           margin-bottom: 1rem;
           padding: 0.75rem;
           display: flex;
@@ -589,7 +551,8 @@ const handleCurrentChange = (val: number) => {
           font-weight: 500;
           color: rgb(22 93 255);
 
-          span {
+          button {
+            color: rgb(22 93 255);
             line-height: 1.5rem;
           }
         }
@@ -612,7 +575,16 @@ const handleCurrentChange = (val: number) => {
   }
 
   .el-select__wrapper {
+    background-color: #e9e9ed;
     border-radius: 0.5rem;
+  }
+
+  .el-select__selected-item {
+    color: rgb(1 32 96);
+  }
+
+  .el-select__icon {
+    color: rgb(1 32 96);
   }
 }
 </style>

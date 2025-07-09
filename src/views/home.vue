@@ -753,7 +753,7 @@ onBeforeUnmount(() => {
           color: #fff;
           background-color: rgb(22 93 255);
           border-radius: 9999px;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
         }
 
         .bannerJjfabtn {
@@ -814,7 +814,7 @@ onBeforeUnmount(() => {
 
           .bannerRiditem:hover {
             cursor: pointer;
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
             animation: jumpUpwards 300ms ease-in-out forwards;
           }
 
@@ -1012,7 +1012,7 @@ onBeforeUnmount(() => {
 
       .containerRiditem:hover {
         cursor: pointer;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
         animation: jumpUpwards 300ms ease-in-out forwards;
       }
 
@@ -1070,7 +1070,7 @@ onBeforeUnmount(() => {
 
       .solutionsSubItem:hover {
         cursor: pointer;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
         background-color: rgb(243 244 246);
       }
     }
@@ -1092,7 +1092,7 @@ onBeforeUnmount(() => {
 
       .solutionsSubItem:hover {
         cursor: pointer;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
         background-color: rgb(243 244 246);
       }
     }
@@ -1244,7 +1244,7 @@ onBeforeUnmount(() => {
 
       .aiClassitem:hover {
         cursor: pointer;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
         animation: jumpUpwards 300ms ease-in-out forwards;
       }
     }
@@ -1322,7 +1322,7 @@ onBeforeUnmount(() => {
 
       .pyClassitem:hover {
         cursor: pointer;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
         animation: jumpUpwards 300ms ease-in-out forwards;
       }
     }

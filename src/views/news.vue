@@ -30,15 +30,10 @@ const handleCurrentChange = (val: number) => {
 </script>
 
 <template>
-  <div class="productsPage">
+  <div class="newsPage">
     <!-- BANNER -->
     <div class="bannerBox">
-      <img
-        src="@/assets/products-banner01.jpeg"
-        alt="banner"
-        mode="aspectFill"
-        style="width: 100vw; height: 40rem"
-      />
+      <img src="@/assets/products-banner01.jpeg" alt="banner" mode="aspectFill" style="width: 100vw; height: 40rem" />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">热点资讯</div>
@@ -48,131 +43,91 @@ const handleCurrentChange = (val: number) => {
         </div>
       </div>
     </div>
-    <div :class="['containerBox', windowWidth > 1140 ? 'containerFx' : '']">
-      <div class="containerLeft" :style="windowWidth > 1140 ? 'width: calc(66.7% - 1rem);' : ''">
-        <div class="containerClass">
-          <div class="containerClassRow">
-            <div class="containerClassColActive">全部</div>
-            <div class="containerClassCol">人</div>
-            <div class="containerClassCol">材</div>
-            <div class="containerClassCol">机</div>
-            <div class="containerClassCol">信</div>
+    <div :class="['newsBox', windowWidth > 1140 ? 'newsFx' : '']">
+      <div class="newsLeft" :style="windowWidth > 1140 ? 'width: calc(66.7% - 1rem);' : ''">
+        <div class="newsClass" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+          <div class="newsClassRow">
+            <button class="newsClassColActive">全部</button>
+            <button class="newsClassCol">政策</button>
+            <button class="newsClassCol">标准</button>
+            <button class="newsClassCol">竞赛</button>
+            <button class="newsClassCol">案例</button>
+            <button class="newsClassCol">实施</button>
           </div>
-          <div class="containerClassRow">
-            <div class="containerClassColActive">全部</div>
-            <div class="containerClassCol">一般建筑</div>
-            <div class="containerClassCol">医疗建筑</div>
-            <div class="containerClassCol">体育场馆</div>
-            <div class="containerClassCol">超高层建筑</div>
-          </div>
-          <!-- 0.75rem -->
-          <el-input
-            v-model="input2"
-            style="width: 100%; height: 50px; font-size: 1rem"
-            placeholder="搜索产品..."
-            :prefix-icon="Search"
-          />
         </div>
-        <div class="containerProducts">
-          <div class="containerProductsTitle">
-            <div class="containerProductsTitleText">产品列表</div>
-            <div class="containerProductsTitlePxfs">
+        <div class="newsProducts" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+          <div class="newsProductsTitle">
+            <div class="newsProductsTitleText">最新资讯</div>
+            <div class="newsProductsTitlePxfs">
               <span>排序方式：</span>
-              <el-select
-                v-model="selectvalue"
-                placeholder="Select"
-                size="large"
-                style="width: 140px"
-              >
-                <el-option label="价格从低到高" value="01" />
-                <el-option label="价格从高到低" value="02" />
-                <el-option label="最新更新" value="03" />
+              <el-select v-model="selectvalue" placeholder="Select" size="large" style="width: 110px">
+                <el-option label="最新发布" value="01" />
+                <el-option label="最热文章" value="02" />
+                <el-option label="最多评论" value="03" />
               </el-select>
             </div>
           </div>
-          <div class="containerProductsBox">
-            <div
-              class="containerProductsItem"
-              :style="windowWidth > 1140 ? 'display: flex; justify-content: space-between;' : ''"
-              v-for="index in 4"
-              :key="index"
-            >
-              <img
-                src="https://picsum.photos/200/200?random=103"
-                alt=""
-                class="containerPiImg"
-                :style="windowWidth > 1140 ? '' : 'width: 100%;'"
-              />
-              <div
-                class="containerPiBox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
-                <div class="containerPiTitle">BIM+多专业碰撞检查</div>
-                <div class="containerPiInfo">基于BIM技术的多专业碰撞检查服务，提前发现设计冲突</div>
-                <div class="containerPiClass">
-                  <div class="containerPiCitrm">
-                    <i class="fa fa-user-o" style="font-size: 14px; color: rgb(107 114 128)"></i>
-                    <span class="containerPiClassSpan"> 人工服务</span>
+          <div class="newsProductsBox" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
+            <div class="newsProductsItem"
+              :style="windowWidth > 1140 ? 'display: flex; justify-content: space-between;' : ''" v-for="index in 4"
+              :key="index">
+              <img src="https://picsum.photos/200/200?random=103" alt="" class="newsPiImg"
+                :style="windowWidth > 1140 ? '' : 'width: 100%;'" />
+              <div class="newsPiBox" :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'">
+                <div class="newsPiTitle">住建部发布《建筑业数字化转型发展指南》推动行业升级</div>
+                <div class="newsPiInfo">
+                  近日，住房和城乡建设部正式发布《建筑业数字化转型发展指南》，提出到2025年，建筑业数字化转型取得明显进展，打造一批建筑产业互联网平台，培育一批行业级、企业级数字建造解决方案。
+                </div>
+                <div class="newsPiClass">
+                  <div class="newsPiCitrm">
+                    <i class="fa fa-calendar" style="font-size: 14px; color: rgb(107 114 128)"></i>
+                    <span class="newsPiClassSpan">2023-12-15</span>
                   </div>
-                  <div class="containerPiCitrm">
-                    <i
-                      class="fa fa-building-o"
-                      style="font-size: 14px; color: rgb(107 114 128)"
-                    ></i>
-                    <span class="containerPiClassSpan"> 全建筑类别</span>
+                  <div class="newsPiCitrm">
+                    <i class="fa fa-eye" style="font-size: 14px; color: rgb(107 114 128)"></i>
+                    <span class="newsPiClassSpan">1568次预览</span>
+                  </div>
+                  <div class="newsPiCitrm">
+                    <i class="fa fa-comment-o" style="font-size: 14px; color: rgb(107 114 128)"></i>
+                    <span class="newsPiClassSpan">42条评论</span>
+                  </div>
+                  <div class="">
+                    阅读全文
+                    <i class="fa fa-angle-right" style="margin-left: 0.25rem; font-size: 1.5rem"></i>
                   </div>
                 </div>
               </div>
-              <div
-                class="containerPiPbox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
-                <div class="containerPiPice">¥5000</div>
-                <div class="containerPiUnit">/项目</div>
-              </div>
-              <div
-                class="containerPiRbox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
-                <div class="containerPiRbtn">查看详情</div>
-              </div>
             </div>
-            <div class="containerPagination">
+            <div class="newsPagination">
               <!-- total, sizes, prev, pager, next, jumper -->
-              <el-pagination
-                v-model:current-page="currentPage2"
-                v-model:page-size="pageSize2"
-                :page-sizes="[100, 200, 300, 400]"
-                size="default"
-                background
-                layout="prev, pager, next"
-                :total="400"
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-              />
+              <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2"
+                :page-sizes="[100, 200, 300, 400]" size="default" background layout="prev, pager, next" :total="400"
+                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
             </div>
           </div>
         </div>
       </div>
-      <div class="containerRight" :style="windowWidth > 1140 ? 'width: calc(33.3% - 1rem);' : ''">
-        <div class="containerPice">
-          <div class="containerPiceTitle">价格趋势</div>
-          <div class="">123</div>
+      <div class="newsRight" :style="windowWidth > 1140 ? 'width: calc(33.3% - 1rem);' : ''">
+        <div class="newsPice" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+          <div class="newsPiceTitle">价格趋势</div>
+          <div ref="echartsMain" style="width: 100%; height: 320px" />
         </div>
-        <div class="containerHot">
-          <div class="containerHotTitle">热门产品</div>
-          <div class="containerHotItem" v-for="index in 4" :key="index">
-            <div class="containerHotLeft">
-              <img src="https://picsum.photos/200/200?random=103" class="containerHimg" />
-              <div class="containerHcbox">
-                <div class="containerHctitle">AI生成式设计</div>
-                <div class="containerHcinfo">参数化方案比选服务</div>
+        <div class="newsHot" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+          <div class="newsHotTitle">热门产品</div>
+          <div class="newsHotItem" v-for="index in 4" :key="index">
+            <div class="newsHotLeft">
+              <img src="https://picsum.photos/200/200?random=103" class="newsHimg" />
+              <div class="newsHcbox">
+                <div class="newsHctitle">AI生成式设计</div>
+                <div class="newsHcinfo">参数化方案比选服务</div>
               </div>
             </div>
-            <div class="containerHpice">¥8000</div>
+            <div class="newsHpice">¥8000</div>
           </div>
-          <div class="containerHMore">
-            <span>查看更多热门产品</span>
+          <div class="newsHMore">
+            <button>
+              查看更多热门产品
+            </button>
             <i class="fa fa-angle-right" style="margin-left: 0.25rem; font-size: 1.5rem"></i>
           </div>
         </div>
@@ -181,8 +136,8 @@ const handleCurrentChange = (val: number) => {
   </div>
 </template>
 
-<style lang="scss  " scoped>
-.productsPage {
+<style lang="scss" scoped>
+.newsPage {
   background-color: #f9fafb;
 
   .bannerBox {
@@ -221,44 +176,43 @@ const handleCurrentChange = (val: number) => {
     }
   }
 
-  .containerBox {
+  .newsBox {
     margin: 0 auto;
-    padding: 6rem 1rem;
+    padding: 4rem 0.5rem;
     width: 100%;
     max-width: 1720px;
 
-    .containerLeft {
+    .newsLeft {
       width: 100%;
 
-      .containerClass {
+      .newsClass {
         margin-bottom: 2rem;
         padding: 1.5rem;
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
 
-        .containerClassRow {
-          margin-bottom: 1.5rem;
+        .newsClassRow {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           line-height: 1.5rem;
 
-          .containerClassCol {
+          .newsClassCol {
             margin-right: 0.75rem;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
             border-radius: 9999px;
           }
 
-          .containerClassCol:hover {
+          .newsClassCol:hover {
             cursor: pointer;
             background-color: rgb(243 244 246);
           }
 
-          .containerClassColActive {
+          .newsClassColActive {
             margin-right: 0.75rem;
             padding: 0.5rem 1.25rem;
             color: #fff;
@@ -268,28 +222,27 @@ const handleCurrentChange = (val: number) => {
         }
       }
 
-      .containerProducts {
+      .newsProducts {
         margin-bottom: 2rem;
-        padding: 1.5rem 0;
+        padding: 1.5rem;
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
 
-        .containerProductsTitle {
+        .newsProductsTitle {
           margin-bottom: 1.5rem;
-          padding: 0 1.5rem;
           display: flex;
           justify-content: space-between;
           align-items: center;
 
-          .containerProductsTitleText {
+          .newsProductsTitleText {
             font-weight: 700;
             font-size: 1.25rem;
             line-height: 1.75rem;
           }
 
-          .containerProductsTitlePxfs {
+          .newsProductsTitlePxfs {
             display: flex;
             align-items: center;
 
@@ -299,24 +252,27 @@ const handleCurrentChange = (val: number) => {
           }
         }
 
-        .containerProductsBox {
-          padding: 0 1.5rem;
+        .newsProductsBox {
 
-          .containerProductsItem {
+          .newsProductsItem {
+            cursor: pointer;
             margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgb(243 244 246);
+            padding: 1.5rem;
+            box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 0.1);
+            border-radius: 0.75rem;
 
-            .containerPiImg {
-              width: calc(20% - 1rem);
-              height: 160px;
+            .newsPiImg {
+              width: calc(25% - 0.75rem);
+              height: 200px;
               border-radius: 0.5rem;
+              border: 1px solid red;
             }
 
-            .containerPiBox {
-              width: calc(40% - 1rem);
+            .newsPiBox {
+              width: calc(75% - 0.75rem);
+              border: 1px solid red;
 
-              .containerPiTitle {
+              .newsPiTitle {
                 font-size: 1.125rem;
                 line-height: 1.75rem;
                 font-weight: 700;
@@ -324,69 +280,35 @@ const handleCurrentChange = (val: number) => {
                 color: rgb(1 32 96);
               }
 
-              .containerPiInfo {
+              .newsPiInfo {
                 margin-bottom: 1rem;
                 line-height: 1.5rem;
                 color: rgb(75 85 99);
-                //
               }
 
-              .containerPiClass {
+              .newsPiClass {
                 display: flex;
                 align-items: center;
 
-                .containerPiCitrm {
+                .newsPiCitrm {
                   margin-right: 1rem;
                   display: flex;
                   align-items: center;
 
-                  .containerPiClassSpan {
+                  .newsPiClassSpan {
                     margin-left: 0.25rem;
                     color: rgb(107 114 128);
                   }
                 }
               }
             }
-
-            .containerPiPbox {
-              width: calc(20% - 1rem);
-              display: flex;
-              flex-flow: column;
-              align-items: center;
-
-              .containerPiPice {
-                font-size: 1.5rem;
-                line-height: 2rem;
-                font-weight: 700;
-                color: rgb(22 93 255);
-              }
-
-              .containerPiUnit {
-                font-size: 0.875rem;
-                line-height: 1.25rem;
-                color: rgb(107 114 128);
-              }
-            }
-
-            .containerPiRbox {
-              width: calc(20% - 1rem);
-              display: flex;
-              flex-flow: column;
-              justify-content: flex-end;
-
-              .containerPiRbtn {
-                width: 100%;
-                height: 40px;
-                text-align: center;
-                line-height: 40px;
-                color: #fff;
-                background-color: rgb(22 93 255);
-                border-radius: 0.5rem;
-              }
-            }
           }
 
-          .containerPagination {
+          .newsProductsItem:hover {
+            animation: jumpUpwards 300ms ease-in-out forwards;
+          }
+
+          .newsPagination {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -395,33 +317,40 @@ const handleCurrentChange = (val: number) => {
       }
     }
 
-    .containerRight {
+    .newsRight {
       width: 100%;
 
-      .containerPice {
+      .newsPice {
         margin-bottom: 2rem;
         padding: 1.5rem;
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+
+        .newsPiceTitle {
+          margin-bottom: 1.5rem;
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+          font-weight: 700;
+        }
       }
 
-      .containerHot {
+      .newsHot {
         padding: 1.5rem;
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
 
-        .containerHotTitle {
+        .newsHotTitle {
           margin-bottom: 1.5rem;
           font-size: 1.25rem;
           line-height: 1.75rem;
           font-weight: 700;
         }
 
-        .containerHotItem {
+        .newsHotItem {
           margin-bottom: 1rem;
           padding: 0.75rem;
           display: flex;
@@ -430,25 +359,25 @@ const handleCurrentChange = (val: number) => {
           background-color: rgb(249 250 251);
           border-radius: 0.5rem;
 
-          .containerHotLeft {
+          .newsHotLeft {
             display: flex;
             justify-content: flex-start;
             align-items: center;
 
-            .containerHimg {
+            .newsHimg {
               width: 4rem;
               height: 4rem;
               border-radius: 0.5rem;
               margin-right: 1rem;
             }
 
-            .containerHcbox {
-              .containerHctitle {
+            .newsHcbox {
+              .newsHctitle {
                 font-weight: 500;
                 line-height: 1.5rem;
               }
 
-              .containerHcinfo {
+              .newsHcinfo {
                 font-size: 0.875rem;
                 line-height: 1.25rem;
                 color: rgb(107 114 128);
@@ -456,13 +385,13 @@ const handleCurrentChange = (val: number) => {
             }
           }
 
-          .containerHpice {
+          .newsHpice {
             font-weight: 700;
             color: rgb(22 93 255);
           }
         }
 
-        .containerHMore {
+        .newsHMore {
           cursor: pointer;
           display: flex;
           justify-content: center;
@@ -478,7 +407,8 @@ const handleCurrentChange = (val: number) => {
     }
   }
 
-  .containerFx {
+  .newsFx {
+    padding: 4rem 1rem;
     display: flex;
     justify-content: space-between;
   }
@@ -486,13 +416,22 @@ const handleCurrentChange = (val: number) => {
 </style>
 
 <style lang="scss">
-.productsPage {
+.newsPage {
   .el-input__wrapper {
     border-radius: 0.5rem;
   }
 
   .el-select__wrapper {
+    background-color: #e9e9ed;
     border-radius: 0.5rem;
+  }
+
+  .el-select__selected-item {
+    color: rgb(1 32 96);
+  }
+
+  .el-select__icon {
+    color: rgb(1 32 96);
   }
 }
 </style>
