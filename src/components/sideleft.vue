@@ -53,7 +53,7 @@ function expandfunc() {
         </vue3-seamless-scroll>
       </div>
       <div v-if="expandState" class="foldpanel frcc" @click="expandfunc">
-        <i class="fa fa-angle-double-left" style="font-size: 14px; color: #165dff"></i>
+        <i class="fa fa-angle-double-left" style="font-size: 0.875rem; color: #165dff"></i>
         <span>收起面板</span>
       </div>
     </div>
@@ -153,7 +153,7 @@ function expandfunc() {
 
     span {
       margin-left: 4px;
-      font-size: 14px;
+      font-size: 0.875rem;
       color: #165dff;
     }
   }

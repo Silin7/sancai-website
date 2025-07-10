@@ -148,7 +148,12 @@ const handleCurrentChange = (val: number) => {
   <div class="productsPage">
     <!-- BANNER -->
     <div class="bannerBox">
-      <img src="@/assets/products-banner01.jpeg" alt="banner" mode="aspectFill" style="width: 100vw; height: 40rem" />
+      <img
+        src="@/assets/products-banner01.jpeg"
+        alt="banner"
+        mode="aspectFill"
+        style="width: 100vw; height: 40rem"
+      />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
@@ -174,15 +179,24 @@ const handleCurrentChange = (val: number) => {
             <button class="containerClassCol">超高层建筑</button>
           </div>
           <!-- 0.75rem -->
-          <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索产品..."
-            :prefix-icon="Search" />
+          <el-input
+            v-model="input2"
+            style="width: 100%; height: 50px; font-size: 1rem"
+            placeholder="搜索产品..."
+            :prefix-icon="Search"
+          />
         </div>
         <div class="containerProducts" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="containerProductsTitle" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
             <div class="containerProductsTitleText">产品列表</div>
             <div class="containerProductsTitlePxfs">
               <span>排序方式：</span>
-              <el-select v-model="selectvalue" placeholder="Select" size="large" style="width: 140px">
+              <el-select
+                v-model="selectvalue"
+                placeholder="Select"
+                size="large"
+                style="width: 140px"
+              >
                 <el-option label="价格从低到高" value="01" />
                 <el-option label="价格从高到低" value="02" />
                 <el-option label="最新更新" value="03" />
@@ -190,38 +204,62 @@ const handleCurrentChange = (val: number) => {
             </div>
           </div>
           <div class="containerProductsBox" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
-            <div class="containerProductsItem"
-              :style="windowWidth > 1140 ? 'display: flex; justify-content: space-between;' : ''" v-for="index in 4"
-              :key="index">
-              <img src="https://picsum.photos/200/200?random=103" alt="" class="containerPiImg"
-                :style="windowWidth > 1140 ? '' : 'width: 100%;'" />
-              <div class="containerPiBox" :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'">
+            <div
+              class="containerProductsItem"
+              :style="windowWidth > 1140 ? 'display: flex; justify-content: space-between;' : ''"
+              v-for="index in 4"
+              :key="index"
+            >
+              <img
+                src="https://picsum.photos/200/200?random=103"
+                alt=""
+                class="containerPiImg"
+                :style="windowWidth > 1140 ? '' : 'width: 100%;'"
+              />
+              <div
+                class="containerPiBox"
+                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
+              >
                 <div class="containerPiTitle">BIM+多专业碰撞检查</div>
                 <div class="containerPiInfo">基于BIM技术的多专业碰撞检查服务，提前发现设计冲突</div>
                 <div class="containerPiClass">
                   <div class="containerPiCitrm">
-                    <i class="fa fa-user-o" style="font-size: 14px; color: rgb(107 114 128)"></i>
+                    <i class="fa fa-user-o" style="font-size: 0.875rem; color: #6b7280"></i>
                     <span class="containerPiClassSpan">人工服务</span>
                   </div>
                   <div class="containerPiCitrm">
-                    <i class="fa fa-building-o" style="font-size: 14px; color: rgb(107 114 128)"></i>
+                    <i class="fa fa-building-o" style="font-size: 0.875rem; color: #6b7280"></i>
                     <span class="containerPiClassSpan">全建筑类别</span>
                   </div>
                 </div>
               </div>
-              <div class="containerPiPbox" :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'">
+              <div
+                class="containerPiPbox"
+                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
+              >
                 <div class="containerPiPice">¥5000</div>
                 <div class="containerPiUnit">/项目</div>
               </div>
-              <div class="containerPiRbox" :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'">
+              <div
+                class="containerPiRbox"
+                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
+              >
                 <button class="containerPiRbtn">查看详情</button>
               </div>
             </div>
             <div class="containerPagination">
               <!-- total, sizes, prev, pager, next, jumper -->
-              <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2"
-                :page-sizes="[100, 200, 300, 400]" size="default" background layout="prev, pager, next" :total="400"
-                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+              <el-pagination
+                v-model:current-page="currentPage2"
+                v-model:page-size="pageSize2"
+                :page-sizes="[100, 200, 300, 400]"
+                size="default"
+                background
+                layout="prev, pager, next"
+                :total="400"
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+              />
             </div>
           </div>
         </div>
@@ -244,9 +282,7 @@ const handleCurrentChange = (val: number) => {
             <div class="containerHpice">¥8000</div>
           </div>
           <div class="containerHMore">
-            <button>
-              查看更多热门产品
-            </button>
+            <button>查看更多热门产品</button>
             <i class="fa fa-angle-right" style="margin-left: 0.25rem; font-size: 1.5rem"></i>
           </div>
         </div>
@@ -415,7 +451,7 @@ const handleCurrentChange = (val: number) => {
 
                   .containerPiClassSpan {
                     margin-left: 0.25rem;
-                    color: rgb(107 114 128);
+                    color: #6b7280;
                   }
                 }
               }
@@ -437,7 +473,7 @@ const handleCurrentChange = (val: number) => {
               .containerPiUnit {
                 font-size: 0.875rem;
                 line-height: 1.25rem;
-                color: rgb(107 114 128);
+                color: #6b7280;
               }
             }
 
@@ -532,7 +568,7 @@ const handleCurrentChange = (val: number) => {
               .containerHcinfo {
                 font-size: 0.875rem;
                 line-height: 1.25rem;
-                color: rgb(107 114 128);
+                color: #6b7280;
               }
             }
           }

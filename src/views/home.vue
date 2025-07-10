@@ -999,7 +999,7 @@ onBeforeUnmount(() => {
           .containerCkqbtitle {
             font-size: 0.875rem;
             line-height: 1.25rem;
-            color: rgb(107 114 128);
+            color: #6b7280;
           }
 
           .containerCkqbxq {
@@ -1316,7 +1316,7 @@ onBeforeUnmount(() => {
           font-size: 0.875rem;
           line-height: 1.25rem;
           text-align: center;
-          color: rgb(107 114 128);
+          color: #6b7280;
         }
       }
 
