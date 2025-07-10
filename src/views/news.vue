@@ -32,12 +32,7 @@ const handleCurrentChange = (val: number) => {
   <div class="newsPage">
     <!-- BANNER -->
     <div class="bannerBox">
-      <img
-        src="@/assets/products-banner01.jpeg"
-        alt="banner"
-        mode="aspectFill"
-        style="width: 100vw; height: 40rem"
-      />
+      <img src="@/assets/products-banner01.jpeg" alt="banner" mode="aspectFill" style="width: 100vw; height: 40rem" />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">热点资讯</div>
@@ -47,9 +42,9 @@ const handleCurrentChange = (val: number) => {
         </div>
       </div>
     </div>
-    <div :class="['newsBox', windowWidth > 1140 ? 'newsFx' : '']">
-      <div class="newsLeft" :style="windowWidth > 1140 ? 'width: calc(66.7% - 1rem);' : ''">
-        <div class="newsClass" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+    <div :class="['newsBox', windowWidth > 992 ? 'newsFx' : '']">
+      <div class="newsLeft" :style="windowWidth > 992 ? 'width: calc(66.7% - 1rem);' : ''">
+        <div class="newsClass" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem 0.25rem;'">
           <div class="newsClassRow">
             <button class="newsClassColActive">全部</button>
             <button class="newsClassCol">政策</button>
@@ -59,49 +54,34 @@ const handleCurrentChange = (val: number) => {
             <button class="newsClassCol">实施</button>
           </div>
         </div>
-        <div class="newsProducts" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+        <div class="newsProducts" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="newsProductsTitle">
             <div class="newsProductsTitleText">最新资讯</div>
             <div class="newsProductsTitlePxfs">
               <span>排序方式：</span>
-              <el-select
-                v-model="selectvalue"
-                placeholder="Select"
-                size="large"
-                style="width: 110px"
-              >
+              <el-select v-model="selectvalue" placeholder="Select" size="large" style="width: 110px">
                 <el-option label="最新发布" value="01" />
                 <el-option label="最热文章" value="02" />
                 <el-option label="最多评论" value="03" />
               </el-select>
             </div>
           </div>
-          <div class="newsProductsBox" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
-            <div
-              class="newsProductsItem"
-              :style="windowWidth > 1140 ? 'display: flex; justify-content: space-between;' : ''"
-              v-for="index in 4"
-              :key="index"
-            >
-              <div class="newsPiImgBox">
-                <img
-                  src="https://picsum.photos/200/200?random=103"
-                  class="newsPiImg"
-                  :style="windowWidth > 1140 ? '' : 'width: 100%;'"
-                />
+          <div class="newsProductsBox" :style="windowWidth > 992 ? '' : 'padding: 0;'">
+            <div class="newsProductsItem"
+              :style="windowWidth > 992 ? 'display: flex; justify-content: space-between;' : ''" v-for="index in 4"
+              :key="index">
+              <div class="newsPiImgBox" :style="windowWidth > 992 ? '' : 'width: 100%;'">
+                <img src="https://picsum.photos/200/200?random=103" class="newsPiImg" />
                 <div class="newsPiImgTag">政策</div>
               </div>
-              <div
-                class="newsPiBox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
+              <div class="newsPiBox" :style="windowWidth > 992 ? '' : 'margin-top:1rem; width: 100%;'">
                 <div class="newsPiTitle">住建部发布《建筑业数字化转型发展指南》推动行业升级</div>
                 <div class="newsPiInfo">
                   近日，住房和城乡建设部正式发布《建筑业数字化转型发展指南》，提出到2025年，建筑业数字化转型取得明显进展，打造一批建筑产业互联网平台，培育一批行业级、企业级数字建造解决方案。
                 </div>
                 <div class="newsPiClass">
                   <div class="newsPiCleft">
-                    <div class="newsPiCitrm">
+                    <div v-if="windowWidth > 480   " class="newsPiCitrm">
                       <i class="fa fa-calendar"></i>
                       <span class="newsPiClassSpan">2023-12-15</span>
                     </div>
@@ -114,39 +94,40 @@ const handleCurrentChange = (val: number) => {
                       <span class="newsPiClassSpan">42条评论</span>
                     </div>
                   </div>
-                  <div class="newsPiCright">
+                  <div v-if="windowWidth > 480   " class="newsPiCright">
                     <button>阅读全文</button>
                     <i class="fa fa-angle-right"></i>
+                  </div>
+                </div>
+                <div v-if="windowWidth <= 480   " class="newsPiClass" style="margin-top: 1rem;">
+                  <div class="newsPiCleft">
+                    <div class="newsPiCitrm">
+                      <i class="fa fa-calendar"></i>
+                      <span class="newsPiClassSpan">2023-12-15</span>
+                    </div>
+                    <div class="newsPiCright">
+                      <button>阅读全文</button>
+                      <i class="fa fa-angle-right"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="newsPagination">
               <!-- total, sizes, prev, pager, next, jumper -->
-              <el-pagination
-                v-model:current-page="currentPage2"
-                v-model:page-size="pageSize2"
-                :page-sizes="[100, 200, 300, 400]"
-                size="default"
-                background
-                layout="prev, pager, next"
-                :total="400"
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-              />
+              <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2"
+                :page-sizes="[100, 200, 300, 400]" size="default" background layout="prev, pager, next" :total="400"
+                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
             </div>
           </div>
         </div>
       </div>
-      <div class="newsRight" :style="windowWidth > 1140 ? 'width: calc(33.3% - 1rem);' : ''">
-        <div class="newsRecom" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+      <div class="newsRight" :style="windowWidth > 992 ? 'width: calc(33.3% - 1rem);' : ''">
+        <div class="newsRecom" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="newsRecomTitle">推荐文章</div>
           <div class="newsRecomImgBox">
-            <img
-              src="https://picsum.photos/200/200?random=103"
-              class="newsRecomImg"
-              :style="windowWidth > 1140 ? '' : 'width: 100%;'"
-            />
+            <img src="https://picsum.photos/200/200?random=103" class="newsRecomImg"
+              :style="windowWidth > 992 ? '' : 'width: 100%;'" />
             <div class="newsRecomImgIb">
               <span class="newsRecomImgIbTag">政策</span>
               <div class="newsRecomImgIbTitle">"十四五"建筑业发展规划解读：数字化转型是核心</div>
@@ -169,33 +150,36 @@ const handleCurrentChange = (val: number) => {
               <div class="newsRcbox">
                 <div class="newsRctitle">BIM技术在大型医院建设中的应用实践</div>
                 <div class="newsRcinfo">
-                  <div class="">案例</div>
-                  <div class="newsPiCitrm">
+                  <div class="newsRcinfoTag">案例</div>
+                  <div class="newsRcitrm">
                     <i class="fa fa-calendar"></i>
-                    <span class="newsPiClassSpan">2023-12-15</span>
+                    <span>2023-12-15</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- <div class="newsHot" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+        <div class="newsHot" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="newsHotTitle">热门文章</div>
           <div class="newsHotItem" v-for="index in 4" :key="index">
-            <div class="newsHotLeft">
-              <img src="https://picsum.photos/200/200?random=103" class="newsHimg" />
-              <div class="newsHcbox">
-                <div class="newsHctitle">AI生成式设计</div>
-                <div class="newsHcinfo">参数化方案比选服务</div>
+            <div class="newsHimg">{{ index }}</div>
+            <div class="newsHcbox">
+              <div class="newsHctitle">智慧工地AI监控系统招投标技术要求解析{{ index }}</div>
+              <div class="newsRcinfo">
+                <div class="newsRcinfoTag">实施</div>
+                <div class="newsRcitrm">
+                  <i class="fa fa-eye"></i>
+                  <span>{{ (index + 1) * 998 }}次浏览</span>
+                </div>
               </div>
             </div>
-            <div class="newsHpice">¥8000</div>
           </div>
-          <div class="newsHMore">
+          <!-- <div class="newsHMore">
             <button>查看更多热门产品</button>
             <i class="fa fa-angle-right" style="margin-left: 0.25rem; font-size: 1.5rem"></i>
-          </div>
-        </div> -->
+          </div> -->
+        </div>
       </div>
     </div>
   </div>
@@ -252,7 +236,7 @@ const handleCurrentChange = (val: number) => {
 
       .newsClass {
         margin-bottom: 2rem;
-        padding: 1.5rem;
+        padding: 1.5rem 1.5rem 0.75rem 1.5rem;
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
@@ -265,7 +249,7 @@ const handleCurrentChange = (val: number) => {
           line-height: 1.5rem;
 
           .newsClassCol {
-            margin-right: 0.75rem;
+            margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
             box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
@@ -278,7 +262,7 @@ const handleCurrentChange = (val: number) => {
           }
 
           .newsClassColActive {
-            margin-right: 0.75rem;
+            margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: #fff;
             background-color: rgb(22 93 255);
@@ -504,7 +488,6 @@ const handleCurrentChange = (val: number) => {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border: 1px solid red;
 
           .newsRecomLeft {
             display: flex;
@@ -526,9 +509,36 @@ const handleCurrentChange = (val: number) => {
               }
 
               .newsRcinfo {
+                display: flex;
+                align-items: center;
                 font-size: 0.875rem;
                 line-height: 1.25rem;
                 color: #6b7280;
+
+                .newsRcinfoTag {
+                  margin-right: 0.5rem;
+                  border-radius: 9999px;
+                  padding-left: 0.75rem;
+                  padding-right: 0.75rem;
+                  padding-top: 0.25rem;
+                  padding-bottom: 0.25rem;
+                  font-size: 0.75rem;
+                  line-height: 1rem;
+                  font-weight: 700;
+                  color: #fff;
+                  background-color: rgb(59 130 246);
+                }
+
+                .newsRcitrm {
+                  display: flex;
+                  align-items: center;
+                  color: #6b7280;
+                  font-size: 0.875rem;
+
+                  span {
+                    margin-left: 0.25rem;
+                  }
+                }
               }
             }
           }
@@ -551,42 +561,64 @@ const handleCurrentChange = (val: number) => {
 
         .newsHotItem {
           margin-bottom: 1rem;
-          padding: 0.75rem;
+          padding: 0.75rem 0;
           display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background-color: rgb(249 250 251);
-          border-radius: 0.5rem;
+          justify-content: flex-start;
+          border-bottom: 1px solid rgb(243 244 246);
 
-          .newsHotLeft {
+          .newsHimg {
+            margin-right: 0.75rem;
             display: flex;
-            justify-content: flex-start;
+            height: 2rem;
+            width: 2rem;
+            flex-shrink: 0;
             align-items: center;
-
-            .newsHimg {
-              width: 4rem;
-              height: 4rem;
-              border-radius: 0.5rem;
-              margin-right: 1rem;
-            }
-
-            .newsHcbox {
-              .newsHctitle {
-                font-weight: 500;
-                line-height: 1.5rem;
-              }
-
-              .newsHcinfo {
-                font-size: 0.875rem;
-                line-height: 1.25rem;
-                color: #6b7280;
-              }
-            }
-          }
-
-          .newsHpice {
+            justify-content: center;
+            border-radius: 0.5rem;
+            background-color: rgb(22 93 255 / 0.1);
             font-weight: 700;
             color: rgb(22 93 255);
+          }
+
+          .newsHcbox {
+            .newsHctitle {
+              margin-bottom: 0.25rem;
+              font-weight: 500;
+              line-height: 1.5rem;
+            }
+
+            .newsRcinfo {
+              display: flex;
+              align-items: center;
+              font-size: 0.875rem;
+              line-height: 1.25rem;
+              color: #6b7280;
+
+              .newsRcinfoTag {
+                margin-right: 0.5rem;
+                border-radius: 9999px;
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                padding-top: 0.25rem;
+                padding-bottom: 0.25rem;
+                font-size: 0.75rem;
+                line-height: 1rem;
+                font-weight: 700;
+                color: #fff;
+                background-color: rgb(59 130 246);
+              }
+
+              .newsRcitrm {
+                display: flex;
+                align-items: center;
+                color: #6b7280;
+                font-size: 0.875rem;
+
+                span {
+                  margin-left: 0.25rem;
+                }
+              }
+            }
           }
         }
 
