@@ -16,7 +16,6 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWindowWidth)
 })
 
-const input2: any = ref()
 const selectvalue: any = ref('01')
 
 const currentPage2 = ref(2)
@@ -103,21 +102,21 @@ const handleCurrentChange = (val: number) => {
                 <div class="newsPiClass">
                   <div class="newsPiCleft">
                     <div class="newsPiCitrm">
-                      <i class="fa fa-calendar" style="font-size: 0.875rem; color: #6b7280"></i>
+                      <i class="fa fa-calendar"></i>
                       <span class="newsPiClassSpan">2023-12-15</span>
                     </div>
                     <div class="newsPiCitrm">
-                      <i class="fa fa-eye" style="font-size: 0.875rem; color: #6b7280"></i>
+                      <i class="fa fa-eye"></i>
                       <span class="newsPiClassSpan">1568次预览</span>
                     </div>
                     <div class="newsPiCitrm">
-                      <i class="fa fa-comment-o" style="font-size: 0.875rem; color: #6b7280"></i>
+                      <i class="fa fa-comment-o"></i>
                       <span class="newsPiClassSpan">42条评论</span>
                     </div>
                   </div>
                   <div class="newsPiCright">
-                    阅读全文
-                    <i class="fa fa-angle-right" style="margin-left: 0.5rem"></i>
+                    <button>阅读全文</button>
+                    <i class="fa fa-angle-right"></i>
                   </div>
                 </div>
               </div>
@@ -140,12 +139,48 @@ const handleCurrentChange = (val: number) => {
         </div>
       </div>
       <div class="newsRight" :style="windowWidth > 1140 ? 'width: calc(33.3% - 1rem);' : ''">
-        <div class="newsPice" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
-          <div class="newsPiceTitle">价格趋势</div>
-          <div ref="echartsMain" style="width: 100%; height: 320px" />
+        <div class="newsRecom" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+          <div class="newsRecomTitle">推荐文章</div>
+          <div class="newsRecomImgBox">
+            <img
+              src="https://picsum.photos/200/200?random=103"
+              class="newsRecomImg"
+              :style="windowWidth > 1140 ? '' : 'width: 100%;'"
+            />
+            <div class="newsRecomImgIb">
+              <span class="newsRecomImgIbTag">政策</span>
+              <div class="newsRecomImgIbTitle">"十四五"建筑业发展规划解读：数字化转型是核心</div>
+
+              <div class="newsRecomImgIbBtm">
+                <div class="newsRecomImgIbitrm">
+                  <i class="fa fa-calendar"></i>
+                  <span class="newsRecomImgIbSpan">2023-12-15</span>
+                </div>
+                <div class="newsRecomImgIbitrm">
+                  <i class="fa fa-eye"></i>
+                  <span class="newsRecomImgIbSpan">1568次预览</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="newsRecomItem" v-for="index in 4" :key="index">
+            <div class="newsRecomLeft">
+              <img src="https://picsum.photos/200/200?random=103" class="newsRecomHimg" />
+              <div class="newsRcbox">
+                <div class="newsRctitle">BIM技术在大型医院建设中的应用实践</div>
+                <div class="newsRcinfo">
+                  <div class="">案例</div>
+                  <div class="newsPiCitrm">
+                    <i class="fa fa-calendar"></i>
+                    <span class="newsPiClassSpan">2023-12-15</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="newsHot" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
-          <div class="newsHotTitle">热门产品</div>
+        <!-- <div class="newsHot" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+          <div class="newsHotTitle">热门文章</div>
           <div class="newsHotItem" v-for="index in 4" :key="index">
             <div class="newsHotLeft">
               <img src="https://picsum.photos/200/200?random=103" class="newsHimg" />
@@ -160,7 +195,7 @@ const handleCurrentChange = (val: number) => {
             <button>查看更多热门产品</button>
             <i class="fa fa-angle-right" style="margin-left: 0.25rem; font-size: 1.5rem"></i>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -298,7 +333,6 @@ const handleCurrentChange = (val: number) => {
                 width: 100%;
                 height: 200px;
                 border-radius: 0.5rem;
-                object-fit: cover;
               }
 
               .newsPiImgTag {
@@ -349,10 +383,11 @@ const handleCurrentChange = (val: number) => {
                     margin-right: 1rem;
                     display: flex;
                     align-items: center;
+                    color: #6b7280;
+                    font-size: 0.875rem;
 
                     .newsPiClassSpan {
                       margin-left: 0.25rem;
-                      color: #6b7280;
                     }
                   }
                 }
@@ -363,6 +398,11 @@ const handleCurrentChange = (val: number) => {
                   font-weight: 500;
                   line-height: 1.5rem;
                   color: #1627ff;
+
+                  button {
+                    color: #1627ff;
+                    margin-right: 0.5rem;
+                  }
                 }
               }
             }
@@ -384,7 +424,7 @@ const handleCurrentChange = (val: number) => {
     .newsRight {
       width: 100%;
 
-      .newsPice {
+      .newsRecom {
         margin-bottom: 2rem;
         padding: 1.5rem;
         border-radius: 1rem;
@@ -392,11 +432,106 @@ const handleCurrentChange = (val: number) => {
         background-color: #fff;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
 
-        .newsPiceTitle {
+        .newsRecomTitle {
           margin-bottom: 1.5rem;
           font-size: 1.25rem;
           line-height: 1.75rem;
           font-weight: 700;
+        }
+
+        .newsRecomImgBox {
+          overflow: hidden;
+          position: relative;
+          height: 16rem;
+          border-radius: 0.75rem;
+
+          .newsRecomImg {
+            width: 100%;
+            height: 16rem;
+            border-radius: 0.75rem;
+          }
+
+          .newsRecomImgIb {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 2;
+            padding: 1.5rem;
+
+            .newsRecomImgIbTag {
+              border-radius: 9999px;
+              padding-left: 0.75rem;
+              padding-right: 0.75rem;
+              padding-top: 0.25rem;
+              padding-bottom: 0.25rem;
+              font-size: 0.75rem;
+              line-height: 1rem;
+              font-weight: 700;
+              color: #fff;
+              background-color: rgb(59 130 246);
+            }
+
+            .newsRecomImgIbTitle {
+              margin-top: 0.5rem;
+              margin-bottom: 0.75rem;
+              font-weight: 700;
+              font-size: 1.25rem;
+              line-height: 1.75rem;
+              color: #fff;
+            }
+
+            .newsRecomImgIbBtm {
+              display: flex;
+              align-items: center;
+
+              .newsRecomImgIbitrm {
+                margin-right: 1rem;
+                display: flex;
+                align-items: center;
+                font-size: 0.875rem;
+                color: #fff;
+
+                .newsRecomImgIbSpan {
+                  margin-left: 0.25rem;
+                }
+              }
+            }
+          }
+        }
+
+        .newsRecomItem {
+          margin-top: 1rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border: 1px solid red;
+
+          .newsRecomLeft {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            .newsRecomHimg {
+              width: 6rem;
+              height: 4rem;
+              border-radius: 0.5rem;
+              margin-right: 1rem;
+            }
+
+            .newsRcbox {
+              .newsRctitle {
+                margin-bottom: 0.25rem;
+                font-weight: 500;
+                line-height: 1.5rem;
+              }
+
+              .newsRcinfo {
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                color: #6b7280;
+              }
+            }
+          }
         }
       }
 
@@ -456,14 +591,14 @@ const handleCurrentChange = (val: number) => {
         }
 
         .newsHMore {
-          cursor: pointer;
           display: flex;
           justify-content: center;
           align-items: center;
           font-weight: 500;
           color: rgb(22 93 255);
 
-          span {
+          button {
+            color: rgb(22 93 255);
             line-height: 1.5rem;
           }
         }
