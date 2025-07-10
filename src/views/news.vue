@@ -32,7 +32,7 @@ const handleCurrentChange = (val: number) => {
   <div class="newsPage">
     <!-- BANNER -->
     <div class="bannerBox">
-      <img src="@/assets/products-banner01.jpeg" alt="banner" mode="aspectFill" style="width: 100vw; height: 40rem" />
+      <img src="@/assets/products-banner01.jpeg" alt="banner" style="width: 100vw; height: 40rem" />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">热点资讯</div>

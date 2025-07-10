@@ -77,7 +77,6 @@ const drawerVisible = ref(false)
         >
           <img
             src="@/assets/logo.png"
-            mode="widthFix"
             alt="logo"
             style="width: 120px; margin-bottom: 2px"
           />

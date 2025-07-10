@@ -29,7 +29,6 @@ onBeforeUnmount(() => {
         <img
           src="@/assets/banner00.jpeg"
           alt="banner"
-          mode="aspectFill"
           :style="['width: 100vw;', windowWidth < 600 ? 'height: 60rem;' : 'height: 48rem;']"
         />
         <div class="bannerAbsolute">
@@ -129,7 +128,6 @@ onBeforeUnmount(() => {
           <img
             src="@/assets/about00.jpeg"
             alt="banner"
-            mode="cover"
             style="width: 100%; height: 24rem"
           />
           <div class="featuresImgTitle">系统简介</div>
@@ -385,7 +383,6 @@ onBeforeUnmount(() => {
           <img
             src="@/assets/case/bimgongcheng.jpg"
             alt="banner"
-            mode="cover"
             style="width: 100%; height: 568px"
           />
           <div class="solutionsImgTitle">BIM+倾斜摄影</div>

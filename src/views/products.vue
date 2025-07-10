@@ -148,7 +148,7 @@ const handleCurrentChange = (val: number) => {
   <div class="productsPage">
     <!-- BANNER -->
     <div class="bannerBox">
-      <img src="@/assets/products-banner01.jpeg" alt="banner" mode="aspectFill" style="width: 100vw; height: 40rem" />
+      <img src="@/assets/products-banner01.jpeg" alt="banner" style="width: 100vw; height: 40rem" />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
