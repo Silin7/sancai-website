@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import backToTop from '@/hooks/backToTop'
 import useHeaderStore from '@/store/modules/header'
+
 
 const router = useRouter()
 const store = useHeaderStore()
@@ -35,6 +37,7 @@ function tabRouterPush(name: string) {
   router.push({
     name,
   })
+  backToTop()
   store.setSelectedTab(name)
   window.localStorage.setItem('selectedTab', name)
   drawerVisible.value = false

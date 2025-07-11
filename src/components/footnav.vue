@@ -117,7 +117,7 @@ onBeforeUnmount(() => {
 
   .footTop {
     margin: 0 auto;
-    max-width: 1280px;
+    max-width: 1720px;
 
     .culbbox {
       margin-right: 16px;

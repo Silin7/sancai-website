@@ -147,12 +147,12 @@ const handleCurrentChange = (val: number) => {
 <template>
   <div class="productsPage">
     <!-- BANNER -->
-    <div class="bannerBox">
-      <img src="@/assets/products-banner01.jpeg" alt="banner" style="width: 100vw; height: 40rem" />
-      <div class="bannerAbsolute">
-        <div class="bannerContent">
-          <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
-          <div class="bannerSubtitle">绿色化 数字化 智能化</div>
+    <div class="prbannerBox">
+      <img src="@/assets/products-banner01.jpeg" alt="prbanner" style="width: 100vw; height: 40rem" />
+      <div class="prbannerAbsolute">
+        <div class="prbannerContent">
+          <div class="prbannerTitle">聚焦新型城市基础设施建设再起航</div>
+          <div class="prbannerSubtitle">绿色化 数字化 智能化</div>
         </div>
       </div>
     </div>
@@ -257,12 +257,12 @@ const handleCurrentChange = (val: number) => {
 .productsPage {
   background-color: #f9fafb;
 
-  .bannerBox {
+  .prbannerBox {
     position: relative;
     width: 100vw;
     height: 100%;
 
-    .bannerAbsolute {
+    .prbannerAbsolute {
       position: absolute;
       top: 0;
       left: 0;
@@ -270,20 +270,20 @@ const handleCurrentChange = (val: number) => {
       width: 100vw;
       height: 100%;
 
-      .bannerContent {
+      .prbannerContent {
         margin: 0 auto;
         padding: 10rem 30px 6rem;
         width: 100%;
         max-width: 1720px;
 
-        .bannerTitle {
+        .prbannerTitle {
           margin-bottom: 2rem;
           font-size: clamp(2rem, 5vw, 3.5rem);
           color: #fff;
           font-weight: 700;
         }
 
-        .bannerSubtitle {
+        .prbannerSubtitle {
           margin-bottom: 2rem;
           font-size: clamp(1.25rem, 3vw, 1.5rem);
           font-weight: 500;

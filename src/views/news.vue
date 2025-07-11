@@ -31,12 +31,12 @@ const handleCurrentChange = (val: number) => {
 <template>
   <div class="newsPage">
     <!-- BANNER -->
-    <div class="bannerBox">
-      <img src="@/assets/products-banner01.jpeg" alt="banner" style="width: 100vw; height: 40rem" />
-      <div class="bannerAbsolute">
-        <div class="bannerContent">
-          <div class="bannerTitle">热点资讯</div>
-          <div class="bannerSubtitle">
+    <div class="nsbannerBox">
+      <img src="@/assets/products-banner01.jpeg" alt="nsbanner" style="width: 100vw; height: 40rem" />
+      <div class="nsbannerAbsolute">
+        <div class="nsbannerContent">
+          <div class="nsbannerTitle">热点资讯</div>
+          <div class="nsbannerSubtitle">
             聚焦建筑行业数字化转型，提供最新政策、标准、案例和市场动态
           </div>
         </div>
@@ -189,12 +189,12 @@ const handleCurrentChange = (val: number) => {
 .newsPage {
   background-color: #f9fafb;
 
-  .bannerBox {
+  .nsbannerBox {
     position: relative;
     width: 100vw;
     height: 100%;
 
-    .bannerAbsolute {
+    .nsbannerAbsolute {
       position: absolute;
       top: 0;
       left: 0;
@@ -202,20 +202,20 @@ const handleCurrentChange = (val: number) => {
       width: 100vw;
       height: 100%;
 
-      .bannerContent {
+      .nsbannerContent {
         margin: 0 auto;
         padding: 10rem 30px 6rem;
         width: 100%;
         max-width: 1720px;
 
-        .bannerTitle {
+        .nsbannerTitle {
           margin-bottom: 2rem;
           font-size: clamp(2rem, 5vw, 3.5rem);
           color: #fff;
           font-weight: 700;
         }
 
-        .bannerSubtitle {
+        .nsbannerSubtitle {
           margin-bottom: 2rem;
           font-size: clamp(1.25rem, 3vw, 1.5rem);
           font-weight: 500;
