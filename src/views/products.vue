@@ -193,7 +193,7 @@ const handleCurrentChange = (val: number) => {
             <div class="containerProductsItem"
               :style="windowWidth > 1140 ? 'display: flex; justify-content: space-between;' : ''" v-for="index in 4"
               :key="index">
-              <img src="https://picsum.photos/200/200?random=103" alt="" class="containerPiImg"
+              <img src="https://picsum.photos/200/200?random=401" alt="" class="containerPiImg"
                 :style="windowWidth > 1140 ? '' : 'width: 100%;'" />
               <div class="containerPiBox" :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'">
                 <div class="containerPiTitle">BIM+多专业碰撞检查</div>
@@ -235,7 +235,7 @@ const handleCurrentChange = (val: number) => {
           <div class="containerHotTitle">热门产品</div>
           <div class="containerHotItem" v-for="index in 4" :key="index">
             <div class="containerHotLeft">
-              <img src="https://picsum.photos/200/200?random=103" class="containerHimg" />
+              <img src="https://picsum.photos/200/200?random=401" class="containerHimg" />
               <div class="containerHcbox">
                 <div class="containerHctitle">AI生成式设计</div>
                 <div class="containerHcinfo">参数化方案比选服务</div>

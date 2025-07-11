@@ -71,7 +71,7 @@ const handleCurrentChange = (val: number) => {
               :style="windowWidth > 992 ? 'display: flex; justify-content: space-between;' : ''" v-for="index in 4"
               :key="index">
               <div class="newsPiImgBox" :style="windowWidth > 992 ? '' : 'width: 100%;'">
-                <img src="https://picsum.photos/200/200?random=103" class="newsPiImg" />
+                <img src="https://picsum.photos/200/200?random=401" class="newsPiImg" />
                 <div class="newsPiImgTag">政策</div>
               </div>
               <div class="newsPiBox" :style="windowWidth > 992 ? '' : 'margin-top:1rem; width: 100%;'">
@@ -126,7 +126,7 @@ const handleCurrentChange = (val: number) => {
         <div class="newsRecom" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="newsRecomTitle">推荐文章</div>
           <div class="newsRecomImgBox">
-            <img src="https://picsum.photos/200/200?random=103" class="newsRecomImg"
+            <img src="https://picsum.photos/200/200?random=401" class="newsRecomImg"
               :style="windowWidth > 992 ? '' : 'width: 100%;'" />
             <div class="newsRecomImgIb">
               <span class="newsRecomImgIbTag">政策</span>
@@ -146,7 +146,7 @@ const handleCurrentChange = (val: number) => {
           </div>
           <div class="newsRecomItem" v-for="index in 4" :key="index">
             <div class="newsRecomLeft">
-              <img src="https://picsum.photos/200/200?random=103" class="newsRecomHimg" />
+              <img src="https://picsum.photos/200/200?random=401" class="newsRecomHimg" />
               <div class="newsRcbox">
                 <div class="newsRctitle">BIM技术在大型医院建设中的应用实践</div>
                 <div class="newsRcinfo">
