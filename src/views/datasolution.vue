@@ -21,11 +21,17 @@ onBeforeUnmount(() => {
     <div class="datasolutionPage">
       <!-- BANNER -->
       <div class="dsbannerBox">
-        <img src="@/assets/solution-banner01.jpeg" alt="dsbanner" style="width: 100vw; height: 40rem;" />
+        <img
+          src="@/assets/solution-banner01.jpeg"
+          alt="dsbanner"
+          style="width: 100vw; height: 40rem"
+        />
         <div class="dsbannerAbsolute">
           <div class="dsbannerContent">
             <div class="dsbannerTitle">为新城建提供绿色化 数字化 智能化综合解决方案</div>
-            <div class="dsbannerSubtitle">信息技术深度赋能城市建设 有效应对并满足建设管理过程中多维度、多场景需求 </div>
+            <div class="dsbannerSubtitle">
+              信息技术深度赋能城市建设 有效应对并满足建设管理过程中多维度、多场景需求
+            </div>
             <div class="frsc">
               <button class="dsbannerJgkbtn">提交需求</button>
             </div>
@@ -35,19 +41,16 @@ onBeforeUnmount(() => {
       <!-- 介绍区域  -->
       <div class="introdsOut">
         <div class="introdsBox">
-          <p class="introdsText">新型城市基础设施建设（简称"新城建"），以人工智能（AI）、建筑信息模型（BIM）和物联网（IoT）等新一代信息技术深度融合城市建设应用，构建智能高效的新型城市基础设施体系。
+          <p class="introdsText">
+            新型城市基础设施建设（简称"新城建"），以人工智能（AI）、建筑信息模型（BIM）和物联网（IoT）等新一代信息技术深度融合城市建设应用，构建智能高效的新型城市基础设施体系。
           </p>
-          <p class="introdsText">新城建通过对城市基础设施进行数字化、网络化和智能化的手段改造，推动城市高质量发展，提升城市治理水平。</p>
+          <p class="introdsText">
+            新城建通过对城市基础设施进行数字化、网络化和智能化的手段改造，推动城市高质量发展，提升城市治理水平。
+          </p>
           <div class="introdsBtns">
-            <button class="introdsBtn">
-              <i class="fa fa-chdigitizen"></i>AI技术
-            </button>
-            <button class="introdsBtn">
-              <i class="fa fa-header"></i>BIM建模
-            </button>
-            <button class="introdsBtn">
-              <i class="fa fa-wifi"></i>IoT物联网
-            </button>
+            <button class="introdsBtn"><i class="fa fa-chdigitizen"></i>AI技术</button>
+            <button class="introdsBtn"><i class="fa fa-header"></i>BIM建模</button>
+            <button class="introdsBtn"><i class="fa fa-wifi"></i>IoT物联网</button>
           </div>
         </div>
       </div>
@@ -59,12 +62,18 @@ onBeforeUnmount(() => {
             <div class="solutionsSubItem">智慧化管理方案</div>
           </div>
           <div class="digitizeClassbox">
-            <div v-for="(index) in 9" :key="index" class="digitizeClassitem" :style="windowWidth > 1000
-              ? 'width: calc(33.3% - 1.5rem)'
-              : windowWidth > 600
-                ? 'width: calc(50% - 1.5rem)'
-                : 'width: 100%'
-              ">
+            <div
+              v-for="index in 9"
+              :key="index"
+              class="digitizeClassitem"
+              :style="
+                windowWidth > 1000
+                  ? 'width: calc(33.3% - 1.5rem)'
+                  : windowWidth > 600
+                    ? 'width: calc(50% - 1.5rem)'
+                    : 'width: 100%'
+              "
+            >
               <div class="digitizeClassitemfa frcc">
                 <i class="fa fa-pencil"></i>
               </div>
@@ -81,62 +90,86 @@ onBeforeUnmount(() => {
         <div class="gysHeng"></div>
         <div class="gysInfo">与行业领先企业及机构建立合作，共同推动建筑行业数字化转型</div>
         <div class="gysClassbox">
-          <div class="gysClassitem" :style="windowWidth > 1000
-            ? 'width: calc(16.6% - 1.5rem);'
-            : windowWidth > 600
-              ? 'width: calc(33.3% - 1.5rem);'
-              : 'width: calc(50% - 1.5rem)'
-            ">
+          <div
+            class="gysClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
             <img src="https://picsum.photos/100/100?random=402" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">建筑科技有限公司</div>
             <div class="gysClassiteminfo">专注建筑科技创新</div>
           </div>
-          <div class="gysClassitem" :style="windowWidth > 1000
-            ? 'width: calc(16.6% - 1.5rem);'
-            : windowWidth > 600
-              ? 'width: calc(33.3% - 1.5rem);'
-              : 'width: calc(50% - 1.5rem)'
-            ">
+          <div
+            class="gysClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
             <img src="https://picsum.photos/100/100?random=403" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">智能建造研究院</div>
             <div class="gysClassiteminfo">建筑智能化研究</div>
           </div>
-          <div class="gysClassitem" :style="windowWidth > 1000
-            ? 'width: calc(16.6% - 1.5rem);'
-            : windowWidth > 600
-              ? 'width: calc(33.3% - 1.5rem);'
-              : 'width: calc(50% - 1.5rem)'
-            ">
+          <div
+            class="gysClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
             <img src="https://picsum.photos/100/100?random=404" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">绿色建材协会</div>
             <div class="gysClassiteminfo">推广绿色建筑材料</div>
           </div>
-          <div class="gysClassitem" :style="windowWidth > 1000
-            ? 'width: calc(16.6% - 1.5rem);'
-            : windowWidth > 600
-              ? 'width: calc(33.3% - 1.5rem);'
-              : 'width: calc(50% - 1.5rem)'
-            ">
+          <div
+            class="gysClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
             <img src="https://picsum.photos/100/100?random=405" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">数字工程设计院</div>
             <div class="gysClassiteminfo">数字化工程设计</div>
           </div>
-          <div class="gysClassitem" :style="windowWidth > 1000
-            ? 'width: calc(16.6% - 1.5rem);'
-            : windowWidth > 600
-              ? 'width: calc(33.3% - 1.5rem);'
-              : 'width: calc(50% - 1.5rem)'
-            ">
+          <div
+            class="gysClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
             <img src="https://picsum.photos/100/100?random=406" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">智慧城市科技</div>
             <div class="gysClassiteminfo">智慧城市解决方案</div>
           </div>
-          <div class="gysClassitem" :style="windowWidth > 1000
-            ? 'width: calc(16.6% - 1.5rem);'
-            : windowWidth > 600
-              ? 'width: calc(33.3% - 1.5rem);'
-              : 'width: calc(50% - 1.5rem)'
-            ">
+          <div
+            class="gysClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(16.6% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(33.3% - 1.5rem);'
+                  : 'width: calc(50% - 1.5rem)'
+            "
+          >
             <img src="https://picsum.photos/100/100?random=407" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">建筑信息研究院</div>
             <div class="gysClassiteminfo">建筑信息研究应用</div>

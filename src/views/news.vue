@@ -32,7 +32,11 @@ const handleCurrentChange = (val: number) => {
   <div class="newsPage">
     <!-- BANNER -->
     <div class="nsbannerBox">
-      <img src="@/assets/products-banner01.jpeg" alt="nsbanner" style="width: 100vw; height: 40rem" />
+      <img
+        src="@/assets/products-banner01.jpeg"
+        alt="nsbanner"
+        style="width: 100vw; height: 40rem"
+      />
       <div class="nsbannerAbsolute">
         <div class="nsbannerContent">
           <div class="nsbannerTitle">热点资讯</div>
@@ -59,7 +63,12 @@ const handleCurrentChange = (val: number) => {
             <div class="newsProductsTitleText">最新资讯</div>
             <div class="newsProductsTitlePxfs">
               <span>排序方式：</span>
-              <el-select v-model="selectvalue" placeholder="Select" size="large" style="width: 110px">
+              <el-select
+                v-model="selectvalue"
+                placeholder="Select"
+                size="large"
+                style="width: 110px"
+              >
                 <el-option label="最新发布" value="01" />
                 <el-option label="最热文章" value="02" />
                 <el-option label="最多评论" value="03" />
@@ -67,21 +76,27 @@ const handleCurrentChange = (val: number) => {
             </div>
           </div>
           <div class="newsProductsBox" :style="windowWidth > 992 ? '' : 'padding: 0;'">
-            <div class="newsProductsItem"
-              :style="windowWidth > 992 ? 'display: flex; justify-content: space-between;' : ''" v-for="index in 4"
-              :key="index">
+            <div
+              class="newsProductsItem"
+              :style="windowWidth > 992 ? 'display: flex; justify-content: space-between;' : ''"
+              v-for="index in 4"
+              :key="index"
+            >
               <div class="newsPiImgBox" :style="windowWidth > 992 ? '' : 'width: 100%;'">
                 <img src="https://picsum.photos/200/200?random=401" class="newsPiImg" />
                 <div class="newsPiImgTag">政策</div>
               </div>
-              <div class="newsPiBox" :style="windowWidth > 992 ? '' : 'margin-top:1rem; width: 100%;'">
+              <div
+                class="newsPiBox"
+                :style="windowWidth > 992 ? '' : 'margin-top:1rem; width: 100%;'"
+              >
                 <div class="newsPiTitle">住建部发布《建筑业数字化转型发展指南》推动行业升级</div>
                 <div class="newsPiInfo">
                   近日，住房和城乡建设部正式发布《建筑业数字化转型发展指南》，提出到2025年，建筑业数字化转型取得明显进展，打造一批建筑产业互联网平台，培育一批行业级、企业级数字建造解决方案。
                 </div>
                 <div class="newsPiClass">
                   <div class="newsPiCleft">
-                    <div v-if="windowWidth > 480   " class="newsPiCitrm">
+                    <div v-if="windowWidth > 480" class="newsPiCitrm">
                       <i class="fa fa-calendar"></i>
                       <span class="newsPiClassSpan">2023-12-15</span>
                     </div>
@@ -94,12 +109,12 @@ const handleCurrentChange = (val: number) => {
                       <span class="newsPiClassSpan">42条评论</span>
                     </div>
                   </div>
-                  <div v-if="windowWidth > 480   " class="newsPiCright">
+                  <div v-if="windowWidth > 480" class="newsPiCright">
                     <button>阅读全文</button>
                     <i class="fa fa-angle-right"></i>
                   </div>
                 </div>
-                <div v-if="windowWidth <= 480   " class="newsPiClass" style="margin-top: 1rem;">
+                <div v-if="windowWidth <= 480" class="newsPiClass" style="margin-top: 1rem">
                   <div class="newsPiCleft">
                     <div class="newsPiCitrm">
                       <i class="fa fa-calendar"></i>
@@ -115,9 +130,17 @@ const handleCurrentChange = (val: number) => {
             </div>
             <div class="newsPagination">
               <!-- total, sizes, prev, pager, next, jumper -->
-              <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2"
-                :page-sizes="[100, 200, 300, 400]" size="default" background layout="prev, pager, next" :total="400"
-                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+              <el-pagination
+                v-model:current-page="currentPage2"
+                v-model:page-size="pageSize2"
+                :page-sizes="[100, 200, 300, 400]"
+                size="default"
+                background
+                layout="prev, pager, next"
+                :total="400"
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+              />
             </div>
           </div>
         </div>
@@ -126,8 +149,11 @@ const handleCurrentChange = (val: number) => {
         <div class="newsRecom" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="newsRecomTitle">推荐文章</div>
           <div class="newsRecomImgBox">
-            <img src="https://picsum.photos/200/200?random=401" class="newsRecomImg"
-              :style="windowWidth > 992 ? '' : 'width: 100%;'" />
+            <img
+              src="https://picsum.photos/200/200?random=401"
+              class="newsRecomImg"
+              :style="windowWidth > 992 ? '' : 'width: 100%;'"
+            />
             <div class="newsRecomImgIb">
               <span class="newsRecomImgIbTag">政策</span>
               <div class="newsRecomImgIbTitle">"十四五"建筑业发展规划解读：数字化转型是核心</div>

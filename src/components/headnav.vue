@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 import backToTop from '@/hooks/backToTop'
 import useHeaderStore from '@/store/modules/header'
 
-
 const router = useRouter()
 const store = useHeaderStore()
 
@@ -78,11 +77,7 @@ const drawerVisible = ref(false)
             windowWidth > 1140 ? 'width: calc(100% - 130px);' : 'justify-content: space-between;'
           "
         >
-          <img
-            src="@/assets/logo.png"
-            alt="logo"
-            style="width: 120px; margin-bottom: 2px"
-          />
+          <img src="@/assets/logo.png" alt="logo" style="width: 120px; margin-bottom: 2px" />
           <div v-if="windowWidth > 1140" class="menubox">
             <div
               v-for="(item, index) in menuList"

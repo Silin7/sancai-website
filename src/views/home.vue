@@ -125,11 +125,7 @@ onBeforeUnmount(() => {
       <!-- 系统简介 -->
       <div class="featuresBox">
         <div class="featuresImg">
-          <img
-            src="@/assets/about00.jpeg"
-            alt="banner"
-            style="width: 100%; height: 24rem"
-          />
+          <img src="@/assets/about00.jpeg" alt="banner" style="width: 100%; height: 24rem" />
           <div class="featuresImgTitle">系统简介</div>
         </div>
         <div class="featuresRounded">

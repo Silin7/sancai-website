@@ -21,7 +21,11 @@ onBeforeUnmount(() => {
     <div class="aiPage">
       <!-- aibanner -->
       <div class="aibannerBox">
-        <img src="@/assets/solution-banner01.jpeg" alt="aibanner" style="width: 100vw; height: 40rem" />
+        <img
+          src="@/assets/solution-banner01.jpeg"
+          alt="aibanner"
+          style="width: 100vw; height: 40rem"
+        />
         <div class="aibannerAbsolute">
           <div class="aibannerContent">
             <div class="aibannerTitle">AI赋能建筑业 开启智能建造新时代</div>
@@ -56,19 +60,29 @@ onBeforeUnmount(() => {
         <div class="applicationBox">
           <div class="applicationTitle">工程管理AI应用组价</div>
           <div class="applicationHeng"></div>
-          <div class="applicationInfo">人工智能深度融入工程管理全流程，提升效率、降低成本、优化决策</div>
+          <div class="applicationInfo">
+            人工智能深度融入工程管理全流程，提升效率、降低成本、优化决策
+          </div>
           <div class="applicationClassbox">
-            <div v-for="index in 9" :key="index" class="applicationClassitem" :style="windowWidth > 1000
-              ? 'width: calc(33.3% - 1.5rem)'
-              : windowWidth > 600
-                ? 'width: calc(50% - 1.5rem)'
-                : 'width: 100%'
-              ">
+            <div
+              v-for="index in 9"
+              :key="index"
+              class="applicationClassitem"
+              :style="
+                windowWidth > 1000
+                  ? 'width: calc(33.3% - 1.5rem)'
+                  : windowWidth > 600
+                    ? 'width: calc(50% - 1.5rem)'
+                    : 'width: 100%'
+              "
+            >
               <div class="applicationClassitemfa frcc">
                 <i class="fa fa-pencil"></i>
               </div>
               <div class="applicationClassitemtext">智能化设计</div>
-              <div class="applicationClassiteminfo">基于BIM模型实现工程量精准计算与动态成本管控</div>
+              <div class="applicationClassiteminfo">
+                基于BIM模型实现工程量精准计算与动态成本管控
+              </div>
               <button>提交需求</button>
             </div>
           </div>
@@ -76,14 +90,22 @@ onBeforeUnmount(() => {
         <div class="applicationBox">
           <div class="applicationTitle">工程造价AI应用服务</div>
           <div class="applicationHeng"></div>
-          <div class="applicationInfo">人工智能赋能造价管理全流程，提高精度、减少误差、优化决策</div>
+          <div class="applicationInfo">
+            人工智能赋能造价管理全流程，提高精度、减少误差、优化决策
+          </div>
           <div class="applicationClassbox">
-            <div v-for="index in 4" :key="index" class="applicationClassitem" :style="windowWidth > 1000
-              ? 'width: calc(33.3% - 1.5rem)'
-              : windowWidth > 600
-                ? 'width: calc(50% - 1.5rem)'
-                : 'width: 100%'
-              ">
+            <div
+              v-for="index in 4"
+              :key="index"
+              class="applicationClassitem"
+              :style="
+                windowWidth > 1000
+                  ? 'width: calc(33.3% - 1.5rem)'
+                  : windowWidth > 600
+                    ? 'width: calc(50% - 1.5rem)'
+                    : 'width: 100%'
+              "
+            >
               <div class="applicationClassitemfa frcc">
                 <i class="fa fa-pencil"></i>
               </div>
@@ -100,12 +122,18 @@ onBeforeUnmount(() => {
         <div class="caseHeng"></div>
         <div class="caseInfo">探索建筑业AI应用的实际效果与价值</div>
         <div class="caseClassbox">
-          <div v-for="(index) in 3" :key="index" class="caseClassitem" :style="windowWidth > 1000
-            ? 'width: calc(33.3% - 1.5rem);'
-            : windowWidth > 600
-              ? 'width: calc(50% - 1.5rem);'
-              : 'width: 100%'
-            ">
+          <div
+            v-for="index in 3"
+            :key="index"
+            class="caseClassitem"
+            :style="
+              windowWidth > 1000
+                ? 'width: calc(33.3% - 1.5rem);'
+                : windowWidth > 600
+                  ? 'width: calc(50% - 1.5rem);'
+                  : 'width: 100%'
+            "
+          >
             <img src="https://picsum.photos/100/100?random=401" alt="" class="caseClassitemfa" />
             <div class="caseClassitembox">
               <div class="caseClassitemFrsc">
@@ -113,7 +141,9 @@ onBeforeUnmount(() => {
                 <div class="caseClassitemSpan">2024年5月</div>
               </div>
               <div class="caseClassitemtext">杭州某商业综合体AI优化设计</div>
-              <div class="caseClassiteminfo">应用AI辅助设计工具，优化建筑结构，节省材料成本12%，缩短设计周期30%</div>
+              <div class="caseClassiteminfo">
+                应用AI辅助设计工具，优化建筑结构，节省材料成本12%，缩短设计周期30%
+              </div>
               <div class="frsc">
                 <button class="caseClassitembtn">查看详情<i class="fa fa-arrow-right"></i></button>
               </div>

@@ -1,11 +1,7 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div>
-    login
-  </div>
+  <div>login</div>
 </template>
 
 <style lang="scss" scoped></style>
