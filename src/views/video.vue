@@ -149,14 +149,18 @@ const handleCurrentChange = (val: number) => {
     <!-- BANNER -->
     <div class="prbannerBox">
       <img
-        src="@/assets/products-banner01.jpeg"
+        src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
         alt="prbanner"
         style="width: 100vw; height: 40rem"
       />
       <div class="prbannerAbsolute">
         <div class="prbannerContent">
-          <div class="prbannerTitle">聚焦新型城市基础设施建设再起航</div>
-          <div class="prbannerSubtitle">绿色化 数字化 智能化</div>
+          <div class="prbannerTitle">专业视频课程</div>
+          <div class="prbannerSubtitle">精选建筑行业专业课程，提升技能、获取证书，助力职业发展</div>
+          <div class="frsc">
+            <button class="bannerllkcbtn">浏览课程</button>
+            <button class="bannercwjsbtn">成为讲师</button>
+          </div>
         </div>
       </div>
     </div>
@@ -325,6 +329,23 @@ const handleCurrentChange = (val: number) => {
           font-size: clamp(1.25rem, 3vw, 1.5rem);
           font-weight: 500;
           color: rgb(255 255 255 / 0.9);
+        }
+
+        .bannerllkcbtn {
+          padding: 0.75rem 2rem;
+          color: #fff;
+          background-color: rgb(22 93 255);
+          border-radius: 9999px;
+          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        }
+
+        .bannercwjsbtn {
+          margin-left: 20px;
+          padding: 0.75rem 2rem;
+          color: #fff;
+          background-color: rgba(255 255 255 / 0.1);
+          border: 1px solid rgba(255 255 255 / 0.3);
+          border-radius: 9999px;
         }
       }
     }
