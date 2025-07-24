@@ -46,6 +46,16 @@ function echartsInit() {
     yAxis: [
       {
         type: 'value',
+        offset: 0,
+        splitNumber: 8,
+        scale: true,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: 'red',
+            cap: 'round',
+          },
+        },
       },
     ],
     series: [
