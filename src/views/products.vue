@@ -295,7 +295,7 @@ const handleCurrentChange = (val: number) => {
         margin: 0 auto;
         padding: 10rem 30px 6rem;
         width: 100%;
-        max-width: 1720px;
+        max-width: 1536px;
 
         .prbannerTitle {
           margin-bottom: 2rem;
@@ -318,7 +318,7 @@ const handleCurrentChange = (val: number) => {
     margin: 0 auto;
     padding: 4rem 0.5rem;
     width: 100%;
-    max-width: 1720px;
+    max-width: 1536px;
 
     .containerLeft {
       width: 100%;

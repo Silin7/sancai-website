@@ -176,7 +176,7 @@ onBeforeUnmount(() => {
         margin: 0 auto;
         padding: 10rem 30px 6rem;
         width: 100%;
-        max-width: 1720px;
+        max-width: 1536px;
 
         .aibannerTitle {
           margin-bottom: 2rem;
@@ -213,7 +213,7 @@ onBeforeUnmount(() => {
       margin: 0 auto;
       padding: 2rem;
       width: 100%;
-      max-width: 1720px;
+      max-width: 1536px;
       background-color: #fff;
       box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
       border-radius: 1rem;
@@ -258,7 +258,7 @@ onBeforeUnmount(() => {
       margin: 0 auto;
       padding: 4rem 1rem;
       width: 100%;
-      max-width: 1720px;
+      max-width: 1536px;
 
       .applicationTitle {
         font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -348,7 +348,7 @@ onBeforeUnmount(() => {
     margin: 6rem auto 0;
     padding: 0 1rem 4rem;
     width: 100%;
-    max-width: 1720px;
+    max-width: 1536px;
 
     .caseTitle {
       font-size: clamp(1.8rem, 4vw, 2.5rem);

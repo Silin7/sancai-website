@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import backToTop from '@/hooks/backToTop'
-import sideleft from '@/components/sideleft.vue'
-import sideright from '@/components/sideright.vue'
+// import backToTop from '@/hooks/backToTop'
+// import sideleft from '@/components/sideleft.vue'
+// import sideright from '@/components/sideright.vue'
 
 const windowWidth = ref(window.innerWidth)
 
@@ -21,101 +21,104 @@ onBeforeUnmount(() => {
 
 <template>
   <div>
-    <component :is="sideleft" ref="sideleftRef" />
-    <component :is="sideright" ref="siderightRef" @goTopCallback="backToTop" />
+    <!-- <component :is="sideleft" ref="sideleftRef" /> -->
+    <!-- <component :is="sideright" ref="siderightRef" @goTopCallback="backToTop" /> -->
     <div class="homePage">
       <!-- BANNER -->
       <div class="bannerBox">
-        <img
-          src="@/assets/banner00.jpeg"
-          alt="banner"
-          :style="['width: 100vw;', windowWidth < 600 ? 'height: 60rem;' : 'height: 48rem;']"
-        />
-        <div class="bannerAbsolute">
-          <div class="bannerContent">
-            <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
-            <div class="bannerSubtitle">绿色化 数字化 智能化</div>
-            <div class="frsc">
+        <div class="bannerAnchor" :style="windowWidth < 600 ? 'height: 60rem;' : 'height: 48rem;'">
+          <img
+            v-if="windowWidth > 1140"
+            src="@/assets/index_img_01.png"
+            alt="banner"
+            class="bannerImage"
+          />
+          <div class="bannerAbsolute">
+            <div class="bannerContent">
+              <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
+              <div class="bannerSubtitle">绿色化 数字化 智能化</div>
+              <!-- <div class="frsc">
               <button class="bannerJgkbtn">价格库</button>
               <button class="bannerJjfabtn">
                 解决方案 <i class="fa fa-arrow-right" style="margin-left: 0.5rem"></i>
               </button>
-            </div>
-            <div class="bannerCompany">杭州三才工程管理咨询有限公司</div>
-            <div class="bannerRidbox">
-              <div
-                class="bannerRiditem"
-                :style="
-                  windowWidth > 1000
-                    ? 'width: calc(25% - 1px);'
-                    : windowWidth > 600
-                      ? 'width: calc(50% - 1px);'
-                      : 'width: 100%'
-                "
-              >
-                <div class="bannerFabox frcc">
-                  <i class="fa fa-database" style="font-size: 20px; color: #fff"></i>
+            </div> -->
+              <div class="bannerCompany">杭州三才工程管理咨询有限公司</div>
+              <div class="bannerRidbox">
+                <div
+                  class="bannerRiditem"
+                  :style="
+                    windowWidth > 1000
+                      ? 'width: calc(25% - 1px);'
+                      : windowWidth > 600
+                        ? 'width: calc(50% - 1px);'
+                        : 'width: 100%'
+                  "
+                >
+                  <div class="bannerFabox frcc">
+                    <i class="fa fa-database" style="font-size: 20px; color: #fff"></i>
+                  </div>
+                  <div class="bannerGridright">
+                    <div class="bannerRidtitle">人材机信价格库</div>
+                    <div class="bannerGridinfo">精准数据，助力成本管控</div>
+                  </div>
                 </div>
-                <div class="bannerGridright">
-                  <div class="bannerRidtitle">人材机信价格库</div>
-                  <div class="bannerGridinfo">精准数据，助力成本管控</div>
+                <div v-if="windowWidth > 600" class="bannerGridshu" />
+                <div
+                  class="bannerRiditem"
+                  :style="
+                    windowWidth > 1000
+                      ? 'width: calc(25% - 1px);'
+                      : windowWidth > 600
+                        ? 'width: calc(50% - 1px);'
+                        : 'width: 100%'
+                  "
+                >
+                  <div class="bannerFabox frcc">
+                    <i class="fa fa-calculator" style="font-size: 20px; color: #fff"></i>
+                  </div>
+                  <div class="bannerGridright">
+                    <div class="bannerRidtitle">数据方案组价</div>
+                    <div class="bannerGridinfo">智能组价，优化方案设计</div>
+                  </div>
                 </div>
-              </div>
-              <div v-if="windowWidth > 600" class="bannerGridshu" />
-              <div
-                class="bannerRiditem"
-                :style="
-                  windowWidth > 1000
-                    ? 'width: calc(25% - 1px);'
-                    : windowWidth > 600
-                      ? 'width: calc(50% - 1px);'
-                      : 'width: 100%'
-                "
-              >
-                <div class="bannerFabox frcc">
-                  <i class="fa fa-calculator" style="font-size: 20px; color: #fff"></i>
+                <div v-if="windowWidth > 600" class="bannerGridshu" />
+                <div
+                  class="bannerRiditem"
+                  :style="
+                    windowWidth > 1000
+                      ? 'width: calc(25% - 1px);'
+                      : windowWidth > 600
+                        ? 'width: calc(50% - 1px);'
+                        : 'width: 100%'
+                  "
+                >
+                  <div class="bannerFabox frcc">
+                    <i class="fa fa-android" style="font-size: 20px; color: #fff"></i>
+                  </div>
+                  <div class="bannerGridright">
+                    <div class="bannerRidtitle">人工智能应用</div>
+                    <div class="bannerGridinfo">AI赋能，提升运行效率</div>
+                  </div>
                 </div>
-                <div class="bannerGridright">
-                  <div class="bannerRidtitle">数据方案组价</div>
-                  <div class="bannerGridinfo">智能组价，优化方案设计</div>
-                </div>
-              </div>
-              <div v-if="windowWidth > 600" class="bannerGridshu" />
-              <div
-                class="bannerRiditem"
-                :style="
-                  windowWidth > 1000
-                    ? 'width: calc(25% - 1px);'
-                    : windowWidth > 600
-                      ? 'width: calc(50% - 1px);'
-                      : 'width: 100%'
-                "
-              >
-                <div class="bannerFabox frcc">
-                  <i class="fa fa-android" style="font-size: 20px; color: #fff"></i>
-                </div>
-                <div class="bannerGridright">
-                  <div class="bannerRidtitle">人工智能应用</div>
-                  <div class="bannerGridinfo">AI赋能，提升运行效率</div>
-                </div>
-              </div>
-              <div v-if="windowWidth > 600" class="bannerGridshu" />
-              <div
-                class="bannerRiditem"
-                :style="
-                  windowWidth > 1000
-                    ? 'width: calc(25% - 1px);'
-                    : windowWidth > 600
-                      ? 'width: calc(50% - 1px);'
-                      : 'width: 100%'
-                "
-              >
-                <div class="bannerFabox frcc">
-                  <i class="fa fa-play-circle" style="font-size: 20px; color: #fff"></i>
-                </div>
-                <div class="bannerGridright">
-                  <div class="bannerRidtitle">视频讲解</div>
-                  <div class="bannerGridinfo">直观教学，掌握核心技能</div>
+                <div v-if="windowWidth > 600" class="bannerGridshu" />
+                <div
+                  class="bannerRiditem"
+                  :style="
+                    windowWidth > 1000
+                      ? 'width: calc(25% - 1px);'
+                      : windowWidth > 600
+                        ? 'width: calc(50% - 1px);'
+                        : 'width: 100%'
+                  "
+                >
+                  <div class="bannerFabox frcc">
+                    <i class="fa fa-play-circle" style="font-size: 20px; color: #fff"></i>
+                  </div>
+                  <div class="bannerGridright">
+                    <div class="bannerRidtitle">视频讲解</div>
+                    <div class="bannerGridinfo">直观教学，掌握核心技能</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -123,16 +126,66 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 系统简介 -->
-      <div class="featuresBox">
-        <div class="featuresImg">
-          <img src="@/assets/about00.jpeg" alt="banner" style="width: 100%; height: 24rem" />
+      <div class="featuresBox" :style="windowWidth < 1140 ? 'padding: 0 1rem;' : ''">
+        <img
+          src="@/assets/about00.jpeg"
+          class="featuresImg"
+          :style="windowWidth < 1140 ? 'width: calc(100% - 2rem);' : ''"
+        />
+        <div class="featuresFlex">
           <div class="featuresImgTitle">系统简介</div>
+          <div class="featuresRounded">
+            <div class="featuresRoundedItem">
+              <div class="featuresRoundedTop">
+                <div class="featuresRoundedShu"></div>
+                <div class="featuresRoundedTitle">创建背景</div>
+              </div>
+              <div class="featuresRoundedInfo1">
+                当前，建筑行业正在以科技创新推动现代化转型，新一代绿色化智能化建筑材料构筑新质生产力，逐步成为推动建筑业高质量发展的重要力量之一。
+              </div>
+              <div class="featuresRoundedInfo2">
+                尤其在
+                "双碳背景和新型工业化建筑"发展模式下，需求拉动供给的同时，创新供给也创造了新需求，市场供需将发生显著变化。
+              </div>
+            </div>
+            <div class="featuresRoundedItem">
+              <div class="featuresRoundedTop">
+                <div class="featuresRoundedShu"></div>
+                <div class="featuresRoundedTitle">应用对象</div>
+              </div>
+              <div class="featuresRoundedInfo2">
+                新材网价格查询系统，竭诚为货物采购单位和其他有关单位提供丰富的
+                "原料"信息及其市场价格，供有关单位实施货物采购和预测工程费用参考。
+              </div>
+            </div>
+            <div class="featuresRoundedItem">
+              <div class="featuresRoundedTop">
+                <div class="featuresRoundedShu"></div>
+                <div class="featuresRoundedTitle">涵盖范围</div>
+              </div>
+              <div class="featuresRoundedInfo1">
+                价格查询系统信息涵盖新技术、新材料、新工艺、新服务和造价新型要素（例如，AI、BIM、IoT、GIS、DT、VR/AR、倾斜摄影和三维扫描融合应用）。
+              </div>
+              <div class="featuresRoundedInfo2">
+                适用于绿色低碳、数字智能等高科技含量的新兴业态，以及持续提升城市基础设施韧性和既有建筑更新改造新时代"好房子"
+                的建造需求。
+              </div>
+            </div>
+            <div class="featuresRoundedItem" style="margin-bottom: 0">
+              <div class="featuresRoundedTop">
+                <div class="featuresRoundedShu"></div>
+                <div class="featuresRoundedTitle">系统创建</div>
+              </div>
+              <div class="featuresRoundedInfo2">
+                本系统由
+                "杭州三才工程管理咨询有限公司"创建，应用过程中如有建议，请联系我们，以便进行完善。
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="featuresRounded">
-          <div
-            class="featuresRoundedItem"
-            :style="windowWidth > 1000 ? 'width: calc(50% - 1.5rem);' : 'width: 100%;'"
-          >
+        <div style="opacity: 0" class="featuresImgTitle">系统简介</div>
+        <div style="opacity: 0" class="featuresRounded">
+          <div class="featuresRoundedItem">
             <div class="featuresRoundedTop">
               <div class="featuresRoundedShu"></div>
               <div class="featuresRoundedTitle">创建背景</div>
@@ -145,10 +198,17 @@ onBeforeUnmount(() => {
               发展模式下，需求拉动供给的同时，创新供给也创造了新需求，市场供需将发生显著变化。
             </div>
           </div>
-          <div
-            class="featuresRoundedItem"
-            :style="windowWidth > 1000 ? 'width: calc(50% - 1.5rem);' : 'width: 100%;'"
-          >
+          <div class="featuresRoundedItem">
+            <div class="featuresRoundedTop">
+              <div class="featuresRoundedShu"></div>
+              <div class="featuresRoundedTitle">应用对象</div>
+            </div>
+            <div class="featuresRoundedInfo2">
+              新材网价格查询系统，竭诚为货物采购单位和其他有关单位提供丰富的 "原料"
+              信息及其市场价格，供有关单位实施货物采购和预测工程费用参考。
+            </div>
+          </div>
+          <div class="featuresRoundedItem">
             <div class="featuresRoundedTop">
               <div class="featuresRoundedShu"></div>
               <div class="featuresRoundedTitle">涵盖范围</div>
@@ -161,29 +221,7 @@ onBeforeUnmount(() => {
               "好房子" 的建造需求。
             </div>
           </div>
-          <div
-            class="featuresRoundedItem"
-            :style="
-              windowWidth > 1000 ? 'margin-bottom: 0; width: calc(50% - 1.5rem);' : 'width: 100%;'
-            "
-          >
-            <div class="featuresRoundedTop">
-              <div class="featuresRoundedShu"></div>
-              <div class="featuresRoundedTitle">应用对象</div>
-            </div>
-            <div class="featuresRoundedInfo2">
-              新材网价格查询系统，竭诚为货物采购单位和其他有关单位提供丰富的 "原料"
-              信息及其市场价格，供有关单位实施货物采购和预测工程费用参考。
-            </div>
-          </div>
-          <div
-            class="featuresRoundedItem"
-            :style="
-              windowWidth > 1000
-                ? 'margin-bottom: 0;  width: calc(50% - 1.5rem);'
-                : 'margin-bottom: 0;  width: 100%;'
-            "
-          >
+          <div class="featuresRoundedItem" style="margin-bottom: 0">
             <div class="featuresRoundedTop">
               <div class="featuresRoundedShu"></div>
               <div class="featuresRoundedTitle">系统创建</div>
@@ -196,7 +234,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 人材机信价格库 -->
-      <div class="containerBox">
+      <div class="containerBox" :style="windowWidth < 1140 ? 'padding: 0 1rem;' : ''">
         <div class="containerTitle">人材机信价格库</div>
         <div class="containerHeng"></div>
         <div class="containerInfo">
@@ -354,15 +392,15 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 数字化解决方案 -->
-      <div class="solutionsBox">
+      <div class="solutionsBox" :style="windowWidth < 1140 ? 'padding: 0 1rem;' : ''">
         <div class="solutionsTitle">数字化解决方案</div>
         <div class="solutionsHeng"></div>
         <div class="solutionsInfo">
-          探索我们的数字化应用与智慧化管理方案，为您的项目提供全方位的技术支持
+          <!-- 探索我们的数字化应用与智慧化管理方案，为您的项目提供全方位的技术支持 -->
         </div>
         <div class="solutionsSubBox1">
-          <div class="solutionsSubItem solutionsActive">BIM+工程造价</div>
-          <div class="solutionsSubItem">BIM+倾斜摄影</div>
+          <div class="solutionsSubItem solutionsActive">数字化应用方案</div>
+          <div class="solutionsSubItem">智慧化管理方案</div>
         </div>
         <div class="solutionsSubBox2">
           <div class="solutionsSubItem solutionsActive">BIM+工程造价</div>
@@ -390,7 +428,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 人工智能应用 -->
-      <div class="aiBox">
+      <div class="aiBox" :style="windowWidth < 1140 ? 'padding: 0 1rem;' : ''">
         <div class="aiTitle">人工智能应用</div>
         <div class="aiHeng"></div>
         <div class="aiInfo">
@@ -609,10 +647,12 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 友情链接  -->
-      <div class="pyBox">
+      <div class="pyBox" :style="windowWidth < 1140 ? 'padding: 0 1rem 4rem;' : ''">
         <div class="pyTitle">友情链接</div>
         <div class="pyHeng"></div>
-        <div class="pyInfo">与行业领先企业及机构建立合作，共同推动建筑行业数字化转型</div>
+        <div class="pyInfo">
+          <!-- 与行业领先企业及机构建立合作，共同推动建筑行业数字化转型 -->
+        </div>
         <div class="pyClassbox">
           <div
             class="pyClassitem"
@@ -709,112 +749,130 @@ onBeforeUnmount(() => {
   background-color: #f9fafb;
 
   .bannerBox {
-    position: relative;
     width: 100vw;
     height: 100%;
+    background-color: #012060;
 
-    .bannerAbsolute {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      width: 100vw;
-      height: 100%;
+    .bannerAnchor {
+      margin: 0 auto;
+      position: relative;
+      width: 100%;
+      height: 690px;
+      max-width: 1536px;
 
-      .bannerContent {
-        margin: 0 auto;
-        padding: 10rem 30px 6rem;
+      .bannerImage {
+        position: absolute;
+        right: 10%;
+        top: 0;
+        z-index: 0;
+        width: auto;
+        max-width: 50%;
+        height: 95%;
+        object-fit: contain;
+      }
+
+      .bannerAbsolute {
+        padding-top: 10rem;
+        position: absolute;
         width: 100%;
-        max-width: 1720px;
+        z-index: 1;
 
-        .bannerTitle {
-          margin-bottom: 2rem;
-          font-size: clamp(2rem, 5vw, 3.5rem);
-          color: #fff;
-          font-weight: 700;
-        }
+        .bannerContent {
+          margin: 0 auto;
+          padding: 0 30px;
+          width: 100%;
+          max-width: 1536px;
 
-        .bannerSubtitle {
-          margin-bottom: 2rem;
-          font-size: clamp(1.25rem, 3vw, 1.5rem);
-          font-weight: 500;
-          color: rgb(255 255 255 / 0.9);
-        }
-
-        .bannerJgkbtn {
-          padding: 0.75rem 2rem;
-          color: #fff;
-          background-color: rgb(22 93 255);
-          border-radius: 9999px;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-        }
-
-        .bannerJjfabtn {
-          margin-left: 20px;
-          padding: 0.75rem 2rem;
-          color: #fff;
-          background-color: rgba(255 255 255 / 0.1);
-          border: 1px solid rgba(255 255 255 / 0.3);
-          border-radius: 9999px;
-        }
-
-        .bannerCompany {
-          margin-top: 4rem;
-          font-size: 0.875rem;
-          line-height: 1.25rem;
-          color: rgba(255 255 255 / 0.7);
-        }
-
-        .bannerRidbox {
-          overflow: hidden;
-          margin-top: 3rem;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          align-items: center;
-          background-color: rgba(11, 255, 0, 0.1);
-          border-radius: 1rem;
-
-          .bannerRiditem {
-            padding: 1.5rem;
-            display: flex;
-
-            .bannerFabox {
-              width: 3rem;
-              height: 3rem;
-              background-color: rgb(22 93 255 / 0.1);
-              border-radius: 0.5rem;
-            }
-
-            .bannerGridright {
-              margin-left: 1rem;
-
-              .bannerRidtitle {
-                margin-bottom: 0.5rem;
-                font-size: 1.25rem;
-                line-height: 1.75rem;
-                font-weight: 700;
-                color: #fff;
-              }
-
-              .bannerGridinfo {
-                font-size: 1rem;
-                line-height: 1.5rem;
-                color: rgba(255 255 255 / 0.8);
-              }
-            }
+          .bannerTitle {
+            margin-bottom: 1.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #fff;
+            font-weight: 700;
           }
 
-          .bannerRiditem:hover {
-            cursor: pointer;
+          .bannerSubtitle {
+            margin-bottom: 2rem;
+            font-size: clamp(2rem, 3vw, 1.5rem);
+            line-height: 3rem;
+            font-weight: 500;
+            color: rgb(255 255 255 / 0.9);
+          }
+
+          .bannerJgkbtn {
+            padding: 0.75rem 2rem;
+            color: #fff;
+            background-color: rgb(22 93 255);
+            border-radius: 9999px;
             box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-            animation: jumpUpwards 300ms ease-in-out forwards;
           }
 
-          .bannerGridshu {
-            width: 1px;
-            height: 5rem;
-            background-image: linear-gradient(to bottom, #1627ff30);
+          .bannerJjfabtn {
+            margin-left: 20px;
+            padding: 0.75rem 2rem;
+            color: #fff;
+            background-color: rgba(255 255 255 / 0.1);
+            border: 1px solid rgba(255 255 255 / 0.3);
+            border-radius: 9999px;
+          }
+
+          .bannerCompany {
+            margin-top: 80px;
+            font-size: 1.25rem;
+            line-height: 1.25rem;
+            color: rgba(255 255 255 / 0.7);
+          }
+
+          .bannerRidbox {
+            overflow: hidden;
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(103, 188, 255, 0.3);
+            border-radius: 1rem;
+
+            .bannerRiditem {
+              padding: 1.5rem;
+              display: flex;
+
+              .bannerFabox {
+                width: 3rem;
+                height: 3rem;
+                background-color: rgb(22 93 255 / 0.1);
+                border-radius: 0.5rem;
+              }
+
+              .bannerGridright {
+                margin-left: 1rem;
+
+                .bannerRidtitle {
+                  margin-bottom: 0.5rem;
+                  font-size: 1.25rem;
+                  line-height: 1.75rem;
+                  font-weight: 700;
+                  color: #fff;
+                }
+
+                .bannerGridinfo {
+                  font-size: 1rem;
+                  line-height: 1.5rem;
+                  color: rgba(255 255 255 / 0.8);
+                }
+              }
+            }
+
+            .bannerRiditem:hover {
+              cursor: pointer;
+              box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+              animation: jumpUpwards 300ms ease-in-out forwards;
+            }
+
+            .bannerGridshu {
+              width: 1px;
+              height: 5rem;
+              background-image: linear-gradient(to bottom, #1627ff30);
+            }
           }
         }
       }
@@ -824,43 +882,49 @@ onBeforeUnmount(() => {
   .featuresBox {
     position: relative;
     margin: 6rem auto 0;
-    padding: 0 1rem;
+    padding: 0 2rem;
     width: 100%;
-    max-width: 1720px;
+    max-width: 1536px;
 
     .featuresImg {
-      margin-bottom: 3rem;
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-      height: 24rem;
+      position: absolute;
+      z-index: 0;
+      width: calc(100% - 4rem);
+      height: 500px;
       border-radius: 1rem;
+      opacity: 0.5;
+    }
 
-      .featuresImgTitle {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        z-index: 2;
-        padding: 2.5rem;
-        font-weight: 700;
-        color: #fff;
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
-      }
+    .featuresFlex {
+      position: absolute;
+      z-index: 1;
+    }
+
+    .featuresImgTitle {
+      padding: 2rem 0;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      line-height: 60px;
+      font-weight: 700;
+      text-align: center;
+      color: rgb(1 32 96);
     }
 
     .featuresRounded {
+      margin: 0 auto;
       padding: 2.5rem;
+      width: 90%;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       border-radius: 1rem;
-      background-color: #fff;
       box-sizing:
         0 10px 15px -3px rgb(0 0 0 / 0.1),
         0 4px 6px -4px rgb(0 0 0 / 0.1);
+      background-color: rgb(255 255 255 / 0.5);
 
       .featuresRoundedItem {
         margin-bottom: 2.5rem;
+        width: 100%;
 
         .featuresRoundedTop {
           display: flex;
@@ -883,11 +947,13 @@ onBeforeUnmount(() => {
         }
 
         .featuresRoundedInfo1 {
-          color: rgb(75 85 99);
           margin-bottom: 1rem;
+          font-size: 1.25rem;
+          color: rgb(75 85 99);
         }
 
         .featuresRoundedInfo2 {
+          font-size: 1.25rem;
           color: rgb(75 85 99);
         }
       }
@@ -897,9 +963,9 @@ onBeforeUnmount(() => {
   .containerBox {
     position: relative;
     margin: 6rem auto 0;
-    padding: 0 1rem;
+    padding: 0 2rem;
     width: 100%;
-    max-width: 1720px;
+    max-width: 1536px;
 
     .containerTitle {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -1020,9 +1086,9 @@ onBeforeUnmount(() => {
   .solutionsBox {
     position: relative;
     margin: 6rem auto 0;
-    padding: 0 1rem;
+    padding: 0 2rem;
     width: 100%;
-    max-width: 1720px;
+    max-width: 1536px;
 
     .solutionsTitle {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -1040,7 +1106,7 @@ onBeforeUnmount(() => {
     }
 
     .solutionsInfo {
-      margin: 1rem auto 4rem;
+      margin: 1rem auto 2.5rem;
       text-align: center;
       max-width: 42rem;
       color: rgb(75 85 99);
@@ -1057,7 +1123,7 @@ onBeforeUnmount(() => {
         line-height: 2rem;
         color: rgb(1 32 96);
         padding: 0.5rem 1.25rem;
-        border-radius: 9999px;
+        border-radius: 0.5rem;
         background-color: #fff;
       }
 
@@ -1069,17 +1135,18 @@ onBeforeUnmount(() => {
     }
 
     .solutionsSubBox2 {
+      overflow-x: auto;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-wrap: nowrap;
+      // justify-content: center;
 
       .solutionsSubItem {
-        flex-shrink: 1;
+        flex-shrink: 0;
         margin: 0.75rem;
         line-height: 2rem;
         color: rgb(1 32 96);
         padding: 0.5rem 1.25rem;
-        border-radius: 9999px;
+        border-radius: 0.5rem;
         background-color: #fff;
       }
 
@@ -1124,13 +1191,14 @@ onBeforeUnmount(() => {
         z-index: 2;
         width: 100%;
         padding: 2.5rem;
-        background-color: rgb(1 32 96 / 0.5);
+        border-top: 1px solid rgb(229 231 235);
+        background-color: #fff;
 
         p {
+          text-align: center;
           margin: 0;
-          max-width: 42rem;
           line-height: 1.5rem;
-          color: rgb(255 255 255 / 0.9);
+          color: rgb(1 32 96);
         }
       }
     }
@@ -1139,9 +1207,9 @@ onBeforeUnmount(() => {
   .aiBox {
     position: relative;
     margin: 6rem auto 0;
-    padding: 0 1rem;
+    padding: 0 2rem;
     width: 100%;
-    max-width: 1720px;
+    max-width: 1536px;
 
     .aiTitle {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -1159,7 +1227,7 @@ onBeforeUnmount(() => {
     }
 
     .aiInfo {
-      margin: 1rem auto 4rem;
+      margin: 1rem auto 2.5rem;
       text-align: center;
       max-width: 42rem;
       color: rgb(75 85 99);
@@ -1246,9 +1314,9 @@ onBeforeUnmount(() => {
   .pyBox {
     position: relative;
     margin: 6rem auto 0;
-    padding: 0 1rem 4rem;
+    padding: 0 2rem 4rem;
     width: 100%;
-    max-width: 1720px;
+    max-width: 1536px;
 
     .pyTitle {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -1266,7 +1334,7 @@ onBeforeUnmount(() => {
     }
 
     .pyInfo {
-      margin: 1rem auto 4rem;
+      margin: 1rem auto 2.5rem;
       text-align: center;
       max-width: 42rem;
       color: rgb(75 85 99);

@@ -149,7 +149,7 @@ const drawerVisible = ref(false)
   .headflex {
     margin: 0 auto;
     padding: 0 30px;
-    max-width: 1800px;
+    max-width: 1536px;
     height: 72px;
     display: flex;
     align-items: center;
