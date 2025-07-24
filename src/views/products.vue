@@ -12,8 +12,9 @@ function echartsInit() {
   myChart = echarts.init(echartsMain.value)
   // 指定图表的配置项和数据
   const option = {
+    color: ['#3B82F6', '#10B981', '#F59E0B'],
     title: {
-      text: 'Stacked Area Chart',
+      text: '',
     },
     tooltip: {
       trigger: 'axis',
@@ -25,24 +26,21 @@ function echartsInit() {
       },
     },
     legend: {
-      data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine'],
-    },
-    toolbox: {
-      feature: {
-        saveAsImage: {},
-      },
+      bottom: 0,
+      data: ['BIM服务', '高性能材料', '智能建造装备'],
     },
     grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
+      left: 20,
+      right: 20,
+      top: 20,
+      bottom: 40,
       containLabel: true,
     },
     xAxis: [
       {
         type: 'category',
         boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        data: ['1月', '2月', '3月', '4月', '5月', '6月'],
       },
     ],
     yAxis: [
@@ -52,58 +50,34 @@ function echartsInit() {
     ],
     series: [
       {
-        name: 'Email',
+        name: 'BIM服务',
         type: 'line',
         stack: 'Total',
         areaStyle: {},
         emphasis: {
           focus: 'series',
         },
-        data: [120, 132, 101, 134, 90, 230, 210],
+        data: [4200, 4500, 4300, 4800, 4600, 5000],
       },
       {
-        name: 'Union Ads',
+        name: '高性能材料',
         type: 'line',
         stack: 'Total',
         areaStyle: {},
         emphasis: {
           focus: 'series',
         },
-        data: [220, 182, 191, 234, 290, 330, 310],
+        data: [800, 820, 850, 840, 870, 850],
       },
       {
-        name: 'Video Ads',
+        name: '智能建造装备',
         type: 'line',
         stack: 'Total',
         areaStyle: {},
         emphasis: {
           focus: 'series',
         },
-        data: [150, 232, 201, 154, 190, 330, 410],
-      },
-      {
-        name: 'Direct',
-        type: 'line',
-        stack: 'Total',
-        areaStyle: {},
-        emphasis: {
-          focus: 'series',
-        },
-        data: [320, 332, 301, 334, 390, 330, 320],
-      },
-      {
-        name: 'Search Engine',
-        type: 'line',
-        stack: 'Total',
-        label: {
-          show: true,
-          position: 'top',
-        },
-        areaStyle: {},
-        emphasis: {
-          focus: 'series',
-        },
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        data: [11000, 11500, 12000, 11800, 12200, 12000],
       },
     ],
   }
