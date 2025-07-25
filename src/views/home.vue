@@ -841,7 +841,6 @@ onBeforeUnmount(() => {
             align-items: center;
             padding: 0.75rem;
             border-radius: 0.5rem;
-            background-color: rgb(255 255 255 / 0.1);
 
             .containerGridimginfo {
               font-size: 1.25rem;
@@ -849,6 +848,10 @@ onBeforeUnmount(() => {
               font-weight: 500;
               color: #fff;
             }
+          }
+
+          .containerGridItem:hover {
+            background-color: rgb(255 255 255 / 0.1);
           }
 
           @media (max-width: 600px) {
@@ -1356,10 +1359,6 @@ onBeforeUnmount(() => {
     .mxBox {
       padding: 2.5rem 0;
     }
-  }
-
-  .outmostPd {
-    border: 1px solid red;
   }
 
   @media (max-width: 1140px) {
