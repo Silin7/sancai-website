@@ -1017,10 +1017,6 @@ onBeforeUnmount(() => {
     }
   }
 
-  @media (min-width: 600px) {
-    padding: 0;
-  }
-
   .aiBox {
     position: relative;
     margin: 6rem auto 0;
@@ -1352,14 +1348,24 @@ onBeforeUnmount(() => {
     }
   }
 
+  @media (max-width: 600px) {
+    .solutionsBox {
+      padding: 2.5rem 0;
+    }
+
+    .mxBox {
+      padding: 2.5rem 0;
+    }
+  }
+
   .outmostPd {
     border: 1px solid red;
   }
 
   @media (max-width: 1140px) {
     .outmostPd {
-      padding-left: 1rem;
-      padding-right: 1rem;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
     }
   }
 }
