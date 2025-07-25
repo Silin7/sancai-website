@@ -26,7 +26,7 @@ onBeforeUnmount(() => {
     <div class="homePage">
       <!-- BANNER -->
       <div class="bannerBox">
-        <div class="bannerAnchor" :style="windowWidth < 600 ? 'height: 60rem;' : 'height: 48rem;'">
+        <div class="bannerAnchor">
           <img
             v-if="windowWidth > 1140"
             src="@/assets/index_img_01.png"
@@ -44,79 +44,43 @@ onBeforeUnmount(() => {
               </button>
             </div> -->
               <div class="bannerCompany">杭州三才工程管理咨询有限公司</div>
-              <div class="bannerRidbox">
-                <div
-                  class="bannerRiditem"
-                  :style="
-                    windowWidth > 1000
-                      ? 'width: calc(25% - 1px);'
-                      : windowWidth > 600
-                        ? 'width: calc(50% - 1px);'
-                        : 'width: 100%'
-                  "
-                >
+              <div class="bannerGridbox">
+                <div class="bannerGriditem">
                   <div class="bannerFabox frcc">
                     <i class="fa fa-database" style="font-size: 20px; color: #fff"></i>
                   </div>
                   <div class="bannerGridright">
-                    <div class="bannerRidtitle">人材机信价格库</div>
+                    <div class="bannerGridtitle">人材机信价格库</div>
                     <div class="bannerGridinfo">精准数据，助力成本管控</div>
                   </div>
                 </div>
                 <div v-if="windowWidth > 600" class="bannerGridshu" />
-                <div
-                  class="bannerRiditem"
-                  :style="
-                    windowWidth > 1000
-                      ? 'width: calc(25% - 1px);'
-                      : windowWidth > 600
-                        ? 'width: calc(50% - 1px);'
-                        : 'width: 100%'
-                  "
-                >
+                <div class="bannerGriditem">
                   <div class="bannerFabox frcc">
                     <i class="fa fa-calculator" style="font-size: 20px; color: #fff"></i>
                   </div>
                   <div class="bannerGridright">
-                    <div class="bannerRidtitle">数据方案组价</div>
+                    <div class="bannerGridtitle">数据方案组价</div>
                     <div class="bannerGridinfo">智能组价，优化方案设计</div>
                   </div>
                 </div>
                 <div v-if="windowWidth > 600" class="bannerGridshu" />
-                <div
-                  class="bannerRiditem"
-                  :style="
-                    windowWidth > 1000
-                      ? 'width: calc(25% - 1px);'
-                      : windowWidth > 600
-                        ? 'width: calc(50% - 1px);'
-                        : 'width: 100%'
-                  "
-                >
+                <div class="bannerGriditem">
                   <div class="bannerFabox frcc">
                     <i class="fa fa-android" style="font-size: 20px; color: #fff"></i>
                   </div>
                   <div class="bannerGridright">
-                    <div class="bannerRidtitle">人工智能应用</div>
+                    <div class="bannerGridtitle">人工智能应用</div>
                     <div class="bannerGridinfo">AI赋能，提升运行效率</div>
                   </div>
                 </div>
                 <div v-if="windowWidth > 600" class="bannerGridshu" />
-                <div
-                  class="bannerRiditem"
-                  :style="
-                    windowWidth > 1000
-                      ? 'width: calc(25% - 1px);'
-                      : windowWidth > 600
-                        ? 'width: calc(50% - 1px);'
-                        : 'width: 100%'
-                  "
-                >
+                <div class="bannerGriditem">
                   <div class="bannerFabox frcc">
                     <i class="fa fa-play-circle" style="font-size: 20px; color: #fff"></i>
                   </div>
                   <div class="bannerGridright">
-                    <div class="bannerRidtitle">视频讲解</div>
+                    <div class="bannerGridtitle">视频讲解</div>
                     <div class="bannerGridinfo">直观教学，掌握核心技能</div>
                   </div>
                 </div>
@@ -126,12 +90,8 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 系统简介 -->
-      <div class="featuresBox" :style="windowWidth < 1140 ? 'padding: 0 1rem;' : ''">
-        <img
-          src="@/assets/about00.jpeg"
-          class="featuresImg"
-          :style="windowWidth < 1140 ? 'width: calc(100% - 2rem);' : ''"
-        />
+      <div class="featuresBox outmostPd">
+        <img src="@/assets/about00.jpeg" class="featuresImg" />
         <div class="featuresFlex">
           <div class="featuresImgTitle">系统简介</div>
           <div class="featuresRounded">
@@ -234,15 +194,25 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 人材机信价格库 -->
-      <div class="containerBox" :style="windowWidth < 1140 ? 'padding: 0 1rem;' : ''">
+      <div class="containerBox outmostPd">
         <div class="containerTitle">人材机信价格库</div>
         <div class="containerHeng"></div>
         <div class="containerInfo">
-          专注于新型城市基础设施建设的人材机信资源价格数据库，为行业提供精准的成本管控信息
+          <!-- 专注于新型城市基础设施建设的人材机信资源价格数据库，为行业提供精准的成本管控信息 -->
         </div>
-        <div class="containerRidbox">
-          <div
-            class="containerRiditem"
+        <div class="containerSubBoxOut">
+          <div class="containerSubBox1">
+            <div class="containerSubItem containerActive">数字技工/方案论证</div>
+            <div class="containerSubItem">材料/设备</div>
+            <div class="containerSubItem">智能建造装备</div>
+            <div class="containerSubItem">信息化产品/服务</div>
+          </div>
+        </div>
+        <div class="containerGridbox">
+          <img src="@/assets/product01.jpeg" alt="" />
+          <div class="containerGridMaod">123</div>
+          <!-- <div
+            class="containerGriditem"
             :style="
               windowWidth > 1000
                 ? 'width: calc(25% - 0.5rem);'
@@ -251,23 +221,23 @@ onBeforeUnmount(() => {
                   : 'width: 100%'
             "
           >
-            <div class="containerRidimgbox">
+            <div class="containerGridimgbox">
               <img src="@/assets/product01.jpeg" alt="" style="width: 100%; height: 12rem" />
-              <div class="containerRidimgfx frsc">
+              <div class="containerGridimgfx frsc">
                 <div class="containerFabox">
                   <i class="fa fa-user" style="font-size: 20px; color: #fff"></i>
                 </div>
-                <div class="containerRidimginfo">数字技工/方案论证</div>
+                <div class="containerGridimginfo">数字技工/方案论证</div>
               </div>
             </div>
             <div class="containerGridibox">
               <div class="frsc" style="margin-bottom: 0.75rem">
                 <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
-                <div class="containerRidtitle">数字技术指导</div>
+                <div class="containerGridtitle">数字技术指导</div>
               </div>
               <div class="frsc" style="margin-bottom: 0.75rem">
                 <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
-                <div class="containerRidtitle">数字方案论证</div>
+                <div class="containerGridtitle">数字方案论证</div>
               </div>
             </div>
             <div class="containerCkqbbox">
@@ -279,7 +249,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
           <div
-            class="containerRiditem"
+            class="containerGriditem"
             :style="
               windowWidth > 1000
                 ? 'width: calc(25% - 0.5rem);'
@@ -288,23 +258,23 @@ onBeforeUnmount(() => {
                   : 'margin-top: 1rem; width: 100%'
             "
           >
-            <div class="containerRidimgbox">
+            <div class="containerGridimgbox">
               <img src="@/assets/product02.jpeg" alt="" style="width: 100%; height: 12rem" />
-              <div class="containerRidimgfx frsc">
+              <div class="containerGridimgfx frsc">
                 <div class="containerFabox">
                   <i class="fa fa-cubes" style="font-size: 20px; color: #fff"></i>
                 </div>
-                <div class="containerRidimginfo">材料/设备</div>
+                <div class="containerGridimginfo">材料/设备</div>
               </div>
             </div>
             <div class="containerGridibox">
               <div class="frsc" style="margin-bottom: 0.75rem">
                 <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
-                <div class="containerRidtitle">城市更新</div>
+                <div class="containerGridtitle">城市更新</div>
               </div>
               <div class="frsc" style="margin-bottom: 0.75rem">
                 <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
-                <div class="containerRidtitle">四好建设</div>
+                <div class="containerGridtitle">四好建设</div>
               </div>
             </div>
             <div class="containerCkqbbox">
@@ -316,7 +286,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
           <div
-            class="containerRiditem"
+            class="containerGriditem"
             :style="
               windowWidth > 1000
                 ? 'width: calc(25% - 0.5rem);'
@@ -325,23 +295,23 @@ onBeforeUnmount(() => {
                   : 'margin-top: 1rem; width: 100%'
             "
           >
-            <div class="containerRidimgbox">
+            <div class="containerGridimgbox">
               <img src="@/assets/product03.jpeg" alt="" style="width: 100%; height: 12rem" />
-              <div class="containerRidimgfx frsc">
+              <div class="containerGridimgfx frsc">
                 <div class="containerFabox">
                   <i class="fa fa-delicious" style="font-size: 20px; color: #fff"></i>
                 </div>
-                <div class="containerRidimginfo">智能建造装备</div>
+                <div class="containerGridimginfo">智能建造装备</div>
               </div>
             </div>
             <div class="containerGridibox">
               <div class="frsc" style="margin-bottom: 0.75rem">
                 <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
-                <div class="containerRidtitle">租赁</div>
+                <div class="containerGridtitle">租赁</div>
               </div>
               <div class="frsc" style="margin-bottom: 0.75rem">
                 <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
-                <div class="containerRidtitle">销售</div>
+                <div class="containerGridtitle">销售</div>
               </div>
             </div>
             <div class="containerCkqbbox">
@@ -353,7 +323,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
           <div
-            class="containerRiditem"
+            class="containerGriditem"
             :style="
               windowWidth > 1000
                 ? 'width: calc(25% - 0.5rem);'
@@ -362,23 +332,23 @@ onBeforeUnmount(() => {
                   : 'margin-top: 1rem; width: 100%'
             "
           >
-            <div class="containerRidimgbox">
+            <div class="containerGridimgbox">
               <img src="@/assets/product04.jpeg" alt="" style="width: 100%; height: 12rem" />
-              <div class="containerRidimgfx frsc">
+              <div class="containerGridimgfx frsc">
                 <div class="containerFabox">
                   <i class="fa fa-wifi" style="font-size: 20px; color: #fff"></i>
                 </div>
-                <div class="containerRidimginfo">信息化产品/服务</div>
+                <div class="containerGridimginfo">信息化产品/服务</div>
               </div>
             </div>
             <div class="containerGridibox">
               <div class="frsc" style="margin-bottom: 0.75rem">
                 <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
-                <div class="containerRidtitle">产品</div>
+                <div class="containerGridtitle">产品</div>
               </div>
               <div class="frsc" style="margin-bottom: 0.75rem">
                 <i class="fa fa-dot-circle-o" style="font-size: 1rem; color: #165dff"></i>
-                <div class="containerRidtitle">服务</div>
+                <div class="containerGridtitle">服务</div>
               </div>
             </div>
             <div class="containerCkqbbox">
@@ -388,30 +358,34 @@ onBeforeUnmount(() => {
                 <i class="fa fa-arrow-right" style="font-size: 1rem; color: #165dff"></i>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <!-- 数字化解决方案 -->
-      <div class="solutionsBox" :style="windowWidth < 1140 ? 'padding: 0 1rem;' : ''">
+      <div class="solutionsBox outmostPd">
         <div class="solutionsTitle">数字化解决方案</div>
         <div class="solutionsHeng"></div>
         <div class="solutionsInfo">
           <!-- 探索我们的数字化应用与智慧化管理方案，为您的项目提供全方位的技术支持 -->
         </div>
-        <div class="solutionsSubBox1">
-          <div class="solutionsSubItem solutionsActive">数字化应用方案</div>
-          <div class="solutionsSubItem">智慧化管理方案</div>
+        <div class="solutionsSubBoxOut">
+          <div class="solutionsSubBox1">
+            <div class="solutionsSubItem solutionsActive">数字化应用方案</div>
+            <div class="solutionsSubItem">智慧化管理方案</div>
+          </div>
         </div>
-        <div class="solutionsSubBox2">
-          <div class="solutionsSubItem solutionsActive">BIM+工程造价</div>
-          <div class="solutionsSubItem">BIM+倾斜摄影</div>
-          <div class="solutionsSubItem">BIM+三维扫描</div>
-          <div class="solutionsSubItem">BIM+VR/AR</div>
-          <div class="solutionsSubItem">BIM+物联网</div>
-          <div class="solutionsSubItem">BIM+数字化加工</div>
-          <div class="solutionsSubItem">BIM+地理信息</div>
-          <div class="solutionsSubItem">BIM+放样机器人</div>
-          <div class="solutionsSubItem">BIM+空间资产</div>
+        <div class="solutionsSubBoxOut">
+          <div class="solutionsSubBox2">
+            <div class="solutionsSubItem solutionsActive">BIM+工程造价</div>
+            <div class="solutionsSubItem">BIM+倾斜摄影</div>
+            <div class="solutionsSubItem">BIM+三维扫描</div>
+            <div class="solutionsSubItem">BIM+VR/AR</div>
+            <div class="solutionsSubItem">BIM+物联网</div>
+            <div class="solutionsSubItem">BIM+数字化加工</div>
+            <div class="solutionsSubItem">BIM+地理信息</div>
+            <div class="solutionsSubItem">BIM+放样机器人</div>
+            <div class="solutionsSubItem">BIM+空间资产</div>
+          </div>
         </div>
         <div class="solutionsImg">
           <img
@@ -428,7 +402,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 人工智能应用 -->
-      <div class="aiBox" :style="windowWidth < 1140 ? 'padding: 0 1rem;' : ''">
+      <div class="aiBox outmostPd">
         <div class="aiTitle">人工智能应用</div>
         <div class="aiHeng"></div>
         <div class="aiInfo">
@@ -647,7 +621,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 友情链接  -->
-      <div class="pyBox" :style="windowWidth < 1140 ? 'padding: 0 1rem 4rem;' : ''">
+      <div class="pyBox outmostPd">
         <div class="pyTitle">友情链接</div>
         <div class="pyHeng"></div>
         <div class="pyInfo">
@@ -747,6 +721,8 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .homePage {
   background-color: #f9fafb;
+  border: 1px solid red;
+  overflow-x: hidden;
 
   .bannerBox {
     width: 100vw;
@@ -757,7 +733,7 @@ onBeforeUnmount(() => {
       margin: 0 auto;
       position: relative;
       width: 100%;
-      height: 690px;
+      height: 48rem;
       max-width: 1536px;
 
       .bannerImage {
@@ -767,7 +743,7 @@ onBeforeUnmount(() => {
         z-index: 0;
         width: auto;
         max-width: 50%;
-        height: 95%;
+        height: 100%;
         object-fit: contain;
       }
 
@@ -822,9 +798,9 @@ onBeforeUnmount(() => {
             color: rgba(255 255 255 / 0.7);
           }
 
-          .bannerRidbox {
+          .bannerGridbox {
             overflow: hidden;
-            margin-top: 1rem;
+            margin-top: 2rem;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -832,7 +808,7 @@ onBeforeUnmount(() => {
             background-color: rgba(103, 188, 255, 0.3);
             border-radius: 1rem;
 
-            .bannerRiditem {
+            .bannerGriditem {
               padding: 1.5rem;
               display: flex;
 
@@ -846,7 +822,7 @@ onBeforeUnmount(() => {
               .bannerGridright {
                 margin-left: 1rem;
 
-                .bannerRidtitle {
+                .bannerGridtitle {
                   margin-bottom: 0.5rem;
                   font-size: 1.25rem;
                   line-height: 1.75rem;
@@ -862,10 +838,28 @@ onBeforeUnmount(() => {
               }
             }
 
-            .bannerRiditem:hover {
+            .bannerGriditem:hover {
               cursor: pointer;
               box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
               animation: jumpUpwards 300ms ease-in-out forwards;
+            }
+
+            @media (min-width: 1140px) {
+              .bannerGriditem {
+                width: calc(25% - 1px);
+              }
+            }
+
+            @media (max-width: 1140px) and (min-width: 600px) {
+              .bannerGriditem {
+                width: calc(50% - 1px);
+              }
+            }
+
+            @media (max-width: 600px) {
+              .bannerGriditem {
+                width: 100%;
+              }
             }
 
             .bannerGridshu {
@@ -876,6 +870,10 @@ onBeforeUnmount(() => {
           }
         }
       }
+    }
+
+    @media (max-width: 600px) {
+      height: 60rem;
     }
   }
 
@@ -888,16 +886,35 @@ onBeforeUnmount(() => {
 
     .featuresImg {
       position: absolute;
+      top: 0;
+      left: 2rem;
       z-index: 0;
+      width: 100%;
       width: calc(100% - 4rem);
       height: 500px;
       border-radius: 1rem;
       opacity: 0.5;
     }
 
+    @media (max-width: 1140px) {
+      .featuresImg {
+        width: calc(100% - 2rem);
+        left: 1rem;
+      }
+    }
+
     .featuresFlex {
       position: absolute;
+      top: 0;
+      left: 0;
       z-index: 1;
+      padding: 0 2rem;
+    }
+
+    @media (max-width: 1140px) {
+      .featuresFlex {
+        padding: 0 1rem;
+      }
     }
 
     .featuresImgTitle {
@@ -958,6 +975,13 @@ onBeforeUnmount(() => {
         }
       }
     }
+
+    @media (max-width: 600px) {
+      .featuresRounded {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
   }
 
   .containerBox {
@@ -989,23 +1013,69 @@ onBeforeUnmount(() => {
       color: rgb(75 85 99);
     }
 
-    .containerRidbox {
-      overflow: hidden;
-      padding-top: 4rem;
+    .containerSubBoxOut {
+      padding-bottom: 1rem;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: center;
 
-      .containerRiditem {
+      .containerSubBox1 {
+        padding-bottom: 1rem;
+        overflow-x: auto;
+        display: flex;
+        flex-wrap: nowrap;
+
+        .containerSubItem {
+          flex-shrink: 0;
+          margin: 0 0.75rem;
+          line-height: 2rem;
+          color: rgb(1 32 96);
+          padding: 0.5rem 1.25rem;
+          border-radius: 0.5rem;
+          background-color: #fff;
+        }
+
+        .containerSubItem:hover {
+          cursor: pointer;
+          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          background-color: rgb(243 244 246);
+        }
+      }
+
+      .containerActive {
+        color: #fff !important;
+        background-color: #165dff !important;
+      }
+    }
+
+    .containerGridbox {
+      position: relative;
+      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+      border: 1px solid red;
+
+      img {
+        width: 100%;
+        height: 700px;
+        border-radius: 1rem;
+      }
+
+      .containerGridMaod {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2rem;
+        background-color: rgb(1 32 96 / 0.4);
+      }
+
+      .containerGriditem {
         overflow: hidden;
         background-color: #fff;
         border-radius: 1rem;
 
-        .containerRidimgbox {
+        .containerGridimgbox {
           position: relative;
 
-          .containerRidimgfx {
+          .containerGridimgfx {
             position: absolute;
             left: 0;
             bottom: 0;
@@ -1022,7 +1092,7 @@ onBeforeUnmount(() => {
               background-color: rgb(255 255 255 / 0.2);
             }
 
-            .containerRidimginfo {
+            .containerGridimginfo {
               font-size: 1.25rem;
               line-height: 1.75rem;
               font-weight: 700;
@@ -1034,7 +1104,7 @@ onBeforeUnmount(() => {
         .containerGridibox {
           padding: 1.5rem;
 
-          .containerRidtitle {
+          .containerGridtitle {
             margin-left: 0.5rem;
             font-size: 1rem;
             line-height: 1.5rem;
@@ -1069,7 +1139,7 @@ onBeforeUnmount(() => {
         }
       }
 
-      .containerRiditem:hover {
+      .containerGriditem:hover {
         cursor: pointer;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
         animation: jumpUpwards 300ms ease-in-out forwards;
@@ -1112,58 +1182,64 @@ onBeforeUnmount(() => {
       color: rgb(75 85 99);
     }
 
-    .solutionsSubBox1 {
-      margin-bottom: 3rem;
+    .solutionsSubBoxOut {
+      padding-bottom: 2rem;
       display: flex;
       justify-content: center;
 
-      .solutionsSubItem {
-        flex-shrink: 1;
-        margin: 0 0.75rem;
-        line-height: 2rem;
-        color: rgb(1 32 96);
-        padding: 0.5rem 1.25rem;
-        border-radius: 0.5rem;
-        background-color: #fff;
+      .solutionsSubBox1 {
+        padding-bottom: 1rem;
+        overflow-x: auto;
+        display: flex;
+        flex-wrap: nowrap;
+
+        .solutionsSubItem {
+          flex-shrink: 0;
+          margin: 0 0.75rem;
+          line-height: 2rem;
+          color: rgb(1 32 96);
+          padding: 0.5rem 1.25rem;
+          border-radius: 0.5rem;
+          background-color: #fff;
+        }
+
+        .solutionsSubItem:hover {
+          cursor: pointer;
+          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          background-color: rgb(243 244 246);
+        }
       }
 
-      .solutionsSubItem:hover {
-        cursor: pointer;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-        background-color: rgb(243 244 246);
+      .solutionsSubBox2 {
+        padding-bottom: 1rem;
+        overflow-x: auto;
+        display: flex;
+        flex-wrap: nowrap;
+
+        .solutionsSubItem {
+          flex-shrink: 0;
+          margin: 0 0.75rem;
+          line-height: 2rem;
+          color: rgb(1 32 96);
+          padding: 0.5rem 1.25rem;
+          border-radius: 0.5rem;
+          background-color: #fff;
+        }
+
+        .solutionsSubItem:hover {
+          cursor: pointer;
+          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          background-color: rgb(243 244 246);
+        }
       }
-    }
 
-    .solutionsSubBox2 {
-      overflow-x: auto;
-      display: flex;
-      flex-wrap: nowrap;
-      // justify-content: center;
-
-      .solutionsSubItem {
-        flex-shrink: 0;
-        margin: 0.75rem;
-        line-height: 2rem;
-        color: rgb(1 32 96);
-        padding: 0.5rem 1.25rem;
-        border-radius: 0.5rem;
-        background-color: #fff;
+      .solutionsActive {
+        color: #fff !important;
+        background-color: #165dff !important;
       }
-
-      .solutionsSubItem:hover {
-        cursor: pointer;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-        background-color: rgb(243 244 246);
-      }
-    }
-
-    .solutionsActive {
-      color: #fff !important;
-      background-color: #165dff !important;
     }
 
     .solutionsImg {
-      margin-top: 3rem;
       overflow: hidden;
       position: relative;
       width: 100%;
@@ -1386,6 +1462,17 @@ onBeforeUnmount(() => {
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
         animation: jumpUpwards 300ms ease-in-out forwards;
       }
+    }
+  }
+
+  .outmostPd {
+    border: 1px solid red;
+  }
+
+  @media (max-width: 1140px) {
+    .outmostPd {
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
 }
