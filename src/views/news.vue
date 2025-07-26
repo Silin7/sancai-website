@@ -46,8 +46,8 @@ const handleCurrentChange = (val: number) => {
         </div>
       </div>
     </div>
-    <div :class="['newsBox', windowWidth > 992 ? 'newsFx' : '']">
-      <div class="newsLeft" :style="windowWidth > 992 ? 'width: calc(66.7% - 1rem);' : ''">
+    <div class="newsBox">
+      <div class="newsLeft">
         <div class="newsClass" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem 0.25rem;'">
           <div class="newsClassRow">
             <button class="newsClassColActive">全部</button>
@@ -92,7 +92,7 @@ const handleCurrentChange = (val: number) => {
               >
                 <div class="newsPiTitle">住建部发布《建筑业数字化转型发展指南》推动行业升级</div>
                 <div class="newsPiInfo">
-                  近日，住房和城乡建设部正式发布《建筑业数字化转型发展指南》，提出到2025年，建筑业数字化转型取得明显进展，打造一批建筑产业互联网平台，培育一批行业级、企业级数字建造解决方案。
+                  近日，住房和城乡建设部正式发布《建筑业数字化转型发展指南》，提出到2025年，建筑业数字化转型取得明显进展，打造一批建筑产业互联网平台，培育一批行业级、企业级数字建造解决方案。指南明确了数字化转型的重点任务和保障措施，为行业发展指明方向。
                 </div>
                 <div class="newsPiClass">
                   <div class="newsPiCleft">
@@ -145,7 +145,7 @@ const handleCurrentChange = (val: number) => {
           </div>
         </div>
       </div>
-      <div class="newsRight" :style="windowWidth > 992 ? 'width: calc(33.3% - 1rem);' : ''">
+      <!-- <div class="newsRight" :style="windowWidth > 992 ? 'width: calc(33.3% - 1rem);' : ''">
         <div class="newsRecom" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="newsRecomTitle">推荐文章</div>
           <div class="newsRecomImgBox">
@@ -201,12 +201,12 @@ const handleCurrentChange = (val: number) => {
               </div>
             </div>
           </div>
-          <!-- <div class="newsHMore">
-            <button>查看更多热门产品</button>
+          <div class="newsHMore">
+            <button>查看更多</button>
             <i class="fa fa-angle-right" style="margin-left: 0.25rem; font-size: 1.5rem"></i>
-          </div> -->
+          </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -253,7 +253,7 @@ const handleCurrentChange = (val: number) => {
 
   .newsBox {
     margin: 0 auto;
-    padding: 4rem 0.5rem;
+    padding: 4rem 1rem;
     width: 100%;
     max-width: 1536px;
 
@@ -299,7 +299,7 @@ const handleCurrentChange = (val: number) => {
 
       .newsProducts {
         margin-bottom: 2rem;
-        padding: 1.5rem;
+        padding: 2rem;
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
@@ -332,6 +332,8 @@ const handleCurrentChange = (val: number) => {
             cursor: pointer;
             margin-bottom: 1.5rem;
             padding: 1.5rem;
+            // display: flex;
+            // align-items: center;
             box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 0.1);
             border-radius: 0.75rem;
 
@@ -367,10 +369,10 @@ const handleCurrentChange = (val: number) => {
               width: calc(75% - 0.75rem);
 
               .newsPiTitle {
-                font-size: 1.125rem;
-                line-height: 1.75rem;
+                font-size: 1.5rem;
+                line-height: 2rem;
                 font-weight: 700;
-                margin-bottom: 0.5rem;
+                margin: 0.75rem 0;
                 color: rgb(1 32 96);
               }
 
@@ -422,11 +424,23 @@ const handleCurrentChange = (val: number) => {
             animation: jumpUpwards 300ms ease-in-out forwards;
           }
 
+          @media (max-width: 600px) {
+            .newsProductsItem {
+              padding: 0.75rem;
+            }
+          }
+
           .newsPagination {
             display: flex;
             justify-content: center;
             align-items: center;
           }
+        }
+      }
+
+      @media (max-width: 600px) {
+        .newsProducts {
+          padding: 1rem;
         }
       }
     }

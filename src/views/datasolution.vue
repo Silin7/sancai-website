@@ -21,17 +21,19 @@ onBeforeUnmount(() => {
     <div class="datasolutionPage">
       <!-- BANNER -->
       <div class="dsbannerBox">
-        <img
-          src="@/assets/solution-banner01.jpeg"
-          alt="dsbanner"
-          style="width: 100vw; height: 40rem"
-        />
+        <div class="dsbannerImg">
+          <img
+            src="@/assets/solution-banner01.jpeg"
+            alt="dsbanner"
+            style="width: 100vw; height: 34rem"
+          />
+        </div>
         <div class="dsbannerAbsolute">
           <div class="dsbannerContent">
             <div class="dsbannerTitle">为新城建提供绿色化 数字化 智能化综合解决方案</div>
-            <div class="dsbannerSubtitle">
+            <!-- <div class="dsbannerSubtitle">
               信息技术深度赋能城市建设 有效应对并满足建设管理过程中多维度、多场景需求
-            </div>
+            </div> -->
             <div class="frsc">
               <button class="dsbannerJgkbtn">提交需求</button>
             </div>
@@ -47,19 +49,21 @@ onBeforeUnmount(() => {
           <p class="introdsText">
             新城建通过对城市基础设施进行数字化、网络化和智能化的手段改造，推动城市高质量发展，提升城市治理水平。
           </p>
-          <div class="introdsBtns">
+          <!-- <div class="introdsBtns">
             <button class="introdsBtn"><i class="fa fa-chdigitizen"></i>AI技术</button>
             <button class="introdsBtn"><i class="fa fa-header"></i>BIM建模</button>
             <button class="introdsBtn"><i class="fa fa-wifi"></i>IoT物联网</button>
-          </div>
+          </div> -->
         </div>
       </div>
       <!-- 人工智能应用 -->
       <div class="digitizeOut">
         <div class="digitizeBox">
-          <div class="solutionsSubBox">
-            <div class="solutionsSubItem solutionsActive">数字化应用方案</div>
-            <div class="solutionsSubItem">智慧化管理方案</div>
+          <div class="digitizeSubBoxOut">
+            <div class="digitizeSubBox">
+              <div class="digitizeSubItem digitizeActive">数字化应用方案</div>
+              <div class="digitizeSubItem">智慧化管理方案</div>
+            </div>
           </div>
           <div class="digitizeClassbox">
             <div
@@ -189,6 +193,12 @@ onBeforeUnmount(() => {
     width: 100vw;
     height: 100%;
 
+    .dsbannerImg {
+      width: 100vw;
+      height: 34rem;
+      background-color: #012060;
+    }
+
     .dsbannerAbsolute {
       position: absolute;
       top: 0;
@@ -204,7 +214,7 @@ onBeforeUnmount(() => {
         max-width: 1536px;
 
         .dsbannerTitle {
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
           font-size: clamp(2rem, 5vw, 3.5rem);
           color: #fff;
           font-weight: 700;
@@ -224,12 +234,17 @@ onBeforeUnmount(() => {
           border-radius: 9999px;
           box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
         }
+
+        .dsbannerJgkbtn:hover {
+          transform: scale(1.05);
+          box-shadow: 2px 2px 10px 0 rgb(22 93 255);
+        }
       }
     }
   }
 
   .introdsOut {
-    margin-top: 6rem;
+    margin-top: 2.5rem;
     padding: 0 1rem;
     width: 100%;
 
@@ -273,8 +288,8 @@ onBeforeUnmount(() => {
   }
 
   .digitizeOut {
-    margin-top: 6rem;
-    padding: 5rem 0 4rem;
+    margin-top: 2.5rem;
+    padding: 2.5rem 0 4rem;
     width: 100%;
     background-color: #f0f7ff;
 
@@ -285,32 +300,58 @@ onBeforeUnmount(() => {
       width: 100%;
       max-width: 1536px;
 
-      .solutionsSubBox {
-        margin-bottom: 3rem;
+      .digitizeSubBoxOut {
+        padding-bottom: 2rem;
         display: flex;
         justify-content: center;
-        align-items: center;
 
-        .solutionsSubItem {
-          flex-shrink: 1;
-          line-height: 2rem;
-          color: rgb(1 32 96);
-          padding: 0.5rem 1.25rem;
-          border-radius: 9999px;
-          background-color: #fff;
+        .digitizeSubBox {
+          padding-bottom: 1rem;
+          overflow-x: auto;
+          display: flex;
+          flex-wrap: nowrap;
+
+          .digitizeSubItem {
+            flex-shrink: 0;
+            margin: 0 0.75rem;
+            line-height: 2rem;
+            color: rgb(1 32 96);
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            background-color: #fff;
+          }
+
+          .digitizeSubItem:hover {
+            cursor: pointer;
+            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+            background-color: rgb(243 244 246);
+          }
         }
 
-        .solutionsSubItem:first-child {
-          margin-right: 1rem;
+        .digitizeSubBox2 {
+          padding-bottom: 1rem;
+          overflow-x: auto;
+          display: flex;
+          flex-wrap: nowrap;
+
+          .digitizeSubItem {
+            flex-shrink: 0;
+            margin: 0 0.75rem;
+            line-height: 2rem;
+            color: rgb(1 32 96);
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.5rem;
+            background-color: #fff;
+          }
+
+          .digitizeSubItem:hover {
+            cursor: pointer;
+            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+            background-color: rgb(243 244 246);
+          }
         }
 
-        .solutionsSubItem:hover {
-          cursor: pointer;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-          background-color: rgb(243 244 246);
-        }
-
-        .solutionsActive {
+        .digitizeActive {
           color: #fff !important;
           background-color: #165dff !important;
         }
@@ -380,7 +421,7 @@ onBeforeUnmount(() => {
 
   .gysBox {
     position: relative;
-    margin: 6rem auto 0;
+    margin: 4rem auto 0;
     padding: 0 1rem 4rem;
     width: 100%;
     max-width: 1536px;
