@@ -58,9 +58,11 @@ const menuList: any = ref([
     ],
   },
   { title: 'AI赋能应用', path: '/ai', name: 'ai', children: [] },
-  { title: '视频讲解', path: '/video', name: 'video', children: [] },
+  { title: '视频演示', path: '/video', name: 'video', children: [] },
+  { title: '供应商', path: '/supplier', name: 'supplier', children: [] },
   { title: '关于三才', path: '/about', name: 'about', children: [] },
   { title: '热点资讯', path: '/news', name: 'news', children: [] },
+  { title: '工程造价+AI', path: '/engineering-ai', name: 'engineeringai', children: [] },
 ])
 
 // 移动端
@@ -74,16 +76,15 @@ const drawerVisible = ref(false)
         <div
           class="headnav"
           :style="
-            windowWidth > 1140 ? 'width: calc(100% - 130px);' : 'justify-content: space-between;'
+            windowWidth > 1260 ? 'width: calc(100% - 130px);' : 'justify-content: space-between;'
           "
         >
-          <img src="@/assets/logo.png" alt="logo" style="width: 120px; margin-bottom: 2px" />
-          <div v-if="windowWidth > 1140" class="menubox">
+          <img src="@/assets/logo.png" alt="logo" style="width: 120px" />
+          <div v-if="windowWidth > 1260" class="menubox">
             <div
               v-for="(item, index) in menuList"
               :key="index"
               class="menuitem"
-              :style="windowWidth > 1280 ? 'margin-left: 40px;' : 'margin-left: 20px;'"
               @click="tabRouterPush(item.name)"
             >
               <div class="menutitle" :style="selectedTab === item.name ? 'font-weight: 700;' : ''">
@@ -96,7 +97,7 @@ const drawerVisible = ref(false)
             <i class="fa fa-bars" style="font-size: 28px; color: #fff"></i>
           </div>
         </div>
-        <div v-if="windowWidth > 1140" class="headbtns">
+        <div v-if="windowWidth > 1260" class="headbtns">
           <button class="loginbtn">登录</button>
           <button class="registerbtn">注册</button>
         </div>
@@ -180,6 +181,24 @@ const drawerVisible = ref(false)
             margin-top: 2px;
             width: 0%;
             height: 2px;
+          }
+        }
+
+        @media (min-width: 1551px) {
+          .menuitem {
+            margin-left: 40px;
+          }
+        }
+
+        @media (max-width: 1550px) and (min-width: 1351px) {
+          .menuitem {
+            margin-left: 20px;
+          }
+        }
+
+        @media (max-width: 1350px) and (min-width: 1260px) {
+          .menuitem {
+            margin-left: 10px;
           }
         }
 

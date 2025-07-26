@@ -52,7 +52,7 @@ onBeforeUnmount(() => {
             <div class="quicklink">人材机信价格库</div>
             <div class="quicklink">数据方案组价</div>
             <div class="quicklink">AI赋能应用</div>
-            <div class="quicklink">视频讲解</div>
+            <div class="quicklink">视频演示</div>
             <div class="quicklink">供应商</div>
           </div>
         </el-col>

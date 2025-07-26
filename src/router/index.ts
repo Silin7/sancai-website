@@ -50,7 +50,18 @@ const routes: Array<RouteRecordRaw> = [
     name: 'video',
     component: () => import('@/views/video.vue'),
     meta: {
-      title: '视频讲解',
+      title: '视频演示',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
+    path: '/supplier',
+    name: 'supplier',
+    component: () => import('@/views/supplier.vue'),
+    meta: {
+      title: '供应商',
       website: true,
       hashead: true,
       hasfoot: true,

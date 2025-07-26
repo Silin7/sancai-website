@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
                     <i class="fa fa-play-circle" style="font-size: 1.25rem; color: #fff"></i>
                   </div>
                   <div class="bannerGridright">
-                    <div class="bannerGridtitle">视频讲解</div>
+                    <div class="bannerGridtitle">视频演示</div>
                     <div class="bannerGridinfo">直观教学，掌握核心技能</div>
                   </div>
                 </div>
