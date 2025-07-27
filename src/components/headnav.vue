@@ -145,7 +145,7 @@ const drawerVisible = ref(false)
   position: fixed;
   top: 0;
   z-index: 999;
-  background-color: #012060;
+  background-color: rgb(1 32 96 / 0.95);
 
   .headflex {
     margin: 0 auto;
