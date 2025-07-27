@@ -410,7 +410,7 @@ const handleCurrentChange = (val: number) => {
               width: calc(40% - 1rem);
 
               .containerPiTitle {
-                font-size: 1.125rem;
+                font-size: 1.25rem;
                 line-height: 1.75rem;
                 font-weight: 700;
                 margin-bottom: 0.5rem;

@@ -260,7 +260,7 @@ onBeforeUnmount(() => {
 
       .introdsText {
         margin-bottom: 1rem;
-        font-size: 1.125rem;
+        font-size: 1.25rem;
         line-height: 1.75rem;
         color: rgb(75 85 99);
       }

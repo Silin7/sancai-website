@@ -278,7 +278,7 @@ const input2: any = ref()
 
     @media (max-width: 992px) {
       .supplierClass {
-        padding: 1rem 0.5rem;
+        padding: 1rem 0.75rem;
       }
     }
 
@@ -481,7 +481,7 @@ const input2: any = ref()
 
         @media (max-width: 992px) {
           .supplierProductsItem {
-            padding: 0.5rem;
+            padding: 0.75rem;
             width: 100%;
           }
         }
@@ -510,6 +510,12 @@ const input2: any = ref()
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+  }
+
+  @media screen {
+    .supplierBox {
+      padding: 4rem 0.5rem;
     }
   }
 

@@ -148,50 +148,65 @@ const handleCurrentChange = (val: number) => {
   <div class="productsPage">
     <!-- BANNER -->
     <div class="prbannerBox">
-      <img
-        src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
-        alt="prbanner"
-        style="width: 100vw; height: 40rem"
-      />
+      <img src="@/assets/ai-banner-source.jpg" alt="prbanner" style="width: 100vw; height: 40rem" />
       <div class="prbannerAbsolute">
         <div class="prbannerContent">
           <div class="prbannerTitle">专业视频课程</div>
-          <div class="prbannerSubtitle">精选建筑行业专业课程，提升技能、获取证书，助力职业发展</div>
-          <div class="frsc">
-            <button class="bannerllkcbtn">浏览课程</button>
-            <button class="bannercwjsbtn">成为讲师</button>
+          <div class="prbannerSubtitle">
+            本系列视频聚焦数字化与AI技术深度融合的行业实践，全景呈现“技术+场景”的创新生态，助力建筑行业从传统经验模式迈向数据智能时代。
           </div>
+          <button class="bannerllkcbtn">浏览课程</button>
         </div>
       </div>
     </div>
+
+    <!-- CONTENT BOX -->
     <div :class="['containerBox', windowWidth > 1140 ? 'containerFx' : '']">
       <div class="containerLeft" :style="windowWidth > 1140 ? 'width: calc(66.7% - 1rem);' : ''">
         <div class="containerClass" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
-          <div class="containerClassRow">
-            <button class="containerClassColActive">全部</button>
-            <button class="containerClassCol">人</button>
-            <button class="containerClassCol">材</button>
-            <button class="containerClassCol">机</button>
-            <button class="containerClassCol">信</button>
+          <div class="frbc">
+            <div class="containerClassTitle">价格趋势</div>
+            <div class="containerClassNumber"><span>128</span>个视频</div>
+          </div>
+          <div class="containerClassTbox">
+            <i class="fa fa-laptop"></i>
+            <div class="containerClassText">平台分类</div>
           </div>
           <div class="containerClassRow">
             <button class="containerClassColActive">全部</button>
-            <button class="containerClassCol">一般建筑</button>
-            <button class="containerClassCol">医疗建筑</button>
-            <button class="containerClassCol">体育场馆</button>
-            <button class="containerClassCol">超高层建筑</button>
+            <button class="containerClassCol">BMI技术</button>
+            <button class="containerClassCol">智能制造</button>
+            <button class="containerClassCol">造价管理</button>
           </div>
-          <!-- 0.75rem -->
+          <div class="containerClassTbox">
+            <div class="containerClassText">视频类型</div>
+          </div>
+          <div class="containerClassRow">
+            <button class="containerClassColActive">全部</button>
+            <button class="containerClassCol">免费</button>
+            <button class="containerClassCol">付费</button>
+          </div>
+          <div class="containerClassTbox">
+            <div class="containerClassText">视频时长</div>
+          </div>
+          <div class="containerClassRow">
+            <button class="containerClassColActive">全部</button>
+            <button class="containerClassCol">10分钟以内</button>
+            <button class="containerClassCol">10-30分钟</button>
+            <button class="containerClassCol">30分钟以上</button>
+          </div>
           <el-input
             v-model="input2"
             style="width: 100%; height: 50px; font-size: 1rem"
-            placeholder="搜索产品..."
+            placeholder="搜索视频..."
             :prefix-icon="Search"
           />
         </div>
-        <div class="containerProducts" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
-          <div class="containerProductsTitle" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
-            <div class="containerProductsTitleText">产品列表</div>
+        <div class="containerProducts">
+          <!--  :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'" -->
+          <div class="containerProductsTitle">
+            <!--  :style="windowWidth > 1140 ? '' : 'padding: 0;'" -->
+            <div class="containerProductsTitleText">精选视频</div>
             <div class="containerProductsTitlePxfs">
               <span>排序方式：</span>
               <el-select
@@ -200,70 +215,68 @@ const handleCurrentChange = (val: number) => {
                 size="large"
                 style="width: 140px"
               >
-                <el-option label="价格从低到高" value="01" />
-                <el-option label="价格从高到低" value="02" />
-                <el-option label="最新更新" value="03" />
+                <el-option label="最新视频" value="01" />
+                <el-option label="价格从低到高" value="02" />
+                <el-option label="价格从高到低" value="03" />
+                <el-option label="最多人学习" value="04" />
               </el-select>
             </div>
           </div>
-          <div class="containerProductsBox" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
-            <div
-              class="containerProductsItem"
-              :style="windowWidth > 1140 ? 'display: flex; justify-content: space-between;' : ''"
-              v-for="index in 4"
-              :key="index"
-            >
-              <img
-                src="https://picsum.photos/200/200?random=401"
-                alt=""
-                class="containerPiImg"
-                :style="windowWidth > 1140 ? '' : 'width: 100%;'"
-              />
-              <div
-                class="containerPiBox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
-                <div class="containerPiTitle">BIM+多专业碰撞检查</div>
+          <div class="containerProductsBox">
+            <div class="containerProductsItem" v-for="index in 4" :key="index">
+              <div class="containerPiImg">
+                <div class="containerPiTime">45分钟</div>
+                <!-- <div class="containerPiBuy"><i class="fa fa-check"></i>已购买</div> -->
+                <img
+                  src="https://picsum.photos/200/200?random=401"
+                  alt=""
+                  style="width: 100%; height: 100%"
+                />
+                <div class="containerPiplayerICon">
+                  <i class="fa fa-play"></i>
+                </div>
+                <div class="containerPiprogress">
+                  <div class="containerPiprogressBar" style="width: 80%"></div>
+                </div>
+              </div>
+              <div class="containerPiBox">
+                <div class="supplierPiTop">
+                  <div class="supplierPiTitle">杭州筑智信息技术有限公司</div>
+                  <div class="supplierPingFen">¥299</div>
+                </div>
                 <div class="containerPiInfo">基于BIM技术的多专业碰撞检查服务，提前发现设计冲突</div>
                 <div class="containerPiClass">
-                  <div class="containerPiCitrm">
-                    <i class="fa fa-user-o" style="font-size: 0.875rem; color: #6b7280"></i>
-                    <span class="containerPiClassSpan">人工服务</span>
+                  <div class="containerPiCitrm">人工服务</div>
+                  <div class="containerPiCitrm">全建筑类别</div>
+                </div>
+                <div class="containerPiPbox" :style="windowWidth > 1140 ? '' : ''">
+                  <div class="containerPiPice">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" />
+                    <span>张老师</span>
                   </div>
-                  <div class="containerPiCitrm">
-                    <i class="fa fa-building-o" style="font-size: 0.875rem; color: #6b7280"></i>
-                    <span class="containerPiClassSpan">全建筑类别</span>
+                  <div class="containerPiPice">
+                    <i class="fa fa-users"></i>
+                    <span style="color: rgb(107 114 128)">3421</span>
                   </div>
                 </div>
               </div>
-              <div
-                class="containerPiPbox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
-                <div class="containerPiPice">¥5000</div>
-                <div class="containerPiUnit">/项目</div>
-              </div>
-              <div
-                class="containerPiRbox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
-                <button class="containerPiRbtn">查看详情</button>
-              </div>
+              <button v-if="index % 2 === 1" class="containerPiRbtn">查看详情</button>
+              <button v-if="index % 2 === 0" class="containerPiRbtn2">查看详情</button>
             </div>
-            <div class="containerPagination">
-              <!-- total, sizes, prev, pager, next, jumper -->
-              <el-pagination
-                v-model:current-page="currentPage2"
-                v-model:page-size="pageSize2"
-                :page-sizes="[100, 200, 300, 400]"
-                size="default"
-                background
-                layout="prev, pager, next"
-                :total="400"
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-              />
-            </div>
+          </div>
+
+          <div class="containerPagination">
+            <el-pagination
+              v-model:current-page="currentPage2"
+              v-model:page-size="pageSize2"
+              :page-sizes="[100, 200, 300, 400]"
+              size="default"
+              background
+              layout="prev, pager, next"
+              :total="400"
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+            />
           </div>
         </div>
       </div>
@@ -320,32 +333,31 @@ const handleCurrentChange = (val: number) => {
         .prbannerTitle {
           margin-bottom: 2rem;
           font-size: clamp(2rem, 5vw, 3.5rem);
-          color: #fff;
           font-weight: 700;
+          line-height: 1.25;
+          color: rgb(1 32 96);
         }
 
         .prbannerSubtitle {
+          max-width: 42rem;
           margin-bottom: 2rem;
-          font-size: clamp(1.25rem, 3vw, 1.5rem);
+          font-size: clamp(1rem, 2vw, 1.25rem);
+          list-style: 1.875rem;
           font-weight: 500;
-          color: rgb(255 255 255 / 0.9);
+          color: rgb(1 32 96 / 0.9);
         }
 
         .bannerllkcbtn {
-          padding: 0.75rem 2rem;
+          padding: 0.75rem 1.5rem;
           color: #fff;
-          background-color: rgb(22 93 255);
+          background-color: rgb(22 93 255 / 0.9);
           border-radius: 9999px;
           box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
         }
 
-        .bannercwjsbtn {
-          margin-left: 20px;
-          padding: 0.75rem 2rem;
-          color: #fff;
-          background-color: rgba(255 255 255 / 0.1);
-          border: 1px solid rgba(255 255 255 / 0.3);
-          border-radius: 9999px;
+        .bannerllkcbtn:hover {
+          transform: scale(1.05);
+          box-shadow: 2px 2px 10px 0 rgb(22 93 255);
         }
       }
     }
@@ -367,6 +379,41 @@ const handleCurrentChange = (val: number) => {
         color: rgb(1 32 96);
         background-color: #fff;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+
+        .containerClassTitle {
+          margin-bottom: 1.5rem;
+          font-weight: 700;
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+        }
+
+        .containerClassNumber {
+          line-height: 1.25rem;
+          color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+
+          span {
+            margin-right: 0.25rem;
+            font-weight: 700;
+            color: rgb(22 93 255 / var(--tw-text-opacity, 1));
+          }
+        }
+
+        .containerClassTbox {
+          align-items: center;
+          display: flex;
+          margin-bottom: 0.75rem;
+
+          i {
+            margin-right: 0.5rem;
+            font-size: 1rem;
+            color: rgb(22 93 255);
+          }
+
+          .containerClassText {
+            font-weight: 500;
+            line-height: 1.5rem;
+          }
+        }
 
         .containerClassRow {
           margin-bottom: 0.75rem;
@@ -395,6 +442,13 @@ const handleCurrentChange = (val: number) => {
             background-color: rgb(22 93 255);
             border-radius: 9999px;
           }
+        }
+      }
+
+      // 写到这里 不生效
+      @media (max-width: 992px) {
+        .containerClass {
+          padding: 1.5rem 0.75rem;
         }
       }
 
@@ -429,25 +483,131 @@ const handleCurrentChange = (val: number) => {
           }
         }
 
+        @media (max-width: 992px) {
+          .containerProductsTitle {
+            padding: 0 0.5rem;
+          }
+        }
+
         .containerProductsBox {
-          padding: 0 1.5rem;
+          padding: 0 0.5rem 0 1.5rem;
+          display: flex;
+          flex-wrap: wrap;
+          border: 1px solid red;
 
           .containerProductsItem {
+            overflow: hidden;
+            margin-right: 1rem;
             margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgb(243 244 246);
+            padding-bottom: 1rem;
+            width: calc(33.3% - 1rem);
+            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+            border-radius: 0.75rem;
+            background-color: #fff;
 
             .containerPiImg {
-              width: calc(20% - 1rem);
-              height: 160px;
-              border-radius: 0.5rem;
+              position: relative;
+              width: 100%;
+              height: 12rem;
+
+              .containerPiTime {
+                position: absolute;
+                top: 0.75rem;
+                right: 0.75rem;
+                z-index: 2;
+                font-size: 0.75rem;
+                line-height: 1rem;
+                padding-top: 0.25rem;
+                padding-bottom: 0.25rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                background-color: rgb(255 255 255 / 0.8);
+                border-radius: 9999px;
+              }
+
+              .containerPiBuy {
+                position: absolute;
+                top: 0.75rem;
+                right: 0.75rem;
+                z-index: 2;
+                font-size: 0.75rem;
+                line-height: 1rem;
+                padding-top: 0.25rem;
+                padding-bottom: 0.25rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                color: #fff;
+                background-color: rgb(22 93 255 / var(--tw-bg-opacity, 1));
+                border-radius: 9999px;
+
+                i {
+                  margin-right: 0.25rem;
+                }
+              }
+
+              .containerPiplayerICon {
+                cursor: pointer;
+                position: absolute;
+                top: calc(50% - 1.7rem);
+                left: calc(50% - 1.7rem);
+                z-index: 2;
+                height: 3.4rem;
+                width: 3.4rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 9999px;
+                font-size: 1.5rem;
+                line-height: 2rem;
+                color: rgb(22 93 255);
+                background-color: rgb(255 255 255 / 0.8);
+              }
+
+              .containerPiplayerICon:hover {
+                background-color: rgb(255 255 255);
+                transform: scale(1.05);
+              }
+
+              .containerPiprogress {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+
+                .containerPiprogressBar {
+                  height: 4px;
+                  background-color: rgb(22 93 255);
+                }
+              }
             }
 
             .containerPiBox {
-              width: calc(40% - 1rem);
+              padding: 1rem;
+
+              .supplierPiTop {
+                margin-bottom: 0.5rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+
+                .supplierPiTitle {
+                  max-width: calc(100% - 3rem);
+                  font-size: 1.25rem;
+                  line-height: 1.75rem;
+                  font-weight: 700;
+                  color: rgb(1 32 96);
+                }
+
+                .supplierPingFen {
+                  font-weight: 700;
+                  line-height: 1.75rem;
+                  color: rgb(22 93 255);
+                }
+              }
 
               .containerPiTitle {
-                font-size: 1.125rem;
+                font-size: 1.25rem;
                 line-height: 1.75rem;
                 font-weight: 700;
                 margin-bottom: 0.5rem;
@@ -456,38 +616,62 @@ const handleCurrentChange = (val: number) => {
 
               .containerPiInfo {
                 margin-bottom: 1rem;
-                line-height: 1.5rem;
+                font-size: 0.875rem;
+                line-height: 1.25rem;
                 color: rgb(75 85 99);
               }
 
               .containerPiClass {
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
 
                 .containerPiCitrm {
-                  margin-right: 1rem;
-                  display: flex;
-                  align-items: center;
-
-                  .containerPiClassSpan {
-                    margin-left: 0.25rem;
-                    color: #6b7280;
-                  }
+                  margin-left: 0.25rem;
+                  margin-right: 0.25rem;
+                  margin-bottom: 0.25rem;
+                  display: inline-block;
+                  border-radius: 9999px;
+                  background-color: rgb(243 244 246);
+                  padding-left: 0.5rem;
+                  padding-right: 0.5rem;
+                  padding-top: 0.25rem;
+                  padding-bottom: 0.25rem;
+                  font-size: 0.75rem;
+                  line-height: 1rem;
+                  color: rgb(55 65 81);
                 }
               }
             }
 
             .containerPiPbox {
-              width: calc(20% - 1rem);
+              margin-top: 1rem;
+              width: 100%;
               display: flex;
-              flex-flow: column;
               align-items: center;
+              justify-content: space-between;
 
               .containerPiPice {
-                font-size: 1.5rem;
-                line-height: 2rem;
-                font-weight: 700;
-                color: rgb(22 93 255);
+                display: flex;
+                align-items: center;
+
+                i {
+                  margin-right: 0.5rem;
+                  font-size: 1rem;
+                  color: rgb(107 114 128);
+                }
+
+                img {
+                  border-radius: 9999px;
+                  width: 2rem;
+                  height: 2rem;
+                  margin-right: 0.5rem;
+                }
+
+                span {
+                  font-size: 0.875rem;
+                  line-height: 1.25rem;
+                }
               }
 
               .containerPiUnit {
@@ -502,28 +686,38 @@ const handleCurrentChange = (val: number) => {
               display: flex;
               flex-flow: column;
               justify-content: flex-end;
+            }
 
-              .containerPiRbtn {
-                width: 100%;
-                height: 40px;
-                text-align: center;
-                line-height: 40px;
-                color: #fff;
-                background-color: rgb(22 93 255);
-                border-radius: 0.5rem;
-              }
+            .containerPiRbtn {
+              display: inline-block;
+              margin: 0 1rem;
+              width: calc(100% - 2rem);
+              height: 40px;
+              text-align: center;
+              line-height: 40px;
+              color: #fff;
+              background-color: rgb(22 93 255 / 0.9);
+              border-radius: 0.5rem;
+            }
+
+            .containerPiRbtn2 {
+              display: inline-block;
+              margin: 0 1rem;
+              width: calc(100% - 2rem);
+              height: 40px;
+              text-align: center;
+              line-height: 40px;
+              color: #fff;
+              background-color: rgb(54 207 201 / 0.9);
+              border-radius: 0.5rem;
             }
           }
+        }
 
-          .containerProductsItem:hover {
-            animation: jumpUpwards 300ms ease-in-out forwards;
-          }
-
-          .containerPagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
+        .containerPagination {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }
