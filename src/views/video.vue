@@ -161,11 +161,12 @@ const handleCurrentChange = (val: number) => {
     </div>
 
     <!-- CONTENT BOX -->
-    <div :class="['containerBox', windowWidth > 1140 ? 'containerFx' : '']">
-      <div class="containerLeft" :style="windowWidth > 1140 ? 'width: calc(66.7% - 1rem);' : ''">
-        <div class="containerClass" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+    <div class="containerBox">
+      <div class="containerLeft">
+        <!-- 筛选视频 -->
+        <div class="containerClass">
           <div class="frbc">
-            <div class="containerClassTitle">价格趋势</div>
+            <div class="containerClassTitle">筛选视频</div>
             <div class="containerClassNumber"><span>128</span>个视频</div>
           </div>
           <div class="containerClassTbox">
@@ -202,10 +203,9 @@ const handleCurrentChange = (val: number) => {
             :prefix-icon="Search"
           />
         </div>
+        <!-- 精选视频 -->
         <div class="containerProducts">
-          <!--  :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'" -->
           <div class="containerProductsTitle">
-            <!--  :style="windowWidth > 1140 ? '' : 'padding: 0;'" -->
             <div class="containerProductsTitleText">精选视频</div>
             <div class="containerProductsTitlePxfs">
               <span>排序方式：</span>
@@ -225,15 +225,17 @@ const handleCurrentChange = (val: number) => {
           <div class="containerProductsBox">
             <div class="containerProductsItem" v-for="index in 4" :key="index">
               <div class="containerPiImg">
-                <div class="containerPiTime">45分钟</div>
-                <!-- <div class="containerPiBuy"><i class="fa fa-check"></i>已购买</div> -->
+                <div v-if="index % 2 === 0" class="containerPiTime">45分钟</div>
+                <div v-else class="containerPiBuy"><i class="fa fa-check"></i>已购买</div>
                 <img
-                  src="https://picsum.photos/200/200?random=401"
+                  src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
                   alt=""
                   style="width: 100%; height: 100%"
                 />
-                <div class="containerPiplayerICon">
-                  <i class="fa fa-play"></i>
+                <div class="containerPiplayerBox">
+                  <div class="containerPiplayerICon">
+                    <i class="fa fa-play"></i>
+                  </div>
                 </div>
                 <div class="containerPiprogress">
                   <div class="containerPiprogressBar" style="width: 80%"></div>
@@ -242,14 +244,15 @@ const handleCurrentChange = (val: number) => {
               <div class="containerPiBox">
                 <div class="supplierPiTop">
                   <div class="supplierPiTitle">杭州筑智信息技术有限公司</div>
-                  <div class="supplierPingFen">¥299</div>
+                  <div v-if="index % 2 === 0" class="supplierPingFen">¥299</div>
+                  <div v-else class="supplierPingFen2">¥299</div>
                 </div>
                 <div class="containerPiInfo">基于BIM技术的多专业碰撞检查服务，提前发现设计冲突</div>
                 <div class="containerPiClass">
                   <div class="containerPiCitrm">人工服务</div>
                   <div class="containerPiCitrm">全建筑类别</div>
                 </div>
-                <div class="containerPiPbox" :style="windowWidth > 1140 ? '' : ''">
+                <div class="containerPiPbox">
                   <div class="containerPiPice">
                     <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" />
                     <span>张老师</span>
@@ -260,8 +263,8 @@ const handleCurrentChange = (val: number) => {
                   </div>
                 </div>
               </div>
-              <button v-if="index % 2 === 1" class="containerPiRbtn">查看详情</button>
-              <button v-if="index % 2 === 0" class="containerPiRbtn2">查看详情</button>
+              <button v-if="index % 2 === 0" class="containerPiRbtn">查看详情</button>
+              <button v-else class="containerPiRbtn2">查看详情</button>
             </div>
           </div>
 
@@ -280,25 +283,52 @@ const handleCurrentChange = (val: number) => {
           </div>
         </div>
       </div>
-      <div class="containerRight" :style="windowWidth > 1140 ? 'width: calc(33.3% - 1rem);' : ''">
-        <div class="containerPice" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
-          <div class="containerPiceTitle">价格趋势</div>
-          <div ref="echartsMain" style="width: 100%; height: 320px" />
+      <div class="containerRight">
+        <!-- 用户登录 -->
+        <div class="containerLogin">
+          <div class="frsc">
+            <div class="containerLoginIcon">
+              <i class="fa fa-user"></i>
+            </div>
+            <div>
+              <div class="containerLoginName">游客，您好</div>
+              <div class="containerLoginTips">登录解锁更多功能</div>
+            </div>
+          </div>
+          <button class="containerLoginBtn">登录 / 注册</button>
+          <div class="containerLoginMy">
+            <div>
+              <div class="containerLoginMn">0</div>
+              <div class="containerLoginMt">我的视频</div>
+            </div>
+            <div>
+              <div class="containerLoginMn">0</div>
+              <div class="containerLoginMt">学习时长</div>
+            </div>
+            <div>
+              <div class="containerLoginMn">0</div>
+              <div class="containerLoginMt">收藏视频</div>
+            </div>
+          </div>
         </div>
-        <div class="containerHot" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
-          <div class="containerHotTitle">热门产品</div>
+        <!-- 热门视频 -->
+        <div class="containerHot">
+          <div class="containerHotTitle">热门视频</div>
           <div class="containerHotItem" v-for="index in 4" :key="index">
             <div class="containerHotLeft">
-              <img src="https://picsum.photos/200/200?random=401" class="containerHimg" />
+              <img
+                src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                class="containerHimg"
+              />
               <div class="containerHcbox">
-                <div class="containerHctitle">AI生成式设计</div>
-                <div class="containerHcinfo">参数化方案比选服务</div>
+                <div class="containerHctitle">Revit建筑建模实战</div>
+                <div class="containerHcinfo">BIM技术·CAD</div>
               </div>
             </div>
-            <div class="containerHpice">¥8000</div>
+            <div class="containerHpice">¥499</div>
           </div>
           <div class="containerHMore">
-            <button>查看更多热门产品</button>
+            <button>查看更多热门视频</button>
             <i class="fa fa-angle-right" style="margin-left: 0.25rem; font-size: 1.5rem"></i>
           </div>
         </div>
@@ -445,7 +475,6 @@ const handleCurrentChange = (val: number) => {
         }
       }
 
-      // 写到这里 不生效
       @media (max-width: 992px) {
         .containerClass {
           padding: 1.5rem 0.75rem;
@@ -485,7 +514,7 @@ const handleCurrentChange = (val: number) => {
 
         @media (max-width: 992px) {
           .containerProductsTitle {
-            padding: 0 0.5rem;
+            padding: 0 0.75rem;
           }
         }
 
@@ -493,7 +522,6 @@ const handleCurrentChange = (val: number) => {
           padding: 0 0.5rem 0 1.5rem;
           display: flex;
           flex-wrap: wrap;
-          border: 1px solid red;
 
           .containerProductsItem {
             overflow: hidden;
@@ -545,29 +573,36 @@ const handleCurrentChange = (val: number) => {
                 }
               }
 
-              .containerPiplayerICon {
-                cursor: pointer;
+              .containerPiplayerBox {
                 position: absolute;
                 top: calc(50% - 1.7rem);
                 left: calc(50% - 1.7rem);
-                z-index: 2;
                 height: 3.4rem;
                 width: 3.4rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 9999px;
-                font-size: 1.5rem;
-                line-height: 2rem;
-                color: rgb(22 93 255);
-                background-color: rgb(255 255 255 / 0.8);
-              }
+                z-index: 2;
 
-              .containerPiplayerICon:hover {
-                background-color: rgb(255 255 255);
-                transform: scale(1.05);
-              }
+                .containerPiplayerICon {
+                  cursor: pointer;
+                  height: 3.4rem;
+                  width: 3.4rem;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  border-radius: 9999px;
+                  background-color: rgb(255 255 255 / 0.8);
 
+                  i {
+                    font-size: 1.5rem;
+                    line-height: 2rem;
+                    color: rgb(22 93 255);
+                  }
+                }
+
+                .containerPiplayerICon:hover {
+                  background-color: rgb(255 255 255);
+                  transform: scale(1.05);
+                }
+              }
               .containerPiprogress {
                 position: absolute;
                 bottom: 0;
@@ -603,6 +638,12 @@ const handleCurrentChange = (val: number) => {
                   font-weight: 700;
                   line-height: 1.75rem;
                   color: rgb(22 93 255);
+                }
+
+                .supplierPingFen2 {
+                  line-height: 1.75rem;
+                  text-decoration: line-through;
+                  color: rgb(156 163 175);
                 }
               }
 
@@ -714,6 +755,17 @@ const handleCurrentChange = (val: number) => {
           }
         }
 
+        @media (max-width: 992px) {
+          .containerProductsBox {
+            padding: 0 0.75rem;
+
+            .containerProductsItem {
+              margin-right: 0;
+              width: 100%;
+            }
+          }
+        }
+
         .containerPagination {
           display: flex;
           justify-content: center;
@@ -723,21 +775,71 @@ const handleCurrentChange = (val: number) => {
     }
 
     .containerRight {
-      width: 100%;
+      width: calc(33.3% - 1rem);
 
-      .containerPice {
+      .containerLogin {
         margin-bottom: 2rem;
         padding: 1.5rem;
         border-radius: 1rem;
-        color: rgb(1 32 96);
-        background-color: #fff;
+        color: #fff;
+        background-image: linear-gradient(to bottom right, #165dff, #36cfc9);
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
 
-        .containerPiceTitle {
-          margin-bottom: 1.5rem;
-          font-size: 1.25rem;
-          line-height: 1.75rem;
+        .containerLoginIcon {
+          padding: 0.5rem;
+          background-color: rgb(255 255 255 / 0.2);
+          border-radius: 0.5rem;
+          margin-right: 0.75rem;
+
+          i {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+          }
+        }
+
+        .containerLoginName {
           font-weight: 700;
+          line-height: 1.5rem;
+        }
+
+        .containerLoginTips {
+          opacity: 0.8;
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+        }
+
+        button {
+          margin-top: 1rem;
+          display: block;
+          width: 100%;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+          text-align: center;
+          font-weight: 500;
+          border-radius: 0.5rem;
+          color: rgb(22 93 255);
+          background-color: rgb(243 244 246);
+        }
+
+        .containerLoginMy {
+          margin-top: 1rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .containerLoginMn {
+          font-weight: 700;
+          font-size: 1.5rem;
+          line-height: 2rem;
+          text-align: center;
+        }
+
+        .containerLoginMt {
+          opacity: 0.8;
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          text-align: center;
         }
       }
 
@@ -815,13 +917,30 @@ const handleCurrentChange = (val: number) => {
           }
         }
       }
+
+      @media (max-width: 992px) {
+        .containerHot {
+          padding: 1rem 0.75rem;
+        }
+      }
+    }
+
+    @media (max-width: 992px) {
+      .containerRight {
+        width: 100%;
+      }
     }
   }
 
-  .containerFx {
-    padding: 4rem 1rem;
-    display: flex;
-    justify-content: space-between;
+  @media (min-width: 992px) {
+    .containerBox {
+      display: flex;
+      justify-content: space-between;
+
+      .containerLeft {
+        width: calc(66.7% - 1rem);
+      }
+    }
   }
 }
 </style>
