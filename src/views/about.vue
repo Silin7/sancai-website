@@ -33,61 +33,70 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </div>
-      <!-- intro -->
       <!-- 公司简介 -->
-      <div class="introtBox">
-        <div class="introtTitle">公司简介</div>
-        <div class="introtHeng"></div>
-        <div class="introtContent">
-          <div class="introtLeft">
-            <p>
-              杭州三才工程管理咨询有限公司成立于2014年5月，总部位于浙江省杭州市。我们以"网络强国"和"数字中国"建设思想为指引，专注于提供工程项目数字化服务与产品，是国家高新技术企业。
-            </p>
-            <p>
-              公司主营工程造价咨询、BIM咨询、CIM咨询、智慧管理软件开发，致力于推动建筑行业数字化转型，为新型基础设施建设提供专业支持。
-            </p>
-            <ul>
-              <li>国家高新技术企业</li>
-              <li>信用认证企业</li>
-              <li>行业科学技术奖</li>
-              <li>20+专业书籍参编</li>
-              <li>主流媒体报道</li>
-            </ul>
-            <div class="">
-              <i class="fa fa-bullseye"></i>
-              <div class="">
-                <div class="">企业愿景</div>
-                <div class="">
-                  成为工程项目数字化服务的引领者，推动建筑行业智能化转型，构建和谐共生的数字生态。
+      <div class="introtOut">
+        <div class="introtBox">
+          <div class="introtTitle">公司简介</div>
+          <div class="introtHeng"></div>
+          <div class="introtContent">
+            <div class="introtLeft">
+              <div class="introtInfo">
+                <p>
+                  杭州三才工程管理咨询有限公司成立于2014年5月，总部位于浙江省杭州市。我们以"网络强国"和"数字中国"建设思想为指引，专注于提供工程项目数字化服务与产品，是国家高新技术企业。
+                </p>
+                <p>
+                  公司主营工程造价咨询、BIM咨询、CIM咨询、智慧管理软件开发，致力于推动建筑行业数字化转型，为新型基础设施建设提供专业支持。
+                </p>
+              </div>
+              <ul>
+                <li class="licolor1">国家高新技术企业</li>
+                <li class="licolor2">信用认证企业</li>
+                <li class="licolor3">行业科学技术奖</li>
+                <li class="licolor1">20+专业书籍参编</li>
+                <li class="licolor2">主流媒体报道</li>
+              </ul>
+              <div class="frsc">
+                <i class="fa fa-bullseye"></i>
+                <div>
+                  <div class="introtLt">企业愿景</div>
+                  <div class="introtLst">
+                    成为工程项目数字化服务的引领者，推动建筑行业智能化转型，构建和谐共生的数字生态。
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="introtRight">
-            <div class="">发展历程</div>
-            <div class="">
-              <div class="">2014年</div>
-              <div class="">公司成立，专注于工程造价咨询服务</div>
-            </div>
-            <div class="">
-              <div class="">2016年</div>
-              <div class="">拓展BIM咨询服务，完成首个大型BIM项目</div>
-            </div>
-            <div class="">
-              <div class="">2018年</div>
-              <div class="">参编首部BIM专业书籍，获得国家高新技术企业认证</div>
-            </div>
-            <div class="">
-              <div class="">2020年</div>
-              <div class="">开展CIM咨询业务，开发智慧管理软件平台</div>
-            </div>
-            <div class="">
-              <div class="">2021年</div>
-              <div class="">获得国家行业科学技术奖，被多家主流媒体报道</div>
-            </div>
-            <div class="">
-              <div class="">2023年至今</div>
-              <div class="">聚焦BIM、CIM技术，全面实施数字化转型</div>
+            <div class="introtRight">
+              <div class="introtRightTitle">发展历程</div>
+              <div class="introtRightItem">
+                <div class="introtRightItemD"></div>
+                <div class="introtRightItemY">2014年</div>
+                <div class="introtRightItemT">公司成立，专注于工程造价咨询服务</div>
+              </div>
+              <div class="introtRightItem">
+                <div class="introtRightItemD"></div>
+                <div class="introtRightItemY">2016年</div>
+                <div class="introtRightItemT">拓展BIM咨询服务，完成首个大型BIM项目</div>
+              </div>
+              <div class="introtRightItem">
+                <div class="introtRightItemD"></div>
+                <div class="introtRightItemY">2018年</div>
+                <div class="introtRightItemT">参编首部BIM专业书籍，获得国家高新技术企业认证</div>
+              </div>
+              <div class="introtRightItem">
+                <div class="introtRightItemD"></div>
+                <div class="introtRightItemY">2020年</div>
+                <div class="introtRightItemT">开展CIM咨询业务，开发智慧管理软件平台</div>
+              </div>
+              <div class="introtRightItem">
+                <div class="introtRightItemD"></div>
+                <div class="introtRightItemY">2021年</div>
+                <div class="introtRightItemT">获得国家行业科学技术奖，被多家主流媒体报道</div>
+              </div>
+              <div class="introtRightItem">
+                <div class="introtRightItemD"></div>
+                <div class="introtRightItemY">2023年至今</div>
+                <div class="introtRightItemT">聚焦BIM、CIM技术，全面实施数字化转型</div>
+              </div>
             </div>
           </div>
         </div>
@@ -224,6 +233,37 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </div>
+      <!-- 媒体报道 -->
+      <div class="mediaBox">
+        <div class="mediaTitle">媒体报道</div>
+        <div class="mediaHeng"></div>
+        <el-row :gutter="16" class="mediaRow">
+          <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <img src="@/assets/renminnet.png" alt="" />
+          </el-col>
+          <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <img src="@/assets/zhejiangtv.png" alt="" />
+          </el-col>
+          <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <img src="@/assets/xinhua.png" alt="" />
+          </el-col>
+          <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <img src="@/assets/zhejiangdaily.png" alt="" />
+          </el-col>
+        </el-row>
+        <div class="mediaCard">
+          <p>
+            "杭州三才工程管理咨询有限公司在新型城市基础设施建设领域崭露头角，其工程数字化解决方案为传统建筑行业注入了新的活力。"
+          </p>
+          <div class="frsc">
+            <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="" class="mediaAvatal" />
+            <div>
+              <div class="mediaName">张记者</div>
+              <div class="mediaTv">浙江电视台经济频道</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -293,26 +333,158 @@ onBeforeUnmount(() => {
     }
   }
 
-  .introtBox {
-    position: relative;
-    margin: 0 auto;
-    padding: 6rem 1rem 5rem;
-    width: 100%;
-    max-width: 1720px;
+  .introtOut {
+    padding: 6rem 0;
+    width: 100vw;
+    background-color: #fff;
 
-    .introtTitle {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 700;
-      text-align: center;
-      color: rgb(1 32 96);
-    }
+    .introtBox {
+      position: relative;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1720px;
 
-    .introtHeng {
-      margin: 1rem auto 0;
-      width: 5rem;
-      height: 0.25rem;
-      border-radius: 9999px;
-      background-color: rgb(22 93 255);
+      .introtTitle {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: 700;
+        text-align: center;
+        color: rgb(1 32 96);
+      }
+
+      .introtHeng {
+        margin: 1rem auto 4rem;
+        width: 5rem;
+        height: 0.25rem;
+        border-radius: 9999px;
+        background-color: rgb(22 93 255);
+      }
+
+      .introtContent {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .introtLeft {
+          margin-right: 2rem;
+          width: calc(50% - 1rem);
+
+          .introtInfo {
+            margin-bottom: 2rem;
+            padding: 1.5rem 1.5rem 0.5rem;
+            border-radius: 0.75rem;
+            background-color: rgb(243 244 246);
+
+            p {
+              margin-bottom: 1rem;
+              font-size: 1.125rem;
+              line-height: 1.75rem;
+              color: rgb(55 65 81);
+            }
+          }
+
+          ul {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+              margin-right: 0.5rem;
+              margin-bottom: 0.5rem;
+              display: inline-flex;
+              align-items: center;
+              border-radius: 9999px;
+              padding-left: 0.75rem;
+              padding-right: 0.75rem;
+              padding-top: 0.25rem;
+              padding-bottom: 0.25rem;
+              font-size: 0.875rem;
+              line-height: 1.25rem;
+              font-weight: 500;
+            }
+
+            .licolor1 {
+              color: rgb(30 64 175);
+              background-color: rgb(219 234 254);
+            }
+
+            .licolor2 {
+              color: rgb(22 101 52);
+              background-color: rgb(220 252 231);
+            }
+
+            .licolor3 {
+              color: rgb(107 33 168);
+              background-color: rgb(243 232 255);
+            }
+          }
+
+          i {
+            margin-right: 1rem;
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            color: rgb(22 93 255);
+          }
+
+          .introtLt {
+            font-weight: 700;
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: rgb(1 32 96);
+          }
+
+          .introtLst {
+            line-height: 1.5rem;
+            color: rgb(75 85 99);
+          }
+        }
+
+        .introtRight {
+          width: calc(50% - 1rem);
+          padding: 2rem;
+          background-color: rgb(249 250 251);
+          border-radius: 1rem;
+
+          .introtRightTitle {
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: rgb(1 32 96);
+          }
+
+          .introtRightItem {
+            position: relative;
+            padding-left: 2rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid rgb(22 93 255);
+
+            .introtRightItemD {
+              position: absolute;
+              left: -9px;
+              top: 0px;
+              height: 1rem;
+              width: 1rem;
+              border-radius: 9999px;
+              background-color: rgb(22 93 255);
+            }
+
+            .introtRightItemY {
+              font-weight: 700;
+              font-size: 1.25rem;
+              line-height: 1.75rem;
+              margin-bottom: 0.5rem;
+              color: rgb(1 32 96);
+            }
+
+            .introtRightItemT {
+              line-height: 1.5rem;
+              color: rgb(75 85 99);
+            }
+          }
+        }
+      }
     }
   }
 
@@ -533,7 +705,6 @@ onBeforeUnmount(() => {
   }
 
   .futureOut {
-    margin-bottom: 20rem;
     padding: 6rem 0;
     width: 100vw;
     background-image: linear-gradient(to bottom right, #165dff, #012060);
@@ -607,6 +778,79 @@ onBeforeUnmount(() => {
         .futureCardBox {
           padding: 0.75rem;
         }
+      }
+    }
+  }
+
+  .mediaBox {
+    position: relative;
+    margin: 0 auto;
+    padding: 6rem 1rem 5rem;
+    width: 100%;
+    max-width: 1720px;
+
+    .mediaTitle {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      color: rgb(1 32 96);
+    }
+
+    .mediaHeng {
+      margin: 1rem auto 4rem;
+      width: 5rem;
+      height: 0.25rem;
+      border-radius: 9999px;
+      background-color: rgb(22 93 255);
+    }
+
+    .mediaRow img {
+      display: block;
+      margin: 0 auto 2rem;
+      width: 6rem;
+      height: 3rem;
+      opacity: 0.8;
+    }
+
+    .mediaCard {
+      margin: 2rem auto 0;
+      padding: 2rem;
+      max-width: 48rem;
+      border-radius: 1rem;
+      background-color: rgb(255 255 255);
+      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+
+      p {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-style: italic;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        color: rgb(55 65 81);
+      }
+
+      .mediaAvatal {
+        margin-right: 1rem;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 9999px;
+      }
+
+      .mediaName {
+        font-weight: 700;
+        line-height: 1.5rem;
+        color: rgb(1 32 96);
+      }
+
+      .mediaTv {
+        line-height: 1.5rem;
+        color: rgb(75 85 99);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .mediaCard {
+        padding: 2rem 1rem;
       }
     }
   }
