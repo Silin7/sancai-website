@@ -33,6 +33,65 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </div>
+      <!-- intro -->
+      <!-- 公司简介 -->
+      <div class="introtBox">
+        <div class="introtTitle">公司简介</div>
+        <div class="introtHeng"></div>
+        <div class="introtContent">
+          <div class="introtLeft">
+            <p>
+              杭州三才工程管理咨询有限公司成立于2014年5月，总部位于浙江省杭州市。我们以"网络强国"和"数字中国"建设思想为指引，专注于提供工程项目数字化服务与产品，是国家高新技术企业。
+            </p>
+            <p>
+              公司主营工程造价咨询、BIM咨询、CIM咨询、智慧管理软件开发，致力于推动建筑行业数字化转型，为新型基础设施建设提供专业支持。
+            </p>
+            <ul>
+              <li>国家高新技术企业</li>
+              <li>信用认证企业</li>
+              <li>行业科学技术奖</li>
+              <li>20+专业书籍参编</li>
+              <li>主流媒体报道</li>
+            </ul>
+            <div class="">
+              <i class="fa fa-bullseye"></i>
+              <div class="">
+                <div class="">企业愿景</div>
+                <div class="">
+                  成为工程项目数字化服务的引领者，推动建筑行业智能化转型，构建和谐共生的数字生态。
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="introtRight">
+            <div class="">发展历程</div>
+            <div class="">
+              <div class="">2014年</div>
+              <div class="">公司成立，专注于工程造价咨询服务</div>
+            </div>
+            <div class="">
+              <div class="">2016年</div>
+              <div class="">拓展BIM咨询服务，完成首个大型BIM项目</div>
+            </div>
+            <div class="">
+              <div class="">2018年</div>
+              <div class="">参编首部BIM专业书籍，获得国家高新技术企业认证</div>
+            </div>
+            <div class="">
+              <div class="">2020年</div>
+              <div class="">开展CIM咨询业务，开发智慧管理软件平台</div>
+            </div>
+            <div class="">
+              <div class="">2021年</div>
+              <div class="">获得国家行业科学技术奖，被多家主流媒体报道</div>
+            </div>
+            <div class="">
+              <div class="">2023年至今</div>
+              <div class="">聚焦BIM、CIM技术，全面实施数字化转型</div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- 代表成果 -->
       <div class="achievementBox">
         <div class="achievementTitle">代表成果</div>
@@ -231,6 +290,29 @@ onBeforeUnmount(() => {
           transform: scale(1.05);
         }
       }
+    }
+  }
+
+  .introtBox {
+    position: relative;
+    margin: 0 auto;
+    padding: 6rem 1rem 5rem;
+    width: 100%;
+    max-width: 1720px;
+
+    .introtTitle {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      color: rgb(1 32 96);
+    }
+
+    .introtHeng {
+      margin: 1rem auto 0;
+      width: 5rem;
+      height: 0.25rem;
+      border-radius: 9999px;
+      background-color: rgb(22 93 255);
     }
   }
 
