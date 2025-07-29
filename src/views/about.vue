@@ -341,6 +341,7 @@ onBeforeUnmount(() => {
     .introtBox {
       position: relative;
       margin: 0 auto;
+      padding: 0 1rem;
       width: 100%;
       max-width: 1720px;
 
@@ -482,6 +483,19 @@ onBeforeUnmount(() => {
               line-height: 1.5rem;
               color: rgb(75 85 99);
             }
+          }
+        }
+
+        @media (max-width: 600px) {
+          .introtLeft {
+            margin-right: 0;
+            width: 100%;
+          }
+
+          .introtRight {
+            margin-top: 4rem;
+            padding: 1rem;
+            width: 100%;
           }
         }
       }
