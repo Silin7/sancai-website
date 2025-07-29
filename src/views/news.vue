@@ -46,8 +46,10 @@ const handleCurrentChange = (val: number) => {
         </div>
       </div>
     </div>
+
     <div class="newsBox">
       <div class="newsLeft">
+        <!-- 资讯分类 -->
         <div class="newsClass" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem 0.25rem;'">
           <div class="newsClassRow">
             <button class="newsClassColActive">全部</button>
@@ -58,6 +60,7 @@ const handleCurrentChange = (val: number) => {
             <button class="newsClassCol">实施</button>
           </div>
         </div>
+        <!-- 资讯列表 -->
         <div class="newsProducts" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem;'">
           <div class="newsProductsTitle">
             <div class="newsProductsTitleText">最新资讯</div>
@@ -129,7 +132,6 @@ const handleCurrentChange = (val: number) => {
               </div>
             </div>
             <div class="newsPagination">
-              <!-- total, sizes, prev, pager, next, jumper -->
               <el-pagination
                 v-model:current-page="currentPage2"
                 v-model:page-size="pageSize2"
@@ -137,6 +139,8 @@ const handleCurrentChange = (val: number) => {
                 size="default"
                 background
                 layout="prev, pager, next"
+                prev-text="上一页"
+                next-text="下一页"
                 :total="400"
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
@@ -145,68 +149,6 @@ const handleCurrentChange = (val: number) => {
           </div>
         </div>
       </div>
-      <!-- <div class="newsRight" :style="windowWidth > 992 ? 'width: calc(33.3% - 1rem);' : ''">
-        <div class="newsRecom" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem;'">
-          <div class="newsRecomTitle">推荐文章</div>
-          <div class="newsRecomImgBox">
-            <img
-              src="https://picsum.photos/200/200?random=401"
-              class="newsRecomImg"
-              :style="windowWidth > 992 ? '' : 'width: 100%;'"
-            />
-            <div class="newsRecomImgIb">
-              <span class="newsRecomImgIbTag">政策</span>
-              <div class="newsRecomImgIbTitle">"十四五"建筑业发展规划解读：数字化转型是核心</div>
-
-              <div class="newsRecomImgIbBtm">
-                <div class="newsRecomImgIbitrm">
-                  <i class="fa fa-calendar"></i>
-                  <span class="newsRecomImgIbSpan">2023-12-15</span>
-                </div>
-                <div class="newsRecomImgIbitrm">
-                  <i class="fa fa-eye"></i>
-                  <span class="newsRecomImgIbSpan">1568次预览</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="newsRecomItem" v-for="index in 4" :key="index">
-            <div class="newsRecomLeft">
-              <img src="https://picsum.photos/200/200?random=401" class="newsRecomHimg" />
-              <div class="newsRcbox">
-                <div class="newsRctitle">BIM技术在大型医院建设中的应用实践</div>
-                <div class="newsRcinfo">
-                  <div class="newsRcinfoTag">案例</div>
-                  <div class="newsRcitrm">
-                    <i class="fa fa-calendar"></i>
-                    <span>2023-12-15</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="newsHot" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem;'">
-          <div class="newsHotTitle">热门文章</div>
-          <div class="newsHotItem" v-for="index in 4" :key="index">
-            <div class="newsHimg">{{ index }}</div>
-            <div class="newsHcbox">
-              <div class="newsHctitle">智慧工地AI监控系统招投标技术要求解析{{ index }}</div>
-              <div class="newsRcinfo">
-                <div class="newsRcinfoTag">实施</div>
-                <div class="newsRcitrm">
-                  <i class="fa fa-eye"></i>
-                  <span>{{ (index + 1) * 998 }}次浏览</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="newsHMore">
-            <button>查看更多</button>
-            <i class="fa fa-angle-right" style="margin-left: 0.25rem; font-size: 1.5rem"></i>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </template>
@@ -344,7 +286,7 @@ const handleCurrentChange = (val: number) => {
               .newsPiImg {
                 width: 100%;
                 height: 200px;
-                border-radius: 0.5rem;
+                // border-radius: 0.5rem;
               }
 
               .newsPiImgTag {
@@ -395,7 +337,7 @@ const handleCurrentChange = (val: number) => {
                     margin-right: 1rem;
                     display: flex;
                     align-items: center;
-                    color: #6b7280;
+                    color: rgb(107 114 128);
                     font-size: 0.875rem;
 
                     .newsPiClassSpan {
@@ -409,11 +351,13 @@ const handleCurrentChange = (val: number) => {
                   align-items: center;
                   font-weight: 500;
                   line-height: 1.5rem;
-                  color: #1627ff;
+                  font-size: 0.875rem;
+                  color: rgb(22 93 255);
 
                   button {
-                    color: #1627ff;
                     margin-right: 0.5rem;
+                    font-size: 0.875rem;
+                    color: rgb(22 93 255);
                   }
                 }
               }
@@ -690,6 +634,28 @@ const handleCurrentChange = (val: number) => {
 .newsPage {
   .el-input__wrapper {
     border-radius: 0.5rem;
+  }
+
+  .btn-prev {
+    color: rgb(107 114 128) !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    padding: 0.5rem 0.75rem !important;
+    background-color: #fff !important;
+    border: 1px solid rgb(209 213 219) !important;
+    border-radius: 0.25rem !important;
+  }
+
+  .btn-next {
+    color: rgb(107 114 128) !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    padding: 0.5rem 0.75rem !important;
+    background-color: #fff !important;
+    border: 1px solid rgb(209 213 219) !important;
+    border-radius: 0.25rem !important;
   }
 
   .el-select__wrapper {

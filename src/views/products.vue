@@ -145,8 +145,8 @@ const handleCurrentChange = (val: number) => {
       </div>
     </div>
     <div :class="['containerBox', windowWidth > 1140 ? 'containerFx' : '']">
-      <div class="containerLeft" :style="windowWidth > 1140 ? 'width: calc(66.7% - 1rem);' : ''">
-        <div class="containerClass" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+      <div class="containerLeft">
+        <div class="containerClass">
           <div class="containerClassRow">
             <button class="containerClassColActive">全部</button>
             <button class="containerClassCol">人</button>
@@ -154,14 +154,13 @@ const handleCurrentChange = (val: number) => {
             <button class="containerClassCol">机</button>
             <button class="containerClassCol">信</button>
           </div>
-          <div class="containerClassRow">
+          <!-- <div class="containerClassRow">
             <button class="containerClassColActive">全部</button>
             <button class="containerClassCol">一般建筑</button>
             <button class="containerClassCol">医疗建筑</button>
             <button class="containerClassCol">体育场馆</button>
             <button class="containerClassCol">超高层建筑</button>
-          </div>
-          <!-- 0.75rem -->
+          </div> -->
           <el-input
             v-model="input2"
             style="width: 100%; height: 50px; font-size: 1rem"
@@ -169,8 +168,8 @@ const handleCurrentChange = (val: number) => {
             :prefix-icon="Search"
           />
         </div>
-        <div class="containerProducts" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
-          <div class="containerProductsTitle" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
+        <div class="containerProducts">
+          <div class="containerProductsTitle">
             <div class="containerProductsTitleText">产品列表</div>
             <div class="containerProductsTitlePxfs">
               <span>排序方式：</span>
@@ -186,52 +185,57 @@ const handleCurrentChange = (val: number) => {
               </el-select>
             </div>
           </div>
-          <div class="containerProductsBox" :style="windowWidth > 1140 ? '' : 'padding: 0;'">
-            <div
-              class="containerProductsItem"
-              :style="windowWidth > 1140 ? 'display: flex; justify-content: space-between;' : ''"
-              v-for="index in 4"
-              :key="index"
-            >
-              <img
-                src="https://picsum.photos/200/200?random=401"
-                alt=""
-                class="containerPiImg"
-                :style="windowWidth > 1140 ? '' : 'width: 100%;'"
-              />
-              <div
-                class="containerPiBox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
+          <div class="containerProductsBox">
+            <div class="containerProductsItem" v-for="index in 4" :key="index">
+              <img src="https://picsum.photos/200/200?random=401" alt="" class="containerPiImg" />
+              <div class="containerPiBox">
                 <div class="containerPiTitle">BIM+多专业碰撞检查</div>
-                <div class="containerPiInfo">基于BIM技术的多专业碰撞检查服务，提前发现设计冲突</div>
-                <div class="containerPiClass">
-                  <div class="containerPiCitrm">
-                    <i class="fa fa-user-o" style="font-size: 0.875rem; color: #6b7280"></i>
-                    <span class="containerPiClassSpan">人工服务</span>
+                <div class="containerPiFx">
+                  <div class="containerPiFxItem">
+                    <span>规格型号：</span>
+                    <span>全专业模型整合V2.0</span>
                   </div>
-                  <div class="containerPiCitrm">
-                    <i class="fa fa-building-o" style="font-size: 0.875rem; color: #6b7280"></i>
-                    <span class="containerPiClassSpan">全建筑类别</span>
+                  <div class="containerPiFxItem">
+                    <span>品牌名称：</span>
+                    <span>筑智科技</span>
+                  </div>
+                  <div class="containerPiFxItem">
+                    <span>单位：</span>
+                    <span>项</span>
+                  </div>
+                  <div class="containerPiFxItem">
+                    <span>供应商：</span>
+                    <span>杭州筑智信息技术有限公司</span>
+                  </div>
+                  <div class="containerPiFxItem">
+                    <span>报价时间：</span>
+                    <span>2025-06-15</span>
+                  </div>
+                  <div class="containerPiFxItem">
+                    <span>备注：</span>
+                    <span>含模型审查报告</span>
                   </div>
                 </div>
               </div>
-              <div
-                class="containerPiPbox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
-                <div class="containerPiPice">¥5000</div>
-                <div class="containerPiUnit">/项目</div>
-              </div>
-              <div
-                class="containerPiRbox"
-                :style="windowWidth > 1140 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
+              <div class="containerPiRbox">
+                <div class="containerPiRTop">
+                  <div class="containerPiRTitem">
+                    <span>除税价：</span>
+                    <span>¥4,500.00</span>
+                  </div>
+                  <div class="containerPiRTitem">
+                    <span>含税价：</span>
+                    <span>¥5,000.00</span>
+                  </div>
+                  <div class="containerPiRTitem">
+                    <span>税率：</span>
+                    <span>13%</span>
+                  </div>
+                </div>
                 <button class="containerPiRbtn">查看详情</button>
               </div>
             </div>
             <div class="containerPagination">
-              <!-- total, sizes, prev, pager, next, jumper -->
               <el-pagination
                 v-model:current-page="currentPage2"
                 v-model:page-size="pageSize2"
@@ -239,6 +243,8 @@ const handleCurrentChange = (val: number) => {
                 size="default"
                 background
                 layout="prev, pager, next"
+                prev-text="上一页"
+                next-text="下一页"
                 :total="400"
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
@@ -247,12 +253,12 @@ const handleCurrentChange = (val: number) => {
           </div>
         </div>
       </div>
-      <div class="containerRight" :style="windowWidth > 1140 ? 'width: calc(33.3% - 1rem);' : ''">
-        <div class="containerPice" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+      <div class="containerRight">
+        <div class="containerPice">
           <div class="containerPiceTitle">价格趋势</div>
           <div ref="echartsMain" style="width: 100%; height: 320px" />
         </div>
-        <div class="containerHot" :style="windowWidth > 1140 ? '' : 'padding: 1rem 0.75rem;'">
+        <div class="containerHot">
           <div class="containerHotTitle">热门产品</div>
           <div class="containerHotItem" v-for="index in 4" :key="index">
             <div class="containerHotLeft">
@@ -343,7 +349,7 @@ const handleCurrentChange = (val: number) => {
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
             box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-            border-radius: 9999px;
+            border-radius: 0.25rem;
           }
 
           .containerClassCol:hover {
@@ -356,8 +362,14 @@ const handleCurrentChange = (val: number) => {
             padding: 0.5rem 1.25rem;
             color: #fff;
             background-color: rgb(22 93 255);
-            border-radius: 9999px;
+            border-radius: 0.25rem;
           }
+        }
+      }
+
+      @media (max-width: 1140px) {
+        .containerClass {
+          padding: 1rem 0.75rem;
         }
       }
 
@@ -392,10 +404,17 @@ const handleCurrentChange = (val: number) => {
           }
         }
 
+        @media (max-width: 1140px) {
+          .containerProductsTitle {
+            padding: 0;
+          }
+        }
+
         .containerProductsBox {
           padding: 0 1.5rem;
 
           .containerProductsItem {
+            cursor: pointer;
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid rgb(243 244 246);
@@ -406,57 +425,45 @@ const handleCurrentChange = (val: number) => {
               border-radius: 0.5rem;
             }
 
+            @media (max-width: 1140px) {
+              .containerPiImg {
+                width: 100%;
+              }
+            }
+
             .containerPiBox {
-              width: calc(40% - 1rem);
+              width: calc(60% - 1rem);
 
               .containerPiTitle {
+                margin-bottom: 0.5rem;
                 font-size: 1.25rem;
                 line-height: 1.75rem;
                 font-weight: 700;
-                margin-bottom: 0.5rem;
                 color: rgb(1 32 96);
               }
 
-              .containerPiInfo {
-                margin-bottom: 1rem;
-                line-height: 1.5rem;
-                color: rgb(75 85 99);
-              }
-
-              .containerPiClass {
+              .containerPiFx {
                 display: flex;
-                align-items: center;
+                flex-wrap: wrap;
 
-                .containerPiCitrm {
-                  margin-right: 1rem;
-                  display: flex;
-                  align-items: center;
+                .containerPiFxItem {
+                  margin-bottom: 0.5rem;
+                  width: 50%;
+                  font-size: 0.875rem;
+                  line-height: 1.25rem;
+                  color: rgb(1 32 96);
 
-                  .containerPiClassSpan {
-                    margin-left: 0.25rem;
-                    color: #6b7280;
+                  span:first-child {
+                    color: rgb(107 114 128);
                   }
                 }
               }
             }
 
-            .containerPiPbox {
-              width: calc(20% - 1rem);
-              display: flex;
-              flex-flow: column;
-              align-items: center;
-
-              .containerPiPice {
-                font-size: 1.5rem;
-                line-height: 2rem;
-                font-weight: 700;
-                color: rgb(22 93 255);
-              }
-
-              .containerPiUnit {
-                font-size: 0.875rem;
-                line-height: 1.25rem;
-                color: #6b7280;
+            @media (max-width: 1140px) {
+              .containerPiBox {
+                margin-top: 1rem;
+                width: 100%;
               }
             }
 
@@ -464,7 +471,20 @@ const handleCurrentChange = (val: number) => {
               width: calc(20% - 1rem);
               display: flex;
               flex-flow: column;
-              justify-content: flex-end;
+
+              .containerPiRTop {
+                margin-bottom: 0.75rem;
+                padding: 0.75rem;
+                border-radius: 0.5rem;
+                background-color: rgb(249 250 251);
+
+                .containerPiRTitem {
+                  margin-bottom: 0.25rem;
+                  font-size: 0.875rem;
+                  line-height: 1.25rem;
+                  color: rgb(107 114 128);
+                }
+              }
 
               .containerPiRbtn {
                 width: 100%;
@@ -475,6 +495,20 @@ const handleCurrentChange = (val: number) => {
                 background-color: rgb(22 93 255);
                 border-radius: 0.5rem;
               }
+            }
+
+            @media (max-width: 1140px) {
+              .containerPiRbox {
+                margin-top: 1rem;
+                width: 100%;
+              }
+            }
+          }
+
+          @media (min-width: 1140px) {
+            .containerProductsItem {
+              display: flex;
+              justify-content: space-between;
             }
           }
 
@@ -488,6 +522,24 @@ const handleCurrentChange = (val: number) => {
             align-items: center;
           }
         }
+
+        @media (max-width: 1140px) {
+          .containerProductsBox {
+            padding: 0;
+          }
+        }
+      }
+
+      @media (max-width: 1140px) {
+        .containerProducts {
+          padding: 1rem 0.75rem;
+        }
+      }
+    }
+
+    @media (min-width: 1140px) {
+      .containerLeft {
+        width: calc(66.7% - 1rem);
       }
     }
 
@@ -584,6 +636,22 @@ const handleCurrentChange = (val: number) => {
           }
         }
       }
+
+      @media (max-width: 1140px) {
+        .containerPice {
+          padding: 1rem 0.75rem;
+        }
+
+        .containerHot {
+          padding: 1rem 0.75rem;
+        }
+      }
+    }
+
+    @media (min-width: 1140px) {
+      .containerRight {
+        width: calc(33.3% - 1rem);
+      }
     }
   }
 
@@ -599,6 +667,28 @@ const handleCurrentChange = (val: number) => {
 .productsPage {
   .el-input__wrapper {
     border-radius: 0.5rem;
+  }
+
+  .btn-prev {
+    color: rgb(107 114 128) !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    padding: 0.5rem 0.75rem !important;
+    background-color: #fff !important;
+    border: 1px solid rgb(209 213 219) !important;
+    border-radius: 0.25rem !important;
+  }
+
+  .btn-next {
+    color: rgb(107 114 128) !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    padding: 0.5rem 0.75rem !important;
+    background-color: #fff !important;
+    border: 1px solid rgb(209 213 219) !important;
+    border-radius: 0.25rem !important;
   }
 
   .el-select__wrapper {

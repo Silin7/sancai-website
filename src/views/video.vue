@@ -276,6 +276,8 @@ const handleCurrentChange = (val: number) => {
               size="default"
               background
               layout="prev, pager, next"
+              prev-text="上一页"
+              next-text="下一页"
               :total="400"
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
@@ -947,6 +949,32 @@ const handleCurrentChange = (val: number) => {
 
 <style lang="scss">
 .productsPage {
+  .el-input__wrapper {
+    border-radius: 0.5rem;
+  }
+
+  .btn-prev {
+    color: rgb(107 114 128) !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    padding: 0.5rem 0.75rem !important;
+    background-color: #fff !important;
+    border: 1px solid rgb(209 213 219) !important;
+    border-radius: 0.25rem !important;
+  }
+
+  .btn-next {
+    color: rgb(107 114 128) !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    padding: 0.5rem 0.75rem !important;
+    background-color: #fff !important;
+    border: 1px solid rgb(209 213 219) !important;
+    border-radius: 0.25rem !important;
+  }
+
   .el-input__wrapper {
     border-radius: 0.5rem;
   }

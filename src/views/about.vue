@@ -755,8 +755,10 @@ onBeforeUnmount(() => {
         background-color: rgb(255 255 255 / 0.1);
 
         .futureCardItem {
-          color: #fff;
+          font-size: 1.25rem;
+          line-height: 1.625;
           text-align: center;
+          color: #fff;
         }
 
         :first-child {
@@ -799,7 +801,7 @@ onBeforeUnmount(() => {
   .mediaBox {
     position: relative;
     margin: 0 auto;
-    padding: 6rem 1rem 5rem;
+    padding: 6rem 1rem;
     width: 100%;
     max-width: 1720px;
 
