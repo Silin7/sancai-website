@@ -12,7 +12,7 @@ function echartsInit() {
   myChart = echarts.init(echartsMain.value)
   // 指定图表的配置项和数据
   const option = {
-    color: ['#3B82F6', '#10B981', '#F59E0B'],
+    color: ['#3B82F690', '#10B98190', '#f59e0b90'],
     title: {
       text: '',
     },
@@ -30,7 +30,7 @@ function echartsInit() {
       data: ['BIM服务', '高性能材料', '智能建造装备'],
     },
     grid: {
-      left: 20,
+      left: 10,
       right: 20,
       top: 20,
       bottom: 40,
@@ -52,8 +52,12 @@ function echartsInit() {
         axisLine: {
           show: true,
           lineStyle: {
-            color: 'red',
             cap: 'round',
+          },
+        },
+        axisLabel: {
+          formatter: function (value: any, index: number) {
+            return value / 100 + 'k'
           },
         },
       },
@@ -154,13 +158,13 @@ const handleCurrentChange = (val: number) => {
             <button class="containerClassCol">机</button>
             <button class="containerClassCol">信</button>
           </div>
-          <!-- <div class="containerClassRow">
+          <div class="containerClassRow">
             <button class="containerClassColActive">全部</button>
             <button class="containerClassCol">一般建筑</button>
             <button class="containerClassCol">医疗建筑</button>
             <button class="containerClassCol">体育场馆</button>
             <button class="containerClassCol">超高层建筑</button>
-          </div> -->
+          </div>
           <el-input
             v-model="input2"
             style="width: 100%; height: 50px; font-size: 1rem"
