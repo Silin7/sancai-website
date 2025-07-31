@@ -100,6 +100,17 @@ const routes: Array<RouteRecordRaw> = [
       hasfoot: false,
     },
   },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/register.vue'),
+    meta: {
+      title: 'REGISTER',
+      website: true,
+      hashead: true,
+      hasfoot: false,
+    },
+  },
 ]
 
 const router = createRouter({
