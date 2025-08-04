@@ -64,6 +64,19 @@ const menuList: any = ref([
   { title: '工程造价+AI', path: '/engineering-ai', name: 'engineeringai', children: [] },
 ])
 
+// menuChild show Mouseenter Mouseleave
+const menuChildShow: any = ref(false)
+
+function menuMouseenter(item: any) {
+  if (item.children.length > 0) {
+    menuChildShow.value = true
+  }
+}
+
+function menuMouseleave() {
+  menuChildShow.value = false
+}
+
 // 移动端
 const drawerVisible = ref(false)
 </script>
@@ -84,6 +97,8 @@ const drawerVisible = ref(false)
               v-for="(item, index) in menuList"
               :key="index"
               class="menuitem"
+              @mouseenter="menuMouseenter(item)"
+              @mouseleave="menuMouseleave"
               @click="tabRouterPush(item.name)"
             >
               <div class="menuheng1"></div>
@@ -93,10 +108,12 @@ const drawerVisible = ref(false)
               </div>
               <div v-if="selectedTab === item.name" class="menuheng2"></div>
               <div v-else class="menuheng3"></div>
-              <div v-if="item.children.length > 0" class="menuChildBox">
-                <div v-for="(item2, index2) in item.children" :key="index2" class="menuChildItem">
-                  <div class="menuChildTitle" @click="tabRouterPush(item2.name)">
-                    {{ item2.title }}
+              <div v-if="menuChildShow && item.children.length > 0" class="menuChildAbsolute">
+                <div class="menuChildBox">
+                  <div v-for="(item2, index2) in item.children" :key="index2" class="menuChildItem">
+                    <div class="menuChildTitle" @click="tabRouterPush(item2.name)">
+                      {{ item2.title }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -158,7 +175,7 @@ const drawerVisible = ref(false)
   position: fixed;
   top: 0;
   z-index: 999;
-  background-color: rgb(1 32 96 / 0.95);
+  background-color: rgb(1 32 96);
 
   .headflex {
     margin: 0 auto;
@@ -228,35 +245,38 @@ const drawerVisible = ref(false)
             height: 2px;
           }
 
-          .menuChildBox {
+          .menuChildAbsolute {
             position: absolute;
-            top: 3rem;
+            top: 2rem;
             left: 0;
             z-index: 50;
-            min-width: 14rem;
-            padding: 0.375rem 0;
-            border-radius: 0.5rem;
-            background-color: rgb(10 36 99 / 0.95);
+            padding-top: 1rem;
 
-            .menuChildItem {
-              margin-top: 0.375rem;
-              padding: 0.5rem 0;
-              color: #fff;
-              // color: rgb(1 32 96);
+            .menuChildBox {
+              min-width: 14rem;
+              padding: 0.375rem 0;
+              border-radius: 0.5rem;
+              background-color: rgb(10 36 99 / 0.95);
 
-              .menuChildTitle {
-                padding: 0.75rem 1rem;
-                font-size: 1.25rem;
+              .menuChildItem {
+                margin-top: 0.375rem;
+                padding: 0.5rem 0;
+                color: #fff;
+
+                .menuChildTitle {
+                  padding: 0.375rem 1rem;
+                  font-size: 1.25rem;
+                }
               }
-            }
 
-            .menuChildItem:first-child {
-              margin-top: 0;
-            }
+              .menuChildItem:first-child {
+                margin-top: 0;
+              }
 
-            .menuChildItem:hover {
-              cursor: pointer;
-              background-color: #0b2f82;
+              .menuChildItem:hover {
+                cursor: pointer;
+                background-color: #0b2f82;
+              }
             }
           }
         }
@@ -293,18 +313,17 @@ const drawerVisible = ref(false)
             animation: hengChange 0.5s infinite alternate;
             animation-iteration-count: 1;
             animation-fill-mode: forwards;
+            background-color: #fff;
           }
         }
 
         @keyframes hengChange {
           0% {
             width: 0%;
-            background-color: #fff;
           }
 
           100% {
             width: 100%;
-            background-color: #fff;
           }
         }
       }

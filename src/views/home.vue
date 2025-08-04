@@ -36,7 +36,11 @@ onBeforeUnmount(() => {
           <div class="bannerAbsolute">
             <div class="bannerContent">
               <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
-              <div class="bannerSubtitle">绿色化 数字化 智能化</div>
+              <div class="bannerSubtitle">
+                <span>绿色化</span>
+                <span>数字化</span>
+                <span>智能化</span>
+              </div>
               <!-- <div class="frsc">
               <button class="bannerJgkbtn">价格库</button>
               <button class="bannerJjfabtn">
@@ -90,10 +94,14 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 系统简介 -->
-      <div class="featuresBox outmostPd">
-        <img src="@/assets/about00.jpeg" class="featuresImg" />
-        <div class="featuresFlex">
-          <div class="featuresImgTitle">系统简介</div>
+      <div class="featuresBox">
+        <div class="featuresImgTitleBox">
+          <img src="@/assets/index_about.jpg" class="featuresImg" />
+          <div class="featuresImgTitle">
+            <div class="featuresImgTitleCentent">系统简介</div>
+          </div>
+        </div>
+        <div class="featuresContent">
           <div class="featuresRounded">
             <div class="featuresRoundedItem">
               <div class="featuresRoundedTop">
@@ -140,55 +148,6 @@ onBeforeUnmount(() => {
                 本系统由
                 "杭州三才工程管理咨询有限公司"创建，应用过程中如有建议，请联系我们，以便进行完善。
               </div>
-            </div>
-          </div>
-        </div>
-        <div style="opacity: 0" class="featuresImgTitle">系统简介</div>
-        <div style="opacity: 0" class="featuresRounded">
-          <div class="featuresRoundedItem">
-            <div class="featuresRoundedTop">
-              <div class="featuresRoundedShu"></div>
-              <div class="featuresRoundedTitle">创建背景</div>
-            </div>
-            <div class="featuresRoundedInfo1">
-              当前，建筑行业正在以科技创新推动现代化转型，新一代绿色化智能化建筑材料构筑新质生产力，逐步成为推动建筑业高质量发展的重要力量之一。
-            </div>
-            <div class="featuresRoundedInfo2">
-              尤其在 "双碳背景和新型工业化建筑"
-              发展模式下，需求拉动供给的同时，创新供给也创造了新需求，市场供需将发生显著变化。
-            </div>
-          </div>
-          <div class="featuresRoundedItem">
-            <div class="featuresRoundedTop">
-              <div class="featuresRoundedShu"></div>
-              <div class="featuresRoundedTitle">应用对象</div>
-            </div>
-            <div class="featuresRoundedInfo2">
-              新材网价格查询系统，竭诚为货物采购单位和其他有关单位提供丰富的 "原料"
-              信息及其市场价格，供有关单位实施货物采购和预测工程费用参考。
-            </div>
-          </div>
-          <div class="featuresRoundedItem">
-            <div class="featuresRoundedTop">
-              <div class="featuresRoundedShu"></div>
-              <div class="featuresRoundedTitle">涵盖范围</div>
-            </div>
-            <div class="featuresRoundedInfo1">
-              价格查询系统信息涵盖新技术、新材料、新工艺、新服务和造价新型要素（例如，AI、BIM、IoT、GIS、DT、VR/AR、倾斜摄影和三维扫描融合应用）。
-            </div>
-            <div class="featuresRoundedInfo2">
-              适用于绿色低碳、数字智能等高科技含量的新兴业态，以及持续提升城市基础设施韧性和既有建筑更新改造新时代
-              "好房子" 的建造需求。
-            </div>
-          </div>
-          <div class="featuresRoundedItem" style="margin-bottom: 0">
-            <div class="featuresRoundedTop">
-              <div class="featuresRoundedShu"></div>
-              <div class="featuresRoundedTitle">系统创建</div>
-            </div>
-            <div class="featuresRoundedInfo2">
-              本系统由 "杭州三才工程管理咨询有限公司"
-              创建，应用过程中如有建议，请联系我们，以便进行完善。
             </div>
           </div>
         </div>
@@ -525,17 +484,31 @@ onBeforeUnmount(() => {
 
           .bannerTitle {
             margin-bottom: 1.5rem;
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             color: #fff;
             font-weight: 700;
           }
 
           .bannerSubtitle {
             margin-bottom: 2rem;
-            font-size: clamp(2rem, 3vw, 1.5rem);
+            font-size: clamp(1.8rem, 2vw, 1rem);
             line-height: 3rem;
             font-weight: 500;
             color: rgb(255 255 255 / 0.9);
+
+            span {
+              margin-right: 2rem;
+            }
+
+            span:last-child {
+              margin-right: 0;
+            }
+
+            @media (max-width: 600px) {
+              span {
+                margin-right: 1rem;
+              }
+            }
           }
 
           .bannerJgkbtn {
@@ -642,108 +615,115 @@ onBeforeUnmount(() => {
   }
 
   .featuresBox {
-    position: relative;
-    margin: 6rem auto 0;
-    padding: 0 2rem;
+    margin: 20px auto 0;
     width: 100%;
-    max-width: 1536px;
 
-    .featuresImg {
-      position: absolute;
-      top: 0;
-      left: 2rem;
-      z-index: 0;
-      width: 100%;
-      width: calc(100% - 4rem);
-      height: 500px;
-      border-radius: 1rem;
-      opacity: 0.5;
-    }
-
-    @media (max-width: 1140px) {
-      .featuresImg {
-        width: calc(100% - 2rem);
-        left: 1rem;
-      }
-    }
-
-    .featuresFlex {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      padding: 0 2rem;
-    }
-
-    @media (max-width: 1140px) {
-      .featuresFlex {
-        padding: 0 1rem;
-      }
-    }
-
-    .featuresImgTitle {
-      padding: 2rem 0;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      line-height: 60px;
-      font-weight: 700;
-      text-align: center;
-      color: rgb(1 32 96);
-    }
-
-    .featuresRounded {
-      margin: 0 auto;
-      padding: 2.5rem;
-      width: 90%;
+    .featuresImgTitleBox {
+      position: relative;
+      height: 200px;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      border-radius: 1rem;
-      box-sizing:
-        0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -4px rgb(0 0 0 / 0.1);
-      background-color: rgb(255 255 255 / 0.5);
+      justify-content: center;
 
-      .featuresRoundedItem {
-        margin-bottom: 2.5rem;
+      .featuresImg {
         width: 100%;
+        height: 200px;
+      }
 
-        .featuresRoundedTop {
-          display: flex;
-          margin-bottom: 1.5rem;
+      .featuresImgTitle {
+        position: absolute;
+        top: 80px;
+        padding: 0 2rem;
+        width: 100%;
+        max-width: 1536px;
+        height: 120px;
 
-          .featuresRoundedShu {
-            width: 0.5rem;
-            height: 2rem;
-            background-color: #165dff;
-            border-radius: 0.25rem;
+        .featuresImgTitleCentent {
+          margin: 0 auto;
+          padding-left: 24px;
+          width: 90%;
+          font-size: clamp(1.8rem, 4vw, 2.5rem);
+          line-height: 120px;
+          font-weight: 700;
+          color: #fff;
+          background-color: rgba(1, 98, 105, 0.5);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .featuresImgTitle {
+          padding: 0;
+        }
+      }
+    }
+
+    .featuresContent {
+      margin: 0 auto;
+      position: relative;
+      padding: 0 2rem;
+      width: 100%;
+      max-width: 1536px;
+
+      .featuresRounded {
+        margin: 0 auto;
+        padding: 2.5rem;
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border-radius: 0 0 1rem 1rem;
+        box-sizing:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
+        background-color: rgba(230, 250, 250, 0.5);
+
+        .featuresRoundedItem {
+          margin-bottom: 2.5rem;
+          width: 100%;
+
+          .featuresRoundedTop {
+            display: flex;
+            margin-bottom: 1.5rem;
+
+            .featuresRoundedShu {
+              width: 0.5rem;
+              height: 2rem;
+              background-color: #165dff;
+              border-radius: 0.25rem;
+            }
+
+            .featuresRoundedTitle {
+              padding-left: 2rem;
+              font-size: 1.5rem;
+              line-height: 2rem;
+              font-weight: 700;
+              color: rgb(1 32 96);
+            }
           }
 
-          .featuresRoundedTitle {
-            padding-left: 2rem;
-            font-size: 1.5rem;
-            line-height: 2rem;
-            font-weight: 700;
-            color: rgb(1 32 96);
+          .featuresRoundedInfo1 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            color: rgb(75 85 99);
+          }
+
+          .featuresRoundedInfo2 {
+            font-size: 1.25rem;
+            color: rgb(75 85 99);
           }
         }
+      }
 
-        .featuresRoundedInfo1 {
-          margin-bottom: 1rem;
-          font-size: 1.25rem;
-          color: rgb(75 85 99);
-        }
-
-        .featuresRoundedInfo2 {
-          font-size: 1.25rem;
-          color: rgb(75 85 99);
+      @media (max-width: 600px) {
+        .featuresRounded {
+          padding-left: 1rem;
+          padding-right: 1rem;
         }
       }
     }
 
     @media (max-width: 600px) {
-      .featuresRounded {
-        padding-left: 1rem;
-        padding-right: 1rem;
+      .featuresContent {
+        padding: 0;
       }
     }
   }
