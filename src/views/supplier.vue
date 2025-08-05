@@ -34,11 +34,7 @@ const input2: any = ref()
   <div class="supplierPage">
     <!-- BANNER -->
     <div class="srbannerBox">
-      <img
-        src="@/assets/products-banner01.jpeg"
-        alt="srbanner"
-        style="width: 100vw; height: 40rem"
-      />
+      <img src="@/assets/partner_banner.jpg" alt="srbanner" style="width: 100vw; height: 40rem" />
       <div class="srbannerAbsolute">
         <div class="srbannerContent">
           <div class="srbannerTitle">供应商列表</div>
@@ -71,10 +67,10 @@ const input2: any = ref()
         <div class="supplierClassText">类别</div>
         <div class="supplierClassRow">
           <button class="supplierClassColActive">全部</button>
-          <button class="supplierClassCol">人</button>
-          <button class="supplierClassCol">材</button>
-          <button class="supplierClassCol">机</button>
-          <button class="supplierClassCol">信</button>
+          <button class="supplierClassCol">数字技工/方案论证</button>
+          <button class="supplierClassCol">材料/设备</button>
+          <button class="supplierClassCol">智能建造装备</button>
+          <button class="supplierClassCol">信息化产品/服务</button>
         </div>
         <el-input
           v-model="input2"
@@ -193,15 +189,15 @@ const input2: any = ref()
         .srbannerTitle {
           margin-bottom: 2rem;
           font-size: clamp(2rem, 5vw, 3.5rem);
-          color: #fff;
+          color: rgb(1 32 96);
           font-weight: 700;
         }
 
         .srbannerSubtitle {
           margin-bottom: 2rem;
-          font-size: clamp(1.25rem, 3vw, 1.5rem);
+          font-size: clamp(1rem, 2vw, 1.25rem);
           font-weight: 500;
-          color: rgb(255 255 255 / 0.9);
+          color: rgb(1 32 96 / 0.9);
         }
       }
     }

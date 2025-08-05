@@ -240,133 +240,135 @@ onBeforeUnmount(() => {
       </div>
       <!-- 人工智能应用 -->
       <div class="aiBox outmostPd">
-        <div class="aiTitle">人工智能应用</div>
-        <div class="aiHeng"></div>
-        <div class="aiInfo">
-          <!-- 以数据、算法和算力为核心要素，驱动工程设计、工程施工和运营维护多维度创新应用，为产业转型发展注入新动能 -->
-        </div>
-        <div class="aiSubbox">
-          <div class="aiFabox frcc">
-            <i class="fa fa-cogs" style="font-size: 1.25rem; color: #165dff"></i>
+        <div class="aiContent">
+          <div class="aiTitle">人工智能应用</div>
+          <div class="aiHeng"></div>
+          <div class="aiInfo">
+            <!-- 以数据、算法和算力为核心要素，驱动工程设计、工程施工和运营维护多维度创新应用，为产业转型发展注入新动能 -->
           </div>
-          <div class="aiSubtitle">业务管理+AI赋能组价</div>
-        </div>
-        <div class="aiClassbox">
-          <div class="aiClassitem">
-            <div class="aiClassitemfa frcc">
-              <i class="fa fa-paint-brush" style="font-size: 1.5rem; color: #165dff"></i>
+          <div class="aiSubbox">
+            <div class="aiFabox frcc">
+              <i class="fa fa-cogs" style="font-size: 1.25rem; color: #165dff"></i>
             </div>
-            <div class="aiClassitemtext">智能化设计</div>
+            <div class="aiSubtitle">业务管理+AI赋能组价</div>
           </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa frcc">
-              <i class="fa fa-wrench" style="font-size: 1.5rem; color: #165dff"></i>
+          <div class="aiClassbox">
+            <div class="aiClassitem">
+              <div class="aiClassitemfa frcc">
+                <i class="fa fa-paint-brush" style="font-size: 1.5rem; color: #165dff"></i>
+              </div>
+              <div class="aiClassitemtext">智能化设计</div>
             </div>
-            <div class="aiClassitemtext">辅助设计工具</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa frcc">
-              <i class="fa fa-android" style="font-size: 1.5rem; color: #165dff"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa frcc">
+                <i class="fa fa-wrench" style="font-size: 1.5rem; color: #165dff"></i>
+              </div>
+              <div class="aiClassitemtext">辅助设计工具</div>
             </div>
-            <div class="aiClassitemtext">建筑机器人</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa frcc">
-              <i class="fa fa-tasks" style="font-size: 1.5rem; color: #165dff"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa frcc">
+                <i class="fa fa-android" style="font-size: 1.5rem; color: #165dff"></i>
+              </div>
+              <div class="aiClassitemtext">建筑机器人</div>
             </div>
-            <div class="aiClassitemtext">施工管理</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa frcc">
-              <i class="fa fa-check-square" style="font-size: 1.5rem; color: #165dff"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa frcc">
+                <i class="fa fa-tasks" style="font-size: 1.5rem; color: #165dff"></i>
+              </div>
+              <div class="aiClassitemtext">施工管理</div>
             </div>
-            <div class="aiClassitemtext">辅助质量控制</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa frcc">
-              <i class="fa fa-sliders" style="font-size: 1.5rem; color: #165dff"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa frcc">
+                <i class="fa fa-check-square" style="font-size: 1.5rem; color: #165dff"></i>
+              </div>
+              <div class="aiClassitemtext">辅助质量控制</div>
             </div>
-            <div class="aiClassitemtext">智能化控制</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa frcc">
-              <i class="fa fa-bolt" style="font-size: 1.5rem; color: #165dff"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa frcc">
+                <i class="fa fa-sliders" style="font-size: 1.5rem; color: #165dff"></i>
+              </div>
+              <div class="aiClassitemtext">智能化控制</div>
             </div>
-            <div class="aiClassitemtext">能源管理</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa frcc">
-              <i class="fa fa-arrows-alt" style="font-size: 1.5rem; color: #165dff"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa frcc">
+                <i class="fa fa-bolt" style="font-size: 1.5rem; color: #165dff"></i>
+              </div>
+              <div class="aiClassitemtext">能源管理</div>
             </div>
-            <div class="aiClassitemtext">场景拓展</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa frcc">
-              <i class="fa fa-random" style="font-size: 1.5rem; color: #165dff"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa frcc">
+                <i class="fa fa-arrows-alt" style="font-size: 1.5rem; color: #165dff"></i>
+              </div>
+              <div class="aiClassitemtext">场景拓展</div>
             </div>
-            <div class="aiClassitemtext">跨界融合</div>
-          </div>
-        </div>
-        <div class="aiSubbox">
-          <div class="aiFabox2 frcc">
-            <i class="fa fa-calculator" style="font-size: 1.25rem; color: #722ed1"></i>
-          </div>
-          <div class="aiSubtitle">招标造价+AI应用服务</div>
-        </div>
-        <div class="aiClassbox">
-          <div class="aiClassitem">
-            <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-check-circle" style="font-size: 1.5rem; color: #722ed1"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa frcc">
+                <i class="fa fa-random" style="font-size: 1.5rem; color: #165dff"></i>
+              </div>
+              <div class="aiClassitemtext">跨界融合</div>
             </div>
-            <div class="aiClassitemtext">智能校核施工图</div>
           </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-calculator" style="font-size: 1.5rem; color: #722ed1"></i>
+          <div class="aiSubbox">
+            <div class="aiFabox2 frcc">
+              <i class="fa fa-calculator" style="font-size: 1.25rem; color: #722ed1"></i>
             </div>
-            <div class="aiClassitemtext">智能识别工程量与计算</div>
+            <div class="aiSubtitle">招标造价+AI应用服务</div>
           </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-line-chart" style="font-size: 1.5rem; color: #722ed1"></i>
+          <div class="aiClassbox">
+            <div class="aiClassitem">
+              <div class="aiClassitemfa2 frcc">
+                <i class="fa fa-check-circle" style="font-size: 1.5rem; color: #722ed1"></i>
+              </div>
+              <div class="aiClassitemtext">智能校核施工图</div>
             </div>
-            <div class="aiClassitemtext">智能分析模型计量结果</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-sliders" style="font-size: 1.5rem; color: #722ed1"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa2 frcc">
+                <i class="fa fa-calculator" style="font-size: 1.5rem; color: #722ed1"></i>
+              </div>
+              <div class="aiClassitemtext">智能识别工程量与计算</div>
             </div>
-            <div class="aiClassitemtext">智能管控动态成本</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-history" style="font-size: 1.5rem; color: #722ed1"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa2 frcc">
+                <i class="fa fa-line-chart" style="font-size: 1.5rem; color: #722ed1"></i>
+              </div>
+              <div class="aiClassitemtext">智能分析模型计量结果</div>
             </div>
-            <div class="aiClassitemtext">全过程造价数据追溯</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-file-text" style="font-size: 1.5rem; color: #722ed1"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa2 frcc">
+                <i class="fa fa-sliders" style="font-size: 1.5rem; color: #722ed1"></i>
+              </div>
+              <div class="aiClassitemtext">智能管控动态成本</div>
             </div>
-            <div class="aiClassitemtext">智能生成招标文件</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-file-text-o" style="font-size: 1.5rem; color: #722ed1"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa2 frcc">
+                <i class="fa fa-history" style="font-size: 1.5rem; color: #722ed1"></i>
+              </div>
+              <div class="aiClassitemtext">全过程造价数据追溯</div>
             </div>
-            <div class="aiClassitemtext">智能生成投标文件</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-balance-scale" style="font-size: 1.5rem; color: #722ed1"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa2 frcc">
+                <i class="fa fa-file-text" style="font-size: 1.5rem; color: #722ed1"></i>
+              </div>
+              <div class="aiClassitemtext">智能生成招标文件</div>
             </div>
-            <div class="aiClassitemtext">智能对比投标响应程度</div>
-          </div>
-          <div class="aiClassitem">
-            <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-list" style="font-size: 1.5rem; color: #722ed1"></i>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa2 frcc">
+                <i class="fa fa-file-text-o" style="font-size: 1.5rem; color: #722ed1"></i>
+              </div>
+              <div class="aiClassitemtext">智能生成投标文件</div>
             </div>
-            <div class="aiClassitemtext">智能生成评标分析表</div>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa2 frcc">
+                <i class="fa fa-balance-scale" style="font-size: 1.5rem; color: #722ed1"></i>
+              </div>
+              <div class="aiClassitemtext">智能对比投标响应程度</div>
+            </div>
+            <div class="aiClassitem">
+              <div class="aiClassitemfa2 frcc">
+                <i class="fa fa-list" style="font-size: 1.5rem; color: #722ed1"></i>
+              </div>
+              <div class="aiClassitemtext">智能生成评标分析表</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1034,120 +1036,126 @@ onBeforeUnmount(() => {
   }
 
   .aiBox {
-    position: relative;
-    margin: 6rem auto 0;
-    padding: 0 2rem;
+    padding: 4rem 2.5rem;
     width: 100%;
-    max-width: 1536px;
+    background-color: rgba(255, 255, 255, 1);
 
-    .aiTitle {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 700;
-      text-align: center;
-      color: rgb(1 32 96);
-    }
+    .aiContent {
+      position: relative;
+      margin: 0 auto;
+      padding: 0 2rem;
+      width: 100%;
+      max-width: 1536px;
 
-    .aiHeng {
-      margin: 1rem auto 0;
-      width: 5rem;
-      height: 0.25rem;
-      border-radius: 9999px;
-      background-color: rgb(22 93 255);
-    }
-
-    .aiInfo {
-      margin: 1rem auto 2.5rem;
-      text-align: center;
-      max-width: 42rem;
-      color: rgb(75 85 99);
-    }
-
-    .aiSubbox {
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-
-      .aiFabox {
-        margin-right: 1rem;
-        width: 3rem;
-        height: 3rem;
-        background-color: rgba(22 93 255 / 0.1);
-        border-radius: 9999px;
-      }
-
-      .aiFabox2 {
-        margin-right: 1rem;
-        width: 3rem;
-        height: 3rem;
-        background-color: rgb(114 46 209 / 0.1);
-        border-radius: 9999px;
-      }
-
-      .aiSubtitle {
-        font-size: 1.5rem;
-        line-height: 2rem;
+      .aiTitle {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
         font-weight: 700;
+        text-align: center;
         color: rgb(1 32 96);
       }
-    }
 
-    .aiClassbox {
-      margin-bottom: 2.5rem;
-      width: calc(100% + 1.5rem);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
+      .aiHeng {
+        margin: 1rem auto 0;
+        width: 5rem;
+        height: 0.25rem;
+        border-radius: 9999px;
+        background-color: rgb(22 93 255);
+      }
 
-      .aiClassitem {
-        margin: 0 1.5rem 1.5rem 0;
-        padding: 1.25rem;
-        width: calc(33.3% - 1.5rem);
+      .aiInfo {
+        margin: 1rem auto 2.5rem;
+        text-align: center;
+        max-width: 42rem;
+        color: rgb(75 85 99);
+      }
+
+      .aiSubbox {
+        margin-bottom: 2rem;
         display: flex;
-        flex-flow: column;
-        justify-content: center;
         align-items: center;
-        background-color: #fff;
-        border-radius: 0.75rem;
 
-        .aiClassitemfa {
-          margin-bottom: 1rem;
-          width: 4rem;
-          height: 4rem;
+        .aiFabox {
+          margin-right: 1rem;
+          width: 3rem;
+          height: 3rem;
+          background-color: rgba(22 93 255 / 0.1);
           border-radius: 9999px;
-          background-color: rgb(22 93 255 / 0.1);
         }
 
-        .aiClassitemfa2 {
-          margin-bottom: 1rem;
-          width: 4rem;
-          height: 4rem;
-          border-radius: 9999px;
+        .aiFabox2 {
+          margin-right: 1rem;
+          width: 3rem;
+          height: 3rem;
           background-color: rgb(114 46 209 / 0.1);
+          border-radius: 9999px;
         }
 
-        .aiClassitemtext {
-          line-height: 1.5rem;
-          font-weight: 500;
+        .aiSubtitle {
+          font-size: 1.5rem;
+          line-height: 2rem;
+          font-weight: 700;
           color: rgb(1 32 96);
         }
       }
 
-      @media (max-width: 600px) {
-        .aiClassitem {
-          width: calc(50% - 1.5rem);
-        }
-      }
+      .aiClassbox {
+        margin-bottom: 2.5rem;
+        width: calc(100% + 1.5rem);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
 
-      .aiClassitem:hover {
-        cursor: pointer;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-        animation: jumpUpwards 300ms ease-in-out forwards;
+        .aiClassitem {
+          margin: 0 1.5rem 1.5rem 0;
+          padding: 1.25rem;
+          width: calc(33.3% - 1.5rem);
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+          align-items: center;
+          background-color: rgb(249 250 251);
+          border-radius: 0.75rem;
+
+          .aiClassitemfa {
+            margin-bottom: 1rem;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            background-color: rgb(22 93 255 / 0.1);
+          }
+
+          .aiClassitemfa2 {
+            margin-bottom: 1rem;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            background-color: rgb(114 46 209 / 0.1);
+          }
+
+          .aiClassitemtext {
+            line-height: 1.5rem;
+            font-weight: 500;
+            color: rgb(1 32 96);
+          }
+        }
+
+        @media (max-width: 600px) {
+          .aiClassitem {
+            width: calc(50% - 1.5rem);
+          }
+        }
+
+        .aiClassitem:hover {
+          cursor: pointer;
+          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          animation: jumpUpwards 300ms ease-in-out forwards;
+        }
       }
     }
   }
 
   .mxBox {
-    margin: 6rem auto 0;
+    margin: 0 auto;
     padding: 2.5rem;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
@@ -1366,6 +1374,10 @@ onBeforeUnmount(() => {
 
   @media (max-width: 600px) {
     .solutionsBox {
+      padding: 2.5rem 0;
+    }
+
+    .aiBox {
       padding: 2.5rem 0;
     }
 

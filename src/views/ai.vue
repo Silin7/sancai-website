@@ -43,11 +43,14 @@ onBeforeUnmount(() => {
       <!-- 介绍区域  -->
       <div class="introaiOut">
         <div class="introaiBox">
-          <p class="introaiText">
+          <!-- <p class="introaiText">
             新型城市基础设施建设（简称"新城建"随着新一轮科技革命和产业变革深入发展，人工智能技术突飞猛进，已成为提升产业能级的重要引擎。目前，以DeepSeeK为代表的国产大模型正在快速发展与商业应用，人工智能将逐步渗透到各个行业。
           </p>
           <p class="introaiText">
             新城建通过对城市基础设施进行建筑业探索应用也将是必由之路，以数据、算法和算力为核心要素，驱动工程设计、工程施工和运营维护多维度创新应用，可实现优化资源配置、提升生产效率和创新组织管理新范式，为产业转型发展注入新动能。数字化、网络化和智能化的手段改造，推动城市高质量发展，提升城市治理水平。
+          </p> -->
+          <p class="introaiText">
+            随着新一轮科技革命和产业变革深入发展，人工智能（AI）技术突飞猛进，已成为提升产业能级的重要引擎。目前，以DeepSeeK、通义千问为代表的国产大模型正在快速发展与商业应用，人工智能（AI）将逐步渗透到各类行业。建筑业探索应用也将是必由之路，以数据、算法和算力为核心要素，驱动工程设计、工程施工和运营维护多维度创新应用，可实现优化资源配置、提升生产效率和创新组织管理新范式，为产业转型发展注入新动能。
           </p>
           <!-- <div class="introaiBtns">
             <button class="introaiBtn"><i class="fa fa-database"></i>数据驱动</button>
@@ -60,7 +63,7 @@ onBeforeUnmount(() => {
       <!-- 人工智能应用 -->
       <div class="applicationOut">
         <div class="applicationBox">
-          <div class="applicationTitle">工程管理AI应用组价</div>
+          <div class="applicationTitle">业务管理+AI赋能组价</div>
           <div class="applicationHeng"></div>
           <!-- <div class="applicationInfo">
             人工智能深度融入工程管理全流程，提升效率、降低成本、优化决策
@@ -90,7 +93,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <div class="applicationBox" style="margin-top: 6.5rem">
-          <div class="applicationTitle">工程造价AI应用服务</div>
+          <div class="applicationTitle">招标造价+AI应用服务</div>
           <div class="applicationHeng"></div>
           <!-- <div class="applicationInfo">
             人工智能赋能造价管理全流程，提高精度、减少误差、优化决策
@@ -217,7 +220,7 @@ onBeforeUnmount(() => {
   }
 
   .introaiOut {
-    margin-top: 2.5rem;
+    margin-top: 6rem;
     padding: 0 1rem;
     width: 100%;
 
@@ -268,7 +271,7 @@ onBeforeUnmount(() => {
   }
 
   .applicationOut {
-    margin-top: 2.5rem;
+    margin-top: 6rem;
     padding: 2.5rem 0;
     width: 100%;
     background-color: #f0f7ff;
@@ -281,7 +284,8 @@ onBeforeUnmount(() => {
       max-width: 1536px;
 
       .applicationTitle {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-size: 1.875rem;
+        line-height: 2.25rem;
         font-weight: 700;
         text-align: center;
         color: rgb(1 32 96);
