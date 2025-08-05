@@ -9,7 +9,7 @@ function goTop() {
 }
 
 // 折叠 or 展开
-const foldState: any = ref(true)
+const foldState: any = ref(false)
 const mouseState: any = ref('')
 
 function iconMouseenter(code: string) {
@@ -71,7 +71,7 @@ function iconMouseleave() {
 .sideright {
   position: fixed;
   right: 20px;
-  bottom: 20vh;
+  top: 45vh;
   z-index: 9999;
 
   .relativeBox {
@@ -85,14 +85,43 @@ function iconMouseleave() {
       justify-content: center;
       align-items: center;
       color: #fff;
-      font-size: 1.25rem;
+      font-size: 1rem;
       font-weight: 700;
-      background-image: linear-gradient(to right, #3b82f6, #0ea5e9);
-      border-radius: 9999px;
+      background: linear-gradient(135deg, #165dff 0%, #36cfc9 100%);
+      border-radius: 999px;
     }
 
     .aiBtn:hover {
       transform: scale(1.05);
+    }
+
+    .float-btn {
+      cursor: pointer;
+      margin-top: 0.75rem;
+      cursor: pointer;
+      height: 3.5rem;
+      width: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      color: rgb(1 32 96);
+      background: rgba(255, 255, 255);
+      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+
+      i {
+        font-size: 1rem;
+      }
+    }
+
+    .float-btn:hover {
+      color: #fff;
+      background-color: #165dff;
+      transform: scale(1.05);
+
+      i {
+        color: #fff !important;
+      }
     }
 
     .flexSpan {
@@ -108,40 +137,6 @@ function iconMouseleave() {
       color: #fff;
       background-color: #012060;
       border-radius: 0.25rem;
-    }
-  }
-
-  .float-btn {
-    cursor: pointer;
-    margin-top: 0.75rem;
-    cursor: pointer;
-    height: 3.5rem;
-    width: 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    color: rgb(1 32 96);
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-
-    i {
-      font-size: 1rem;
-    }
-
-    span {
-      font-size: 0.75rem;
-      line-height: 1rem;
-    }
-  }
-
-  .float-btn:hover {
-    color: #fff;
-    background-color: #165dff;
-    transform: scale(1.05);
-
-    i {
-      color: #fff !important;
     }
   }
 }

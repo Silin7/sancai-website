@@ -47,7 +47,7 @@ onBeforeUnmount(() => {
                 解决方案 <i class="fa fa-arrow-right" style="margin-left: 0.5rem"></i>
               </button>
             </div> -->
-              <div class="bannerCompany">杭州三才工程管理咨询有限公司</div>
+              <div class="bannerCompany">杭州三才-----------有限公司</div>
               <div class="bannerGridbox">
                 <div class="bannerGriditem">
                   <div class="bannerFabox frcc">
@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
                   </div>
                   <div class="bannerGridright">
                     <div class="bannerGridtitle">人材机信价格库</div>
-                    <div class="bannerGridinfo">精准数据，助力成本管控</div>
+                    <!-- <div class="bannerGridinfo">精准数据，助力成本管控</div> -->
                   </div>
                 </div>
                 <div v-if="windowWidth > 600" class="bannerGridshu" />
@@ -65,7 +65,7 @@ onBeforeUnmount(() => {
                   </div>
                   <div class="bannerGridright">
                     <div class="bannerGridtitle">数据方案组价</div>
-                    <div class="bannerGridinfo">智能组价，优化方案设计</div>
+                    <!-- <div class="bannerGridinfo">智能组价，优化方案设计</div> -->
                   </div>
                 </div>
                 <div v-if="windowWidth > 600" class="bannerGridshu" />
@@ -75,7 +75,7 @@ onBeforeUnmount(() => {
                   </div>
                   <div class="bannerGridright">
                     <div class="bannerGridtitle">人工智能应用</div>
-                    <div class="bannerGridinfo">AI赋能，提升运行效率</div>
+                    <!-- <div class="bannerGridinfo">AI赋能，提升运行效率</div> -->
                   </div>
                 </div>
                 <div v-if="windowWidth > 600" class="bannerGridshu" />
@@ -85,7 +85,7 @@ onBeforeUnmount(() => {
                   </div>
                   <div class="bannerGridright">
                     <div class="bannerGridtitle">视频演示</div>
-                    <div class="bannerGridinfo">直观教学，掌握核心技能</div>
+                    <!-- <div class="bannerGridinfo">直观教学，掌握核心技能</div> -->
                   </div>
                 </div>
               </div>
@@ -112,8 +112,21 @@ onBeforeUnmount(() => {
                 当前，建筑行业正在以科技创新推动现代化转型，新一代绿色化智能化建筑材料构筑新质生产力，逐步成为推动建筑业高质量发展的重要力量之一。
               </div>
               <div class="featuresRoundedInfo2">
-                尤其在
-                "双碳背景和新型工业化建筑"发展模式下，需求拉动供给的同时，创新供给也创造了新需求，市场供需将发生显著变化。
+                尤其在 “双碳背景和新型工业化建筑”
+                发展模式下，需求拉动供给的同时，创新供给也创造了新需求，市场供需将发生显著变化，具有绿色化、集成化和智能化特征的新材料新产品与新服务，已逐步迈向市场，将极大地影响生产方式、建造成本和运行管理模式的创新。
+              </div>
+            </div>
+            <div class="featuresRoundedItem">
+              <div class="featuresRoundedTop">
+                <div class="featuresRoundedShu"></div>
+                <div class="featuresRoundedTitle">涵盖范围</div>
+              </div>
+              <div class="featuresRoundedInfo1">
+                价格查询系统信息涵盖新技术、新材料、新工艺、新服务和造价新型要素（例如，AI、BIM、IoT、GIS、DT、VR/AR、倾斜摄影和三维扫描融合应用）。
+              </div>
+              <div class="featuresRoundedInfo2">
+                适用于绿色低碳、数字智能等高科技含量的新兴业态，以及持续提升城市基础设施韧性和既有建筑更新改造新时代
+                "好房子" 的建造需求。
               </div>
             </div>
             <div class="featuresRoundedItem">
@@ -126,27 +139,14 @@ onBeforeUnmount(() => {
                 "原料"信息及其市场价格，供有关单位实施货物采购和预测工程费用参考。
               </div>
             </div>
-            <div class="featuresRoundedItem">
-              <div class="featuresRoundedTop">
-                <div class="featuresRoundedShu"></div>
-                <div class="featuresRoundedTitle">涵盖范围</div>
-              </div>
-              <div class="featuresRoundedInfo1">
-                价格查询系统信息涵盖新技术、新材料、新工艺、新服务和造价新型要素（例如，AI、BIM、IoT、GIS、DT、VR/AR、倾斜摄影和三维扫描融合应用）。
-              </div>
-              <div class="featuresRoundedInfo2">
-                适用于绿色低碳、数字智能等高科技含量的新兴业态，以及持续提升城市基础设施韧性和既有建筑更新改造新时代"好房子"
-                的建造需求。
-              </div>
-            </div>
             <div class="featuresRoundedItem" style="margin-bottom: 0">
               <div class="featuresRoundedTop">
                 <div class="featuresRoundedShu"></div>
                 <div class="featuresRoundedTitle">系统创建</div>
               </div>
               <div class="featuresRoundedInfo2">
-                本系统由
-                "杭州三才工程管理咨询有限公司"创建，应用过程中如有建议，请联系我们，以便进行完善。
+                本系统由 “杭州三才-----------有限公司”
+                创建，应用过程中如有建议，请联系我们，以便进行完善。
               </div>
             </div>
           </div>
@@ -168,9 +168,9 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <div class="containerGridbox">
-          <img src="@/assets/product01.jpeg" alt="" />
+          <img src="@/assets/product02.jpeg" alt="" />
           <div class="containerGridMaod">
-            <div class="containerGridBox">
+            <div class="containerGridContent">
               <div class="containerGridItem">
                 <i
                   class="fa fa-user"
@@ -224,7 +224,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
           <div class="solutionsImg">
-            <img src="@/assets/case/fangyang.jpg" alt="banner" style="width: 100%; height: 48rem" />
+            <img src="@/assets/case/fangyang.jpg" alt="banner" style="width: 100%; height: 44rem" />
             <div class="solutionsImgTitleMoud">
               <div class="solutionsImgTitle1">精准定位 自动放样 施工指导</div>
               <div class="solutionsImgTitle2">BIM+放样机器人</div>
@@ -249,12 +249,12 @@ onBeforeUnmount(() => {
           <div class="aiFabox frcc">
             <i class="fa fa-cogs" style="font-size: 1.25rem; color: #165dff"></i>
           </div>
-          <div class="aiSubtitle">工程管理AI应用组价</div>
+          <div class="aiSubtitle">业务管理+AI赋能组价</div>
         </div>
         <div class="aiClassbox">
           <div class="aiClassitem">
             <div class="aiClassitemfa frcc">
-              <i class="fa fa-pencil" style="font-size: 1.5rem; color: #165dff"></i>
+              <i class="fa fa-paint-brush" style="font-size: 1.5rem; color: #165dff"></i>
             </div>
             <div class="aiClassitemtext">智能化设计</div>
           </div>
@@ -296,7 +296,7 @@ onBeforeUnmount(() => {
           </div>
           <div class="aiClassitem">
             <div class="aiClassitemfa frcc">
-              <i class="fa fa-expand" style="font-size: 1.5rem; color: #165dff"></i>
+              <i class="fa fa-arrows-alt" style="font-size: 1.5rem; color: #165dff"></i>
             </div>
             <div class="aiClassitemtext">场景拓展</div>
           </div>
@@ -311,32 +311,62 @@ onBeforeUnmount(() => {
           <div class="aiFabox2 frcc">
             <i class="fa fa-calculator" style="font-size: 1.25rem; color: #722ed1"></i>
           </div>
-          <div class="aiSubtitle">工程管理AI应用组价</div>
+          <div class="aiSubtitle">招标造价+AI应用服务</div>
         </div>
         <div class="aiClassbox">
           <div class="aiClassitem">
             <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-pencil" style="font-size: 1.5rem; color: #722ed1"></i>
+              <i class="fa fa-check-circle" style="font-size: 1.5rem; color: #722ed1"></i>
             </div>
-            <div class="aiClassitemtext">智能复核文本</div>
+            <div class="aiClassitemtext">智能校核施工图</div>
           </div>
           <div class="aiClassitem">
             <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-wrench" style="font-size: 1.5rem; color: #722ed1"></i>
+              <i class="fa fa-calculator" style="font-size: 1.5rem; color: #722ed1"></i>
             </div>
-            <div class="aiClassitemtext">智能检测漏项</div>
+            <div class="aiClassitemtext">智能识别工程量与计算</div>
           </div>
           <div class="aiClassitem">
             <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-android" style="font-size: 1.5rem; color: #722ed1"></i>
+              <i class="fa fa-line-chart" style="font-size: 1.5rem; color: #722ed1"></i>
             </div>
-            <div class="aiClassitemtext">智能预警偏离</div>
+            <div class="aiClassitemtext">智能分析模型计量结果</div>
           </div>
           <div class="aiClassitem">
             <div class="aiClassitemfa2 frcc">
-              <i class="fa fa-tasks" style="font-size: 1.5rem; color: #722ed1"></i>
+              <i class="fa fa-sliders" style="font-size: 1.5rem; color: #722ed1"></i>
             </div>
-            <div class="aiClassitemtext">智能分析指标</div>
+            <div class="aiClassitemtext">智能管控动态成本</div>
+          </div>
+          <div class="aiClassitem">
+            <div class="aiClassitemfa2 frcc">
+              <i class="fa fa-history" style="font-size: 1.5rem; color: #722ed1"></i>
+            </div>
+            <div class="aiClassitemtext">全过程造价数据追溯</div>
+          </div>
+          <div class="aiClassitem">
+            <div class="aiClassitemfa2 frcc">
+              <i class="fa fa-file-text" style="font-size: 1.5rem; color: #722ed1"></i>
+            </div>
+            <div class="aiClassitemtext">智能生成招标文件</div>
+          </div>
+          <div class="aiClassitem">
+            <div class="aiClassitemfa2 frcc">
+              <i class="fa fa-file-text-o" style="font-size: 1.5rem; color: #722ed1"></i>
+            </div>
+            <div class="aiClassitemtext">智能生成投标文件</div>
+          </div>
+          <div class="aiClassitem">
+            <div class="aiClassitemfa2 frcc">
+              <i class="fa fa-balance-scale" style="font-size: 1.5rem; color: #722ed1"></i>
+            </div>
+            <div class="aiClassitemtext">智能对比投标响应程度</div>
+          </div>
+          <div class="aiClassitem">
+            <div class="aiClassitemfa2 frcc">
+              <i class="fa fa-list" style="font-size: 1.5rem; color: #722ed1"></i>
+            </div>
+            <div class="aiClassitemtext">智能生成评标分析表</div>
           </div>
         </div>
       </div>
@@ -456,7 +486,7 @@ onBeforeUnmount(() => {
       margin: 0 auto;
       position: relative;
       width: 100%;
-      height: 48rem;
+      height: 44rem;
       max-width: 1536px;
 
       .bannerImage {
@@ -537,7 +567,7 @@ onBeforeUnmount(() => {
 
           .bannerGridbox {
             overflow: hidden;
-            margin-top: 2rem;
+            margin-top: 1rem;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -548,6 +578,7 @@ onBeforeUnmount(() => {
             .bannerGriditem {
               padding: 1.5rem;
               display: flex;
+              align-items: center;
 
               .bannerFabox {
                 width: 3rem;
@@ -560,7 +591,7 @@ onBeforeUnmount(() => {
                 margin-left: 1rem;
 
                 .bannerGridtitle {
-                  margin-bottom: 0.5rem;
+                  // margin-bottom: 0.5rem;
                   font-size: 1.25rem;
                   line-height: 1.75rem;
                   font-weight: 700;
@@ -793,11 +824,13 @@ onBeforeUnmount(() => {
 
     .containerGridbox {
       position: relative;
-      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+      height: 700px;
 
       img {
+        margin: 0;
+        padding: 0;
         width: 100%;
-        height: 38rem;
+        height: 700px;
         border-radius: 1rem;
       }
 
@@ -810,7 +843,7 @@ onBeforeUnmount(() => {
         border-radius: 1rem 1rem 0 0;
         background-color: rgb(1 32 96 / 0.4);
 
-        .containerGridBox {
+        .containerGridContent {
           display: flex;
           flex-wrap: wrap;
 
@@ -941,7 +974,7 @@ onBeforeUnmount(() => {
         overflow: hidden;
         position: relative;
         width: 100%;
-        height: 48rem;
+        height: 44rem;
         border-radius: 1rem;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
 
