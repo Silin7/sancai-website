@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-// import backToTop from '@/hooks/backToTop'
+import backToTop from '@/hooks/backToTop'
 // import sideleft from '@/components/sideleft.vue'
-// import sideright from '@/components/sideright.vue'
+import sideright from '@/components/sideright.vue'
 
 const windowWidth = ref(window.innerWidth)
 
@@ -22,7 +22,7 @@ onBeforeUnmount(() => {
 <template>
   <div>
     <!-- <component :is="sideleft" ref="sideleftRef" /> -->
-    <!-- <component :is="sideright" ref="siderightRef" @goTopCallback="backToTop" /> -->
+    <component :is="sideright" ref="siderightRef" @goTopCallback="backToTop" />
     <div class="homePage">
       <!-- BANNER -->
       <div class="bannerBox">
