@@ -24,6 +24,17 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/products_detail',
+    name: 'products_detail',
+    component: () => import('@/views/products_detail.vue'),
+    meta: {
+      title: '人材机信价格库',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
     path: '/datasolution',
     name: 'datasolution',
     component: () => import('@/views/datasolution.vue'),
