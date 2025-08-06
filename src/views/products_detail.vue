@@ -213,33 +213,31 @@ const value1 = ref(4.8)
         </div>
         <div class="pdcCptj">
           <div class="pdccTitle">相关产品推荐</div>
-          <div class="">
-            <div class="">
+          <div class="pdccCgBox">
+            <div class="pdccCgItem">
               <img
-                style="height: 10rem"
                 src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
                 alt=""
               />
-              <div class="">
-                <div class="">施工进度模拟论证服务</div>
-                <div class="">4D进度模拟与关键节点可行性分析</div>
-                <div class="">
-                  <div class="">¥10,000.00</div>
+              <div class="pdccgiContent">
+                <div class="pdccgicTitle">施工进度模拟论证服务</div>
+                <div class="pdccgicSub">4D进度模拟与关键节点可行性分析</div>
+                <div class="frbc">
+                  <div class="pdccgicPice">¥10,000.00</div>
                   <button>查看详情</button>
                 </div>
               </div>
             </div>
-            <div class="">
+            <div class="pdccCgItem">
               <img
-                style="height: 10rem"
                 src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
                 alt=""
               />
-              <div class="">
-                <div class="">施工进度模拟论证服务</div>
-                <div class="">4D进度模拟与关键节点可行性分析</div>
-                <div class="">
-                  <div class="">¥10,000.00</div>
+              <div class="pdccgiContent">
+                <div class="pdccgicTitle">施工进度模拟论证服务</div>
+                <div class="pdccgicSub">4D进度模拟与关键节点可行性分析</div>
+                <div class="frbc">
+                  <div class="pdccgicPice">¥10,000.00</div>
                   <button>查看详情</button>
                 </div>
               </div>
@@ -248,53 +246,65 @@ const value1 = ref(4.8)
         </div>
       </div>
       <div class="pdcRight">
-        <div class="">供应商信息</div>
-        <div class="">
+        <div class="pdcrTitle">供应商信息</div>
+        <div class="pdcrTop frss">
           <img
-            style="height: 10rem"
             src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
             alt=""
           />
-          <div class="">
-            <div class="">杭州筑智信息技术有限公司</div>
-            <el-rate v-model="value1" allow-half />
-            <div class="">
-              <span class="">优质供应商</span>
-              <span class="">|</span>
-              <span class="">BIM技术服务</span>
+          <div>
+            <div class="pdcrtTitle">杭州筑智信息技术有限公司</div>
+            <div class="pdcrtRate">
+              <el-rate v-model="value1" allow-half />
+              <span> 4.8</span>
+            </div>
+            <div class="pdcrtTag">
+              <span>优质供应商</span>
+              <span class="pdcrtagShu">|</span>
+              <span>BIM技术服务</span>
             </div>
           </div>
         </div>
-        <div class="">
-          <i></i>
-          <div class="">
-            <div class="">公司地址</div>
-            <div class="">浙江省杭州市滨江区江南大道1000号智慧大厦15层</div>
+        <div class="pdcrItem">
+          <div class="pdcrIbox frcc">
+            <i class="fa fa-check"></i>
+          </div>
+          <div class="pdcrPbox">
+            <p>公司地址</p>
+            <p>浙江省杭州市滨江区江南大道1000号智慧大厦15层</p>
           </div>
         </div>
-        <div class="">
-          <i></i>
-          <div class="">
-            <div class="">联系电话</div>
-            <div class="">400-888-9001</div>
+        <div class="pdcrItem">
+          <div class="pdcrIbox frcc">
+            <i class="fa fa-check"></i>
+          </div>
+          <div class="pdcrPbox">
+            <p>联系电话</p>
+            <p>400-888-9001</p>
           </div>
         </div>
-        <div class="">
-          <i></i>
-          <div class="">
-            <div class="">电子邮箱</div>
-            <div class="">service@zhuzhi.com</div>
+        <div class="pdcrItem">
+          <div class="pdcrIbox frcc">
+            <i class="fa fa-check"></i>
+          </div>
+          <div class="pdcrPbox">
+            <p>电子邮箱</p>
+            <p>service@zhuzhi.com</p>
           </div>
         </div>
-        <div class="">
-          <i></i>
-          <div class="">
-            <div class="">成立时间</div>
-            <div class="">2025年</div>
+        <div class="pdcrItem">
+          <div class="pdcrIbox frcc">
+            <i class="fa fa-check"></i>
+          </div>
+          <div class="pdcrPbox">
+            <p>成立时间</p>
+            <p>2025年</p>
           </div>
         </div>
-        <button>查看供应商详情</button>
-        <button>
+        <button class="pdcrGysxq">
+          <span>查看供应商详情</span>
+        </button>
+        <button class="pdcrZxzx">
           <i class="fa fa-comment"></i>
           <span>在线咨询</span>
         </button>
@@ -318,7 +328,6 @@ const value1 = ref(4.8)
       width: 100%;
       max-width: 1536px;
       color: rgb(1 32 96);
-      border: 1px solid red;
 
       .pdNavigation {
         margin: 0 auto 1.5rem;
@@ -330,6 +339,11 @@ const value1 = ref(4.8)
           font-size: 0.875rem;
           line-height: 1.25rem;
           color: rgb(107 114 128);
+        }
+
+        span:hover {
+          cursor: pointer;
+          color: rgb(22 93 255);
         }
 
         .pdNavigationXg {
@@ -369,9 +383,9 @@ const value1 = ref(4.8)
     width: 100%;
     max-width: 1536px;
     color: rgb(1 32 96);
-    border: 1px solid red;
 
     .pdcLeft {
+      margin-bottom: 2rem;
       width: 100%;
 
       .pdclJbcs {
@@ -553,6 +567,7 @@ const value1 = ref(4.8)
             }
 
             .pdclxiIbox {
+              flex-shrink: 0;
               margin-right: 0.75rem;
               width: 2rem;
               height: 2rem;
@@ -656,18 +671,199 @@ const value1 = ref(4.8)
           font-size: 1.25rem;
           line-height: 1.75rem;
         }
+
+        .pdccCgBox {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          .pdccCgItem {
+            cursor: pointer;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            width: 100%;
+            background-color: rgb(255 255 255);
+            border-radius: 0.5rem;
+            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+            border: 1px solid rgb(229 231 235);
+
+            img {
+              width: 100%;
+              height: 10rem;
+            }
+
+            .pdccgiContent {
+              padding: 1rem;
+
+              .pdccgicTitle {
+                margin-bottom: 0.5rem;
+                font-weight: 700;
+                color: rgb(1 32 96);
+              }
+
+              .pdccgicSub {
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                margin-bottom: 0.75rem;
+                color: rgb(107 114 128);
+              }
+
+              .pdccgicPice {
+                line-height: 1.5rem;
+                font-weight: 700;
+                color: rgb(22 93 255);
+              }
+
+              button {
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                color: rgb(22 93 255);
+              }
+            }
+          }
+
+          .pdccCgItem:last-child {
+            margin-bottom: 0;
+          }
+
+          @media (min-width: 992px) {
+            .pdccCgItem {
+              margin-bottom: 0;
+              width: calc(50% - 0.5rem);
+            }
+          }
+        }
       }
     }
 
     @media (min-width: 992px) {
       .pdcLeft {
+        margin-bottom: 0;
         width: calc(66.7% - 1rem);
       }
     }
 
     .pdcRight {
+      padding: 1.5rem;
       width: 100%;
-      border: 1px solid red;
+      height: 100%;
+      background-color: rgb(255 255 255);
+      border-radius: 1rem;
+      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+
+      .pdcrTitle {
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+      }
+
+      .pdcrTop {
+        margin-bottom: 1.5rem;
+
+        img {
+          margin-right: 1rem;
+          width: 4rem;
+          height: 4rem;
+          border-radius: 0.75rem;
+        }
+
+        .pdcrtTitle {
+          font-weight: 700;
+          font-size: 1.125rem;
+          line-height: 1.75rem;
+        }
+
+        .pdcrtRate {
+          display: flex;
+          align-items: center;
+
+          span {
+            margin-left: 0.25rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: rgb(75 85 99);
+          }
+        }
+
+        .pdcrtTag {
+          color: rgb(107 114 128);
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+
+          .pdcrtagShu {
+            margin: 0.25rem;
+          }
+        }
+      }
+
+      .pdcrItem {
+        position: relative;
+        display: flex;
+        line-height: 1.5rem;
+        padding-bottom: 1rem;
+
+        .pdcrIbox {
+          flex-shrink: 0;
+          margin-right: 0.75rem;
+          width: 2rem;
+          height: 2rem;
+          color: rgb(22 93 255);
+          background-color: rgb(22 93 255 / 0.1);
+          border-radius: 999px;
+        }
+
+        .pdcrPbox {
+          p {
+            margin: 0;
+          }
+
+          p:first-child {
+            font-weight: 500;
+            font-size: 0.875rem;
+            line-height: 1.5rem;
+            color: rgb(75 85 99);
+          }
+
+          p:last-child {
+            font-weight: 500;
+            line-height: 1.5rem;
+          }
+        }
+      }
+
+      .pdcrGysxq {
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        text-align: center;
+        font-weight: 500;
+        line-height: 1.5rem;
+        color: rgb(22 93 255);
+        border: 1px solid rgb(22 93 255);
+        border-radius: 0.5rem;
+
+        i {
+          margin-right: 0.5rem;
+        }
+      }
+
+      .pdcrZxzx {
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        text-align: center;
+        font-weight: 500;
+        line-height: 1.5rem;
+        color: rgb(22 93 255);
+        background-color: rgb(22 93 255 / 0.2);
+        border-radius: 0.5rem;
+
+        i {
+          margin-right: 0.5rem;
+        }
+      }
     }
 
     @media (min-width: 992px) {
@@ -684,5 +880,15 @@ const value1 = ref(4.8)
       justify-content: space-between;
     }
   }
+}
+</style>
+
+<style>
+/* 评分 style */
+.el-rate {
+  padding-bottom: 0.25rem !important;
+}
+.pdcrTop .el-rate__icon {
+  margin-right: 0 !important;
 }
 </style>

@@ -79,6 +79,17 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/supplier_detail',
+    name: 'supplier_detail',
+    component: () => import('@/views/supplier_detail.vue'),
+    meta: {
+      title: '供应商',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('@/views/about.vue'),
@@ -95,6 +106,17 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/news.vue'),
     meta: {
       title: '热点资讯',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
+    path: '/requirements',
+    name: 'requirements',
+    component: () => import('@/views/requirements.vue'),
+    meta: {
+      title: 'REQUIREMENTS',
       website: true,
       hashead: true,
       hasfoot: true,
