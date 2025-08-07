@@ -71,7 +71,7 @@ function iconMouseleave() {
 .sideright {
   position: fixed;
   right: 20px;
-  top: 45vh;
+  bottom: 26vh;
   z-index: 9999;
 
   .relativeBox {
