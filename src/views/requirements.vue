@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Search } from '@element-plus/icons-vue'
 
 const selectvalue1: any = ref('标的名称')
 const selectvalue2: any = ref('CIM+人房管理')
 const selectvalue3: any = ref('')
+
+const checkvalue1: any = ref(true)
+const checkvalue2: any = ref(false)
+const checkvalue3: any = ref(false)
+const checkvalue4: any = ref(false)
 </script>
 
 <template>
@@ -49,26 +53,31 @@ const selectvalue3: any = ref('')
           </div>
         </div>
         <div class="requCstitle">技术需求（可多选）</div>
-        <div class="requCstimu">1. 实时数据采集</div>
-        <div class="requCstibox">
-          <div class="">
-            <input type="checked">
-            <span>监控</span>
+        <div v-for="index in 10" :key="index">
+          <div class="requCstimu">{{ index + 1 }}. 实时数据采集</div>
+          <div class="requCstibox">
+            <div class="requCstiItem frcc">
+              <input type="checkbox" v-model="checkvalue1" />
+              <span>监控</span>
+            </div>
+            <div class="requCstiItem frcc">
+              <input type="checkbox" v-model="checkvalue2" />
+              <span>门禁</span>
+            </div>
+            <div class="requCstiItem frcc">
+              <input type="checkbox" v-model="checkvalue3" />
+              <span>道闸杆</span>
+            </div>
+            <div class="requCstiItem frcc">
+              <input type="checkbox" v-model="checkvalue4" />
+              <span>其他</span>
+            </div>
+            <el-input
+              v-model="selectvalue3"
+              style="width: 14rem; height: 34px; font-size: 1rem; margin-left: 1rem"
+              placeholder="请注明"
+            />
           </div>
-          <div class="">
-            <span>门禁</span>
-          </div>
-          <div class="">
-            <span>道闸杆</span>
-          </div>
-          <div class="">
-            <span>其他</span>
-          </div>
-          <el-input
-            v-model="selectvalue2"
-            style="width: 14rem; height: 34px; font-size: 1rem"
-            placeholder=" "
-          />
         </div>
         <div class="supplierClassFx2">
           <div class="supplierClassFxItem2">
@@ -82,6 +91,7 @@ const selectvalue3: any = ref('')
             />
           </div>
         </div>
+        <button class="btmTjxq">提交需求</button>
       </div>
     </div>
   </div>
@@ -190,8 +200,37 @@ const selectvalue3: any = ref('')
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      margin-bottom: 1.25rem;
       padding: 0.75rem;
       border-radius: 0.5rem;
+
+      .requCstiItem {
+        margin-right: 1rem;
+
+        input {
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+
+        span {
+          color: rgb(55 65 81);
+          margin-left: 0.5rem;
+        }
+      }
+    }
+
+    .btmTjxq {
+      display: block;
+      margin: 2rem auto 0;
+      padding: 0.75rem 2rem;
+      color: #fff;
+      background-color: rgb(22 93 255);
+      border-radius: 9999px;
+      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+    }
+
+    .btmTjxq:hover {
+      transform: scale(1.05);
     }
   }
 }

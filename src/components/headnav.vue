@@ -181,7 +181,7 @@ const drawerVisible = ref(false)
     margin: 0 auto;
     padding: 0 30px;
     max-width: 1536px;
-    height: 90px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
