@@ -46,6 +46,12 @@ function tabRouterPush(item: any) {
   drawerVisible.value = false
 }
 
+function tabRouterPush2() {
+  router.push({
+    name: 'home',
+  })
+}
+
 const menuList: any = ref([
   { title: '系统首页', path: '/', name: 'home', children: [] },
   {
@@ -93,7 +99,7 @@ const drawerVisible = ref(false)
             windowWidth > 1290 ? 'width: calc(100% - 130px);' : 'justify-content: space-between;'
           "
         >
-          <img src="@/assets/logo.png" alt="logo" class="headlogo" />
+          <img src="@/assets/logo.png" alt="logo" class="headlogo" @click="tabRouterPush2" />
           <div v-if="windowWidth > 1290" class="menubox">
             <div
               v-for="(item, index) in menuList"
