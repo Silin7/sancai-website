@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { Search } from '@element-plus/icons-vue'
 
 const windowWidth = ref(window.innerWidth)
 
