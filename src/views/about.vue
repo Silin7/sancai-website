@@ -691,6 +691,7 @@ onBeforeUnmount(() => {
           margin-bottom: 1.5rem;
 
           .serviceCardItemJsitem {
+            margin-bottom: 0.5rem;
             line-height: 1.5rem;
             display: flex;
             align-items: center;

@@ -53,11 +53,11 @@ const handleCurrentChange = (val: number) => {
         <div class="newsClass" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem 0.25rem;'">
           <div class="newsClassRow">
             <button class="newsClassColActive">全部</button>
-            <button class="newsClassCol">政策</button>
-            <button class="newsClassCol">标准</button>
-            <button class="newsClassCol">竞赛</button>
-            <button class="newsClassCol">案例</button>
-            <button class="newsClassCol">实施</button>
+            <button class="newsClassCol">数字化转型新政</button>
+            <button class="newsClassCol">数字化标准</button>
+            <button class="newsClassCol">数字化应用大赛</button>
+            <button class="newsClassCol">数字化典型案例</button>
+            <button class="newsClassCol">招投标信息</button>
           </div>
         </div>
         <!-- 资讯列表 -->
@@ -86,7 +86,7 @@ const handleCurrentChange = (val: number) => {
               :key="index"
             >
               <div class="newsPiImgBox" :style="windowWidth > 992 ? '' : 'width: 100%;'">
-                <img src="https://picsum.photos/200/200?random=401" class="newsPiImg" />
+                <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="newsPiImg" />
                 <div class="newsPiImgTag">政策</div>
               </div>
               <div

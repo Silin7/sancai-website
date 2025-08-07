@@ -15,7 +15,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWindowWidth)
 })
 
-const state = ref('lxfs')
+const state = ref('gsjs')
 </script>
 
 <template>
@@ -188,7 +188,7 @@ const state = ref('lxfs')
           <div class="sdclHzalBox">
             <div class="sdclHzalItem" v-for="index in 4" :key="index">
               <div class="sdclHzalImgBox">
-                <img src="https://picsum.photos/200/200?random=401" class="sdclHzalImg" />
+                <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="sdclHzalImg" />
                 <div class="sdclHzalImgTag">商业综合体</div>
               </div>
               <div class="sdclHzalBox">
@@ -227,7 +227,7 @@ const state = ref('lxfs')
           <div class="sdclCplbBox">
             <div class="sdclCplbItem" v-for="index in 6" :key="index">
               <div class="sdclCplbImgBox">
-                <img src="https://picsum.photos/200/200?random=401" class="sdclCplbImg" />
+                <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="sdclCplbImg" />
                 <div class="sdclCplbImgTag">BIM软件</div>
               </div>
               <div class="sdclCplbBox">

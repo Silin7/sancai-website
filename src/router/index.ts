@@ -13,6 +13,39 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/scheme',
+    name: 'scheme',
+    component: () => import('@/views/scheme.vue'),
+    meta: {
+      title: '人材机信价格库',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
+    path: '/materials',
+    name: 'materials',
+    component: () => import('@/views/materials.vue'),
+    meta: {
+      title: '人材机信价格库',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
+    path: '/sale',
+    name: 'sale',
+    component: () => import('@/views/sale.vue'),
+    meta: {
+      title: '人材机信价格库',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
     path: '/products',
     name: 'products',
     component: () => import('@/views/products.vue'),
@@ -38,6 +71,17 @@ const routes: Array<RouteRecordRaw> = [
     path: '/datasolution',
     name: 'datasolution',
     component: () => import('@/views/datasolution.vue'),
+    meta: {
+      title: '数据方案组价',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
+    path: '/requirements',
+    name: 'requirements',
+    component: () => import('@/views/requirements.vue'),
     meta: {
       title: '数据方案组价',
       website: true,
@@ -106,17 +150,6 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/news.vue'),
     meta: {
       title: '热点资讯',
-      website: true,
-      hashead: true,
-      hasfoot: true,
-    },
-  },
-  {
-    path: '/requirements',
-    name: 'requirements',
-    component: () => import('@/views/requirements.vue'),
-    meta: {
-      title: 'REQUIREMENTS',
       website: true,
       hashead: true,
       hasfoot: true,

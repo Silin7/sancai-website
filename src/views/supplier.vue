@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
+import router from '@/router'
+import backToTop from '@/hooks/backToTop'
 
 const windowWidth = ref(window.innerWidth)
 
@@ -28,6 +30,13 @@ const handleCurrentChange = (val: number) => {
 }
 
 const input2: any = ref()
+
+function pageJump() {
+  backToTop()
+  router.push({
+    name: 'supplier_detail'
+  })
+}
 </script>
 
 <template>
@@ -98,7 +107,7 @@ const input2: any = ref()
           <div class="supplierProductsItem" v-for="index in 5" :key="index">
             <div class="supplierPiContent">
               <div class="supplierPiImgBox">
-                <img src="https://picsum.photos/200/200?random=401" class="supplierPiImg" />
+                <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="supplierPiImg" />
                 <!-- <div class="supplierPiImgTag">政策</div> -->
               </div>
               <div class="supplierPiBox">
@@ -135,7 +144,7 @@ const input2: any = ref()
                 <i class="fa fa-phone"></i>
                 <span class="supplierPiClassSpan">400-888-9001 </span>
               </div>
-              <div class="supplierPiCright">
+              <div class="supplierPiCright" @click="pageJump">
                 <button>查看详情</button>
                 <i class="fa fa-angle-right"></i>
               </div>

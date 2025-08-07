@@ -32,13 +32,17 @@ const selectedTab = computed(() => {
   return store.selectedTab
 })
 
-function tabRouterPush(name: string) {
+function tabRouterPush(item: any) {
+  console.log('-------->', item)
+  if (item.children && item.children.length > 0) {
+    return
+  }
   router.push({
-    name,
+    name: item.name,
   })
   backToTop()
-  store.setSelectedTab(name)
-  window.localStorage.setItem('selectedTab', name)
+  store.setSelectedTab(item.name)
+  window.localStorage.setItem('selectedTab', item.name)
   drawerVisible.value = false
 }
 
@@ -46,13 +50,11 @@ const menuList: any = ref([
   { title: '系统首页', path: '/', name: 'home', children: [] },
   {
     title: '人材机信价格库',
-    path: '/products',
-    name: 'products',
     children: [
-      { title: '数字技工/方案论证', path: '/products?id=child1', name: 'products-child1' },
-      { title: '材料/设备', path: '/products?id=child2', name: 'products-child2' },
-      { title: '智能建造装备', path: '/products?id=child3', name: 'products-child3' },
-      { title: '信息化产品/服务', path: '/products?id=child4', name: 'products-child4' },
+      { title: '数字技工/方案论证', path: '/scheme', name: 'scheme' },
+      { title: '材料/设备', path: '/materials', name: 'materials' },
+      { title: '智能建造装备', path: '/sale', name: 'sale' },
+      { title: '信息化产品/服务', path: '/products', name: 'products' },
     ],
   },
   { title: '数据方案组价', path: '/data-solution', name: 'datasolution', children: [] },
@@ -99,7 +101,7 @@ const drawerVisible = ref(false)
               class="menuitem"
               @mouseenter="menuMouseenter(item)"
               @mouseleave="menuMouseleave"
-              @click="tabRouterPush(item.name)"
+              @click="tabRouterPush(item)"
             >
               <div class="menuheng1"></div>
               <div class="menutitle frcc">
@@ -111,7 +113,7 @@ const drawerVisible = ref(false)
               <div v-if="menuChildShow && item.children.length > 0" class="menuChildAbsolute">
                 <div class="menuChildBox">
                   <div v-for="(item2, index2) in item.children" :key="index2" class="menuChildItem">
-                    <div class="menuChildTitle" @click="tabRouterPush(item2.name)">
+                    <div class="menuChildTitle" @click="tabRouterPush(item2)">
                       {{ item2.title }}
                     </div>
                   </div>

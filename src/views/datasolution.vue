@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import backToTop from '@/hooks/backToTop'
+import router from '@/router'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const windowWidth = ref(window.innerWidth)
@@ -14,6 +16,13 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWindowWidth)
 })
+
+function pageJump() {
+  backToTop()
+  router.push({
+    name: 'requirements',
+  })
+}
 </script>
 
 <template>
@@ -35,7 +44,7 @@ onBeforeUnmount(() => {
               信息技术深度赋能城市建设 有效应对并满足建设管理过程中多维度、多场景需求
             </div> -->
             <div class="frsc">
-              <button class="dsbannerJgkbtn">提交需求</button>
+              <button class="dsbannerJgkbtn" @click="pageJump">提交需求</button>
             </div>
           </div>
         </div>
@@ -44,10 +53,10 @@ onBeforeUnmount(() => {
       <div class="introdsOut">
         <div class="introdsBox">
           <p class="introdsText">
-            新型城市基础设施建设（简称"新城建"），以人工智能（AI）、建筑信息模型（BIM）和物联网（IoT）等新一代信息技术深度融合城市建设应用，构建智能高效的新型城市基础设施体系。
+            新型城市基础设施建设（简称“新城建”），以人工智能（AI）、建筑信息模型（BIM）和物联网（IoT）等新一代信息技术深度融合城市建设应用，构建智能高效的新型城市基础设施体系。新城建通过对城市基础设施进行数字化、网络化和智能化的手段改造，推动城市高质量发展，提升城市治理水平。
           </p>
           <p class="introdsText">
-            新城建通过对城市基础设施进行数字化、网络化和智能化的手段改造，推动城市高质量发展，提升城市治理水平。
+            建设管理过程中的多维度、多场景基本需求，由需方提供《设计方案》或填写《询价需求表》（点击适用模块即可呈现），供方依此分析造价构成要素及组价（例如，软硬件使用费或购置费、数据建设费、系统开发及维护费、管理性费用和税赋等），并出具报价单。
           </p>
           <!-- <div class="introdsBtns">
             <button class="introdsBtn"><i class="fa fa-chdigitizen"></i>AI技术</button>
@@ -83,7 +92,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="digitizeClassitemtext">智能化设计</div>
               <div class="digitizeClassiteminfo">基于BIM模型实现工程量精准计算与动态成本管控</div>
-              <button>提交需求</button>
+              <button  @click="pageJump">提交需求</button>
             </div>
           </div>
         </div>
@@ -244,14 +253,13 @@ onBeforeUnmount(() => {
   }
 
   .introdsOut {
-    margin-top: 2.5rem;
-    padding: 0 1rem;
+    padding: 4rem 1rem;
     width: 100%;
 
     .introdsBox {
       position: relative;
       margin: 0 auto;
-      padding: 2.5rem;
+      padding: 1rem;
       width: 100%;
       max-width: 1536px;
       background-color: #fff;
@@ -287,8 +295,17 @@ onBeforeUnmount(() => {
     }
   }
 
+  @media (min-width: 992px) {
+    .introdsOut {
+      padding: 6rem 1rem;
+
+      .introdsBox {
+        padding: 2.5rem;
+      }
+    }
+  }
+
   .digitizeOut {
-    margin-top: 2.5rem;
     padding: 2.5rem 0 4rem;
     width: 100%;
     background-color: #f0f7ff;
@@ -318,29 +335,6 @@ onBeforeUnmount(() => {
             color: rgb(1 32 96);
             padding: 0.5rem 1.25rem;
             border-radius: 999px;
-            background-color: #fff;
-          }
-
-          .digitizeSubItem:hover {
-            cursor: pointer;
-            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-            background-color: rgb(243 244 246);
-          }
-        }
-
-        .digitizeSubBox2 {
-          padding-bottom: 1rem;
-          overflow-x: auto;
-          display: flex;
-          flex-wrap: nowrap;
-
-          .digitizeSubItem {
-            flex-shrink: 0;
-            margin: 0 0.75rem;
-            line-height: 2rem;
-            color: rgb(1 32 96);
-            padding: 0.5rem 1.25rem;
-            border-radius: 0.5rem;
             background-color: #fff;
           }
 

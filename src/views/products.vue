@@ -152,18 +152,16 @@ const handleCurrentChange = (val: number) => {
       <div class="containerLeft">
         <div class="containerClass">
           <div class="containerClassRow">
-            <button class="containerClassColActive">全部</button>
-            <button class="containerClassCol">人</button>
-            <button class="containerClassCol">材</button>
-            <button class="containerClassCol">机</button>
-            <button class="containerClassCol">信</button>
+            <button class="containerClassCol">数字技工/方案论证</button>
+            <button class="containerClassCol">材料/设备</button>
+            <button class="containerClassCol">智能建造装备</button>
+            <button class="containerClassColActive">信息化产品/服务</button>
           </div>
           <div class="containerClassRow">
             <button class="containerClassColActive">全部</button>
-            <button class="containerClassCol">一般建筑</button>
-            <button class="containerClassCol">医疗建筑</button>
-            <button class="containerClassCol">体育场馆</button>
-            <button class="containerClassCol">超高层建筑</button>
+            <button class="containerClassCol">信息化产品</button>
+            <button class="containerClassCol">信息化服务</button>
+            <button class="containerClassCol">其他</button>
           </div>
           <el-input
             v-model="input2"
@@ -191,7 +189,7 @@ const handleCurrentChange = (val: number) => {
           </div>
           <div class="containerProductsBox">
             <div class="containerProductsItem" v-for="index in 4" :key="index">
-              <img src="https://picsum.photos/200/200?random=401" alt="" class="containerPiImg" />
+              <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="containerPiImg" />
               <div class="containerPiBox">
                 <div class="containerPiTitle">BIM+多专业碰撞检查</div>
                 <div class="containerPiFx">
@@ -266,7 +264,7 @@ const handleCurrentChange = (val: number) => {
           <div class="containerHotTitle">热门产品</div>
           <div class="containerHotItem" v-for="index in 4" :key="index">
             <div class="containerHotLeft">
-              <img src="https://picsum.photos/200/200?random=401" class="containerHimg" />
+              <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="containerHimg" />
               <div class="containerHcbox">
                 <div class="containerHctitle">AI生成式设计</div>
                 <div class="containerHcinfo">参数化方案比选服务</div>
