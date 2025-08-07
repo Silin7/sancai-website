@@ -58,12 +58,12 @@ onBeforeUnmount(() => {
           </p>
         </div>
       </div>
-      <div class="ndCtitle">相关推荐</div>
+      <div class="ndCtitle2">相关推荐</div>
       <!-- 资讯列表 -->
       <div class="newsdBox">
         <div class="newsdItem" v-for="index in 3" :key="index">
           <div class="newsPiImgBox">
-            <img src="https://picsum.photos/200/200?random=401" class="newsPiImg" />
+            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="newsPiImg" />
             <div class="newsPiImgTag">政策</div>
           </div>
           <div class="newsPiBox" :style="windowWidth > 992 ? '' : 'margin-top:1rem; width: 100%;'">
@@ -157,6 +157,14 @@ onBeforeUnmount(() => {
       font-size: 2.25rem;
       line-height: 2.5rem;
       font-weight: 700;
+      text-align: center;
+    }
+
+    .ndCtitle2 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
     }
 
     .ndCzuoz {
@@ -213,12 +221,18 @@ onBeforeUnmount(() => {
         background-color: rgb(243 244 246);
         border-radius: 9999px;
       }
+
+      .ndcTag:hover {
+        cursor: pointer;
+        color: #fff;
+        background-color: rgb(22 93 255);
+      }
     }
 
     .ndCzuobtm {
       margin-bottom: 3rem;
       padding: 1.5rem;
-      background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+      background-color: rgb(249 250 251);
       border-radius: 0.75rem;
       display: flex;
 
@@ -304,8 +318,8 @@ onBeforeUnmount(() => {
           width: 100%;
 
           .newsPiTitle {
-            font-size: 1.5rem;
-            line-height: 2rem;
+            font-size: 1.125rem;
+            line-height: 1.75rem;
             font-weight: 700;
             margin: 0.75rem 0;
             color: rgb(1 32 96);
@@ -313,7 +327,8 @@ onBeforeUnmount(() => {
 
           .newsPiInfo {
             margin-bottom: 1rem;
-            line-height: 1.5rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
             color: rgb(75 85 99);
           }
 
@@ -337,6 +352,8 @@ onBeforeUnmount(() => {
 
                 .newsPiClassSpan {
                   margin-left: 0.25rem;
+                  font-size: 0.75rem;
+                  line-height: 1rem;
                 }
               }
             }

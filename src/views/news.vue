@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import backToTop from '@/hooks/backToTop'
+import router from '@/router'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const windowWidth = ref(window.innerWidth)
@@ -24,6 +26,13 @@ const handleSizeChange = (val: number) => {
 }
 const handleCurrentChange = (val: number) => {
   console.log(`current page: ${val}`)
+}
+
+function pageJump() {
+  backToTop()
+  router.push({
+    name: 'news_detail'
+  })
 }
 </script>
 
@@ -83,6 +92,7 @@ const handleCurrentChange = (val: number) => {
               :style="windowWidth > 992 ? 'display: flex; justify-content: space-between;' : ''"
               v-for="index in 4"
               :key="index"
+              @click="pageJump"
             >
               <div class="newsPiImgBox" :style="windowWidth > 992 ? '' : 'width: 100%;'">
                 <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="newsPiImg" />
