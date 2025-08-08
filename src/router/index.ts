@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'scheme',
     component: () => import('@/views/scheme.vue'),
     meta: {
-      title: '人材机信价格库',
+      title: '数字技工/方案论证',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'materials',
     component: () => import('@/views/materials.vue'),
     meta: {
-      title: '人材机信价格库',
+      title: '材料/设备',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -39,7 +39,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'sale',
     component: () => import('@/views/sale.vue'),
     meta: {
-      title: '人材机信价格库',
+      title: '智能建造装备',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -50,7 +50,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'products',
     component: () => import('@/views/products.vue'),
     meta: {
-      title: '人材机信价格库',
+      title: '信息化产品/服务',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -61,7 +61,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'products_detail',
     component: () => import('@/views/products_detail.vue'),
     meta: {
-      title: '人材机信价格库',
+      title: '信息化产品/服务',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -171,7 +171,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'login',
     component: () => import('@/views/login.vue'),
     meta: {
-      title: 'LOGIN',
+      title: '登录',
       website: true,
       hashead: true,
       hasfoot: false,
@@ -182,10 +182,82 @@ const routes: Array<RouteRecordRaw> = [
     name: 'register',
     component: () => import('@/views/register.vue'),
     meta: {
-      title: 'REGISTER',
+      title: '注册',
       website: true,
       hashead: true,
       hasfoot: false,
+    },
+  },
+  {
+    path: '/user/index',
+    name: 'user-index',
+    component: () => import('@/views/user/index.vue'),
+    meta: {
+      title: '新材网-首页',
+      website: false,
+    },
+  },
+  {
+    path: '/user/profile',
+    name: 'user-profile',
+    component: () => import('@/views/user/profile.vue'),
+    meta: {
+      title: '新材网-用户资料',
+      website: false,
+    },
+  },
+  {
+    path: '/user/renlist',
+    name: 'user-renlist',
+    component: () => import('@/views/user/renlist.vue'),
+    meta: {
+      title: '新材网-数字技工/方案论证',
+      website: false,
+    },
+  },
+  {
+    path: '/user/cailist',
+    name: 'user-cailist',
+    component: () => import('@/views/user/cailist.vue'),
+    meta: {
+      title: '新材网-材料/设备',
+      website: false,
+    },
+  },
+  {
+    path: '/user/machinelist',
+    name: 'user-machinelist',
+    component: () => import('@/views/user/machinelist.vue'),
+    meta: {
+      title: '新材网-智能建造装备',
+      website: false,
+    },
+  },
+  {
+    path: '/user/itlist',
+    name: 'user-itlist',
+    component: () => import('@/views/user/itlist.vue'),
+    meta: {
+      title: '新材网-信息化产品/服务',
+      website: false,
+    },
+  },
+  {
+    path: '/user/inquirylist',
+    name: 'user-inquirylist',
+    component: () => import('@/views/user/inquirylist.vue'),
+    meta: {
+      title: '新材网-报价单',
+      website: false,
+    },
+  },
+  {
+    path: '/user/editpwd',
+    name: 'user-editpwd',
+    component: () => import('@/views/user/editpwd.vue'),
+    meta: {
+      title: '新材网-改密码',
+      website: false,
     },
   },
 ]

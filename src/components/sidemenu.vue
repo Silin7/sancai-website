@@ -1,27 +1,37 @@
 <script lang="ts" setup>
-import {
-  Fold,
-  Expand,
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from '@element-plus/icons-vue'
-import { onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
+import { Fold, Expand } from '@element-plus/icons-vue'
+import useHeaderStore from '@/store/modules/header'
 import router from '@/router/index'
 
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log('handleOpen', key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log('handleClose', key, keyPath)
+const headerStore = useHeaderStore()
+
+const selectedTab = computed(() => {
+  return headerStore.selectedTab
+})
+
+const handleOpen = (key: string) => {
+  headerStore.setSelectedTab(key)
+  router.push({
+    name: key
+  })
 }
 
-// onMounted(() => {
-//   console.log('router.options.routes ', router.options.routes)
-// })
+// const menuList = [
+//   { name: 'user-index', title: '首页', icon: 'HomeFilled' },
+//   { name: 'user-profile', title: '资料' },
+//   { name: 'user-renlist', title: '数字技工/方案论证' },
+//   { name: 'user-cailist', title: '材料/设备' },
+//   { name: 'user-machinelist', title: '智能建造装备' },
+//   { name: 'user-itlist', title: '信息化产品/服务' },
+//   { name: 'user-inquirylist', title: '报价单' },
+//   { name: 'user-editpwd', title: '改密码' },
+//   { name: 'user-out', title: '退出' },
+// ]
 
+// 折叠 or 展开
 const isCollapse: any = ref(false)
+
 function isCollapseClick() {
   isCollapse.value = !isCollapse.value
 }
@@ -29,60 +39,50 @@ function isCollapseClick() {
 
 <template>
   <div class="custom-menu">
-    <el-menu :collapse="isCollapse" @open="handleOpen" @close="handleClose">
-      <el-sub-menu index="1">
-        <template #title>
-          <el-icon>
-            <location />
-          </el-icon>
-          <span>Navigator One</span>
-        </template>
-        <el-menu-item index="1-1">
-          <el-icon><icon-menu /></el-icon>
-          <span>item one one one one one</span>
-        </el-menu-item>
-        <el-menu-item index="1-2">
-          <el-icon><icon-menu /></el-icon>
-          <span>item two</span>
-        </el-menu-item>
-        <el-menu-item index="1-3">
-          <el-icon><icon-menu /></el-icon>
-          <span>item three</span>
-        </el-menu-item>
-        <el-sub-menu index="1-4">
-          <template #title>
-            <el-icon><icon-menu /></el-icon>
-            <span>item four</span>
-          </template>
-          <el-menu-item index="1-4-1">
-            <el-icon><icon-menu /></el-icon>
-            <span>item four - one</span>
-          </el-menu-item>
-        </el-sub-menu>
-      </el-sub-menu>
-      <el-menu-item index="2">
-        <el-icon><icon-menu /></el-icon>
-        <span>人</span>
+    <el-menu :collapse="isCollapse" :default-active="selectedTab" @open="handleOpen">
+      <el-menu-item index="user-index">
+        <i class="fa fa-home"></i>
+        <span>首页</span>
       </el-menu-item>
-      <el-menu-item index="3">
-        <el-icon>
-          <document />
-        </el-icon>
-        <span>材</span>
+      <el-menu-item index="user-profile">
+        <i class="fa fa-file-text"></i>
+        <span>用户资料</span>
       </el-menu-item>
-      <el-menu-item index="4">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <span>机</span>
+      <el-menu-item index="user-renlist">
+        <i class="fa fa-users"></i>
+        <span>数字技工/方案论证</span>
+      </el-menu-item>
+      <el-menu-item index="user-cailist">
+        <i class="fa fa-dropbox"></i>
+        <span>材料/设备</span>
+      </el-menu-item>
+      <el-menu-item index="user-machinelist">
+        <i class="fa fa-wrench"></i>
+        <span>智能建造装备</span>
+      </el-menu-item>
+      <el-menu-item index="user-itlist">
+        <i class="fa fa-info-circle"></i>
+        <span>信息化产品/服务</span>
+      </el-menu-item>
+      <el-menu-item index="user-inquirylist">
+        <i class="fa fa-file-powerpoint-o"></i>
+        <span>报价单</span>
+      </el-menu-item>
+      <el-menu-item index="user-editpwd">
+        <i class="fa fa-key"></i>
+        <span>改密码</span>
+      </el-menu-item>
+      <el-menu-item index="user-out">
+        <i class="fa fa-sign-out"></i>
+        <span>退出</span>
       </el-menu-item>
     </el-menu>
     <div class="collapse-box" @click="isCollapseClick">
       <div class="collapse-icons">
-        <el-icon v-if="isCollapse" color="#000" :size="20">
+        <el-icon v-if="isCollapse" color="#606266" :size="20">
           <Expand />
         </el-icon>
-        <el-icon v-else color="#000" :size="20">
+        <el-icon v-else color="#606266" :size="20">
           <Fold />
         </el-icon>
       </div>
