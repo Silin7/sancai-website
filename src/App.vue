@@ -9,10 +9,8 @@ const routeInfo = useRoute()
 </script>
 
 <template>
-  <!-- <div>
-    <RouterView />
-  </div> -->
-  <!-- <div v-if="!routeInfo.meta.website">
+  <!-- 后台管理系统 -->
+  <div v-if="!routeInfo.meta.website">
     <component :is="headmenu" ref="headmenuRef" />
     <div class="container-content">
       <component :is="sidemenu" ref="sidemenuRef" />
@@ -21,9 +19,10 @@ const routeInfo = useRoute()
       </div>
     </div>
   </div>
-  <div v-else> -->
+  <!-- WEBSITE -->
+  <div v-else>
     <component v-if="routeInfo.meta.hashead" :is="headnav" ref="headnavRef" />
     <RouterView />
     <component v-if="routeInfo.meta.hasfoot" :is="footnav" ref="footnavRef" />
-  <!-- </div> -->
+  </div>
 </template>
