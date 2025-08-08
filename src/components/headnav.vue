@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref, computed } from 'vue'
+import { onMounted, onBeforeUnmount, ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import backToTop from '@/hooks/backToTop'
 import useHeaderStore from '@/store/modules/header'
@@ -33,8 +33,8 @@ const selectedTab = computed(() => {
 })
 
 function tabRouterPush(item: any) {
-  console.log('-------->', item)
   if (item.children && item.children.length > 0) {
+    item.zhankai = !item.zhankai
     return
   }
   router.push({
@@ -56,6 +56,7 @@ const menuList: any = ref([
   { title: '系统首页', path: '/', name: 'home', children: [] },
   {
     title: '人材机信价格库',
+    zhankai: false,
     children: [
       { title: '数字技工/方案论证', path: '/scheme', name: 'scheme' },
       { title: '材料/设备', path: '/materials', name: 'materials' },
@@ -87,6 +88,22 @@ function menuMouseleave() {
 
 // 移动端
 const drawerVisible = ref(false)
+
+watch(
+  () => drawerVisible.value,
+  (val: boolean) => {
+    if (val) {
+      console.log('-------->', selectedTab.value)
+    } else {
+      menuList.value.forEach((element: any) => {
+        element.zhankai = false
+      })
+    }
+  },
+  {
+    immediate: true,
+  },
+)
 </script>
 
 <template>
@@ -128,7 +145,7 @@ const drawerVisible = ref(false)
             </div>
           </div>
           <div v-else @click="drawerVisible = true">
-            <i class="fa fa-bars" style="font-size: 28px; color: #fff"></i>
+            <i class="fa fa-bars" style="font-size: 1.5rem; color: #fff"></i>
           </div>
         </div>
         <div v-if="windowWidth > 1290" class="headbtns">
@@ -152,26 +169,35 @@ const drawerVisible = ref(false)
       <div class="drawerhead">
         <div class="drawerleft">
           <div class="culbbox">
-            <i class="fa fa-cube" style="font-size: 16px; color: #165dff"></i>
+            <i class="fa fa-cube"></i>
           </div>
-          <p style="">新材网</p>
+          <p>新材网</p>
         </div>
-        <i
-          class="fa fa-times"
-          style="font-size: 28px; color: #6b7280; cursor: pointer"
-          @click="drawerVisible = false"
-        ></i>
+        <i class="fa fa-times drawerclose" @click="drawerVisible = false"></i>
       </div>
       <div class="mobilecollapse">
-        <el-collapse v-model="selectedTab" accordion @change="tabRouterPush">
-          <el-collapse-item
-            v-for="(item, index) in menuList"
-            :key="index"
-            :title="item.title"
-            :name="item.name"
-          >
-          </el-collapse-item>
-        </el-collapse>
+        <div
+          v-for="(item, index) in menuList"
+          :key="index"
+          :class="['collapseItem', selectedTab === item.name ? 'collapseActive' : '']"
+          @click="tabRouterPush(item)"
+        >
+          <div class="frbc">
+            <span>{{ item.title }}</span>
+            <i v-if="item.children.length > 0 && item.zhankai" class="fa fa-chevron-up"></i>
+            <i v-if="item.children.length > 0 && !item.zhankai" class="fa fa-chevron-down"></i>
+          </div>
+          <div v-if="item.children.length > 0 && item.zhankai" class="collapseChildren">
+            <div
+              v-for="(item2, index2) in item.children"
+              :key="index2"
+              :class="['collapseCitem', selectedTab === item2.name ? 'collapseActive' : '']"
+              @click="tabRouterPush(item2)"
+            >
+              {{ item2.title }}
+            </div>
+          </div>
+        </div>
       </div>
     </el-drawer>
   </div>
@@ -187,7 +213,7 @@ const drawerVisible = ref(false)
 
   .headflex {
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 1rem;
     max-width: 1536px;
     height: 80px;
     display: flex;
@@ -200,12 +226,18 @@ const drawerVisible = ref(false)
       align-items: center;
 
       .headlogo {
+        cursor: pointer;
         width: 150px;
       }
-
-      .headlogo:hover {
-        cursor: pointer;
-        transform: scale(1.05);
+      @media (min-width: 1290px) {
+        .headlogo:hover {
+          transform: scale(1.05);
+        }
+      }
+      @media (max-width: 1289px) {
+        .headlogo {
+          width: 120px;
+        }
       }
 
       .menubox {
@@ -381,7 +413,7 @@ const drawerVisible = ref(false)
 
       .registerbtn {
         display: inline-block;
-        margin-left: 16px;
+        margin-left: 1rem;
         padding: 8px 1.25rem;
         color: #fff;
         background-color: #165dff;
@@ -397,37 +429,88 @@ const drawerVisible = ref(false)
 }
 
 .mobiledrawer {
+  background-color: red !important;
+
   .drawerhead {
-    padding: 1.25rem;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid rgb(255 255 255);
 
     .drawerleft {
       display: flex;
       align-items: center;
 
       .culbbox {
-        width: 40px;
-        height: 40px;
+        width: 2.5rem;
+        height: 2.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: rgb(22 93 255 / 0.1);
-        border-radius: 8px;
+        border-radius: 0.5rem;
+
+        i {
+          font-size: 1rem;
+          color: #165dff;
+        }
       }
 
       p {
-        margin: 0 0 0 8px;
+        margin: 0 0 0 0.5rem;
         font-size: 1.25rem;
         font-weight: 700;
-        color: #012060;
+        color: #fff;
       }
     }
+
+    .drawerclose {
+      font-size: 1.5rem;
+      color: #fff;
+    }
   }
+
   .mobilecollapse {
-    padding: 1.25rem;
+    padding: 1rem 0.5rem;
+
+    .collapseItem {
+      margin-bottom: 0.5rem;
+      padding: 0.75rem 0.5rem;
+      font-size: 1rem;
+      line-height: 1rem;
+      color: #fff;
+      border-radius: 0.5rem;
+
+      i {
+        font-size: 0.75rem;
+      }
+    }
+
+    .collapseItem:last-child {
+      margin-bottom: 0;
+    }
+
+    .collapseChildren {
+      margin: 0.5rem 0 0 0.5rem;
+
+      .collapseCitem {
+        margin-bottom: 0.5rem;
+        padding: 0.75rem 0.5rem;
+        font-size: 1rem;
+        line-height: 1rem;
+        color: #fff;
+        border-radius: 0.5rem;
+      }
+
+      .collapseCitem:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .collapseActive {
+      background-color: rgb(22 93 255 / 0.2);
+    }
   }
 }
 </style>
@@ -436,6 +519,7 @@ const drawerVisible = ref(false)
 .mobiledrawer {
   .el-drawer__body {
     padding: 0 !important;
+    background-color: rgb(1 32 96);
   }
 
   .el-collapse {
