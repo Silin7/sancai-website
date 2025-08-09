@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="user-index-page">
+  <div class="page-main">
     <div class="welcome-section">
       <h1 class="welcome-title">欢迎回来，用户名</h1>
       <p class="welcome-message">
@@ -156,146 +156,141 @@
 </template>
 
 <style lang="scss" scoped>
-.user-index-page {
-  padding: 12px 32px;
-  border: 1px solid red;
+.welcome-section {
+  margin-bottom: 32px;
 
-  .welcome-section {
-    margin-bottom: 32px;
-
-    .welcome-title {
-      font-size: 24px;
-      font-weight: 600;
-      color: #303133;
-      margin-bottom: 8px;
-    }
-
-    .welcome-message {
-      color: #606266;
-      font-size: 14px;
-    }
-  }
-
-  .stat-card {
-    margin-bottom: 24px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-
-    .stat-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
-    .stat-value {
-      font-size: 28px;
-      line-height: 42px;
-      font-weight: 600;
-      color: #303133;
-    }
-
-    .stat-label {
-      font-size: 14px;
-      line-height: 21px;
-      color: #606266;
-    }
-  }
-
-  .stat-card:hover {
-    cursor: pointer;
-    animation: jumpUpwards 300ms ease-in-out forwards;
-  }
-
-  .section-title {
-    font-size: 18px;
+  .welcome-title {
+    font-size: 24px;
     font-weight: 600;
     color: #303133;
-    margin-top: 10px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+  }
+
+  .welcome-message {
+    color: #606266;
+    font-size: 14px;
+  }
+}
+
+.stat-card {
+  margin-bottom: 24px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+
+  .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
-
-    i {
-      margin-right: 8px;
-      color: #377dff;
-    }
+    justify-content: center;
+    margin-bottom: 16px;
   }
 
-  .action-card {
-    margin-bottom: 12px;
-    padding: 20px 16px;
-    text-align: center;
+  .stat-value {
+    font-size: 28px;
+    line-height: 42px;
+    font-weight: 600;
     color: #303133;
-    background-color: #ffffff;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-
-    .action-icon {
-      font-size: 28px;
-      line-height: 42px;
-      color: #377dff;
-      margin-bottom: 12px;
-    }
-
-    .action-text {
-      font-size: 14px;
-      line-height: 21px;
-      font-weight: 500;
-    }
   }
 
-  .action-card:hover {
-    cursor: pointer;
-    animation: jumpUpwards 300ms ease-in-out forwards;
-    box-shadow: 0 4px 16px rgba(55, 125, 255, 0.15);
+  .stat-label {
+    font-size: 14px;
+    line-height: 21px;
+    color: #606266;
+  }
+}
+
+.stat-card:hover {
+  cursor: pointer;
+  animation: jumpUpwards 300ms ease-in-out forwards;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #303133;
+  margin-top: 10px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+
+  i {
+    margin-right: 8px;
+    color: #377dff;
+  }
+}
+
+.action-card {
+  margin-bottom: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  color: #303133;
+  background-color: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+  .action-icon {
+    font-size: 28px;
+    line-height: 42px;
+    color: #377dff;
+    margin-bottom: 12px;
   }
 
-  .recent-activity {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    padding: 20px;
-    margin-bottom: 32px;
+  .action-text {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+  }
+}
 
-    .activity-list {
-      list-style: none;
+.action-card:hover {
+  cursor: pointer;
+  animation: jumpUpwards 300ms ease-in-out forwards;
+  box-shadow: 0 4px 16px rgba(55, 125, 255, 0.15);
+}
 
-      .activity-item {
+.recent-activity {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 32px;
+
+  .activity-list {
+    list-style: none;
+
+    .activity-item {
+      display: flex;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f2f5;
+
+      .activity-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
         display: flex;
-        padding: 12px 0;
-        border-bottom: 1px solid #f0f2f5;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
 
-        .activity-icon {
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-right: 12px;
-          flex-shrink: 0;
+      .activity-content {
+        flex: 1;
+
+        .activity-title {
+          font-size: 14px;
+          font-weight: 500;
+          color: #303133;
+          margin-bottom: 2px;
         }
 
-        .activity-content {
-          flex: 1;
-
-          .activity-title {
-            font-size: 14px;
-            font-weight: 500;
-            color: #303133;
-            margin-bottom: 2px;
-          }
-
-          .activity-time {
-            font-size: 12px;
-            color: #909399;
-          }
+        .activity-time {
+          font-size: 12px;
+          color: #909399;
         }
       }
     }

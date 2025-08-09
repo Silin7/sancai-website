@@ -11,10 +11,10 @@ const selectedTab = computed(() => {
 })
 
 const handleOpen = (key: string) => {
-  headerStore.setSelectedTab(key)
   router.push({
-    name: key
+    name: key,
   })
+  headerStore.setSelectedTab(key)
 }
 
 // const menuList = [

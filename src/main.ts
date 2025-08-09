@@ -25,8 +25,9 @@ app.use(pinia)
 
 // UI Element Plus
 import ElementPlus from 'element-plus'
+import zhCn from 'element-plus/es/locale/lang/zh-cn';
 import 'element-plus/dist/index.css'
-app.use(ElementPlus)
+app.use(ElementPlus, { locale: zhCn });
 
 // 图标 Element Plus
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
