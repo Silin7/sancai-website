@@ -216,9 +216,27 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/user/renfrom',
+    name: 'user-renfrom',
+    component: () => import('@/views/user/renfrom.vue'),
+    meta: {
+      title: '新材网-数字技工/方案论证',
+      website: false,
+    },
+  },
+  {
     path: '/user/cailist',
     name: 'user-cailist',
     component: () => import('@/views/user/cailist.vue'),
+    meta: {
+      title: '新材网-材料/设备',
+      website: false,
+    },
+  },
+  {
+    path: '/user/caifrom',
+    name: 'user-caifrom',
+    component: () => import('@/views/user/caifrom.vue'),
     meta: {
       title: '新材网-材料/设备',
       website: false,
@@ -234,9 +252,27 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/user/machinefrom',
+    name: 'user-machinefrom',
+    component: () => import('@/views/user/machinefrom.vue'),
+    meta: {
+      title: '新材网-智能建造装备',
+      website: false,
+    },
+  },
+  {
     path: '/user/itlist',
     name: 'user-itlist',
     component: () => import('@/views/user/itlist.vue'),
+    meta: {
+      title: '新材网-信息化产品/服务',
+      website: false,
+    },
+  },
+  {
+    path: '/user/itfrom',
+    name: 'user-itfrom',
+    component: () => import('@/views/user/itfrom.vue'),
     meta: {
       title: '新材网-信息化产品/服务',
       website: false,
