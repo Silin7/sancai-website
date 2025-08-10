@@ -1,22 +1,37 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+import { Delete, Download, Plus, ZoomIn } from '@element-plus/icons-vue'
+
+import type { UploadFile } from 'element-plus'
 
 const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
-  serviceName: '',
-  mainCategory: '',
-  subCategory: '',
+  materialName: '',
+  categoryLevel1: '',
+  categoryLevel2: '',
+  categoryLevel3: '',
+  brand: '',
+  material: '',
+  spec: '',
   priceBeforeTax: '',
   priceAfterTax: '',
+  minQty: '',
+  unit: '',
   serviceDescription: '',
 })
 const rules: any = reactive({
-  serviceName: [{ required: true, message: '请输入服务名称', trigger: 'blur' }],
-  mainCategory: [{ required: true, message: '请选择主类别', trigger: 'change' }],
-  subCategory: [{ required: true, message: '请选择子类别', trigger: 'change' }],
-  priceBeforeTax: [{ required: true, message: '请输入税前价格', trigger: 'blur' }],
-  priceAfterTax: [{ required: true, message: '请输入税后价格', trigger: 'blur' }],
-  serviceDescription: [{ required: true, message: '请输入服务内容介绍', trigger: 'blur' }],
+  materialName: [{ required: true, message: '请输入材料名称', trigger: 'blur' }],
+  categoryLevel1: [{ required: true, message: '请选择产品类别', trigger: 'change' }],
+  categoryLevel2: [{ required: true, message: '请选择二级分类', trigger: 'change' }],
+  categoryLevel3: [{ required: true, message: '请选择三级分类', trigger: 'change' }],
+  brand: [{ required: true, message: '请输入品牌', trigger: 'blur' }],
+  material: [{ required: true, message: '请输入材质', trigger: 'blur' }],
+  spec: [{ required: true, message: '请输入规格型号', trigger: 'blur' }],
+  priceBeforeTax: [{ required: true, message: '请输入单价（含税）', trigger: 'blur' }],
+  priceAfterTax: [{ required: true, message: '请输入单价（不含税）', trigger: 'blur' }],
+  minQty: [{ required: true, message: '请输入最低采购数量', trigger: 'blur' }],
+  unit: [{ required: true, message: '请选择单位 ', trigger: 'change' }],
+  serviceDescription: [{ required: true, message: '请输入材料内容介绍', trigger: 'blur' }],
 })
 
 const submitForm = async (formEl: any) => {
@@ -29,6 +44,23 @@ const submitForm = async (formEl: any) => {
     }
   })
 }
+
+const dialogImageUrl = ref('')
+const dialogVisible = ref(false)
+const disabled = ref(false)
+
+const handleRemove = (file: UploadFile) => {
+  console.log(file)
+}
+
+const handlePictureCardPreview = (file: UploadFile) => {
+  dialogImageUrl.value = file.url!
+  dialogVisible.value = true
+}
+
+const handleDownload = (file: UploadFile) => {
+  console.log(file)
+}
 </script>
 
 <template>
@@ -39,7 +71,7 @@ const submitForm = async (formEl: any) => {
         <div class="breadcrumb">
           <a> <i class="fa fa-list mr-1"></i>产品列表 </a>
           <span class="breadcrumb-separator">/</span>
-          <span>发布新服务</span>
+          <span>发布新材料</span>
         </div>
         <div class="action-buttons">
           <button class="action-btn back-btn"><i class="fa fa-arrow-left mr-1"></i>返回列表</button>
@@ -59,17 +91,17 @@ const submitForm = async (formEl: any) => {
         label-width="auto"
       >
         <el-row :gutter="20">
-          <el-col :span="12">
-            <el-form-item label="服务名称" prop="serviceName">
-              <el-input size="large" v-model="ruleForm.serviceName" placeholder="请输入服务名称" />
+          <el-col :span="8">
+            <el-form-item label="材料名称" prop="materialName">
+              <el-input size="large" v-model="ruleForm.materialName" placeholder="请输入材料名称" />
             </el-form-item>
           </el-col>
-          <el-col :span="12">
-            <el-form-item label="主类别" prop="mainCategory">
+          <el-col :span="8">
+            <el-form-item label="产品类别" prop="categoryLevel1">
               <el-select
                 size="large"
-                v-model="ruleForm.mainCategory"
-                placeholder="选择主类别"
+                v-model="ruleForm.categoryLevel1"
+                placeholder="选择产品类别"
                 clearable
                 style="width: 100%"
               >
@@ -80,12 +112,12 @@ const submitForm = async (formEl: any) => {
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
-            <el-form-item label="子类别" prop="subCategory">
+          <el-col :span="8">
+            <el-form-item label="二级分类" prop="categoryLevel2">
               <el-select
                 size="large"
-                v-model="ruleForm.subCategory"
-                placeholder="选择子类别"
+                v-model="ruleForm.categoryLevel2"
+                placeholder="选择二级分类"
                 clearable
                 style="width: 100%"
               >
@@ -96,36 +128,137 @@ const submitForm = async (formEl: any) => {
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
-            <el-form-item label="税前价格(元)" prop="priceBeforeTax">
+          <el-col :span="8">
+            <el-form-item label="三级分类" prop="categoryLevel3">
+              <el-select
+                size="large"
+                v-model="ruleForm.categoryLevel3"
+                placeholder="选择三级分类"
+                clearable
+                style="width: 100%"
+              >
+                <el-option label="全部材质" value="all" />
+                <el-option label="钢材" value="gangcai" />
+                <el-option label="木材" value="mucai" />
+                <el-option label="塑料" value="suliao" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="品牌" prop="brand">
+              <el-input size="large" v-model="ruleForm.brand" placeholder="请输入品牌" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="材质" prop="material">
+              <el-input size="large" v-model="ruleForm.material" placeholder="请输入材质" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="规格型号" prop="spec">
+              <el-input size="large" v-model="ruleForm.spec" placeholder="请输入规格型号" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="单价（含税）" prop="priceBeforeTax">
               <el-input-number
                 size="large"
                 v-model="ruleForm.priceBeforeTax"
-                placeholder="请输入税前价格(元) "
+                placeholder="请输入单价（含税） "
                 :min="0"
                 style="width: 100%"
               />
             </el-form-item>
           </el-col>
-          <el-col :span="12">
-            <el-form-item label="税后价格(元)" prop="priceAfterTax">
+          <el-col :span="8">
+            <el-form-item label="单价（不含税）" prop="priceAfterTax">
               <el-input-number
                 size="large"
                 v-model="ruleForm.priceAfterTax"
-                placeholder="请输入税后价格(元) "
+                placeholder="请输入单价（不含税）"
                 :min="0"
                 style="width: 100%"
               />
             </el-form-item>
           </el-col>
+          <el-col :span="8">
+            <el-form-item label="最低采购数量" prop="minQty">
+              <el-input-number
+                size="large"
+                v-model="ruleForm.minQty"
+                placeholder="请输入最低采购数量"
+                :min="0"
+                style="width: 100%"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="单位" prop="unit">
+              <el-select
+                size="large"
+                v-model="ruleForm.unit"
+                placeholder="选择单位"
+                clearable
+                style="width: 100%"
+              >
+                <el-option label="全部材质" value="all" />
+                <el-option label="钢材" value="gangcai" />
+                <el-option label="木材" value="mucai" />
+                <el-option label="塑料" value="suliao" />
+              </el-select>
+            </el-form-item>
+          </el-col>
           <el-col :span="24">
-            <el-form-item label="服务内容介绍" prop="serviceDescription">
+            <el-form-item label="产品图片" prop="serviceDescription">
+              <el-upload action="#" :multiple="true" list-type="picture-card" :auto-upload="false">
+                <el-icon><Plus /></el-icon>
+
+                <template #file="{ file }">
+                  <div>
+                    <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
+                    <span class="el-upload-list__item-actions">
+                      <span
+                        class="el-upload-list__item-preview"
+                        @click="handlePictureCardPreview(file)"
+                      >
+                        <el-icon><zoom-in /></el-icon>
+                      </span>
+                      <span
+                        v-if="!disabled"
+                        class="el-upload-list__item-delete"
+                        @click="handleDownload(file)"
+                      >
+                        <el-icon><Download /></el-icon>
+                      </span>
+                      <span
+                        v-if="!disabled"
+                        class="el-upload-list__item-delete"
+                        @click="handleRemove(file)"
+                      >
+                        <el-icon><Delete /></el-icon>
+                      </span>
+                    </span>
+                  </div>
+                </template>
+              </el-upload>
+
+              <el-dialog v-model="dialogVisible">
+                <img w-full :src="dialogImageUrl" alt="Preview Image" />
+              </el-dialog>
+            </el-form-item>
+
+            <p class="tips">
+              <i class="fa fa-info-circle mr-1"></i>支持多张图片上传，点击图片可设置为主要展示图片 
+            </p>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="产品描述 (最多300字)" prop="serviceDescription">
               <el-input
                 v-model="ruleForm.serviceDescription"
                 type="textarea"
                 :autosize="{ minRows: 5, maxRows: 10 }"
-                placeholder="请详细描述服务内容、流程、交付物等"
-                :maxlength="1000"
+                placeholder="请输入产品详细描述，包括特性、用途、注意事项等（最多300字）"
+                :maxlength="300"
                 show-word-limit
               />
             </el-form-item>
@@ -142,21 +275,11 @@ const submitForm = async (formEl: any) => {
 </template>
 
 <style lang="scss" scoped>
-.password-rules {
-  margin: 8px 0 14px;
-  font-size: 12px;
-  color: #909399;
-
-  .rule-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 4px;
-
-    .rule-icon {
-      color: #f5222d;
-      margin-right: 6px;
-      font-size: 12px;
-    }
-  }
+.tips {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-top: -0.25rem;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+  color: #c0c4cc;
 }
 </style>

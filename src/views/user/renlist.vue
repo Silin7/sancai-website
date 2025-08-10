@@ -4,6 +4,7 @@ import { Search, Plus } from '@element-plus/icons-vue'
 import usePagination from '@/hooks/usePagination'
 import pageJump from '@/hooks/pageJump'
 
+// 查询条件
 const queryForm: any = reactive({
   name: '',
   state: 'all',
@@ -100,7 +101,7 @@ function formatCurrency(value: any) {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a> <i class="fa fa-home mr-1"></i>首页 </a>
+          <a @click=""><i class="fa fa-home mr-1"></i>首页</a>
           <span class="breadcrumb-separator">/</span>
           <span>数字技工/方案论证</span>
         </div>

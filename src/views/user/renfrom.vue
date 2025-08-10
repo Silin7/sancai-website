@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+import pageBack from '@/hooks/pageBack'
 
 const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
   serviceName: '',
   mainCategory: '',
   subCategory: '',
-  priceBeforeTax: '',
-  priceAfterTax: '',
+  priceBeforeTax: null,
+  priceAfterTax: null,
   serviceDescription: '',
 })
 const rules: any = reactive({
@@ -37,19 +38,21 @@ const submitForm = async (formEl: any) => {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a> <i class="fa fa-list mr-1"></i>产品列表 </a>
+          <a @click="pageBack"> <i class="fa fa-list mr-1"></i>产品列表 </a>
           <span class="breadcrumb-separator">/</span>
           <span>发布新服务</span>
         </div>
         <div class="action-buttons">
-          <button class="action-btn back-btn"><i class="fa fa-arrow-left mr-1"></i>返回列表</button>
+          <button class="action-btn back-btn" @click="pageBack">
+            <i class="fa fa-arrow-left mr-1"></i>返回列表
+          </button>
           <button class="action-btn draft-btn"><i class="fa fa-save mr-1"></i>保存草稿</button>
         </div>
       </div>
       <!-- 列表标题 -->
       <h2 class="list-title">
-        <i class="fa fa-key text-primary"></i>
-        修改登录密码
+        <i class="fa fa-users"></i>
+        解决方案类服务产品
       </h2>
       <el-form
         label-position="top"
@@ -134,7 +137,7 @@ const submitForm = async (formEl: any) => {
       </el-form>
       <div class="form-footer">
         <button type="submit" class="submit-btn" @click="submitForm(ruleFormRef)">
-          <i class="fa fa-save"></i>确认修改
+          <i class="fa fa-check-circle"></i>提交服务产品
         </button>
       </div>
     </div>
