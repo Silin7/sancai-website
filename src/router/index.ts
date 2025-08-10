@@ -7,6 +7,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/home.vue'),
     meta: {
       title: '首页',
+      stcode: 'home',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -18,6 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/scheme.vue'),
     meta: {
       title: '数字技工/方案论证',
+      stcode: 'scheme',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -29,6 +31,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/materials.vue'),
     meta: {
       title: '材料/设备',
+      stcode: 'materials',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -40,6 +43,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/sale.vue'),
     meta: {
       title: '智能建造装备',
+      stcode: 'sale',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -51,6 +55,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/products.vue'),
     meta: {
       title: '信息化产品/服务',
+      stcode: 'products',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -62,6 +67,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/products_detail.vue'),
     meta: {
       title: '信息化产品/服务',
+      stcode: 'products_detail',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -73,6 +79,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/datasolution.vue'),
     meta: {
       title: '数据方案组价',
+      stcode: 'datasolution',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -84,6 +91,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/requirements.vue'),
     meta: {
       title: '数据方案组价',
+      stcode: 'requirements',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -95,6 +103,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/ai.vue'),
     meta: {
       title: 'AI赋能应用',
+      stcode: 'ai',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -106,6 +115,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/video.vue'),
     meta: {
       title: '视频演示',
+      stcode: 'video',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -117,6 +127,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/supplier.vue'),
     meta: {
       title: '供应商',
+      stcode: 'supplier',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -128,6 +139,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/supplier_detail.vue'),
     meta: {
       title: '供应商',
+      stcode: 'supplier_detail',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -139,6 +151,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/about.vue'),
     meta: {
       title: '关于三才',
+      stcode: 'about',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -150,6 +163,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/news.vue'),
     meta: {
       title: '热点资讯',
+      stcode: 'news',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -161,6 +175,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/news_detail.vue'),
     meta: {
       title: '热点资讯',
+      stcode: 'news_detail',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -172,6 +187,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/login.vue'),
     meta: {
       title: '登录',
+      stcode: 'login',
       website: true,
       hashead: true,
       hasfoot: false,
@@ -183,6 +199,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/register.vue'),
     meta: {
       title: '注册',
+      stcode: 'register',
       website: true,
       hashead: true,
       hasfoot: false,
@@ -194,6 +211,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/index.vue'),
     meta: {
       title: '新材网-首页',
+      stcode: 'user-index',
       website: false,
     },
   },
@@ -203,6 +221,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/profile.vue'),
     meta: {
       title: '新材网-用户资料',
+      stcode: 'user-profile',
       website: false,
     },
   },
@@ -212,6 +231,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/renlist.vue'),
     meta: {
       title: '新材网-数字技工/方案论证',
+      stcode: 'user-renlist',
       website: false,
     },
   },
@@ -221,6 +241,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/renfrom.vue'),
     meta: {
       title: '新材网-数字技工/方案论证',
+      stcode: 'user-renlist',
       website: false,
     },
   },
@@ -230,6 +251,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/cailist.vue'),
     meta: {
       title: '新材网-材料/设备',
+      stcode: 'user-cailist',
       website: false,
     },
   },
@@ -239,6 +261,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/caifrom.vue'),
     meta: {
       title: '新材网-材料/设备',
+      stcode: 'user-cailist',
       website: false,
     },
   },
@@ -248,6 +271,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/machinelist.vue'),
     meta: {
       title: '新材网-智能建造装备',
+      stcode: 'user-machinelist',
       website: false,
     },
   },
@@ -257,6 +281,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/machinefrom.vue'),
     meta: {
       title: '新材网-智能建造装备',
+      stcode: 'user-machinelist',
       website: false,
     },
   },
@@ -266,6 +291,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/itlist.vue'),
     meta: {
       title: '新材网-信息化产品/服务',
+      stcode: 'user-itlist',
       website: false,
     },
   },
@@ -275,6 +301,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/itfrom.vue'),
     meta: {
       title: '新材网-信息化产品/服务',
+      stcode: 'user-itlist',
       website: false,
     },
   },
@@ -284,6 +311,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/inquirylist.vue'),
     meta: {
       title: '新材网-报价单',
+      stcode: 'user-inquirylist',
       website: false,
     },
   },
@@ -293,6 +321,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/editpwd.vue'),
     meta: {
       title: '新材网-改密码',
+      stcode: 'user-editpwd',
       website: false,
     },
   },
@@ -306,7 +335,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   // 根据路由元信息设置文档标题
   window.document.title = (to.meta.title as string) || ''
-  window.localStorage.setItem('selectedTab', to.name as string)
+  window.localStorage.setItem('selectedTab', to.meta.stcode as string)
   next()
 })
 

@@ -2,6 +2,7 @@
 import { onMounted, reactive, ref } from 'vue'
 import { Search, Plus } from '@element-plus/icons-vue'
 import usePagination from '@/hooks/usePagination'
+import pageJump from '@/hooks/pageJump'
 
 const queryForm: any = reactive({
   name: '',
@@ -81,6 +82,7 @@ onMounted(() => {
   }, 1000)
 })
 
+// 金额格式化
 function formatCurrency(value: any) {
   return new Intl.NumberFormat('en-US', {
     // style: 'currency',
@@ -170,7 +172,9 @@ function formatCurrency(value: any) {
           <el-col :span="6">
             <el-form-item>
               <!-- <el-button size="large" :icon="Search"> 查询 </el-button> -->
-              <el-button size="large" :icon="Plus" color="#377dff">新增</el-button>
+              <el-button size="large" :icon="Plus" color="#377dff" @click="pageJump('user-renfrom')"
+                >新增</el-button
+              >
             </el-form-item>
           </el-col>
         </el-row>

@@ -84,6 +84,7 @@ onMounted(() => {
   }, 1000)
 })
 
+// 金额格式化
 function formatCurrency(value: any) {
   return new Intl.NumberFormat('en-US', {
     // style: 'currency',

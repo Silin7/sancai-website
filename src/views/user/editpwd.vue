@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 
-import type { FormInstance, FormRules } from 'element-plus'
-
 const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
   cPassword: '',
