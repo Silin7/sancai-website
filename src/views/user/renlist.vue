@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
 import { Search, Plus } from '@element-plus/icons-vue'
+import { onMounted, reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import useHeaderStore from '@/store/modules/header'
 import usePagination from '@/hooks/usePagination'
-import pageJump from '@/hooks/pageJump'
+import formatCurrency from '@/hooks/formatCurrency'
 
 // 查询条件
 const queryForm: any = reactive({
@@ -83,15 +85,16 @@ onMounted(() => {
   }, 1000)
 })
 
-// 金额格式化
-function formatCurrency(value: any) {
-  return new Intl.NumberFormat('en-US', {
-    // style: 'currency',
-    // currency: 'CNY', // 可以改为其他货币，如 'EUR', 'CNY' 等
-    useGrouping: true,
-    minimumFractionDigits: 0, // 最小小数位数
-    maximumFractionDigits: 2, // 最大小数位数
-  }).format(value)
+const router = useRouter()
+const headerStore = useHeaderStore()
+
+const pageJump = (name: any, setStore: any = true) => {
+  if (setStore) {
+    headerStore.setSelectedTab(name)
+  }
+  router.push({
+    name,
+  })
 }
 </script>
 
@@ -101,12 +104,14 @@ function formatCurrency(value: any) {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a @click=""><i class="fa fa-home mr-1"></i>首页</a>
+          <a @click="pageJump('user-index')"><i class="fa fa-home mr-1"></i>首页</a>
           <span class="breadcrumb-separator">/</span>
           <span>数字技工/方案论证</span>
         </div>
         <div class="action-buttons">
-          <button class="action-btn back-btn"><i class="fa fa-arrow-left mr-1"></i>返回首页</button>
+          <button class="action-btn back-btn" @click="pageJump('user-index')">
+            <i class="fa fa-arrow-left mr-1"></i>返回首页
+          </button>
           <!-- <button class="action-btn save-btn"><i class="fa fa-save mr-1"></i>保存资料</button> -->
         </div>
       </div>
@@ -173,7 +178,11 @@ function formatCurrency(value: any) {
           <el-col :span="6">
             <el-form-item>
               <!-- <el-button size="large" :icon="Search"> 查询 </el-button> -->
-              <el-button size="large" :icon="Plus" color="#377dff" @click="pageJump('user-renfrom')"
+              <el-button
+                size="large"
+                :icon="Plus"
+                color="#377dff"
+                @click="pageJump('user-renfrom', false)"
                 >新增</el-button
               >
             </el-form-item>

@@ -9,8 +9,8 @@ const ruleForm: any = reactive({
   categoryLevel1: '',
   categoryLevel2: '',
   categoryLevel3: '',
-  priceBeforeTax: '',
-  priceAfterTax: '',
+  priceBeforeTax: null,
+  priceAfterTax: null,
   serviceDescription: '',
 })
 const rules: any = reactive({
@@ -57,9 +57,9 @@ const handleDownload = (file: UploadFile) => {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a> <i class="fa fa-list mr-1"></i>产品列表 </a>
+          <a><i class="fa fa-list mr-1"></i>信息化产品列表</a>
           <span class="breadcrumb-separator">/</span>
-          <span>发布新材料</span>
+          <span>上传新信息化产品</span>
         </div>
         <div class="action-buttons">
           <button class="action-btn back-btn"><i class="fa fa-arrow-left mr-1"></i>返回列表</button>
@@ -68,8 +68,8 @@ const handleDownload = (file: UploadFile) => {
       </div>
       <!-- 列表标题 -->
       <h2 class="list-title">
-        <i class="fa fa-key text-primary"></i>
-        修改登录密码
+        <i class="fa fa-upload text-primary"></i>
+        上传信息化产品信息
       </h2>
       <el-form
         label-position="top"
@@ -189,7 +189,7 @@ const handleDownload = (file: UploadFile) => {
             </el-form-item>
 
             <p class="tips">
-              <i class="fa fa-info-circle mr-1"></i>支持多张图片上传，点击图片可设置为主要展示图片 
+              <i class="fa fa-info-circle mr-1"></i>支持多张图片上传，点击图片可设置为主要展示图片
             </p>
           </el-col>
           <el-col :span="24">
@@ -208,7 +208,7 @@ const handleDownload = (file: UploadFile) => {
       </el-form>
       <div class="form-footer">
         <button type="submit" class="submit-btn" @click="submitForm(ruleFormRef)">
-          <i class="fa fa-save"></i>确认修改
+          <i class="fa fa-check-circle"></i>提交产品信息
         </button>
       </div>
     </div>

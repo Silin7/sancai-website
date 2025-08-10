@@ -3,6 +3,7 @@ import { onMounted, reactive, ref } from 'vue'
 import { Search, Plus } from '@element-plus/icons-vue'
 import usePagination from '@/hooks/usePagination'
 import pageJump from '@/hooks/pageJump'
+import formatCurrency from '@/hooks/formatCurrency'
 
 // 查询条件
 const queryForm: any = reactive({
@@ -85,17 +86,6 @@ onMounted(() => {
     tableLoading.value = false
   }, 1000)
 })
-
-// 金额格式化
-function formatCurrency(value: any) {
-  return new Intl.NumberFormat('en-US', {
-    // style: 'currency',
-    // currency: 'CNY', // 可以改为其他货币，如 'EUR', 'CNY' 等
-    useGrouping: true,
-    minimumFractionDigits: 0, // 最小小数位数
-    maximumFractionDigits: 2, // 最大小数位数
-  }).format(value)
-}
 </script>
 
 <template>
@@ -177,7 +167,13 @@ function formatCurrency(value: any) {
           <el-col :span="6">
             <el-form-item>
               <!-- <el-button size="large" :icon="Search"> 查询 </el-button> -->
-              <el-button size="large" :icon="Plus" color="#377dff" @click="pageJump('user-machinefrom')">新增</el-button>
+              <el-button
+                size="large"
+                :icon="Plus"
+                color="#377dff"
+                @click="pageJump('user-machinefrom')"
+                >新增</el-button
+              >
             </el-form-item>
           </el-col>
         </el-row>

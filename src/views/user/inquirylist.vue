@@ -81,17 +81,6 @@ onMounted(() => {
     tableLoading.value = false
   }, 1000)
 })
-
-// 金额格式化
-function formatCurrency(value: any) {
-  return new Intl.NumberFormat('en-US', {
-    // style: 'currency',
-    // currency: 'CNY', // 可以改为其他货币，如 'EUR', 'CNY' 等
-    useGrouping: true,
-    minimumFractionDigits: 0, // 最小小数位数
-    maximumFractionDigits: 2, // 最大小数位数
-  }).format(value)
-}
 </script>
 
 <template>
@@ -171,12 +160,12 @@ function formatCurrency(value: any) {
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <!-- <el-col :span="6">
             <el-form-item>
-              <!-- <el-button size="large" :icon="Search"> 查询 </el-button> -->
+              <el-button size="large" :icon="Search"> 查询 </el-button>
               <el-button size="large" :icon="Plus" color="#377dff">新增</el-button>
             </el-form-item>
-          </el-col>
+          </el-col> -->
         </el-row>
       </el-form>
       <!-- 数据表格 -->
