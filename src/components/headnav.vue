@@ -249,6 +249,15 @@ watch(
           position: relative;
           display: flex;
           flex-flow: column;
+          @media (min-width: 1551px) {
+            margin-left: 2rem;
+          }
+          @media (max-width: 1550px) and (min-width: 1351px) {
+            margin-left: 1.25rem;
+          }
+          @media (max-width: 1350px) and (min-width: 1290px) {
+            margin-left: 0.625rem;
+          }
 
           .menutitle {
             color: #fff;
@@ -318,24 +327,6 @@ watch(
                 background-color: #0b2f82;
               }
             }
-          }
-        }
-
-        @media (min-width: 1551px) {
-          .menuitem {
-            margin-left: 32px;
-          }
-        }
-
-        @media (max-width: 1550px) and (min-width: 1351px) {
-          .menuitem {
-            margin-left: 1.25rem;
-          }
-        }
-
-        @media (max-width: 1350px) and (min-width: 1290px) {
-          .menuitem {
-            margin-left: 10px;
           }
         }
 
@@ -431,12 +422,6 @@ watch(
       }
     }
   }
-
-  // @media (max-width: 1289px) {
-  //   .headflex {
-  //     height: 64px;
-  //   }
-  // }
 }
 
 .mobiledrawer {
@@ -523,6 +508,7 @@ watch(
   }
 
   .mobileBtns {
+    margin-top: 1rem;
     padding: 0 0.5rem;
 
     button {

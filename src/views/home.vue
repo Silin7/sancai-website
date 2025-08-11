@@ -154,7 +154,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 人材机信价格库 -->
-      <div class="containerBox outmostPd">
+      <div class="containerBox">
         <div class="containerTitle">人材机信价格库</div>
         <div class="containerHeng"></div>
         <div class="containerInfo">
@@ -199,7 +199,7 @@ onBeforeUnmount(() => {
       </div>
       <!-- 数字化解决方案 -->
       <div class="solutionsBox">
-        <div class="solutionsCotent outmostPd">
+        <div class="solutionsCotent">
           <div class="solutionsTitle">数字化解决方案</div>
           <div class="solutionsHeng"></div>
           <div class="solutionsInfo">
@@ -240,7 +240,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 人工智能应用 -->
-      <div class="aiBox outmostPd">
+      <div class="aiBox">
         <div class="aiContent">
           <div class="aiTitle">人工智能应用</div>
           <div class="aiHeng"></div>
@@ -249,7 +249,7 @@ onBeforeUnmount(() => {
           </div>
           <div class="aiSubbox">
             <div class="aiFabox frcc">
-              <i class="fa fa-cogs" style="font-size: 1.25rem; color: #165dff"></i>
+              <i class="fa fa-cogs"></i>
             </div>
             <div class="aiSubtitle">业务管理+AI赋能组价</div>
           </div>
@@ -311,7 +311,7 @@ onBeforeUnmount(() => {
           </div>
           <div class="aiSubbox">
             <div class="aiFabox2 frcc">
-              <i class="fa fa-calculator" style="font-size: 1.25rem; color: #722ed1"></i>
+              <i class="fa fa-calculator"></i>
             </div>
             <div class="aiSubtitle">招标造价+AI应用服务</div>
           </div>
@@ -375,7 +375,7 @@ onBeforeUnmount(() => {
       </div>
       <!-- 鸣谢单位  -->
       <div class="mxBox">
-        <div class="mxContent outmostPd">
+        <div class="mxContent">
           <div class="mxTitle">鸣谢单位</div>
           <div class="mxHeng"></div>
           <div class="mxInfo">感谢以下单位对本平台的大力支持与合作</div>
@@ -432,7 +432,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 友情链接  -->
-      <div class="pyBox outmostPd">
+      <div class="pyBox">
         <div class="pyTitle">友情链接</div>
         <div class="pyHeng"></div>
         <div class="pyInfo">
@@ -489,8 +489,11 @@ onBeforeUnmount(() => {
       margin: 0 auto;
       position: relative;
       width: 100%;
-      height: 44rem;
       max-width: 1536px;
+      height: 44rem;
+      @media (max-width: 600px) {
+        height: 50rem;
+      }
 
       .bannerImage {
         position: absolute;
@@ -504,16 +507,22 @@ onBeforeUnmount(() => {
       }
 
       .bannerAbsolute {
-        padding-top: 10rem;
         position: absolute;
-        width: 100%;
         z-index: 1;
+        padding-top: 10rem;
+        width: 100%;
+        @media (max-width: 600px) {
+          padding-top: 6rem;
+        }
 
         .bannerContent {
           margin: 0 auto;
-          padding: 0 2rem;
+          padding: 2rem;
           width: 100%;
           max-width: 1536px;
+          @media (max-width: 600px) {
+            padding: 1rem;
+          }
 
           .bannerTitle {
             margin-bottom: 1.5rem;
@@ -531,16 +540,13 @@ onBeforeUnmount(() => {
 
             span {
               margin-right: 2rem;
+              @media (max-width: 600px) {
+                margin-right: 1rem;
+              }
             }
 
             span:last-child {
               margin-right: 0;
-            }
-
-            @media (max-width: 600px) {
-              span {
-                margin-right: 1rem;
-              }
             }
           }
 
@@ -566,6 +572,9 @@ onBeforeUnmount(() => {
             font-size: 1.25rem;
             line-height: 1.25rem;
             color: rgba(255 255 255 / 0.7);
+            @media (max-width: 600px) {
+              margin-top: 50px;
+            }
           }
 
           .bannerGridbox {
@@ -642,24 +651,6 @@ onBeforeUnmount(() => {
         }
       }
     }
-
-    @media (max-width: 600px) {
-      .bannerAnchor {
-        height: 50rem;
-
-        .bannerAbsolute {
-          padding-top: 6rem;
-
-          .bannerContent {
-            padding: 0 1rem;
-
-            .bannerCompany {
-              margin-top: 50px;
-            }
-          }
-        }
-      }
-    }
   }
 
   .featuresBox {
@@ -684,6 +675,9 @@ onBeforeUnmount(() => {
         width: 100%;
         max-width: 1536px;
         height: 120px;
+        @media (max-width: 600px) {
+          padding: 0;
+        }
 
         .featuresImgTitleCentent {
           margin: 0 auto;
@@ -694,15 +688,8 @@ onBeforeUnmount(() => {
           font-weight: 700;
           color: #fff;
           background-color: rgba(1, 98, 105, 0.5);
-        }
-      }
-
-      @media (max-width: 600px) {
-        .featuresImgTitle {
-          padding: 0;
-
-          .featuresImgTitleCentent {
-            width: calc(100% - 1rem);
+          @media (max-width: 600px) {
+            width: calc(100% - 2rem);
           }
         }
       }
@@ -714,6 +701,9 @@ onBeforeUnmount(() => {
       padding: 0 2rem;
       width: 100%;
       max-width: 1536px;
+      @media (max-width: 600px) {
+        padding: 0;
+      }
 
       .featuresRounded {
         margin: 0 auto;
@@ -727,6 +717,10 @@ onBeforeUnmount(() => {
           0 10px 15px -3px rgb(0 0 0 / 0.1),
           0 4px 6px -4px rgb(0 0 0 / 0.1);
         background-color: rgba(230, 250, 250, 0.5);
+        @media (max-width: 600px) {
+          padding: 1rem;
+          width: calc(100% - 2rem);
+        }
 
         .featuresRoundedItem {
           margin-bottom: 2.5rem;
@@ -764,20 +758,6 @@ onBeforeUnmount(() => {
           }
         }
       }
-
-      @media (max-width: 600px) {
-        .featuresRounded {
-          width: calc(100% - 1rem);
-          padding-left: 1rem;
-          padding-right: 1rem;
-        }
-      }
-    }
-
-    @media (max-width: 600px) {
-      .featuresContent {
-        padding: 0;
-      }
     }
   }
 
@@ -787,6 +767,10 @@ onBeforeUnmount(() => {
     padding: 0 2rem;
     width: 100%;
     max-width: 1536px;
+    @media (max-width: 600px) {
+      margin: 4rem 0;
+      padding: 0 1rem;
+    }
 
     .containerTitle {
       font-size: clamp(1.6rem, 4vw, 2.5rem);
@@ -804,7 +788,7 @@ onBeforeUnmount(() => {
     }
 
     .containerInfo {
-      margin: 1rem auto 0;
+      margin: 1rem auto 2.5rem;
       text-align: center;
       max-width: 42rem;
       color: rgb(75 85 99);
@@ -824,11 +808,14 @@ onBeforeUnmount(() => {
         .containerSubItem {
           flex-shrink: 0;
           margin: 0 0.5rem;
+          padding: 0.5rem 1rem;
           line-height: 2rem;
           color: rgb(1 32 96);
-          padding: 0.5rem 1rem;
-          border-radius: 0.5rem;
           background-color: #fff;
+          border-radius: 0.5rem;
+          @media (max-width: 600px) {
+            margin: 0 0.25rem;
+          }
         }
 
         .containerSubItem:first-child {
@@ -872,6 +859,9 @@ onBeforeUnmount(() => {
         padding: 2rem 2rem 1rem 2rem;
         border-radius: 1rem 1rem 0 0;
         background-color: rgb(1 32 96 / 0.4);
+        @media (max-width: 600px) {
+          padding: 1rem 1rem 0 1rem;
+        }
 
         .containerGridContent {
           display: flex;
@@ -884,9 +874,12 @@ onBeforeUnmount(() => {
             align-items: center;
             padding: 0.75rem;
             border-radius: 0.5rem;
+            @media (max-width: 600px) {
+              padding: 0.5rem;
+            }
 
             .containerGridimginfo {
-              font-size: 1.25rem;
+              font-size: clamp(1rem, 4vw, 1.25rem);
               line-height: 2rem;
               font-weight: 500;
               color: #fff;
@@ -905,12 +898,6 @@ onBeforeUnmount(() => {
           }
         }
       }
-
-      @media (max-width: 600px) {
-        .containerGridMaod {
-          padding: 1rem 1rem 0 1rem;
-        }
-      }
     }
   }
 
@@ -919,6 +906,10 @@ onBeforeUnmount(() => {
     padding: 2.5rem;
     width: 100%;
     background-color: rgb(240 247 255 / 1);
+    @media (max-width: 600px) {
+      margin: 4rem auto 0;
+      padding: 2.5rem 0;
+    }
 
     .solutionsCotent {
       margin: 0 auto;
@@ -926,6 +917,9 @@ onBeforeUnmount(() => {
       padding: 0 2rem;
       width: 100%;
       max-width: 1536px;
+      @media (max-width: 600px) {
+        padding: 0 1em;
+      }
 
       .solutionsTitle {
         font-size: clamp(1.6rem, 4vw, 2.5rem);
@@ -968,6 +962,9 @@ onBeforeUnmount(() => {
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             background-color: #fff;
+            @media (max-width: 600px) {
+              margin: 0 0.25rem;
+            }
           }
 
           .solutionsSubItem:first-child {
@@ -999,6 +996,9 @@ onBeforeUnmount(() => {
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             background-color: #fff;
+            @media (max-width: 600px) {
+              margin: 0 0.25rem;
+            }
           }
 
           .solutionsSubItem:first-child {
@@ -1039,7 +1039,7 @@ onBeforeUnmount(() => {
 
           .solutionsImgTitle1 {
             margin-bottom: 1rem;
-            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            font-size: clamp(1.25rem, 4vw, 1.5rem);
             line-height: 2rem;
             font-weight: 500;
             text-align: center;
@@ -1089,6 +1089,9 @@ onBeforeUnmount(() => {
     padding: 4rem 2.5rem;
     width: 100%;
     background-color: rgba(255, 255, 255, 1);
+    @media (max-width: 600px) {
+      padding: 4rem 0;
+    }
 
     .aiContent {
       position: relative;
@@ -1096,6 +1099,9 @@ onBeforeUnmount(() => {
       padding: 0 2rem;
       width: 100%;
       max-width: 1536px;
+      @media (max-width: 600px) {
+        padding: 0 1rem;
+      }
 
       .aiTitle {
         font-size: clamp(1.6rem, 4vw, 2.5rem);
@@ -1130,6 +1136,11 @@ onBeforeUnmount(() => {
           height: 3rem;
           background-color: rgba(22 93 255 / 0.1);
           border-radius: 9999px;
+
+          i {
+            font-size: 1.25rem;
+            color: #165dff;
+          }
         }
 
         .aiFabox2 {
@@ -1138,10 +1149,15 @@ onBeforeUnmount(() => {
           height: 3rem;
           background-color: rgb(114 46 209 / 0.1);
           border-radius: 9999px;
+
+          i {
+            font-size: 1.25rem;
+            color: #722ed1;
+          }
         }
 
         .aiSubtitle {
-          font-size: 1.5rem;
+          font-size: clamp(1.25rem, 4vw, 1.5rem);
           line-height: 2rem;
           font-weight: 700;
           color: rgb(1 32 96);
@@ -1150,21 +1166,28 @@ onBeforeUnmount(() => {
 
       .aiClassbox {
         margin-bottom: 2.5rem;
-        width: calc(100% + 1.5rem);
+        width: calc(100% + 1rem);
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+        @media (max-width: 600px) {
+          margin-bottom: 1.5rem;
+        }
 
         .aiClassitem {
-          margin: 0 1.5rem 1.5rem 0;
+          margin: 0 1rem 1rem 0;
           padding: 1.25rem;
-          width: calc(33.3% - 1.5rem);
+          width: calc(33.3% - 1rem);
           display: flex;
           flex-flow: column;
           justify-content: center;
           align-items: center;
           background-color: rgb(249 250 251);
           border-radius: 0.75rem;
+          @media (max-width: 600px) {
+            padding: 1.25rem 1rem;
+            width: calc(50% - 1rem);
+          }
 
           .aiClassitemfa {
             margin-bottom: 1rem;
@@ -1172,6 +1195,10 @@ onBeforeUnmount(() => {
             height: 4rem;
             border-radius: 9999px;
             background-color: rgb(22 93 255 / 0.1);
+            @media (max-width: 600px) {
+              width: 3rem;
+              height: 3rem;
+            }
           }
 
           .aiClassitemfa2 {
@@ -1180,18 +1207,17 @@ onBeforeUnmount(() => {
             height: 4rem;
             border-radius: 9999px;
             background-color: rgb(114 46 209 / 0.1);
+            @media (max-width: 600px) {
+              width: 3rem;
+              height: 3rem;
+            }
           }
 
           .aiClassitemtext {
             line-height: 1.5rem;
             font-weight: 500;
+            text-align: center;
             color: rgb(1 32 96);
-          }
-        }
-
-        @media (max-width: 600px) {
-          .aiClassitem {
-            width: calc(50% - 1.5rem);
           }
         }
 
@@ -1200,6 +1226,10 @@ onBeforeUnmount(() => {
           box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
           animation: jumpUpwards 300ms ease-in-out forwards;
         }
+      }
+
+      .aiClassbox:last-child {
+        margin-bottom: 0rem;
       }
     }
   }
@@ -1210,6 +1240,9 @@ onBeforeUnmount(() => {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
     background-image: url('../assets/about00.jpg');
+    @media (max-width: 600px) {
+      padding: 2.5rem 0;
+    }
 
     .mxContent {
       margin: 0 auto;
@@ -1217,6 +1250,9 @@ onBeforeUnmount(() => {
       padding: 0 2rem;
       width: 100%;
       max-width: 1536px;
+      @media (max-width: 600px) {
+        padding: 0 1rem;
+      }
 
       .mxTitle {
         font-size: clamp(1.6rem, 4vw, 2.5rem);
@@ -1241,21 +1277,30 @@ onBeforeUnmount(() => {
       }
 
       .mxClassbox {
-        width: calc(100% + 1.5rem);
+        width: calc(100% + 1rem);
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
 
         .mxClassitem {
-          margin: 0 1.5rem 1.5rem 0;
+          margin: 0 1rem 1rem 0;
           padding: 1.25rem;
           display: flex;
           flex-flow: column;
           justify-content: center;
           align-items: center;
           background-color: #fff;
-          // background-color: rgb(249 250 251);
           border-radius: 0.75rem;
+          @media (min-width: 1140px) {
+            width: calc(16.6% - 1rem);
+          }
+          @media (max-width: 1140px) and (min-width: 600px) {
+            width: calc(33.3% - 1rem);
+          }
+          @media (max-width: 600px) {
+            padding: 1rem 0.5rem;
+            width: calc(50% - 1rem);
+          }
 
           .mxClassitemfa {
             margin-bottom: 1rem;
@@ -1290,24 +1335,6 @@ onBeforeUnmount(() => {
           }
         }
 
-        @media (min-width: 1140px) {
-          .mxClassitem {
-            width: calc(16.6% - 1.5rem);
-          }
-        }
-
-        @media (max-width: 1140px) and (min-width: 600px) {
-          .mxClassitem {
-            width: calc(33.3% - 1.5rem);
-          }
-        }
-
-        @media (max-width: 600px) {
-          .mxClassitem {
-            width: calc(50% - 1.5rem);
-          }
-        }
-
         .mxClassitem:hover {
           cursor: pointer;
           box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
@@ -1323,6 +1350,10 @@ onBeforeUnmount(() => {
     padding: 0 2rem 4rem;
     width: 100%;
     max-width: 1536px;
+    @media (max-width: 600px) {
+      margin: 4rem auto 0;
+      padding: 0 1rem 4rem;
+    }
 
     .pyTitle {
       font-size: clamp(1.6rem, 4vw, 2.5rem);
@@ -1347,21 +1378,30 @@ onBeforeUnmount(() => {
     }
 
     .pyClassbox {
-      width: calc(100% + 1.5rem);
+      width: calc(100% + 1rem);
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
 
       .pyClassitem {
-        margin: 0 1.5rem 1.5rem 0;
-        padding: 1.25rem;
+        margin: 0 1rem 1rem 0;
+        padding: 1.25rem 1rem;
         display: flex;
         flex-flow: column;
         justify-content: center;
         align-items: center;
         background-color: #fff;
-        // background-color: rgb(249 250 251);
         border-radius: 0.75rem;
+        @media (min-width: 1140px) {
+          width: calc(16.6% - 1rem);
+        }
+        @media (max-width: 1140px) and (min-width: 600px) {
+          width: calc(33.3% - 1rem);
+        }
+        @media (max-width: 600px) {
+          padding: 1rem 0.5rem;
+          width: calc(50% - 1rem);
+        }
 
         .pyClassitemfa1 {
           margin-bottom: 1rem;
@@ -1396,24 +1436,6 @@ onBeforeUnmount(() => {
         }
       }
 
-      @media (min-width: 1140px) {
-        .pyClassitem {
-          width: calc(16.6% - 1.5rem);
-        }
-      }
-
-      @media (max-width: 1140px) and (min-width: 600px) {
-        .pyClassitem {
-          width: calc(33.3% - 1.5rem);
-        }
-      }
-
-      @media (max-width: 600px) {
-        .pyClassitem {
-          width: calc(50% - 1.5rem);
-        }
-      }
-
       .pyClassitem:hover {
         cursor: pointer;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
@@ -1422,31 +1444,11 @@ onBeforeUnmount(() => {
     }
   }
 
-  @media (max-width: 600px) {
-    .containerBox {
-      margin: 4rem 0;
-    }
-
-    .solutionsBox {
-      margin: 4rem 0;
-      padding: 2.5rem 0;
-    }
-
-    .aiBox {
-      margin: 4rem 0;
-      padding: 2.5rem 0;
-    }
-
-    .mxBox {
-      padding: 2.5rem 0;
-    }
-  }
-
-  @media (max-width: 1140px) {
-    .outmostPd {
-      padding-left: 0.5rem !important;
-      padding-right: 0.5rem !important;
-    }
-  }
+  // @media (max-width: 1140px) {
+  //   .outmostPd {
+  //     padding-left: 0.5rem !important;
+  //     padding-right: 0.5rem !important;
+  //   }
+  // }
 }
 </style>
