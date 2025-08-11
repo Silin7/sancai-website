@@ -511,20 +511,20 @@ onBeforeUnmount(() => {
 
         .bannerContent {
           margin: 0 auto;
-          padding: 0 30px;
+          padding: 0 2rem;
           width: 100%;
           max-width: 1536px;
 
           .bannerTitle {
             margin-bottom: 1.5rem;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.8rem, 4vw, 3rem);
             color: #fff;
             font-weight: 700;
           }
 
           .bannerSubtitle {
             margin-bottom: 2rem;
-            font-size: clamp(1.8rem, 2vw, 1rem);
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
             line-height: 3rem;
             font-weight: 500;
             color: rgb(255 255 255 / 0.9);
@@ -544,22 +544,22 @@ onBeforeUnmount(() => {
             }
           }
 
-          .bannerJgkbtn {
-            padding: 0.75rem 2rem;
-            color: #fff;
-            background-color: rgb(22 93 255);
-            border-radius: 9999px;
-            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-          }
+          // .bannerJgkbtn {
+          //   padding: 0.75rem 2rem;
+          //   color: #fff;
+          //   background-color: rgb(22 93 255);
+          //   border-radius: 9999px;
+          //   box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          // }
 
-          .bannerJjfabtn {
-            margin-left: 20px;
-            padding: 0.75rem 2rem;
-            color: #fff;
-            background-color: rgba(255 255 255 / 0.1);
-            border: 1px solid rgba(255 255 255 / 0.3);
-            border-radius: 9999px;
-          }
+          // .bannerJjfabtn {
+          //   margin-left: 20px;
+          //   padding: 0.75rem 2rem;
+          //   color: #fff;
+          //   background-color: rgba(255 255 255 / 0.1);
+          //   border: 1px solid rgba(255 255 255 / 0.3);
+          //   border-radius: 9999px;
+          // }
 
           .bannerCompany {
             margin-top: 80px;
@@ -644,7 +644,21 @@ onBeforeUnmount(() => {
     }
 
     @media (max-width: 600px) {
-      height: 60rem;
+      .bannerAnchor {
+        height: 50rem;
+
+        .bannerAbsolute {
+          padding-top: 6rem;
+
+          .bannerContent {
+            padding: 0 1rem;
+
+            .bannerCompany {
+              margin-top: 50px;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -665,7 +679,7 @@ onBeforeUnmount(() => {
 
       .featuresImgTitle {
         position: absolute;
-        top: 80px;
+        bottom: 0;
         padding: 0 2rem;
         width: 100%;
         max-width: 1536px;
@@ -673,9 +687,9 @@ onBeforeUnmount(() => {
 
         .featuresImgTitleCentent {
           margin: 0 auto;
-          padding-left: 24px;
+          padding-left: 1.5rem;
           width: 90%;
-          font-size: clamp(1.8rem, 4vw, 2.5rem);
+          font-size: clamp(1.6rem, 4vw, 2.5rem);
           line-height: 120px;
           font-weight: 700;
           color: #fff;
@@ -686,6 +700,10 @@ onBeforeUnmount(() => {
       @media (max-width: 600px) {
         .featuresImgTitle {
           padding: 0;
+
+          .featuresImgTitleCentent {
+            width: calc(100% - 1rem);
+          }
         }
       }
     }
@@ -726,8 +744,8 @@ onBeforeUnmount(() => {
             }
 
             .featuresRoundedTitle {
-              padding-left: 2rem;
-              font-size: 1.5rem;
+              padding-left: 1rem;
+              font-size: clamp(1.25rem, 4vw, 1.5rem);
               line-height: 2rem;
               font-weight: 700;
               color: rgb(1 32 96);
@@ -736,12 +754,12 @@ onBeforeUnmount(() => {
 
           .featuresRoundedInfo1 {
             margin-bottom: 1rem;
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 4vw, 1.25rem);
             color: rgb(75 85 99);
           }
 
           .featuresRoundedInfo2 {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 4vw, 1.25rem);
             color: rgb(75 85 99);
           }
         }
@@ -749,6 +767,7 @@ onBeforeUnmount(() => {
 
       @media (max-width: 600px) {
         .featuresRounded {
+          width: calc(100% - 1rem);
           padding-left: 1rem;
           padding-right: 1rem;
         }
@@ -770,7 +789,7 @@ onBeforeUnmount(() => {
     max-width: 1536px;
 
     .containerTitle {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
       color: rgb(1 32 96);
@@ -804,12 +823,20 @@ onBeforeUnmount(() => {
 
         .containerSubItem {
           flex-shrink: 0;
-          margin: 0 0.75rem;
+          margin: 0 0.5rem;
           line-height: 2rem;
           color: rgb(1 32 96);
-          padding: 0.5rem 1.25rem;
+          padding: 0.5rem 1rem;
           border-radius: 0.5rem;
           background-color: #fff;
+        }
+
+        .containerSubItem:first-child {
+          margin-left: 0;
+        }
+
+        .containerSubItem:last-child {
+          margin-right: 0;
         }
 
         .containerSubItem:hover {
@@ -878,6 +905,12 @@ onBeforeUnmount(() => {
           }
         }
       }
+
+      @media (max-width: 600px) {
+        .containerGridMaod {
+          padding: 1rem 1rem 0 1rem;
+        }
+      }
     }
   }
 
@@ -895,7 +928,7 @@ onBeforeUnmount(() => {
       max-width: 1536px;
 
       .solutionsTitle {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-size: clamp(1.6rem, 4vw, 2.5rem);
         font-weight: 700;
         text-align: center;
         color: rgb(1 32 96);
@@ -929,12 +962,20 @@ onBeforeUnmount(() => {
 
           .solutionsSubItem {
             flex-shrink: 0;
-            margin: 0 0.75rem;
+            margin: 0 0.5rem;
             line-height: 2rem;
             color: rgb(1 32 96);
-            padding: 0.5rem 1.25rem;
+            padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             background-color: #fff;
+          }
+
+          .solutionsSubItem:first-child {
+            margin-left: 0;
+          }
+
+          .solutionsSubItem:last-child {
+            margin-right: 0;
           }
 
           .solutionsSubItem:hover {
@@ -952,12 +993,20 @@ onBeforeUnmount(() => {
 
           .solutionsSubItem {
             flex-shrink: 0;
-            margin: 0 0.75rem;
+            margin: 0 0.5rem;
             line-height: 2rem;
             color: rgb(1 32 96);
-            padding: 0.5rem 1.25rem;
+            padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             background-color: #fff;
+          }
+
+          .solutionsSubItem:first-child {
+            margin-left: 0;
+          }
+
+          .solutionsSubItem:last-child {
+            margin-right: 0;
           }
 
           .solutionsSubItem:hover {
@@ -990,7 +1039,7 @@ onBeforeUnmount(() => {
 
           .solutionsImgTitle1 {
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
             line-height: 2rem;
             font-weight: 500;
             text-align: center;
@@ -999,7 +1048,7 @@ onBeforeUnmount(() => {
 
           .solutionsImgTitle2 {
             margin-bottom: 1.25rem;
-            font-size: 2.25rem;
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
             line-height: 2.5rem;
             font-weight: 700;
             text-align: center;
@@ -1007,7 +1056,7 @@ onBeforeUnmount(() => {
           }
 
           .solutionsImgTitle3 {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 4vw, 1.5rem);
             line-height: 1.75rem;
             opacity: 0.9;
             text-align: center;
@@ -1021,7 +1070,7 @@ onBeforeUnmount(() => {
           left: 0;
           z-index: 2;
           width: 100%;
-          padding: 2.5rem;
+          padding: clamp(1.5rem, 4vw, 2.5rem);
           border-top: 1px solid rgb(229 231 235);
           background-color: rgb(255 255 255 / 0.8);
 
@@ -1049,7 +1098,7 @@ onBeforeUnmount(() => {
       max-width: 1536px;
 
       .aiTitle {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-size: clamp(1.6rem, 4vw, 2.5rem);
         font-weight: 700;
         text-align: center;
         color: rgb(1 32 96);
@@ -1170,7 +1219,7 @@ onBeforeUnmount(() => {
       max-width: 1536px;
 
       .mxTitle {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-size: clamp(1.6rem, 4vw, 2.5rem);
         font-weight: 700;
         text-align: center;
         color: rgb(1 32 96);
@@ -1276,7 +1325,7 @@ onBeforeUnmount(() => {
     max-width: 1536px;
 
     .pyTitle {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
       color: rgb(1 32 96);
@@ -1374,11 +1423,17 @@ onBeforeUnmount(() => {
   }
 
   @media (max-width: 600px) {
+    .containerBox {
+      margin: 4rem 0;
+    }
+
     .solutionsBox {
+      margin: 4rem 0;
       padding: 2.5rem 0;
     }
 
     .aiBox {
+      margin: 4rem 0;
       padding: 2.5rem 0;
     }
 
@@ -1389,8 +1444,8 @@ onBeforeUnmount(() => {
 
   @media (max-width: 1140px) {
     .outmostPd {
-      padding-left: 1rem !important;
-      padding-right: 1rem !important;
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
     }
   }
 }
