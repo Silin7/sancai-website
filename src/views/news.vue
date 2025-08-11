@@ -31,7 +31,7 @@ const handleCurrentChange = (val: number) => {
 function pageJump() {
   backToTop()
   router.push({
-    name: 'news_detail'
+    name: 'news_detail',
   })
 }
 </script>
@@ -165,6 +165,7 @@ function pageJump() {
 <style lang="scss" scoped>
 .newsPage {
   background-color: #f9fafb;
+  overflow-x: hidden;
 
   .nsbannerBox {
     position: relative;

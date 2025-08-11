@@ -271,6 +271,7 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .aboutPage {
   background-color: #f9fafb;
+  overflow-x: hidden;
 
   .abbannerBox {
     position: relative;

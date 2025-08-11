@@ -34,7 +34,7 @@ const input2: any = ref()
 function pageJump() {
   backToTop()
   router.push({
-    name: 'supplier_detail'
+    name: 'supplier_detail',
   })
 }
 </script>
@@ -175,6 +175,7 @@ function pageJump() {
 <style lang="scss" scoped>
 .supplierPage {
   background-color: #f9fafb;
+  overflow-x: hidden;
 
   .srbannerBox {
     position: relative;

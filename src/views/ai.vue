@@ -127,11 +127,7 @@ onBeforeUnmount(() => {
                   : 'width: 100%'
             "
           >
-            <img
-              src="@/assets/photo-1560518883-ce09059eeffa.jpg"
-              alt=""
-              class="caseClassitemfa"
-            />
+            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="caseClassitemfa" />
             <div class="caseClassitembox">
               <div class="caseClassitemFrsc">
                 <div class="caseClassitemZnsj">智能设计</div>
@@ -155,6 +151,7 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .aiPage {
   background-color: #f9fafb;
+  overflow-x: hidden;
 
   .aibannerBox {
     position: relative;

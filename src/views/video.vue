@@ -224,6 +224,7 @@ const handleCurrentChange = (val: number) => {
 <style lang="scss" scoped>
 .productsPage {
   background-color: #f9fafb;
+  overflow-x: hidden;
 
   .prbannerBox {
     position: relative;

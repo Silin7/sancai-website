@@ -92,7 +92,7 @@ function pageJump() {
               </div>
               <div class="digitizeClassitemtext">智能化设计</div>
               <div class="digitizeClassiteminfo">基于BIM模型实现工程量精准计算与动态成本管控</div>
-              <button  @click="pageJump">提交需求</button>
+              <button @click="pageJump">提交需求</button>
             </div>
           </div>
         </div>
@@ -196,6 +196,7 @@ function pageJump() {
 <style lang="scss" scoped>
 .datasolutionPage {
   background-color: #f9fafb;
+  overflow-x: hidden;
 
   .dsbannerBox {
     position: relative;

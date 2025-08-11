@@ -110,12 +110,7 @@ watch(
   <div>
     <div class="headPositon">
       <div class="headflex">
-        <div
-          class="headnav"
-          :style="
-            windowWidth > 1290 ? 'width: calc(100% - 130px);' : 'justify-content: space-between;'
-          "
-        >
+        <div class="headnav">
           <img src="@/assets/logo.png" alt="logo" class="headlogo" @click="tabRouterPush2" />
           <div v-if="windowWidth > 1290" class="menubox">
             <div
@@ -144,8 +139,8 @@ watch(
               </div>
             </div>
           </div>
-          <div v-else @click="drawerVisible = true">
-            <i class="fa fa-bars" style="font-size: 1.5rem; color: #fff"></i>
+          <div v-else class="drawerIcon" @click="drawerVisible = true">
+            <i class="fa fa-bars"></i>
           </div>
         </div>
         <div v-if="windowWidth > 1290" class="headbtns">
@@ -199,6 +194,10 @@ watch(
           </div>
         </div>
       </div>
+      <div class="mobileBtns">
+        <button class="mobileDlbtn">登录</button>
+        <button class="mobileZcbtn">注册</button>
+      </div>
     </el-drawer>
   </div>
 </template>
@@ -224,16 +223,19 @@ watch(
       width: 100%;
       display: flex;
       align-items: center;
+      justify-content: space-between;
 
       .headlogo {
         cursor: pointer;
         width: 150px;
       }
+
       @media (min-width: 1290px) {
         .headlogo:hover {
           transform: scale(1.05);
         }
       }
+
       @media (max-width: 1289px) {
         .headlogo {
           width: 120px;
@@ -367,6 +369,18 @@ watch(
           }
         }
       }
+
+      .drawerIcon {
+        font-size: 1.25rem;
+        color: #fff;
+      }
+    }
+
+    @media (min-width: 1290px) {
+      .headnav {
+        width: calc(100% - 130px);
+        justify-content: flex-start;
+      }
     }
 
     .headbtns {
@@ -426,11 +440,15 @@ watch(
       }
     }
   }
+
+  @media (max-width: 1289px) {
+    .headflex {
+      height: 60px;
+    }
+  }
 }
 
 .mobiledrawer {
-  background-color: red !important;
-
   .drawerhead {
     padding: 1rem;
     display: flex;
@@ -466,13 +484,13 @@ watch(
     }
 
     .drawerclose {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       color: #fff;
     }
   }
 
   .mobilecollapse {
-    padding: 1rem 0.5rem;
+    padding: 0.5rem;
 
     .collapseItem {
       margin-bottom: 0.5rem;
@@ -510,6 +528,28 @@ watch(
 
     .collapseActive {
       background-color: rgb(22 93 255 / 0.2);
+    }
+  }
+
+  .mobileBtns {
+    padding: 0 0.5rem;
+
+    button {
+      margin-bottom: 0.5rem;
+      width: 100%;
+      line-height: 1.5rem;
+      padding: 0.5rem 0;
+      border-radius: 999px;
+    }
+
+    .mobileDlbtn {
+      color: rgb(22 93 255);
+      border: 1px solid rgb(22 93 255);
+    }
+
+    .mobileZcbtn {
+      color: #fff;
+      background-color: rgb(22 93 255 / 0.9);
     }
   }
 }
