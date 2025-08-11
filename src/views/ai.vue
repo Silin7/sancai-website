@@ -373,7 +373,7 @@ onBeforeUnmount(() => {
     max-width: 1536px;
 
     .caseTitle {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
       color: rgb(1 32 96);

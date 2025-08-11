@@ -6,11 +6,11 @@
 @use './user.scss';
 @use './wh.scss';
 
-// // 隐藏滚动条
-// body {
-//   scrollbar-width: none;
-//   scrollbar-color: transparent transparent;
-// }
+// 隐藏滚动条
+body {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
 
 div {
   box-sizing: border-box;

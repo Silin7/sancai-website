@@ -443,7 +443,7 @@ watch(
 
   @media (max-width: 1289px) {
     .headflex {
-      height: 60px;
+      height: 64px;
     }
   }
 }
