@@ -1,10 +1,19 @@
 <script setup lang="ts">
-import { Search, Plus } from '@element-plus/icons-vue'
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import useHeaderStore from '@/store/modules/header'
+import { Search, Plus } from '@element-plus/icons-vue'
+import eventBus from '@/utils/eventBus'
 import usePagination from '@/hooks/usePagination'
 import formatCurrency from '@/hooks/formatCurrency'
+
+// 路由跳转
+const router = useRouter()
+
+function pageJump(name: any) {
+  router.push({
+    name,
+  })
+}
 
 // 查询条件
 const queryForm: any = reactive({
@@ -84,18 +93,6 @@ onMounted(() => {
     tableLoading.value = false
   }, 1000)
 })
-
-const router = useRouter()
-const headerStore = useHeaderStore()
-
-const pageJump = (name: any, setStore: any = true) => {
-  if (setStore) {
-    headerStore.setSelectedTab(name)
-  }
-  router.push({
-    name,
-  })
-}
 </script>
 
 <template>
@@ -104,12 +101,17 @@ const pageJump = (name: any, setStore: any = true) => {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a @click="pageJump('user-index')"><i class="fa fa-home mr-1"></i>首页</a>
+          <a @click="eventBus.emit('set-router-store', 'user-index')">
+            <i class="fa fa-home mr-1"></i>首页
+          </a>
           <span class="breadcrumb-separator">/</span>
           <span>数字技工/方案论证</span>
         </div>
         <div class="action-buttons">
-          <button class="action-btn back-btn" @click="pageJump('user-index')">
+          <button
+            class="action-btn back-btn"
+            @click="eventBus.emit('set-router-store', 'user-index')"
+          >
             <i class="fa fa-arrow-left mr-1"></i>返回首页
           </button>
           <!-- <button class="action-btn save-btn"><i class="fa fa-save mr-1"></i>保存资料</button> -->
@@ -178,11 +180,7 @@ const pageJump = (name: any, setStore: any = true) => {
           <el-col :span="6">
             <el-form-item>
               <!-- <el-button size="large" :icon="Search"> 查询 </el-button> -->
-              <el-button
-                size="large"
-                :icon="Plus"
-                color="#377dff"
-                @click="pageJump('user-renfrom', false)"
+              <el-button size="large" :icon="Plus" color="#377dff" @click="pageJump('user-renfrom')"
                 >新增</el-button
               >
             </el-form-item>

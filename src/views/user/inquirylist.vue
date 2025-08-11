@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
-import { Search, Plus } from '@element-plus/icons-vue'
+import { Search } from '@element-plus/icons-vue'
+import eventBus from '@/utils/eventBus'
 import usePagination from '@/hooks/usePagination'
 
 // 查询条件
@@ -89,12 +90,19 @@ onMounted(() => {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a> <i class="fa fa-home mr-1"></i>首页 </a>
+          <a @click="eventBus.emit('set-router-store', 'user-index')">
+            <i class="fa fa-home mr-1"></i>首页
+          </a>
           <span class="breadcrumb-separator">/</span>
           <span>报价单</span>
         </div>
         <div class="action-buttons">
-          <button class="action-btn back-btn"><i class="fa fa-arrow-left mr-1"></i>返回首页</button>
+          <button
+            class="action-btn back-btn"
+            @click="eventBus.emit('set-router-store', 'user-index')"
+          >
+            <i class="fa fa-arrow-left mr-1"></i>返回首页
+          </button>
           <!-- <button class="action-btn save-btn"><i class="fa fa-save mr-1"></i>保存资料</button> -->
         </div>
       </div>

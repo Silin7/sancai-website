@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+import eventBus from '@/utils/eventBus'
 
 const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
@@ -53,12 +54,19 @@ const submitForm = async (formEl: any) => {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a> <i class="fa fa-home mr-1"></i>首页 </a>
+          <a @click="eventBus.emit('set-router-store', 'user-index')">
+            <i class="fa fa-home mr-1"></i>首页
+          </a>
           <span class="breadcrumb-separator">/</span>
           <span>用户资料</span>
         </div>
         <div class="action-buttons">
-          <button class="action-btn back-btn"><i class="fa fa-arrow-left mr-1"></i>返回首页</button>
+          <button
+            class="action-btn back-btn"
+            @click="eventBus.emit('set-router-store', 'user-index')"
+          >
+            <i class="fa fa-arrow-left mr-1"></i>返回首页
+          </button>
           <!-- <button class="action-btn save-btn"><i class="fa fa-save mr-1"></i>保存资料</button> -->
         </div>
       </div>

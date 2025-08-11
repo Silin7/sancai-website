@@ -11,6 +11,7 @@ function updateWindowWidth() {
 }
 
 onMounted(() => {
+  // headerStore.setSelectedTab('home')
   window.addEventListener('resize', updateWindowWidth)
 })
 
