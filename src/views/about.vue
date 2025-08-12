@@ -288,7 +288,7 @@ onBeforeUnmount(() => {
 
       .abbannerContent {
         margin: 0 auto;
-        padding: 10rem 30px 6rem;
+        padding: 10rem 2rem 6rem;
         width: 100%;
         max-width: 1720px;
 

@@ -143,12 +143,12 @@ const handleCurrentChange = (val: number) => {
       />
       <div class="prbannerAbsolute">
         <div class="prbannerContent">
-          <div class="prbannerTitle">聚焦新型城市基础设施建设再起航</div>
-          <div class="prbannerSubtitle">绿色化 数字化 智能化</div>
+          <div class="prbannerTitle">信息化产品/服务</div>
+          <!-- <div class="prbannerSubtitle">绿色化 数字化 智能化</div> -->
         </div>
       </div>
     </div>
-    <div :class="['containerBox', windowWidth > 1140 ? 'containerFx' : '']">
+    <div class="containerBox">
       <div class="containerLeft">
         <div class="containerClass">
           <div class="containerClassRow">
@@ -174,7 +174,7 @@ const handleCurrentChange = (val: number) => {
           <div class="containerProductsTitle">
             <div class="containerProductsTitleText">产品列表</div>
             <div class="containerProductsTitlePxfs">
-              <span>排序方式：</span>
+              <span v-if="windowWidth > 1140">排序方式：</span>
               <el-select
                 v-model="selectvalue"
                 placeholder="Select"
@@ -297,11 +297,10 @@ const handleCurrentChange = (val: number) => {
       left: 0;
       z-index: 2;
       width: 100vw;
-      height: 100%;
 
       .prbannerContent {
         margin: 0 auto;
-        padding: 10rem 30px 6rem;
+        padding: 10rem 2rem 6rem;
         width: 100%;
         max-width: 1536px;
 
@@ -324,12 +323,20 @@ const handleCurrentChange = (val: number) => {
 
   .containerBox {
     margin: 0 auto;
-    padding: 4rem 0.5rem;
+    padding: 2rem 1rem;
     width: 100%;
     max-width: 1536px;
+    @media (min-width: 1140px) {
+      padding: 4rem 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
 
     .containerLeft {
       width: 100%;
+      @media (min-width: 1140px) {
+        width: calc(66.7% - 1rem);
+      }
 
       .containerClass {
         margin-bottom: 2rem;
@@ -338,6 +345,9 @@ const handleCurrentChange = (val: number) => {
         color: rgb(1 32 96);
         background-color: #fff;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        @media (max-width: 1140px) {
+          padding: 0.75rem;
+        }
 
         .containerClassRow {
           margin-bottom: 0.75rem;
@@ -369,12 +379,6 @@ const handleCurrentChange = (val: number) => {
         }
       }
 
-      @media (max-width: 1140px) {
-        .containerClass {
-          padding: 1rem 0.75rem;
-        }
-      }
-
       .containerProducts {
         margin-bottom: 2rem;
         padding: 1.5rem 0;
@@ -382,6 +386,9 @@ const handleCurrentChange = (val: number) => {
         color: rgb(1 32 96);
         background-color: #fff;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        @media (max-width: 1140px) {
+          padding: 1rem 0.5rem;
+        }
 
         .containerProductsTitle {
           margin-bottom: 1.5rem;
@@ -389,6 +396,9 @@ const handleCurrentChange = (val: number) => {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          @media (max-width: 1140px) {
+            padding: 0;
+          }
 
           .containerProductsTitleText {
             font-weight: 700;
@@ -406,35 +416,37 @@ const handleCurrentChange = (val: number) => {
           }
         }
 
-        @media (max-width: 1140px) {
-          .containerProductsTitle {
-            padding: 0;
-          }
-        }
-
         .containerProductsBox {
           padding: 0 1.5rem;
+          @media (max-width: 1140px) {
+            padding: 0;
+          }
 
           .containerProductsItem {
             cursor: pointer;
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid rgb(243 244 246);
+            @media (min-width: 1140px) {
+              display: flex;
+              justify-content: space-between;
+            }
 
             .containerPiImg {
               width: calc(20% - 1rem);
               height: 160px;
               border-radius: 0.5rem;
-            }
-
-            @media (max-width: 1140px) {
-              .containerPiImg {
+              @media (max-width: 1140px) {
                 width: 100%;
               }
             }
 
             .containerPiBox {
               width: calc(60% - 1rem);
+              @media (max-width: 1140px) {
+                margin-top: 1rem;
+                width: 100%;
+              }
 
               .containerPiTitle {
                 margin-bottom: 0.5rem;
@@ -454,6 +466,9 @@ const handleCurrentChange = (val: number) => {
                   font-size: 0.875rem;
                   line-height: 1.25rem;
                   color: rgb(1 32 96);
+                  @media (max-width: 1140px) {
+                    width: 100%;
+                  }
 
                   span:first-child {
                     color: rgb(107 114 128);
@@ -462,17 +477,13 @@ const handleCurrentChange = (val: number) => {
               }
             }
 
-            @media (max-width: 1140px) {
-              .containerPiBox {
-                margin-top: 1rem;
-                width: 100%;
-              }
-            }
-
             .containerPiRbox {
               width: calc(20% - 1rem);
               display: flex;
               flex-flow: column;
+              @media (max-width: 1140px) {
+                width: 100%;
+              }
 
               .containerPiRTop {
                 margin-bottom: 0.75rem;
@@ -486,6 +497,11 @@ const handleCurrentChange = (val: number) => {
                   line-height: 1.25rem;
                   color: rgb(107 114 128);
                 }
+
+                .containerPiRTitemActive {
+                  font-weight: 700;
+                  color: rgb(22 93 255);
+                }
               }
 
               .containerPiRbtn {
@@ -497,20 +513,6 @@ const handleCurrentChange = (val: number) => {
                 background-color: rgb(22 93 255);
                 border-radius: 0.5rem;
               }
-            }
-
-            @media (max-width: 1140px) {
-              .containerPiRbox {
-                margin-top: 1rem;
-                width: 100%;
-              }
-            }
-          }
-
-          @media (min-width: 1140px) {
-            .containerProductsItem {
-              display: flex;
-              justify-content: space-between;
             }
           }
 
@@ -524,29 +526,14 @@ const handleCurrentChange = (val: number) => {
             align-items: center;
           }
         }
-
-        @media (max-width: 1140px) {
-          .containerProductsBox {
-            padding: 0;
-          }
-        }
-      }
-
-      @media (max-width: 1140px) {
-        .containerProducts {
-          padding: 1rem 0.75rem;
-        }
-      }
-    }
-
-    @media (min-width: 1140px) {
-      .containerLeft {
-        width: calc(66.7% - 1rem);
       }
     }
 
     .containerRight {
       width: 100%;
+      @media (min-width: 1140px) {
+        width: calc(33.3% - 1rem);
+      }
 
       .containerPice {
         margin-bottom: 2rem;
@@ -555,6 +542,9 @@ const handleCurrentChange = (val: number) => {
         color: rgb(1 32 96);
         background-color: #fff;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        @media (max-width: 1140px) {
+          padding: 1rem 0.75rem;
+        }
 
         .containerPiceTitle {
           margin-bottom: 1.5rem;
@@ -570,6 +560,9 @@ const handleCurrentChange = (val: number) => {
         color: rgb(1 32 96);
         background-color: #fff;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        @media (max-width: 1140px) {
+          padding: 1rem 0.75rem;
+        }
 
         .containerHotTitle {
           margin-bottom: 1.5rem;
@@ -638,29 +631,7 @@ const handleCurrentChange = (val: number) => {
           }
         }
       }
-
-      @media (max-width: 1140px) {
-        .containerPice {
-          padding: 1rem 0.75rem;
-        }
-
-        .containerHot {
-          padding: 1rem 0.75rem;
-        }
-      }
     }
-
-    @media (min-width: 1140px) {
-      .containerRight {
-        width: calc(33.3% - 1rem);
-      }
-    }
-  }
-
-  .containerFx {
-    padding: 4rem 1rem;
-    display: flex;
-    justify-content: space-between;
   }
 }
 </style>
