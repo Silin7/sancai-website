@@ -526,7 +526,7 @@ onBeforeUnmount(() => {
 
           .bannerTitle {
             margin-bottom: 1.5rem;
-            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-size: clamp(1.75rem, 4vw, 3rem);
             color: #fff;
             font-weight: 700;
           }
@@ -683,7 +683,7 @@ onBeforeUnmount(() => {
           margin: 0 auto;
           padding-left: 1.5rem;
           width: 90%;
-          font-size: clamp(1.6rem, 4vw, 2.5rem);
+          font-size: clamp(1.5rem, 4vw, 2.5rem);
           line-height: 120px;
           font-weight: 700;
           color: #fff;
@@ -773,7 +773,7 @@ onBeforeUnmount(() => {
     }
 
     .containerTitle {
-      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
       color: rgb(1 32 96);
@@ -922,7 +922,7 @@ onBeforeUnmount(() => {
       }
 
       .solutionsTitle {
-        font-size: clamp(1.6rem, 4vw, 2.5rem);
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
         font-weight: 700;
         text-align: center;
         color: rgb(1 32 96);
@@ -1104,7 +1104,7 @@ onBeforeUnmount(() => {
       }
 
       .aiTitle {
-        font-size: clamp(1.6rem, 4vw, 2.5rem);
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
         font-weight: 700;
         text-align: center;
         color: rgb(1 32 96);
@@ -1255,7 +1255,7 @@ onBeforeUnmount(() => {
       }
 
       .mxTitle {
-        font-size: clamp(1.6rem, 4vw, 2.5rem);
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
         font-weight: 700;
         text-align: center;
         color: rgb(1 32 96);
@@ -1356,7 +1356,7 @@ onBeforeUnmount(() => {
     }
 
     .pyTitle {
-      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
       color: rgb(1 32 96);

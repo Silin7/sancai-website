@@ -115,35 +115,37 @@ onBeforeUnmount(() => {
             />
             <div class="achievementRidimgbox">
               <div class="achievementRidimgfx">
-                <div
-                  v-if="index % 4 == 1"
-                  class="achievementFabox"
-                  style="color: rgb(37 99 235); background-color: rgb(219 234 254)"
-                >
-                  <i class="fa fa-building"></i>
+                <div class="achievementRidimgFrsc">
+                  <div
+                    v-if="index % 4 == 1"
+                    class="achievementFabox"
+                    style="color: rgb(37 99 235); background-color: rgb(219 234 254)"
+                  >
+                    <i class="fa fa-building"></i>
+                  </div>
+                  <div
+                    v-if="index % 4 == 2"
+                    class="achievementFabox"
+                    style="color: rgb(22 163 74); background-color: rgb(220 252 231)"
+                  >
+                    <i class="fa fa-book"></i>
+                  </div>
+                  <div
+                    v-if="index % 4 == 3"
+                    class="achievementFabox"
+                    style="color: rgb(147 51 234); background-color: rgb(243 232 255)"
+                  >
+                    <i class="fa fa-trophy"></i>
+                  </div>
+                  <div
+                    v-if="index % 4 == 0"
+                    class="achievementFabox"
+                    style="color: rgb(22 163 74); background-color: rgb(220 252 231)"
+                  >
+                    <i class="fa fa-certificate"></i>
+                  </div>
+                  <div class="achievementRidtitle">城市标志性建筑数字化服务</div>
                 </div>
-                <div
-                  v-if="index % 4 == 2"
-                  class="achievementFabox"
-                  style="color: rgb(22 163 74); background-color: rgb(220 252 231)"
-                >
-                  <i class="fa fa-book"></i>
-                </div>
-                <div
-                  v-if="index % 4 == 3"
-                  class="achievementFabox"
-                  style="color: rgb(147 51 234); background-color: rgb(243 232 255)"
-                >
-                  <i class="fa fa-trophy"></i>
-                </div>
-                <div
-                  v-if="index % 4 == 0"
-                  class="achievementFabox"
-                  style="color: rgb(22 163 74); background-color: rgb(220 252 231)"
-                >
-                  <i class="fa fa-certificate"></i>
-                </div>
-                <div class="achievementRidtitle">城市标志性建筑数字化服务</div>
                 <div class="achievementGridinfo">
                   完成省内外多个城市标志性建筑的工程数字化咨询服务，提升项目管理效率30%以上
                 </div>
@@ -276,7 +278,7 @@ onBeforeUnmount(() => {
   .abbannerBox {
     position: relative;
     width: 100vw;
-    height: 100%;
+    height: 40rem;
 
     .abbannerAbsolute {
       position: absolute;
@@ -284,7 +286,6 @@ onBeforeUnmount(() => {
       left: 0;
       z-index: 2;
       width: 100vw;
-      height: 100%;
 
       .abbannerContent {
         margin: 0 auto;
@@ -293,14 +294,16 @@ onBeforeUnmount(() => {
         max-width: 1720px;
 
         .abbannerTitle {
-          margin-bottom: 2rem;
-          font-size: clamp(2rem, 5vw, 3.5rem);
-          color: #fff;
+          margin-bottom: 1.5rem;
+          font-size: clamp(1.75rem, 7vw, 3rem);
           font-weight: 700;
+          line-height: 1.25;
+          color: #fff;
         }
 
         .abbannerSubtitle {
           margin-bottom: 2rem;
+          max-width: 42rem;
           font-size: clamp(1.25rem, 3vw, 1.5rem);
           font-weight: 500;
           color: rgb(255 255 255 / 0.9);
@@ -338,6 +341,9 @@ onBeforeUnmount(() => {
     padding: 6rem 0;
     width: 100vw;
     background-color: #fff;
+    @media (max-width: 600px) {
+      padding: 2rem 0;
+    }
 
     .introtBox {
       position: relative;
@@ -347,7 +353,7 @@ onBeforeUnmount(() => {
       max-width: 1720px;
 
       .introtTitle {
-        font-size: clamp(1.6rem, 4vw, 2.5rem);
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
         font-weight: 700;
         text-align: center;
         color: rgb(1 32 96);
@@ -359,6 +365,10 @@ onBeforeUnmount(() => {
         height: 0.25rem;
         border-radius: 9999px;
         background-color: rgb(22 93 255);
+
+        @media (max-width: 600px) {
+          margin: 1rem auto 2rem;
+        }
       }
 
       .introtContent {
@@ -369,18 +379,29 @@ onBeforeUnmount(() => {
         .introtLeft {
           margin-right: 2rem;
           width: calc(50% - 1rem);
+          @media (max-width: 600px) {
+            margin-right: 0;
+            width: 100%;
+          }
 
           .introtInfo {
             margin-bottom: 2rem;
-            padding: 1.5rem 1.5rem 0.5rem;
+            padding: 2rem;
             border-radius: 0.75rem;
             background-color: rgb(243 244 246);
+            @media (max-width: 600px) {
+              padding: 1rem;
+            }
 
             p {
-              margin-bottom: 1rem;
+              margin: 0;
               font-size: 1.125rem;
               line-height: 1.75rem;
               color: rgb(55 65 81);
+            }
+
+            p:first-child {
+              margin-bottom: 1rem;
             }
           }
 
@@ -446,6 +467,11 @@ onBeforeUnmount(() => {
           padding: 2rem;
           background-color: rgb(249 250 251);
           border-radius: 1rem;
+          @media (max-width: 600px) {
+            margin-top: 2rem;
+            padding: 1rem;
+            width: 100%;
+          }
 
           .introtRightTitle {
             font-weight: 700;
@@ -486,19 +512,6 @@ onBeforeUnmount(() => {
             }
           }
         }
-
-        @media (max-width: 600px) {
-          .introtLeft {
-            margin-right: 0;
-            width: 100%;
-          }
-
-          .introtRight {
-            margin-top: 4rem;
-            padding: 1rem;
-            width: 100%;
-          }
-        }
       }
     }
   }
@@ -506,12 +519,12 @@ onBeforeUnmount(() => {
   .achievementBox {
     position: relative;
     margin: 0 auto;
-    padding: 6rem 1rem 5rem;
+    padding: 4rem 1rem 5rem;
     width: 100%;
     max-width: 1720px;
 
     .achievementTitle {
-      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
       color: rgb(1 32 96);
@@ -545,27 +558,34 @@ onBeforeUnmount(() => {
         overflow: hidden;
         background-color: #fff;
         border-radius: 1rem;
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
 
         .achievementRidimgfx {
           padding: 1.5rem;
 
-          .achievementFabox {
+          .achievementRidimgFrsc {
             margin-bottom: 1rem;
-            width: 3rem;
-            height: 3rem;
-            border-radius: 999px;
-            font-size: 1.25rem;
             display: flex;
-            justify-content: center;
             align-items: center;
-          }
 
-          .achievementRidtitle {
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            font-size: 1.25rem;
-            line-height: 1.75rem;
-            color: rgb(1 32 96);
+            .achievementFabox {
+              flex-shrink: 0;
+              margin-right: 0.5rem;
+              width: 2rem;
+              height: 2rem;
+              border-radius: 999px;
+              font-size: 1.25rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+            .achievementRidtitle {
+              font-weight: 700;
+              font-size: 1.25rem;
+              line-height: 1.75rem;
+              color: rgb(1 32 96);
+            }
           }
 
           .achievementGridinfo {
@@ -612,7 +632,7 @@ onBeforeUnmount(() => {
   }
 
   .businessOut {
-    padding: 6rem 0;
+    padding: 4rem 0;
     width: 100vw;
     background-color: #fff;
 
@@ -624,7 +644,7 @@ onBeforeUnmount(() => {
       max-width: 1720px;
 
       .businessTitle {
-        font-size: clamp(1.6rem, 4vw, 2.5rem);
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
         font-weight: 700;
         text-align: center;
         color: rgb(1 32 96);
@@ -808,7 +828,7 @@ onBeforeUnmount(() => {
     max-width: 1720px;
 
     .mediaTitle {
-      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
       color: rgb(1 32 96);

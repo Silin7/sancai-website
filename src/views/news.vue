@@ -58,7 +58,7 @@ function pageJump() {
     <div class="newsBox">
       <div class="newsLeft">
         <!-- 资讯分类 -->
-        <div class="newsClass" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem 0.25rem;'">
+        <div class="newsClass">
           <div class="newsClassRow">
             <button class="newsClassColActive">全部</button>
             <button class="newsClassCol">数字化转型新政</button>
@@ -69,11 +69,11 @@ function pageJump() {
           </div>
         </div>
         <!-- 资讯列表 -->
-        <div class="newsProducts" :style="windowWidth > 992 ? '' : 'padding: 1rem 0.75rem;'">
+        <div class="newsProducts">
           <div class="newsProductsTitle">
             <div class="newsProductsTitleText">最新资讯</div>
             <div class="newsProductsTitlePxfs">
-              <span>排序方式：</span>
+              <span v-if="windowWidth > 1140">排序方式：</span>
               <el-select
                 v-model="selectvalue"
                 placeholder="Select"
@@ -94,14 +94,11 @@ function pageJump() {
               :key="index"
               @click="pageJump"
             >
-              <div class="newsPiImgBox" :style="windowWidth > 992 ? '' : 'width: 100%;'">
+              <div class="newsPiImgBox">
                 <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="newsPiImg" />
                 <div class="newsPiImgTag">政策</div>
               </div>
-              <div
-                class="newsPiBox"
-                :style="windowWidth > 992 ? '' : 'margin-top:1rem; width: 100%;'"
-              >
+              <div class="newsPiBox">
                 <div class="newsPiTitle">住建部发布《建筑业数字化转型发展指南》推动行业升级</div>
                 <div class="newsPiInfo">
                   近日，住房和城乡建设部正式发布《建筑业数字化转型发展指南》，提出到2025年，建筑业数字化转型取得明显进展，打造一批建筑产业互联网平台，培育一批行业级、企业级数字建造解决方案。指南明确了数字化转型的重点任务和保障措施，为行业发展指明方向。
@@ -170,7 +167,7 @@ function pageJump() {
   .nsbannerBox {
     position: relative;
     width: 100vw;
-    height: 100%;
+    height: 40rem;
 
     .nsbannerAbsolute {
       position: absolute;
@@ -178,7 +175,6 @@ function pageJump() {
       left: 0;
       z-index: 2;
       width: 100vw;
-      height: 100%;
 
       .nsbannerContent {
         margin: 0 auto;
@@ -187,14 +183,16 @@ function pageJump() {
         max-width: 1536px;
 
         .nsbannerTitle {
-          margin-bottom: 2rem;
-          font-size: clamp(2rem, 5vw, 3.5rem);
-          color: #fff;
+          margin-bottom: 1.5rem;
+          font-size: clamp(1.75rem, 7vw, 3rem);
           font-weight: 700;
+          line-height: 1.25;
+          color: #fff;
         }
 
         .nsbannerSubtitle {
           margin-bottom: 2rem;
+          max-width: 42rem;
           font-size: clamp(1.25rem, 3vw, 1.5rem);
           font-weight: 500;
           color: rgb(255 255 255 / 0.9);
@@ -205,9 +203,12 @@ function pageJump() {
 
   .newsBox {
     margin: 0 auto;
-    padding: 4rem 1rem;
+    padding: 2rem 1rem;
     width: 100%;
     max-width: 1536px;
+    @media (min-width: 992px) {
+      padding: 4rem 1rem;
+    }
 
     .newsLeft {
       width: 100%;
@@ -219,6 +220,9 @@ function pageJump() {
         color: rgb(1 32 96);
         background-color: #fff;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        @media (max-width: 600px) {
+          padding: 1rem 0.75rem 0.25rem;
+        }
 
         .newsClassRow {
           display: flex;
@@ -231,7 +235,7 @@ function pageJump() {
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
             box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-            border-radius: 9999px;
+            border-radius: 0.25rem;
           }
 
           .newsClassCol:hover {
@@ -256,6 +260,9 @@ function pageJump() {
         color: rgb(1 32 96);
         background-color: #fff;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        @media (max-width: 600px) {
+          padding: 1rem 0.5rem;
+        }
 
         .newsProductsTitle {
           margin-bottom: 1.5rem;
@@ -288,15 +295,20 @@ function pageJump() {
             // align-items: center;
             box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 0.1);
             border-radius: 0.75rem;
+            @media (max-width: 600px) {
+              padding: 0.75rem;
+            }
 
             .newsPiImgBox {
               position: relative;
               width: calc(25% - 0.75rem);
+              @media (max-width: 600px) {
+                width: 100%;
+              }
 
               .newsPiImg {
                 width: 100%;
                 height: 200px;
-                // border-radius: 0.5rem;
               }
 
               .newsPiImgTag {
@@ -319,12 +331,16 @@ function pageJump() {
 
             .newsPiBox {
               width: calc(75% - 0.75rem);
+              @media (max-width: 600px) {
+                margin-top: 1rem;
+                width: 100%;
+              }
 
               .newsPiTitle {
+                margin-bottom: 1rem;
                 font-size: 1.5rem;
-                line-height: 2rem;
+                line-height: 1.75rem;
                 font-weight: 700;
-                margin: 0.75rem 0;
                 color: rgb(1 32 96);
               }
 
@@ -378,23 +394,11 @@ function pageJump() {
             animation: jumpUpwards 300ms ease-in-out forwards;
           }
 
-          @media (max-width: 600px) {
-            .newsProductsItem {
-              padding: 0.75rem;
-            }
-          }
-
           .newsPagination {
             display: flex;
             justify-content: center;
             align-items: center;
           }
-        }
-      }
-
-      @media (max-width: 600px) {
-        .newsProducts {
-          padding: 1rem;
         }
       }
     }

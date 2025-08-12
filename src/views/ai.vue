@@ -21,13 +21,11 @@ onBeforeUnmount(() => {
     <div class="aiPage">
       <!-- aibanner -->
       <div class="aibannerBox">
-        <div class="aibannerImg">
-          <img
-            src="@/assets/solution-banner01.jpeg"
-            alt="aibanner"
-            style="width: 100vw; height: 34rem"
-          />
-        </div>
+        <img
+          src="@/assets/solution-banner01.jpeg"
+          alt="aibanner"
+          style="width: 100vw; height: 40rem"
+        />
         <div class="aibannerAbsolute">
           <div class="aibannerContent">
             <div class="aibannerTitle">AI赋能建筑业 开启智能建造新时代</div>
@@ -57,18 +55,7 @@ onBeforeUnmount(() => {
             人工智能深度融入工程管理全流程，提升效率、降低成本、优化决策
           </div> -->
           <div class="applicationClassbox">
-            <div
-              v-for="index in 9"
-              :key="index"
-              class="applicationClassitem"
-              :style="
-                windowWidth > 1000
-                  ? 'width: calc(33.3% - 1.5rem)'
-                  : windowWidth > 600
-                    ? 'width: calc(50% - 1.5rem)'
-                    : 'width: 100%'
-              "
-            >
+            <div v-for="index in 9" :key="index" class="applicationClassitem">
               <div class="applicationClassitemfa frcc">
                 <i class="fa fa-pencil"></i>
               </div>
@@ -80,25 +67,14 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </div>
-        <div class="applicationBox" style="margin-top: 6.5rem">
+        <div class="applicationBox" style="margin-top: 6rem">
           <div class="applicationTitle">招标造价+AI应用服务</div>
           <div class="applicationHeng"></div>
           <!-- <div class="applicationInfo">
             人工智能赋能造价管理全流程，提高精度、减少误差、优化决策
           </div> -->
           <div class="applicationClassbox">
-            <div
-              v-for="index in 4"
-              :key="index"
-              class="applicationClassitem"
-              :style="
-                windowWidth > 1000
-                  ? 'width: calc(33.3% - 1.5rem)'
-                  : windowWidth > 600
-                    ? 'width: calc(50% - 1.5rem)'
-                    : 'width: 100%'
-              "
-            >
+            <div v-for="index in 4" :key="index" class="applicationClassitem">
               <div class="applicationClassitemfa frcc">
                 <i class="fa fa-pencil"></i>
               </div>
@@ -115,18 +91,7 @@ onBeforeUnmount(() => {
         <div class="caseHeng"></div>
         <div class="caseInfo">探索建筑业AI应用的实际效果与价值</div>
         <div class="caseClassbox">
-          <div
-            v-for="index in 3"
-            :key="index"
-            class="caseClassitem"
-            :style="
-              windowWidth > 1000
-                ? 'width: calc(33.3% - 1.5rem);'
-                : windowWidth > 600
-                  ? 'width: calc(50% - 1.5rem);'
-                  : 'width: 100%'
-            "
-          >
+          <div v-for="index in 3" :key="index" class="caseClassitem">
             <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="caseClassitemfa" />
             <div class="caseClassitembox">
               <div class="caseClassitemFrsc">
@@ -156,13 +121,7 @@ onBeforeUnmount(() => {
   .aibannerBox {
     position: relative;
     width: 100vw;
-    height: 100%;
-
-    .aibannerImg {
-      width: 100vw;
-      height: 34rem;
-      background-color: #012060;
-    }
+    height: 40rem;
 
     .aibannerAbsolute {
       position: absolute;
@@ -170,7 +129,6 @@ onBeforeUnmount(() => {
       left: 0;
       z-index: 2;
       width: 100vw;
-      height: 100%;
 
       .aibannerContent {
         margin: 0 auto;
@@ -180,9 +138,9 @@ onBeforeUnmount(() => {
 
         .aibannerTitle {
           margin-bottom: 1.5rem;
-          font-size: clamp(2rem, 5vw, 3.5rem);
-          color: #fff;
+          font-size: clamp(1.75rem, 7vw, 3rem);
           font-weight: 700;
+          color: #fff;
         }
 
         .aibannerSubtitle {
@@ -209,8 +167,11 @@ onBeforeUnmount(() => {
   }
 
   .introaiOut {
-    padding: 4rem 1rem;
+    padding: 6rem 1rem;
     width: 100%;
+    @media (max-width: 600px) {
+      padding: 2rem 1rem;
+    }
 
     .introaiBox {
       position: relative;
@@ -221,49 +182,18 @@ onBeforeUnmount(() => {
       background-color: #fff;
       box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
       border-radius: 1rem;
+      @media (min-width: 992px) {
+        padding: 2.5rem;
 
-      .introaiText {
-        margin-bottom: 1rem;
-        font-size: 1.25rem;
-        line-height: 1.75rem;
-        color: rgb(75 85 99);
-      }
-
-      .introaiBtns {
-        margin-top: 2rem;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-
-        .introaiBtn {
-          flex-shrink: 1;
-          margin: 0 1rem 1rem 0;
-          padding: 0.5rem 1rem;
-          line-height: 1.5rem;
-          color: rgb(22 93 255);
-          background-color: rgb(22 93 255 / 0.1);
-          border-radius: 9999px;
-
-          i {
-            margin-right: 0.5rem;
-          }
+        p {
+          margin: 0;
         }
       }
-    }
 
-    @media (max-width: 600px) {
-      .introaiBox {
-        padding: 1rem;
-      }
-    }
-  }
-
-  @media (min-width: 992px) {
-    .introaiOut {
-      padding: 6rem 1rem;
-
-      .introaiBox {
-        padding: 2.5rem;
+      .introaiText {
+        font-size: clamp(1rem, 4vw, 1.25rem);
+        line-height: 1.75rem;
+        color: rgb(75 85 99);
       }
     }
   }
@@ -281,7 +211,7 @@ onBeforeUnmount(() => {
       max-width: 1536px;
 
       .applicationTitle {
-        font-size: 1.875rem;
+        font-size: clamp(1.5rem, 4vw, 1.875rem);
         line-height: 2.25rem;
         font-weight: 700;
         text-align: center;
@@ -304,22 +234,29 @@ onBeforeUnmount(() => {
       }
 
       .applicationClassbox {
-        width: calc(100% + 1.5rem);
+        width: calc(100% + 1rem);
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+        @media (max-width: 600px) {
+          width: 100%;
+        }
 
         .applicationClassitem {
-          margin: 0 1.5rem 1.5rem 0;
-          padding: 1.5rem 1.25rem;
+          margin: 0 1rem 1rem 0;
+          padding: 2rem 2rem;
+          width: calc(33.3% - 1rem);
           display: flex;
           flex-flow: column;
           justify-content: center;
           align-items: center;
           background-color: #fff;
-          // background-color: rgb(249 250 251);
           border-radius: 0.75rem;
           box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          @media (max-width: 600px) {
+            width: 100%;
+            margin: 0 0 1rem 0;
+          }
 
           .applicationClassitemfa {
             margin-bottom: 1rem;
@@ -373,7 +310,7 @@ onBeforeUnmount(() => {
     max-width: 1536px;
 
     .caseTitle {
-      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
       color: rgb(1 32 96);
@@ -395,21 +332,29 @@ onBeforeUnmount(() => {
     }
 
     .caseClassbox {
-      width: calc(100% + 1.5rem);
+      width: calc(100% + 1rem);
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
+      @media (max-width: 600px) {
+        width: 100%;
+      }
 
       .caseClassitem {
         overflow: hidden;
-        margin: 0 1.5rem 1.5rem 0;
+        margin: 0 1rem 1rem 0;
+        width: calc(33.3% - 1rem);
         display: flex;
         flex-flow: column;
         justify-content: center;
         align-items: center;
         background-color: #fff;
-        // background-color: rgb(249 250 251);
         border-radius: 0.75rem;
+        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        @media (max-width: 600px) {
+          width: 100%;
+          margin: 0 0 1rem 0;
+        }
 
         .caseClassitemfa {
           width: 100%;
@@ -419,6 +364,9 @@ onBeforeUnmount(() => {
         .caseClassitembox {
           width: 100%;
           padding: 1.5rem;
+          @media (max-width: 600px) {
+            padding: 1.5rem 1rem;
+          }
 
           .caseClassitemFrsc {
             display: flex;

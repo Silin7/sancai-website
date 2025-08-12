@@ -93,7 +93,7 @@ function pageJump() {
         <div class="supplierProductsTitle">
           <div class="supplierProductsTitleText">供应商列表</div>
           <div class="supplierProductsTitlePxfs">
-            <span>排序方式：</span>
+            <span v-if="windowWidth > 1140">排序方式：</span>
             <el-select v-model="selectvalue" placeholder="Select" size="large" style="width: 110px">
               <el-option label="默认排序" value="01" />
               <el-option label="名称升序" value="02" />
@@ -180,7 +180,7 @@ function pageJump() {
   .srbannerBox {
     position: relative;
     width: 100vw;
-    height: 100%;
+    height: 40rem;
 
     .srbannerAbsolute {
       position: absolute;
@@ -188,7 +188,6 @@ function pageJump() {
       left: 0;
       z-index: 2;
       width: 100vw;
-      height: 100%;
 
       .srbannerContent {
         margin: 0 auto;
@@ -197,15 +196,17 @@ function pageJump() {
         max-width: 1536px;
 
         .srbannerTitle {
-          margin-bottom: 2rem;
-          font-size: clamp(2rem, 5vw, 3.5rem);
-          color: rgb(1 32 96);
+          margin-bottom: 1.5rem;
+          font-size: clamp(1.75rem, 7vw, 3rem);
           font-weight: 700;
+          line-height: 1.25;
+          color: rgb(1 32 96);
         }
 
         .srbannerSubtitle {
           margin-bottom: 2rem;
-          font-size: clamp(1rem, 2vw, 1.25rem);
+          max-width: 42rem;
+          font-size: clamp(1rem, 3vw, 1.25rem);
           font-weight: 500;
           color: rgb(1 32 96 / 0.9);
         }
@@ -215,9 +216,12 @@ function pageJump() {
 
   .supplierBox {
     margin: 0 auto;
-    padding: 4rem 1rem;
+    padding: 2rem 1rem;
     width: 100%;
     max-width: 1536px;
+    @media (min-width: 992px) {
+      padding: 4rem 1rem;
+    }
 
     .supplierClass {
       margin-bottom: 2rem;
@@ -226,6 +230,9 @@ function pageJump() {
       color: rgb(1 32 96);
       background-color: #fff;
       box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+      @media (max-width: 992px) {
+        padding: 1rem 0.75rem;
+      }
 
       .supplierClassTitle {
         margin-bottom: 1.5rem;
@@ -282,12 +289,6 @@ function pageJump() {
       }
     }
 
-    @media (max-width: 992px) {
-      .supplierClass {
-        padding: 1rem 0.75rem;
-      }
-    }
-
     .supplierProducts {
       margin-bottom: 2rem;
       padding: 2rem;
@@ -295,6 +296,9 @@ function pageJump() {
       color: rgb(1 32 96);
       background-color: #fff;
       box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+      @media (max-width: 992px) {
+        padding: 1rem 0.5rem;
+      }
 
       .supplierProductsTitle {
         margin-bottom: 1.5rem;
@@ -327,39 +331,54 @@ function pageJump() {
           box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 0.1);
           border-radius: 0.75rem;
           width: calc(50% - 1rem);
+          @media (max-width: 992px) {
+            padding: 0.75rem;
+            width: 100%;
+          }
 
           .supplierPiContent {
+            @media (min-width: 992px) {
+              display: flex;
+              justify-content: space-between;
+            }
+
             .supplierPiImgBox {
               position: relative;
-              width: 5rem;
-              height: 5rem;
 
               .supplierPiImg {
-                width: 100%;
+                width: 5rem;
                 height: 5rem;
                 border-radius: 0.5rem;
+                @media (max-width: 992px) {
+                  width: 100%;
+                  height: 12rem;
+                }
               }
 
-              .supplierPiImgTag {
-                position: absolute;
-                top: 1rem;
-                left: 1rem;
-                z-index: 10;
-                border-radius: 9999px;
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
-                padding-top: 0.25rem;
-                padding-bottom: 0.25rem;
-                font-size: 0.75rem;
-                line-height: 1rem;
-                font-weight: 700;
-                color: #fff;
-                background-color: rgb(59 130 246);
-              }
+              // .supplierPiImgTag {
+              //   position: absolute;
+              //   top: 1rem;
+              //   left: 1rem;
+              //   z-index: 10;
+              //   border-radius: 9999px;
+              //   padding-left: 0.75rem;
+              //   padding-right: 0.75rem;
+              //   padding-top: 0.25rem;
+              //   padding-bottom: 0.25rem;
+              //   font-size: 0.75rem;
+              //   line-height: 1rem;
+              //   font-weight: 700;
+              //   color: #fff;
+              //   background-color: rgb(59 130 246);
+              // }
             }
 
             .supplierPiBox {
               width: calc(100% - 6rem);
+              @media (max-width: 992px) {
+                margin-top: 1rem;
+                width: 100%;
+              }
 
               .supplierPiTop {
                 margin-bottom: 0.5rem;
@@ -388,7 +407,7 @@ function pageJump() {
               }
 
               .supplierPiInfo {
-                margin-bottom: 0.25rem;
+                margin-bottom: 0.5rem;
                 line-height: 1.25rem;
                 color: rgb(75 85 99);
 
@@ -430,24 +449,6 @@ function pageJump() {
                 }
               }
             }
-
-            @media (max-width: 992px) {
-              .supplierPiImgBox {
-                width: 100%;
-              }
-
-              .supplierPiBox {
-                margin-top: 1rem;
-                width: 100%;
-              }
-            }
-          }
-
-          @media (min-width: 992px) {
-            .supplierPiContent {
-              display: flex;
-              justify-content: space-between;
-            }
           }
 
           .supplierPiClass {
@@ -485,13 +486,6 @@ function pageJump() {
           }
         }
 
-        @media (max-width: 992px) {
-          .supplierProductsItem {
-            padding: 0.75rem;
-            width: 100%;
-          }
-        }
-
         .supplierProductsItem:hover {
           animation: jumpUpwards 300ms ease-in-out forwards;
         }
@@ -506,22 +500,10 @@ function pageJump() {
       }
     }
 
-    @media (max-width: 992px) {
-      .supplierProducts {
-        padding: 1rem 0.5rem;
-      }
-    }
-
     .supplierPagination {
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-  }
-
-  @media screen {
-    .supplierBox {
-      padding: 4rem 0.5rem;
     }
   }
 

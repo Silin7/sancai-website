@@ -30,13 +30,11 @@ function pageJump() {
     <div class="datasolutionPage">
       <!-- BANNER -->
       <div class="dsbannerBox">
-        <div class="dsbannerImg">
-          <img
-            src="@/assets/solution-banner01.jpeg"
-            alt="dsbanner"
-            style="width: 100vw; height: 34rem"
-          />
-        </div>
+        <img
+          src="@/assets/solution-banner01.jpeg"
+          alt="dsbanner"
+          style="width: 100vw; height: 40rem"
+        />
         <div class="dsbannerAbsolute">
           <div class="dsbannerContent">
             <div class="dsbannerTitle">为新城建提供绿色化 数字化 智能化综合解决方案</div>
@@ -75,18 +73,7 @@ function pageJump() {
             </div>
           </div>
           <div class="digitizeClassbox">
-            <div
-              v-for="index in 9"
-              :key="index"
-              class="digitizeClassitem"
-              :style="
-                windowWidth > 1000
-                  ? 'width: calc(33.3% - 1.5rem)'
-                  : windowWidth > 600
-                    ? 'width: calc(50% - 1.5rem)'
-                    : 'width: 100%'
-              "
-            >
+            <div v-for="index in 9" :key="index" class="digitizeClassitem">
               <div class="digitizeClassitemfa frcc">
                 <i class="fa fa-pencil"></i>
               </div>
@@ -97,92 +84,38 @@ function pageJump() {
           </div>
         </div>
       </div>
-      <!-- 推荐供应商  -->
+      <!-- 友情链接  -->
       <div class="gysBox">
-        <div class="gysTitle">推荐供应商</div>
+        <div class="gysTitle">友情链接</div>
         <div class="gysHeng"></div>
         <div class="gysInfo">与行业领先企业及机构建立合作，共同推动建筑行业数字化转型</div>
         <div class="gysClassbox">
-          <div
-            class="gysClassitem"
-            :style="
-              windowWidth > 1000
-                ? 'width: calc(16.6% - 1.5rem);'
-                : windowWidth > 600
-                  ? 'width: calc(33.3% - 1.5rem);'
-                  : 'width: calc(50% - 1.5rem)'
-            "
-          >
+          <div class="gysClassitem">
             <img src="https://picsum.photos/100/100?random=402" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">建筑科技有限公司</div>
             <div class="gysClassiteminfo">专注建筑科技创新</div>
           </div>
-          <div
-            class="gysClassitem"
-            :style="
-              windowWidth > 1000
-                ? 'width: calc(16.6% - 1.5rem);'
-                : windowWidth > 600
-                  ? 'width: calc(33.3% - 1.5rem);'
-                  : 'width: calc(50% - 1.5rem)'
-            "
-          >
+          <div class="gysClassitem">
             <img src="https://picsum.photos/100/100?random=403" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">智能建造研究院</div>
             <div class="gysClassiteminfo">建筑智能化研究</div>
           </div>
-          <div
-            class="gysClassitem"
-            :style="
-              windowWidth > 1000
-                ? 'width: calc(16.6% - 1.5rem);'
-                : windowWidth > 600
-                  ? 'width: calc(33.3% - 1.5rem);'
-                  : 'width: calc(50% - 1.5rem)'
-            "
-          >
+          <div class="gysClassitem">
             <img src="https://picsum.photos/100/100?random=404" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">绿色建材协会</div>
             <div class="gysClassiteminfo">推广绿色建筑材料</div>
           </div>
-          <div
-            class="gysClassitem"
-            :style="
-              windowWidth > 1000
-                ? 'width: calc(16.6% - 1.5rem);'
-                : windowWidth > 600
-                  ? 'width: calc(33.3% - 1.5rem);'
-                  : 'width: calc(50% - 1.5rem)'
-            "
-          >
+          <div class="gysClassitem">
             <img src="https://picsum.photos/100/100?random=405" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">数字工程设计院</div>
             <div class="gysClassiteminfo">数字化工程设计</div>
           </div>
-          <div
-            class="gysClassitem"
-            :style="
-              windowWidth > 1000
-                ? 'width: calc(16.6% - 1.5rem);'
-                : windowWidth > 600
-                  ? 'width: calc(33.3% - 1.5rem);'
-                  : 'width: calc(50% - 1.5rem)'
-            "
-          >
+          <div class="gysClassitem">
             <img src="https://picsum.photos/100/100?random=406" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">智慧城市科技</div>
             <div class="gysClassiteminfo">智慧城市解决方案</div>
           </div>
-          <div
-            class="gysClassitem"
-            :style="
-              windowWidth > 1000
-                ? 'width: calc(16.6% - 1.5rem);'
-                : windowWidth > 600
-                  ? 'width: calc(33.3% - 1.5rem);'
-                  : 'width: calc(50% - 1.5rem)'
-            "
-          >
+          <div class="gysClassitem">
             <img src="https://picsum.photos/100/100?random=407" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">建筑信息研究院</div>
             <div class="gysClassiteminfo">建筑信息研究应用</div>
@@ -201,13 +134,7 @@ function pageJump() {
   .dsbannerBox {
     position: relative;
     width: 100vw;
-    height: 100%;
-
-    .dsbannerImg {
-      width: 100vw;
-      height: 34rem;
-      background-color: #012060;
-    }
+    height: 40rem;
 
     .dsbannerAbsolute {
       position: absolute;
@@ -215,7 +142,6 @@ function pageJump() {
       left: 0;
       z-index: 2;
       width: 100vw;
-      height: 100%;
 
       .dsbannerContent {
         margin: 0 auto;
@@ -225,9 +151,9 @@ function pageJump() {
 
         .dsbannerTitle {
           margin-bottom: 1.5rem;
-          font-size: clamp(2rem, 5vw, 3.5rem);
-          color: #fff;
+          font-size: clamp(1.75rem, 7vw, 3rem);
           font-weight: 700;
+          color: #fff;
         }
 
         .dsbannerSubtitle {
@@ -254,8 +180,11 @@ function pageJump() {
   }
 
   .introdsOut {
-    padding: 4rem 1rem;
+    padding: 6rem 1rem;
     width: 100%;
+    @media (max-width: 600px) {
+      padding: 2rem 1rem;
+    }
 
     .introdsBox {
       position: relative;
@@ -268,41 +197,31 @@ function pageJump() {
       border-radius: 1rem;
 
       .introdsText {
-        margin-bottom: 1rem;
-        font-size: 1.25rem;
+        font-size: clamp(1rem, 4vw, 1.25rem);
         line-height: 1.75rem;
         color: rgb(75 85 99);
       }
 
-      .introdsBtns {
-        margin-top: 1rem;
-        display: flex;
-        flex-wrap: wrap;
+      // .introdsBtns {
+      //   margin-top: 1rem;
+      //   display: flex;
+      //   flex-wrap: wrap;
 
-        .introdsBtn {
-          flex-shrink: 1;
-          margin: 0 1rem 1rem 0;
-          padding: 0.5rem 1rem;
-          line-height: 1.5rem;
-          color: rgb(22 93 255);
-          background-color: rgb(22 93 255 / 0.1);
-          border-radius: 9999px;
+      //   .introdsBtn {
+      //     flex-shrink: 1;
+      //     margin: 0 1rem 1rem 0;
+      //     padding: 2.5rem;
+      //     // padding: 0.5rem 1rem;
+      //     line-height: 1.5rem;
+      //     color: rgb(22 93 255);
+      //     background-color: rgb(22 93 255 / 0.1);
+      //     border-radius: 9999px;
 
-          i {
-            margin-right: 0.5rem;
-          }
-        }
-      }
-    }
-  }
-
-  @media (min-width: 992px) {
-    .introdsOut {
-      padding: 6rem 1rem;
-
-      .introdsBox {
-        padding: 2.5rem;
-      }
+      //     i {
+      //       margin-right: 0.5rem;
+      //     }
+      //   }
+      // }
     }
   }
 
@@ -331,12 +250,23 @@ function pageJump() {
 
           .digitizeSubItem {
             flex-shrink: 0;
-            margin: 0 0.75rem;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
             line-height: 2rem;
             color: rgb(1 32 96);
-            padding: 0.5rem 1.25rem;
-            border-radius: 999px;
             background-color: #fff;
+            border-radius: 999px;
+            @media (max-width: 600px) {
+              margin: 0 0.25rem;
+            }
+          }
+
+          .digitizeSubItem:first-child {
+            margin-left: 0;
+          }
+
+          .digitizeSubItem:last-child {
+            margin-right: 0;
           }
 
           .digitizeSubItem:hover {
@@ -353,22 +283,30 @@ function pageJump() {
       }
 
       .digitizeClassbox {
-        margin-bottom: 2.5rem;
-        width: calc(100% + 1.5rem);
+        // margin-bottom: 2.5rem;
+        width: calc(100% + 1rem);
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+        @media (max-width: 600px) {
+          width: 100%;
+        }
 
         .digitizeClassitem {
-          margin: 0 1.5rem 1.5rem 0;
+          margin: 0 1rem 1rem 0;
           padding: 1.25rem;
+          width: calc(33.3% - 1rem);
           display: flex;
           flex-flow: column;
           justify-content: center;
           align-items: center;
           background-color: #fff;
-          // background-color: rgb(249 250 251);
           border-radius: 0.75rem;
+          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          @media (max-width: 600px) {
+            width: 100%;
+            margin: 0 0 1rem 0;
+          }
 
           .digitizeClassitemfa {
             margin-bottom: 1rem;
@@ -416,13 +354,17 @@ function pageJump() {
 
   .gysBox {
     position: relative;
-    margin: 4rem auto 0;
-    padding: 0 1rem 4rem;
+    margin: 6rem auto 0;
+    padding: 0 2rem 4rem;
     width: 100%;
     max-width: 1536px;
+    @media (max-width: 600px) {
+      margin: 4rem auto 0;
+      padding: 0 1rem 4rem;
+    }
 
     .gysTitle {
-      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
       color: rgb(1 32 96);
@@ -437,28 +379,46 @@ function pageJump() {
     }
 
     .gysInfo {
-      margin: 1rem auto 4rem;
+      margin: 1rem auto 2.5rem;
       text-align: center;
       max-width: 42rem;
       color: rgb(75 85 99);
     }
 
     .gysClassbox {
-      width: calc(100% + 1.5rem);
+      width: calc(100% + 1rem);
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
 
       .gysClassitem {
-        margin: 0 1.5rem 1.5rem 0;
-        padding: 1.25rem;
+        margin: 0 1rem 1rem 0;
+        padding: 1.25rem 1rem;
         display: flex;
         flex-flow: column;
         justify-content: center;
         align-items: center;
         background-color: #fff;
-        // background-color: rgb(249 250 251);
         border-radius: 0.75rem;
+        @media (min-width: 1140px) {
+          width: calc(16.6% - 1rem);
+        }
+        @media (max-width: 1140px) and (min-width: 600px) {
+          width: calc(33.3% - 1rem);
+        }
+        @media (max-width: 600px) {
+          padding: 1rem 0.5rem;
+          width: calc(50% - 1rem);
+        }
+
+        .gysClassitemfa1 {
+          margin-bottom: 1rem;
+          padding: 0.25rem;
+          width: 5rem;
+          height: 5rem;
+          border-radius: 9999px;
+          border: 2px solid rgb(22 93 255 / 0.2);
+        }
 
         .gysClassitemfa {
           margin-bottom: 1rem;

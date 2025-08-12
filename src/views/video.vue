@@ -50,7 +50,7 @@ const handleCurrentChange = (val: number) => {
       <div class="containerLeft">
         <!-- 筛选视频 -->
         <div class="containerClass">
-          <div class="frbc">
+          <div class="frbc mb5">
             <div class="containerClassTitle">筛选视频</div>
             <div class="containerClassNumber"><span>128</span>个视频</div>
           </div>
@@ -93,7 +93,7 @@ const handleCurrentChange = (val: number) => {
           <div class="containerProductsTitle">
             <div class="containerProductsTitleText">精选视频</div>
             <div class="containerProductsTitlePxfs">
-              <span>排序方式：</span>
+              <span v-if="windowWidth > 1140">排序方式：</span>
               <el-select
                 v-model="selectvalue"
                 placeholder="Select"
@@ -229,7 +229,7 @@ const handleCurrentChange = (val: number) => {
   .prbannerBox {
     position: relative;
     width: 100vw;
-    height: 100%;
+    height: 40rem;
 
     .prbannerAbsolute {
       position: absolute;
@@ -237,7 +237,6 @@ const handleCurrentChange = (val: number) => {
       left: 0;
       z-index: 2;
       width: 100vw;
-      height: 100%;
 
       .prbannerContent {
         margin: 0 auto;
@@ -246,8 +245,8 @@ const handleCurrentChange = (val: number) => {
         max-width: 1536px;
 
         .prbannerTitle {
-          margin-bottom: 2rem;
-          font-size: clamp(2rem, 5vw, 3.5rem);
+          margin-bottom: 1.5rem;
+          font-size: clamp(1.75rem, 7vw, 3rem);
           font-weight: 700;
           line-height: 1.25;
           color: rgb(1 32 96);
@@ -256,16 +255,15 @@ const handleCurrentChange = (val: number) => {
         .prbannerSubtitle {
           max-width: 42rem;
           margin-bottom: 2rem;
-          font-size: clamp(1rem, 2vw, 1.25rem);
-          list-style: 1.875rem;
+          font-size: clamp(1rem, 3vw, 1.25rem);
           font-weight: 500;
           color: rgb(1 32 96 / 0.9);
         }
 
         .bannerllkcbtn {
-          padding: 0.75rem 1.5rem;
+          padding: 0.75rem 2rem;
           color: #fff;
-          background-color: rgb(22 93 255 / 0.9);
+          background-color: rgb(22 93 255);
           border-radius: 9999px;
           box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
         }
@@ -280,23 +278,33 @@ const handleCurrentChange = (val: number) => {
 
   .containerBox {
     margin: 0 auto;
-    padding: 4rem 0.5rem;
+    padding: 2rem 1rem;
     width: 100%;
     max-width: 1536px;
+    @media (min-width: 992px) {
+      padding: 4rem 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
 
     .containerLeft {
       width: 100%;
+      @media (min-width: 992px) {
+        width: calc(66.7% - 1rem);
+      }
 
       .containerClass {
         margin-bottom: 2rem;
         padding: 1.5rem;
-        border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        border-radius: 1rem;
+        @media (max-width: 992px) {
+          padding: 1rem 0.75rem;
+        }
 
         .containerClassTitle {
-          margin-bottom: 1.5rem;
           font-weight: 700;
           font-size: 1.25rem;
           line-height: 1.75rem;
@@ -304,12 +312,12 @@ const handleCurrentChange = (val: number) => {
 
         .containerClassNumber {
           line-height: 1.25rem;
-          color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+          color: rgb(75 85 99);
 
           span {
             margin-right: 0.25rem;
             font-weight: 700;
-            color: rgb(22 93 255 / var(--tw-text-opacity, 1));
+            color: rgb(22 93 255);
           }
         }
 
@@ -342,7 +350,7 @@ const handleCurrentChange = (val: number) => {
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
             box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-            border-radius: 9999px;
+            border-radius: 0.25rem;
           }
 
           .containerClassCol:hover {
@@ -355,14 +363,8 @@ const handleCurrentChange = (val: number) => {
             padding: 0.5rem 1.25rem;
             color: #fff;
             background-color: rgb(22 93 255);
-            border-radius: 9999px;
+            border-radius: 0.25rem;
           }
-        }
-      }
-
-      @media (max-width: 992px) {
-        .containerClass {
-          padding: 1.5rem 0.75rem;
         }
       }
 
@@ -660,7 +662,10 @@ const handleCurrentChange = (val: number) => {
     }
 
     .containerRight {
-      width: calc(33.3% - 1rem);
+      width: 100%;
+      @media (min-width: 992px) {
+        width: calc(33.3% - 1rem);
+      }
 
       .containerLogin {
         margin-bottom: 2rem;
@@ -729,11 +734,14 @@ const handleCurrentChange = (val: number) => {
       }
 
       .containerHot {
-        padding: 1.5rem;
-        border-radius: 1rem;
+        padding: 1rem 0.75rem;
         color: rgb(1 32 96);
         background-color: #fff;
         box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        border-radius: 1rem;
+        @media (min-width: 992px) {
+          padding: 1.5rem;
+        }
 
         .containerHotTitle {
           margin-bottom: 1.5rem;
@@ -801,29 +809,6 @@ const handleCurrentChange = (val: number) => {
             line-height: 1.5rem;
           }
         }
-      }
-
-      @media (max-width: 992px) {
-        .containerHot {
-          padding: 1rem 0.75rem;
-        }
-      }
-    }
-
-    @media (max-width: 992px) {
-      .containerRight {
-        width: 100%;
-      }
-    }
-  }
-
-  @media (min-width: 992px) {
-    .containerBox {
-      display: flex;
-      justify-content: space-between;
-
-      .containerLeft {
-        width: calc(66.7% - 1rem);
       }
     }
   }
