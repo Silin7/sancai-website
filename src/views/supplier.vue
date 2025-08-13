@@ -232,7 +232,7 @@ function pageJump() {
       box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
       @media (max-width: 992px) {
-        padding: 1rem 0.75rem;
+        padding: 1rem;
       }
 
       .supplierClassTitle {
@@ -272,12 +272,19 @@ function pageJump() {
           padding: 0.5rem 1.25rem;
           color: rgb(1 32 96);
           box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          border: 1px solid rgb(243 244 246);
           border-radius: 0.25rem;
+
+          @media (max-width: 600px) {
+            margin: 0 0.5rem 0.5rem 0;
+            padding: 0.5rem 1rem;
+          }
         }
 
         .supplierClassCol:hover {
-          cursor: pointer;
-          background-color: rgb(243 244 246);
+          @media (min-width: 600px) {
+            background-color: rgb(243 244 246);
+          }
         }
 
         .supplierClassColActive {
@@ -285,7 +292,13 @@ function pageJump() {
           padding: 0.5rem 1.25rem;
           color: #fff;
           background-color: rgb(22 93 255);
+          border: 1px solid rgb(243 244 246);
           border-radius: 0.25rem;
+
+          @media (max-width: 600px) {
+            margin: 0 0.5rem 0.5rem 0;
+            padding: 0.5rem 1rem;
+          }
         }
       }
     }

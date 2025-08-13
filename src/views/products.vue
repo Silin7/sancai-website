@@ -339,11 +339,11 @@ const handleCurrentChange = (val: number) => {
         box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
         @media (max-width: 1140px) {
-          padding: 0.75rem;
+          padding: 1rem;
         }
 
         .containerClassRow {
-          margin-bottom: 0.75rem;
+          margin-bottom: 1rem;
           display: flex;
           flex-wrap: wrap;
           align-items: center;
@@ -354,12 +354,19 @@ const handleCurrentChange = (val: number) => {
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
             box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            border: 1px solid rgb(243 244 246);
             border-radius: 0.25rem;
+
+            @media (max-width: 600px) {
+              margin: 0 0.5rem 0.5rem 0;
+              padding: 0.5rem 1rem;
+            }
           }
 
           .containerClassCol:hover {
-            cursor: pointer;
-            background-color: rgb(243 244 246);
+            @media (min-width: 600px) {
+              background-color: rgb(243 244 246);
+            }
           }
 
           .containerClassColActive {
@@ -367,7 +374,13 @@ const handleCurrentChange = (val: number) => {
             padding: 0.5rem 1.25rem;
             color: #fff;
             background-color: rgb(22 93 255);
+            border: 1px solid rgb(243 244 246);
             border-radius: 0.25rem;
+
+            @media (max-width: 600px) {
+              margin: 0 0.5rem 0.5rem 0;
+              padding: 0.5rem 1rem;
+            }
           }
         }
       }
