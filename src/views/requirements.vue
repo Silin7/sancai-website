@@ -19,7 +19,7 @@ const checkvalue4: any = ref(false)
         基于BIM模型实现工程全生命周期计算与动态信息管控，聚焦CIM+人房管理场景，助力城市空间与人口数据精细化治理，为智慧化管理提供精准支撑。
       </div>
       <div class="requirementsCont">
-        <div class="requCtitle">信息化产品/服务需求表（由需方填写）</div>
+        <div class="requCtitle">信息化产品/服务需求表(由需方填写)</div>
         <div class="supplierClassFx">
           <div class="supplierClassFxItem">
             <div class="supplierClassText">类别</div>
@@ -56,27 +56,25 @@ const checkvalue4: any = ref(false)
         <div v-for="index in 10" :key="index">
           <div class="requCstimu">{{ index + 1 }}. 实时数据采集</div>
           <div class="requCstibox">
-            <div class="requCstiItem frcc">
-              <input type="checkbox" v-model="checkvalue1" />
-              <span>监控</span>
+            <div class="requCstiItems">
+              <div class="requCstiItem frcc">
+                <input type="checkbox" v-model="checkvalue1" />
+                <span>监控</span>
+              </div>
+              <div class="requCstiItem frcc">
+                <input type="checkbox" v-model="checkvalue2" />
+                <span>门禁</span>
+              </div>
+              <div class="requCstiItem frcc">
+                <input type="checkbox" v-model="checkvalue3" />
+                <span>道闸杆</span>
+              </div>
+              <div class="requCstiItem frcc">
+                <input type="checkbox" v-model="checkvalue4" />
+                <span>其他</span>
+              </div>
             </div>
-            <div class="requCstiItem frcc">
-              <input type="checkbox" v-model="checkvalue2" />
-              <span>门禁</span>
-            </div>
-            <div class="requCstiItem frcc">
-              <input type="checkbox" v-model="checkvalue3" />
-              <span>道闸杆</span>
-            </div>
-            <div class="requCstiItem frcc">
-              <input type="checkbox" v-model="checkvalue4" />
-              <span>其他</span>
-            </div>
-            <el-input
-              v-model="selectvalue3"
-              style="width: 14rem; height: 34px; font-size: 1rem; margin-left: 1rem"
-              placeholder="请注明"
-            />
+            <el-input v-model="selectvalue3" class="requCstiElInput" placeholder="请注明" />
           </div>
         </div>
         <div class="supplierClassFx2">
@@ -108,16 +106,17 @@ const checkvalue4: any = ref(false)
     position: relative;
     width: 100%;
     max-width: 1536px;
+    @media (max-width: 600px) {
+      padding: 5rem 1rem 2rem;
+    }
 
     .requHtitle {
-      text-align: center;
-      font-size: 2.25rem;
-      line-height: 2.5rem;
-      color: rgb(1 32 96);
-      font-weight: 700;
+      margin-bottom: 1rem;
       font-size: 1.875rem;
       line-height: 2.25rem;
-      margin-bottom: 1rem;
+      font-weight: 700;
+      text-align: center;
+      color: rgb(1 32 96);
     }
 
     .requHsub {
@@ -132,18 +131,23 @@ const checkvalue4: any = ref(false)
   .requirementsCont {
     margin-top: 2rem;
     padding: 2.5rem;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+    background-color: rgb(255 255 255);
+    box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
     border-radius: 1rem;
+    @media (max-width: 600px) {
+      padding: 2rem 0.5rem;
+    }
 
     .requCtitle {
       text-align: center;
-      font-size: 2.25rem;
-      line-height: 2.5rem;
       color: rgb(1 32 96);
       font-weight: 700;
       font-size: 1.5rem;
       line-height: 2rem;
       margin-bottom: 1rem;
+      @media (max-width: 600px) {
+        font-size: 1.25rem;
+      }
     }
 
     .supplierClassFx {
@@ -165,7 +169,7 @@ const checkvalue4: any = ref(false)
     }
 
     .supplierClassFxItem {
-      width: calc(50% - 0.5rem);
+      width: calc(50% - 0.25rem);
     }
 
     .supplierClassFxItem2 {
@@ -181,8 +185,6 @@ const checkvalue4: any = ref(false)
     }
 
     .requCstitle {
-      font-size: 2.25rem;
-      line-height: 2.5rem;
       color: rgb(1 32 96);
       font-weight: 600;
       font-size: 1.125rem;
@@ -191,9 +193,9 @@ const checkvalue4: any = ref(false)
     }
 
     .requCstimu {
-      color: rgb(55 65 81);
-      font-weight: 500;
       margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: rgb(55 65 81);
     }
 
     .requCstibox {
@@ -204,18 +206,40 @@ const checkvalue4: any = ref(false)
       padding: 0.75rem;
       border-radius: 0.5rem;
 
-      .requCstiItem {
-        margin-right: 1rem;
+      .requCstiItems {
+        margin-bottom: 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
 
-        input {
-          width: 1.25rem;
-          height: 1.25rem;
-        }
+        .requCstiItem {
+          margin-right: 1rem;
+          @media (max-width: 600px) {
+            margin-right: 0.5rem;
+          }
 
-        span {
-          color: rgb(55 65 81);
-          margin-left: 0.5rem;
+          input {
+            width: 1.25rem;
+            height: 1.25rem;
+
+            @media (max-width: 600px) {
+              width: 1rem;
+              height: 1rem;
+            }
+          }
+
+          span {
+            color: rgb(55 65 81);
+            margin-left: 0.5rem;
+          }
         }
+      }
+
+      .requCstiElInput {
+        margin-bottom: 0.5rem;
+        width: 14rem;
+        height: 34px;
+        font-size: 1rem;
       }
     }
 
