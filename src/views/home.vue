@@ -797,7 +797,6 @@ onBeforeUnmount(() => {
         flex-wrap: nowrap;
 
         .containerSubItem {
-          cursor: pointer;
           flex-shrink: 0;
           margin: 0 0.5rem;
           padding: 0.5rem 1rem;
@@ -822,6 +821,7 @@ onBeforeUnmount(() => {
 
         .containerSubItem:hover {
           @media (min-width: 600px) {
+            cursor: pointer;
             background-color: rgb(243 244 246);
           }
         }
@@ -860,7 +860,6 @@ onBeforeUnmount(() => {
           flex-wrap: wrap;
 
           .containerGridItem {
-            cursor: pointer;
             margin: 0 1rem 1rem 0;
             display: flex;
             align-items: center;
@@ -868,7 +867,9 @@ onBeforeUnmount(() => {
             border-radius: 0.5rem;
 
             @media (max-width: 600px) {
+              margin-right: 0;
               padding: 0.5rem;
+              width: 100%;
             }
 
             .containerGridimginfo {
@@ -880,13 +881,9 @@ onBeforeUnmount(() => {
           }
 
           .containerGridItem:hover {
-            background-color: rgb(255 255 255 / 0.1);
-          }
-
-          @media (max-width: 600px) {
-            .containerGridItem {
-              width: 100%;
-              margin-right: 0;
+            @media (min-width: 600px) {
+              cursor: pointer;
+              background-color: rgb(255 255 255 / 0.1);
             }
           }
         }
@@ -942,7 +939,6 @@ onBeforeUnmount(() => {
           flex-wrap: nowrap;
 
           .solutionsSubItem {
-            cursor: pointer;
             flex-shrink: 0;
             margin: 0 0.5rem;
             line-height: 2rem;
@@ -967,6 +963,7 @@ onBeforeUnmount(() => {
 
           .solutionsSubItem:hover {
             @media (min-width: 600px) {
+              cursor: pointer;
               background-color: rgb(243 244 246);
             }
           }
