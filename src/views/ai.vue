@@ -165,11 +165,17 @@ onBeforeUnmount(() => {
           background-color: rgb(22 93 255);
           border-radius: 9999px;
           box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
+          @media (max-width: 600px) {
+            padding: 0.75rem 1.5rem;
+          }
         }
 
         .aibannerJgkbtn:hover {
-          transform: scale(1.05);
-          box-shadow: 2px 2px 10px 0 rgb(22 93 255);
+          @media (min-width: 600px) {
+            transform: scale(1.05);
+            box-shadow: 2px 2px 10px 0 rgb(22 93 255);
+          }
         }
       }
     }

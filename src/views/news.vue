@@ -240,7 +240,7 @@ function pageJump() {
             padding: 0.5rem 1.25rem;
             color: #fff;
             background-color: rgb(22 93 255);
-            border-radius: 9999px;
+            border-radius: 0.25rem;
           }
         }
       }

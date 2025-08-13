@@ -314,10 +314,17 @@ onBeforeUnmount(() => {
           background-color: rgb(22 93 255);
           border-radius: 9999px;
           box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
+          @media (max-width: 600px) {
+            padding: 0.75rem 1.5rem;
+          }
         }
 
         .abbannerJgkbtn:hover {
-          transform: scale(1.05);
+          @media (min-width: 600px) {
+            transform: scale(1.05);
+            box-shadow: 2px 2px 10px 0 rgb(22 93 255);
+          }
         }
 
         .abbannerJjfabtn {
@@ -327,10 +334,17 @@ onBeforeUnmount(() => {
           background-color: rgba(255 255 255 / 0.2);
           border: 1px solid rgba(255 255 255 / 0.3);
           border-radius: 9999px;
+
+          @media (max-width: 600px) {
+            padding: 0.75rem 1.5rem;
+          }
         }
 
         .abbannerJjfabtn:hover {
-          transform: scale(1.05);
+          @media (min-width: 600px) {
+            transform: scale(1.05);
+            box-shadow: 2px 2px 10px 0 rgba(255 255 255 / 0.2);
+          }
         }
       }
     }
