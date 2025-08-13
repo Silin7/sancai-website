@@ -21,11 +21,7 @@ onBeforeUnmount(() => {
     <div class="aiPage">
       <!-- aibanner -->
       <div class="aibannerBox">
-        <img
-          src="@/assets/solution-banner01.jpeg"
-          alt="aibanner"
-          style="width: 100vw; height: 40rem"
-        />
+        <img src="@/assets/solution-banner01.jpeg" alt="aibanner" />
         <div class="aibannerAbsolute">
           <div class="aibannerContent">
             <div class="aibannerTitle">AI赋能建筑业 开启智能建造新时代</div>
@@ -123,6 +119,15 @@ onBeforeUnmount(() => {
     width: 100vw;
     height: 40rem;
 
+    @media (max-width: 600px) {
+      height: 30rem;
+    }
+
+    img {
+      width: 100vw;
+      height: 100%;
+    }
+
     .aibannerAbsolute {
       position: absolute;
       top: 0;
@@ -132,13 +137,17 @@ onBeforeUnmount(() => {
 
       .aibannerContent {
         margin: 0 auto;
-        padding: 10rem 2rem 6rem;
+        padding: 10rem 2rem 0;
         width: 100%;
         max-width: 1536px;
 
+        @media (max-width: 600px) {
+          padding: 6rem 1rem 0;
+        }
+
         .aibannerTitle {
           margin-bottom: 1.5rem;
-          font-size: clamp(1.75rem, 7vw, 3rem);
+          font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           color: #fff;
         }
@@ -155,7 +164,7 @@ onBeforeUnmount(() => {
           color: #fff;
           background-color: rgb(22 93 255);
           border-radius: 9999px;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
         }
 
         .aibannerJgkbtn:hover {
@@ -169,6 +178,7 @@ onBeforeUnmount(() => {
   .introaiOut {
     padding: 6rem 1rem;
     width: 100%;
+
     @media (max-width: 600px) {
       padding: 2rem 1rem;
     }
@@ -180,8 +190,9 @@ onBeforeUnmount(() => {
       width: 100%;
       max-width: 1536px;
       background-color: #fff;
-      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
       border-radius: 1rem;
+
       @media (min-width: 992px) {
         padding: 2.5rem;
 
@@ -238,6 +249,7 @@ onBeforeUnmount(() => {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+
         @media (max-width: 600px) {
           width: 100%;
         }
@@ -252,7 +264,8 @@ onBeforeUnmount(() => {
           align-items: center;
           background-color: #fff;
           border-radius: 0.75rem;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
           @media (max-width: 600px) {
             width: 100%;
             margin: 0 0 1rem 0;
@@ -295,7 +308,7 @@ onBeforeUnmount(() => {
 
         .applicationClassitem:hover {
           cursor: pointer;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
           animation: jumpUpwards 300ms ease-in-out forwards;
         }
       }
@@ -336,6 +349,7 @@ onBeforeUnmount(() => {
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
+
       @media (max-width: 600px) {
         width: 100%;
       }
@@ -350,7 +364,8 @@ onBeforeUnmount(() => {
         align-items: center;
         background-color: #fff;
         border-radius: 0.75rem;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
         @media (max-width: 600px) {
           width: 100%;
           margin: 0 0 1rem 0;
@@ -364,6 +379,7 @@ onBeforeUnmount(() => {
         .caseClassitembox {
           width: 100%;
           padding: 1.5rem;
+
           @media (max-width: 600px) {
             padding: 1.5rem 1rem;
           }
@@ -420,7 +436,7 @@ onBeforeUnmount(() => {
 
       .caseClassitem:hover {
         cursor: pointer;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
         animation: jumpUpwards 300ms ease-in-out forwards;
       }
     }

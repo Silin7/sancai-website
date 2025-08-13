@@ -23,33 +23,20 @@ const checkvalue4: any = ref(false)
         <div class="supplierClassFx">
           <div class="supplierClassFxItem">
             <div class="supplierClassText">类别</div>
-            <el-input
-              v-model="selectvalue1"
-              style="width: 100%; height: 50px; font-size: 1rem"
-              placeholder=" "
-              disabled
-            />
+            <el-input v-model="selectvalue1" style="width: 100%; height: 50px; font-size: 1rem" placeholder=" "
+              disabled />
           </div>
           <div class="supplierClassFxItem">
             <div class="supplierClassText">产品/服务</div>
-            <el-input
-              v-model="selectvalue2"
-              style="width: 100%; height: 50px; font-size: 1rem"
-              placeholder=" "
-              disabled
-            />
+            <el-input v-model="selectvalue2" style="width: 100%; height: 50px; font-size: 1rem" placeholder=" "
+              disabled />
           </div>
         </div>
         <div class="supplierClassFx" style="margin-top: 2rem">
           <div class="supplierClassFxItem2">
             <div class="supplierClassText">应用简述（可另附页）</div>
-            <el-input
-              type="textarea"
-              v-model="selectvalue3"
-              :autosize="{ minRows: 3, maxRows: 3 }"
-              style="width: 100%; font-size: 1rem"
-              placeholder="请描述CIM+人房管理系统的应用场景、目标及预期效果等"
-            />
+            <el-input type="textarea" v-model="selectvalue3" :autosize="{ minRows: 3, maxRows: 3 }"
+              style="width: 100%; font-size: 1rem" placeholder="请描述CIM+人房管理系统的应用场景、目标及预期效果等" />
           </div>
         </div>
         <div class="requCstitle">技术需求（可多选）</div>
@@ -80,13 +67,8 @@ const checkvalue4: any = ref(false)
         <div class="supplierClassFx2">
           <div class="supplierClassFxItem2">
             <div class="supplierClassText">其他要求</div>
-            <el-input
-              type="textarea"
-              v-model="selectvalue3"
-              :autosize="{ minRows: 3, maxRows: 3 }"
-              style="width: 100%; font-size: 1rem"
-              placeholder="请填写其他特殊需求或补充说明"
-            />
+            <el-input type="textarea" v-model="selectvalue3" :autosize="{ minRows: 3, maxRows: 3 }"
+              style="width: 100%; font-size: 1rem" placeholder="请填写其他特殊需求或补充说明" />
           </div>
         </div>
         <button class="btmTjxq">提交需求</button>
@@ -106,6 +88,7 @@ const checkvalue4: any = ref(false)
     position: relative;
     width: 100%;
     max-width: 1536px;
+
     @media (max-width: 600px) {
       padding: 5rem 1rem 2rem;
     }
@@ -132,8 +115,9 @@ const checkvalue4: any = ref(false)
     margin-top: 2rem;
     padding: 2.5rem;
     background-color: rgb(255 255 255);
-    box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+    box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
     border-radius: 1rem;
+
     @media (max-width: 600px) {
       padding: 2rem 0.5rem;
     }
@@ -145,6 +129,7 @@ const checkvalue4: any = ref(false)
       font-size: 1.5rem;
       line-height: 2rem;
       margin-bottom: 1rem;
+
       @media (max-width: 600px) {
         font-size: 1.25rem;
       }
@@ -214,6 +199,7 @@ const checkvalue4: any = ref(false)
 
         .requCstiItem {
           margin-right: 1rem;
+
           @media (max-width: 600px) {
             margin-right: 0.5rem;
           }
@@ -250,7 +236,7 @@ const checkvalue4: any = ref(false)
       color: #fff;
       background-color: rgb(22 93 255);
       border-radius: 9999px;
-      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
     }
 
     .btmTjxq:hover {
@@ -292,6 +278,7 @@ const checkvalue4: any = ref(false)
     border-radius: 0.25rem !important;
   }
 }
+
 .supplierClass {
   .el-select__wrapper {
     border-radius: 0.5rem;
@@ -305,6 +292,7 @@ const checkvalue4: any = ref(false)
     color: rgb(1 32 96);
   }
 }
+
 .supplierProducts {
   .el-select__wrapper {
     background-color: #e9e9ed;

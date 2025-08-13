@@ -31,10 +31,8 @@ const state = ref('gsjs')
         </div>
 
         <div class="sdhGys">
-          <img
-            src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-            alt=""
-          />
+          <img src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
+            alt="" />
           <div class="sdhgCenter">
             <div class="sdhgcTop">
               <div class="sdhgctTitle">杭州筑智信息技术有限公司</div>
@@ -149,29 +147,25 @@ const state = ref('gsjs')
               <div class="sdclxiCgItem">
                 <img
                   src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt=""
-                />
+                  alt="" />
                 <div class="sdclxicIp">甲级BIM咨询资质</div>
               </div>
               <div class="sdclxiCgItem">
                 <img
                   src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt=""
-                />
+                  alt="" />
                 <div class="sdclxicIp">ISO9001质量管理体系认证</div>
               </div>
               <div class="sdclxiCgItem">
                 <img
                   src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt=""
-                />
+                  alt="" />
                 <div class="sdclxicIp">高新技术企业认证</div>
               </div>
               <div class="sdclxiCgItem">
                 <img
                   src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt=""
-                />
+                  alt="" />
                 <div class="sdclxicIp">软件企业认定证书</div>
               </div>
             </div>
@@ -259,11 +253,7 @@ const state = ref('gsjs')
                   <p>浙江省杭州市滨江区江南大道1000号智慧大厦15层</p>
                 </div>
               </div>
-              <img
-                src="https://picsum.photos/600/300?random=701"
-                alt="公司位置地图"
-                class="sdLxfsFsdz"
-              />
+              <img src="https://picsum.photos/600/300?random=701" alt="公司位置地图" class="sdLxfsFsdz" />
             </div>
             <div class="sdLxfsItem">
               <div class="sdLxfsRi">
@@ -297,11 +287,7 @@ const state = ref('gsjs')
                 </div>
               </div>
               <div class="sdLxfsRi">
-                <img
-                  src="https://picsum.photos/600/300?random=701"
-                  alt="二维码"
-                  class="sdLxfsEwm"
-                />
+                <img src="https://picsum.photos/600/300?random=701" alt="二维码" class="sdLxfsEwm" />
                 <div class="sdLxfsEbox">
                   <p>扫码关注</p>
                   <p>获取最新产品及服务信息</p>
@@ -335,6 +321,10 @@ const state = ref('gsjs')
       max-width: 1536px;
       color: rgb(1 32 96);
 
+      @media (max-width: 992px) {
+        padding: 5rem 1rem 1rem;
+      }
+
       .sdNavigation {
         margin: 0 auto 1.5rem;
         display: flex;
@@ -363,22 +353,37 @@ const state = ref('gsjs')
 
       .sdhGys {
         margin-bottom: 2rem;
-        padding: 1.5rem;
+        padding: 1rem;
         background-color: rgb(255 255 255);
         border-radius: 0.75rem;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
+        @media (min-width: 992px) {
+          padding: 1.5rem;
+          display: flex;
+          justify-content: space-between;
+        }
 
         img {
           padding: 0.25rem;
-          width: 8rem;
+          width: calc(100% - 0.5rem);
           height: 8rem;
           border-radius: 0.75rem;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
+          @media (min-width: 992px) {
+            width: 8rem;
+          }
         }
 
         .sdhgCenter {
           margin-top: 1rem;
           width: 100%;
+
+          @media (min-width: 992px) {
+            margin-top: 0;
+            width: calc(100% - 20rem);
+          }
 
           .sdhgcTop {
             display: flex;
@@ -468,6 +473,11 @@ const state = ref('gsjs')
           margin-top: 1rem;
           width: 100%;
 
+          @media (min-width: 992px) {
+            margin-top: 0;
+            width: 10rem;
+          }
+
           .sdhgcLxgys {
             padding: 0.75rem 1rem;
             width: 100%;
@@ -500,29 +510,6 @@ const state = ref('gsjs')
           }
         }
       }
-
-      @media (min-width: 992px) {
-        .sdhGys {
-          display: flex;
-          justify-content: space-between;
-
-          .sdhgCenter {
-            margin-top: 0;
-            width: calc(100% - 20rem);
-          }
-
-          .sdhgRight {
-            margin-top: 0;
-            width: 10rem;
-          }
-        }
-      }
-    }
-
-    @media (max-width: 992px) {
-      .sdHcontent {
-        padding: 6rem 1rem 2rem;
-      }
     }
   }
 
@@ -538,13 +525,16 @@ const state = ref('gsjs')
       width: 100%;
 
       .sdclFl {
-        overflow: hidden;
+        overflow-x: auto;
+        display: flex;
+        flex-wrap: nowrap;
         margin-bottom: 2rem;
         background-color: rgb(255 255 255);
         border-radius: 0.75rem;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
         button {
+          flex-shrink: 0;
           font-size: 1.125rem;
           line-height: 1.75rem;
           padding: 1rem 1.5rem;
@@ -558,11 +548,14 @@ const state = ref('gsjs')
       }
 
       .sdclGsjj {
-        margin-bottom: 2rem;
-        padding: 1.5rem;
+        padding: 1rem;
         background-color: rgb(255 255 255);
         border-radius: 0.75rem;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
+        @media (min-width: 992px) {
+          padding: 1.5rem;
+        }
 
         .sdclxTitle {
           margin-bottom: 1.5rem;
@@ -590,14 +583,24 @@ const state = ref('gsjs')
             line-height: 1.75rem;
           }
 
+          .sdclxiIbox {
+            @media (min-width: 992px) {
+              display: flex;
+              justify-content: space-between;
+            }
+          }
+
           .sdclxiInfo {
             margin-bottom: 1rem;
-            padding: 1.5rem;
-            position: relative;
+            padding: 1rem;
             line-height: 1.5rem;
-            padding-bottom: 1.5rem;
             background-color: rgb(240 247 255);
             border-radius: 0.75rem;
+
+            @media (min-width: 992px) {
+              padding: 1.5rem;
+              width: calc(33.3% - 0.5rem);
+            }
 
             .sdclxiFa {
               margin-bottom: 1rem;
@@ -623,17 +626,6 @@ const state = ref('gsjs')
             }
           }
 
-          @media (min-width: 992px) {
-            .sdclxiIbox {
-              display: flex;
-              justify-content: space-between;
-            }
-
-            .sdclxiInfo {
-              width: calc(33.3% - 0.5rem);
-            }
-          }
-
           .sdclxiCgBox {
             display: flex;
             flex-wrap: wrap;
@@ -646,8 +638,13 @@ const state = ref('gsjs')
               width: 100%;
               background-color: rgb(255 255 255);
               border-radius: 0.5rem;
-              box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+              box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
               border: 1px solid rgb(229 231 235);
+
+              @media (min-width: 992px) {
+                margin-bottom: 0;
+                width: calc(25% - 0.5rem);
+              }
 
               img {
                 width: 100%;
@@ -665,13 +662,6 @@ const state = ref('gsjs')
             .sdclxiCgItem:last-child {
               margin-bottom: 0;
             }
-
-            @media (min-width: 992px) {
-              .sdclxiCgItem {
-                margin-bottom: 0;
-                width: calc(25% - 0.5rem);
-              }
-            }
           }
         }
 
@@ -683,9 +673,13 @@ const state = ref('gsjs')
           .sdLxfsItem {
             margin-bottom: 1rem;
             width: calc(100%);
-            padding: 1.5rem;
+            padding: 1rem;
             background-color: rgb(240 247 255);
             border-radius: 0.75rem;
+
+            @media (min-width: 992px) {
+              padding: 1.5rem;
+            }
 
             .sdLxfsIbox {
               flex-shrink: 0;
@@ -719,10 +713,8 @@ const state = ref('gsjs')
               height: 12rem;
               border-width: 1px;
               border-radius: 0.5rem;
-            }
 
-            @media (min-width: 992px) {
-              .sdLxfsFsdz {
+              @media (min-width: 992px) {
                 margin: 1rem 0 0 4rem;
                 width: calc(100% - 8rem);
               }
@@ -771,7 +763,7 @@ const state = ref('gsjs')
                 height: 7rem;
                 border-radius: 0.5rem;
                 background-color: #fff;
-                box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+                box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
               }
 
               .sdLxfsEbox {
@@ -803,10 +795,8 @@ const state = ref('gsjs')
 
           .sdLxfsItem:last-child {
             margin-bottom: 0;
-          }
 
-          @media (min-width: 992px) {
-            .sdLxfsItem {
+            @media (min-width: 992px) {
               width: calc(50% - 1rem);
             }
           }
@@ -814,19 +804,25 @@ const state = ref('gsjs')
       }
 
       .sdclHzal {
-        padding: 1.5rem;
+        padding: 1rem;
         background-color: rgb(255 255 255);
         border-radius: 0.75rem;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
+        @media (min-width: 992px) {
+          padding: 1.5rem;
+        }
 
         .sdclHzalRow {
-          margin-bottom: 2rem;
+          margin-bottom: 1rem;
           display: flex;
           flex-wrap: wrap;
           align-items: center;
 
           .sdclHzalCol {
-            margin-right: 0.75rem;
+            flex-shrink: 0;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
             padding: 0.5rem 1rem;
             font-size: 0.875rem;
             line-height: 1.25rem;
@@ -841,7 +837,8 @@ const state = ref('gsjs')
           }
 
           .sdclHzalColActive {
-            margin-right: 0.75rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
             padding: 0.5rem 1rem;
             font-size: 0.875rem;
             line-height: 1.25rem;
@@ -862,6 +859,10 @@ const state = ref('gsjs')
             margin-bottom: 1.5rem;
             border-radius: 0.75rem;
             border: 1px solid rgb(229 231 235);
+
+            @media (min-width: 992px) {
+              width: calc(50% - 0.75rem);
+            }
 
             .sdclHzalImgBox {
               position: relative;
@@ -892,7 +893,11 @@ const state = ref('gsjs')
 
             .sdclHzalBox {
               width: 100%;
-              padding: 1.5rem;
+              padding: 1rem;
+
+              @media (min-width: 992px) {
+                padding: 1.5rem;
+              }
 
               .sdclHzalTitle {
                 margin-bottom: 1rem;
@@ -911,6 +916,7 @@ const state = ref('gsjs')
 
               .sdclHzalClass {
                 margin-bottom: 1rem;
+                width: 100%;
                 display: flex;
                 flex-wrap: wrap;
 
@@ -946,9 +952,9 @@ const state = ref('gsjs')
             }
           }
 
-          @media (min-width: 992px) {
-            .sdclHzalItem {
-              width: calc(50% - 0.75rem);
+          .sdclHzalItem:last-child {
+            @media (max-width: 992px) {
+              margin-bottom: 0;
             }
           }
         }
@@ -964,6 +970,10 @@ const state = ref('gsjs')
             margin-bottom: 1.5rem;
             border-radius: 0.75rem;
             border: 1px solid rgb(229 231 235);
+
+            @media (min-width: 992px) {
+              width: calc(33.3% - 0.75rem);
+            }
 
             .sdclCplbImgBox {
               position: relative;
@@ -994,7 +1004,11 @@ const state = ref('gsjs')
 
             .sdclCplbBox {
               width: 100%;
-              padding: 1.5rem;
+              padding: 1rem;
+
+              @media (min-width: 992px) {
+                padding: 1.5rem;
+              }
 
               .sdclCplbTitle {
                 margin-bottom: 1rem;
@@ -1040,8 +1054,14 @@ const state = ref('gsjs')
             }
           }
 
+          .sdclCplbItem:last-child {
+            @media (max-width: 992px) {
+              margin-bottom: 0;
+            }
+          }
+
           .sdclCplbItem:hover {
-            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
             .sdclCplbImg {
               transform: scale(1.05);
@@ -1051,19 +1071,8 @@ const state = ref('gsjs')
               color: rgb(22 93 255);
             }
           }
-
-          @media (min-width: 992px) {
-            .sdclCplbItem {
-              width: calc(33.3% - 0.75rem);
-            }
-          }
         }
       }
-
-      // @media (min-width: 992px) {
-      //   .sdclHzal {
-      //   }
-      // }
     }
   }
 }
@@ -1074,6 +1083,7 @@ const state = ref('gsjs')
 .el-rate {
   padding-bottom: 0.25rem !important;
 }
+
 .sdcrTop .el-rate__icon {
   margin-right: 0 !important;
 }

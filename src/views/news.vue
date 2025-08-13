@@ -40,11 +40,7 @@ function pageJump() {
   <div class="newsPage">
     <!-- BANNER -->
     <div class="nsbannerBox">
-      <img
-        src="@/assets/products-banner01.jpeg"
-        alt="nsbanner"
-        style="width: 100vw; height: 40rem"
-      />
+      <img src="@/assets/products-banner01.jpeg" alt="nsbanner" />
       <div class="nsbannerAbsolute">
         <div class="nsbannerContent">
           <div class="nsbannerTitle">热点资讯</div>
@@ -74,12 +70,7 @@ function pageJump() {
             <div class="newsProductsTitleText">最新资讯</div>
             <div class="newsProductsTitlePxfs">
               <span v-if="windowWidth > 1140">排序方式：</span>
-              <el-select
-                v-model="selectvalue"
-                placeholder="Select"
-                size="large"
-                style="width: 110px"
-              >
+              <el-select v-model="selectvalue" placeholder="Select" size="large" style="width: 110px">
                 <el-option label="最新发布" value="01" />
                 <el-option label="最热文章" value="02" />
                 <el-option label="最多评论" value="03" />
@@ -87,13 +78,9 @@ function pageJump() {
             </div>
           </div>
           <div class="newsProductsBox" :style="windowWidth > 992 ? '' : 'padding: 0;'">
-            <div
-              class="newsProductsItem"
-              :style="windowWidth > 992 ? 'display: flex; justify-content: space-between;' : ''"
-              v-for="index in 4"
-              :key="index"
-              @click="pageJump"
-            >
+            <div class="newsProductsItem"
+              :style="windowWidth > 992 ? 'display: flex; justify-content: space-between;' : ''" v-for="index in 4"
+              :key="index" @click="pageJump">
               <div class="newsPiImgBox">
                 <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="newsPiImg" />
                 <div class="newsPiImgTag">政策</div>
@@ -138,19 +125,9 @@ function pageJump() {
               </div>
             </div>
             <div class="newsPagination">
-              <el-pagination
-                v-model:current-page="currentPage2"
-                v-model:page-size="pageSize2"
-                :page-sizes="[100, 200, 300, 400]"
-                size="default"
-                background
-                layout="prev, pager, next"
-                prev-text="上一页"
-                next-text="下一页"
-                :total="400"
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-              />
+              <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2"
+                :page-sizes="[100, 200, 300, 400]" size="default" background layout="prev, pager, next" prev-text="上一页"
+                next-text="下一页" :total="400" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
             </div>
           </div>
         </div>
@@ -169,6 +146,15 @@ function pageJump() {
     width: 100vw;
     height: 40rem;
 
+    @media (max-width: 600px) {
+      height: 30rem;
+    }
+
+    img {
+      width: 100vw;
+      height: 100%;
+    }
+
     .nsbannerAbsolute {
       position: absolute;
       top: 0;
@@ -178,13 +164,17 @@ function pageJump() {
 
       .nsbannerContent {
         margin: 0 auto;
-        padding: 10rem 2rem 6rem;
+        padding: 10rem 2rem 0;
         width: 100%;
         max-width: 1536px;
 
+        @media (max-width: 600px) {
+          padding: 6rem 1rem 0;
+        }
+
         .nsbannerTitle {
           margin-bottom: 1.5rem;
-          font-size: clamp(1.75rem, 7vw, 3rem);
+          font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           line-height: 1.25;
           color: #fff;
@@ -206,6 +196,7 @@ function pageJump() {
     padding: 2rem 1rem;
     width: 100%;
     max-width: 1536px;
+
     @media (min-width: 992px) {
       padding: 4rem 1rem;
     }
@@ -219,7 +210,8 @@ function pageJump() {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
         @media (max-width: 600px) {
           padding: 1rem 0.75rem 0.25rem;
         }
@@ -234,7 +226,7 @@ function pageJump() {
             margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
-            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
             border-radius: 0.25rem;
           }
 
@@ -259,7 +251,8 @@ function pageJump() {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
         @media (max-width: 600px) {
           padding: 1rem 0.5rem;
         }
@@ -295,6 +288,7 @@ function pageJump() {
             // align-items: center;
             box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 0.1);
             border-radius: 0.75rem;
+
             @media (max-width: 600px) {
               padding: 0.75rem;
             }
@@ -302,6 +296,7 @@ function pageJump() {
             .newsPiImgBox {
               position: relative;
               width: calc(25% - 0.75rem);
+
               @media (max-width: 600px) {
                 width: 100%;
               }
@@ -331,6 +326,7 @@ function pageJump() {
 
             .newsPiBox {
               width: calc(75% - 0.75rem);
+
               @media (max-width: 600px) {
                 margin-top: 1rem;
                 width: 100%;
@@ -412,7 +408,7 @@ function pageJump() {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
         .newsRecomTitle {
           margin-bottom: 1.5rem;
@@ -548,7 +544,7 @@ function pageJump() {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
         .newsHotTitle {
           margin-bottom: 1.5rem;

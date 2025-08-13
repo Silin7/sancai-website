@@ -21,10 +21,10 @@ onBeforeUnmount(() => {
     <div class="aboutPage">
       <!-- BANNER -->
       <div class="abbannerBox">
-        <img src="@/assets/about-02.jpg" alt="abbanner" style="width: 100vw; height: 40rem" />
+        <img src="@/assets/about-02.jpg" alt="abbanner" />
         <div class="abbannerAbsolute">
           <div class="abbannerContent">
-            <div class="abbannerTitle">杭州三才工程管理咨询有限公司</div>
+            <div class="abbannerTitle">杭州三才工程信息科技有限公司</div>
             <div class="abbannerSubtitle">工程项目数字化服务与产品的国家高新技术企业</div>
             <div class="frsc">
               <button class="abbannerJgkbtn">了解我们</button>
@@ -42,7 +42,7 @@ onBeforeUnmount(() => {
             <div class="introtLeft">
               <div class="introtInfo">
                 <p>
-                  杭州三才工程管理咨询有限公司成立于2014年5月，总部位于浙江省杭州市。我们以"网络强国"和"数字中国"建设思想为指引，专注于提供工程项目数字化服务与产品，是国家高新技术企业。
+                  杭州三才工程信息科技有限公司成立于2014年5月，总部位于浙江省杭州市。我们以"网络强国"和"数字中国"建设思想为指引，专注于提供工程项目数字化服务与产品，是国家高新技术企业。
                 </p>
                 <p>
                   公司主营工程造价咨询、BIM咨询、CIM咨询、智慧管理软件开发，致力于推动建筑行业数字化转型，为新型基础设施建设提供专业支持。
@@ -110,38 +110,24 @@ onBeforeUnmount(() => {
           <div v-for="index in 4" :key="index" class="achievementRiditem">
             <img
               src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-              alt=""
-              style="width: 100%; height: 12rem"
-            />
+              alt="" style="width: 100%; height: 12rem" />
             <div class="achievementRidimgbox">
               <div class="achievementRidimgfx">
                 <div class="achievementRidimgFrsc">
-                  <div
-                    v-if="index % 4 == 1"
-                    class="achievementFabox"
-                    style="color: rgb(37 99 235); background-color: rgb(219 234 254)"
-                  >
+                  <div v-if="index % 4 == 1" class="achievementFabox"
+                    style="color: rgb(37 99 235); background-color: rgb(219 234 254)">
                     <i class="fa fa-building"></i>
                   </div>
-                  <div
-                    v-if="index % 4 == 2"
-                    class="achievementFabox"
-                    style="color: rgb(22 163 74); background-color: rgb(220 252 231)"
-                  >
+                  <div v-if="index % 4 == 2" class="achievementFabox"
+                    style="color: rgb(22 163 74); background-color: rgb(220 252 231)">
                     <i class="fa fa-book"></i>
                   </div>
-                  <div
-                    v-if="index % 4 == 3"
-                    class="achievementFabox"
-                    style="color: rgb(147 51 234); background-color: rgb(243 232 255)"
-                  >
+                  <div v-if="index % 4 == 3" class="achievementFabox"
+                    style="color: rgb(147 51 234); background-color: rgb(243 232 255)">
                     <i class="fa fa-trophy"></i>
                   </div>
-                  <div
-                    v-if="index % 4 == 0"
-                    class="achievementFabox"
-                    style="color: rgb(22 163 74); background-color: rgb(220 252 231)"
-                  >
+                  <div v-if="index % 4 == 0" class="achievementFabox"
+                    style="color: rgb(22 163 74); background-color: rgb(220 252 231)">
                     <i class="fa fa-certificate"></i>
                   </div>
                   <div class="achievementRidtitle">城市标志性建筑数字化服务</div>
@@ -209,7 +195,7 @@ onBeforeUnmount(() => {
           <div class="futureHeng"></div>
           <div class="futureCardBox">
             <div class="futureCardItem">
-              进入"十四五"发展新阶段，杭州三才工程管理咨询有限公司将以加快数字化发展为契机，聚焦BIM、CIM技术，实施全面数字化转型。
+              进入"十四五"发展新阶段，杭州三才工程信息科技有限公司将以加快数字化发展为契机，聚焦BIM、CIM技术，实施全面数字化转型。
             </div>
             <div class="futureCardItem">
               我们将继续走智能化和智慧化发展道路，为推进和谐共生的数字生态，贡献匠心智造的力量，助力建筑行业实现高质量发展。
@@ -255,7 +241,7 @@ onBeforeUnmount(() => {
         </el-row>
         <div class="mediaCard">
           <p>
-            "杭州三才工程管理咨询有限公司在新型城市基础设施建设领域崭露头角，其工程数字化解决方案为传统建筑行业注入了新的活力。"
+            "杭州三才工程信息科技有限公司在新型城市基础设施建设领域崭露头角，其工程数字化解决方案为传统建筑行业注入了新的活力。"
           </p>
           <div class="frsc">
             <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="" class="mediaAvatal" />
@@ -280,6 +266,15 @@ onBeforeUnmount(() => {
     width: 100vw;
     height: 40rem;
 
+    @media (max-width: 600px) {
+      height: 30rem;
+    }
+
+    img {
+      width: 100vw;
+      height: 100%;
+    }
+
     .abbannerAbsolute {
       position: absolute;
       top: 0;
@@ -289,13 +284,17 @@ onBeforeUnmount(() => {
 
       .abbannerContent {
         margin: 0 auto;
-        padding: 10rem 2rem 6rem;
+        padding: 10rem 2rem 0;
         width: 100%;
         max-width: 1720px;
 
+        @media (max-width: 600px) {
+          padding: 6rem 1rem 0;
+        }
+
         .abbannerTitle {
           margin-bottom: 1.5rem;
-          font-size: clamp(1.75rem, 7vw, 3rem);
+          font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           line-height: 1.25;
           color: #fff;
@@ -314,7 +313,7 @@ onBeforeUnmount(() => {
           color: #fff;
           background-color: rgb(22 93 255);
           border-radius: 9999px;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
         }
 
         .abbannerJgkbtn:hover {
@@ -341,6 +340,7 @@ onBeforeUnmount(() => {
     padding: 6rem 0;
     width: 100vw;
     background-color: #fff;
+
     @media (max-width: 600px) {
       padding: 2rem 0;
     }
@@ -379,6 +379,7 @@ onBeforeUnmount(() => {
         .introtLeft {
           margin-right: 2rem;
           width: calc(50% - 1rem);
+
           @media (max-width: 600px) {
             margin-right: 0;
             width: 100%;
@@ -389,6 +390,7 @@ onBeforeUnmount(() => {
             padding: 2rem;
             border-radius: 0.75rem;
             background-color: rgb(243 244 246);
+
             @media (max-width: 600px) {
               padding: 1rem;
             }
@@ -467,6 +469,7 @@ onBeforeUnmount(() => {
           padding: 2rem;
           background-color: rgb(249 250 251);
           border-radius: 1rem;
+
           @media (max-width: 600px) {
             margin-top: 2rem;
             padding: 1rem;
@@ -558,7 +561,7 @@ onBeforeUnmount(() => {
         overflow: hidden;
         background-color: #fff;
         border-radius: 1rem;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
         .achievementRidimgfx {
           padding: 1.5rem;
@@ -594,6 +597,7 @@ onBeforeUnmount(() => {
             color: rgb(75 85 99);
           }
         }
+
         @media (max-width: 600px) {
           .achievementRidimgfx {
             padding: 1rem 0.75rem;
@@ -606,11 +610,13 @@ onBeforeUnmount(() => {
           width: calc(25% - 1rem);
         }
       }
+
       @media (max-width: 999px) and (min-width: 601px) {
         .achievementRiditem {
           width: calc(50% - 0.5rem);
         }
       }
+
       @media (max-width: 600px) {
         .achievementRiditem {
           width: 100%;
@@ -619,7 +625,7 @@ onBeforeUnmount(() => {
 
       .achievementRiditem:hover {
         cursor: pointer;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
         animation: jumpUpwards 300ms ease-in-out forwards;
       }
 
@@ -673,7 +679,7 @@ onBeforeUnmount(() => {
           padding: 1.5rem;
           margin-bottom: 1rem;
           border-radius: 0.75rem;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
           .serviceCardItemIcon {
             margin-right: 1rem;
@@ -856,7 +862,7 @@ onBeforeUnmount(() => {
       max-width: 48rem;
       border-radius: 1rem;
       background-color: rgb(255 255 255);
-      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
       p {
         margin-top: 0;

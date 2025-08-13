@@ -43,7 +43,7 @@ function pageJump() {
   <div class="supplierPage">
     <!-- BANNER -->
     <div class="srbannerBox">
-      <img src="@/assets/partner_banner.jpg" alt="srbanner" style="width: 100vw; height: 40rem" />
+      <img src="@/assets/partner_banner.jpg" alt="srbanner" />
       <div class="srbannerAbsolute">
         <div class="srbannerContent">
           <div class="srbannerTitle">供应商列表</div>
@@ -81,12 +81,8 @@ function pageJump() {
           <button class="supplierClassCol">智能建造装备</button>
           <button class="supplierClassCol">信息化产品/服务</button>
         </div>
-        <el-input
-          v-model="input2"
-          style="width: 100%; height: 50px; font-size: 1rem"
-          placeholder="搜索供应商名称或主营项目..."
-          :prefix-icon="Search"
-        />
+        <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索供应商名称或主营项目..."
+          :prefix-icon="Search" />
       </div>
       <!-- 供应商列表 -->
       <div class="supplierProducts">
@@ -153,19 +149,9 @@ function pageJump() {
         </div>
         <div class="supplierPagination">
           <!-- total, sizes, prev, pager, next, jumper -->
-          <el-pagination
-            v-model:current-page="currentPage2"
-            v-model:page-size="pageSize2"
-            :page-sizes="[100, 200, 300, 400]"
-            size="default"
-            background
-            layout="prev, pager, next"
-            prev-text="上一页"
-            next-text="下一页"
-            :total="400"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-          />
+          <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2"
+            :page-sizes="[100, 200, 300, 400]" size="default" background layout="prev, pager, next" prev-text="上一页"
+            next-text="下一页" :total="400" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </div>
       </div>
     </div>
@@ -182,6 +168,15 @@ function pageJump() {
     width: 100vw;
     height: 40rem;
 
+    @media (max-width: 600px) {
+      height: 30rem;
+    }
+
+    img {
+      width: 100vw;
+      height: 100%;
+    }
+
     .srbannerAbsolute {
       position: absolute;
       top: 0;
@@ -191,13 +186,17 @@ function pageJump() {
 
       .srbannerContent {
         margin: 0 auto;
-        padding: 10rem 2rem 6rem;
+        padding: 10rem 2rem 0;
         width: 100%;
         max-width: 1536px;
 
+        @media (max-width: 600px) {
+          padding: 6rem 1rem 0;
+        }
+
         .srbannerTitle {
           margin-bottom: 1.5rem;
-          font-size: clamp(1.75rem, 7vw, 3rem);
+          font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           line-height: 1.25;
           color: rgb(1 32 96);
@@ -219,6 +218,7 @@ function pageJump() {
     padding: 2rem 1rem;
     width: 100%;
     max-width: 1536px;
+
     @media (min-width: 992px) {
       padding: 4rem 1rem;
     }
@@ -229,7 +229,8 @@ function pageJump() {
       border-radius: 1rem;
       color: rgb(1 32 96);
       background-color: #fff;
-      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
       @media (max-width: 992px) {
         padding: 1rem 0.75rem;
       }
@@ -270,7 +271,7 @@ function pageJump() {
           margin: 0 0.75rem 0.75rem 0;
           padding: 0.5rem 1.25rem;
           color: rgb(1 32 96);
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
           border-radius: 0.25rem;
         }
 
@@ -295,7 +296,8 @@ function pageJump() {
       border-radius: 1rem;
       color: rgb(1 32 96);
       background-color: #fff;
-      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
       @media (max-width: 992px) {
         padding: 1rem 0.5rem;
       }
@@ -331,6 +333,7 @@ function pageJump() {
           box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 0.1);
           border-radius: 0.75rem;
           width: calc(50% - 1rem);
+
           @media (max-width: 992px) {
             padding: 0.75rem;
             width: 100%;
@@ -349,6 +352,7 @@ function pageJump() {
                 width: 5rem;
                 height: 5rem;
                 border-radius: 0.5rem;
+
                 @media (max-width: 992px) {
                   width: 100%;
                   height: 12rem;
@@ -375,6 +379,7 @@ function pageJump() {
 
             .supplierPiBox {
               width: calc(100% - 6rem);
+
               @media (max-width: 992px) {
                 margin-top: 1rem;
                 width: 100%;
@@ -543,6 +548,7 @@ function pageJump() {
     border-radius: 0.25rem !important;
   }
 }
+
 .supplierClass {
   .el-select__wrapper {
     border-radius: 0.5rem;
@@ -556,6 +562,7 @@ function pageJump() {
     color: rgb(1 32 96);
   }
 }
+
 .supplierProducts {
   .el-select__wrapper {
     background-color: #e9e9ed;

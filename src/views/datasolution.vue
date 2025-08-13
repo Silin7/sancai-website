@@ -30,11 +30,7 @@ function pageJump() {
     <div class="datasolutionPage">
       <!-- BANNER -->
       <div class="dsbannerBox">
-        <img
-          src="@/assets/solution-banner01.jpeg"
-          alt="dsbanner"
-          style="width: 100vw; height: 40rem"
-        />
+        <img src="@/assets/solution-banner01.jpeg" alt="dsbanner" />
         <div class="dsbannerAbsolute">
           <div class="dsbannerContent">
             <div class="dsbannerTitle">为新城建提供绿色化 数字化 智能化综合解决方案</div>
@@ -136,6 +132,15 @@ function pageJump() {
     width: 100vw;
     height: 40rem;
 
+    @media (max-width: 600px) {
+      height: 30rem;
+    }
+
+    img {
+      width: 100vw;
+      height: 100%;
+    }
+
     .dsbannerAbsolute {
       position: absolute;
       top: 0;
@@ -145,13 +150,17 @@ function pageJump() {
 
       .dsbannerContent {
         margin: 0 auto;
-        padding: 10rem 2rem 6rem;
+        padding: 10rem 2rem 0;
         width: 100%;
         max-width: 1536px;
 
+        @media (max-width: 600px) {
+          padding: 6rem 1rem 0;
+        }
+
         .dsbannerTitle {
           margin-bottom: 1.5rem;
-          font-size: clamp(1.75rem, 7vw, 3rem);
+          font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           color: #fff;
         }
@@ -168,7 +177,7 @@ function pageJump() {
           color: #fff;
           background-color: rgb(22 93 255);
           border-radius: 9999px;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
         }
 
         .dsbannerJgkbtn:hover {
@@ -182,6 +191,7 @@ function pageJump() {
   .introdsOut {
     padding: 6rem 1rem;
     width: 100%;
+
     @media (max-width: 600px) {
       padding: 2rem 1rem;
     }
@@ -193,7 +203,7 @@ function pageJump() {
       width: 100%;
       max-width: 1536px;
       background-color: #fff;
-      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
       border-radius: 1rem;
 
       .introdsText {
@@ -256,6 +266,7 @@ function pageJump() {
             color: rgb(1 32 96);
             background-color: #fff;
             border-radius: 999px;
+
             @media (max-width: 600px) {
               margin: 0 0.25rem;
             }
@@ -271,7 +282,7 @@ function pageJump() {
 
           .digitizeSubItem:hover {
             cursor: pointer;
-            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
             background-color: rgb(243 244 246);
           }
         }
@@ -288,6 +299,7 @@ function pageJump() {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+
         @media (max-width: 600px) {
           width: 100%;
         }
@@ -302,7 +314,8 @@ function pageJump() {
           align-items: center;
           background-color: #fff;
           border-radius: 0.75rem;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
           @media (max-width: 600px) {
             width: 100%;
             margin: 0 0 1rem 0;
@@ -345,7 +358,7 @@ function pageJump() {
 
         .digitizeClassitem:hover {
           cursor: pointer;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
           animation: jumpUpwards 300ms ease-in-out forwards;
         }
       }
@@ -358,6 +371,7 @@ function pageJump() {
     padding: 0 2rem 4rem;
     width: 100%;
     max-width: 1536px;
+
     @media (max-width: 600px) {
       margin: 4rem auto 0;
       padding: 0 1rem 4rem;
@@ -400,12 +414,15 @@ function pageJump() {
         align-items: center;
         background-color: #fff;
         border-radius: 0.75rem;
+
         @media (min-width: 1140px) {
           width: calc(16.6% - 1rem);
         }
+
         @media (max-width: 1140px) and (min-width: 600px) {
           width: calc(33.3% - 1rem);
         }
+
         @media (max-width: 600px) {
           padding: 1rem 0.5rem;
           width: calc(50% - 1rem);
@@ -446,7 +463,7 @@ function pageJump() {
 
       .gysClassitem:hover {
         cursor: pointer;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
         animation: jumpUpwards 300ms ease-in-out forwards;
       }
     }

@@ -136,11 +136,7 @@ const handleCurrentChange = (val: number) => {
   <div class="salePage">
     <!-- BANNER -->
     <div class="prbannerBox">
-      <img
-        src="@/assets/products-banner01.jpeg"
-        alt="prbanner"
-        style="width: 100vw; height: 40rem"
-      />
+      <img src="@/assets/products-banner01.jpeg" alt="prbanner" />
       <div class="prbannerAbsolute">
         <div class="prbannerContent">
           <div class="prbannerTitle">智能建造装备</div>
@@ -168,24 +164,15 @@ const handleCurrentChange = (val: number) => {
             <button class="containerClassCol">建筑机器人</button>
             <button class="containerClassCol">其他</button>
           </div>
-          <el-input
-            v-model="input2"
-            style="width: 100%; height: 50px; font-size: 1rem"
-            placeholder="搜索产品..."
-            :prefix-icon="Search"
-          />
+          <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索产品..."
+            :prefix-icon="Search" />
         </div>
         <div class="containerProducts">
           <div class="containerProductsTitle">
             <div class="containerProductsTitleText">产品列表</div>
             <div class="containerProductsTitlePxfs">
               <span v-if="windowWidth > 1140">排序方式：</span>
-              <el-select
-                v-model="selectvalue"
-                placeholder="Select"
-                size="large"
-                style="width: 140px"
-              >
+              <el-select v-model="selectvalue" placeholder="Select" size="large" style="width: 140px">
                 <el-option label="价格从低到高" value="01" />
                 <el-option label="价格从高到低" value="02" />
                 <el-option label="最新更新" value="03" />
@@ -243,19 +230,9 @@ const handleCurrentChange = (val: number) => {
               </div>
             </div>
             <div class="containerPagination">
-              <el-pagination
-                v-model:current-page="currentPage2"
-                v-model:page-size="pageSize2"
-                :page-sizes="[100, 200, 300, 400]"
-                size="default"
-                background
-                layout="prev, pager, next"
-                prev-text="上一页"
-                next-text="下一页"
-                :total="400"
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-              />
+              <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2"
+                :page-sizes="[100, 200, 300, 400]" size="default" background layout="prev, pager, next" prev-text="上一页"
+                next-text="下一页" :total="400" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
             </div>
           </div>
         </div>
@@ -294,7 +271,16 @@ const handleCurrentChange = (val: number) => {
   .prbannerBox {
     position: relative;
     width: 100vw;
-    height: 100%;
+    height: 40rem;
+
+    @media (max-width: 600px) {
+      height: 30rem;
+    }
+
+    img {
+      width: 100vw;
+      height: 100%;
+    }
 
     .prbannerAbsolute {
       position: absolute;
@@ -305,13 +291,17 @@ const handleCurrentChange = (val: number) => {
 
       .prbannerContent {
         margin: 0 auto;
-        padding: 10rem 2rem 6rem;
+        padding: 10rem 2rem 0;
         width: 100%;
         max-width: 1536px;
 
+        @media (max-width: 600px) {
+          padding: 6rem 1rem 0;
+        }
+
         .prbannerTitle {
           margin-bottom: 2rem;
-          font-size: clamp(1.75rem, 7vw, 3rem);
+          font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           color: #fff;
         }
@@ -331,6 +321,7 @@ const handleCurrentChange = (val: number) => {
     padding: 2rem 1rem;
     width: 100%;
     max-width: 1536px;
+
     @media (min-width: 1140px) {
       padding: 4rem 1rem;
       display: flex;
@@ -339,6 +330,7 @@ const handleCurrentChange = (val: number) => {
 
     .containerLeft {
       width: 100%;
+
       @media (min-width: 1140px) {
         width: calc(66.7% - 1rem);
       }
@@ -349,7 +341,8 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
         @media (max-width: 1140px) {
           padding: 0.75rem;
         }
@@ -365,7 +358,7 @@ const handleCurrentChange = (val: number) => {
             margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
-            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
             border-radius: 0.25rem;
           }
 
@@ -390,7 +383,8 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
         @media (max-width: 1140px) {
           padding: 1rem 0.5rem;
         }
@@ -401,6 +395,7 @@ const handleCurrentChange = (val: number) => {
           display: flex;
           justify-content: space-between;
           align-items: center;
+
           @media (max-width: 1140px) {
             padding: 0;
           }
@@ -423,6 +418,7 @@ const handleCurrentChange = (val: number) => {
 
         .containerProductsBox {
           padding: 0 1.5rem;
+
           @media (max-width: 1140px) {
             padding: 0;
           }
@@ -432,6 +428,7 @@ const handleCurrentChange = (val: number) => {
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid rgb(243 244 246);
+
             @media (min-width: 1140px) {
               display: flex;
               justify-content: space-between;
@@ -441,6 +438,7 @@ const handleCurrentChange = (val: number) => {
               width: calc(20% - 1rem);
               height: 160px;
               border-radius: 0.5rem;
+
               @media (max-width: 1140px) {
                 width: 100%;
               }
@@ -448,6 +446,7 @@ const handleCurrentChange = (val: number) => {
 
             .containerPiBox {
               width: calc(60% - 1rem);
+
               @media (max-width: 1140px) {
                 margin-top: 1rem;
                 width: 100%;
@@ -471,6 +470,7 @@ const handleCurrentChange = (val: number) => {
                   font-size: 0.875rem;
                   line-height: 1.25rem;
                   color: rgb(1 32 96);
+
                   @media (max-width: 1140px) {
                     width: 100%;
                   }
@@ -486,6 +486,7 @@ const handleCurrentChange = (val: number) => {
               width: calc(20% - 1rem);
               display: flex;
               flex-flow: column;
+
               @media (max-width: 1140px) {
                 width: 100%;
               }
@@ -536,6 +537,7 @@ const handleCurrentChange = (val: number) => {
 
     .containerRight {
       width: 100%;
+
       @media (min-width: 1140px) {
         width: calc(33.3% - 1rem);
       }
@@ -546,7 +548,8 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
         @media (max-width: 1140px) {
           padding: 1rem 0.75rem;
         }
@@ -564,7 +567,8 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
         @media (max-width: 1140px) {
           padding: 1rem 0.75rem;
         }

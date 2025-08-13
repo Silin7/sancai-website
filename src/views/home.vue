@@ -28,12 +28,7 @@ onBeforeUnmount(() => {
       <!-- BANNER -->
       <div class="bannerBox">
         <div class="bannerAnchor">
-          <img
-            v-if="windowWidth > 1140"
-            src="@/assets/index_img_01.png"
-            alt="banner"
-            class="bannerImage"
-          />
+          <img v-if="windowWidth > 1140" src="@/assets/index_img_01.png" alt="banner" class="bannerImage" />
           <div class="bannerAbsolute">
             <div class="bannerContent">
               <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
@@ -48,7 +43,7 @@ onBeforeUnmount(() => {
                 解决方案 <i class="fa fa-arrow-right" style="margin-left: 0.5rem"></i>
               </button>
             </div> -->
-              <div class="bannerCompany">杭州三才-----------有限公司</div>
+              <div class="bannerCompany">杭州三才工程信息科技有限公司</div>
               <div class="bannerGridbox">
                 <div class="bannerGriditem">
                   <div class="bannerFabox frcc">
@@ -146,7 +141,7 @@ onBeforeUnmount(() => {
                 <div class="featuresRoundedTitle">系统创建</div>
               </div>
               <div class="featuresRoundedInfo2">
-                本系统由 “杭州三才-----------有限公司”
+                本系统由 “杭州三才工程信息科技有限公司”
                 创建，应用过程中如有建议，请联系我们，以便进行完善。
               </div>
             </div>
@@ -157,9 +152,6 @@ onBeforeUnmount(() => {
       <div class="containerBox">
         <div class="containerTitle">人材机信价格库</div>
         <div class="containerHeng"></div>
-        <div class="containerInfo">
-          <!-- 专注于新型城市基础设施建设的人材机信资源价格数据库，为行业提供精准的成本管控信息 -->
-        </div>
         <div class="containerSubBoxOut">
           <div class="containerSubBox1">
             <div class="containerSubItem containerActive">数字技工/方案论证</div>
@@ -173,24 +165,15 @@ onBeforeUnmount(() => {
           <div class="containerGridMaod">
             <div class="containerGridContent">
               <div class="containerGridItem">
-                <i
-                  class="fa fa-user"
-                  style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"
-                ></i>
+                <i class="fa fa-user" style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"></i>
                 <div class="containerGridimginfo">数字技工/方案论证</div>
               </div>
               <div class="containerGridItem">
-                <i
-                  class="fa fa-dot-circle-o"
-                  style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"
-                ></i>
+                <i class="fa fa-dot-circle-o" style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"></i>
                 <div class="containerGridimginfo">数字技工/方案论证</div>
               </div>
               <div class="containerGridItem">
-                <i
-                  class="fa fa-sitemap"
-                  style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"
-                ></i>
+                <i class="fa fa-sitemap" style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"></i>
                 <div class="containerGridimginfo">数字技工/方案论证</div>
               </div>
             </div>
@@ -202,17 +185,14 @@ onBeforeUnmount(() => {
         <div class="solutionsCotent">
           <div class="solutionsTitle">数字化解决方案</div>
           <div class="solutionsHeng"></div>
-          <div class="solutionsInfo">
-            <!-- 探索我们的数字化应用与智慧化管理方案，为您的项目提供全方位的技术支持 -->
-          </div>
           <div class="solutionsSubBoxOut">
-            <div class="solutionsSubBox1">
+            <div class="solutionsSubBox">
               <div class="solutionsSubItem solutionsActive">数字化应用方案</div>
               <div class="solutionsSubItem">智慧化管理方案</div>
             </div>
           </div>
           <div class="solutionsSubBoxOut">
-            <div class="solutionsSubBox2">
+            <div class="solutionsSubBox">
               <div class="solutionsSubItem solutionsActive">BIM+工程造价</div>
               <div class="solutionsSubItem">BIM+倾斜摄影</div>
               <div class="solutionsSubItem">BIM+三维扫描</div>
@@ -244,9 +224,6 @@ onBeforeUnmount(() => {
         <div class="aiContent">
           <div class="aiTitle">人工智能应用</div>
           <div class="aiHeng"></div>
-          <div class="aiInfo">
-            <!-- 以数据、算法和算力为核心要素，驱动工程设计、工程施工和运营维护多维度创新应用，为产业转型发展注入新动能 -->
-          </div>
           <div class="aiSubbox">
             <div class="aiFabox frcc">
               <i class="fa fa-cogs"></i>
@@ -435,9 +412,6 @@ onBeforeUnmount(() => {
       <div class="pyBox">
         <div class="pyTitle">友情链接</div>
         <div class="pyHeng"></div>
-        <div class="pyInfo">
-          <!-- 与行业领先企业及机构建立合作，共同推动建筑行业数字化转型 -->
-        </div>
         <div class="pyClassbox">
           <div class="pyClassitem">
             <img src="https://picsum.photos/100/100?random=402" alt="" class="pyClassitemfa" />
@@ -491,8 +465,9 @@ onBeforeUnmount(() => {
       width: 100%;
       max-width: 1536px;
       height: 44rem;
+
       @media (max-width: 600px) {
-        height: 50rem;
+        height: 46rem;
       }
 
       .bannerImage {
@@ -511,8 +486,9 @@ onBeforeUnmount(() => {
         z-index: 1;
         padding-top: 10rem;
         width: 100%;
+
         @media (max-width: 600px) {
-          padding-top: 6rem;
+          padding-top: 5rem;
         }
 
         .bannerContent {
@@ -520,26 +496,36 @@ onBeforeUnmount(() => {
           padding: 2rem;
           width: 100%;
           max-width: 1536px;
+
           @media (max-width: 600px) {
             padding: 1rem;
           }
 
           .bannerTitle {
-            margin-bottom: 1.5rem;
-            font-size: clamp(1.75rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            font-size: clamp(2rem, 4vw, 3rem);
             color: #fff;
             font-weight: 700;
+
+            @media (max-width: 600px) {
+              margin-bottom: 1.5rem;
+            }
           }
 
           .bannerSubtitle {
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
             font-size: clamp(1.5rem, 4vw, 1.8rem);
             line-height: 3rem;
             font-weight: 500;
             color: rgb(255 255 255 / 0.9);
 
+            @media (max-width: 600px) {
+              margin-bottom: 2rem;
+            }
+
             span {
               margin-right: 2rem;
+
               @media (max-width: 600px) {
                 margin-right: 1rem;
               }
@@ -555,7 +541,7 @@ onBeforeUnmount(() => {
           //   color: #fff;
           //   background-color: rgb(22 93 255);
           //   border-radius: 9999px;
-          //   box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+          //   box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
           // }
 
           // .bannerJjfabtn {
@@ -568,18 +554,14 @@ onBeforeUnmount(() => {
           // }
 
           .bannerCompany {
-            margin-top: 80px;
-            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.125rem, 4vw, 1.25rem);
             line-height: 1.25rem;
             color: rgba(255 255 255 / 0.7);
-            @media (max-width: 600px) {
-              margin-top: 50px;
-            }
           }
 
           .bannerGridbox {
             overflow: hidden;
-            margin-top: 1rem;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -592,6 +574,10 @@ onBeforeUnmount(() => {
               display: flex;
               align-items: center;
 
+              @media (max-width: 600px) {
+                padding: 1rem;
+              }
+
               .bannerFabox {
                 width: 3rem;
                 height: 3rem;
@@ -603,8 +589,8 @@ onBeforeUnmount(() => {
                 margin-left: 1rem;
 
                 .bannerGridtitle {
-                  // margin-bottom: 0.5rem;
-                  font-size: 1.25rem;
+                  font-size: clamp(1.125rem, 4vw, 1.25rem);
+                  // font-size: 1.25rem;
                   line-height: 1.75rem;
                   font-weight: 700;
                   color: #fff;
@@ -619,9 +605,11 @@ onBeforeUnmount(() => {
             }
 
             .bannerGriditem:hover {
-              cursor: pointer;
-              box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-              animation: jumpUpwards 300ms ease-in-out forwards;
+              @media (min-width: 600px) {
+                cursor: pointer;
+                box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+                animation: jumpUpwards 300ms ease-in-out forwards;
+              }
             }
 
             @media (min-width: 1140px) {
@@ -654,7 +642,7 @@ onBeforeUnmount(() => {
   }
 
   .featuresBox {
-    margin: 20px auto 0;
+    margin: 1rem auto 0;
     width: 100%;
 
     .featuresImgTitleBox {
@@ -675,6 +663,7 @@ onBeforeUnmount(() => {
         width: 100%;
         max-width: 1536px;
         height: 120px;
+
         @media (max-width: 600px) {
           padding: 0;
         }
@@ -683,11 +672,13 @@ onBeforeUnmount(() => {
           margin: 0 auto;
           padding-left: 1.5rem;
           width: 90%;
+          height: 120px;
           font-size: clamp(1.5rem, 4vw, 2.5rem);
           line-height: 120px;
           font-weight: 700;
           color: #fff;
           background-color: rgba(1, 98, 105, 0.5);
+
           @media (max-width: 600px) {
             width: calc(100% - 2rem);
           }
@@ -701,6 +692,7 @@ onBeforeUnmount(() => {
       padding: 0 2rem;
       width: 100%;
       max-width: 1536px;
+
       @media (max-width: 600px) {
         padding: 0;
       }
@@ -717,6 +709,7 @@ onBeforeUnmount(() => {
           0 10px 15px -3px rgb(0 0 0 / 0.1),
           0 4px 6px -4px rgb(0 0 0 / 0.1);
         background-color: rgba(230, 250, 250, 0.5);
+
         @media (max-width: 600px) {
           padding: 1rem;
           width: calc(100% - 2rem);
@@ -728,6 +721,7 @@ onBeforeUnmount(() => {
 
           .featuresRoundedTop {
             display: flex;
+            align-items: center;
             margin-bottom: 1.5rem;
 
             .featuresRoundedShu {
@@ -735,6 +729,10 @@ onBeforeUnmount(() => {
               height: 2rem;
               background-color: #165dff;
               border-radius: 0.25rem;
+
+              @media (max-width: 600px) {
+                height: 1.5rem;
+              }
             }
 
             .featuresRoundedTitle {
@@ -767,6 +765,7 @@ onBeforeUnmount(() => {
     padding: 0 2rem;
     width: 100%;
     max-width: 1536px;
+
     @media (max-width: 600px) {
       margin: 4rem 0;
       padding: 0 1rem;
@@ -780,32 +779,25 @@ onBeforeUnmount(() => {
     }
 
     .containerHeng {
-      margin: 1rem auto 0;
+      margin: 1rem auto 2.5rem;
       width: 5rem;
       height: 0.25rem;
       border-radius: 9999px;
       background-color: rgb(22 93 255);
     }
 
-    .containerInfo {
-      margin: 1rem auto 2.5rem;
-      text-align: center;
-      max-width: 42rem;
-      color: rgb(75 85 99);
-    }
-
     .containerSubBoxOut {
-      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
       display: flex;
       justify-content: center;
 
       .containerSubBox1 {
-        padding-bottom: 1rem;
         overflow-x: auto;
         display: flex;
         flex-wrap: nowrap;
 
         .containerSubItem {
+          cursor: pointer;
           flex-shrink: 0;
           margin: 0 0.5rem;
           padding: 0.5rem 1rem;
@@ -813,6 +805,8 @@ onBeforeUnmount(() => {
           color: rgb(1 32 96);
           background-color: #fff;
           border-radius: 0.5rem;
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
           @media (max-width: 600px) {
             margin: 0 0.25rem;
           }
@@ -827,9 +821,9 @@ onBeforeUnmount(() => {
         }
 
         .containerSubItem:hover {
-          cursor: pointer;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-          background-color: rgb(243 244 246);
+          @media (min-width: 600px) {
+            background-color: rgb(243 244 246);
+          }
         }
       }
 
@@ -841,11 +835,8 @@ onBeforeUnmount(() => {
 
     .containerGridbox {
       position: relative;
-      height: 700px;
 
       img {
-        margin: 0;
-        padding: 0;
         width: 100%;
         height: 700px;
         border-radius: 1rem;
@@ -859,6 +850,7 @@ onBeforeUnmount(() => {
         padding: 2rem 2rem 1rem 2rem;
         border-radius: 1rem 1rem 0 0;
         background-color: rgb(1 32 96 / 0.4);
+
         @media (max-width: 600px) {
           padding: 1rem 1rem 0 1rem;
         }
@@ -868,12 +860,13 @@ onBeforeUnmount(() => {
           flex-wrap: wrap;
 
           .containerGridItem {
-            margin: 0 1rem 1rem 0;
             cursor: pointer;
+            margin: 0 1rem 1rem 0;
             display: flex;
             align-items: center;
             padding: 0.75rem;
             border-radius: 0.5rem;
+
             @media (max-width: 600px) {
               padding: 0.5rem;
             }
@@ -906,6 +899,7 @@ onBeforeUnmount(() => {
     padding: 2.5rem;
     width: 100%;
     background-color: rgb(240 247 255 / 1);
+
     @media (max-width: 600px) {
       margin: 4rem auto 0;
       padding: 2.5rem 0;
@@ -917,6 +911,7 @@ onBeforeUnmount(() => {
       padding: 0 2rem;
       width: 100%;
       max-width: 1536px;
+
       @media (max-width: 600px) {
         padding: 0 1em;
       }
@@ -929,32 +924,25 @@ onBeforeUnmount(() => {
       }
 
       .solutionsHeng {
-        margin: 1rem auto 0;
+        margin: 1rem auto 2.5rem;
         width: 5rem;
         height: 0.25rem;
         border-radius: 9999px;
         background-color: rgb(22 93 255);
       }
 
-      .solutionsInfo {
-        margin: 1rem auto 2.5rem;
-        text-align: center;
-        max-width: 42rem;
-        color: rgb(75 85 99);
-      }
-
       .solutionsSubBoxOut {
-        padding-bottom: 2rem;
+        margin-bottom: 2rem;
         display: flex;
         justify-content: center;
 
-        .solutionsSubBox1 {
-          padding-bottom: 1rem;
+        .solutionsSubBox {
           overflow-x: auto;
           display: flex;
           flex-wrap: nowrap;
 
           .solutionsSubItem {
+            cursor: pointer;
             flex-shrink: 0;
             margin: 0 0.5rem;
             line-height: 2rem;
@@ -962,6 +950,8 @@ onBeforeUnmount(() => {
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             background-color: #fff;
+            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+
             @media (max-width: 600px) {
               margin: 0 0.25rem;
             }
@@ -976,43 +966,9 @@ onBeforeUnmount(() => {
           }
 
           .solutionsSubItem:hover {
-            cursor: pointer;
-            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-            background-color: rgb(243 244 246);
-          }
-        }
-
-        .solutionsSubBox2 {
-          padding-bottom: 1rem;
-          overflow-x: auto;
-          display: flex;
-          flex-wrap: nowrap;
-
-          .solutionsSubItem {
-            flex-shrink: 0;
-            margin: 0 0.5rem;
-            line-height: 2rem;
-            color: rgb(1 32 96);
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            background-color: #fff;
-            @media (max-width: 600px) {
-              margin: 0 0.25rem;
+            @media (min-width: 600px) {
+              background-color: rgb(243 244 246);
             }
-          }
-
-          .solutionsSubItem:first-child {
-            margin-left: 0;
-          }
-
-          .solutionsSubItem:last-child {
-            margin-right: 0;
-          }
-
-          .solutionsSubItem:hover {
-            cursor: pointer;
-            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-            background-color: rgb(243 244 246);
           }
         }
 
@@ -1026,13 +982,13 @@ onBeforeUnmount(() => {
         overflow: hidden;
         position: relative;
         width: 100%;
-        height: 44rem;
+        height: 700px;
         border-radius: 1rem;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
         .solutionsImgTitleMoud {
           position: absolute;
-          top: 45px;
+          top: 2rem;
           left: 0;
           z-index: 2;
           width: 100%;
@@ -1047,8 +1003,8 @@ onBeforeUnmount(() => {
           }
 
           .solutionsImgTitle2 {
-            margin-bottom: 1.25rem;
-            font-size: clamp(1.5rem, 4vw, 2.25rem);
+            margin-bottom: 1rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             line-height: 2.5rem;
             font-weight: 700;
             text-align: center;
@@ -1056,9 +1012,9 @@ onBeforeUnmount(() => {
           }
 
           .solutionsImgTitle3 {
-            font-size: clamp(1rem, 4vw, 1.5rem);
+            margin-bottom: 1rem;
+            font-size: clamp(1rem, 4vw, 1.25rem);
             line-height: 1.75rem;
-            opacity: 0.9;
             text-align: center;
             color: rgb(1 32 96);
           }
@@ -1070,9 +1026,13 @@ onBeforeUnmount(() => {
           left: 0;
           z-index: 2;
           width: 100%;
-          padding: clamp(1.5rem, 4vw, 2.5rem);
+          padding: 2.5rem;
           border-top: 1px solid rgb(229 231 235);
           background-color: rgb(255 255 255 / 0.8);
+
+          @media (max-width: 600px) {
+            padding: 1.5rem 1rem;
+          }
 
           p {
             text-align: center;
@@ -1089,6 +1049,7 @@ onBeforeUnmount(() => {
     padding: 4rem 2.5rem;
     width: 100%;
     background-color: rgba(255, 255, 255, 1);
+
     @media (max-width: 600px) {
       padding: 4rem 0;
     }
@@ -1099,6 +1060,7 @@ onBeforeUnmount(() => {
       padding: 0 2rem;
       width: 100%;
       max-width: 1536px;
+
       @media (max-width: 600px) {
         padding: 0 1rem;
       }
@@ -1111,18 +1073,11 @@ onBeforeUnmount(() => {
       }
 
       .aiHeng {
-        margin: 1rem auto 0;
+        margin: 1rem auto 2.5rem;
         width: 5rem;
         height: 0.25rem;
         border-radius: 9999px;
         background-color: rgb(22 93 255);
-      }
-
-      .aiInfo {
-        margin: 1rem auto 2.5rem;
-        text-align: center;
-        max-width: 42rem;
-        color: rgb(75 85 99);
       }
 
       .aiSubbox {
@@ -1170,6 +1125,7 @@ onBeforeUnmount(() => {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
+
         @media (max-width: 600px) {
           margin-bottom: 1.5rem;
         }
@@ -1184,6 +1140,7 @@ onBeforeUnmount(() => {
           align-items: center;
           background-color: rgb(249 250 251);
           border-radius: 0.75rem;
+
           @media (max-width: 600px) {
             padding: 1.25rem 1rem;
             width: calc(50% - 1rem);
@@ -1195,6 +1152,7 @@ onBeforeUnmount(() => {
             height: 4rem;
             border-radius: 9999px;
             background-color: rgb(22 93 255 / 0.1);
+
             @media (max-width: 600px) {
               width: 3rem;
               height: 3rem;
@@ -1207,6 +1165,7 @@ onBeforeUnmount(() => {
             height: 4rem;
             border-radius: 9999px;
             background-color: rgb(114 46 209 / 0.1);
+
             @media (max-width: 600px) {
               width: 3rem;
               height: 3rem;
@@ -1222,9 +1181,11 @@ onBeforeUnmount(() => {
         }
 
         .aiClassitem:hover {
-          cursor: pointer;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-          animation: jumpUpwards 300ms ease-in-out forwards;
+          @media (min-width: 600px) {
+            cursor: pointer;
+            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            animation: jumpUpwards 300ms ease-in-out forwards;
+          }
         }
       }
 
@@ -1240,6 +1201,7 @@ onBeforeUnmount(() => {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
     background-image: url('../assets/about00.jpg');
+
     @media (max-width: 600px) {
       padding: 2.5rem 0;
     }
@@ -1250,6 +1212,7 @@ onBeforeUnmount(() => {
       padding: 0 2rem;
       width: 100%;
       max-width: 1536px;
+
       @media (max-width: 600px) {
         padding: 0 1rem;
       }
@@ -1291,12 +1254,15 @@ onBeforeUnmount(() => {
           align-items: center;
           background-color: #fff;
           border-radius: 0.75rem;
+
           @media (min-width: 1140px) {
             width: calc(16.6% - 1rem);
           }
+
           @media (max-width: 1140px) and (min-width: 600px) {
             width: calc(33.3% - 1rem);
           }
+
           @media (max-width: 600px) {
             padding: 1rem 0.5rem;
             width: calc(50% - 1rem);
@@ -1325,20 +1291,14 @@ onBeforeUnmount(() => {
             text-align: center;
             color: rgb(1 32 96);
           }
-
-          .mxClassiteminfo {
-            margin-top: 0.5rem;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            text-align: center;
-            color: #6b7280;
-          }
         }
 
         .mxClassitem:hover {
-          cursor: pointer;
-          box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-          animation: jumpUpwards 300ms ease-in-out forwards;
+          @media (min-width: 600px) {
+            cursor: pointer;
+            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            animation: jumpUpwards 300ms ease-in-out forwards;
+          }
         }
       }
     }
@@ -1350,6 +1310,7 @@ onBeforeUnmount(() => {
     padding: 0 2rem 4rem;
     width: 100%;
     max-width: 1536px;
+
     @media (max-width: 600px) {
       margin: 4rem auto 0;
       padding: 0 1rem 4rem;
@@ -1363,18 +1324,11 @@ onBeforeUnmount(() => {
     }
 
     .pyHeng {
-      margin: 1rem auto 0;
+      margin: 1rem auto 2.5rem;
       width: 5rem;
       height: 0.25rem;
       border-radius: 9999px;
       background-color: rgb(22 93 255);
-    }
-
-    .pyInfo {
-      margin: 1rem auto 2.5rem;
-      text-align: center;
-      max-width: 42rem;
-      color: rgb(75 85 99);
     }
 
     .pyClassbox {
@@ -1392,12 +1346,15 @@ onBeforeUnmount(() => {
         align-items: center;
         background-color: #fff;
         border-radius: 0.75rem;
+
         @media (min-width: 1140px) {
           width: calc(16.6% - 1rem);
         }
+
         @media (max-width: 1140px) and (min-width: 600px) {
           width: calc(33.3% - 1rem);
         }
+
         @media (max-width: 600px) {
           padding: 1rem 0.5rem;
           width: calc(50% - 1rem);
@@ -1437,18 +1394,13 @@ onBeforeUnmount(() => {
       }
 
       .pyClassitem:hover {
-        cursor: pointer;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
-        animation: jumpUpwards 300ms ease-in-out forwards;
+        @media (min-width: 600px) {
+          cursor: pointer;
+          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          animation: jumpUpwards 300ms ease-in-out forwards;
+        }
       }
     }
   }
-
-  // @media (max-width: 1140px) {
-  //   .outmostPd {
-  //     padding-left: 0.5rem !important;
-  //     padding-right: 0.5rem !important;
-  //   }
-  // }
 }
 </style>

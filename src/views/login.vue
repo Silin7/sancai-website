@@ -33,21 +33,11 @@ const yzm: any = ref('')
         </div>
         <div v-if="state === 'mm'" class="fromitem frsc">
           <img src="@/assets/register/pwd.png" alt="" />
-          <el-input
-            v-model="password"
-            style="width: 100%"
-            placeholder="请输入8-16位密码"
-            clearable
-          />
+          <el-input v-model="password" style="width: 100%" placeholder="请输入8-16位密码" clearable />
         </div>
         <div v-if="state === 'kj'" class="fromitem frsc">
           <img src="@/assets/register/yzm.png" alt="" />
-          <el-input
-            v-model="yzm"
-            style="width: calc(100% - 140px)"
-            placeholder="短信验证码"
-            clearable
-          />
+          <el-input v-model="yzm" style="width: calc(100% - 140px)" placeholder="短信验证码" clearable />
           <button>获取验证码</button>
         </div>
         <div v-if="state === 'mm'" class="frec">
@@ -81,7 +71,7 @@ const yzm: any = ref('')
     padding: 30px 0 50px;
     width: 30rem;
     background: rgba(255, 255, 255, 1);
-    box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+    box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
     .loginTitle {
       padding-left: 68px;

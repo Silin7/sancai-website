@@ -113,14 +113,8 @@ watch(
         <div class="headnav">
           <img src="@/assets/logo.png" alt="logo" class="headlogo" @click="tabRouterPush2" />
           <div v-if="windowWidth > 1290" class="menubox">
-            <div
-              v-for="(item, index) in menuList"
-              :key="index"
-              class="menuitem"
-              @mouseenter="menuMouseenter(item)"
-              @mouseleave="menuMouseleave"
-              @click="tabRouterPush(item)"
-            >
+            <div v-for="(item, index) in menuList" :key="index" class="menuitem" @mouseenter="menuMouseenter(item)"
+              @mouseleave="menuMouseleave" @click="tabRouterPush(item)">
               <div class="menuheng1"></div>
               <div class="menutitle frcc">
                 <span>{{ item.title }}</span>
@@ -154,13 +148,7 @@ watch(
       </div>
     </div>
     <!-- 移动端 抽屉 -->
-    <el-drawer
-      v-model="drawerVisible"
-      :with-header="false"
-      direction="rtl"
-      size="80%"
-      class="mobiledrawer"
-    >
+    <el-drawer v-model="drawerVisible" :with-header="false" direction="rtl" size="80%" class="mobiledrawer">
       <div class="drawerhead">
         <div class="drawerleft">
           <div class="culbbox">
@@ -171,24 +159,17 @@ watch(
         <i class="fa fa-times drawerclose" @click="drawerVisible = false"></i>
       </div>
       <div class="mobilecollapse">
-        <div
-          v-for="(item, index) in menuList"
-          :key="index"
-          :class="['collapseItem', selectedTab === item.name ? 'collapseActive' : '']"
-          @click="tabRouterPush(item)"
-        >
+        <div v-for="(item, index) in menuList" :key="index"
+          :class="['collapseItem', selectedTab === item.name ? 'collapseActive' : '']" @click="tabRouterPush(item)">
           <div class="frbc">
             <span>{{ item.title }}</span>
             <i v-if="item.children.length > 0 && item.zhankai" class="fa fa-chevron-up"></i>
             <i v-if="item.children.length > 0 && !item.zhankai" class="fa fa-chevron-down"></i>
           </div>
           <div v-if="item.children.length > 0 && item.zhankai" class="collapseChildren">
-            <div
-              v-for="(item2, index2) in item.children"
-              :key="index2"
+            <div v-for="(item2, index2) in item.children" :key="index2"
               :class="['collapseCitem', selectedTab === item2.name ? 'collapseActive' : '']"
-              @click="tabRouterPush(item2)"
-            >
+              @click="tabRouterPush(item2)">
               {{ item2.title }}
             </div>
           </div>
@@ -218,6 +199,7 @@ watch(
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     @media (max-width: 1290px) {
       height: 64px;
     }
@@ -227,6 +209,7 @@ watch(
       display: flex;
       align-items: center;
       justify-content: flex-start;
+
       @media (max-width: 1290px) {
         width: 100%;
         justify-content: space-between;
@@ -235,6 +218,7 @@ watch(
       .headlogo {
         cursor: pointer;
         width: 150px;
+
         @media (max-width: 1289px) {
           width: 120px;
         }
@@ -249,12 +233,15 @@ watch(
           position: relative;
           display: flex;
           flex-flow: column;
+
           @media (min-width: 1551px) {
             margin-left: 2rem;
           }
+
           @media (max-width: 1550px) and (min-width: 1351px) {
             margin-left: 1.25rem;
           }
+
           @media (max-width: 1350px) and (min-width: 1290px) {
             margin-left: 0.625rem;
           }

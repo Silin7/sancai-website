@@ -22,10 +22,8 @@ const value1 = ref(4.8)
     <div class="pdCbox">
       <div class="pdcLeft">
         <div class="pdclJbcs">
-          <img
-            src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-            alt=""
-          />
+          <img src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
+            alt="" />
           <div class="pdcljCenter">
             <div class="pdcljcTop">
               <div class="pdcljctItem">
@@ -197,15 +195,13 @@ const value1 = ref(4.8)
               <div class="pdclxiCgItem">
                 <img
                   src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt=""
-                />
+                  alt="" />
                 <div class="pdclxicIp">碰撞检查报告（PDF版）</div>
               </div>
               <div class="pdclxiCgItem">
                 <img
                   src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt=""
-                />
+                  alt="" />
                 <div class="pdclxicIp">碰撞点可视化模型（BIM格式）</div>
               </div>
             </div>
@@ -217,8 +213,7 @@ const value1 = ref(4.8)
             <div class="pdccCgItem">
               <img
                 src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                alt=""
-              />
+                alt="" />
               <div class="pdccgiContent">
                 <div class="pdccgicTitle">施工进度模拟论证服务</div>
                 <div class="pdccgicSub">4D进度模拟与关键节点可行性分析</div>
@@ -231,8 +226,7 @@ const value1 = ref(4.8)
             <div class="pdccCgItem">
               <img
                 src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                alt=""
-              />
+                alt="" />
               <div class="pdccgiContent">
                 <div class="pdccgicTitle">施工进度模拟论证服务</div>
                 <div class="pdccgicSub">4D进度模拟与关键节点可行性分析</div>
@@ -248,10 +242,8 @@ const value1 = ref(4.8)
       <div class="pdcRight">
         <div class="pdcrTitle">供应商信息</div>
         <div class="pdcrTop frss">
-          <img
-            src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-            alt=""
-          />
+          <img src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
+            alt="" />
           <div>
             <div class="pdcrtTitle">杭州筑智信息技术有限公司</div>
             <div class="pdcrtRate">
@@ -393,7 +385,7 @@ const value1 = ref(4.8)
         padding: 1.5rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
         img {
           width: 100%;
@@ -525,7 +517,7 @@ const value1 = ref(4.8)
         padding: 1.5rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
         .pdclxTitle {
           margin-bottom: 1.5rem;
@@ -628,7 +620,7 @@ const value1 = ref(4.8)
               width: 100%;
               background-color: rgb(255 255 255);
               border-radius: 0.5rem;
-              box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+              box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
               border: 1px solid rgb(229 231 235);
 
               img {
@@ -662,7 +654,7 @@ const value1 = ref(4.8)
         padding: 1.5rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
-        box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
         .pdccTitle {
           margin-bottom: 1.5rem;
@@ -684,7 +676,7 @@ const value1 = ref(4.8)
             width: 100%;
             background-color: rgb(255 255 255);
             border-radius: 0.5rem;
-            box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
             border: 1px solid rgb(229 231 235);
 
             img {
@@ -749,7 +741,7 @@ const value1 = ref(4.8)
       height: 100%;
       background-color: rgb(255 255 255);
       border-radius: 1rem;
-      box-shadow: 2px 2px 10px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
 
       .pdcrTitle {
         margin-bottom: 1.5rem;
@@ -888,6 +880,7 @@ const value1 = ref(4.8)
 .el-rate {
   padding-bottom: 0.25rem !important;
 }
+
 .pdcrTop .el-rate__icon {
   margin-right: 0 !important;
 }

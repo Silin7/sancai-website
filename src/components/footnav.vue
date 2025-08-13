@@ -30,7 +30,7 @@ onBeforeUnmount(() => {
           <div class="loinfo" :style="windowWidth > 428 ? 'max-width: 210px;' : ''">
             聚焦新型城市基础设施建设，提供专业的人材机信价格库与数字化解决方案，推动建筑行业绿色化、数字化、智能化发展。
           </div>
-          <div class="frsc" style="margin-bottom: 16px">
+          <!-- <div class="frsc" style="margin-bottom: 16px">
             <div class="lxfsbbox">
               <i class="fa fa-weixin" style="font-size: 16px; color: #fff"></i>
             </div>
@@ -40,7 +40,7 @@ onBeforeUnmount(() => {
             <div class="lxfsbbox">
               <i class="fa fa-linkedin" style="font-size: 16px; color: #fff"></i>
             </div>
-          </div>
+          </div> -->
         </el-col>
         <el-col :xs="24" :sm="12" :md="6" :lg="6" :xl="6" style="margin-top: 32px">
           <div class="frsc">
@@ -105,7 +105,7 @@ onBeforeUnmount(() => {
       </el-row>
     </div>
     <div class="footBottom">
-      <div class="footInfo">© 2025 杭州三才工程管理咨询有限公司. 保留所有权利.</div>
+      <div class="footInfo">© 2025 杭州三才工程信息科技有限公司. 保留所有权利.</div>
       <div class="footInfo">浙ICP备12345678号-1</div>
     </div>
   </div>
