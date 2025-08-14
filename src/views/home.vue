@@ -1033,7 +1033,6 @@ onBeforeUnmount(() => {
 
           p {
             text-align: center;
-            margin: 0;
             line-height: 1.5rem;
             color: rgb(1 32 96);
           }

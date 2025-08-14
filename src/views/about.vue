@@ -410,7 +410,6 @@ onBeforeUnmount(() => {
             }
 
             p {
-              margin: 0;
               font-size: 1.125rem;
               line-height: 1.75rem;
               color: rgb(55 65 81);

@@ -212,6 +212,10 @@ function pageJump() {
       box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
       border-radius: 1rem;
 
+      @media (min-width: 992px) {
+        padding: 2.5rem;
+      }
+
       .introdsText {
         font-size: clamp(1rem, 4vw, 1.25rem);
         line-height: 1.75rem;

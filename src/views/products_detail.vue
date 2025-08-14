@@ -580,10 +580,6 @@ const value1 = ref(4.8)
             }
 
             .pdclxiPbox {
-              p {
-                margin: 0;
-              }
-
               p:first-child {
                 font-weight: 500;
                 line-height: 1.5rem;
@@ -807,10 +803,6 @@ const value1 = ref(4.8)
         }
 
         .pdcrPbox {
-          p {
-            margin: 0;
-          }
-
           p:first-child {
             font-weight: 500;
             font-size: 0.875rem;

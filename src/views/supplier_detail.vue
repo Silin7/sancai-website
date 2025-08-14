@@ -306,10 +306,6 @@ const state = ref('gsjs')
   background-color: #f9fafb;
   overflow-x: hidden;
 
-  p {
-    margin: 0;
-  }
-
   .sdHbox {
     background-color: #f0f7ff;
     border-bottom: 1px solid #e0e7ff;

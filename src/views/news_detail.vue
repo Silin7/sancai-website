@@ -95,10 +95,6 @@ onBeforeUnmount(() => {
   background-color: #fff;
   overflow-x: hidden;
 
-  p {
-    margin: 0;
-  }
-
   .ndHbox {
     background-color: #f0f7ff;
     border-bottom: 1px solid #e0e7ff;
@@ -391,6 +387,7 @@ onBeforeUnmount(() => {
 .el-rate {
   padding-bottom: 0.25rem !important;
 }
+
 .ndcrTop .el-rate__icon {
   margin-right: 0 !important;
 }
