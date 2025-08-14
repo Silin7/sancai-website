@@ -107,7 +107,7 @@ function iconMouseleave() {
       border-radius: 999px;
       color: rgb(1 32 96);
       background: rgba(255, 255, 255);
-      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
       i {
         font-size: 1rem;

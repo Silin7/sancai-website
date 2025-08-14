@@ -215,7 +215,7 @@ function pageJump() {
 
   .supplierBox {
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1rem;
     width: 100%;
     max-width: 1536px;
 
@@ -229,7 +229,7 @@ function pageJump() {
       border-radius: 1rem;
       color: rgb(1 32 96);
       background-color: #fff;
-      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
       @media (max-width: 992px) {
         padding: 1rem;
@@ -271,13 +271,15 @@ function pageJump() {
           margin: 0 0.75rem 0.75rem 0;
           padding: 0.5rem 1.25rem;
           color: rgb(1 32 96);
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
           border: 1px solid rgb(243 244 246);
-          border-radius: 0.25rem;
+          border-radius: 999px;
 
           @media (max-width: 600px) {
             margin: 0 0.5rem 0.5rem 0;
             padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
           }
         }
 
@@ -293,26 +295,27 @@ function pageJump() {
           color: #fff;
           background-color: rgb(22 93 255);
           border: 1px solid rgb(243 244 246);
-          border-radius: 0.25rem;
+          border-radius: 999px;
 
           @media (max-width: 600px) {
             margin: 0 0.5rem 0.5rem 0;
             padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
           }
         }
       }
     }
 
     .supplierProducts {
-      margin-bottom: 2rem;
       padding: 2rem;
       border-radius: 1rem;
       color: rgb(1 32 96);
       background-color: #fff;
-      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
       @media (max-width: 992px) {
-        padding: 1rem 0.5rem;
+        padding: 1rem;
       }
 
       .supplierProductsTitle {
@@ -348,7 +351,7 @@ function pageJump() {
           width: calc(50% - 1rem);
 
           @media (max-width: 992px) {
-            padding: 0.75rem;
+            padding: 1rem;
             width: 100%;
           }
 
@@ -443,11 +446,13 @@ function pageJump() {
               }
 
               .supplierPiTags {
-                margin: 0.75rem 0;
+                margin: 0.75rem 0 0.25rem;
                 display: flex;
+                flex-wrap: wrap;
 
                 .supplierPiTag {
                   margin-right: 0.5rem;
+                  margin-bottom: 0.5rem;
                   padding: 0.25rem 0.5rem;
                   font-size: 0.75rem;
                   line-height: 1rem;

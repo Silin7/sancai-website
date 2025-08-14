@@ -70,7 +70,7 @@ const yzm: any = ref('')
     padding: 30px 50px 50px;
     width: 30rem;
     background: rgba(255, 255, 255, 1);
-    box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
     .hyzc {
       margin-bottom: 25px;

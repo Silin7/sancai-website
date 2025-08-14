@@ -126,7 +126,7 @@ const handleCurrentChange = (val: number) => {
                 </div>
                 <div class="containerPiPbox">
                   <div class="containerPiPice">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" />
+                    <img src="@/assets/32.jpg" alt="" />
                     <span>张老师</span>
                   </div>
                   <div class="containerPiPice">
@@ -255,7 +255,7 @@ const handleCurrentChange = (val: number) => {
           color: #fff;
           background-color: rgb(22 93 255);
           border-radius: 9999px;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (max-width: 600px) {
             padding: 0.75rem 1.5rem;
@@ -274,7 +274,7 @@ const handleCurrentChange = (val: number) => {
 
   .containerBox {
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1rem;
     width: 100%;
     max-width: 1536px;
 
@@ -294,10 +294,10 @@ const handleCurrentChange = (val: number) => {
       .containerClass {
         margin-bottom: 2rem;
         padding: 1.5rem;
+        border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
-        border-radius: 1rem;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 992px) {
           padding: 1rem;
@@ -327,7 +327,6 @@ const handleCurrentChange = (val: number) => {
 
           i {
             margin-right: 0.5rem;
-            font-size: 1rem;
             color: rgb(22 93 255);
           }
 
@@ -348,13 +347,15 @@ const handleCurrentChange = (val: number) => {
             margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             border: 1px solid rgb(243 244 246);
-            border-radius: 0.25rem;
+            border-radius: 999px;
 
             @media (max-width: 600px) {
               margin: 0 0.5rem 0.5rem 0;
               padding: 0.5rem 1rem;
+              font-size: 0.875rem;
+              line-height: 1.25rem;
             }
           }
 
@@ -370,11 +371,13 @@ const handleCurrentChange = (val: number) => {
             color: #fff;
             background-color: rgb(22 93 255);
             border: 1px solid rgb(243 244 246);
-            border-radius: 0.25rem;
+            border-radius: 999px;
 
             @media (max-width: 600px) {
               margin: 0 0.5rem 0.5rem 0;
               padding: 0.5rem 1rem;
+              font-size: 0.875rem;
+              line-height: 1.25rem;
             }
           }
         }
@@ -386,7 +389,11 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+        @media (max-width: 1140px) {
+          padding: 1rem 0;
+        }
 
         .containerProductsTitle {
           margin-bottom: 1.5rem;
@@ -413,7 +420,7 @@ const handleCurrentChange = (val: number) => {
 
         @media (max-width: 992px) {
           .containerProductsTitle {
-            padding: 0 0.75rem;
+            padding: 0 1rem;
           }
         }
 
@@ -422,15 +429,24 @@ const handleCurrentChange = (val: number) => {
           display: flex;
           flex-wrap: wrap;
 
+          @media (max-width: 992px) {
+            padding: 0 1rem;
+          }
+
           .containerProductsItem {
             overflow: hidden;
             margin-right: 1rem;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             width: calc(33.3% - 1rem);
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             border-radius: 0.75rem;
             background-color: #fff;
+
+            @media (max-width: 992px) {
+              margin-right: 0;
+              width: 100%;
+            }
 
             .containerPiImg {
               position: relative;
@@ -655,16 +671,7 @@ const handleCurrentChange = (val: number) => {
           }
         }
 
-        @media (max-width: 992px) {
-          .containerProductsBox {
-            padding: 0 0.75rem;
 
-            .containerProductsItem {
-              margin-right: 0;
-              width: 100%;
-            }
-          }
-        }
 
         .containerPagination {
           display: flex;
@@ -687,9 +694,14 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: #fff;
         background-image: linear-gradient(to bottom right, #165dff, #36cfc9);
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+        @media (max-width: 600px) {
+          padding: 1rem;
+        }
 
         .containerLoginIcon {
+          flex-shrink: 0;
           padding: 0.5rem;
           background-color: rgb(255 255 255 / 0.2);
           border-radius: 0.5rem;
@@ -748,14 +760,14 @@ const handleCurrentChange = (val: number) => {
       }
 
       .containerHot {
-        padding: 1rem 0.75rem;
+        padding: 1.5rem;
+        border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
-        border-radius: 1rem;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-        @media (min-width: 992px) {
-          padding: 1.5rem;
+        @media (max-width: 992px) {
+          padding: 1rem;
         }
 
         .containerHotTitle {

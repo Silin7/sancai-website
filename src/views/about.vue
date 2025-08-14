@@ -313,7 +313,7 @@ onBeforeUnmount(() => {
           color: #fff;
           background-color: rgb(22 93 255);
           border-radius: 9999px;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (max-width: 600px) {
             padding: 0.75rem 1.5rem;
@@ -539,6 +539,10 @@ onBeforeUnmount(() => {
     width: 100%;
     max-width: 1720px;
 
+    @media (max-width: 600px) {
+      padding: 2rem 1rem;
+    }
+
     .achievementTitle {
       font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 700;
@@ -563,7 +567,7 @@ onBeforeUnmount(() => {
 
     .achievementRidbox {
       overflow: hidden;
-      padding-top: 4rem;
+      padding-top: 2.5rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -574,7 +578,19 @@ onBeforeUnmount(() => {
         overflow: hidden;
         background-color: #fff;
         border-radius: 1rem;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+        @media (min-width: 1000px) {
+          width: calc(25% - 1rem);
+        }
+
+        @media (max-width: 999px) and (min-width: 601px) {
+          width: calc(50% - 0.5rem);
+        }
+
+        @media (max-width: 600px) {
+          width: 100%;
+        }
 
         .achievementRidimgfx {
           padding: 1.5rem;
@@ -618,27 +634,16 @@ onBeforeUnmount(() => {
         }
       }
 
-      @media (min-width: 1000px) {
-        .achievementRiditem {
-          width: calc(25% - 1rem);
+      .achievementRiditem:last-child {
+        @media (max-width: 600px) {
+          margin-bottom: 0;
         }
       }
 
-      @media (max-width: 999px) and (min-width: 601px) {
-        .achievementRiditem {
-          width: calc(50% - 0.5rem);
-        }
-      }
-
-      @media (max-width: 600px) {
-        .achievementRiditem {
-          width: 100%;
-        }
-      }
 
       .achievementRiditem:hover {
         cursor: pointer;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         animation: jumpUpwards 300ms ease-in-out forwards;
       }
 
@@ -654,6 +659,10 @@ onBeforeUnmount(() => {
     padding: 4rem 0;
     width: 100vw;
     background-color: #fff;
+
+    @media (max-width: 600px) {
+      padding: 2rem 0 1rem;
+    }
 
     .businessBox {
       position: relative;
@@ -678,7 +687,7 @@ onBeforeUnmount(() => {
       }
 
       .businessInfo {
-        margin: 1rem auto 4rem;
+        margin: 1rem auto 2.5rem;
         text-align: center;
         max-width: 42rem;
         color: rgb(75 85 99);
@@ -689,10 +698,14 @@ onBeforeUnmount(() => {
         flex-wrap: wrap;
 
         .serviceCardItem {
-          padding: 1.5rem;
           margin-bottom: 1rem;
+          padding: 1.5rem;
           border-radius: 0.75rem;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+          @media (max-width: 600px) {
+            padding: 1rem;
+          }
 
           .serviceCardItemIcon {
             margin-right: 1rem;
@@ -703,6 +716,11 @@ onBeforeUnmount(() => {
             color: rgb(37 99 235);
             background-color: rgb(219 234 254);
             border-radius: 0.75rem;
+
+            @media (max-width: 600px) {
+              width: 3rem;
+              height: 3rem;
+            }
           }
 
           .serviceCardItemTt {
@@ -710,11 +728,15 @@ onBeforeUnmount(() => {
             font-size: 1.5rem;
             line-height: 2rem;
             color: rgb(1 32 96);
+
+            @media (max-width: 600px) {
+              font-size: 1.25rem;
+            }
           }
         }
 
         .serviceCardItemSub {
-          margin: 1.5rem 0;
+          margin: 1rem 0;
           line-height: 1.5rem;
           color: rgb(75 85 99);
         }
@@ -764,6 +786,10 @@ onBeforeUnmount(() => {
     width: 100vw;
     background-image: linear-gradient(to bottom right, #165dff, #012060);
 
+    @media (max-width: 600px) {
+      padding: 2rem 0;
+    }
+
     .futureBox {
       position: relative;
       margin: 0 auto;
@@ -772,19 +798,18 @@ onBeforeUnmount(() => {
       max-width: 1720px;
 
       .futureTitle {
-        margin-bottom: 1.5rem;
-        font-size: 2.25rem;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
         font-weight: 700;
-        line-height: 2.5rem;
         text-align: center;
         color: #fff;
       }
 
       .futureHeng {
-        margin: 0 auto 2rem;
+        margin: 1rem auto 2.5rem;
+        margin-bottom: 2rem;
         width: 6rem;
         height: 0.25rem;
-        margin-bottom: 2rem;
+        border-radius: 9999px;
         background-color: rgb(255 255 255);
       }
 
@@ -795,11 +820,19 @@ onBeforeUnmount(() => {
         border-radius: 1rem;
         background-color: rgb(255 255 255 / 0.1);
 
+        @media (max-width: 600px) {
+          padding: 1rem;
+        }
+
         .futureCardItem {
           font-size: 1.25rem;
           line-height: 1.625;
           text-align: center;
           color: #fff;
+
+          @media (max-width: 600px) {
+            font-size: 1.125rem;
+          }
         }
 
         :first-child {
@@ -831,11 +864,6 @@ onBeforeUnmount(() => {
         }
       }
 
-      @media (max-width: 600px) {
-        .futureCardBox {
-          padding: 0.75rem;
-        }
-      }
     }
   }
 
@@ -846,6 +874,10 @@ onBeforeUnmount(() => {
     width: 100%;
     max-width: 1720px;
 
+    @media (max-width: 600px) {
+      padding: 2rem 1rem;
+    }
+
     .mediaTitle {
       font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 700;
@@ -854,8 +886,8 @@ onBeforeUnmount(() => {
     }
 
     .mediaHeng {
-      margin: 1rem auto 4rem;
-      width: 5rem;
+      margin: 1rem auto 2.5rem;
+      width: 6rem;
       height: 0.25rem;
       border-radius: 9999px;
       background-color: rgb(22 93 255);
@@ -875,7 +907,11 @@ onBeforeUnmount(() => {
       max-width: 48rem;
       border-radius: 1rem;
       background-color: rgb(255 255 255);
-      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+      @media (max-width: 600px) {
+        margin-top: 0;
+      }
 
       p {
         margin-top: 0;
@@ -884,6 +920,10 @@ onBeforeUnmount(() => {
         font-size: 1.25rem;
         line-height: 1.75rem;
         color: rgb(55 65 81);
+
+        @media (max-width: 600px) {
+          font-size: 1.125rem;
+        }
       }
 
       .mediaAvatal {

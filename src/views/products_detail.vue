@@ -385,7 +385,7 @@ const value1 = ref(4.8)
         padding: 1.5rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         img {
           width: 100%;
@@ -517,7 +517,7 @@ const value1 = ref(4.8)
         padding: 1.5rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         .pdclxTitle {
           margin-bottom: 1.5rem;
@@ -616,7 +616,7 @@ const value1 = ref(4.8)
               width: 100%;
               background-color: rgb(255 255 255);
               border-radius: 0.5rem;
-              box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+              box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
               border: 1px solid rgb(229 231 235);
 
               img {
@@ -650,7 +650,7 @@ const value1 = ref(4.8)
         padding: 1.5rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         .pdccTitle {
           margin-bottom: 1.5rem;
@@ -672,7 +672,7 @@ const value1 = ref(4.8)
             width: 100%;
             background-color: rgb(255 255 255);
             border-radius: 0.5rem;
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             border: 1px solid rgb(229 231 235);
 
             img {
@@ -737,7 +737,7 @@ const value1 = ref(4.8)
       height: 100%;
       background-color: rgb(255 255 255);
       border-radius: 1rem;
-      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
       .pdcrTitle {
         margin-bottom: 1.5rem;

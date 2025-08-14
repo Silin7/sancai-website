@@ -47,9 +47,6 @@ onBeforeUnmount(() => {
         <div class="applicationBox">
           <div class="applicationTitle">业务管理+AI赋能组价</div>
           <div class="applicationHeng"></div>
-          <!-- <div class="applicationInfo">
-            人工智能深度融入工程管理全流程，提升效率、降低成本、优化决策
-          </div> -->
           <div class="applicationClassbox">
             <div v-for="index in 9" :key="index" class="applicationClassitem">
               <div class="applicationClassitemfa frcc">
@@ -63,12 +60,9 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </div>
-        <div class="applicationBox" style="margin-top: 6rem">
+        <div class="applicationBox" style="margin-top: 2.5rem">
           <div class="applicationTitle">招标造价+AI应用服务</div>
           <div class="applicationHeng"></div>
-          <!-- <div class="applicationInfo">
-            人工智能赋能造价管理全流程，提高精度、减少误差、优化决策
-          </div> -->
           <div class="applicationClassbox">
             <div v-for="index in 4" :key="index" class="applicationClassitem">
               <div class="applicationClassitemfa frcc">
@@ -164,7 +158,7 @@ onBeforeUnmount(() => {
           color: #fff;
           background-color: rgb(22 93 255);
           border-radius: 9999px;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (max-width: 600px) {
             padding: 0.75rem 1.5rem;
@@ -186,7 +180,7 @@ onBeforeUnmount(() => {
     width: 100%;
 
     @media (max-width: 600px) {
-      padding: 2rem 1rem;
+      padding: 1rem;
     }
 
     .introaiBox {
@@ -196,7 +190,7 @@ onBeforeUnmount(() => {
       width: 100%;
       max-width: 1536px;
       background-color: #fff;
-      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
       border-radius: 1rem;
 
       @media (min-width: 992px) {
@@ -216,6 +210,10 @@ onBeforeUnmount(() => {
     width: 100%;
     background-color: #f0f7ff;
 
+    @media (max-width: 600px) {
+      padding: 2rem 0;
+    }
+
     .applicationBox {
       position: relative;
       margin: 0 auto;
@@ -224,26 +222,18 @@ onBeforeUnmount(() => {
       max-width: 1536px;
 
       .applicationTitle {
-        font-size: clamp(1.5rem, 4vw, 1.875rem);
-        line-height: 2.25rem;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
         font-weight: 700;
         text-align: center;
         color: rgb(1 32 96);
       }
 
       .applicationHeng {
-        margin: 1rem auto 4rem;
+        margin: 1rem auto 2.5rem;
         width: 5rem;
         height: 0.25rem;
         border-radius: 9999px;
         background-color: rgb(22 93 255);
-      }
-
-      .applicationInfo {
-        margin: 1rem auto 4rem;
-        text-align: center;
-        max-width: 42rem;
-        color: rgb(75 85 99);
       }
 
       .applicationClassbox {
@@ -258,7 +248,7 @@ onBeforeUnmount(() => {
 
         .applicationClassitem {
           margin: 0 1rem 1rem 0;
-          padding: 2rem 2rem;
+          padding: 1.5rem;
           width: calc(33.3% - 1rem);
           display: flex;
           flex-flow: column;
@@ -266,7 +256,7 @@ onBeforeUnmount(() => {
           align-items: center;
           background-color: #fff;
           border-radius: 0.75rem;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (max-width: 600px) {
             width: 100%;
@@ -290,6 +280,10 @@ onBeforeUnmount(() => {
             line-height: 1.75rem;
             font-weight: 700;
             color: rgb(1 32 96);
+
+            @media (max-width: 600px) {
+              font-size: 1.125rem;
+            }
           }
 
           .applicationClassiteminfo {
@@ -308,11 +302,20 @@ onBeforeUnmount(() => {
           }
         }
 
-        .applicationClassitem:hover {
-          cursor: pointer;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
-          animation: jumpUpwards 300ms ease-in-out forwards;
+        .applicationClassitem:last-child {
+          @media (max-width: 600px) {
+            margin-bottom: 0;
+          }
         }
+
+        .applicationClassitem:hover {
+          @media (min-width: 600px) {
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            animation: jumpUpwards 300ms ease-in-out forwards;
+          }
+        }
+
       }
     }
   }
@@ -323,6 +326,11 @@ onBeforeUnmount(() => {
     padding: 0 1rem 4rem;
     width: 100%;
     max-width: 1536px;
+
+    @media (max-width: 600px) {
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
 
     .caseTitle {
       font-size: clamp(1.5rem, 4vw, 2.5rem);
@@ -344,6 +352,10 @@ onBeforeUnmount(() => {
       text-align: center;
       max-width: 42rem;
       color: rgb(75 85 99);
+
+      @media (max-width: 600px) {
+        margin: 1rem auto 2.5rem;
+      }
     }
 
     .caseClassbox {
@@ -366,7 +378,7 @@ onBeforeUnmount(() => {
         align-items: center;
         background-color: #fff;
         border-radius: 0.75rem;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 600px) {
           width: 100%;
@@ -383,7 +395,7 @@ onBeforeUnmount(() => {
           padding: 1.5rem;
 
           @media (max-width: 600px) {
-            padding: 1.5rem 1rem;
+            padding: 1rem;
           }
 
           .caseClassitemFrsc {
@@ -436,9 +448,15 @@ onBeforeUnmount(() => {
         }
       }
 
+      .caseClassitem:last-child {
+        @media (max-width: 600px) {
+          margin-bottom: 0;
+        }
+      }
+
       .caseClassitem:hover {
         cursor: pointer;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         animation: jumpUpwards 300ms ease-in-out forwards;
       }
     }

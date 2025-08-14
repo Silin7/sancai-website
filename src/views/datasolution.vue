@@ -177,7 +177,7 @@ function pageJump() {
           color: #fff;
           background-color: rgb(22 93 255);
           border-radius: 9999px;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (max-width: 600px) {
             padding: 0.75rem 1.5rem;
@@ -199,7 +199,7 @@ function pageJump() {
     width: 100%;
 
     @media (max-width: 600px) {
-      padding: 2rem 1rem;
+      padding: 1rem;
     }
 
     .introdsBox {
@@ -209,7 +209,7 @@ function pageJump() {
       width: 100%;
       max-width: 1536px;
       background-color: #fff;
-      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
       border-radius: 1rem;
 
       @media (min-width: 992px) {
@@ -250,6 +250,10 @@ function pageJump() {
     width: 100%;
     background-color: #f0f7ff;
 
+    @media (max-width: 600px) {
+      padding: 2rem 0;
+    }
+
     .digitizeBox {
       position: relative;
       margin: 0 auto;
@@ -258,12 +262,11 @@ function pageJump() {
       max-width: 1536px;
 
       .digitizeSubBoxOut {
-        padding-bottom: 2rem;
+        margin-bottom: 1.5rem;
         display: flex;
         justify-content: center;
 
         .digitizeSubBox {
-          padding-bottom: 1rem;
           overflow-x: auto;
           display: flex;
           flex-wrap: nowrap;
@@ -276,8 +279,10 @@ function pageJump() {
             color: rgb(1 32 96);
             background-color: #fff;
             border-radius: 999px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
             @media (max-width: 600px) {
+              padding: 0.375rem 0.875rem;
               margin: 0 0.25rem;
             }
           }
@@ -291,9 +296,10 @@ function pageJump() {
           }
 
           .digitizeSubItem:hover {
-            cursor: pointer;
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
-            background-color: rgb(243 244 246);
+            @media (max-width: 600px) {
+              cursor: pointer;
+              background-color: rgb(243 244 246);
+            }
           }
         }
 
@@ -304,7 +310,6 @@ function pageJump() {
       }
 
       .digitizeClassbox {
-        // margin-bottom: 2.5rem;
         width: calc(100% + 1rem);
         display: flex;
         flex-wrap: wrap;
@@ -316,7 +321,7 @@ function pageJump() {
 
         .digitizeClassitem {
           margin: 0 1rem 1rem 0;
-          padding: 1.25rem;
+          padding: 1.5rem;
           width: calc(33.3% - 1rem);
           display: flex;
           flex-flow: column;
@@ -324,7 +329,7 @@ function pageJump() {
           align-items: center;
           background-color: #fff;
           border-radius: 0.75rem;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (max-width: 600px) {
             width: 100%;
@@ -348,6 +353,10 @@ function pageJump() {
             line-height: 1.75rem;
             font-weight: 700;
             color: rgb(1 32 96);
+
+            @media (max-width: 600px) {
+              font-size: 1.125rem;
+            }
           }
 
           .digitizeClassiteminfo {
@@ -355,6 +364,10 @@ function pageJump() {
             margin-bottom: 1rem;
             line-height: 1.5rem;
             color: rgb(75 85 99);
+
+            @media (max-width: 600px) {
+              // font-size: 0.875rem;
+            }
           }
 
           button {
@@ -366,10 +379,18 @@ function pageJump() {
           }
         }
 
+        .digitizeClassitem:last-child {
+          @media (max-width: 600px) {
+            margin-bottom: 0;
+          }
+        }
+
         .digitizeClassitem:hover {
-          cursor: pointer;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
-          animation: jumpUpwards 300ms ease-in-out forwards;
+          @media (min-width: 600px) {
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            animation: jumpUpwards 300ms ease-in-out forwards;
+          }
         }
       }
     }
@@ -383,8 +404,8 @@ function pageJump() {
     max-width: 1536px;
 
     @media (max-width: 600px) {
-      margin: 4rem auto 0;
-      padding: 0 1rem 4rem;
+      margin: 0 auto;
+      padding: 2rem 1rem 1rem;
     }
 
     .gysTitle {
@@ -472,9 +493,11 @@ function pageJump() {
       }
 
       .gysClassitem:hover {
-        cursor: pointer;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
-        animation: jumpUpwards 300ms ease-in-out forwards;
+        @media (max-width: 600px) {
+          cursor: pointer;
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          animation: jumpUpwards 300ms ease-in-out forwards;
+        }
       }
     }
   }

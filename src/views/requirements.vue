@@ -90,7 +90,7 @@ const checkvalue4: any = ref(false)
     max-width: 1536px;
 
     @media (max-width: 600px) {
-      padding: 5rem 1rem 2rem;
+      padding: 5rem 1rem 1rem;
     }
 
     .requHtitle {
@@ -115,7 +115,7 @@ const checkvalue4: any = ref(false)
     margin-top: 2rem;
     padding: 2.5rem;
     background-color: rgb(255 255 255);
-    box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     border-radius: 1rem;
 
     @media (max-width: 600px) {
@@ -236,7 +236,7 @@ const checkvalue4: any = ref(false)
       color: #fff;
       background-color: rgb(22 93 255);
       border-radius: 9999px;
-      box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     }
 
     .btmTjxq:hover {

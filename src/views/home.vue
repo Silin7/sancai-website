@@ -153,7 +153,7 @@ onBeforeUnmount(() => {
         <div class="containerTitle">人材机信价格库</div>
         <div class="containerHeng"></div>
         <div class="containerSubBoxOut">
-          <div class="containerSubBox1">
+          <div class="containerSubBox">
             <div class="containerSubItem containerActive">数字技工/方案论证</div>
             <div class="containerSubItem">材料/设备</div>
             <div class="containerSubItem">智能建造装备</div>
@@ -541,7 +541,7 @@ onBeforeUnmount(() => {
           //   color: #fff;
           //   background-color: rgb(22 93 255);
           //   border-radius: 9999px;
-          //   box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          //   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
           // }
 
           // .bannerJjfabtn {
@@ -607,7 +607,7 @@ onBeforeUnmount(() => {
             .bannerGriditem:hover {
               @media (min-width: 600px) {
                 cursor: pointer;
-                box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+                box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
                 animation: jumpUpwards 300ms ease-in-out forwards;
               }
             }
@@ -791,7 +791,7 @@ onBeforeUnmount(() => {
       display: flex;
       justify-content: center;
 
-      .containerSubBox1 {
+      .containerSubBox {
         overflow-x: auto;
         display: flex;
         flex-wrap: nowrap;
@@ -804,7 +804,7 @@ onBeforeUnmount(() => {
           color: rgb(1 32 96);
           background-color: #fff;
           border-radius: 0.5rem;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (max-width: 600px) {
             margin: 0 0.25rem;
@@ -946,7 +946,7 @@ onBeforeUnmount(() => {
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             background-color: #fff;
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
             @media (max-width: 600px) {
               margin: 0 0.25rem;
@@ -981,7 +981,7 @@ onBeforeUnmount(() => {
         width: 100%;
         height: 700px;
         border-radius: 1rem;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         .solutionsImgTitleMoud {
           position: absolute;
@@ -1179,7 +1179,7 @@ onBeforeUnmount(() => {
         .aiClassitem:hover {
           @media (min-width: 600px) {
             cursor: pointer;
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             animation: jumpUpwards 300ms ease-in-out forwards;
           }
         }
@@ -1292,7 +1292,7 @@ onBeforeUnmount(() => {
         .mxClassitem:hover {
           @media (min-width: 600px) {
             cursor: pointer;
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             animation: jumpUpwards 300ms ease-in-out forwards;
           }
         }
@@ -1392,7 +1392,7 @@ onBeforeUnmount(() => {
       .pyClassitem:hover {
         @media (min-width: 600px) {
           cursor: pointer;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
           animation: jumpUpwards 300ms ease-in-out forwards;
         }
       }

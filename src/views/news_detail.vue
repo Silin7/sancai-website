@@ -34,7 +34,7 @@ onBeforeUnmount(() => {
     <div class="ndCbox">
       <div class="ndCtitle">上海中心大厦BIM技术应用案例深度解析</div>
       <div class="ndCzuoz">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" />
+        <img src="@/assets/32.jpg" alt="" />
         <div class="zuozeInfo">
           <p>作者：李明</p>
           <p>三才工程研究院 BIM技术专家</p>
@@ -49,7 +49,7 @@ onBeforeUnmount(() => {
         <div class="ndcTag">上海中心</div>
       </div>
       <div class="ndCzuobtm">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" />
+        <img src="@/assets/32.jpg" alt="" />
         <div class="zuozeInfo">
           <p>作者：李明</p>
           <p>三才工程研究院 BIM技术专家</p>

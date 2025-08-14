@@ -348,11 +348,10 @@ const state = ref('gsjs')
       }
 
       .sdhGys {
-        margin-bottom: 2rem;
         padding: 1rem;
         background-color: rgb(255 255 255);
         border-radius: 0.75rem;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (min-width: 992px) {
           padding: 1.5rem;
@@ -365,7 +364,7 @@ const state = ref('gsjs')
           width: calc(100% - 0.5rem);
           height: 8rem;
           border-radius: 0.75rem;
-          box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (min-width: 992px) {
             width: 8rem;
@@ -512,10 +511,14 @@ const state = ref('gsjs')
   .sdCbox {
     position: relative;
     margin: 0 auto;
-    padding: 2.5rem 1rem;
+    padding: 2rem 1rem;
     width: 100%;
     max-width: 1536px;
     color: rgb(1 32 96);
+
+    @media (max-width: 600px) {
+      padding: 1rem;
+    }
 
     .sdcIContent {
       width: 100%;
@@ -527,7 +530,11 @@ const state = ref('gsjs')
         margin-bottom: 2rem;
         background-color: rgb(255 255 255);
         border-radius: 0.75rem;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+        @media (max-width: 600px) {
+          margin-bottom: 1rem;
+        }
 
         button {
           flex-shrink: 0;
@@ -547,7 +554,7 @@ const state = ref('gsjs')
         padding: 1rem;
         background-color: rgb(255 255 255);
         border-radius: 0.75rem;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (min-width: 992px) {
           padding: 1.5rem;
@@ -634,7 +641,7 @@ const state = ref('gsjs')
               width: 100%;
               background-color: rgb(255 255 255);
               border-radius: 0.5rem;
-              box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+              box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
               border: 1px solid rgb(229 231 235);
 
               @media (min-width: 992px) {
@@ -759,7 +766,7 @@ const state = ref('gsjs')
                 height: 7rem;
                 border-radius: 0.5rem;
                 background-color: #fff;
-                box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+                box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
               }
 
               .sdLxfsEbox {
@@ -803,7 +810,7 @@ const state = ref('gsjs')
         padding: 1rem;
         background-color: rgb(255 255 255);
         border-radius: 0.75rem;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (min-width: 992px) {
           padding: 1.5rem;
@@ -816,17 +823,18 @@ const state = ref('gsjs')
           align-items: center;
 
           .sdclHzalCol {
-            flex-shrink: 0;
             margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0/ 0.1);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             border: 1px solid rgb(243 244 246);
-            border-radius: 0.25rem;
+            border-radius: 999px;
 
             @media (max-width: 600px) {
               margin: 0 0.5rem 0.5rem 0;
               padding: 0.5rem 1rem;
+              font-size: 0.875rem;
+              line-height: 1.25rem;
             }
           }
 
@@ -838,15 +846,17 @@ const state = ref('gsjs')
 
           .sdclHzalColActive {
             margin: 0 0.75rem 0.75rem 0;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.25rem;
             color: #fff;
             background-color: rgb(22 93 255);
             border: 1px solid rgb(243 244 246);
-            border-radius: 0.25rem;
+            border-radius: 999px;
 
             @media (max-width: 600px) {
               margin: 0 0.5rem 0.5rem 0;
               padding: 0.5rem 1rem;
+              font-size: 0.875rem;
+              line-height: 1.25rem;
             }
           }
         }
@@ -1064,7 +1074,7 @@ const state = ref('gsjs')
           }
 
           .sdclCplbItem:hover {
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
             .sdclCplbImg {
               transform: scale(1.05);

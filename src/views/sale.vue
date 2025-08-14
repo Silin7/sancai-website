@@ -318,7 +318,7 @@ const handleCurrentChange = (val: number) => {
 
   .containerBox {
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1rem;
     width: 100%;
     max-width: 1536px;
 
@@ -341,7 +341,7 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 1140px) {
           padding: 1rem;
@@ -358,7 +358,7 @@ const handleCurrentChange = (val: number) => {
             margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
-            box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             border: 1px solid rgb(243 244 246);
             border-radius: 999px;
             ;
@@ -401,10 +401,10 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 1140px) {
-          padding: 1rem 0.5rem;
+          padding: 1rem 0;
         }
 
         .containerProductsTitle {
@@ -415,7 +415,8 @@ const handleCurrentChange = (val: number) => {
           align-items: center;
 
           @media (max-width: 1140px) {
-            padding: 0;
+            margin-bottom: 1rem;
+            padding: 0 1rem;
           }
 
           .containerProductsTitleText {
@@ -438,7 +439,7 @@ const handleCurrentChange = (val: number) => {
           padding: 0 1.5rem;
 
           @media (max-width: 1140px) {
-            padding: 0;
+            padding: 0 1rem;
           }
 
           .containerProductsItem {
@@ -566,10 +567,10 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 1140px) {
-          padding: 1rem 0.75rem;
+          padding: 1rem;
         }
 
         .containerPiceTitle {
@@ -585,10 +586,10 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 1140px) {
-          padding: 1rem 0.75rem;
+          padding: 1rem;
         }
 
         .containerHotTitle {
