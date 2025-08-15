@@ -914,7 +914,7 @@ const state = ref('gsjs')
 
               .sdclHzalTitle {
                 margin-bottom: 1rem;
-                font-size: 1.125rem;
+                font-size: 1.25rem;
                 line-height: 1.75rem;
                 font-weight: 700;
                 color: rgb(1 32 96);
@@ -922,7 +922,6 @@ const state = ref('gsjs')
 
               .sdclHzalInfo {
                 margin-bottom: 1rem;
-                font-size: 0.875rem;
                 line-height: 1.25rem;
                 color: rgb(75 85 99);
               }
@@ -936,7 +935,7 @@ const state = ref('gsjs')
                 .sdclHzalCitrm {
                   margin-right: 0.5rem;
                   padding: 0.25rem 0.5rem;
-                  font-size: 0.75rem;
+                  font-size: 0.875rem;
                   line-height: 1rem;
                   color: rgb(75 85 99);
                   background-color: rgb(243 244 246);

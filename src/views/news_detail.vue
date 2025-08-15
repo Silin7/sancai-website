@@ -162,7 +162,6 @@ onBeforeUnmount(() => {
       line-height: 2rem;
       margin-bottom: 1.5rem;
       font-weight: 700;
-      border: 1px solid red;
     }
 
     .ndCzuoz {
@@ -194,7 +193,10 @@ onBeforeUnmount(() => {
     }
 
     .ndCFuwb {
+      margin-bottom: 1rem;
       padding: 10rem 2rem;
+      border: 1px solid #efefef;
+      border-radius: 0.5rem;
     }
 
     .ndCTags {
@@ -316,7 +318,7 @@ onBeforeUnmount(() => {
           width: 100%;
 
           .newsPiTitle {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             line-height: 1.75rem;
             font-weight: 700;
             margin: 0.75rem 0;
@@ -325,7 +327,6 @@ onBeforeUnmount(() => {
 
           .newsPiInfo {
             margin-bottom: 1rem;
-            font-size: 0.875rem;
             line-height: 1.25rem;
             color: rgb(75 85 99);
           }
@@ -350,7 +351,7 @@ onBeforeUnmount(() => {
 
                 .newsPiClassSpan {
                   margin-left: 0.25rem;
-                  font-size: 0.75rem;
+                  font-size: 0.875rem;
                   line-height: 1rem;
                 }
               }

@@ -594,7 +594,7 @@ const handleCurrentChange = (val: number) => {
                   padding-right: 0.5rem;
                   padding-top: 0.25rem;
                   padding-bottom: 0.25rem;
-                  font-size: 0.75rem;
+                  font-size: 0.875rem;
                   line-height: 1rem;
                   color: rgb(55 65 81);
                 }
