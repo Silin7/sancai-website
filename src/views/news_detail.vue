@@ -282,7 +282,7 @@ onBeforeUnmount(() => {
         margin-bottom: 1.5rem;
         padding: 1rem;
         width: calc(33.3% - 1rem);
-        box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         border-radius: 0.75rem;
 
         @media (max-width: 992px) {

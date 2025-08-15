@@ -402,7 +402,7 @@ onBeforeUnmount(() => {
           .introtInfo {
             margin-bottom: 2rem;
             padding: 2rem;
-            border-radius: 0.75rem;
+            border-radius: 1rem;
             background-color: rgb(243 244 246);
 
             @media (max-width: 768px) {
