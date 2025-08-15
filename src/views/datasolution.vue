@@ -167,7 +167,7 @@ function pageJump() {
 
         .dsbannerSubtitle {
           margin-bottom: 2rem;
-          font-size: clamp(1.25rem, 3vw, 1.5rem);
+          font-size: clamp(1.25rem, 4vw, 1.5rem);
           font-weight: 500;
           color: rgb(255 255 255 / 0.9);
         }
@@ -445,12 +445,13 @@ function pageJump() {
         align-items: center;
         background-color: #fff;
         border-radius: 0.75rem;
+        border: 1px solid red;
 
-        @media (min-width: 1140px) {
+        @media (min-width: 992px) {
           width: calc(16.6% - 1rem);
         }
 
-        @media (max-width: 1140px) and (min-width: 768px) {
+        @media (max-width: 992px) and (min-width: 768px) {
           width: calc(33.3% - 1rem);
         }
 

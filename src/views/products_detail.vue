@@ -349,7 +349,7 @@ const value1 = ref(4.8)
 
       .pdHtitle {
         margin-bottom: 0.5rem;
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
         line-height: 3.75rem;
         font-weight: 700;
         color: rgb(1 32 96);

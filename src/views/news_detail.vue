@@ -106,6 +106,10 @@ onBeforeUnmount(() => {
       max-width: 1536px;
       color: rgb(1 32 96);
 
+      @media (max-width: 992px) {
+        padding: 5rem 1rem 1rem;
+      }
+
       .ndNavigation {
         margin: 0 auto;
         display: flex;
@@ -132,12 +136,6 @@ onBeforeUnmount(() => {
         }
       }
     }
-
-    @media (max-width: 992px) {
-      .ndHcontent {
-        padding: 6rem 1rem 2rem;
-      }
-    }
   }
 
   .ndCbox {
@@ -148,19 +146,23 @@ onBeforeUnmount(() => {
     max-width: 1536px;
     color: rgb(1 32 96);
 
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
+
     .ndCtitle {
       margin-bottom: 1rem;
-      font-size: 2.25rem;
-      line-height: 2.5rem;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
     }
 
     .ndCtitle2 {
-      font-size: 1.5rem;
+      font-size: clamp(1.25rem, 4vw, 1.5rem);
       line-height: 2rem;
       margin-bottom: 1.5rem;
       font-weight: 700;
+      border: 1px solid red;
     }
 
     .ndCzuoz {

@@ -387,7 +387,7 @@ const state = ref('gsjs')
 
             .sdhgctTitle {
               font-weight: 700;
-              font-size: clamp(1.5rem, 3vw, 2.5rem);
+              font-size: clamp(1.5rem, 4vw, 2.5rem);
               color: rgb(1 32 96);
             }
 

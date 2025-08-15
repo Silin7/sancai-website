@@ -303,7 +303,7 @@ onBeforeUnmount(() => {
         .abbannerSubtitle {
           margin-bottom: 2rem;
           max-width: 42rem;
-          font-size: clamp(1.25rem, 3vw, 1.5rem);
+          font-size: clamp(1.25rem, 4vw, 1.5rem);
           font-weight: 500;
           color: rgb(255 255 255 / 0.9);
         }
@@ -580,11 +580,11 @@ onBeforeUnmount(() => {
         border-radius: 1rem;
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-        @media (min-width: 1000px) {
+        @media (min-width: 992px) {
           width: calc(25% - 1rem);
         }
 
-        @media (max-width: 999px) and (min-width: 601px) {
+        @media (max-width: 992px) and (min-width: 768px) {
           width: calc(50% - 0.5rem);
         }
 

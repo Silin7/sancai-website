@@ -245,7 +245,7 @@ const handleCurrentChange = (val: number) => {
         .prbannerSubtitle {
           max-width: 42rem;
           margin-bottom: 2rem;
-          font-size: clamp(1rem, 3vw, 1.25rem);
+          font-size: clamp(1rem, 4vw, 1.25rem);
           font-weight: 500;
           color: rgb(1 32 96 / 0.9);
         }

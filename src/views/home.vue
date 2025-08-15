@@ -612,13 +612,13 @@ onBeforeUnmount(() => {
               }
             }
 
-            @media (min-width: 1140px) {
+            @media (min-width: 992px) {
               .bannerGriditem {
                 width: calc(25% - 1px);
               }
             }
 
-            @media (max-width: 1140px) and (min-width: 768px) {
+            @media (max-width: 992px) and (min-width: 768px) {
               .bannerGriditem {
                 width: calc(50% - 1px);
               }
@@ -1251,11 +1251,11 @@ onBeforeUnmount(() => {
           background-color: #fff;
           border-radius: 0.75rem;
 
-          @media (min-width: 1140px) {
+          @media (min-width: 992px) {
             width: calc(16.6% - 1rem);
           }
 
-          @media (max-width: 1140px) and (min-width: 768px) {
+          @media (max-width: 992px) and (min-width: 768px) {
             width: calc(33.3% - 1rem);
           }
 
@@ -1343,11 +1343,11 @@ onBeforeUnmount(() => {
         background-color: #fff;
         border-radius: 0.75rem;
 
-        @media (min-width: 1140px) {
+        @media (min-width: 992px) {
           width: calc(16.6% - 1rem);
         }
 
-        @media (max-width: 1140px) and (min-width: 768px) {
+        @media (max-width: 992px) and (min-width: 768px) {
           width: calc(33.3% - 1rem);
         }
 

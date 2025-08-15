@@ -183,7 +183,7 @@ function pageJump() {
         .nsbannerSubtitle {
           margin-bottom: 2rem;
           max-width: 42rem;
-          font-size: clamp(1.25rem, 3vw, 1.5rem);
+          font-size: clamp(1.25rem, 4vw, 1.5rem);
           font-weight: 500;
           color: rgb(255 255 255 / 0.9);
         }
