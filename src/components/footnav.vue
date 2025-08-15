@@ -143,21 +143,21 @@ onBeforeUnmount(() => {
       color: #9ca3af;
     }
 
-    .lxfsbbox {
-      margin-right: 16px;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgb(255 255 255 / 0.1);
-      border-radius: 40px;
-    }
+    // .lxfsbbox {
+    //   margin-right: 16px;
+    //   width: 40px;
+    //   height: 40px;
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   background-color: rgb(255 255 255 / 0.1);
+    //   border-radius: 40px;
+    // }
 
-    .lxfsbbox:hover {
-      cursor: pointer;
-      background-color: #165dff;
-    }
+    // .lxfsbbox:hover {
+    //   cursor: pointer;
+    //   background-color: #165dff;
+    // }
 
     .titleshu {
       margin-right: 12px;
@@ -173,6 +173,13 @@ onBeforeUnmount(() => {
         margin-bottom: 12px;
         line-height: 24px;
         color: #9ca3af;
+      }
+
+      .quicklink:hover {
+        @media (min-width:768px) {
+          cursor: pointer;
+          color: #165dff;
+        }
       }
     }
 

@@ -44,7 +44,6 @@ function pagejump() {
     img {
       cursor: pointer;
       width: 120px;
-      // height: 24px;
     }
 
     // .title {

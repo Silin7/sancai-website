@@ -466,7 +466,7 @@ onBeforeUnmount(() => {
       max-width: 1536px;
       height: 44rem;
 
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         height: 46rem;
       }
 
@@ -487,7 +487,7 @@ onBeforeUnmount(() => {
         padding-top: 10rem;
         width: 100%;
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding-top: 5rem;
         }
 
@@ -497,7 +497,7 @@ onBeforeUnmount(() => {
           width: 100%;
           max-width: 1536px;
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             padding: 1rem;
           }
 
@@ -507,7 +507,7 @@ onBeforeUnmount(() => {
             color: #fff;
             font-weight: 700;
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               margin-bottom: 1.5rem;
             }
           }
@@ -519,14 +519,14 @@ onBeforeUnmount(() => {
             font-weight: 500;
             color: rgb(255 255 255 / 0.9);
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               margin-bottom: 2rem;
             }
 
             span {
               margin-right: 2rem;
 
-              @media (max-width: 600px) {
+              @media (max-width: 768px) {
                 margin-right: 1rem;
               }
             }
@@ -574,7 +574,7 @@ onBeforeUnmount(() => {
               display: flex;
               align-items: center;
 
-              @media (max-width: 600px) {
+              @media (max-width: 768px) {
                 padding: 1rem;
               }
 
@@ -605,7 +605,7 @@ onBeforeUnmount(() => {
             }
 
             .bannerGriditem:hover {
-              @media (min-width: 600px) {
+              @media (min-width: 768px) {
                 cursor: pointer;
                 box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
                 animation: jumpUpwards 300ms ease-in-out forwards;
@@ -618,13 +618,13 @@ onBeforeUnmount(() => {
               }
             }
 
-            @media (max-width: 1140px) and (min-width: 600px) {
+            @media (max-width: 1140px) and (min-width: 768px) {
               .bannerGriditem {
                 width: calc(50% - 1px);
               }
             }
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               .bannerGriditem {
                 width: 100%;
               }
@@ -664,7 +664,7 @@ onBeforeUnmount(() => {
         max-width: 1536px;
         height: 120px;
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 0;
         }
 
@@ -679,7 +679,7 @@ onBeforeUnmount(() => {
           color: #fff;
           background-color: rgba(1, 98, 105, 0.5);
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             width: calc(100% - 2rem);
           }
         }
@@ -693,7 +693,7 @@ onBeforeUnmount(() => {
       width: 100%;
       max-width: 1536px;
 
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         padding: 0;
       }
 
@@ -710,7 +710,7 @@ onBeforeUnmount(() => {
           0 4px 6px -4px rgb(0 0 0 / 0.1);
         background-color: rgba(230, 250, 250, 0.5);
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 1rem;
           width: calc(100% - 2rem);
         }
@@ -730,7 +730,7 @@ onBeforeUnmount(() => {
               background-color: #165dff;
               border-radius: 0.25rem;
 
-              @media (max-width: 600px) {
+              @media (max-width: 768px) {
                 height: 1.5rem;
               }
             }
@@ -766,7 +766,7 @@ onBeforeUnmount(() => {
     width: 100%;
     max-width: 1536px;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       margin: 4rem 0;
       padding: 0 1rem;
     }
@@ -806,7 +806,7 @@ onBeforeUnmount(() => {
           border-radius: 0.5rem;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             margin: 0 0.25rem;
           }
         }
@@ -820,7 +820,7 @@ onBeforeUnmount(() => {
         }
 
         .containerSubItem:hover {
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             cursor: pointer;
             background-color: rgb(243 244 246);
           }
@@ -851,7 +851,7 @@ onBeforeUnmount(() => {
         border-radius: 1rem 1rem 0 0;
         background-color: rgb(1 32 96 / 0.4);
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 1rem 1rem 0 1rem;
         }
 
@@ -866,7 +866,7 @@ onBeforeUnmount(() => {
             padding: 0.75rem;
             border-radius: 0.5rem;
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               margin-right: 0;
               padding: 0.5rem;
               width: 100%;
@@ -881,7 +881,7 @@ onBeforeUnmount(() => {
           }
 
           .containerGridItem:hover {
-            @media (min-width: 600px) {
+            @media (min-width: 768px) {
               cursor: pointer;
               background-color: rgb(255 255 255 / 0.1);
             }
@@ -897,7 +897,7 @@ onBeforeUnmount(() => {
     width: 100%;
     background-color: rgb(240 247 255 / 1);
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       margin: 4rem auto 0;
       padding: 2.5rem 0;
     }
@@ -909,7 +909,7 @@ onBeforeUnmount(() => {
       width: 100%;
       max-width: 1536px;
 
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         padding: 0 1em;
       }
 
@@ -948,7 +948,7 @@ onBeforeUnmount(() => {
             background-color: #fff;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               margin: 0 0.25rem;
             }
           }
@@ -962,7 +962,7 @@ onBeforeUnmount(() => {
           }
 
           .solutionsSubItem:hover {
-            @media (min-width: 600px) {
+            @media (min-width: 768px) {
               cursor: pointer;
               background-color: rgb(243 244 246);
             }
@@ -1027,7 +1027,7 @@ onBeforeUnmount(() => {
           border-top: 1px solid rgb(229 231 235);
           background-color: rgb(255 255 255 / 0.8);
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             padding: 1.5rem 1rem;
           }
 
@@ -1046,7 +1046,7 @@ onBeforeUnmount(() => {
     width: 100%;
     background-color: rgba(255, 255, 255, 1);
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 4rem 0;
     }
 
@@ -1057,7 +1057,7 @@ onBeforeUnmount(() => {
       width: 100%;
       max-width: 1536px;
 
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         padding: 0 1rem;
       }
 
@@ -1122,7 +1122,7 @@ onBeforeUnmount(() => {
         flex-wrap: wrap;
         justify-content: flex-start;
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           margin-bottom: 1.5rem;
         }
 
@@ -1137,7 +1137,7 @@ onBeforeUnmount(() => {
           background-color: rgb(249 250 251);
           border-radius: 0.75rem;
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             padding: 1.25rem 1rem;
             width: calc(50% - 1rem);
           }
@@ -1149,7 +1149,7 @@ onBeforeUnmount(() => {
             border-radius: 9999px;
             background-color: rgb(22 93 255 / 0.1);
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               width: 3rem;
               height: 3rem;
             }
@@ -1162,7 +1162,7 @@ onBeforeUnmount(() => {
             border-radius: 9999px;
             background-color: rgb(114 46 209 / 0.1);
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               width: 3rem;
               height: 3rem;
             }
@@ -1177,7 +1177,7 @@ onBeforeUnmount(() => {
         }
 
         .aiClassitem:hover {
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             cursor: pointer;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             animation: jumpUpwards 300ms ease-in-out forwards;
@@ -1198,7 +1198,7 @@ onBeforeUnmount(() => {
     background-color: rgba(255, 255, 255, 0.5);
     background-image: url('../assets/about00.jpg');
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 2.5rem 0;
     }
 
@@ -1209,7 +1209,7 @@ onBeforeUnmount(() => {
       width: 100%;
       max-width: 1536px;
 
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         padding: 0 1rem;
       }
 
@@ -1255,11 +1255,11 @@ onBeforeUnmount(() => {
             width: calc(16.6% - 1rem);
           }
 
-          @media (max-width: 1140px) and (min-width: 600px) {
+          @media (max-width: 1140px) and (min-width: 768px) {
             width: calc(33.3% - 1rem);
           }
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             padding: 1rem 0.5rem;
             width: calc(50% - 1rem);
           }
@@ -1290,7 +1290,7 @@ onBeforeUnmount(() => {
         }
 
         .mxClassitem:hover {
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             cursor: pointer;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             animation: jumpUpwards 300ms ease-in-out forwards;
@@ -1307,7 +1307,7 @@ onBeforeUnmount(() => {
     width: 100%;
     max-width: 1536px;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       margin: 4rem auto 0;
       padding: 0 1rem 4rem;
     }
@@ -1347,11 +1347,11 @@ onBeforeUnmount(() => {
           width: calc(16.6% - 1rem);
         }
 
-        @media (max-width: 1140px) and (min-width: 600px) {
+        @media (max-width: 1140px) and (min-width: 768px) {
           width: calc(33.3% - 1rem);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 1rem 0.5rem;
           width: calc(50% - 1rem);
         }
@@ -1390,7 +1390,7 @@ onBeforeUnmount(() => {
       }
 
       .pyClassitem:hover {
-        @media (min-width: 600px) {
+        @media (min-width: 768px) {
           cursor: pointer;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
           animation: jumpUpwards 300ms ease-in-out forwards;

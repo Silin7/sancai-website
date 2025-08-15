@@ -89,7 +89,7 @@ const checkvalue4: any = ref(false)
     width: 100%;
     max-width: 1536px;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 5rem 1rem 1rem;
     }
 
@@ -118,7 +118,7 @@ const checkvalue4: any = ref(false)
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     border-radius: 1rem;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 2rem 0.5rem;
     }
 
@@ -130,7 +130,7 @@ const checkvalue4: any = ref(false)
       line-height: 2rem;
       margin-bottom: 1rem;
 
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         font-size: 1.25rem;
       }
     }
@@ -200,7 +200,7 @@ const checkvalue4: any = ref(false)
         .requCstiItem {
           margin-right: 1rem;
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             margin-right: 0.5rem;
           }
 
@@ -208,7 +208,7 @@ const checkvalue4: any = ref(false)
             width: 1.25rem;
             height: 1.25rem;
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               width: 1rem;
               height: 1rem;
             }

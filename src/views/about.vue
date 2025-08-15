@@ -266,7 +266,7 @@ onBeforeUnmount(() => {
     width: 100vw;
     height: 40rem;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       height: 30rem;
     }
 
@@ -288,7 +288,7 @@ onBeforeUnmount(() => {
         width: 100%;
         max-width: 1720px;
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 6rem 1rem 0;
         }
 
@@ -315,13 +315,13 @@ onBeforeUnmount(() => {
           border-radius: 9999px;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             padding: 0.75rem 1.5rem;
           }
         }
 
         .abbannerJgkbtn:hover {
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             transform: scale(1.05);
             box-shadow: 2px 2px 10px 0 rgb(22 93 255);
           }
@@ -335,13 +335,13 @@ onBeforeUnmount(() => {
           border: 1px solid rgba(255 255 255 / 0.3);
           border-radius: 9999px;
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             padding: 0.75rem 1.5rem;
           }
         }
 
         .abbannerJjfabtn:hover {
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             transform: scale(1.05);
             box-shadow: 2px 2px 10px 0 rgba(255 255 255 / 0.2);
           }
@@ -355,7 +355,7 @@ onBeforeUnmount(() => {
     width: 100vw;
     background-color: #fff;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 2rem 0;
     }
 
@@ -380,7 +380,7 @@ onBeforeUnmount(() => {
         border-radius: 9999px;
         background-color: rgb(22 93 255);
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           margin: 1rem auto 2rem;
         }
       }
@@ -394,7 +394,7 @@ onBeforeUnmount(() => {
           margin-right: 2rem;
           width: calc(50% - 1rem);
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             margin-right: 0;
             width: 100%;
           }
@@ -405,7 +405,7 @@ onBeforeUnmount(() => {
             border-radius: 0.75rem;
             background-color: rgb(243 244 246);
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               padding: 1rem;
             }
 
@@ -483,7 +483,7 @@ onBeforeUnmount(() => {
           background-color: rgb(249 250 251);
           border-radius: 1rem;
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             margin-top: 2rem;
             padding: 1rem;
             width: 100%;
@@ -539,7 +539,7 @@ onBeforeUnmount(() => {
     width: 100%;
     max-width: 1720px;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 2rem 1rem;
     }
 
@@ -588,7 +588,7 @@ onBeforeUnmount(() => {
           width: calc(50% - 0.5rem);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           width: 100%;
         }
 
@@ -627,7 +627,7 @@ onBeforeUnmount(() => {
           }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           .achievementRidimgfx {
             padding: 1rem 0.75rem;
           }
@@ -635,7 +635,7 @@ onBeforeUnmount(() => {
       }
 
       .achievementRiditem:last-child {
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           margin-bottom: 0;
         }
       }
@@ -660,7 +660,7 @@ onBeforeUnmount(() => {
     width: 100vw;
     background-color: #fff;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 2rem 0 1rem;
     }
 
@@ -703,7 +703,7 @@ onBeforeUnmount(() => {
           border-radius: 0.75rem;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             padding: 1rem;
           }
 
@@ -717,7 +717,7 @@ onBeforeUnmount(() => {
             background-color: rgb(219 234 254);
             border-radius: 0.75rem;
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               width: 3rem;
               height: 3rem;
             }
@@ -729,7 +729,7 @@ onBeforeUnmount(() => {
             line-height: 2rem;
             color: rgb(1 32 96);
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               font-size: 1.25rem;
             }
           }
@@ -786,7 +786,7 @@ onBeforeUnmount(() => {
     width: 100vw;
     background-image: linear-gradient(to bottom right, #165dff, #012060);
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 2rem 0;
     }
 
@@ -820,7 +820,7 @@ onBeforeUnmount(() => {
         border-radius: 1rem;
         background-color: rgb(255 255 255 / 0.1);
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 1rem;
         }
 
@@ -830,7 +830,7 @@ onBeforeUnmount(() => {
           text-align: center;
           color: #fff;
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             font-size: 1.125rem;
           }
         }
@@ -874,7 +874,7 @@ onBeforeUnmount(() => {
     width: 100%;
     max-width: 1720px;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 2rem 1rem;
     }
 
@@ -909,7 +909,7 @@ onBeforeUnmount(() => {
       background-color: rgb(255 255 255);
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         margin-top: 0;
       }
 
@@ -921,7 +921,7 @@ onBeforeUnmount(() => {
         line-height: 1.75rem;
         color: rgb(55 65 81);
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           font-size: 1.125rem;
         }
       }
@@ -945,7 +945,7 @@ onBeforeUnmount(() => {
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .mediaCard {
         padding: 2rem 1rem;
       }

@@ -113,7 +113,7 @@ onBeforeUnmount(() => {
     width: 100vw;
     height: 40rem;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       height: 30rem;
     }
 
@@ -135,7 +135,7 @@ onBeforeUnmount(() => {
         width: 100%;
         max-width: 1536px;
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 6rem 1rem 0;
         }
 
@@ -160,13 +160,13 @@ onBeforeUnmount(() => {
           border-radius: 9999px;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             padding: 0.75rem 1.5rem;
           }
         }
 
         .aibannerJgkbtn:hover {
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             transform: scale(1.05);
             box-shadow: 2px 2px 10px 0 rgb(22 93 255);
           }
@@ -179,7 +179,7 @@ onBeforeUnmount(() => {
     padding: 6rem 1rem;
     width: 100%;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 1rem;
     }
 
@@ -210,7 +210,7 @@ onBeforeUnmount(() => {
     width: 100%;
     background-color: #f0f7ff;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 2rem 0;
     }
 
@@ -242,7 +242,7 @@ onBeforeUnmount(() => {
         flex-wrap: wrap;
         justify-content: flex-start;
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           width: 100%;
         }
 
@@ -258,7 +258,7 @@ onBeforeUnmount(() => {
           border-radius: 0.75rem;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             width: 100%;
             margin: 0 0 1rem 0;
           }
@@ -281,7 +281,7 @@ onBeforeUnmount(() => {
             font-weight: 700;
             color: rgb(1 32 96);
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               font-size: 1.125rem;
             }
           }
@@ -303,13 +303,13 @@ onBeforeUnmount(() => {
         }
 
         .applicationClassitem:last-child {
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             margin-bottom: 0;
           }
         }
 
         .applicationClassitem:hover {
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             cursor: pointer;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             animation: jumpUpwards 300ms ease-in-out forwards;
@@ -327,7 +327,7 @@ onBeforeUnmount(() => {
     width: 100%;
     max-width: 1536px;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       margin: 0 auto;
       padding: 2rem 1rem;
     }
@@ -353,7 +353,7 @@ onBeforeUnmount(() => {
       max-width: 42rem;
       color: rgb(75 85 99);
 
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         margin: 1rem auto 2.5rem;
       }
     }
@@ -364,7 +364,7 @@ onBeforeUnmount(() => {
       flex-wrap: wrap;
       justify-content: flex-start;
 
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         width: 100%;
       }
 
@@ -380,7 +380,7 @@ onBeforeUnmount(() => {
         border-radius: 0.75rem;
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           width: 100%;
           margin: 0 0 1rem 0;
         }
@@ -394,7 +394,7 @@ onBeforeUnmount(() => {
           width: 100%;
           padding: 1.5rem;
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             padding: 1rem;
           }
 
@@ -449,7 +449,7 @@ onBeforeUnmount(() => {
       }
 
       .caseClassitem:last-child {
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           margin-bottom: 0;
         }
       }

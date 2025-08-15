@@ -168,7 +168,7 @@ function pageJump() {
     width: 100vw;
     height: 40rem;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       height: 30rem;
     }
 
@@ -190,7 +190,7 @@ function pageJump() {
         width: 100%;
         max-width: 1536px;
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 6rem 1rem 0;
         }
 
@@ -275,7 +275,7 @@ function pageJump() {
           border: 1px solid rgb(243 244 246);
           border-radius: 999px;
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             margin: 0 0.5rem 0.5rem 0;
             padding: 0.5rem 1rem;
             font-size: 0.875rem;
@@ -284,7 +284,7 @@ function pageJump() {
         }
 
         .supplierClassCol:hover {
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             background-color: rgb(243 244 246);
           }
         }
@@ -297,7 +297,7 @@ function pageJump() {
           border: 1px solid rgb(243 244 246);
           border-radius: 999px;
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             margin: 0 0.5rem 0.5rem 0;
             padding: 0.5rem 1rem;
             font-size: 0.875rem;

@@ -146,7 +146,7 @@ function pageJump() {
     width: 100vw;
     height: 40rem;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       height: 30rem;
     }
 
@@ -168,7 +168,7 @@ function pageJump() {
         width: 100%;
         max-width: 1536px;
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 6rem 1rem 0;
         }
 
@@ -212,7 +212,7 @@ function pageJump() {
         background-color: #fff;
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 1rem 1rem 0.5rem;
         }
 
@@ -230,7 +230,7 @@ function pageJump() {
             border: 1px solid rgb(243 244 246);
             border-radius: 999px;
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               margin: 0 0.5rem 0.5rem 0;
               padding: 0.5rem 1rem;
               font-size: 0.875rem;
@@ -239,7 +239,7 @@ function pageJump() {
           }
 
           .newsClassCol:hover {
-            @media (min-width: 600px) {
+            @media (min-width: 768px) {
               background-color: rgb(243 244 246);
             }
           }
@@ -252,7 +252,7 @@ function pageJump() {
             border: 1px solid rgb(243 244 246);
             border-radius: 999px;
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               margin: 0 0.5rem 0.5rem 0;
               padding: 0.5rem 1rem;
               font-size: 0.875rem;
@@ -270,7 +270,7 @@ function pageJump() {
         background-color: #fff;
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 1rem;
         }
 
@@ -306,7 +306,7 @@ function pageJump() {
             box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 0.1);
             border-radius: 0.75rem;
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               padding: 0.75rem;
             }
 
@@ -314,7 +314,7 @@ function pageJump() {
               position: relative;
               width: calc(25% - 0.75rem);
 
-              @media (max-width: 600px) {
+              @media (max-width: 768px) {
                 width: 100%;
               }
 
@@ -344,7 +344,7 @@ function pageJump() {
             .newsPiBox {
               width: calc(75% - 0.75rem);
 
-              @media (max-width: 600px) {
+              @media (max-width: 768px) {
                 margin-top: 1rem;
                 width: 100%;
               }

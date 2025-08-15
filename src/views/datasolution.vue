@@ -132,7 +132,7 @@ function pageJump() {
     width: 100vw;
     height: 40rem;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       height: 30rem;
     }
 
@@ -154,7 +154,7 @@ function pageJump() {
         width: 100%;
         max-width: 1536px;
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 6rem 1rem 0;
         }
 
@@ -179,13 +179,13 @@ function pageJump() {
           border-radius: 9999px;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             padding: 0.75rem 1.5rem;
           }
         }
 
         .dsbannerJgkbtn:hover {
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             transform: scale(1.05);
             box-shadow: 2px 2px 10px 0 rgb(22 93 255);
           }
@@ -198,7 +198,7 @@ function pageJump() {
     padding: 6rem 1rem;
     width: 100%;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 1rem;
     }
 
@@ -250,7 +250,7 @@ function pageJump() {
     width: 100%;
     background-color: #f0f7ff;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       padding: 2rem 0;
     }
 
@@ -281,7 +281,7 @@ function pageJump() {
             border-radius: 999px;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               padding: 0.375rem 0.875rem;
               margin: 0 0.25rem;
             }
@@ -296,7 +296,7 @@ function pageJump() {
           }
 
           .digitizeSubItem:hover {
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               cursor: pointer;
               background-color: rgb(243 244 246);
             }
@@ -315,7 +315,7 @@ function pageJump() {
         flex-wrap: wrap;
         justify-content: flex-start;
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           width: 100%;
         }
 
@@ -331,7 +331,7 @@ function pageJump() {
           border-radius: 0.75rem;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             width: 100%;
             margin: 0 0 1rem 0;
           }
@@ -354,7 +354,7 @@ function pageJump() {
             font-weight: 700;
             color: rgb(1 32 96);
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               font-size: 1.125rem;
             }
           }
@@ -365,7 +365,7 @@ function pageJump() {
             line-height: 1.5rem;
             color: rgb(75 85 99);
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               // font-size: 0.875rem;
             }
           }
@@ -380,13 +380,13 @@ function pageJump() {
         }
 
         .digitizeClassitem:last-child {
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             margin-bottom: 0;
           }
         }
 
         .digitizeClassitem:hover {
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             cursor: pointer;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             animation: jumpUpwards 300ms ease-in-out forwards;
@@ -403,7 +403,7 @@ function pageJump() {
     width: 100%;
     max-width: 1536px;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       margin: 0 auto;
       padding: 2rem 1rem 1rem;
     }
@@ -450,11 +450,11 @@ function pageJump() {
           width: calc(16.6% - 1rem);
         }
 
-        @media (max-width: 1140px) and (min-width: 600px) {
+        @media (max-width: 1140px) and (min-width: 768px) {
           width: calc(33.3% - 1rem);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 1rem 0.5rem;
           width: calc(50% - 1rem);
         }
@@ -493,7 +493,7 @@ function pageJump() {
       }
 
       .gysClassitem:hover {
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           cursor: pointer;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
           animation: jumpUpwards 300ms ease-in-out forwards;

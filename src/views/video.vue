@@ -208,7 +208,7 @@ const handleCurrentChange = (val: number) => {
     width: 100vw;
     height: 40rem;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       height: 30rem;
     }
 
@@ -230,7 +230,7 @@ const handleCurrentChange = (val: number) => {
         width: 100%;
         max-width: 1536px;
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 6rem 1rem 0;
         }
 
@@ -257,13 +257,13 @@ const handleCurrentChange = (val: number) => {
           border-radius: 9999px;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-          @media (max-width: 600px) {
+          @media (max-width: 768px) {
             padding: 0.75rem 1.5rem;
           }
         }
 
         .bannerllkcbtn:hover {
-          @media (min-width: 600px) {
+          @media (min-width: 768px) {
             transform: scale(1.05);
             box-shadow: 2px 2px 10px 0 rgb(22 93 255);
           }
@@ -351,7 +351,7 @@ const handleCurrentChange = (val: number) => {
             border: 1px solid rgb(243 244 246);
             border-radius: 999px;
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               margin: 0 0.5rem 0.5rem 0;
               padding: 0.5rem 1rem;
               font-size: 0.875rem;
@@ -360,7 +360,7 @@ const handleCurrentChange = (val: number) => {
           }
 
           .containerClassCol:hover {
-            @media (min-width: 600px) {
+            @media (min-width: 768px) {
               background-color: rgb(243 244 246);
             }
           }
@@ -373,7 +373,7 @@ const handleCurrentChange = (val: number) => {
             border: 1px solid rgb(243 244 246);
             border-radius: 999px;
 
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
               margin: 0 0.5rem 0.5rem 0;
               padding: 0.5rem 1rem;
               font-size: 0.875rem;
@@ -696,7 +696,7 @@ const handleCurrentChange = (val: number) => {
         background-image: linear-gradient(to bottom right, #165dff, #36cfc9);
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           padding: 1rem;
         }
 

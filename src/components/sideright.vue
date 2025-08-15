@@ -1,5 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
+const windowWidth = ref(window.innerWidth)
+const windowScrollY = ref(window.scrollY)
+
+function updateWindowWidth() {
+  windowWidth.value = window.innerWidth
+}
+
+function handleScroll() {
+  windowScrollY.value = window.scrollY
+}
+
+onMounted(() => {
+  window.addEventListener('resize', updateWindowWidth)
+  window.addEventListener('scroll', handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateWindowWidth)
+  window.removeEventListener('scroll', handleScroll)
+})
 
 // 返回顶部
 const emit = defineEmits(['goTopCallback'])
@@ -27,42 +48,42 @@ function iconMouseleave() {
       <div class="aiBtn" @click="foldState = !foldState">
         {{ foldState ? '关闭' : 'AI' }}
       </div>
-      <span v-if="mouseState === 'ai'" class="flexSpan">智能助手</span>
+      <span v-if="windowWidth > 600 && mouseState === 'ai'" class="flexSpan">智能助手</span>
     </div>
 
     <div class="relativeBox" @mouseenter="iconMouseenter('zxzx')" @mouseleave="iconMouseleave">
       <div v-if="foldState" class="float-btn">
         <i class="fa fa-headphones"></i>
       </div>
-      <span v-if="mouseState === 'zxzx'" class="flexSpan">在线咨询</span>
+      <span v-if="windowWidth > 600 && mouseState === 'zxzx'" class="flexSpan">在线咨询</span>
     </div>
 
     <div class="relativeBox" @mouseenter="iconMouseenter('lxwm')" @mouseleave="iconMouseleave">
       <div v-if="foldState" class="float-btn">
         <i class="fa fa-phone"></i>
       </div>
-      <span v-if="mouseState === 'lxwm'" class="flexSpan">联系我们</span>
+      <span v-if="windowWidth > 600 && mouseState === 'lxwm'" class="flexSpan">联系我们</span>
     </div>
 
     <div class="relativeBox" @mouseenter="iconMouseenter('gzwm')" @mouseleave="iconMouseleave">
       <div v-if="foldState" class="float-btn">
         <i class="fa fa-weixin"></i>
       </div>
-      <span v-if="mouseState === 'gzwm'" class="flexSpan">关注我们</span>
+      <span v-if="windowWidth > 600 && mouseState === 'gzwm'" class="flexSpan">关注我们</span>
     </div>
 
     <div class="relativeBox" @mouseenter="iconMouseenter('zxly')" @mouseleave="iconMouseleave">
       <div v-if="foldState" class="float-btn">
         <i class="fa fa-pencil"></i>
       </div>
-      <span v-if="mouseState === 'zxly'" class="flexSpan">在线留言</span>
+      <span v-if="windowWidth > 600 && mouseState === 'zxly'" class="flexSpan">在线留言</span>
     </div>
 
     <div class="relativeBox" @mouseenter="iconMouseenter('top')" @mouseleave="iconMouseleave">
       <div v-if="foldState" class="float-btn" @click="goTop">
         <i class="fa fa-chevron-up"></i>
       </div>
-      <span v-if="mouseState === 'top'" class="flexSpan">回顶部</span>
+      <span v-if="windowWidth > 600 && mouseState === 'top'" class="flexSpan">回顶部</span>
     </div>
   </div>
 </template>
@@ -78,7 +99,6 @@ function iconMouseleave() {
     position: relative;
 
     .aiBtn {
-      cursor: pointer;
       height: 3.5rem;
       width: 3.5rem;
       display: flex;
@@ -92,13 +112,14 @@ function iconMouseleave() {
     }
 
     .aiBtn:hover {
-      transform: scale(1.05);
+      @media (max-width: 768px) {
+        cursor: pointer;
+        transform: scale(1.05);
+      }
     }
 
     .float-btn {
-      cursor: pointer;
       margin-top: 0.75rem;
-      cursor: pointer;
       height: 3.5rem;
       width: 3.5rem;
       display: flex;
@@ -115,12 +136,15 @@ function iconMouseleave() {
     }
 
     .float-btn:hover {
-      color: #fff;
-      background-color: #165dff;
-      transform: scale(1.05);
+      @media (max-width: 768px) {
+        cursor: pointer;
+        color: #fff;
+        background-color: #165dff;
+        transform: scale(1.05);
 
-      i {
-        color: #fff !important;
+        i {
+          color: #fff !important;
+        }
       }
     }
 
