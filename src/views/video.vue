@@ -497,7 +497,6 @@ const handleCurrentChange = (val: number) => {
                 z-index: 2;
 
                 .containerPiplayerICon {
-                  cursor: pointer;
                   height: 3.4rem;
                   width: 3.4rem;
                   display: flex;
@@ -514,8 +513,11 @@ const handleCurrentChange = (val: number) => {
                 }
 
                 .containerPiplayerICon:hover {
-                  background-color: rgb(255 255 255);
-                  transform: scale(1.05);
+                  @media (min-width: 768px) {
+                    cursor: pointer;
+                    background-color: rgb(255 255 255);
+                    transform: scale(1.05);
+                  }
                 }
               }
 
@@ -778,7 +780,6 @@ const handleCurrentChange = (val: number) => {
         }
 
         .containerHotItem {
-          cursor: pointer;
           margin-bottom: 1rem;
           padding: 0.75rem;
           display: flex;
@@ -820,11 +821,13 @@ const handleCurrentChange = (val: number) => {
         }
 
         .containerHotItem:hover {
-          animation: jumpUpwards 300ms ease-in-out forwards;
+          @media (min-width: 768px) {
+            cursor: pointer;
+            animation: jumpUpwards 300ms ease-in-out forwards;
+          }
         }
 
         .containerHMore {
-          cursor: pointer;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -834,6 +837,12 @@ const handleCurrentChange = (val: number) => {
           button {
             color: rgb(22 93 255);
             line-height: 1.5rem;
+          }
+        }
+
+        .containerHMore:hover {
+          @media (min-width: 768px) {
+            cursor: pointer;
           }
         }
       }

@@ -574,8 +574,17 @@ onBeforeUnmount(() => {
               display: flex;
               align-items: center;
 
+              @media (min-width: 992px) {
+                width: calc(25% - 1px);
+              }
+
+              @media (max-width: 992px) and (min-width: 768px) {
+                width: calc(50% - 1px);
+              }
+
               @media (max-width: 768px) {
                 padding: 1rem;
+                width: 100%;
               }
 
               .bannerFabox {
@@ -609,24 +618,6 @@ onBeforeUnmount(() => {
                 cursor: pointer;
                 box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
                 animation: jumpUpwards 300ms ease-in-out forwards;
-              }
-            }
-
-            @media (min-width: 992px) {
-              .bannerGriditem {
-                width: calc(25% - 1px);
-              }
-            }
-
-            @media (max-width: 992px) and (min-width: 768px) {
-              .bannerGriditem {
-                width: calc(50% - 1px);
-              }
-            }
-
-            @media (max-width: 768px) {
-              .bannerGriditem {
-                width: 100%;
               }
             }
 

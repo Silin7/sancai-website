@@ -595,6 +595,10 @@ onBeforeUnmount(() => {
         .achievementRidimgfx {
           padding: 1.5rem;
 
+          @media (max-width: 768px) {
+            padding: 1rem;
+          }
+
           .achievementRidimgFrsc {
             margin-bottom: 1rem;
             display: flex;
@@ -626,12 +630,6 @@ onBeforeUnmount(() => {
             color: rgb(75 85 99);
           }
         }
-
-        @media (max-width: 768px) {
-          .achievementRidimgfx {
-            padding: 1rem 0.75rem;
-          }
-        }
       }
 
       .achievementRiditem:last-child {
@@ -642,9 +640,11 @@ onBeforeUnmount(() => {
 
 
       .achievementRiditem:hover {
-        cursor: pointer;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        animation: jumpUpwards 300ms ease-in-out forwards;
+        @media (min-width: 768px) {
+          cursor: pointer;
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          animation: jumpUpwards 300ms ease-in-out forwards;
+        }
       }
 
       .achievementGridshu {
@@ -911,6 +911,7 @@ onBeforeUnmount(() => {
 
       @media (max-width: 768px) {
         margin-top: 0;
+        padding: 2rem 1rem;
       }
 
       p {
@@ -942,12 +943,6 @@ onBeforeUnmount(() => {
       .mediaTv {
         line-height: 1.5rem;
         color: rgb(75 85 99);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .mediaCard {
-        padding: 2rem 1rem;
       }
     }
   }

@@ -341,9 +341,14 @@ function pageJump() {
       }
 
       .supplierProductsBox {
+        @media (min-width: 992px) {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+
         .supplierProductsItem {
           flex-shrink: 0;
-          cursor: pointer;
           margin-bottom: 1.5rem;
           padding: 1.5rem;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -510,15 +515,10 @@ function pageJump() {
         }
 
         .supplierProductsItem:hover {
-          animation: jumpUpwards 300ms ease-in-out forwards;
-        }
-      }
-
-      @media (min-width: 992px) {
-        .supplierProductsBox {
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
+          @media (min-width: 768px) {
+            cursor: pointer;
+            animation: jumpUpwards 300ms ease-in-out forwards;
+          }
         }
       }
     }

@@ -298,7 +298,6 @@ function pageJump() {
 
         .newsProductsBox {
           .newsProductsItem {
-            cursor: pointer;
             margin-bottom: 1.5rem;
             padding: 1.5rem;
             // display: flex;
@@ -404,7 +403,10 @@ function pageJump() {
           }
 
           .newsProductsItem:hover {
-            animation: jumpUpwards 300ms ease-in-out forwards;
+            @media (min-width: 768px) {
+              cursor: pointer;
+              animation: jumpUpwards 300ms ease-in-out forwards;
+            }
           }
 
           .newsPagination {

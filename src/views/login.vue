@@ -78,7 +78,6 @@ const yzm: any = ref('')
       border-bottom: 1px solid rgba(166, 166, 166, 1);
 
       .hyzc {
-        cursor: pointer;
         padding-bottom: 25px;
         font-size: 20px;
         font-weight: 700;
@@ -92,6 +91,12 @@ const yzm: any = ref('')
 
       .hyzc:first-child {
         margin-right: 60px;
+      }
+
+      .hyzc:hover {
+        @media (min-width: 768px) {
+          cursor: pointer;
+        }
       }
 
       .hyzcActive {
@@ -162,8 +167,13 @@ const yzm: any = ref('')
       }
 
       span {
-        cursor: pointer;
         color: rgba(42, 130, 228, 1);
+      }
+
+      span:hover {
+        @media (min-width: 768px) {
+          cursor: pointer;
+        }
       }
     }
 
@@ -186,8 +196,13 @@ const yzm: any = ref('')
       color: rgba(128, 128, 128, 1);
 
       span {
-        cursor: pointer;
         color: rgba(42, 130, 228, 1);
+      }
+
+      span:hover {
+        @media (min-width: 768px) {
+          cursor: pointer;
+        }
       }
     }
   }

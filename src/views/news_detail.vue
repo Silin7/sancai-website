@@ -120,8 +120,10 @@ onBeforeUnmount(() => {
         }
 
         span:hover {
-          cursor: pointer;
-          color: rgb(22 93 255);
+          @media (min-width: 768px) {
+            cursor: pointer;
+            color: rgb(22 93 255);
+          }
         }
 
         .ndNavigationXg {
@@ -219,9 +221,11 @@ onBeforeUnmount(() => {
       }
 
       .ndcTag:hover {
-        cursor: pointer;
-        color: #fff;
-        background-color: rgb(22 93 255);
+        @media (min-width: 768px) {
+          cursor: pointer;
+          color: #fff;
+          background-color: rgb(22 93 255);
+        }
       }
     }
 

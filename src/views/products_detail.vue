@@ -321,6 +321,10 @@ const value1 = ref(4.8)
       max-width: 1536px;
       color: rgb(1 32 96);
 
+      @media (max-width: 992px) {
+        padding: 6rem 1rem 2rem;
+      }
+
       .pdNavigation {
         margin: 0 auto 1.5rem;
 
@@ -331,8 +335,10 @@ const value1 = ref(4.8)
         }
 
         span:hover {
-          cursor: pointer;
-          color: rgb(22 93 255);
+          @media (min-width: 768px) {
+            cursor: pointer;
+            color: rgb(22 93 255);
+          }
         }
 
         .pdNavigationXg {
@@ -357,12 +363,6 @@ const value1 = ref(4.8)
         color: rgb(75 85 99);
       }
     }
-
-    @media (max-width: 992px) {
-      .pdHcontent {
-        padding: 6rem 1rem 2rem;
-      }
-    }
   }
 
   .pdCbox {
@@ -373,9 +373,20 @@ const value1 = ref(4.8)
     max-width: 1536px;
     color: rgb(1 32 96);
 
+    @media (min-width: 992px) {
+      padding: 2.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
     .pdcLeft {
       margin-bottom: 2rem;
       width: 100%;
+
+      @media (min-width: 992px) {
+        margin-bottom: 0;
+        width: calc(66.7% - 1rem);
+      }
 
       .pdclJbcs {
         margin-bottom: 2rem;
@@ -384,15 +395,31 @@ const value1 = ref(4.8)
         border-radius: 1rem;
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
+        @media (min-width: 992px) {
+          display: flex;
+          justify-content: space-between;
+        }
+
         img {
           width: 100%;
           height: 16rem;
           border-radius: 0.5rem;
+
+          @media (min-width: 992px) {
+            width: calc(33.4% - 2rem);
+            height: 16rem;
+            border-radius: 0.5rem;
+          }
         }
 
         .pdcljCenter {
           margin-top: 1rem;
           width: 100%;
+
+          @media (min-width: 992px) {
+            margin-top: 0;
+            width: calc(33.3%);
+          }
 
           .pdcljcTop {
             padding: 1rem;
@@ -458,6 +485,12 @@ const value1 = ref(4.8)
           margin-top: 1rem;
           width: 100%;
 
+          @media (min-width: 992px) {
+            margin-top: 0;
+            width: calc(33.3%);
+          }
+
+
           .pdcljrTitle {
             font-weight: 700;
             font-size: 1.125rem;
@@ -482,29 +515,6 @@ const value1 = ref(4.8)
               line-height: 1.25rem;
               color: rgb(1 32 96);
             }
-          }
-        }
-      }
-
-      @media (min-width: 992px) {
-        .pdclJbcs {
-          display: flex;
-          justify-content: space-between;
-
-          img {
-            width: calc(33.4% - 2rem);
-            height: 16rem;
-            border-radius: 0.5rem;
-          }
-
-          .pdcljCenter {
-            margin-top: 0;
-            width: calc(33.3%);
-          }
-
-          .pdcljRight {
-            margin-top: 0;
-            width: calc(33.3%);
           }
         }
       }
@@ -607,7 +617,6 @@ const value1 = ref(4.8)
             justify-content: space-between;
 
             .pdclxiCgItem {
-              cursor: pointer;
               overflow: hidden;
               margin-bottom: 1rem;
               width: 100%;
@@ -615,6 +624,11 @@ const value1 = ref(4.8)
               border-radius: 0.5rem;
               box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
               border: 1px solid rgb(229 231 235);
+
+              @media (min-width: 992px) {
+                margin-bottom: 0;
+                width: calc(50% - 0.5rem);
+              }
 
               img {
                 width: 100%;
@@ -633,10 +647,9 @@ const value1 = ref(4.8)
               margin-bottom: 0;
             }
 
-            @media (min-width: 992px) {
-              .pdclxiCgItem {
-                margin-bottom: 0;
-                width: calc(50% - 0.5rem);
+            .pdclxiCgItem:hover {
+              @media (min-width: 768px) {
+                cursor: pointer;
               }
             }
           }
@@ -663,7 +676,6 @@ const value1 = ref(4.8)
           justify-content: space-between;
 
           .pdccCgItem {
-            cursor: pointer;
             overflow: hidden;
             margin-bottom: 1rem;
             width: 100%;
@@ -671,6 +683,11 @@ const value1 = ref(4.8)
             border-radius: 0.5rem;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             border: 1px solid rgb(229 231 235);
+
+            @media (min-width: 992px) {
+              margin-bottom: 0;
+              width: calc(50% - 0.5rem);
+            }
 
             img {
               width: 100%;
@@ -711,20 +728,12 @@ const value1 = ref(4.8)
             margin-bottom: 0;
           }
 
-          @media (min-width: 992px) {
-            .pdccCgItem {
-              margin-bottom: 0;
-              width: calc(50% - 0.5rem);
+          .pdccCgItem:hover {
+            @media (min-width: 768px) {
+              cursor: pointer;
             }
           }
         }
-      }
-    }
-
-    @media (min-width: 992px) {
-      .pdcLeft {
-        margin-bottom: 0;
-        width: calc(66.7% - 1rem);
       }
     }
 
@@ -735,6 +744,10 @@ const value1 = ref(4.8)
       background-color: rgb(255 255 255);
       border-radius: 1rem;
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+      @media (min-width: 992px) {
+        width: calc(33.3% - 1rem);
+      }
 
       .pdcrTitle {
         margin-bottom: 1.5rem;
@@ -845,20 +858,6 @@ const value1 = ref(4.8)
           margin-right: 0.5rem;
         }
       }
-    }
-
-    @media (min-width: 992px) {
-      .pdcRight {
-        width: calc(33.3% - 1rem);
-      }
-    }
-  }
-
-  @media (min-width: 992px) {
-    .pdCbox {
-      padding: 2.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
     }
   }
 }

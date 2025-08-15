@@ -331,8 +331,10 @@ const state = ref('gsjs')
         }
 
         span:hover {
-          cursor: pointer;
-          color: rgb(22 93 255);
+          @media (min-width: 768px) {
+            cursor: pointer;
+            color: rgb(22 93 255);
+          }
         }
 
         .sdNavigationXg {
@@ -398,15 +400,13 @@ const state = ref('gsjs')
               background-color: rgb(131 203 172);
               border-radius: 9999px;
 
-              span {
-                margin-left: 0.25rem;
-              }
-            }
-
-            @media (min-width: 992px) {
-              .sdhgctInfo {
+              @media (min-width: 992px) {
                 margin-top: 0;
                 margin-left: 1rem;
+              }
+
+              span {
+                margin-left: 0.25rem;
               }
             }
           }
@@ -423,6 +423,10 @@ const state = ref('gsjs')
               display: flex;
               align-items: center;
 
+              @media (min-width: 992px) {
+                width: calc(50% - 0.5rem);
+              }
+
               i {
                 flex-shrink: 0;
                 font-size: 1rem;
@@ -433,12 +437,6 @@ const state = ref('gsjs')
 
               span {
                 color: rgb(75 85 99);
-              }
-            }
-
-            @media (min-width: 992px) {
-              .sdhgcCitem {
-                width: calc(50% - 0.5rem);
               }
             }
           }
@@ -632,7 +630,6 @@ const state = ref('gsjs')
             justify-content: space-between;
 
             .sdclxiCgItem {
-              cursor: pointer;
               overflow: hidden;
               margin-bottom: 1rem;
               width: 100%;
@@ -661,6 +658,12 @@ const state = ref('gsjs')
 
             .sdclxiCgItem:last-child {
               margin-bottom: 0;
+            }
+
+            .sdclxiCgItem:hover {
+              @media (min-width: 768px) {
+                cursor: pointer;
+              }
             }
           }
         }
@@ -865,7 +868,6 @@ const state = ref('gsjs')
 
           .sdclHzalItem {
             overflow: hidden;
-            cursor: pointer;
             margin-bottom: 1.5rem;
             border-radius: 0.75rem;
             border: 1px solid rgb(229 231 235);
@@ -966,6 +968,12 @@ const state = ref('gsjs')
               margin-bottom: 0;
             }
           }
+
+          .sdclHzalItem:hover {
+            @media (min-width: 768px) {
+              cursor: pointer;
+            }
+          }
         }
 
         .sdclCplbBox {
@@ -975,7 +983,6 @@ const state = ref('gsjs')
 
           .sdclCplbItem {
             overflow: hidden;
-            cursor: pointer;
             margin-bottom: 1.5rem;
             border-radius: 0.75rem;
             border: 1px solid rgb(229 231 235);
@@ -1070,7 +1077,10 @@ const state = ref('gsjs')
           }
 
           .sdclCplbItem:hover {
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            @media (min-width: 768px) {
+              cursor: pointer;
+              box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            }
 
             .sdclCplbImg {
               transform: scale(1.05);

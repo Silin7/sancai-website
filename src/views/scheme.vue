@@ -435,7 +435,6 @@ const handleCurrentChange = (val: number) => {
           }
 
           .containerProductsItem {
-            cursor: pointer;
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid rgb(243 244 246);
@@ -534,7 +533,10 @@ const handleCurrentChange = (val: number) => {
           }
 
           .containerProductsItem:hover {
-            animation: jumpUpwards 300ms ease-in-out forwards;
+            @media (min-width: 768px) {
+              cursor: pointer;
+              animation: jumpUpwards 300ms ease-in-out forwards;
+            }
           }
 
           .containerPagination {
@@ -592,7 +594,6 @@ const handleCurrentChange = (val: number) => {
         }
 
         .containerHotItem {
-          cursor: pointer;
           margin-bottom: 1rem;
           padding: 0.75rem;
           display: flex;
@@ -634,11 +635,13 @@ const handleCurrentChange = (val: number) => {
         }
 
         .containerHotItem:hover {
-          animation: jumpUpwards 300ms ease-in-out forwards;
+          @media (min-width: 768px) {
+            cursor: pointer;
+            animation: jumpUpwards 300ms ease-in-out forwards;
+          }
         }
 
         .containerHMore {
-          cursor: pointer;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -648,6 +651,12 @@ const handleCurrentChange = (val: number) => {
           button {
             color: rgb(22 93 255);
             line-height: 1.5rem;
+          }
+        }
+
+        .containerHMore:hover {
+          @media (min-width: 768px) {
+            cursor: pointer;
           }
         }
       }
