@@ -323,9 +323,6 @@ const value1 = ref(4.8)
 
       .pdNavigation {
         margin: 0 auto 1.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
 
         span {
           font-size: 0.875rem;
@@ -554,7 +551,7 @@ const value1 = ref(4.8)
               margin-top: 0.6rem;
               width: 6px;
               height: 6px;
-              border-radius: 999px;
+              border-radius: 9999px;
               background-color: rgb(1 32 96);
             }
 
@@ -565,7 +562,7 @@ const value1 = ref(4.8)
               height: 2rem;
               color: rgb(22 93 255);
               background-color: rgb(22 93 255 / 0.1);
-              border-radius: 999px;
+              border-radius: 9999px;
             }
 
             .pdclxiNbox {
@@ -576,7 +573,7 @@ const value1 = ref(4.8)
               height: 2rem;
               color: #fff;
               background-color: rgb(22 93 255);
-              border-radius: 999px;
+              border-radius: 9999px;
             }
 
             .pdclxiPbox {
@@ -799,7 +796,7 @@ const value1 = ref(4.8)
           height: 2rem;
           color: rgb(22 93 255);
           background-color: rgb(22 93 255 / 0.1);
-          border-radius: 999px;
+          border-radius: 9999px;
         }
 
         .pdcrPbox {

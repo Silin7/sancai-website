@@ -112,9 +112,6 @@ onBeforeUnmount(() => {
 
       .ndNavigation {
         margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
 
         span {
           font-size: 0.875rem;
@@ -151,16 +148,15 @@ onBeforeUnmount(() => {
     }
 
     .ndCtitle {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
     }
 
     .ndCtitle2 {
-      font-size: clamp(1.25rem, 4vw, 1.5rem);
-      line-height: 2rem;
       margin-bottom: 1.5rem;
+      font-size: clamp(1.25rem, 4vw, 1.5rem);
       font-weight: 700;
     }
 
@@ -195,7 +191,7 @@ onBeforeUnmount(() => {
     .ndCFuwb {
       margin-bottom: 1rem;
       padding: 10rem 2rem;
-      border: 1px solid #efefef;
+      background-color: #f1f1f1;
       border-radius: 0.5rem;
     }
 
@@ -236,10 +232,19 @@ onBeforeUnmount(() => {
       border-radius: 0.75rem;
       display: flex;
 
+      @media (max-width: 768px) {
+        padding: 1rem;
+      }
+
       img {
         width: 4rem;
         height: 4rem;
         border-radius: 50%;
+
+        @media (max-width: 768px) {
+          width: 3rem;
+          height: 3rem;
+        }
       }
 
       .zuozeInfo {
@@ -268,25 +273,21 @@ onBeforeUnmount(() => {
       }
     }
 
-    .newsdTt {
-      font-weight: 700;
-      font-size: 1.5rem;
-      line-height: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
     .newsdBox {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
 
       .newsdItem {
-        width: 100%;
-        cursor: pointer;
         margin-bottom: 1.5rem;
         padding: 1rem;
+        width: calc(33.3% - 1rem);
         box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 0.1);
         border-radius: 0.75rem;
+
+        @media (max-width: 992px) {
+          width: 100%;
+        }
 
         .newsPiImgBox {
           position: relative;
@@ -375,23 +376,19 @@ onBeforeUnmount(() => {
         }
       }
 
-      @media (min-width: 992px) {
-        .newsdItem {
-          width: calc(33.3% - 1rem);
+      .newsdItem:last-child {
+        @media (max-width: 768px) {
+          margin-bottom: 0;
         }
       }
+
+      .newsdItem:hover {
+        @media (max-width: 768px) {
+          cursor: pointer;
+        }
+      }
+
     }
   }
-}
-</style>
-
-<style>
-/* 评分 style */
-.el-rate {
-  padding-bottom: 0.25rem !important;
-}
-
-.ndcrTop .el-rate__icon {
-  margin-right: 0 !important;
 }
 </style>

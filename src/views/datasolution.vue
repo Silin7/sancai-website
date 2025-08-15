@@ -278,7 +278,7 @@ function pageJump() {
             line-height: 2rem;
             color: rgb(1 32 96);
             background-color: #fff;
-            border-radius: 999px;
+            border-radius: 9999px;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
             @media (max-width: 768px) {

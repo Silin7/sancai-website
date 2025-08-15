@@ -605,7 +605,7 @@ onBeforeUnmount(() => {
               margin-right: 0.5rem;
               width: 2rem;
               height: 2rem;
-              border-radius: 999px;
+              border-radius: 9999px;
               font-size: 1.25rem;
               display: flex;
               justify-content: center;

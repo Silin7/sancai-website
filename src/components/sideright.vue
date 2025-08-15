@@ -108,7 +108,7 @@ function iconMouseleave() {
       font-size: 1rem;
       font-weight: 700;
       background: linear-gradient(135deg, #165dff 0%, #36cfc9 100%);
-      border-radius: 999px;
+      border-radius: 9999px;
     }
 
     .aiBtn:hover {
@@ -125,7 +125,7 @@ function iconMouseleave() {
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 999px;
+      border-radius: 9999px;
       color: rgb(1 32 96);
       background: rgba(255, 255, 255);
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);

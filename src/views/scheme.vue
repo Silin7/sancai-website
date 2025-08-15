@@ -353,7 +353,7 @@ const handleCurrentChange = (val: number) => {
             color: rgb(1 32 96);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             border: 1px solid rgb(243 244 246);
-            border-radius: 999px;
+            border-radius: 9999px;
 
             @media (max-width: 768px) {
               margin: 0 0.5rem 0.5rem 0;
@@ -375,7 +375,7 @@ const handleCurrentChange = (val: number) => {
             color: #fff;
             background-color: rgb(22 93 255);
             border: 1px solid rgb(243 244 246);
-            border-radius: 999px;
+            border-radius: 9999px;
 
             @media (max-width: 768px) {
               margin: 0 0.5rem 0.5rem 0;
