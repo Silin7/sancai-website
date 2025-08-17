@@ -85,7 +85,7 @@ onMounted(() => {
         <i class="fa fa-key"></i>
         <span>改密码</span>
       </el-menu-item>
-      <el-menu-item @click="signOut">
+      <el-menu-item index="user-mull" @click="signOut">
         <i class="fa fa-sign-out"></i>
         <span>退出</span>
       </el-menu-item>

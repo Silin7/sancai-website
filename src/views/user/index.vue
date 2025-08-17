@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import eventBus from '@/utils/eventBus'
+</script>
 
 <template>
   <div class="page-main">
@@ -51,58 +53,58 @@
       快捷操作
     </h2>
     <el-row :gutter="12">
-      <el-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4">
-        <div class="action-card">
+      <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
+        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-caifrom')">
           <div class="action-icon">
             <i class="fa fa-dropbox"></i>
           </div>
           <div class="action-text">新增建材产品</div>
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4">
-        <div class="action-card">
+      <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
+        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-machinefrom')">
           <div class="action-icon">
-            <i class="fa fa-dropbox"></i>
+            <i class="fa fa-wrench"></i>
           </div>
           <div class="action-text">新增机械产品</div>
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4">
-        <div class="action-card">
+      <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
+        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-itfrom')">
           <div class="action-icon">
-            <i class="fa fa-dropbox"></i>
+            <i class="fa fa-info-circle"></i>
           </div>
           <div class="action-text">新增信息化产品</div>
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4">
-        <div class="action-card">
+      <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
+        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-inquirylist')">
           <div class="action-icon">
-            <i class="fa fa-dropbox"></i>
+            <i class="fa fa-file-powerpoint-o"></i>
           </div>
           <div class="action-text">处理报价单</div>
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4">
-        <div class="action-card">
+      <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
+        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-cailist')">
           <div class="action-icon">
-            <i class="fa fa-dropbox"></i>
+            <i class="fa fa-list"></i>
           </div>
           <div class="action-text">管理建材产品</div>
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4">
-        <div class="action-card">
+      <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
+        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-machinelist')">
           <div class="action-icon">
-            <i class="fa fa-dropbox"></i>
+            <i class="fa fa-list"></i>
           </div>
           <div class="action-text">管理机械产品</div>
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4">
-        <div class="action-card">
+      <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
+        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-itlist')">
           <div class="action-icon">
-            <i class="fa fa-dropbox"></i>
+            <i class="fa fa-list"></i>
           </div>
           <div class="action-text">管理信息化产品</div>
         </div>

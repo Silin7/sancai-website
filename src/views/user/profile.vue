@@ -4,7 +4,7 @@ import eventBus from '@/utils/eventBus'
 
 const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
-  cname: '',
+  companyName: '',
   province: '',
   city: '',
   county: '',
@@ -16,7 +16,7 @@ const ruleForm: any = reactive({
   desc: '',
 })
 const rules: any = reactive({
-  cname: [
+  companyName: [
     { required: true, message: '请输入公司名称', trigger: 'blur' },
     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
   ],
@@ -82,8 +82,8 @@ const submitForm = async (formEl: any) => {
         :rules="rules"
         label-width="auto"
       >
-        <el-form-item label="公司名称" prop="cname">
-          <el-input size="large" v-model="ruleForm.cname" placeholder="请输入公司全称" />
+        <el-form-item label="公司名称" prop="companyName">
+          <el-input size="large" v-model="ruleForm.companyName" placeholder="请输入公司全称" />
         </el-form-item>
         <el-form-item label="所在地区" prop="county">
           <el-row :gutter="12" style="width: calc(100% + 12px)">
@@ -117,7 +117,7 @@ const submitForm = async (formEl: any) => {
             placeholder="输入品牌名称后按回车确认"
           />
           <!-- <el-select
-            v-model="ruleForm.cname"
+            v-model="ruleForm.companyName"
             multiple
             collapse-tags
             collapse-tags-tooltip
@@ -176,7 +176,8 @@ const submitForm = async (formEl: any) => {
 .tips {
   font-size: 0.875rem;
   line-height: 1.25rem;
-  margin-top: -0.25rem;
+  margin-top: -12px;
+  margin-bottom: 18px;
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
   color: #c0c4cc;
 }

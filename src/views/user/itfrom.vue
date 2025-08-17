@@ -2,7 +2,7 @@
 import { reactive, ref } from 'vue'
 import type { UploadFile } from 'element-plus'
 import { Delete, Download, Plus, ZoomIn } from '@element-plus/icons-vue'
-import pageBack from '@/hooks/pageBack'
+import eventBus from '@/utils/eventBus'
 
 const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
@@ -57,12 +57,17 @@ const handleDownload = (file: UploadFile) => {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a @click="pageBack"><i class="fa fa-list mr-1"></i>信息化产品列表</a>
+          <a @click="eventBus.emit('set-router-store', 'user-itlist')">
+            <i class="fa fa-list mr-1"></i>信息化产品列表
+          </a>
           <span class="breadcrumb-separator">/</span>
           <span>上传新信息化产品</span>
         </div>
         <div class="action-buttons">
-          <button class="action-btn back-btn" @click="pageBack">
+          <button
+            class="action-btn back-btn"
+            @click="eventBus.emit('set-router-store', 'user-itlist')"
+          >
             <i class="fa fa-arrow-left mr-1"></i>返回列表
           </button>
           <button class="action-btn draft-btn"><i class="fa fa-save mr-1"></i>保存草稿</button>

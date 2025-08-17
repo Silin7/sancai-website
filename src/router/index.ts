@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
+import useHeaderStore from '@/store/modules/header'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -67,7 +68,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/products_detail.vue'),
     meta: {
       title: '信息化产品/服务',
-      stcode: 'products_detail',
+      stcode: 'products',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -91,7 +92,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/requirements.vue'),
     meta: {
       title: '数据方案组价',
-      stcode: 'requirements',
+      stcode: 'datasolution',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -139,7 +140,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/supplier_detail.vue'),
     meta: {
       title: '供应商',
-      stcode: 'supplier_detail',
+      stcode: 'supplier',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -175,7 +176,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/news_detail.vue'),
     meta: {
       title: '热点资讯',
-      stcode: 'news_detail',
+      stcode: 'news',
       website: true,
       hashead: true,
       hasfoot: true,
@@ -333,6 +334,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if (useHeaderStore) {
+    const headerStore = useHeaderStore()
+    headerStore.setSelectedTab(to.meta.stcode as string)
+  }
   // 根据路由元信息设置文档标题
   window.document.title = (to.meta.title as string) || ''
   window.localStorage.setItem('selectedTab', to.meta.stcode as string)
