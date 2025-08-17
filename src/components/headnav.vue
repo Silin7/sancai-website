@@ -46,10 +46,11 @@ function tabRouterPush(item: any) {
   drawerVisible.value = false
 }
 
-function tabRouterPush2() {
+function tabRouterPush2(name: string) {
   router.push({
-    name: 'home',
+    name,
   })
+  backToTop()
 }
 
 const menuList: any = ref([
@@ -111,10 +112,21 @@ watch(
     <div class="headPositon">
       <div class="headflex">
         <div class="headnav">
-          <img src="@/assets/logo.png" alt="logo" class="headlogo" @click="tabRouterPush2" />
+          <img
+            src="@/assets/logo.png"
+            alt="logo"
+            class="headlogo"
+            @click="tabRouterPush2('home')"
+          />
           <div v-if="windowWidth > 1290" class="menubox">
-            <div v-for="(item, index) in menuList" :key="index" class="menuitem" @mouseenter="menuMouseenter(item)"
-              @mouseleave="menuMouseleave" @click="tabRouterPush(item)">
+            <div
+              v-for="(item, index) in menuList"
+              :key="index"
+              class="menuitem"
+              @mouseenter="menuMouseenter(item)"
+              @mouseleave="menuMouseleave"
+              @click="tabRouterPush(item)"
+            >
               <div class="menuheng1"></div>
               <div class="menutitle frcc">
                 <span>{{ item.title }}</span>
@@ -140,15 +152,21 @@ watch(
         <div v-if="windowWidth > 1290" class="headbtns">
           <div class="headLogin">
             <div class="btnHeng1"></div>
-            <button>登录</button>
+            <button @click="tabRouterPush2('login')">登录</button>
             <div class="btnHeng2"></div>
           </div>
-          <button class="registerbtn">注册</button>
+          <button class="registerbtn" @click="tabRouterPush2('register')">注册</button>
         </div>
       </div>
     </div>
     <!-- 移动端 抽屉 -->
-    <el-drawer v-model="drawerVisible" :with-header="false" direction="rtl" size="80%" class="mobiledrawer">
+    <el-drawer
+      v-model="drawerVisible"
+      :with-header="false"
+      direction="rtl"
+      size="80%"
+      class="mobiledrawer"
+    >
       <div class="drawerhead">
         <div class="drawerleft">
           <div class="culbbox">
@@ -159,25 +177,32 @@ watch(
         <i class="fa fa-times drawerclose" @click="drawerVisible = false"></i>
       </div>
       <div class="mobilecollapse">
-        <div v-for="(item, index) in menuList" :key="index"
-          :class="['collapseItem', selectedTab === item.name ? 'collapseActive' : '']" @click="tabRouterPush(item)">
+        <div
+          v-for="(item, index) in menuList"
+          :key="index"
+          :class="['collapseItem', selectedTab === item.name ? 'collapseActive' : '']"
+          @click="tabRouterPush(item)"
+        >
           <div class="frbc">
             <span>{{ item.title }}</span>
             <i v-if="item.children.length > 0 && item.zhankai" class="fa fa-chevron-up"></i>
             <i v-if="item.children.length > 0 && !item.zhankai" class="fa fa-chevron-down"></i>
           </div>
           <div v-if="item.children.length > 0 && item.zhankai" class="collapseChildren">
-            <div v-for="(item2, index2) in item.children" :key="index2"
+            <div
+              v-for="(item2, index2) in item.children"
+              :key="index2"
               :class="['collapseCitem', selectedTab === item2.name ? 'collapseActive' : '']"
-              @click="tabRouterPush(item2)">
+              @click="tabRouterPush(item2)"
+            >
               {{ item2.title }}
             </div>
           </div>
         </div>
       </div>
       <div class="mobileBtns">
-        <button class="mobileDlbtn">登录</button>
-        <button class="mobileZcbtn">注册</button>
+        <button class="mobileDlbtn" @click="tabRouterPush2('login')">登录</button>
+        <button class="mobileZcbtn" @click="tabRouterPush2('register')">注册</button>
       </div>
     </el-drawer>
   </div>
