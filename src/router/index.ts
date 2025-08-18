@@ -334,13 +334,15 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  // 根据路由元信息设置文档标题
+  window.document.title = (to.meta.title as string) || ''
+
   if (useHeaderStore) {
     const headerStore = useHeaderStore()
     headerStore.setSelectedTab(to.meta.stcode as string)
+    window.localStorage.setItem('selectedTab', to.meta.stcode as string)
   }
-  // 根据路由元信息设置文档标题
-  window.document.title = (to.meta.title as string) || ''
-  window.localStorage.setItem('selectedTab', to.meta.stcode as string)
+
   next()
 })
 
