@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import eventBus from '@/utils/eventBus'
+import pageJump from '@/hooks/pageJump'
 
 const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
@@ -38,17 +38,14 @@ const submitForm = async (formEl: any) => {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a @click="eventBus.emit('set-router-store', 'user-renlist')">
+          <a @click="pageJump('user-renlist')">
             <i class="fa fa-list mr-1"></i>产品列表
           </a>
           <span class="breadcrumb-separator">/</span>
           <span>发布新服务</span>
         </div>
         <div class="action-buttons">
-          <button
-            class="action-btn back-btn"
-            @click="eventBus.emit('set-router-store', 'user-renlist')"
-          >
+          <button class="action-btn back-btn" @click="pageJump('user-renlist')">
             <i class="fa fa-arrow-left mr-1"></i>返回列表
           </button>
           <button class="action-btn draft-btn"><i class="fa fa-save mr-1"></i>保存草稿</button>
@@ -59,13 +56,7 @@ const submitForm = async (formEl: any) => {
         <i class="fa fa-users"></i>
         解决方案类服务产品
       </h2>
-      <el-form
-        label-position="top"
-        ref="ruleFormRef"
-        :model="ruleForm"
-        :rules="rules"
-        label-width="auto"
-      >
+      <el-form label-position="top" ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="服务名称" prop="serviceName">
@@ -74,13 +65,7 @@ const submitForm = async (formEl: any) => {
           </el-col>
           <el-col :span="12">
             <el-form-item label="主类别" prop="mainCategory">
-              <el-select
-                size="large"
-                v-model="ruleForm.mainCategory"
-                placeholder="选择主类别"
-                clearable
-                style="width: 100%"
-              >
+              <el-select size="large" v-model="ruleForm.mainCategory" placeholder="选择主类别" clearable style="width: 100%">
                 <el-option label="全部材质" value="all" />
                 <el-option label="钢材" value="gangcai" />
                 <el-option label="木材" value="mucai" />
@@ -90,13 +75,7 @@ const submitForm = async (formEl: any) => {
           </el-col>
           <el-col :span="12">
             <el-form-item label="子类别" prop="subCategory">
-              <el-select
-                size="large"
-                v-model="ruleForm.subCategory"
-                placeholder="选择子类别"
-                clearable
-                style="width: 100%"
-              >
+              <el-select size="large" v-model="ruleForm.subCategory" placeholder="选择子类别" clearable style="width: 100%">
                 <el-option label="全部材质" value="all" />
                 <el-option label="钢材" value="gangcai" />
                 <el-option label="木材" value="mucai" />
@@ -106,36 +85,20 @@ const submitForm = async (formEl: any) => {
           </el-col>
           <el-col :span="12">
             <el-form-item label="税前价格(元)" prop="priceBeforeTax">
-              <el-input-number
-                size="large"
-                v-model="ruleForm.priceBeforeTax"
-                placeholder="请输入税前价格(元) "
-                :min="0"
-                style="width: 100%"
-              />
+              <el-input-number size="large" v-model="ruleForm.priceBeforeTax" placeholder="请输入税前价格(元) " :min="0"
+                style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="税后价格(元)" prop="priceAfterTax">
-              <el-input-number
-                size="large"
-                v-model="ruleForm.priceAfterTax"
-                placeholder="请输入税后价格(元) "
-                :min="0"
-                style="width: 100%"
-              />
+              <el-input-number size="large" v-model="ruleForm.priceAfterTax" placeholder="请输入税后价格(元) " :min="0"
+                style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="服务内容介绍" prop="serviceDescription">
-              <el-input
-                v-model="ruleForm.serviceDescription"
-                type="textarea"
-                :autosize="{ minRows: 5, maxRows: 10 }"
-                placeholder="请详细描述服务内容、流程、交付物等"
-                :maxlength="1000"
-                show-word-limit
-              />
+              <el-input v-model="ruleForm.serviceDescription" type="textarea" :autosize="{ minRows: 5, maxRows: 10 }"
+                placeholder="请详细描述服务内容、流程、交付物等" :maxlength="1000" show-word-limit />
             </el-form-item>
           </el-col>
         </el-row>

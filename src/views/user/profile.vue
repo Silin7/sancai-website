@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import eventBus from '@/utils/eventBus'
+import pageJump from '@/hooks/pageJump'
 
 const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
@@ -54,17 +54,14 @@ const submitForm = async (formEl: any) => {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a @click="eventBus.emit('set-router-store', 'user-index')">
+          <a @click="pageJump('user-index')">
             <i class="fa fa-home mr-1"></i>首页
           </a>
           <span class="breadcrumb-separator">/</span>
           <span>用户资料</span>
         </div>
         <div class="action-buttons">
-          <button
-            class="action-btn back-btn"
-            @click="eventBus.emit('set-router-store', 'user-index')"
-          >
+          <button class="action-btn back-btn" @click="pageJump('user-index')">
             <i class="fa fa-arrow-left mr-1"></i>返回首页
           </button>
           <!-- <button class="action-btn save-btn"><i class="fa fa-save mr-1"></i>保存资料</button> -->
@@ -75,13 +72,7 @@ const submitForm = async (formEl: any) => {
         <i class="fa fa-user text-primary"></i>
         编辑用户资料
       </h2>
-      <el-form
-        label-position="top"
-        ref="ruleFormRef"
-        :model="ruleForm"
-        :rules="rules"
-        label-width="auto"
-      >
+      <el-form label-position="top" ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
         <el-form-item label="公司名称" prop="companyName">
           <el-input size="large" v-model="ruleForm.companyName" placeholder="请输入公司全称" />
         </el-form-item>
@@ -111,26 +102,7 @@ const submitForm = async (formEl: any) => {
           <el-input size="large" v-model="ruleForm.address" placeholder="请输入详细地址" />
         </el-form-item>
         <el-form-item label="产品品牌 (最多5个)" prop="branding">
-          <el-input
-            size="large"
-            v-model="ruleForm.branding"
-            placeholder="输入品牌名称后按回车确认"
-          />
-          <!-- <el-select
-            v-model="ruleForm.companyName"
-            multiple
-            collapse-tags
-            collapse-tags-tooltip
-            :max-collapse-tags="5"
-            placeholder="输入品牌名称后按回车确认"
-          >
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select> -->
+          <el-input-tag size="large" v-model="ruleForm.branding" placeholder="输入品牌名称后按回车确认" />
         </el-form-item>
         <p class="tips">
           <i class="fa fa-info-circle mr-1"></i>输入品牌名称后按回车键添加，最多可添加5个品牌
@@ -139,30 +111,14 @@ const submitForm = async (formEl: any) => {
           <el-input size="large" v-model="ruleForm.contacts" placeholder="请输入联系人姓名" />
         </el-form-item>
         <el-form-item label="联系电话" prop="phone">
-          <el-input
-            size="large"
-            v-model="ruleForm.phone"
-            type="tel"
-            placeholder="请输入联系人电话"
-          />
+          <el-input size="large" v-model="ruleForm.phone" type="tel" placeholder="请输入联系人电话" />
         </el-form-item>
         <el-form-item label="电子邮箱" prop="email">
-          <el-input
-            size="large"
-            v-model="ruleForm.email"
-            type="email"
-            placeholder="请输入电子邮箱"
-          />
+          <el-input size="large" v-model="ruleForm.email" type="email" placeholder="请输入电子邮箱" />
         </el-form-item>
         <el-form-item label="公司简介 (最多500字)" prop="desc">
-          <el-input
-            v-model="ruleForm.desc"
-            type="textarea"
-            :autosize="{ minRows: 3, maxRows: 10 }"
-            placeholder="请输入公司简介，包括主营业务、优势等（最多500字）"
-            :maxlength="500"
-            show-word-limit
-          />
+          <el-input v-model="ruleForm.desc" type="textarea" :autosize="{ minRows: 3, maxRows: 10 }"
+            placeholder="请输入公司简介，包括主营业务、优势等（最多500字）" :maxlength="500" show-word-limit />
         </el-form-item>
       </el-form>
       <div class="form-footer" @click="submitForm(ruleFormRef)">

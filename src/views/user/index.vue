@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import eventBus from '@/utils/eventBus'
+import pageJump from '@/hooks/pageJump'
 </script>
 
 <template>
@@ -54,7 +54,7 @@ import eventBus from '@/utils/eventBus'
     </h2>
     <el-row :gutter="12">
       <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
-        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-caifrom')">
+        <div class="action-card" @click="pageJump('user-caifrom')">
           <div class="action-icon">
             <i class="fa fa-dropbox"></i>
           </div>
@@ -62,7 +62,7 @@ import eventBus from '@/utils/eventBus'
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
-        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-machinefrom')">
+        <div class="action-card" @click="pageJump('user-machinefrom')">
           <div class="action-icon">
             <i class="fa fa-wrench"></i>
           </div>
@@ -70,7 +70,7 @@ import eventBus from '@/utils/eventBus'
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
-        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-itfrom')">
+        <div class="action-card" @click="pageJump('user-itfrom')">
           <div class="action-icon">
             <i class="fa fa-info-circle"></i>
           </div>
@@ -78,7 +78,7 @@ import eventBus from '@/utils/eventBus'
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
-        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-inquirylist')">
+        <div class="action-card" @click="pageJump('user-inquirylist')">
           <div class="action-icon">
             <i class="fa fa-file-powerpoint-o"></i>
           </div>
@@ -86,7 +86,7 @@ import eventBus from '@/utils/eventBus'
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
-        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-cailist')">
+        <div class="action-card" @click="pageJump('user-cailist')">
           <div class="action-icon">
             <i class="fa fa-list"></i>
           </div>
@@ -94,7 +94,7 @@ import eventBus from '@/utils/eventBus'
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
-        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-machinelist')">
+        <div class="action-card" @click="pageJump('user-machinelist')">
           <div class="action-icon">
             <i class="fa fa-list"></i>
           </div>
@@ -102,7 +102,7 @@ import eventBus from '@/utils/eventBus'
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
-        <div class="action-card" @click="eventBus.emit('set-router-store', 'user-itlist')">
+        <div class="action-card" @click="pageJump('user-itlist')">
           <div class="action-icon">
             <i class="fa fa-list"></i>
           </div>

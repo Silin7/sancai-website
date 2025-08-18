@@ -1,19 +1,9 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { Search, Plus } from '@element-plus/icons-vue'
-import eventBus from '@/utils/eventBus'
+import pageJump from '@/hooks/pageJump'
 import usePagination from '@/hooks/usePagination'
 import formatCurrency from '@/hooks/formatCurrency'
-
-// 路由跳转
-const router = useRouter()
-
-function pageJump(name: any) {
-  router.push({
-    name,
-  })
-}
 
 // 查询条件
 const queryForm: any = reactive({
@@ -101,17 +91,14 @@ onMounted(() => {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a @click="eventBus.emit('set-router-store', 'user-index')">
+          <a @click="pageJump('user-index')">
             <i class="fa fa-home mr-1"></i>首页
           </a>
           <span class="breadcrumb-separator">/</span>
           <span>数字技工/方案论证</span>
         </div>
         <div class="action-buttons">
-          <button
-            class="action-btn back-btn"
-            @click="eventBus.emit('set-router-store', 'user-index')"
-          >
+          <button class="action-btn back-btn" @click="pageJump('user-index')">
             <i class="fa fa-arrow-left mr-1"></i>返回首页
           </button>
           <!-- <button class="action-btn save-btn"><i class="fa fa-save mr-1"></i>保存资料</button> -->
@@ -127,24 +114,12 @@ onMounted(() => {
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item>
-              <el-input
-                size="large"
-                v-model="queryForm.name"
-                placeholder="搜索服务名称..."
-                clearable
-                :prefix-icon="Search"
-              />
+              <el-input size="large" v-model="queryForm.name" placeholder="搜索服务名称..." clearable :prefix-icon="Search" />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item>
-              <el-select
-                size="large"
-                v-model="queryForm.state"
-                placeholder="选择类别"
-                clearable
-                style="width: 100%"
-              >
+              <el-select size="large" v-model="queryForm.state" placeholder="选择类别" clearable style="width: 100%">
                 <!-- <template #prefix>
                   <el-icon>
                     <Search />
@@ -158,13 +133,7 @@ onMounted(() => {
           </el-col>
           <el-col :span="6">
             <el-form-item>
-              <el-select
-                size="large"
-                v-model="queryForm.status"
-                placeholder="选择状态"
-                clearable
-                style="width: 100%"
-              >
+              <el-select size="large" v-model="queryForm.status" placeholder="选择状态" clearable style="width: 100%">
                 <!-- <template #prefix>
                   <el-icon>
                     <Search />
@@ -180,21 +149,14 @@ onMounted(() => {
           <el-col :span="6">
             <el-form-item>
               <!-- <el-button size="large" :icon="Search"> 查询 </el-button> -->
-              <el-button size="large" :icon="Plus" color="#377dff" @click="pageJump('user-renfrom')"
-                >新增</el-button
-              >
+              <el-button size="large" :icon="Plus" color="#377dff" @click="pageJump('user-renfrom')">新增</el-button>
             </el-form-item>
           </el-col>
         </el-row>
       </el-form>
       <!-- 数据表格 -->
       <el-table v-loading="tableLoading" :data="groupData" border highlight-current-row>
-        <el-table-column
-          :show-overflow-tooltip="true"
-          align="center"
-          prop="data1"
-          label="服务名称"
-        />
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="data1" label="服务名称" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="data2" label="类别" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="data3" label="子类别" />
         <el-table-column align="center" label="税前价格" width="120">
@@ -209,11 +171,7 @@ onMounted(() => {
         </el-table-column>
         <el-table-column align="center" label="状态" width="120">
           <template #default="scope">
-            <el-tag
-              v-if="scope.row.data7 === 'yishangjia'"
-              type="success"
-              style="border-radius: 50px"
-            >
+            <el-tag v-if="scope.row.data7 === 'yishangjia'" type="success" style="border-radius: 50px">
               <i class="fa fa-check-circle"></i>
               <span style="margin-left: 5px">已上架</span>
             </el-tag>
@@ -240,17 +198,9 @@ onMounted(() => {
       </el-table>
       <!-- 分页 -->
       <div class="pagination-block">
-        <el-pagination
-          size="small"
-          :current-page="pagination.pageNo"
-          :page-size="pagination.pageSize"
-          :total="pagination.total"
-          :page-sizes="pagination.sizes"
-          :layout="pagination.layout"
-          background
-          @size-change="sizeChange"
-          @current-change="currentChange"
-        />
+        <el-pagination size="small" :current-page="pagination.pageNo" :page-size="pagination.pageSize"
+          :total="pagination.total" :page-sizes="pagination.sizes" :layout="pagination.layout" background
+          @size-change="sizeChange" @current-change="currentChange" />
       </div>
     </div>
   </div>

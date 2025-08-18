@@ -2,7 +2,7 @@
 import { reactive, ref } from 'vue'
 import type { UploadFile } from 'element-plus'
 import { Delete, Download, Plus, ZoomIn } from '@element-plus/icons-vue'
-import eventBus from '@/utils/eventBus'
+import pageJump from '@/hooks/pageJump'
 
 const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
@@ -57,17 +57,14 @@ const handleDownload = (file: UploadFile) => {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a @click="eventBus.emit('set-router-store', 'user-machinelist')">
+          <a @click="pageJump('user-machinelist')">
             <i class="fa fa-list mr-1"></i>机械产品列表
           </a>
           <span class="breadcrumb-separator">/</span>
           <span>上传新机械</span>
         </div>
         <div class="action-buttons">
-          <button
-            class="action-btn back-btn"
-            @click="eventBus.emit('set-router-store', 'user-machinelist')"
-          >
+          <button class="action-btn back-btn" @click="pageJump('user-machinelist')">
             <i class="fa fa-arrow-left mr-1"></i>返回列表
           </button>
           <button class="action-btn draft-btn"><i class="fa fa-save mr-1"></i>保存草稿</button>
@@ -78,23 +75,12 @@ const handleDownload = (file: UploadFile) => {
         <i class="fa fa-upload text-primary"></i>
         上传机械产品信息
       </h2>
-      <el-form
-        label-position="top"
-        ref="ruleFormRef"
-        :model="ruleForm"
-        :rules="rules"
-        label-width="auto"
-      >
+      <el-form label-position="top" ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
         <el-row :gutter="20">
           <el-col :span="8">
             <el-form-item label="产品类别" prop="categoryLevel1">
-              <el-select
-                size="large"
-                v-model="ruleForm.categoryLevel1"
-                placeholder="选择产品类别"
-                clearable
-                style="width: 100%"
-              >
+              <el-select size="large" v-model="ruleForm.categoryLevel1" placeholder="选择产品类别" clearable
+                style="width: 100%">
                 <el-option label="全部材质" value="all" />
                 <el-option label="钢材" value="gangcai" />
                 <el-option label="木材" value="mucai" />
@@ -104,13 +90,8 @@ const handleDownload = (file: UploadFile) => {
           </el-col>
           <el-col :span="8">
             <el-form-item label="二级分类" prop="categoryLevel2">
-              <el-select
-                size="large"
-                v-model="ruleForm.categoryLevel2"
-                placeholder="选择二级分类"
-                clearable
-                style="width: 100%"
-              >
+              <el-select size="large" v-model="ruleForm.categoryLevel2" placeholder="选择二级分类" clearable
+                style="width: 100%">
                 <el-option label="全部材质" value="all" />
                 <el-option label="钢材" value="gangcai" />
                 <el-option label="木材" value="mucai" />
@@ -120,13 +101,8 @@ const handleDownload = (file: UploadFile) => {
           </el-col>
           <el-col :span="8">
             <el-form-item label="三级分类" prop="categoryLevel3">
-              <el-select
-                size="large"
-                v-model="ruleForm.categoryLevel3"
-                placeholder="选择三级分类"
-                clearable
-                style="width: 100%"
-              >
+              <el-select size="large" v-model="ruleForm.categoryLevel3" placeholder="选择三级分类" clearable
+                style="width: 100%">
                 <el-option label="全部材质" value="all" />
                 <el-option label="钢材" value="gangcai" />
                 <el-option label="木材" value="mucai" />
@@ -136,54 +112,39 @@ const handleDownload = (file: UploadFile) => {
           </el-col>
           <el-col :span="8">
             <el-form-item label="单价（含税）" prop="priceBeforeTax">
-              <el-input-number
-                size="large"
-                v-model="ruleForm.priceBeforeTax"
-                placeholder="请输入单价（含税） "
-                :min="0"
-                style="width: 100%"
-              />
+              <el-input-number size="large" v-model="ruleForm.priceBeforeTax" placeholder="请输入单价（含税） " :min="0"
+                style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="单价（不含税）" prop="priceAfterTax">
-              <el-input-number
-                size="large"
-                v-model="ruleForm.priceAfterTax"
-                placeholder="请输入单价（不含税）"
-                :min="0"
-                style="width: 100%"
-              />
+              <el-input-number size="large" v-model="ruleForm.priceAfterTax" placeholder="请输入单价（不含税）" :min="0"
+                style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="机械图片" prop="serviceDescription">
               <el-upload action="#" :multiple="true" list-type="picture-card" :auto-upload="false">
-                <el-icon><Plus /></el-icon>
+                <el-icon>
+                  <Plus />
+                </el-icon>
 
                 <template #file="{ file }">
                   <div>
                     <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
                     <span class="el-upload-list__item-actions">
-                      <span
-                        class="el-upload-list__item-preview"
-                        @click="handlePictureCardPreview(file)"
-                      >
+                      <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
                         <el-icon><zoom-in /></el-icon>
                       </span>
-                      <span
-                        v-if="!disabled"
-                        class="el-upload-list__item-delete"
-                        @click="handleDownload(file)"
-                      >
-                        <el-icon><Download /></el-icon>
+                      <span v-if="!disabled" class="el-upload-list__item-delete" @click="handleDownload(file)">
+                        <el-icon>
+                          <Download />
+                        </el-icon>
                       </span>
-                      <span
-                        v-if="!disabled"
-                        class="el-upload-list__item-delete"
-                        @click="handleRemove(file)"
-                      >
-                        <el-icon><Delete /></el-icon>
+                      <span v-if="!disabled" class="el-upload-list__item-delete" @click="handleRemove(file)">
+                        <el-icon>
+                          <Delete />
+                        </el-icon>
                       </span>
                     </span>
                   </div>
@@ -201,14 +162,8 @@ const handleDownload = (file: UploadFile) => {
           </el-col>
           <el-col :span="24">
             <el-form-item label="产品描述 (最多300字)" prop="serviceDescription">
-              <el-input
-                v-model="ruleForm.serviceDescription"
-                type="textarea"
-                :autosize="{ minRows: 5, maxRows: 10 }"
-                placeholder="请输入产品详细描述，包括特性、用途、注意事项等（最多300字）"
-                :maxlength="300"
-                show-word-limit
-              />
+              <el-input v-model="ruleForm.serviceDescription" type="textarea" :autosize="{ minRows: 5, maxRows: 10 }"
+                placeholder="请输入产品详细描述，包括特性、用途、注意事项等（最多300字）" :maxlength="300" show-word-limit />
             </el-form-item>
           </el-col>
         </el-row>

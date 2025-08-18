@@ -1,21 +1,11 @@
 <script setup lang="ts">
-import router from '@/router'
-import useHeaderStore from '@/store/modules/header'
-
-const headerStore = useHeaderStore()
-
-function pagejump() {
-  router.push({
-    name: 'user-index',
-  })
-  headerStore.setSelectedTab('user-index')
-}
+import pageJump from '@/hooks/pageJump'
 </script>
 
 <template>
   <div class="headmenu">
     <div class="logo-title">
-      <img src="@/assets/logo.png" @click="pagejump()" />
+      <img src="@/assets/logo.png" @click="pageJump('user-index')" />
       <!-- <span class="title">前端框架-VUE3</span> -->
     </div>
     <div class="avatar-name">

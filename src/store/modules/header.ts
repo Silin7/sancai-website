@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { defineStore } from 'pinia'
 
 const useHeaderStore = defineStore('counter', () => {
   const selectedTab = ref(window.localStorage.getItem('selectedTab') || 'home')
