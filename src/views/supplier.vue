@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
-import router from '@/router'
-import backToTop from '@/hooks/backToTop'
+import pageJump from '@/hooks/pageJump'
 
 const windowWidth = ref(window.innerWidth)
 
@@ -30,13 +29,6 @@ const handleCurrentChange = (val: number) => {
 }
 
 const input2: any = ref()
-
-function pageJump() {
-  backToTop()
-  router.push({
-    name: 'supplier_detail',
-  })
-}
 </script>
 
 <template>
@@ -140,7 +132,7 @@ function pageJump() {
                 <i class="fa fa-phone"></i>
                 <span class="supplierPiClassSpan">400-888-9001 </span>
               </div>
-              <div class="supplierPiCright" @click="pageJump">
+              <div class="supplierPiCright" @click="pageJump('supplier_detail')">
                 <button>查看详情</button>
                 <i class="fa fa-angle-right"></i>
               </div>

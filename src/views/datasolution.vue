@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import backToTop from '@/hooks/backToTop'
-import router from '@/router'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import pageJump from '@/hooks/pageJump'
 
 const windowWidth = ref(window.innerWidth)
 
@@ -17,12 +16,6 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWindowWidth)
 })
 
-function pageJump() {
-  backToTop()
-  router.push({
-    name: 'requirements',
-  })
-}
 </script>
 
 <template>
@@ -38,7 +31,7 @@ function pageJump() {
               信息技术深度赋能城市建设 有效应对并满足建设管理过程中多维度、多场景需求
             </div> -->
             <div class="frsc">
-              <button class="dsbannerJgkbtn" @click="pageJump">提交需求</button>
+              <button class="dsbannerJgkbtn" @click="pageJump('requirements')">提交需求</button>
             </div>
           </div>
         </div>

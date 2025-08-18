@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import backToTop from '@/hooks/backToTop'
-import router from '@/router'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import pageJump from '@/hooks/pageJump'
 
 const windowWidth = ref(window.innerWidth)
 
@@ -26,13 +25,6 @@ const handleSizeChange = (val: number) => {
 }
 const handleCurrentChange = (val: number) => {
   console.log(`current page: ${val}`)
-}
-
-function pageJump() {
-  backToTop()
-  router.push({
-    name: 'news_detail',
-  })
 }
 </script>
 
@@ -80,7 +72,7 @@ function pageJump() {
           <div class="newsProductsBox" :style="windowWidth > 992 ? '' : 'padding: 0;'">
             <div class="newsProductsItem"
               :style="windowWidth > 992 ? 'display: flex; justify-content: space-between;' : ''" v-for="index in 4"
-              :key="index" @click="pageJump">
+              :key="index" @click="pageJump('news_detail')">
               <div class="newsPiImgBox">
                 <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="newsPiImg" />
                 <div class="newsPiImgTag">政策</div>
@@ -210,7 +202,9 @@ function pageJump() {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 768px) {
           padding: 1rem 1rem 0.5rem;
@@ -226,7 +220,9 @@ function pageJump() {
             margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            box-shadow:
+              0 10px 15px -3px rgb(0 0 0 / 0.1),
+              0 4px 6px -4px rgb(0 0 0 / 0.1);
             border: 1px solid rgb(243 244 246);
             border-radius: 9999px;
 
@@ -268,7 +264,9 @@ function pageJump() {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 768px) {
           padding: 1rem;
@@ -302,7 +300,9 @@ function pageJump() {
             padding: 1.5rem;
             // display: flex;
             // align-items: center;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            box-shadow:
+              0 10px 15px -3px rgb(0 0 0 / 0.1),
+              0 4px 6px -4px rgb(0 0 0 / 0.1);
             border-radius: 0.75rem;
 
             @media (max-width: 768px) {
