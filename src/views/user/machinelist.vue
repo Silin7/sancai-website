@@ -126,11 +126,11 @@ onMounted(() => {
             <el-form-item>
               <el-select size="large" v-model="queryForm.state" placeholder="选择类型" clearable
                 @change="useDebounce().fn(getDataList)">
-                <!-- <template #prefix>
+                <template #prefix>
                   <el-icon>
                     <Search />
                   </el-icon>
-                </template> -->
+                </template>
                 <el-option label="全部类型" value="all" />
                 <el-option label="智慧工地装备" value="zhgdzb" />
                 <el-option label="智能施工装备" value="znsgzb" />
@@ -142,11 +142,11 @@ onMounted(() => {
             <el-form-item>
               <el-select size="large" v-model="queryForm.status" placeholder="选择材质" clearable
                 @change="useDebounce().fn(getDataList)">
-                <!-- <template #prefix>
+                <template #prefix>
                   <el-icon>
                     <Search />
                   </el-icon>
-                </template> -->
+                </template>
                 <el-option label="全部状态" value="all" />
                 <el-option label="已上架" value="yishangjia" />
                 <el-option label="已下架" value="yixiajia" />

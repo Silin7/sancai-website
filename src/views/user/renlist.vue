@@ -123,11 +123,11 @@ onMounted(() => {
             <el-form-item>
               <el-select size="large" v-model="queryForm.state" placeholder="选择类别" clearable
                 @change="useDebounce().fn(getDataList)">
-                <!-- <template #prefix>
+                <template #prefix>
                   <el-icon>
                     <Search />
                   </el-icon>
-                </template> -->
+                </template>
                 <el-option label="全部类别" value="all" />
                 <el-option label="数字技术应用论证" value="szjs" />
                 <el-option label="数字实施方案论证" value="szss" />
@@ -138,11 +138,11 @@ onMounted(() => {
             <el-form-item>
               <el-select size="large" v-model="queryForm.status" placeholder="选择状态" clearable
                 @change="useDebounce().fn(getDataList)">
-                <!-- <template #prefix>
+                <template #prefix>
                   <el-icon>
                     <Search />
                   </el-icon>
-                </template> -->
+                </template>
                 <el-option label="全部状态" value="all" />
                 <el-option label="已上架" value="ysj" />
                 <el-option label="已下架" value="yxj" />

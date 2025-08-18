@@ -122,11 +122,11 @@ onMounted(() => {
             <el-form-item>
               <el-select size="large" v-model="queryForm.status" placeholder="选择状态" clearable
                 @change="useDebounce().fn(getDataList)">
-                <!-- <template #prefix>
+                <template #prefix>
                   <el-icon>
                     <Search />
                   </el-icon>
-                </template> -->
+                </template>
                 <el-option label="全部状态" value="all" />
                 <el-option label="待报价" value="pending" />
                 <el-option label="已报价" value="completed" />
@@ -138,11 +138,11 @@ onMounted(() => {
             <el-form-item>
               <el-select size="large" v-model="queryForm.state" placeholder="选择日期" clearable
                 @change="useDebounce().fn(getDataList)">
-                <!-- <template #prefix>
+                <template #prefix>
                   <el-icon>
                     <Search />
                   </el-icon>
-                </template> -->
+                </template>
                 <el-option label="全部日期" value="all" />
                 <el-option label="今天" value="today" />
                 <el-option label="本周" value="week" />
