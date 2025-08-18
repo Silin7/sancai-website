@@ -3,7 +3,7 @@ import useHeaderStore from '@/store/modules/header'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: () => import('@/views/home.vue'),
     meta: {
@@ -325,6 +325,14 @@ const routes: Array<RouteRecordRaw> = [
       stcode: 'user-editpwd',
       website: false,
     },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/home',
+  },
+  {
+    path: '/user/:pathMatch(.*)*',
+    redirect: '/user/index',
   },
 ]
 
