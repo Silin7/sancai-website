@@ -61,7 +61,6 @@ const submitForm = async (formEl: any) => {
           <button class="action-btn back-btn" @click="pageJump('user-index')">
             <i class="fa fa-arrow-left mr-1"></i>返回首页
           </button>
-          <!-- <button class="action-btn save-btn"><i class="fa fa-save mr-1"></i>保存资料</button> -->
         </div>
       </div>
       <!-- 列表标题 -->

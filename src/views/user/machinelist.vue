@@ -105,7 +105,6 @@ onMounted(() => {
           <button class="action-btn back-btn" @click="pageJump('user-index')">
             <i class="fa fa-arrow-left mr-1"></i>返回首页
           </button>
-          <!-- <button class="action-btn save-btn"><i class="fa fa-save mr-1"></i>保存资料</button> -->
         </div>
       </div>
       <!-- 列表标题 -->
@@ -156,7 +155,6 @@ onMounted(() => {
           </el-col>
           <el-col :span="6">
             <el-form-item>
-              <!-- <el-button size="large" :icon="Search"> 查询 </el-button> -->
               <el-button size="large" :icon="Plus" color="#377dff" @click="pageJump('user-machinefrom')">新增</el-button>
             </el-form-item>
           </el-col>
