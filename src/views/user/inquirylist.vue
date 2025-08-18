@@ -3,6 +3,7 @@ import { onMounted, reactive, ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import pageJump from '@/hooks/pageJump'
 import usePagination from '@/hooks/usePagination'
+import useDebounce from '@/utils/useDebounce'
 
 // 查询条件
 const queryForm: any = reactive({
@@ -114,12 +115,13 @@ onMounted(() => {
           <el-col :span="6">
             <el-form-item>
               <el-input size="large" v-model="queryForm.name" placeholder="搜索订单号、客户名称..." clearable
-                :prefix-icon="Search" />
+                :prefix-icon="Search" @input="useDebounce().fn(getDataList)" />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item>
-              <el-select size="large" v-model="queryForm.status" placeholder="选择状态" clearable style="width: 100%">
+              <el-select size="large" v-model="queryForm.status" placeholder="选择状态" clearable
+                @change="useDebounce().fn(getDataList)">
                 <!-- <template #prefix>
                   <el-icon>
                     <Search />
@@ -134,7 +136,8 @@ onMounted(() => {
           </el-col>
           <el-col :span="6">
             <el-form-item>
-              <el-select size="large" v-model="queryForm.state" placeholder="选择日期" clearable style="width: 100%">
+              <el-select size="large" v-model="queryForm.state" placeholder="选择日期" clearable
+                @change="useDebounce().fn(getDataList)">
                 <!-- <template #prefix>
                   <el-icon>
                     <Search />
