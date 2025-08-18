@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
-const value1 = ref(4.8)
-
 const windowWidth = ref(window.innerWidth)
 
 function updateWindowWidth() {

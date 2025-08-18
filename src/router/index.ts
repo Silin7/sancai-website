@@ -111,6 +111,18 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/ai_detail',
+    name: 'ai_detail',
+    component: () => import('@/views/ai_detail.vue'),
+    meta: {
+      title: 'AI赋能应用',
+      stcode: 'ai',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
     path: '/video',
     name: 'video',
     component: () => import('@/views/video.vue'),
