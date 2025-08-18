@@ -1,18 +1,120 @@
 <script setup lang="ts">
+import * as echarts from 'echarts'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+
+var myChart: any = null
+const echartsMain = ref(null)
+
+function echartsInit() {
+  // 基于准备好的dom，初始化echarts实例
+  myChart = echarts.init(echartsMain.value)
+  // 指定图表的配置项和数据
+  const option = {
+    color: ['#3B82F690', '#10B98190', '#f59e0b90'],
+    title: {
+      text: '',
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        label: {
+          backgroundColor: '#6a7985',
+        },
+      },
+    },
+    legend: {
+      bottom: 0,
+      data: ['BIM服务', '高性能材料', '智能建造装备'],
+    },
+    grid: {
+      left: 10,
+      right: 20,
+      top: 20,
+      bottom: 40,
+      containLabel: true,
+    },
+    xAxis: [
+      {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1月', '2月', '3月', '4月', '5月', '6月'],
+      },
+    ],
+    yAxis: [
+      {
+        type: 'value',
+        offset: 0,
+        splitNumber: 8,
+        scale: true,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            cap: 'round',
+          },
+        },
+        axisLabel: {
+          formatter: function (value: any, index: number) {
+            return value / 100 + 'k'
+          },
+        },
+      },
+    ],
+    series: [
+      {
+        name: 'BIM服务',
+        type: 'line',
+        stack: 'Total',
+        areaStyle: {},
+        emphasis: {
+          focus: 'series',
+        },
+        data: [4200, 4500, 4300, 4800, 4600, 5000],
+      },
+      {
+        name: '高性能材料',
+        type: 'line',
+        stack: 'Total',
+        areaStyle: {},
+        emphasis: {
+          focus: 'series',
+        },
+        data: [800, 820, 850, 840, 870, 850],
+      },
+      {
+        name: '智能建造装备',
+        type: 'line',
+        stack: 'Total',
+        areaStyle: {},
+        emphasis: {
+          focus: 'series',
+        },
+        data: [11000, 11500, 12000, 11800, 12200, 12000],
+      },
+    ],
+  }
+  myChart.setOption(option)
+}
 
 const windowWidth = ref(window.innerWidth)
 
 function uaipdateWindowWidth() {
   windowWidth.value = window.innerWidth
+  if (myChart) {
+    myChart.resize()
+  }
 }
 
 onMounted(() => {
+  echartsInit()
   window.addEventListener('resize', uaipdateWindowWidth)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', uaipdateWindowWidth)
+  if (myChart != null && myChart.dispose) {
+    myChart.dispose()
+  }
 })
 </script>
 
@@ -39,79 +141,26 @@ onBeforeUnmount(() => {
           <span class="adictTag adictTag2"> <i class="fa fa-building-o mr-1"></i> 商业综合体 </span>
         </div>
         <div class="adictImgs">
-          <img src="@/assets/ai-banner-source.jpg" alt="" />
-          <img src="@/assets/ai-banner-source.jpg" alt="" />
+          <img src="@/assets/967-800x600.jpg" alt="" />
+          <img src="@/assets/324-800x600.jpg" alt="" />
         </div>
       </div>
 
       <div class="aipdCbox">
         <div class="aipdcLeft">
-          <div class="aipdclJbcs">
-            <img src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-              alt="" />
-            <div class="aipdcljCenter">
-              <div class="aipdcljcTop">
-                <div class="aipdcljctItem">
-                  <span>除税价：</span>
-                  <span class="aipdcljctiSp1">¥4,500.00</span>
-                </div>
-                <div class="aipdcljctItem">
-                  <span>含税价：</span>
-                  <span class="aipdcljctiSp2">¥5,000.00</span>
-                </div>
-                <div class="aipdcljctItem">
-                  <span>税率：</span>
-                  <span class="aipdcljctiSp1">13%</span>
-                </div>
-              </div>
-              <button class="aipdcljcLxgys">
-                <i class="fa fa-phone"></i>
-                <span>联系供应商</span>
-              </button>
-              <button class="aipdcljcJrgwc">
-                <i class="fa fa-shopping-cart"></i>
-                <span>加入购物车</span>
-              </button>
-            </div>
-            <div class="aipdcljRight">
-              <div class="aipdcljrTitle">基本参数</div>
-              <div class="aipdcljrItem">
-                <span>格型号：</span>
-                <span>全专业模型整合V2.0</span>
-              </div>
-              <div class="aipdcljrItem">
-                <span>品牌名称：</span>
-                <span>筑智科技</span>
-              </div>
-              <div class="aipdcljrItem">
-                <span>服务周期：</span>
-                <span>5-7个工作日</span>
-              </div>
-              <div class="aipdcljrItem">
-                <span>服务方式：</span>
-                <span>线上+线下结合</span>
-              </div>
-              <div class="aipdcljrItem">
-                <span>交付成果：</span>
-                <span>碰撞检查报告+优化建议</span>
-              </div>
-              <div class="aipdcljrItem">
-                <span>报价时间：</span>
-                <span>2025-06-15</span>
-              </div>
-            </div>
-          </div>
           <div class="aipdclXq">
             <div class="aipdclxTitle">
               <i class="fa fa-info-circle"></i>
               项目背景
             </div>
             <div class="aipdclxSub">
-              BIM+杭州某商业综合体项目总建筑面积约12万平方米，包含商业购物中心、办公塔楼及配套设施。项目初期面临三大核心挑战：
+              杭州某商业综合体项目总建筑面积约12万平方米，包含商业购物中心、办公塔楼及配套设施。项目初期面临三大核心挑战：
             </div>
-            <div><span></span>传统设计流程周期长，各专业协同效率低，易出现设计冲突</div>
-            <div><span></span>建筑能耗模拟不准确，难以满足绿色建筑标准要求</div>
-            <div><span></span>空间布局不合理，影响后期商业运营效率和用户体验</div>
+            <div class="aipdclxUl">
+              <div><span></span>传统设计流程周期长，各专业协同效率低，易出现设计冲突</div>
+              <div><span></span>建筑能耗模拟不准确，难以满足绿色建筑标准要求</div>
+              <div><span></span>空间布局不合理，影响后期商业运营效率和用户体验</div>
+            </div>
             <div class="aipdclxSub">
               为解决上述问题，项目团队引入AI辅助设计工具，通过智能算法优化设计方案，实现设计效率与建筑性能的双重提升。
             </div>
@@ -121,44 +170,48 @@ onBeforeUnmount(() => {
               <i class="fa fa-lightbulb-o"></i>
               AI应用方案
             </div>
-            <div class="frbc">
-              <div class="">
-                <div class="">智能协同设计</div>
-                <div class="">基于AI的多专业模型整合与冲突检测</div>
+            <div class="aipdclxAiyy">
+              <div class="aipdclxAyi1">
+                <div class="aipdclxAyi1t">智能协同设计</div>
+                <div class="aipdclxAyi1st">基于AI的多专业模型整合与冲突检测</div>
               </div>
-              <div class="">
-                <div class="">
+              <div class="aipdclxAyi2">
+                <div class="aipdclxAyi2t">
                   应用AI协同设计平台，实现建筑、结构、机电各专业模型的实时整合与碰撞检测。AI系统可自动识别85%以上的设计冲突，并提供优化建议，减少人工排查时间。
                 </div>
-                <div class="">
+                <div class="aipdclxAyi2st">
                   通过自然语言处理技术，将设计规范转化为算法规则，在设计过程中实时校验，确保方案符合国家及地方规范要求。
                 </div>
               </div>
             </div>
-            <div class="frbc">
-              <div class="">
-                <div class="">
+            <div class="aipdclxAiyy">
+              <div v-if="windowWidth <= 768" class="aipdclxAyi1">
+                <div class="aipdclxAyi1t">能耗智能优化</div>
+                <div class="aipdclxAyi1st">AI驱动的建筑能耗模拟与优化</div>
+              </div>
+              <div class="aipdclxAyi2">
+                <div class="aipdclxAyi2t">
                   利用AI能耗模拟工具，结合杭州气候数据与建筑形态参数，构建能耗预测模型。与传统模拟方法相比，AI模型的预测精度提升40%，计算时间缩短70%。
                 </div>
-                <div class="">
+                <div class="aipdclxAyi2st">
                   通过遗传算法优化建筑朝向、窗墙比及围护结构参数，最终实现建筑综合能耗降低12%，达到绿色建筑二星级标准。
                 </div>
               </div>
-              <div class="">
-                <div class="">能耗智能优化</div>
-                <div class="">AI驱动的建筑能耗模拟与优化</div>
+              <div v-if="windowWidth > 768" class="aipdclxAyi1">
+                <div class="aipdclxAyi1t">能耗智能优化</div>
+                <div class="aipdclxAyi1st">AI驱动的建筑能耗模拟与优化</div>
               </div>
             </div>
-            <div class="frbc">
-              <div class="">
-                <div class="">空间智能规划</div>
-                <div class="">基于用户行为分析的空间布局优化</div>
+            <div class="aipdclxAiyy">
+              <div class="aipdclxAyi1">
+                <div class="aipdclxAyi1t">空间智能规划</div>
+                <div class="aipdclxAyi1st">基于用户行为分析的空间布局优化</div>
               </div>
-              <div class="">
-                <div class="">
+              <div class="aipdclxAyi2">
+                <div class="aipdclxAyi2t">
                   引入AI空间规划算法，结合同类商业项目运营数据，模拟不同布局下的人流分布与商业价值。AI系统提供3套优化方案，并量化各方案的预期运营效益。
                 </div>
-                <div class="">
+                <div class="aipdclxAyi2st">
                   最终采用的优化方案使商业区域有效租赁面积增加8%，预计年客流量提升15%，商铺坪效提高10%。
                 </div>
               </div>
@@ -218,104 +271,109 @@ onBeforeUnmount(() => {
             </div>
             <div class="aipdclxItem">
               <div class="aipdclxiCgBox">
+                <div ref="echartsMain" style="width: 100%; height: 320px" />
                 <div class="aipdclxiCgItem">
-                  <div class="">
-                    <i class="fa fa-clock-o"></i>效率提升
+                  <div class="aipdclxiCgItitle"><i class="fa fa-clock-o"></i>效率提升</div>
+                  <div class="aipdclxiCgItrm">
+                    <div class="aipdclxiCgIlabel">设计周期</div>
+                    <div class="aipdclxiCgIvalue">缩短30%（从12周至8.4周）</div>
                   </div>
-                  <div class="">
-                    <div class="">设计周期</div>
-                    <div class="">缩短30%（从12周至8.4周）</div>
+                  <div class="aipdclxiCgItrm">
+                    <div class="aipdclxiCgIlabel">碰撞检测效率</div>
+                    <div class="aipdclxiCgIvalue">提升80%（从5天至1天）</div>
                   </div>
-                  <div class="">
-                    <div class="">碰撞检测效率</div>
-                    <div class="">提升80%（从5天至1天）</div>
-                  </div>
-                  <div class="">
-                    <div class="">方案迭代速度</div>
-                    <div class="">提升60%（平均迭代周期从7天至2.8天）</div>
+                  <div class="aipdclxiCgItrm">
+                    <div class="aipdclxiCgIlabel">方案迭代速度</div>
+                    <div class="aipdclxiCgIvalue">提升60%（平均迭代周期从7天至2.8天）</div>
                   </div>
                 </div>
                 <div class="aipdclxiCgItem">
-                  <div class="">
-                    <i class="fa fa-line-chart"></i>效益提升
+                  <div class="aipdclxiCgItitle"><i class="fa fa-line-chart"></i>效益提升</div>
+                  <div class="aipdclxiCgItrm">
+                    <div class="aipdclxiCgIlabel">建筑能耗</div>
+                    <div class="aipdclxiCgIvalue">降低12%（年节约能耗约8.5万度）</div>
                   </div>
-                  <div class="">
-                    <div class="">建筑能耗</div>
-                    <div class="">降低12%（年节约能耗约8.5万度）</div>
+                  <div class="aipdclxiCgItrm">
+                    <div class="aipdclxiCgIlabel">有效商业面积</div>
+                    <div class="aipdclxiCgIvalue">增加8%（约650平方米）</div>
                   </div>
-                  <div class="">
-                    <div class="">有效商业面积</div>
-                    <div class="">增加8%（约650平方米）</div>
-                  </div>
-                  <div class="">
-                    <div class="">预计运营收益</div>
-                    <div class="">提升15%（年增加收益约280万元）</div>
+                  <div class="aipdclxiCgItrm">
+                    <div class="aipdclxiCgIlabel">预计运营收益</div>
+                    <div class="aipdclxiCgIvalue">提升15%（年增加收益约280万元）</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="aipdcRight">
-          <div class="aipdcrTitle">供应商信息</div>
-          <div class="aipdcrTop frss">
-            <img src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-              alt="" />
-            <div>
-              <div class="aipdcrtTitle">杭州筑智信息技术有限公司</div>
-              <div class="aipdcrtRate">
-                <span> 4.8</span>
+
+        <div class="aipdclRbox">
+          <div class="aipdclRitem">
+            <div class="aipdcrxTitle">
+              <!-- <i class="fa fa-info-circle"></i> -->
+              项目概览
+            </div>
+            <div class="aipdcrxUl">
+              <div>
+                <span>项目名称</span>
+                <span>杭州某商业综合体</span>
               </div>
-              <div class="aipdcrtTag">
-                <span>优质供应商</span>
-                <span class="aipdcrtagShu">|</span>
-                <span>BIM技术服务</span>
+              <div>
+                <span>建设地点</span>
+                <span>杭州市西湖区</span>
+              </div>
+              <div>
+                <span>建筑面积</span>
+                <span>约12万平方米</span>
+              </div>
+              <div>
+                <span>建设单位</span>
+                <span>杭州某置业有限公司</span>
+              </div>
+              <div>
+                <span>设计单位</span>
+                <span>浙江某建筑设计研究院</span>
+              </div>
+              <div>
+                <span>AI技术支持</span>
+                <span>杭州筑智信息技术有限公司</span>
+              </div>
+              <div>
+                <span>应用AI工具</span>
+                <span>AI协同设计平台、智能能耗模拟系统、空间优化算法</span>
               </div>
             </div>
           </div>
-          <div class="aipdcrItem">
-            <div class="aipdcrIbox frcc">
-              <i class="fa fa-check"></i>
+          <div class="aipdclRitem">
+            <div class="aipdcrxTitle">
+              <!-- <i class="fa fa-info-circle"></i> -->
+              相关图片
             </div>
-            <div class="aipdcrPbox">
-              <p>公司地址</p>
-              <p>浙江省杭州市滨江区江南大道1000号智慧大厦15层</p>
-            </div>
-          </div>
-          <div class="aipdcrItem">
-            <div class="aipdcrIbox frcc">
-              <i class="fa fa-check"></i>
-            </div>
-            <div class="aipdcrPbox">
-              <p>联系电话</p>
-              <p>400-888-9001</p>
+            <div class="aipdcrxGtp">
+              <img src="@/assets/967-800x600.jpg" alt="" />
+              <img src="@/assets/324-800x600.jpg" alt="" />
+              <img src="@/assets/967-800x600.jpg" alt="" />
             </div>
           </div>
-          <div class="aipdcrItem">
-            <div class="aipdcrIbox frcc">
-              <i class="fa fa-check"></i>
+          <div class="aipdclRitem">
+            <div class="aipdcrxTitle">
+              <i class="fa fa-comments"></i>
+              咨询案例详情
             </div>
-            <div class="aipdcrPbox">
-              <p>电子邮箱</p>
-              <p>service@zhuzhi.com</p>
+            <div class="aipdcrxSub">
+              如需了解更多案例细节或AI设计解决方案，可通过以下方式联系我们
+            </div>
+            <div class="aipdcrxBtns">
+              <button>
+                <i class="fa fa-phone"></i>
+                400-888-9001
+              </button>
+              <button>
+                <i class="fa fa-envelope"></i>
+                ai@zhuzhi.com
+              </button>
             </div>
           </div>
-          <div class="aipdcrItem">
-            <div class="aipdcrIbox frcc">
-              <i class="fa fa-check"></i>
-            </div>
-            <div class="aipdcrPbox">
-              <p>成立时间</p>
-              <p>2025年</p>
-            </div>
-          </div>
-          <button class="aipdcrGysxq">
-            <span>查看供应商详情</span>
-          </button>
-          <button class="aipdcrZxzx">
-            <i class="fa fa-comment"></i>
-            <span>在线咨询</span>
-          </button>
         </div>
       </div>
 
@@ -328,7 +386,9 @@ onBeforeUnmount(() => {
             <div class="aipdccgiContent">
               <span class="aipdccgicTag">智能施工</span>
               <div class="aipdccgicTitle">宁波地铁项目AI施工管理</div>
-              <div class="aipdccgicSub">应用AI施工管理系统，减少人工误差，提升施工效率25%，降低安全风险 </div>
+              <div class="aipdccgicSub">
+                应用AI施工管理系统，减少人工误差，提升施工效率25%，降低安全风险
+              </div>
               <button>查看详情<i class="fa fa-angle-right"></i></button>
             </div>
           </div>
@@ -487,14 +547,13 @@ onBeforeUnmount(() => {
 
   .aipdCbox {
     position: relative;
-    margin: 0 auto;
-    padding: 1rem;
+    margin: 1rem auto 0;
     width: 100%;
     max-width: 1536px;
-    color: rgb(1 32 96);
+    color: #1f2937;
 
     @media (min-width: 992px) {
-      padding: 1rem 2rem;
+      margin: 2rem auto 0;
       display: flex;
       justify-content: space-between;
     }
@@ -508,138 +567,6 @@ onBeforeUnmount(() => {
         width: calc(66.7% - 1rem);
       }
 
-      .aipdclJbcs {
-        margin-bottom: 2rem;
-        padding: 1.5rem;
-        background-color: rgb(255 255 255);
-        border-radius: 1rem;
-        box-shadow:
-          0 10px 15px -3px rgb(0 0 0 / 0.1),
-          0 4px 6px -4px rgb(0 0 0 / 0.1);
-
-        @media (min-width: 992px) {
-          display: flex;
-          justify-content: space-between;
-        }
-
-        img {
-          width: 100%;
-          height: 16rem;
-          border-radius: 0.5rem;
-
-          @media (min-width: 992px) {
-            width: calc(33.4% - 2rem);
-            height: 16rem;
-            border-radius: 0.5rem;
-          }
-        }
-
-        .aipdcljCenter {
-          margin-top: 1rem;
-          width: 100%;
-
-          @media (min-width: 992px) {
-            margin-top: 0;
-            width: calc(33.3%);
-          }
-
-          .aipdcljcTop {
-            padding: 1rem;
-            background-color: rgb(249 250 251);
-            border-radius: 0.5rem;
-
-            .aipdcljctItem {
-              margin-bottom: 0.25rem;
-              font-size: 0.875rem;
-              line-height: 1.25rem;
-              color: rgb(107 114 128);
-
-              .aipdcljctiSp1 {
-                font-weight: 500;
-                font-size: 1.125rem;
-                line-height: 1.75rem;
-                color: rgb(1 32 96);
-              }
-
-              .aipdcljctiSp2 {
-                font-weight: 700;
-                font-size: 1.25rem;
-                line-height: 1.75rem;
-                color: rgb(22 93 255);
-              }
-            }
-          }
-
-          .aipdcljcLxgys {
-            margin-top: 1rem;
-            padding: 0.75rem 1rem;
-            width: 100%;
-            text-align: center;
-            font-weight: 500;
-            line-height: 1.5rem;
-            color: #fff;
-            background-color: rgb(22 93 255 / 0.9);
-            border-radius: 0.5rem;
-
-            i {
-              margin-right: 0.5rem;
-            }
-          }
-
-          .aipdcljcJrgwc {
-            margin-top: 1rem;
-            padding: 0.75rem 1rem;
-            width: 100%;
-            text-align: center;
-            font-weight: 500;
-            line-height: 1.5rem;
-            color: rgb(55 65 81);
-            border: 1px solid rgb(209 213 219);
-            border-radius: 0.5rem;
-
-            i {
-              margin-right: 0.5rem;
-            }
-          }
-        }
-
-        .aipdcljRight {
-          margin-top: 1rem;
-          width: 100%;
-
-          @media (min-width: 992px) {
-            margin-top: 0;
-            width: calc(33.3%);
-          }
-
-          .aipdcljrTitle {
-            font-weight: 700;
-            font-size: 1.125rem;
-            line-height: 1.75rem;
-            margin-bottom: 1rem;
-          }
-
-          .aipdcljrItem {
-            margin-top: 0.75rem;
-            display: flex;
-            align-items: center;
-
-            span:first-child {
-              width: 6rem;
-              font-size: 0.875rem;
-              line-height: 1.25rem;
-              color: rgb(107 114 128);
-            }
-
-            span:last-child {
-              font-size: 0.875rem;
-              line-height: 1.25rem;
-              color: rgb(1 32 96);
-            }
-          }
-        }
-      }
-
       .aipdclXq {
         margin-bottom: 2rem;
         padding: 1.5rem;
@@ -649,17 +576,104 @@ onBeforeUnmount(() => {
           0 10px 15px -3px rgb(0 0 0 / 0.1),
           0 4px 6px -4px rgb(0 0 0 / 0.1);
 
+        @media (max-width: 768px) {
+          padding: 1rem;
+        }
+
         .aipdclxTitle {
-          margin-bottom: 1.5rem;
-          padding-bottom: 0.5rem;
+          margin-bottom: 1rem;
+          padding-bottom: 1rem;
           font-weight: 700;
           font-size: 1.25rem;
-          line-height: 1.75rem;
+          line-height: 1.25rem;
           border-bottom: 1px solid rgb(243 244 246);
+
+          i {
+            margin-right: 0.5rem;
+            color: rgb(22 93 255);
+          }
         }
 
         .aipdclxSub {
           line-height: 1.5rem;
+        }
+
+        .aipdclxUl {
+          margin: 1rem 0;
+
+          div {
+            margin-bottom: 0.5rem;
+            line-height: 1.5rem;
+
+            span {
+              margin-right: 0.5rem;
+              margin-bottom: 0.125rem;
+              display: inline-block;
+              width: 0.4rem;
+              height: 0.4rem;
+              background-color: #1f2937;
+              border-radius: 999px;
+            }
+          }
+
+          div:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        .aipdclxAiyy {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          .aipdclxAyi1 {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            width: 30%;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            background-color: rgb(240 247 255);
+            border-radius: 0.75rem;
+
+            @media (max-width: 768px) {
+              width: 100%;
+            }
+
+            .aipdclxAyi1t {
+              font-weight: 700;
+              font-size: 1.125rem;
+              line-height: 1.75rem;
+              text-align: center;
+              margin-bottom: 0.5rem;
+            }
+
+            .aipdclxAyi1st {
+              color: rgb(75 85 99);
+              font-size: 0.875rem;
+              line-height: 1.25rem;
+              text-align: center;
+              margin: 0;
+            }
+          }
+
+          .aipdclxAyi2 {
+            margin-bottom: 1rem;
+            width: calc(70% - 1rem);
+
+            @media (max-width: 768px) {
+              width: 100%;
+            }
+
+            .aipdclxAyi2t {
+              margin-bottom: 0.75rem;
+              line-height: 1.5rem;
+            }
+
+            .aipdclxAyi2st {
+              line-height: 1.5rem;
+            }
+          }
         }
 
         .aipdclxItem {
@@ -711,14 +725,15 @@ onBeforeUnmount(() => {
 
             .aipdclxiPbox {
               p:first-child {
-                font-weight: 500;
-                line-height: 1.5rem;
+                margin-bottom: 0.5rem;
+                font-weight: 700;
+                font-size: 1.125rem;
+                line-height: 1.75rem;
               }
 
               p:last-child {
+                margin-bottom: 0.5rem;
                 font-weight: 500;
-                font-size: 0.875rem;
-                line-height: 1.5rem;
                 color: rgb(75 85 99);
               }
             }
@@ -726,9 +741,14 @@ onBeforeUnmount(() => {
 
           .fwlcBorder {
             margin-left: 1rem;
+            // margin-bottom: 1rem;
             padding-left: 2rem;
             border-left: 2px solid #e5e7eb;
           }
+
+          // .fwlcBorder:last-child {
+          //   border-left: 2px solid #fff;
+          // }
 
           .alignCenter {
             align-items: center;
@@ -740,175 +760,169 @@ onBeforeUnmount(() => {
             justify-content: space-between;
 
             .aipdclxiCgItem {
-              overflow: hidden;
-              margin-bottom: 1rem;
+              margin-top: 1rem;
+              padding: 1rem;
               width: 100%;
-              background-color: rgb(255 255 255);
-              border-radius: 0.5rem;
-              box-shadow:
-                0 10px 15px -3px rgb(0 0 0 / 0.1),
-                0 4px 6px -4px rgb(0 0 0 / 0.1);
-              border: 1px solid rgb(229 231 235);
+              background-color: rgb(240 247 255);
+              border-radius: 0.75rem;
 
               @media (min-width: 992px) {
                 margin-bottom: 0;
                 width: calc(50% - 0.5rem);
               }
 
-              img {
-                width: 100%;
-                height: 10rem;
+              .aipdclxiCgItitle {
+                font-weight: 700;
+                align-items: center;
+                display: flex;
+                margin-bottom: 0.75rem;
+
+                i {
+                  margin-right: 0.5rem;
+                  color: rgb(22 93 255);
+                }
               }
 
-              .aipdclxicIp {
+              .aipdclxiCgItrm {
+                margin-bottom: 0.5rem;
+                display: flex;
+                justify-content: space-between;
                 font-size: 0.875rem;
                 line-height: 1.25rem;
-                text-align: center;
-                padding: 0.75rem;
+
+                .aipdclxiCgIlabel {
+                  width: 30%;
+                  text-align: left;
+                }
+
+                .aipdclxiCgIvalue {
+                  width: calc(70% - 0.5rem);
+                  text-align: right;
+                }
               }
-            }
 
-            .aipdclxiCgItem:last-child {
-              margin-bottom: 0;
-            }
-
-            .aipdclxiCgItem:hover {
-              @media (min-width: 768px) {
-                cursor: pointer;
+              .aipdclxiCgItrm:last-child {
+                margin-bottom: 0;
               }
             }
           }
         }
       }
+
+      .aipdclXq:last-child {
+        margin-bottom: 0;
+      }
     }
 
-    .aipdcRight {
-      padding: 1.5rem;
+    .aipdclRbox {
+      margin-bottom: 2rem;
       width: 100%;
-      height: 100%;
-      background-color: rgb(255 255 255);
-      border-radius: 1rem;
-      box-shadow:
-        0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -4px rgb(0 0 0 / 0.1);
 
       @media (min-width: 992px) {
         width: calc(33.3% - 1rem);
       }
 
-      .aipdcrTitle {
-        margin-bottom: 1.5rem;
-        padding-bottom: 0.5rem;
-        font-weight: 700;
-        font-size: 1.25rem;
-        line-height: 1.75rem;
-      }
+      .aipdclRitem {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        width: 100%;
+        background-color: rgb(255 255 255);
+        border-radius: 1rem;
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-      .aipdcrTop {
-        margin-bottom: 1.5rem;
-
-        img {
-          margin-right: 1rem;
-          width: 4rem;
-          height: 4rem;
-          border-radius: 0.75rem;
+        @media (min-width: 992px) {
+          padding: 1.5rem;
         }
 
-        .aipdcrtTitle {
+        .aipdcrxTitle {
+          margin-bottom: 1rem;
+          padding-bottom: 1rem;
           font-weight: 700;
-          font-size: 1.125rem;
-          line-height: 1.75rem;
-        }
+          font-size: 1.25rem;
+          line-height: 1.25rem;
+          border-bottom: 1px solid rgb(243 244 246);
 
-        .aipdcrtRate {
-          display: flex;
-          align-items: center;
-
-          span {
-            margin-left: 0.25rem;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            color: rgb(75 85 99);
+          i {
+            margin-right: 0.5rem;
+            color: rgb(22 93 255);
           }
         }
 
-        .aipdcrtTag {
-          color: rgb(107 114 128);
+        .aipdcrxUl {
+          margin-top: 1rem;
+
+          div {
+            margin-bottom: 1rem;
+            line-height: 1.5rem;
+            display: flex;
+
+            span {
+              flex-shrink: 0;
+              font-size: 0.875rem;
+            }
+
+            span:first-child {
+              width: 6rem;
+              color: rgb(107 114 128);
+            }
+
+            span:last-child {
+              width: calc(100% - 7rem);
+              word-break: break-all;
+            }
+          }
+
+          div:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        .aipdcrxGtp {
+          img {
+            margin-bottom: 1rem;
+            width: 100%;
+            height: 10rem;
+            border-radius: 0.5rem;
+          }
+
+          img:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        .aipdcrxSub {
           font-size: 0.875rem;
           line-height: 1.25rem;
-
-          .aipdcrtagShu {
-            margin: 0.25rem;
-          }
-        }
-      }
-
-      .aipdcrItem {
-        position: relative;
-        display: flex;
-        line-height: 1.5rem;
-        padding-bottom: 1rem;
-
-        .aipdcrIbox {
-          flex-shrink: 0;
-          margin-right: 0.75rem;
-          width: 2rem;
-          height: 2rem;
-          color: rgb(22 93 255);
-          background-color: rgb(22 93 255 / 0.1);
-          border-radius: 9999px;
+          color: rgb(75 85 99);
         }
 
-        .aipdcrPbox {
-          p:first-child {
-            font-weight: 500;
-            font-size: 0.875rem;
+        .aipdcrxBtns {
+          button {
+            margin-top: 1rem;
+            padding: 0.75rem 0;
+            width: 100%;
             line-height: 1.5rem;
-            color: rgb(75 85 99);
+            border-radius: 0.5rem;
           }
 
-          p:last-child {
-            font-weight: 500;
-            line-height: 1.5rem;
+          button:first-child {
+            color: #fff;
+            background-color: rgb(22 93 255 / 0.9);
           }
-        }
-      }
 
-      .aipdcrGysxq {
-        margin-top: 1rem;
-        padding: 0.75rem 1rem;
-        width: 100%;
-        text-align: center;
-        font-weight: 500;
-        line-height: 1.5rem;
-        color: rgb(22 93 255);
-        border: 1px solid rgb(22 93 255);
-        border-radius: 0.5rem;
-
-        i {
-          margin-right: 0.5rem;
-        }
-      }
-
-      .aipdcrZxzx {
-        margin-top: 1rem;
-        padding: 0.75rem 1rem;
-        width: 100%;
-        text-align: center;
-        font-weight: 500;
-        line-height: 1.5rem;
-        color: rgb(22 93 255);
-        background-color: rgb(22 93 255 / 0.2);
-        border-radius: 0.5rem;
-
-        i {
-          margin-right: 0.5rem;
+          button:last-child {
+            color: rgb(22 93 255 / 0.9);
+            border: 1px solid rgb(22 93 255 / 0.9);
+          }
         }
       }
     }
   }
 
   .aipdcCptj {
+    margin-top: 1.5rem;
     padding: 1.5rem;
     background-color: rgb(255 255 255);
     border-radius: 1rem;
@@ -916,9 +930,12 @@ onBeforeUnmount(() => {
       0 10px 15px -3px rgb(0 0 0 / 0.1),
       0 4px 6px -4px rgb(0 0 0 / 0.1);
 
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
+
     .aipdccTitle {
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
       font-weight: 700;
       font-size: 1.25rem;
       line-height: 1.75rem;

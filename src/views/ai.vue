@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import pageJump from '@/hooks/pageJump'
 
 const windowWidth = ref(window.innerWidth)
 
@@ -56,7 +57,7 @@ onBeforeUnmount(() => {
               <!-- <div class="applicationClassiteminfo">
                 基于BIM模型实现工程量精准计算与动态成本管控
               </div> -->
-              <button>提交需求</button>
+              <button>立即体验</button>
             </div>
           </div>
         </div>
@@ -93,7 +94,9 @@ onBeforeUnmount(() => {
                 应用AI辅助设计工具，优化建筑结构，节省材料成本12%，缩短设计周期30%
               </div>
               <div class="frsc">
-                <button class="caseClassitembtn">查看详情<i class="fa fa-arrow-right"></i></button>
+                <button class="caseClassitembtn" @click="pageJump('ai_detail')">
+                  查看详情<i class="fa fa-arrow-right"></i>
+                </button>
               </div>
             </div>
           </div>
