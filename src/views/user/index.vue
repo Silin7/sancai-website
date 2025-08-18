@@ -1,5 +1,22 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
 import pageJump from '@/hooks/pageJump'
+
+const data1: any = ref({
+  jcnum: 23,
+  jxnum: 18,
+  itnum: 12,
+  bjnum: 5,
+})
+
+const data2: any = ref([
+  { state: 'add', title: '新增建材产品「高强度钢筋」', date: '今天 14:30' },
+  { state: 'edit', title: '编辑信息化产品「智慧工地管理系统」', date: '昨天 09:15' },
+  { state: 'del', title: '下架机械产品「混凝土搅拌机」', date: '2025-07-05 16:45' },
+  { state: 'scuss', title: '处理报价单 #20250704001', date: '2025-07-04 11:20' },
+])
 </script>
 
 <template>
@@ -7,7 +24,7 @@ import pageJump from '@/hooks/pageJump'
     <div class="welcome-section">
       <h1 class="welcome-title">欢迎回来，用户名</h1>
       <p class="welcome-message">
-        今天是 <span id="currentDate">2025年8月9日星期六</span>，以下是您的平台数据概览
+        今天是<span>{{ dayjs().format('YYYY年MM月DD日') }}{{ dayjs().locale('zh-cn').format('dddd') }}</span>，以下是您的平台数据概览
       </p>
     </div>
     <el-row :gutter="24">
@@ -16,7 +33,7 @@ import pageJump from '@/hooks/pageJump'
           <div class="stat-icon" style="background-color: #e8f3ff; color: #377dff">
             <i class="fa fa-dropbox"></i>
           </div>
-          <div class="stat-value">23</div>
+          <div class="stat-value">{{ data1.jcnum }}</div>
           <div class="stat-label">已发布建材产品</div>
         </div>
       </el-col>
@@ -25,7 +42,7 @@ import pageJump from '@/hooks/pageJump'
           <div class="stat-icon" style="background-color: #e6f7ed; color: #52c41a">
             <i class="fa fa-wrench"></i>
           </div>
-          <div class="stat-value">18</div>
+          <div class="stat-value">{{ data1.jxnum }}</div>
           <div class="stat-label">已发布机械产品</div>
         </div>
       </el-col>
@@ -34,7 +51,7 @@ import pageJump from '@/hooks/pageJump'
           <div class="stat-icon" style="background-color: #fff2e8; color: #fa8c16">
             <i class="fa fa-info-circle"></i>
           </div>
-          <div class="stat-value">12</div>
+          <div class="stat-value">{{ data1.itnum }}</div>
           <div class="stat-label">已发布信息化产品</div>
         </div>
       </el-col>
@@ -43,7 +60,7 @@ import pageJump from '@/hooks/pageJump'
           <div class="stat-icon" style="background-color: #f6e9ff; color: #722ed1">
             <i class="fa fa-file-powerpoint-o"></i>
           </div>
-          <div class="stat-value">5</div>
+          <div class="stat-value">{{ data1.bjnum }}</div>
           <div class="stat-label">待处理报价单</div>
         </div>
       </el-col>
@@ -116,40 +133,22 @@ import pageJump from '@/hooks/pageJump'
     </h2>
     <div class="recent-activity">
       <ul class="activity-list">
-        <li class="activity-item">
-          <div class="activity-icon" style="background-color: #e8f3ff; color: #377dff">
+        <li v-for="(item, index) in data2" :key="index" class="activity-item">
+          <div v-if="item.state === 'add'" class="activity-icon" style="background-color: #e8f3ff; color: #377dff">
             <i class="fa fa-plus"></i>
           </div>
-          <div class="activity-content">
-            <div class="activity-title">新增建材产品「高强度钢筋」</div>
-            <div class="activity-time">今天 14:30</div>
-          </div>
-        </li>
-        <li class="activity-item">
-          <div class="activity-icon" style="background-color: #fff2e8; color: #fa8c16">
+          <div v-if="item.state === 'edit'" class="activity-icon" style="background-color: #fff2e8; color: #fa8c16">
             <i class="fa fa-edit"></i>
           </div>
-          <div class="activity-content">
-            <div class="activity-title">编辑信息化产品「智慧工地管理系统」</div>
-            <div class="activity-time">昨天 09:15</div>
-          </div>
-        </li>
-        <li class="activity-item">
-          <div class="activity-icon" style="background-color: #fef0f0; color: #f5222d">
+          <div v-if="item.state === 'del'" class="activity-icon" style="background-color: #fef0f0; color: #f5222d">
             <i class="fa fa-ban"></i>
           </div>
-          <div class="activity-content">
-            <div class="activity-title">下架机械产品「混凝土搅拌机」</div>
-            <div class="activity-time">2025-07-05 16:45</div>
-          </div>
-        </li>
-        <li class="activity-item">
-          <div class="activity-icon" style="background-color: #e6f7ed; color: #52c41a">
+          <div v-if="item.state === 'scuss'" class="activity-icon" style="background-color: #e6f7ed; color: #52c41a">
             <i class="fa fa-check"></i>
           </div>
           <div class="activity-content">
-            <div class="activity-title">处理报价单 #20250704001</div>
-            <div class="activity-time">2025-07-04 11:20</div>
+            <div class="activity-title">{{ item.title }}</div>
+            <div class="activity-time">{{ item.date }}</div>
           </div>
         </li>
       </ul>
