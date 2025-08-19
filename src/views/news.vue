@@ -1,15 +1,45 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
+import { articlescatesApi, articlesApi } from '@/api/modules/article'
 
+// 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
 
 function updateWindowWidth() {
   windowWidth.value = window.innerWidth
 }
 
+// 用户端-获取所有启用的文章分类（公开接口）
+const articlescates: any = ref([])
+
+function getArticlescates() {
+  articlescatesApi().then((res: any) => {
+    articlescates.value = res
+  })
+}
+
+// 用户端-文章列表（公开接口，支持筛选分页）
+
+const currentPage: any = ref(1)
+const pageSize: any = ref(10)
+const total: any = ref(0)
+const articles: any = ref([])
+
+function getArticles() {
+  articlesApi({
+    page: currentPage.value,
+    pageSize: pageSize.value,
+  }).then((res: any) => {
+    total.value = res.total
+    articles.value = res.items
+  })
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
+  getArticlescates()
+  getArticles()
 })
 
 onBeforeUnmount(() => {
@@ -17,15 +47,6 @@ onBeforeUnmount(() => {
 })
 
 const selectvalue: any = ref('01')
-
-const currentPage2 = ref(2)
-const pageSize2 = ref(100)
-const handleSizeChange = (val: number) => {
-  console.log(`${val} items per page`)
-}
-const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`)
-}
 </script>
 
 <template>
@@ -49,11 +70,9 @@ const handleCurrentChange = (val: number) => {
         <div class="newsClass">
           <div class="newsClassRow">
             <button class="newsClassColActive">全部</button>
-            <button class="newsClassCol">数字化转型新政</button>
-            <button class="newsClassCol">数字化标准</button>
-            <button class="newsClassCol">数字化应用大赛</button>
-            <button class="newsClassCol">数字化典型案例</button>
-            <button class="newsClassCol">招投标信息</button>
+            <button v-for="(item, index) in articlescates" :key="index" class="newsClassCol">
+              {{ item.name }}
+            </button>
           </div>
         </div>
         <!-- 资讯列表 -->
@@ -69,24 +88,23 @@ const handleCurrentChange = (val: number) => {
               </el-select>
             </div>
           </div>
-          <div class="newsProductsBox" :style="windowWidth > 992 ? '' : 'padding: 0;'">
-            <div class="newsProductsItem"
-              :style="windowWidth > 992 ? 'display: flex; justify-content: space-between;' : ''" v-for="index in 4"
-              :key="index" @click="pageJump('news_detail')">
+          <div class="newsProductsBox">
+            <div class="newsProductsItem" v-for="(item, index) in articles" :key="index"
+              @click="pageJump('news_detail')">
               <div class="newsPiImgBox">
                 <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="newsPiImg" />
-                <div class="newsPiImgTag">政策</div>
+                <div class="newsPiImgTag">政策----</div>
               </div>
               <div class="newsPiBox">
-                <div class="newsPiTitle">住建部发布《建筑业数字化转型发展指南》推动行业升级</div>
+                <div class="newsPiTitle">{{ item.title }}</div>
                 <div class="newsPiInfo">
-                  近日，住房和城乡建设部正式发布《建筑业数字化转型发展指南》，提出到2025年，建筑业数字化转型取得明显进展，打造一批建筑产业互联网平台，培育一批行业级、企业级数字建造解决方案。指南明确了数字化转型的重点任务和保障措施，为行业发展指明方向。
+                  {{ item.description }}
                 </div>
                 <div class="newsPiClass">
                   <div class="newsPiCleft">
                     <div v-if="windowWidth > 480" class="newsPiCitrm">
                       <i class="fa fa-calendar"></i>
-                      <span class="newsPiClassSpan">2023-12-15</span>
+                      <span class="newsPiClassSpan">{{ item.created_at }}</span>
                     </div>
                     <div class="newsPiCitrm">
                       <i class="fa fa-eye"></i>
@@ -117,9 +135,9 @@ const handleCurrentChange = (val: number) => {
               </div>
             </div>
             <div class="newsPagination">
-              <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2"
-                :page-sizes="[100, 200, 300, 400]" size="default" background layout="prev, pager, next" prev-text="上一页"
-                next-text="下一页" :total="400" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+              <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20]"
+                size="default" background layout="prev, pager, next" prev-text="上一页" next-text="下一页" :total="total"
+                @current-change="getArticles" />
             </div>
           </div>
         </div>
@@ -298,15 +316,16 @@ const handleCurrentChange = (val: number) => {
           .newsProductsItem {
             margin-bottom: 1.5rem;
             padding: 1.5rem;
-            // display: flex;
-            // align-items: center;
+            display: flex;
+            justify-content: space-between;
             box-shadow:
               0 10px 15px -3px rgb(0 0 0 / 0.1),
               0 4px 6px -4px rgb(0 0 0 / 0.1);
             border-radius: 0.75rem;
 
             @media (max-width: 768px) {
-              padding: 0.75rem;
+              padding: 1rem;
+              display: block;
             }
 
             .newsPiImgBox {
@@ -360,6 +379,10 @@ const handleCurrentChange = (val: number) => {
                 margin-bottom: 1rem;
                 line-height: 1.25rem;
                 color: rgb(75 85 99);
+
+                @media (min-width: 768px) {
+                  min-height: 7rem;
+                }
               }
 
               .newsPiClass {
