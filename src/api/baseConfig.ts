@@ -1,4 +1,4 @@
-const baseURL = 'https://www.silin7.cn/ourhomeapi'
+const baseURL = 'http://xcapi.duoqixin.com'
 
 export {
   baseURL
