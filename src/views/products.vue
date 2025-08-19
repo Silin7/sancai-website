@@ -2,6 +2,7 @@
 import * as echarts from 'echarts'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
+import pageJump from '@/hooks/pageJump'
 
 var myChart: any = null
 
@@ -221,7 +222,7 @@ const handleCurrentChange = (val: number) => {
                     <span>13%</span>
                   </div>
                 </div>
-                <button class="containerPiRbtn">查看详情</button>
+                <button class="containerPiRbtn" @click="pageJump('products_detail')">查看详情</button>
               </div>
             </div>
             <div class="containerPagination">
