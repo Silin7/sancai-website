@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { sysinfosApi } from '@/api/modules/basic'
 
 const windowWidth = ref(window.innerWidth)
 
@@ -7,8 +8,25 @@ function updateWindowWidth() {
   windowWidth.value = window.innerWidth
 }
 
+// 用户端-获取所有有效系统信息（如系统名称、版权信息等，按Key排序）
+const sysInfos: any = ref({})
+
+function getSysinfosApi() {
+  sysinfosApi().then((res: any) => {
+    if (res && res.length > 0) {
+      console.log('-------->', res)
+      for (let i = 0; i < res.length; i++) {
+        const item = res[i]
+        sysInfos.value[item.ky] = item.val
+      }
+      console.log('-------->', sysInfos.value)
+    }
+  })
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
+  getSysinfosApi()
 })
 
 onBeforeUnmount(() => {

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { fileURL } from '@/api/baseConfig'
 import backToTop from '@/hooks/backToTop'
 // import sideleft from '@/components/sideleft.vue'
 import sideright from '@/components/sideright.vue'
-import { secpositionsApi, bannerlistApi, vippartnersApi, sysinfosApi } from '@/api/modules/basic'
+import { secpositionsApi, seccontentApi, bannerlistApi, vippartnersApi } from '@/api/modules/basic'
+import pageJump from '@/hooks/pageJump'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -14,7 +16,7 @@ function updateWindowWidth() {
 
 // 用户端-获取所有启用的文章分类（公开接口）
 const positionid: any = ref('')
-const bannerList: any = ref([])
+const bannerData: any = ref([])
 
 function getSecpositions() {
   secpositionsApi().then((res: any) => {
@@ -31,21 +33,34 @@ function getSecpositions() {
 }
 
 function getBannerlist() {
-  bannerlistApi(positionid.value).then((res: any) => {
-    bannerList.value = res[0]
+  seccontentApi(positionid.value).then((res: any) => {
+    console.log('-------->', res)
   })
+  bannerlistApi(positionid.value).then((res: any) => {
+    bannerData.value = res[0]
+  })
+}
+
+// 用户端-获取所有有效合作单位（按排序升序、创建时间倒序）
+function getVippartners() {
   vippartnersApi().then((res: any) => {
     console.log('-------->', res)
   })
-  sysinfosApi().then((res: any) => {
-    console.log('-------->', res)
-  })
+}
+
+// 打开banner外部URL
+function openBanner() {
+  if (!bannerData.value.url) {
+    return
+  }
+  window.open(bannerData.value.url, '_blank')
 }
 
 onMounted(() => {
   // headerStore.setSelectedTab('home')
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
+  getVippartners()
 })
 
 onBeforeUnmount(() => {
@@ -59,9 +74,10 @@ onBeforeUnmount(() => {
     <component :is="sideright" ref="siderightRef" @goTopCallback="backToTop" />
     <div class="homePage">
       <!-- BANNER -->
-      <div class="bannerBox">
+      <div class="bannerBox" @click="openBanner">
         <div class="bannerAnchor">
-          <img v-if="windowWidth > 1140" src="@/assets/index_img_01.png" alt="banner" class="bannerImage" />
+          <!-- v-if="windowWidth > 1140"  -->
+          <img :src="fileURL + bannerData.imgurl" alt="banner" class="bannerImage" />
           <div class="bannerAbsolute">
             <div class="bannerContent">
               <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
@@ -78,7 +94,7 @@ onBeforeUnmount(() => {
             </div> -->
               <div class="bannerCompany">杭州三才工程信息科技有限公司</div>
               <div class="bannerGridbox">
-                <div class="bannerGriditem">
+                <div class="bannerGriditem" @click.stop="pageJump('scheme')">
                   <div class="bannerFabox frcc">
                     <i class="fa fa-database" style="font-size: 1.25rem; color: #fff"></i>
                   </div>
@@ -87,8 +103,8 @@ onBeforeUnmount(() => {
                     <!-- <div class="bannerGridinfo">精准数据，助力成本管控</div> -->
                   </div>
                 </div>
-                <div v-if="windowWidth > 600" class="bannerGridshu" />
-                <div class="bannerGriditem">
+                <div v-if="windowWidth > 768" class="bannerGridshu" />
+                <div class="bannerGriditem" @click.stop="pageJump('datasolution')">
                   <div class="bannerFabox frcc">
                     <i class="fa fa-calculator" style="font-size: 1.25rem; color: #fff"></i>
                   </div>
@@ -97,8 +113,8 @@ onBeforeUnmount(() => {
                     <!-- <div class="bannerGridinfo">智能组价，优化方案设计</div> -->
                   </div>
                 </div>
-                <div v-if="windowWidth > 600" class="bannerGridshu" />
-                <div class="bannerGriditem">
+                <div v-if="windowWidth > 768" class="bannerGridshu" />
+                <div class="bannerGriditem" @click.stop="pageJump('ai')">
                   <div class="bannerFabox frcc">
                     <i class="fa fa-android" style="font-size: 1.25rem; color: #fff"></i>
                   </div>
@@ -107,8 +123,8 @@ onBeforeUnmount(() => {
                     <!-- <div class="bannerGridinfo">AI赋能，提升运行效率</div> -->
                   </div>
                 </div>
-                <div v-if="windowWidth > 600" class="bannerGridshu" />
-                <div class="bannerGriditem">
+                <div v-if="windowWidth > 768" class="bannerGridshu" />
+                <div class="bannerGriditem" @click.stop="pageJump('video')">
                   <div class="bannerFabox frcc">
                     <i class="fa fa-play-circle" style="font-size: 1.25rem; color: #fff"></i>
                   </div>
@@ -510,8 +526,14 @@ onBeforeUnmount(() => {
         z-index: 0;
         width: auto;
         max-width: 50%;
-        height: 100%;
+        // height: 100%;
         object-fit: contain;
+
+        @media (max-width: 768px) {
+          height: auto;
+          right: 0;
+          top: 8rem;
+        }
       }
 
       .bannerAbsolute {
