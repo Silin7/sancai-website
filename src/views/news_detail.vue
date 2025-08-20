@@ -1,14 +1,26 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { articledetailApi } from '@/api/modules/article'
 
+// 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
 
 function updateWindowWidth() {
   windowWidth.value = window.innerWidth
 }
 
+// 文章详情
+const articledetail: any = ref({})
+
+function getArticlesdetail() {
+  articledetailApi('3').then((res: any) => {
+    articledetail.value = res
+  })
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
+  getArticlesdetail()
 })
 
 onBeforeUnmount(() => {
@@ -25,12 +37,12 @@ onBeforeUnmount(() => {
           <span class="ndNavigationXg">/</span>
           <span>热点资讯</span>
           <span class="ndNavigationXg">/</span>
-          <span class="ndNavigationSp">BIM技术在上海中心大厦的应用</span>
+          <span class="ndNavigationSp">{{ articledetail.title }}</span>
         </div>
       </div>
     </div>
     <div class="ndCbox">
-      <div class="ndCtitle">上海中心大厦BIM技术应用案例深度解析</div>
+      <div class="ndCtitle">{{ articledetail.title }}</div>
       <div class="ndCzuoz">
         <img src="@/assets/32.jpg" alt="" />
         <div class="zuozeInfo">
@@ -38,7 +50,9 @@ onBeforeUnmount(() => {
           <p>三才工程研究院 BIM技术专家</p>
         </div>
       </div>
-      <div class="ndCFuwb">富文本内容</div>
+      <div class="ndCFuwb">
+        <div v-html="articledetail.content"></div>
+      </div>
       <div class="ndCTags">
         <div class="ndcTagLabel">标签：</div>
         <div class="ndcTag">BIM技术</div>
@@ -189,10 +203,9 @@ onBeforeUnmount(() => {
     }
 
     .ndCFuwb {
-      margin-bottom: 1rem;
-      padding: 10rem 2rem;
-      background-color: #f1f1f1;
-      border-radius: 0.5rem;
+      padding: 1rem 0;
+      // background-color: #f1f1f1;
+      // border-radius: 0.5rem;
     }
 
     .ndCTags {

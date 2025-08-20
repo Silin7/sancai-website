@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { fileURL } from '@/api/baseConfig'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
-import { articlescatesApi, articlesApi } from '@/api/modules/article'
+import { articlescatesApi, articlesApi, articlescateApi } from '@/api/modules/article'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -36,10 +37,17 @@ function getArticles() {
   })
 }
 
+function aaa() {
+  articlescateApi('13').then((res: any) => {
+    console.log('-------->', res)
+  })
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getArticlescates()
   getArticles()
+  aaa()
 })
 
 onBeforeUnmount(() => {
@@ -53,13 +61,14 @@ const selectvalue: any = ref('01')
   <div class="newsPage">
     <!-- BANNER -->
     <div class="nsbannerBox">
-      <img src="@/assets/products-banner01.jpeg" alt="nsbanner" />
+      <img src="@/assets/news-banner.jpg" alt="nsbanner" />
       <div class="nsbannerAbsolute">
         <div class="nsbannerContent">
           <div class="nsbannerTitle">热点资讯</div>
           <div class="nsbannerSubtitle">
             聚焦建筑行业数字化转型，提供最新政策、标准、案例和市场动态
           </div>
+          <button class="nsbannerLlspbtn">浏览视频</button>
         </div>
       </div>
     </div>
@@ -92,8 +101,8 @@ const selectvalue: any = ref('01')
             <div class="newsProductsItem" v-for="(item, index) in articles" :key="index"
               @click="pageJump('news_detail')">
               <div class="newsPiImgBox">
-                <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="newsPiImg" />
-                <div class="newsPiImgTag">政策----</div>
+                <img :src="fileURL + item.thumbnail" class="newsPiImg" />
+                <div class="newsPiImgTag">政策</div>
               </div>
               <div class="newsPiBox">
                 <div class="newsPiTitle">{{ item.title }}</div>
@@ -187,7 +196,7 @@ const selectvalue: any = ref('01')
           font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           line-height: 1.25;
-          color: #fff;
+          color: rgb(1 32 96 / var(--tw-text-opacity, 1));
         }
 
         .nsbannerSubtitle {
@@ -195,7 +204,19 @@ const selectvalue: any = ref('01')
           max-width: 42rem;
           font-size: clamp(1.25rem, 4vw, 1.5rem);
           font-weight: 500;
-          color: rgb(255 255 255 / 0.9);
+          color: rgb(1 32 96 / 0.9);
+        }
+
+        .nsbannerLlspbtn {
+          padding: 0.75rem 2rem;
+          color: #fff;
+          background-color: rgb(22 93 255);
+          border-radius: 9999px;
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+          @media (max-width: 768px) {
+            padding: 0.75rem 1.5rem;
+          }
         }
       }
     }
