@@ -30,24 +30,24 @@ function tabRouterPush(item: any) {
 }
 
 const menuList: any = ref([
-  { title: '系统首页', path: '/', name: 'home', children: [] },
+  { id: '1', title: '系统首页', path: '/', name: 'home', children: [] },
   {
     title: '人材机信价格库',
     zhankai: false,
     children: [
-      { title: '数字技工/方案论证', path: '/scheme', name: 'scheme' },
-      { title: '材料/设备', path: '/materials', name: 'materials' },
-      { title: '智能建造装备', path: '/sale', name: 'sale' },
-      { title: '信息化产品/服务', path: '/products', name: 'products' },
+      { id: '2', title: '数字技工方案论证', path: '/scheme', name: 'scheme' },
+      { id: '3', title: '材料/设备', path: '/materials', name: 'materials' },
+      { id: '4', title: '智能建造装备', path: '/sale', name: 'sale' },
+      { id: '5', title: '信息化产品服务', path: '/products', name: 'products' },
     ],
   },
-  { title: '数据方案组价', path: '/data-solution', name: 'datasolution', children: [] },
-  { title: 'AI赋能应用', path: '/ai', name: 'ai', children: [] },
-  { title: '视频演示', path: '/video', name: 'video', children: [] },
-  { title: '供应商', path: '/supplier', name: 'supplier', children: [] },
-  { title: '关于三才', path: '/about', name: 'about', children: [] },
-  { title: '热点资讯', path: '/news', name: 'news', children: [] },
-  { title: '工程造价+AI', path: '/engineering-ai', name: 'engineeringai', children: [] },
+  { id: '6', title: '数据方案组价', path: '/data-solution', name: 'datasolution', children: [] },
+  { id: '7', title: 'AI赋能应用', path: '/ai', name: 'ai', children: [] },
+  { id: '8', title: '视频演示', path: '/video', name: 'video', children: [] },
+  { id: '9', title: '供应商', path: '/supplier', name: 'supplier', children: [] },
+  { id: '10', title: '关于三才', path: '/about', name: 'about', children: [] },
+  { id: '11', title: '热点资讯', path: '/news', name: 'news', children: [] },
+  // { title: '工程造价+AI', path: '/engineering-ai', name: 'engineeringai', children: [] },
 ])
 
 // menuChild show Mouseenter Mouseleave

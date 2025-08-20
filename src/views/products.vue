@@ -140,7 +140,7 @@ const handleCurrentChange = (val: number) => {
       <img src="@/assets/products-banner01.jpeg" alt="prbanner" />
       <div class="prbannerAbsolute">
         <div class="prbannerContent">
-          <div class="prbannerTitle">信息化产品/服务</div>
+          <div class="prbannerTitle">信息化产品服务</div>
           <!-- <div class="prbannerSubtitle">绿色化 数字化 智能化</div> -->
         </div>
       </div>
@@ -149,10 +149,10 @@ const handleCurrentChange = (val: number) => {
       <div class="containerLeft">
         <div class="containerClass">
           <div class="containerClassRow">
-            <button class="containerClassCol">数字技工/方案论证</button>
+            <button class="containerClassCol">数字技工方案论证</button>
             <button class="containerClassCol">材料/设备</button>
             <button class="containerClassCol">智能建造装备</button>
-            <button class="containerClassColActive">信息化产品/服务</button>
+            <button class="containerClassColActive">信息化产品服务</button>
           </div>
           <div class="containerClassRow">
             <button class="containerClassColActive">全部</button>

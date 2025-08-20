@@ -99,7 +99,7 @@ onMounted(() => {
             <i class="fa fa-home mr-1"></i>首页
           </a>
           <span class="breadcrumb-separator">/</span>
-          <span>信息化产品/服务</span>
+          <span>信息化产品服务</span>
         </div>
         <div class="action-buttons">
           <button class="action-btn back-btn" @click="pageJump('user-index')">

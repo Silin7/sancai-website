@@ -149,10 +149,10 @@ const handleCurrentChange = (val: number) => {
       <div class="containerLeft">
         <div class="containerClass">
           <div class="containerClassRow">
-            <button class="containerClassCol">数字技工/方案论证</button>
+            <button class="containerClassCol">数字技工方案论证</button>
             <button class="containerClassColActive">材料/设备</button>
             <button class="containerClassCol">智能建造装备</button>
-            <button class="containerClassCol">信息化产品/服务</button>
+            <button class="containerClassCol">信息化产品服务</button>
           </div>
           <div class="containerClassRow">
             <button class="containerClassColActive">全部</button>

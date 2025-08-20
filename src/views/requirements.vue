@@ -19,7 +19,7 @@ const checkvalue4: any = ref(false)
         基于BIM模型实现工程全生命周期计算与动态信息管控，聚焦CIM+人房管理场景，助力城市空间与人口数据精细化治理，为智慧化管理提供精准支撑。
       </div>
       <div class="requirementsCont">
-        <div class="requCtitle">信息化产品/服务需求表(由需方填写)</div>
+        <div class="requCtitle">信息化产品服务需求表(由需方填写)</div>
         <div class="supplierClassFx">
           <div class="supplierClassFxItem">
             <div class="supplierClassText">类别</div>
