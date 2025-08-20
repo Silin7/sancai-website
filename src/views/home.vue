@@ -414,32 +414,32 @@ onBeforeUnmount(() => {
         <div class="pyHeng"></div>
         <div class="pyClassbox">
           <div class="pyClassitem">
-            <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
+            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
             <div class="pyClassitemtext">建筑科技有限公司</div>
             <div class="pyClassiteminfo">专注建筑科技创新</div>
           </div>
           <div class="pyClassitem">
-            <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
+            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
             <div class="pyClassitemtext">智能建造研究院</div>
             <div class="pyClassiteminfo">建筑智能化研究</div>
           </div>
           <div class="pyClassitem">
-            <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
+            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
             <div class="pyClassitemtext">绿色建材协会</div>
             <div class="pyClassiteminfo">推广绿色建筑材料</div>
           </div>
           <div class="pyClassitem">
-            <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
+            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
             <div class="pyClassitemtext">数字工程设计院</div>
             <div class="pyClassiteminfo">数字化工程设计</div>
           </div>
           <div class="pyClassitem">
-            <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
+            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
             <div class="pyClassitemtext">智慧城市科技</div>
             <div class="pyClassiteminfo">智慧城市解决方案</div>
           </div>
           <div class="pyClassitem">
-            <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
+            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="pyClassitemfa" />
             <div class="pyClassitemtext">建筑信息研究院</div>
             <div class="pyClassiteminfo">建筑信息研究应用</div>
           </div>
