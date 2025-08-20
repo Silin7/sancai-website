@@ -68,10 +68,10 @@ const input2: any = ref()
         <div class="supplierClassText">类别</div>
         <div class="supplierClassRow">
           <button class="supplierClassColActive">全部</button>
-          <button class="supplierClassCol">数字技工方案论证</button>
+          <button class="supplierClassCol">数字技工/方案论证</button>
           <button class="supplierClassCol">材料/设备</button>
           <button class="supplierClassCol">智能建造装备</button>
-          <button class="supplierClassCol">信息化产品服务</button>
+          <button class="supplierClassCol">信息化产品/服务</button>
         </div>
         <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索供应商名称或主营项目..."
           :prefix-icon="Search" />

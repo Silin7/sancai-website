@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'scheme',
     component: () => import('@/views/scheme.vue'),
     meta: {
-      title: '数字技工方案论证',
+      title: '数字技工/方案论证',
       stcode: 'scheme',
       website: true,
       hashead: true,
@@ -55,7 +55,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'products',
     component: () => import('@/views/products.vue'),
     meta: {
-      title: '信息化产品服务',
+      title: '信息化产品/服务',
       stcode: 'products',
       website: true,
       hashead: true,
@@ -67,7 +67,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'products_detail',
     component: () => import('@/views/products_detail.vue'),
     meta: {
-      title: '信息化产品服务',
+      title: '信息化产品/服务',
       stcode: 'products',
       website: true,
       hashead: true,
@@ -243,7 +243,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'user-renlist',
     component: () => import('@/views/user/renlist.vue'),
     meta: {
-      title: '新材网-数字技工方案论证',
+      title: '新材网-数字技工/方案论证',
       stcode: 'user-renlist',
       website: false,
     },
@@ -253,7 +253,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'user-renfrom',
     component: () => import('@/views/user/renfrom.vue'),
     meta: {
-      title: '新材网-数字技工方案论证',
+      title: '新材网-数字技工/方案论证',
       stcode: 'user-renlist',
       website: false,
     },
@@ -303,7 +303,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'user-itlist',
     component: () => import('@/views/user/itlist.vue'),
     meta: {
-      title: '新材网-信息化产品服务',
+      title: '新材网-信息化产品/服务',
       stcode: 'user-itlist',
       website: false,
     },
@@ -313,7 +313,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'user-itfrom',
     component: () => import('@/views/user/itfrom.vue'),
     meta: {
-      title: '新材网-信息化产品服务',
+      title: '新材网-信息化产品/服务',
       stcode: 'user-itlist',
       website: false,
     },

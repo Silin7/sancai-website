@@ -35,10 +35,10 @@ const menuList: any = ref([
     title: '人材机信价格库',
     zhankai: false,
     children: [
-      { id: '2', title: '数字技工方案论证', path: '/scheme', name: 'scheme' },
+      { id: '2', title: '数字技工/方案论证', path: '/scheme', name: 'scheme' },
       { id: '3', title: '材料/设备', path: '/materials', name: 'materials' },
       { id: '4', title: '智能建造装备', path: '/sale', name: 'sale' },
-      { id: '5', title: '信息化产品服务', path: '/products', name: 'products' },
+      { id: '5', title: '信息化产品/服务', path: '/products', name: 'products' },
     ],
   },
   { id: '6', title: '数据方案组价', path: '/data-solution', name: 'datasolution', children: [] },

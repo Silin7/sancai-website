@@ -3,7 +3,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import backToTop from '@/hooks/backToTop'
 // import sideleft from '@/components/sideleft.vue'
 import sideright from '@/components/sideright.vue'
-import { secpositionsApi, bannerlistApi } from '@/api/modules/basic'
+import { secpositionsApi, bannerlistApi, vippartnersApi, sysinfosApi } from '@/api/modules/basic'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -32,7 +32,13 @@ function getSecpositions() {
 
 function getBannerlist() {
   bannerlistApi(positionid.value).then((res: any) => {
-    bannerList.value = res
+    bannerList.value = res[0]
+  })
+  vippartnersApi().then((res: any) => {
+    console.log('-------->', res)
+  })
+  sysinfosApi().then((res: any) => {
+    console.log('-------->', res)
   })
 }
 
@@ -181,10 +187,10 @@ onBeforeUnmount(() => {
         <div class="containerHeng"></div>
         <div class="containerSubBoxOut">
           <div class="containerSubBox">
-            <div class="containerSubItem containerActive">数字技工方案论证</div>
+            <div class="containerSubItem containerActive">数字技工/方案论证</div>
             <div class="containerSubItem">材料/设备</div>
             <div class="containerSubItem">智能建造装备</div>
-            <div class="containerSubItem">信息化产品服务</div>
+            <div class="containerSubItem">信息化产品/服务</div>
           </div>
         </div>
         <div class="containerGridbox">
@@ -193,15 +199,15 @@ onBeforeUnmount(() => {
             <div class="containerGridContent">
               <div class="containerGridItem">
                 <i class="fa fa-user" style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"></i>
-                <div class="containerGridimginfo">数字技工方案论证</div>
+                <div class="containerGridimginfo">数字技工/方案论证</div>
               </div>
               <div class="containerGridItem">
                 <i class="fa fa-dot-circle-o" style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"></i>
-                <div class="containerGridimginfo">数字技工方案论证</div>
+                <div class="containerGridimginfo">数字技工/方案论证</div>
               </div>
               <div class="containerGridItem">
                 <i class="fa fa-sitemap" style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"></i>
-                <div class="containerGridimginfo">数字技工方案论证</div>
+                <div class="containerGridimginfo">数字技工/方案论证</div>
               </div>
             </div>
           </div>

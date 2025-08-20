@@ -50,7 +50,7 @@ function signOut() {
       </el-menu-item>
       <el-menu-item index="user-renlist" @click="pageJump('user-renlist')">
         <i class="fa fa-users"></i>
-        <span>数字技工方案论证</span>
+        <span>数字技工/方案论证</span>
       </el-menu-item>
       <el-menu-item index="user-cailist" @click="pageJump('user-cailist')">
         <i class="fa fa-dropbox"></i>
@@ -62,7 +62,7 @@ function signOut() {
       </el-menu-item>
       <el-menu-item index="user-itlist" @click="pageJump('user-itlist')">
         <i class="fa fa-info-circle"></i>
-        <span>信息化产品服务</span>
+        <span>信息化产品/服务</span>
       </el-menu-item>
       <el-menu-item index="user-inquirylist" @click="pageJump('user-inquirylist')">
         <i class="fa fa-file-powerpoint-o"></i>

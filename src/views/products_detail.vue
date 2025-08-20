@@ -11,7 +11,7 @@ const value1 = ref(4.8)
         <div class="pdNavigation">
           <span>首页</span>
           <span class="pdNavigationXg">/</span>
-          <span>数字技工方案论证</span>
+          <span>数字技工/方案论证</span>
           <span class="pdNavigationXg">/</span>
           <span class="pdNavigationSp">BIM+多专业碰撞检查服务</span>
         </div>
