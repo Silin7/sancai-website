@@ -5,6 +5,7 @@ import backToTop from '@/hooks/backToTop'
 // import sideleft from '@/components/sideleft.vue'
 import sideright from '@/components/sideright.vue'
 import pageJump from '@/hooks/pageJump'
+import windowOpen from '@/hooks/windowOpen'
 import { secpositionsApi, seccontentApi, bannerlistApi, vippartnersApi } from '@/api/modules/basic'
 
 // 可视窗口宽度
@@ -34,7 +35,7 @@ function getSecpositions() {
 
 function getBannerlist() {
   seccontentApi(positionid.value).then((res: any) => {
-    console.log('-------->', res)
+    console.log('sec-content', res)
   })
   bannerlistApi(positionid.value).then((res: any) => {
     bannerData.value = res[0]
@@ -48,14 +49,6 @@ function getVippartners() {
   vippartnersApi().then((res: any) => {
     vippartners.value = res
   })
-}
-
-// 打开banner外部URL
-function openBanner() {
-  if (!bannerData.value.url) {
-    return
-  }
-  window.open(bannerData.value.url, '_blank')
 }
 
 onMounted(() => {
@@ -76,7 +69,7 @@ onBeforeUnmount(() => {
     <component :is="sideright" ref="siderightRef" @goTopCallback="backToTop" />
     <div class="homePage">
       <!-- BANNER -->
-      <div class="bannerBox" @click="openBanner">
+      <div class="bannerBox" @click="windowOpen(bannerData.url)">
         <div class="bannerAnchor">
           <!-- v-if="windowWidth > 1140"  -->
           <img :src="fileURL + bannerData.imgurl" alt="banner" class="bannerImage" />
@@ -408,7 +401,7 @@ onBeforeUnmount(() => {
           <div class="mxHeng"></div>
           <div class="mxInfo">感谢以下单位对本平台的大力支持与合作</div>
           <div class="mxClassbox">
-            <div v-for="(item, index) in vippartners" :key="index" class="mxClassitem">
+            <div v-for="(item, index) in vippartners" :key="index" class="mxClassitem" @click="windowOpen(item.url)">
               <img :src="fileURL + item.logoimg" alt="" class="mxClassitemfa" />
               <div class="mxClassitemtext">{{ item.company_name }}</div>
             </div>

@@ -32,7 +32,7 @@ function signOut() {
       })
     })
     .catch(() => {
-      console.log('--------> 取消退出')
+      console.log('取消退出')
     })
 }
 </script>

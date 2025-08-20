@@ -49,7 +49,7 @@ function getArticles() {
 
 // function aaa() {
 //   articlescateApi('13').then((res: any) => {
-//     console.log('-------->', res)
+//     console.log(res)
 //   })
 // }
 
