@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { fileURL } from '@/api/baseConfig'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { fileURL } from '@/api/baseConfig'
 import pageJump from '@/hooks/pageJump'
 import { articlescatesApi, articlesApi, articlescateApi } from '@/api/modules/article'
 
@@ -20,6 +20,14 @@ function getArticlescates() {
   })
 }
 
+// 文章分类 active
+const articlesAid: any = ref('')
+
+function articlesChange(id: string) {
+  articlesAid.value = id
+  getArticles()
+}
+
 // 用户端-文章列表（公开接口，支持筛选分页）
 
 const currentPage: any = ref(1)
@@ -31,23 +39,24 @@ function getArticles() {
   articlesApi({
     page: currentPage.value,
     pageSize: pageSize.value,
+    cateId: articlesAid.value,
+    // IN DOUBT cateId 查询条件无效
   }).then((res: any) => {
     total.value = res.total
     articles.value = res.items
   })
 }
 
-function aaa() {
-  articlescateApi('13').then((res: any) => {
-    console.log('-------->', res)
-  })
-}
+// function aaa() {
+//   articlescateApi('13').then((res: any) => {
+//     console.log('-------->', res)
+//   })
+// }
 
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getArticlescates()
   getArticles()
-  aaa()
 })
 
 onBeforeUnmount(() => {
@@ -78,8 +87,11 @@ const selectvalue: any = ref('01')
         <!-- 资讯分类 -->
         <div class="newsClass">
           <div class="newsClassRow">
-            <button class="newsClassColActive">全部</button>
-            <button v-for="(item, index) in articlescates" :key="index" class="newsClassCol">
+            <button :class="articlesAid === '' ? 'newsClassColActive' : 'newsClassCol'" @click="articlesChange('')">
+              全部
+            </button>
+            <button v-for="(item, index) in articlescates" :key="index"
+              :class="articlesAid === item.id ? 'newsClassColActive' : 'newsClassCol'" @click="articlesChange(item.id)">
               {{ item.name }}
             </button>
           </div>
@@ -98,8 +110,9 @@ const selectvalue: any = ref('01')
             </div>
           </div>
           <div class="newsProductsBox">
-            <div class="newsProductsItem" v-for="(item, index) in articles" :key="index"
-              @click="pageJump('news_detail')">
+            <div class="newsProductsItem" v-for="(item, index) in articles" :key="index" @click="pageJump('news_detail', {
+              articlesid: item.id
+            })">
               <div class="newsPiImgBox">
                 <img :src="fileURL + item.thumbnail" class="newsPiImg" />
                 <div class="newsPiImgTag">政策</div>

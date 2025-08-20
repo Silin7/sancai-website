@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as echarts from 'echarts'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import pageJump from '@/hooks/pageJump'
 
 var myChart: any = null
 const echartsMain = ref(null)
@@ -123,9 +124,9 @@ onBeforeUnmount(() => {
     <div class="aidHbox">
       <div class="aidHcontent">
         <div class="aidNavigation">
-          <span>首页</span>
+          <span @click="pageJump('home')">首页</span>
           <span class="aidNavigationXg">/</span>
-          <span>AI赋能应用</span>
+          <span @click="pageJump('ai')">AI赋能应用</span>
           <span class="aidNavigationXg">/</span>
           <span class="aidNavigationSp">AI应用成功案例</span>
         </div>

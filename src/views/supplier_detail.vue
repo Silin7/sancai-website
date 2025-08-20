@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import pageJump from '@/hooks/pageJump'
 
 const windowWidth = ref(window.innerWidth)
 
@@ -23,9 +24,9 @@ const state = ref('gsjs')
     <div class="sdHbox">
       <div class="sdHcontent">
         <div class="sdNavigation">
-          <span>首页</span>
+          <span @click="pageJump('home')">首页</span>
           <span class="sdNavigationXg">/</span>
-          <span>供应商列表</span>
+          <span @click="pageJump('supplier')">供应商列表</span>
           <span class="sdNavigationXg">/</span>
           <span class="sdNavigationSp">杭州筑智信息技术有限公司</span>
         </div>

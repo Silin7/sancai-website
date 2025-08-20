@@ -4,8 +4,8 @@ import { fileURL } from '@/api/baseConfig'
 import backToTop from '@/hooks/backToTop'
 // import sideleft from '@/components/sideleft.vue'
 import sideright from '@/components/sideright.vue'
-import { secpositionsApi, seccontentApi, bannerlistApi, vippartnersApi } from '@/api/modules/basic'
 import pageJump from '@/hooks/pageJump'
+import { secpositionsApi, seccontentApi, bannerlistApi, vippartnersApi } from '@/api/modules/basic'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -42,9 +42,11 @@ function getBannerlist() {
 }
 
 // 用户端-获取所有有效合作单位（按排序升序、创建时间倒序）
+const vippartners: any = ref([])
+
 function getVippartners() {
   vippartnersApi().then((res: any) => {
-    console.log('-------->', res)
+    vippartners.value = res
   })
 }
 
@@ -406,53 +408,9 @@ onBeforeUnmount(() => {
           <div class="mxHeng"></div>
           <div class="mxInfo">感谢以下单位对本平台的大力支持与合作</div>
           <div class="mxClassbox">
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="mxClassitemtext">建筑科技有限公司</div>
-            </div>
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="mxClassitemtext">智能建造研究院</div>
-            </div>
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="mxClassitemtext">绿色建材协会</div>
-            </div>
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="mxClassitemtext">数字工程设计院</div>
-            </div>
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="mxClassitemtext">智慧城市科技</div>
-            </div>
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="pyClassitemtext">建筑信息研究院</div>
-            </div>
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="mxClassitemtext">建筑科技有限公司</div>
-            </div>
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="mxClassitemtext">智能建造研究院</div>
-            </div>
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="mxClassitemtext">绿色建材协会</div>
-            </div>
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="mxClassitemtext">数字工程设计院</div>
-            </div>
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="mxClassitemtext">智慧城市科技</div>
-            </div>
-            <div class="mxClassitem">
-              <img src="/sancai/src/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="mxClassitemfa" />
-              <div class="pyClassitemtext">建筑信息研究院</div>
+            <div v-for="(item, index) in vippartners" :key="index" class="mxClassitem">
+              <img :src="fileURL + item.logoimg" alt="" class="mxClassitemfa" />
+              <div class="mxClassitemtext">{{ item.company_name }}</div>
             </div>
           </div>
         </div>
@@ -1295,6 +1253,7 @@ onBeforeUnmount(() => {
           justify-content: center;
           align-items: center;
           background-color: #fff;
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
           border-radius: 0.75rem;
 
           @media (min-width: 992px) {
@@ -1338,7 +1297,6 @@ onBeforeUnmount(() => {
         .mxClassitem:hover {
           @media (min-width: 768px) {
             cursor: pointer;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             animation: jumpUpwards 300ms ease-in-out forwards;
           }
         }

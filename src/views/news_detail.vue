@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import pageJump from '@/hooks/pageJump'
 import { articledetailApi } from '@/api/modules/article'
+
+// 路由信息
+const route = useRoute()
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -10,16 +15,19 @@ function updateWindowWidth() {
 }
 
 // 文章详情
+const articlesid: any = ref('')
 const articledetail: any = ref({})
 
 function getArticlesdetail() {
-  articledetailApi('3').then((res: any) => {
+  articledetailApi(articlesid.value).then((res: any) => {
     articledetail.value = res
   })
 }
 
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
+  articlesid.value = route.query.articlesid
   getArticlesdetail()
 })
 
@@ -33,9 +41,9 @@ onBeforeUnmount(() => {
     <div class="ndHbox">
       <div class="ndHcontent">
         <div class="ndNavigation">
-          <span>首页</span>
+          <span @click="pageJump('home')">首页</span>
           <span class="ndNavigationXg">/</span>
-          <span>热点资讯</span>
+          <span @click="pageJump('news')">热点资讯</span>
           <span class="ndNavigationXg">/</span>
           <span class="ndNavigationSp">{{ articledetail.title }}</span>
         </div>

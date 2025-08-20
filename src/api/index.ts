@@ -61,7 +61,7 @@ api.interceptors.response.use(
     }
   },
   (error) => {
-    ElMessage.error(error.msg)
+    ElMessage.error(error.response.data.msg)
     return Promise.reject(error)
   },
 )
