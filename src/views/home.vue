@@ -306,12 +306,12 @@ onBeforeUnmount(() => {
           <img :src="pcatePform.img" alt="" />
           <div class="containerGridMaod">
             <div class="containerGridContent">
-              <div v-for="(item, index) in pcateChild" :key="index">
+              <template v-for="(item, index) in pcateChild" :key="index">
                 <div v-if="item.parent_id === pcatePactive" class="containerGridItem">
                   <i :class="['fa', item.theicon]"></i>
                   <div class="containerGridimginfo">{{ item.name }}</div>
                 </div>
-              </div>
+              </template>
             </div>
           </div>
         </div>
@@ -332,13 +332,13 @@ onBeforeUnmount(() => {
           </div>
           <div class="solutionsSubBoxOut">
             <div class="solutionsSubBox">
-              <div v-for="(item, index) in solutionChild" :key="index">
+              <template v-for="(item, index) in solutionChild" :key="index">
                 <div v-if="item.parent_id === solutionPactive"
                   :class="['solutionsSubItem', item.id === solutionCactive ? 'solutionsActive' : '']"
                   @click="solutionCchange(item)">
                   {{ item.name }}
                 </div>
-              </div>
+              </template>
             </div>
           </div>
           <div class="solutionsImg">

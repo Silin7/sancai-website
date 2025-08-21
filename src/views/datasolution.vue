@@ -1,15 +1,39 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
+import { solutioncateApi } from '@/api/modules/common'
 
+// 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
 
 function updateWindowWidth() {
   windowWidth.value = window.innerWidth
 }
 
+// 数字化解决方案
+const solutionPactive: any = ref('')
+const solutionParent: any = ref([])
+const solutionChild: any = ref([])
+
+function getSolutioncate() {
+  solutioncateApi().then((res: any) => {
+    if (res && res.parent_cates && res.parent_cates.length > 0) {
+      solutionPactive.value = res.parent_cates[0].id
+      solutionParent.value = res.parent_cates
+    }
+    if (res && res.child_cates && res.child_cates.length > 0) {
+      solutionChild.value = res.child_cates
+    }
+  })
+}
+
+function solutionPchange(item: any) {
+  solutionPactive.value = item.id
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
+  getSolutioncate()
 })
 
 onBeforeUnmount(() => {
@@ -57,19 +81,24 @@ onBeforeUnmount(() => {
         <div class="digitizeBox">
           <div class="digitizeSubBoxOut">
             <div class="digitizeSubBox">
-              <div class="digitizeSubItem digitizeActive">数字化应用方案</div>
-              <div class="digitizeSubItem">智慧化管理方案</div>
+              <div v-for="(item, index) in solutionParent" :key="index"
+                :class="['digitizeSubItem', item.id === solutionPactive ? 'digitizeActive' : '']"
+                @click="solutionPchange(item)">
+                {{ item.name }}
+              </div>
             </div>
           </div>
           <div class="digitizeClassbox">
-            <div v-for="index in 9" :key="index" class="digitizeClassitem">
-              <div class="digitizeClassitemfa frcc">
-                <i class="fa fa-pencil"></i>
+            <template v-for="(item, index) in solutionChild" :key="index">
+              <div v-if="item.parent_id === solutionPactive" class="digitizeClassitem">
+                <div class="digitizeClassitemfa frcc">
+                  <i :class="['fa', item.theicon]"></i>
+                </div>
+                <div class="digitizeClassitemtext">{{ item.name }}</div>
+                <div class="digitizeClassiteminfo">{{ item.description2 }}</div>
+                <button @click="pageJump('requirements')">提交需求</button>
               </div>
-              <div class="digitizeClassitemtext">智能化设计</div>
-              <div class="digitizeClassiteminfo">基于BIM模型实现工程量精准计算与动态成本管控</div>
-              <button @click="pageJump">提交需求</button>
-            </div>
+            </template>
           </div>
         </div>
       </div>
@@ -272,7 +301,6 @@ onBeforeUnmount(() => {
             color: rgb(1 32 96);
             background-color: #fff;
             border-radius: 9999px;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
             @media (max-width: 768px) {
               padding: 0.375rem 0.875rem;
@@ -289,7 +317,7 @@ onBeforeUnmount(() => {
           }
 
           .digitizeSubItem:hover {
-            @media (max-width: 768px) {
+            @media (min-width: 768px) {
               cursor: pointer;
               background-color: rgb(243 244 246);
             }

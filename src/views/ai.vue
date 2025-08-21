@@ -1,15 +1,39 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
+import { allaiappApi } from '@/api/modules/common'
 
+// 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
 
 function updateWindowWidth() {
   windowWidth.value = window.innerWidth
 }
 
+// 人工智能应用
+const businessAi: any = ref([])
+const bidcostAi: any = ref([])
+
+function getAllaiapp() {
+  allaiappApi().then((res: any) => {
+    businessAi.value = []
+    bidcostAi.value = []
+    if (res && res.length > 0) {
+      res.forEach((item: any) => {
+        if (item.cate_id === 2) {
+          businessAi.value.push(item)
+        }
+        if (item.cate_id === 1) {
+          bidcostAi.value.push(item)
+        }
+      });
+    }
+  })
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
+  getAllaiapp()
 })
 
 onBeforeUnmount(() => {
@@ -49,11 +73,11 @@ onBeforeUnmount(() => {
           <div class="applicationTitle">业务管理+AI赋能组价</div>
           <div class="applicationHeng"></div>
           <div class="applicationClassbox">
-            <div v-for="index in 9" :key="index" class="applicationClassitem">
+            <div v-for="(item, index) in businessAi" :key="index" class="applicationClassitem">
               <div class="applicationClassitemfa frcc">
                 <i class="fa fa-pencil"></i>
               </div>
-              <div class="applicationClassitemtext">智能化设计</div>
+              <div class="applicationClassitemtext">{{ item.name }}</div>
               <!-- <div class="applicationClassiteminfo">
                 基于BIM模型实现工程量精准计算与动态成本管控
               </div> -->
@@ -65,11 +89,11 @@ onBeforeUnmount(() => {
           <div class="applicationTitle">招标造价+AI应用服务</div>
           <div class="applicationHeng"></div>
           <div class="applicationClassbox">
-            <div v-for="index in 4" :key="index" class="applicationClassitem">
+            <div v-for="(item, index) in bidcostAi" :key="index" class="applicationClassitem">
               <div class="applicationClassitemfa frcc">
                 <i class="fa fa-pencil"></i>
               </div>
-              <div class="applicationClassitemtext">智能复核文本</div>
+              <div class="applicationClassitemtext">{{ item.name }}</div>
               <!-- <div class="applicationClassiteminfo">AI自动复核工程文本，减少人为错误</div> -->
               <button>立即体验</button>
             </div>
