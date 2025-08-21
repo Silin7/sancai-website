@@ -29,6 +29,7 @@ function tabRouterPush(item: any) {
   drawerVisible.value = false
 }
 
+// IN DOUBT 位置点[id]是写死的,要和后台对应起来
 const menuList: any = ref([
   { id: '1', title: '系统首页', path: '/', name: 'home', children: [] },
   {

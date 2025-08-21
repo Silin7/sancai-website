@@ -7,6 +7,7 @@ import sideright from '@/components/sideright.vue'
 import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
 import { secpositionsApi, seccontentApi, bannerlistApi, vippartnersApi } from '@/api/modules/basic'
+import { solutioncateApi, pcateApi, allpcateApi, allaiappApi } from '@/api/modules/common'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -15,7 +16,7 @@ function updateWindowWidth() {
   windowWidth.value = window.innerWidth
 }
 
-// 用户端-获取所有启用的文章分类（公开接口）
+// 用户端-获取所有启用的板块位置（含完整字段，按排序升序、创建时间倒序）
 const positionid: any = ref('')
 const bannerData: any = ref([])
 
@@ -23,6 +24,7 @@ function getSecpositions() {
   secpositionsApi().then((res: any) => {
     if (res && res.length > 0) {
       for (let i = 0; i < res.length; i++) {
+        // IN DOUBT 根据路由判断 尽量不根据 name 判断
         if (res[i].name === window.localStorage.getItem('selectedName')) {
           positionid.value = res[i].id
           getBannerlist()
@@ -34,9 +36,11 @@ function getSecpositions() {
 }
 
 function getBannerlist() {
+  // 用户端-按板块位置ID获取最新启用的板块内容（含完整位置信息）
   seccontentApi(positionid.value).then((res: any) => {
     console.log('sec-content', res)
   })
+  // 用户端-按板块位置ID获取所有启用的Banner（含位置名称）
   bannerlistApi(positionid.value).then((res: any) => {
     bannerData.value = res[0]
   })
@@ -51,11 +55,79 @@ function getVippartners() {
   })
 }
 
+// 获取解决方案分类（区分父类和子类）
+const solutionPactive: any = ref('')
+const solutionParent: any = ref([])
+const solutionCactive: any = ref('')
+const solutionCform: any = ref({})
+const solutionChild: any = ref([])
+
+function getSolutioncate() {
+  solutioncateApi().then((res: any) => {
+    if (res && res.parent_cates && res.parent_cates.length > 0) {
+      solutionPactive.value = res.parent_cates[0].id
+      solutionParent.value = res.parent_cates
+    }
+    if (res && res.child_cates && res.child_cates.length > 0) {
+      solutionChild.value = res.child_cates
+      const child = solutionChild.value.find((el: any) => {
+        return el.parent_id === solutionPactive.value
+      })
+      if (child) {
+        solutionCactive.value = child.id
+        solutionCform.value = child
+      }
+    }
+  })
+}
+
+function solutionPchange(item: any) {
+  solutionPactive.value = item.id
+  const child = solutionChild.value.find((el: any) => {
+    return el.parent_id === item.id
+  })
+  if (child) {
+    solutionCactive.value = child.id
+    solutionCform.value = child
+  }
+}
+
+function solutionCchange(item: any) {
+  solutionCactive.value = item.id
+  solutionCform.value = item
+}
+
+// 获取产品分类的所有父类
+function getPcate() {
+  pcateApi().then((res: any) => {
+    console.log('pcateApi', res)
+  })
+}
+
+// 获取产品分类的所有类别
+function getAllpcate() {
+  allpcateApi().then((res: any) => {
+    console.log('allpcateApi', res)
+  })
+}
+
+// 获取所有AI赋能应用
+function getAllaiapp() {
+  allaiappApi().then((res: any) => {
+    console.log('allaiappApi', res)
+  })
+}
+
 onMounted(() => {
   // headerStore.setSelectedTab('home')
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
   getVippartners()
+
+  getSolutioncate()
+  // getPcate()
+  // getAllpcate()
+  // getAllaiapp()
 })
 
 onBeforeUnmount(() => {
@@ -231,34 +303,34 @@ onBeforeUnmount(() => {
           <div class="solutionsHeng"></div>
           <div class="solutionsSubBoxOut">
             <div class="solutionsSubBox">
-              <div class="solutionsSubItem solutionsActive">数字化应用方案</div>
-              <div class="solutionsSubItem">智慧化管理方案</div>
+              <div v-for="(item, index) in solutionParent" :key="index"
+                :class="['solutionsSubItem', item.id === solutionPactive ? 'solutionsActive' : '']"
+                @click="solutionPchange(item)">
+                {{ item.name }}
+              </div>
             </div>
           </div>
           <div class="solutionsSubBoxOut">
             <div class="solutionsSubBox">
-              <div class="solutionsSubItem solutionsActive">BIM+工程造价</div>
-              <div class="solutionsSubItem">BIM+倾斜摄影</div>
-              <div class="solutionsSubItem">BIM+三维扫描</div>
-              <div class="solutionsSubItem">BIM+VR/AR</div>
-              <div class="solutionsSubItem">BIM+物联网</div>
-              <div class="solutionsSubItem">BIM+数字化加工</div>
-              <div class="solutionsSubItem">BIM+地理信息</div>
-              <div class="solutionsSubItem">BIM+放样机器人</div>
-              <div class="solutionsSubItem">BIM+空间资产</div>
+              <div v-for="(item, index) in solutionChild" :key="index">
+                <div v-if="item.parent_id === solutionPactive"
+                  :class="['solutionsSubItem', item.id === solutionCactive ? 'solutionsActive' : '']"
+                  @click="solutionCchange(item)">
+                  {{ item.name }}
+                </div>
+              </div>
             </div>
           </div>
           <div class="solutionsImg">
-            <img src="@/assets/case/fangyang.jpg" alt="banner" style="width: 100%; height: 44rem" />
+            <img v-if="solutionCform.img" :src="solutionCform.img" alt="banner" style="width: 100%; height: 44rem" />
+            <img v-else src="@/assets/case/fangyang.jpg" alt="banner" style="width: 100%; height: 44rem" />
             <div class="solutionsImgTitleMoud">
-              <div class="solutionsImgTitle1">精准定位 自动放样 施工指导</div>
-              <div class="solutionsImgTitle2">BIM+放样机器人</div>
-              <div class="solutionsImgTitle3">施工精度 效率提升 质量保障</div>
+              <div class="solutionsImgTitle1">{{ solutionCform.description1 }}</div>
+              <div class="solutionsImgTitle2">{{ solutionCform.name }}</div>
+              <div class="solutionsImgTitle3">{{ solutionCform.description2 }}</div>
             </div>
             <div class="solutionsImgInfo">
-              <p>
-                通过BIM技术实现工程造价的精准计算与动态管理，提高成本控制能力，减少预算超支风险，为项目全生命周期成本管理提供数据支撑。
-              </p>
+              <p>{{ solutionCform.description3 }}</p>
             </div>
           </div>
         </div>
@@ -935,8 +1007,11 @@ onBeforeUnmount(() => {
           display: flex;
           flex-wrap: nowrap;
 
-          .solutionsSubItem {
+          div {
             flex-shrink: 0;
+          }
+
+          .solutionsSubItem {
             margin: 0 0.5rem;
             line-height: 2rem;
             color: rgb(1 32 96);
@@ -950,13 +1025,13 @@ onBeforeUnmount(() => {
             }
           }
 
-          .solutionsSubItem:first-child {
-            margin-left: 0;
-          }
+          // .solutionsSubItem:first-child {
+          //   margin-left: 0;
+          // }
 
-          .solutionsSubItem:last-child {
-            margin-right: 0;
-          }
+          // .solutionsSubItem:last-child {
+          //   margin-right: 0;
+          // }
 
           .solutionsSubItem:hover {
             @media (min-width: 768px) {
