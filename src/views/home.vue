@@ -97,18 +97,32 @@ function solutionCchange(item: any) {
   solutionCform.value = item
 }
 
-// 获取产品分类的所有父类
-function getPcate() {
-  pcateApi().then((res: any) => {
-    console.log('pcateApi', res)
+// 获取产品分类的所有类别
+const pcatePactive: any = ref('')
+const pcatePform: any = ref({})
+const pcateParent: any = ref([])
+const pcateChild: any = ref([])
+function getAllpcate() {
+  allpcateApi().then((res: any) => {
+    pcateParent.value = []
+    pcateChild.value = []
+    if (res && res.length > 0) {
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].parent_id === 0) {
+          pcateParent.value.push(res[i])
+        } else {
+          pcateChild.value.push(res[i])
+        }
+      }
+      pcatePactive.value = pcateParent.value[0].id
+      pcatePform.value = pcateParent.value[0]
+    }
   })
 }
 
-// 获取产品分类的所有类别
-function getAllpcate() {
-  allpcateApi().then((res: any) => {
-    console.log('allpcateApi', res)
-  })
+function pcatePchange(item: any) {
+  pcatePactive.value = item.id
+  pcatePform.value = item
 }
 
 // 获取所有AI赋能应用
@@ -125,9 +139,8 @@ onMounted(() => {
   getVippartners()
 
   getSolutioncate()
-  // getPcate()
-  // getAllpcate()
-  // getAllaiapp()
+  getAllpcate()
+  getAllaiapp()
 })
 
 onBeforeUnmount(() => {
@@ -270,27 +283,22 @@ onBeforeUnmount(() => {
         <div class="containerHeng"></div>
         <div class="containerSubBoxOut">
           <div class="containerSubBox">
-            <div class="containerSubItem containerActive">数字技工/方案论证</div>
-            <div class="containerSubItem">材料/设备</div>
-            <div class="containerSubItem">智能建造装备</div>
-            <div class="containerSubItem">信息化产品/服务</div>
+            <div v-for="(item, index) in pcateParent" :key="index"
+              :class="['containerSubItem', item.id === pcatePactive ? 'containerActive' : '']"
+              @click="pcatePchange(item)">
+              {{ item.name }}
+            </div>
           </div>
         </div>
         <div class="containerGridbox">
-          <img src="@/assets/product02.jpeg" alt="" />
+          <img :src="pcatePform.img" alt="" />
           <div class="containerGridMaod">
             <div class="containerGridContent">
-              <div class="containerGridItem">
-                <i class="fa fa-user" style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"></i>
-                <div class="containerGridimginfo">数字技工/方案论证</div>
-              </div>
-              <div class="containerGridItem">
-                <i class="fa fa-dot-circle-o" style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"></i>
-                <div class="containerGridimginfo">数字技工/方案论证</div>
-              </div>
-              <div class="containerGridItem">
-                <i class="fa fa-sitemap" style="font-size: 1.25rem; color: #165dff; margin-right: 0.75rem"></i>
-                <div class="containerGridimginfo">数字技工/方案论证</div>
+              <div v-for="(item, index) in pcateChild" :key="index">
+                <div v-if="item.parent_id === pcatePactive" class="containerGridItem">
+                  <i :class="['fa', item.theicon]"></i>
+                  <div class="containerGridimginfo">{{ item.name }}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -939,6 +947,12 @@ onBeforeUnmount(() => {
               margin-right: 0;
               padding: 0.5rem;
               width: 100%;
+            }
+
+            i {
+              font-size: 1.25rem;
+              color: #165dff;
+              margin-right: 0.75rem
             }
 
             .containerGridimginfo {
