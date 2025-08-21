@@ -25,16 +25,20 @@ const articlesAid: any = ref('')
 
 function articlesChange(id: string) {
   articlesAid.value = id
-  getArticles()
+  if (id === '') {
+    getArticles()
+  } else {
+    getArticlescate()
+  }
 }
 
-// 用户端-文章列表（公开接口，支持筛选分页）
 
 const currentPage: any = ref(1)
 const pageSize: any = ref(10)
 const total: any = ref(0)
 const articles: any = ref([])
 
+// 用户端-文章列表
 function getArticles() {
   articlesApi({
     page: currentPage.value,
@@ -47,11 +51,16 @@ function getArticles() {
   })
 }
 
-// function aaa() {
-//   articlescateApi('13').then((res: any) => {
-//     console.log(res)
-//   })
-// }
+// 用户端-按分类ID获取文章列表
+function getArticlescate() {
+  articlescateApi(articlesAid.value, {
+    page: currentPage.value,
+    pageSize: pageSize.value,
+  }).then((res: any) => {
+    total.value = res.total
+    articles.value = res.items
+  })
+}
 
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
@@ -109,7 +118,7 @@ const selectvalue: any = ref('01')
               </el-select>
             </div>
           </div>
-          <div class="newsProductsBox">
+          <div v-if="total > 0" class="newsProductsBox">
             <div class="newsProductsItem" v-for="(item, index) in articles" :key="index" @click="pageJump('news_detail', {
               articlesid: item.id
             })">

@@ -13,8 +13,10 @@ export function articlesApi(params: any) {
 }
 
 // 用户端-按分类ID获取文章列表（公开接口）
-export function articlescateApi(cateid: any) {
-  return api.get(`/api/client/articles/cate/${cateid}`)
+export function articlescateApi(cateid: any, params: any) {
+  return api.get(`/api/client/articles/cate/${cateid}`, {
+    params,
+  })
 }
 
 // 用户端-获取文章详情（公开接口）
@@ -23,6 +25,6 @@ export function articledetailApi(articleid: any) {
 }
 
 // 用户端-收藏或取消收藏文章（需登录）
-export function articlecollectApi(articleid: any) {
+export function articlescollectApi(articleid: any) {
   return api.post(`/api/client/articles/${articleid}/collect`)
 }
