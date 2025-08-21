@@ -55,7 +55,7 @@ function getVippartners() {
   })
 }
 
-// 获取解决方案分类（区分父类和子类）
+// 数字化解决方案
 const solutionPactive: any = ref('')
 const solutionParent: any = ref([])
 const solutionCactive: any = ref('')
@@ -97,7 +97,7 @@ function solutionCchange(item: any) {
   solutionCform.value = item
 }
 
-// 获取产品分类的所有类别
+// 人材机信价格库
 const pcatePactive: any = ref('')
 const pcatePform: any = ref({})
 const pcateParent: any = ref([])
@@ -125,19 +125,31 @@ function pcatePchange(item: any) {
   pcatePform.value = item
 }
 
-// 获取所有AI赋能应用
+// 人工智能应用
+const businessAi: any = ref([])
+const bidcostAi: any = ref([])
+
 function getAllaiapp() {
   allaiappApi().then((res: any) => {
-    console.log('allaiappApi', res)
+    businessAi.value = []
+    bidcostAi.value = []
+    if (res && res.length > 0) {
+      res.forEach((item: any) => {
+        if (item.cate_id === 2) {
+          businessAi.value.push(item)
+        }
+        if (item.cate_id === 1) {
+          bidcostAi.value.push(item)
+        }
+      });
+    }
   })
 }
 
 onMounted(() => {
-  // headerStore.setSelectedTab('home')
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
   getVippartners()
-
   getSolutioncate()
   getAllpcate()
   getAllaiapp()
@@ -355,59 +367,11 @@ onBeforeUnmount(() => {
             <div class="aiSubtitle">业务管理+AI赋能组价</div>
           </div>
           <div class="aiClassbox">
-            <div class="aiClassitem">
+            <div v-for="(item, index) in businessAi" :key="index" class="aiClassitem">
               <div class="aiClassitemfa frcc">
-                <i class="fa fa-paint-brush" style="font-size: 1.5rem; color: #165dff"></i>
+                <i class="fa fa-paint-brush"></i>
               </div>
-              <div class="aiClassitemtext">智能化设计</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa frcc">
-                <i class="fa fa-wrench" style="font-size: 1.5rem; color: #165dff"></i>
-              </div>
-              <div class="aiClassitemtext">辅助设计工具</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa frcc">
-                <i class="fa fa-android" style="font-size: 1.5rem; color: #165dff"></i>
-              </div>
-              <div class="aiClassitemtext">建筑机器人</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa frcc">
-                <i class="fa fa-tasks" style="font-size: 1.5rem; color: #165dff"></i>
-              </div>
-              <div class="aiClassitemtext">施工管理</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa frcc">
-                <i class="fa fa-check-square" style="font-size: 1.5rem; color: #165dff"></i>
-              </div>
-              <div class="aiClassitemtext">辅助质量控制</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa frcc">
-                <i class="fa fa-sliders" style="font-size: 1.5rem; color: #165dff"></i>
-              </div>
-              <div class="aiClassitemtext">智能化控制</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa frcc">
-                <i class="fa fa-bolt" style="font-size: 1.5rem; color: #165dff"></i>
-              </div>
-              <div class="aiClassitemtext">能源管理</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa frcc">
-                <i class="fa fa-arrows-alt" style="font-size: 1.5rem; color: #165dff"></i>
-              </div>
-              <div class="aiClassitemtext">场景拓展</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa frcc">
-                <i class="fa fa-random" style="font-size: 1.5rem; color: #165dff"></i>
-              </div>
-              <div class="aiClassitemtext">跨界融合</div>
+              <div class="aiClassitemtext">{{ item.name }}</div>
             </div>
           </div>
           <div class="aiSubbox">
@@ -417,59 +381,11 @@ onBeforeUnmount(() => {
             <div class="aiSubtitle">招标造价+AI应用服务</div>
           </div>
           <div class="aiClassbox">
-            <div class="aiClassitem">
+            <div v-for="(item, index) in bidcostAi" :key="index" class="aiClassitem">
               <div class="aiClassitemfa2 frcc">
-                <i class="fa fa-check-circle" style="font-size: 1.5rem; color: #722ed1"></i>
+                <i class="fa fa-check-circle"></i>
               </div>
-              <div class="aiClassitemtext">智能校核施工图</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa2 frcc">
-                <i class="fa fa-calculator" style="font-size: 1.5rem; color: #722ed1"></i>
-              </div>
-              <div class="aiClassitemtext">智能识别工程量与计算</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa2 frcc">
-                <i class="fa fa-line-chart" style="font-size: 1.5rem; color: #722ed1"></i>
-              </div>
-              <div class="aiClassitemtext">智能分析模型计量结果</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa2 frcc">
-                <i class="fa fa-sliders" style="font-size: 1.5rem; color: #722ed1"></i>
-              </div>
-              <div class="aiClassitemtext">智能管控动态成本</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa2 frcc">
-                <i class="fa fa-history" style="font-size: 1.5rem; color: #722ed1"></i>
-              </div>
-              <div class="aiClassitemtext">全过程造价数据追溯</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa2 frcc">
-                <i class="fa fa-file-text" style="font-size: 1.5rem; color: #722ed1"></i>
-              </div>
-              <div class="aiClassitemtext">智能生成招标文件</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa2 frcc">
-                <i class="fa fa-file-text-o" style="font-size: 1.5rem; color: #722ed1"></i>
-              </div>
-              <div class="aiClassitemtext">智能生成投标文件</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa2 frcc">
-                <i class="fa fa-balance-scale" style="font-size: 1.5rem; color: #722ed1"></i>
-              </div>
-              <div class="aiClassitemtext">智能对比投标响应程度</div>
-            </div>
-            <div class="aiClassitem">
-              <div class="aiClassitemfa2 frcc">
-                <i class="fa fa-list" style="font-size: 1.5rem; color: #722ed1"></i>
-              </div>
-              <div class="aiClassitemtext">智能生成评标分析表</div>
+              <div class="aiClassitemtext">{{ item.name }}</div>
             </div>
           </div>
         </div>
@@ -1239,6 +1155,11 @@ onBeforeUnmount(() => {
               width: 3rem;
               height: 3rem;
             }
+
+            i {
+              font-size: 1.5rem;
+              color: #165dff
+            }
           }
 
           .aiClassitemfa2 {
@@ -1251,6 +1172,11 @@ onBeforeUnmount(() => {
             @media (max-width: 768px) {
               width: 3rem;
               height: 3rem;
+            }
+
+            i {
+              font-size: 1.5rem;
+              color: #722ed1
             }
           }
 
