@@ -4,6 +4,7 @@ import api from '@/api/index'
 export function secpositionsApi() {
   return api.get('/api/client/sysbase/sec-positions')
 }
+
 // 用户端-按板块位置ID获取最新启用的板块内容（含完整位置信息）
 export function seccontentApi(positionid: any) {
   return api.get(`/api/client/sysbase/sec-content/${positionid}`)
