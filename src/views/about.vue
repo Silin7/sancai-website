@@ -1,14 +1,47 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { fileURL } from '@/api/baseConfig'
+import pageJump from '@/hooks/pageJump'
+import windowOpen from '@/hooks/windowOpen'
+import { bannerlistApi, secpositionsApi } from '@/api/modules/basic'
 
+// 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
 
 function updateWindowWidth() {
   windowWidth.value = window.innerWidth
 }
 
+// 用户端-获取所有启用的板块位置（含完整字段，按排序升序、创建时间倒序）
+const positionid: any = ref('')
+const bannerData: any = ref([])
+
+function getSecpositions() {
+  secpositionsApi().then((res: any) => {
+    if (res && res.length > 0) {
+      for (let i = 0; i < res.length; i++) {
+        // IN DOUBT 根据路由判断 尽量不根据 name 判断
+        if (res[i].name === window.localStorage.getItem('selectedName')) {
+          positionid.value = res[i].id
+          getBannerlist()
+          break
+        }
+      }
+    }
+  })
+}
+
+function getBannerlist() {
+  // 用户端-按板块位置ID获取所有启用的Banner（含位置名称）
+  bannerlistApi(positionid.value).then((res: any) => {
+    bannerData.value = res[0]
+  })
+}
+
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
+  getSecpositions()
 })
 
 onBeforeUnmount(() => {
@@ -20,15 +53,15 @@ onBeforeUnmount(() => {
   <div>
     <div class="aboutPage">
       <!-- BANNER -->
-      <div class="abbannerBox">
-        <img src="@/assets/about-02.jpg" alt="abbanner" />
+      <div class="abbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
+        <img :src="fileURL + bannerData.imgurl" alt="abbanner" />
         <div class="abbannerAbsolute">
           <div class="abbannerContent">
             <div class="abbannerTitle">杭州三才工程信息科技有限公司</div>
             <div class="abbannerSubtitle">工程项目数字化服务与产品的国家高新技术企业</div>
             <div class="frsc">
-              <button class="abbannerJgkbtn">了解我们</button>
-              <button class="abbannerJjfabtn">核心业务</button>
+              <button class="abbannerJgkbtn" @click.stop="">了解我们</button>
+              <button class="abbannerJjfabtn" @click.stop="">核心业务</button>
             </div>
           </div>
         </div>

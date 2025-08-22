@@ -2,6 +2,8 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { fileURL } from '@/api/baseConfig'
 import pageJump from '@/hooks/pageJump'
+import windowOpen from '@/hooks/windowOpen'
+import { bannerlistApi, secpositionsApi } from '@/api/modules/basic'
 import { articlescatesApi, articlesApi, articlescateApi } from '@/api/modules/article'
 
 // 可视窗口宽度
@@ -9,6 +11,32 @@ const windowWidth = ref(window.innerWidth)
 
 function updateWindowWidth() {
   windowWidth.value = window.innerWidth
+}
+
+// 用户端-获取所有启用的板块位置（含完整字段，按排序升序、创建时间倒序）
+const positionid: any = ref('')
+const bannerData: any = ref([])
+
+function getSecpositions() {
+  secpositionsApi().then((res: any) => {
+    if (res && res.length > 0) {
+      for (let i = 0; i < res.length; i++) {
+        // IN DOUBT 根据路由判断 尽量不根据 name 判断
+        if (res[i].name === window.localStorage.getItem('selectedName')) {
+          positionid.value = res[i].id
+          getBannerlist()
+          break
+        }
+      }
+    }
+  })
+}
+
+function getBannerlist() {
+  // 用户端-按板块位置ID获取所有启用的Banner（含位置名称）
+  bannerlistApi(positionid.value).then((res: any) => {
+    bannerData.value = res[0]
+  })
 }
 
 // 用户端-获取所有启用的文章分类（公开接口）
@@ -64,6 +92,7 @@ function getArticlescate() {
 
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
+  getSecpositions()
   getArticlescates()
   getArticles()
 })
@@ -78,15 +107,15 @@ const selectvalue: any = ref('01')
 <template>
   <div class="newsPage">
     <!-- BANNER -->
-    <div class="nsbannerBox">
-      <img src="@/assets/news-banner.jpg" alt="nsbanner" />
+    <div class="nsbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
+      <img :src="fileURL + bannerData.imgurl" alt="nsbanner" />
       <div class="nsbannerAbsolute">
         <div class="nsbannerContent">
           <div class="nsbannerTitle">热点资讯</div>
           <div class="nsbannerSubtitle">
             聚焦建筑行业数字化转型，提供最新政策、标准、案例和市场动态
           </div>
-          <button class="nsbannerLlspbtn">浏览视频</button>
+          <button class="nsbannerLlspbtn" @click.stop="">浏览视频</button>
         </div>
       </div>
     </div>
@@ -238,6 +267,13 @@ const selectvalue: any = ref('01')
 
           @media (max-width: 768px) {
             padding: 0.75rem 1.5rem;
+          }
+        }
+
+        .nsbannerLlspbtn:hover {
+          @media (min-width: 768px) {
+            transform: scale(1.05);
+            box-shadow: 2px 2px 10px 0 rgb(22 93 255);
           }
         }
       }

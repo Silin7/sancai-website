@@ -166,7 +166,7 @@ onBeforeUnmount(() => {
     <component :is="sideright" ref="siderightRef" @goTopCallback="backToTop" />
     <div class="homePage">
       <!-- BANNER -->
-      <div class="bannerBox" @click="windowOpen(bannerData.url)">
+      <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
         <div class="bannerAnchor">
           <!-- v-if="windowWidth > 1140"  -->
           <img :src="fileURL + bannerData.imgurl" alt="banner" class="bannerImage" />
@@ -342,8 +342,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
           <div class="solutionsImg">
-            <img v-if="solutionCform.img" :src="solutionCform.img" alt="banner" style="width: 100%; height: 44rem" />
-            <img v-else src="@/assets/case/fangyang.jpg" alt="banner" style="width: 100%; height: 44rem" />
+            <img :src="solutionCform.img" alt="" style="width: 100%; height: 44rem" />
             <div class="solutionsImgTitleMoud">
               <div class="solutionsImgTitle1">{{ solutionCform.description1 }}</div>
               <div class="solutionsImgTitle2">{{ solutionCform.name }}</div>

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { fileURL } from '@/api/baseConfig'
 import pageJump from '@/hooks/pageJump'
+import windowOpen from '@/hooks/windowOpen'
+import { bannerlistApi, secpositionsApi } from '@/api/modules/basic'
 import { solutioncateApi } from '@/api/modules/common'
 
 // 可视窗口宽度
@@ -8,6 +11,32 @@ const windowWidth = ref(window.innerWidth)
 
 function updateWindowWidth() {
   windowWidth.value = window.innerWidth
+}
+
+// 用户端-获取所有启用的板块位置（含完整字段，按排序升序、创建时间倒序）
+const positionid: any = ref('')
+const bannerData: any = ref([])
+
+function getSecpositions() {
+  secpositionsApi().then((res: any) => {
+    if (res && res.length > 0) {
+      for (let i = 0; i < res.length; i++) {
+        // IN DOUBT 根据路由判断 尽量不根据 name 判断
+        if (res[i].name === window.localStorage.getItem('selectedName')) {
+          positionid.value = res[i].id
+          getBannerlist()
+          break
+        }
+      }
+    }
+  })
+}
+
+function getBannerlist() {
+  // 用户端-按板块位置ID获取所有启用的Banner（含位置名称）
+  bannerlistApi(positionid.value).then((res: any) => {
+    bannerData.value = res[0]
+  })
 }
 
 // 数字化解决方案
@@ -33,6 +62,7 @@ function solutionPchange(item: any) {
 
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
+  getSecpositions()
   getSolutioncate()
 })
 
@@ -46,8 +76,8 @@ onBeforeUnmount(() => {
   <div>
     <div class="datasolutionPage">
       <!-- BANNER -->
-      <div class="dsbannerBox">
-        <img src="@/assets/solution-banner01.jpeg" alt="dsbanner" />
+      <div class="dsbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
+        <img :src="fileURL + bannerData.imgurl" alt="dsbanner" />
         <div class="dsbannerAbsolute">
           <div class="dsbannerContent">
             <div class="dsbannerTitle">为新城建提供绿色化 数字化 智能化综合解决方案</div>
@@ -55,7 +85,7 @@ onBeforeUnmount(() => {
               信息技术深度赋能城市建设 有效应对并满足建设管理过程中多维度、多场景需求
             </div> -->
             <div class="frsc">
-              <button class="dsbannerJgkbtn" @click="pageJump('requirements')">提交需求</button>
+              <button class="dsbannerJgkbtn" @click.stop="pageJump('requirements')">提交需求</button>
             </div>
           </div>
         </div>

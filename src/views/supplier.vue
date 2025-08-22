@@ -1,16 +1,47 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
+import { fileURL } from '@/api/baseConfig'
 import pageJump from '@/hooks/pageJump'
+import windowOpen from '@/hooks/windowOpen'
+import { bannerlistApi, secpositionsApi } from '@/api/modules/basic'
 
+// 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
 
 function updateWindowWidth() {
   windowWidth.value = window.innerWidth
 }
 
+// 用户端-获取所有启用的板块位置（含完整字段，按排序升序、创建时间倒序）
+const positionid: any = ref('')
+const bannerData: any = ref([])
+
+function getSecpositions() {
+  secpositionsApi().then((res: any) => {
+    if (res && res.length > 0) {
+      for (let i = 0; i < res.length; i++) {
+        // IN DOUBT 根据路由判断 尽量不根据 name 判断
+        if (res[i].name === window.localStorage.getItem('selectedName')) {
+          positionid.value = res[i].id
+          getBannerlist()
+          break
+        }
+      }
+    }
+  })
+}
+
+function getBannerlist() {
+  // 用户端-按板块位置ID获取所有启用的Banner（含位置名称）
+  bannerlistApi(positionid.value).then((res: any) => {
+    bannerData.value = res[0]
+  })
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
+  getSecpositions()
 })
 
 onBeforeUnmount(() => {
@@ -34,8 +65,8 @@ const input2: any = ref()
 <template>
   <div class="supplierPage">
     <!-- BANNER -->
-    <div class="srbannerBox">
-      <img src="@/assets/partner_banner.jpg" alt="srbanner" />
+    <div class="srbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
+      <img :src="fileURL + bannerData.imgurl" alt="srbanner" />
       <div class="srbannerAbsolute">
         <div class="srbannerContent">
           <div class="srbannerTitle">供应商列表</div>
