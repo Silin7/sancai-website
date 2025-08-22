@@ -19,3 +19,8 @@ export function allpcateApi() {
 export function allaiappApi() {
   return api.get('/api/client/syscate/allaiapp')
 }
+
+// 获取前20个友情链接
+export function flinktopApi() {
+  return api.get('/api/client/syscate/flink/top20')
+}

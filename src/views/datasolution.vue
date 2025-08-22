@@ -4,7 +4,7 @@ import { fileURL } from '@/api/baseConfig'
 import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
 import { bannerlistApi, secpositionsApi } from '@/api/modules/basic'
-import { solutioncateApi } from '@/api/modules/common'
+import { solutioncateApi, flinktopApi } from '@/api/modules/common'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -60,10 +60,22 @@ function solutionPchange(item: any) {
   solutionPactive.value = item.id
 }
 
+// 友情链接
+const flinktop: any = ref([])
+
+function getFlinktop() {
+  flinktopApi().then((res: any) => {
+    if (res && res.length > 0) {
+      flinktop.value = res
+    }
+  })
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
   getSolutioncate()
+  getFlinktop()
 })
 
 onBeforeUnmount(() => {
@@ -138,35 +150,11 @@ onBeforeUnmount(() => {
         <div class="gysHeng"></div>
         <div class="gysInfo">与行业领先企业及机构建立合作，共同推动建筑行业数字化转型</div>
         <div class="gysClassbox">
-          <div class="gysClassitem">
-            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="gysClassitemfa" />
-            <div class="gysClassitemtext">建筑科技有限公司</div>
-            <div class="gysClassiteminfo">专注建筑科技创新</div>
-          </div>
-          <div class="gysClassitem">
-            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="gysClassitemfa" />
-            <div class="gysClassitemtext">智能建造研究院</div>
-            <div class="gysClassiteminfo">建筑智能化研究</div>
-          </div>
-          <div class="gysClassitem">
-            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="gysClassitemfa" />
-            <div class="gysClassitemtext">绿色建材协会</div>
-            <div class="gysClassiteminfo">推广绿色建筑材料</div>
-          </div>
-          <div class="gysClassitem">
-            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="gysClassitemfa" />
-            <div class="gysClassitemtext">数字工程设计院</div>
-            <div class="gysClassiteminfo">数字化工程设计</div>
-          </div>
-          <div class="gysClassitem">
-            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="gysClassitemfa" />
-            <div class="gysClassitemtext">智慧城市科技</div>
-            <div class="gysClassiteminfo">智慧城市解决方案</div>
-          </div>
-          <div class="gysClassitem">
-            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="gysClassitemfa" />
-            <div class="gysClassitemtext">建筑信息研究院</div>
-            <div class="gysClassiteminfo">建筑信息研究应用</div>
+          <div v-for="(item, index) in flinktop" :key="index" class="gysClassitem"
+            @click="windowOpen(item.link_url, true)">
+            <img :src="fileURL + item.logo" alt="" class="gysClassitemfa" />
+            <div class="gysClassitemtext">{{ item.name }}</div>
+            <div class="gysClassiteminfo">{{ item.remark }} </div>
           </div>
         </div>
       </div>
@@ -544,7 +532,7 @@ onBeforeUnmount(() => {
       }
 
       .gysClassitem:hover {
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
           cursor: pointer;
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
           animation: jumpUpwards 300ms ease-in-out forwards;
