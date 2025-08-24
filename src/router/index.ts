@@ -195,6 +195,18 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/article_detail',
+    name: 'article_detail',
+    component: () => import('@/views/article_detail.vue'),
+    meta: {
+      title: '文章详情',
+      stcode: 'article',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('@/views/login.vue'),

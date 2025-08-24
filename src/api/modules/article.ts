@@ -28,3 +28,18 @@ export function articledetailApi(articleid: any) {
 export function articlescollectApi(articleid: any) {
   return api.post(`/api/client/articles/${articleid}/collect`)
 }
+
+// 用户端-获取所有启用的单页文章（简化字段：ID、链接标识、标题、简介）
+export function articleallsimpleApi() {
+  return api.get("/api/client/particle/particles/all-simple")
+}
+
+// 用户端 - 按链接标识获取单页文章详情（如'about-us'获取关于我们页面）
+export function articlebyurlApi(theurl: any) {
+  return api.get(`/api/client/particle/particles/by-url/${theurl}`)
+}
+
+// 用户端-按ID获取单页文章详情
+export function articleparticleApi(particleid: any) {
+  return api.get(`/api/client/particle/particles/${particleid}`)
+}

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import pageJump from '@/hooks/pageJump'
 
 const checked1: any = ref(true)
 const checked2: any = ref(false)
@@ -41,10 +42,17 @@ const yzm: any = ref('')
       <div class="statement">
         <img v-if="checked3" src="@/assets/register/checked.png" alt="" />
         <img v-else src="@/assets/register/unchecked.png" alt="" />
-        我已阅读并同意<span>《新材网用户服务协议》</span>和<span>《新材网隐私政策声明》</span>
+        我已阅读并同意
+        <span @click="pageJump('article_detail', {
+          theurl: 'user-service-agreement'
+        })">《新材网用户服务协议》</span>
+        和
+        <span @click="pageJump('article_detail', {
+          theurl: 'privacy-policy-statement'
+        })">《新材网隐私政策声明》</span>
       </div>
       <button class="createAccount">创建账号</button>
-      <div class="gologin">已有账号？<span>立即登录</span></div>
+      <div class="gologin">已有账号？<span @click="pageJump('login')">立即登录</span></div>
     </div>
     <div class="copyright">
       Copyright ©2025 新材网 版权所有 浙ICP备123456789-1号浙公网安备37000000号

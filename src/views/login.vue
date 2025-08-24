@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import pageJump from '@/hooks/pageJump'
 
 const state: any = ref('kj')
 
@@ -45,7 +46,7 @@ const yzm: any = ref('')
         </div>
       </div>
       <button class="createAccount">登录</button>
-      <div v-if="state === 'kj'" class="gologin">还没账户？<span>免费注册</span></div>
+      <div v-if="state === 'kj'" class="gologin">还没账户？<span @click="pageJump('register')">免费注册</span></div>
     </div>
     <div class="copyright">
       Copyright ©2025 新材网 版权所有 浙ICP备123456789-1号浙公网安备37000000号
