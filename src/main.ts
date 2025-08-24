@@ -1,7 +1,12 @@
 import { createApp } from 'vue'
+import { createHead } from '@vueuse/head'
 
 import App from './App.vue'
 const app = createApp(App)
+
+// Vue Meta seo优化
+const head = createHead()
+app.use(head)
 
 // 自定义样式 custom style
 import '@/styleSheet/index.scss'
