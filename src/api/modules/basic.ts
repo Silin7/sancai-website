@@ -24,3 +24,8 @@ export function vippartnersApi() {
 export function sysinfosApi() {
   return api.get('/api/client/sysbase/sysinfos')
 }
+
+// 用户端-根据页面ID（page_id）获取启用的SEO配置详情（含页面名称）
+export function syspseoApi(positionid: any) {
+  return api.get(`/api/client/sysbase/pseo/${positionid}`)
+}
