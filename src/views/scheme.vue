@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import * as echarts from 'echarts'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useHead } from '@vueuse/head'
 import { Search } from '@element-plus/icons-vue'
 import { fileURL } from '@/api/baseConfig'
 import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
-import { bannerlistApi, secpositionsApi } from '@/api/modules/basic'
+import { bannerlistApi, secpositionsApi, syspseoApi } from '@/api/modules/basic'
 
 var myChart: any = null
 
@@ -135,6 +136,18 @@ function getBannerlist() {
   // 用户端-按板块位置ID获取所有启用的Banner（含位置名称）
   bannerlistApi(positionid.value).then((res: any) => {
     bannerData.value = res[0]
+  })
+  // 用户端-根据页面ID（page_id）获取启用的SEO配置详情（含页面名称）
+  syspseoApi(positionid.value).then((res: any) => {
+    if (res) {
+      useHead({
+        title: res.page_name,
+        meta: [
+          { name: 'description', content: res.description },
+          { name: 'keywords', content: res.keywords },
+        ]
+      })
+    }
   })
 }
 

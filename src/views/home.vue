@@ -48,6 +48,7 @@ function getBannerlist() {
         title: res.page_name,
         meta: [
           { name: 'description', content: res.description },
+          { name: 'keywords', content: res.keywords },
         ]
       })
     }
