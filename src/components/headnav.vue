@@ -164,8 +164,8 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <div class="mobileBtns">
-        <button class="mobileDlbtn" @click="pageJump('login')">登录</button>
-        <button class="mobileZcbtn" @click="pageJump('register')">注册</button>
+        <button class="mobileDlbtn" @click="tabRouterPush({ name: 'login' })">登录</button>
+        <button class="mobileZcbtn" @click="tabRouterPush({ name: 'register' })">注册</button>
       </div>
     </el-drawer>
   </div>

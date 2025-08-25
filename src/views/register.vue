@@ -62,7 +62,9 @@ const yzm: any = ref('')
 
 <style lang="scss">
 .registerPage {
+  overflow-y: auto;
   position: fixed;
+  padding: 1rem;
   width: 100vw;
   height: 100vh;
   background-image: url('../assets/banner00.jpeg');
@@ -72,13 +74,18 @@ const yzm: any = ref('')
   background-position: right;
 
   .registerbox {
-    position: absolute;
-    top: 20%;
-    right: 20%;
-    padding: 30px 50px 50px;
-    width: 30rem;
+    margin-top: 4rem;
+    padding: 2rem 1rem;
     background: rgba(255, 255, 255, 1);
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    @media (min-width: 768px) {
+      position: absolute;
+      top: 20%;
+      right: 20%;
+      padding: 30px 50px 50px;
+      width: 30rem;
+    }
 
     .hyzc {
       margin-bottom: 25px;
@@ -210,15 +217,19 @@ const yzm: any = ref('')
   }
 
   .copyright {
-    position: absolute;
-    bottom: 44px;
-    width: 100%;
+    margin-top: calc(100vh - 47rem);
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 0px;
     line-height: 26px;
     color: rgba(245, 245, 245, 1);
     text-align: center;
+
+    @media (min-width: 768px) {
+      position: absolute;
+      bottom: 44px;
+      width: 100%;
+    }
   }
 }
 </style>
