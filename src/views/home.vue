@@ -194,7 +194,7 @@ onBeforeUnmount(() => {
       <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
         <div class="bannerAnchor">
           <!-- v-if="windowWidth > 1140"  -->
-          <img :src="fileURL + bannerData.imgurl" alt="banner" class="bannerImage" />
+          <img v-if="windowWidth > 1140" :src="fileURL + bannerData.imgurl" alt="banner" class="bannerImage" />
           <div class="bannerAbsolute">
             <div class="bannerContent">
               <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
@@ -460,21 +460,27 @@ onBeforeUnmount(() => {
       position: relative;
       width: 100%;
       max-width: 1536px;
-      height: 44rem;
+
+      @media (min-width: 992px) {
+        height: 34.5rem;
+      }
+
+      @media (max-width: 992px) and (min-width: 768px) {
+        height: 40rem;
+      }
 
       @media (max-width: 768px) {
-        height: 46rem;
+        height: 41.25rem;
       }
 
       .bannerImage {
         position: absolute;
-        right: 10%;
+        right: 0;
         top: 0;
         z-index: 0;
         width: auto;
-        max-width: 50%;
-        // height: 100%;
-        object-fit: contain;
+        max-width: 100%;
+        height: 100%;
 
         @media (max-width: 768px) {
           height: auto;
@@ -594,6 +600,9 @@ onBeforeUnmount(() => {
                 height: 3rem;
                 background-color: rgb(22 93 255 / 0.1);
                 border-radius: 0.5rem;
+                --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+                --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+                box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
               }
 
               .bannerGridright {
