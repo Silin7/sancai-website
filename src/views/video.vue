@@ -6,6 +6,7 @@ import { fileURL } from '@/api/baseConfig'
 import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
 import { bannerlistApi, secpositionsApi, syspseoApi } from '@/api/modules/basic'
+import { videocatesApi, videodetailApi, videolistbycateApi } from '@/api/modules/video'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -52,9 +53,52 @@ function getBannerlist() {
   })
 }
 
+// 用户端-获取所有启用且未删除的视频分类（支持多级分类结构）
+const videocates: any = ref([])
+
+function getVideocates() {
+  videocatesApi().then((res: any) => {
+    if (res) {
+      videocates.value = res
+    }
+  })
+  videolistbycateApi('1').then((res: any) => {
+    if (res) {
+      console.log('-------->', res)
+    }
+  })
+  videodetailApi('1').then((res: any) => {
+    if (res) {
+      console.log('-------->', res)
+    }
+  })
+}
+
+// 平台分类 change
+const videocateActive: any = ref('')
+
+function videocateClick(item: any) {
+  videocateActive.value = item.id
+}
+
+// 视频类型 change
+const videosplxActive: any = ref('')
+
+function videosplxClick(code: any) {
+  videosplxActive.value = code
+}
+
+// 视频时长 change
+const videospscActive: any = ref('')
+
+function videospscClick(code: any) {
+  videospscActive.value = code
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
+  getVideocates()
 })
 
 onBeforeUnmount(() => {
@@ -104,27 +148,35 @@ const handleCurrentChange = (val: number) => {
             <div class="containerClassText">平台分类</div>
           </div>
           <div class="containerClassRow">
-            <button class="containerClassColActive">全部</button>
-            <button class="containerClassCol">BMI技术</button>
-            <button class="containerClassCol">智能制造</button>
-            <button class="containerClassCol">造价管理</button>
+            <button :class="videocateActive === '' ? 'containerClassColActive' : 'containerClassCol'"
+              @click="videocateClick({ id: '' })">全部</button>
+            <button v-for="(item, index) in videocates" :key="index"
+              :class="videocateActive === item.id ? 'containerClassColActive' : 'containerClassCol'"
+              @click="videocateClick(item)">{{ item.name }}</button>
           </div>
           <div class="containerClassTbox">
             <div class="containerClassText">视频类型</div>
           </div>
           <div class="containerClassRow">
-            <button class="containerClassColActive">全部</button>
-            <button class="containerClassCol">免费</button>
-            <button class="containerClassCol">付费</button>
+            <button :class="videosplxActive === '' ? 'containerClassColActive' : 'containerClassCol'"
+              @click="videosplxClick('')">全部</button>
+            <button :class="videosplxActive === '01' ? 'containerClassColActive' : 'containerClassCol'"
+              @click="videosplxClick('01')">免费</button>
+            <button :class="videosplxActive === '02' ? 'containerClassColActive' : 'containerClassCol'"
+              @click="videosplxClick('02')">付费</button>
           </div>
           <div class="containerClassTbox">
             <div class="containerClassText">视频时长</div>
           </div>
           <div class="containerClassRow">
-            <button class="containerClassColActive">全部</button>
-            <button class="containerClassCol">10分钟以内</button>
-            <button class="containerClassCol">10-30分钟</button>
-            <button class="containerClassCol">30分钟以上</button>
+            <button :class="videospscActive === '' ? 'containerClassColActive' : 'containerClassCol'"
+              @click="videospscClick('')">全部</button>
+            <button :class="videospscActive === '01' ? 'containerClassColActive' : 'containerClassCol'"
+              @click="videospscClick('01')">10分钟以内</button>
+            <button :class="videospscActive === '02' ? 'containerClassColActive' : 'containerClassCol'"
+              @click="videospscClick('02')">10-30分钟</button>
+            <button :class="videospscActive === '03' ? 'containerClassColActive' : 'containerClassCol'"
+              @click="videospscClick('03')">30分钟以上</button>
           </div>
           <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索视频..."
             :prefix-icon="Search" />
