@@ -268,9 +268,9 @@ const handleCurrentChange = (val: number) => {
               </div>
             </div>
             <div class="containerPagination">
-              <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2"
-                :page-sizes="[100, 200, 300, 400]" size="default" background layout="prev, pager, next" prev-text="上一页"
-                next-text="下一页" :total="400" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+              <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2" :page-sizes="[10, 20]"
+                size="default" background layout="prev, pager, next" prev-text="上一页" next-text="下一页" :total="400"
+                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
             </div>
           </div>
         </div>

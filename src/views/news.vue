@@ -73,7 +73,6 @@ function articlesChange(id: string) {
   }
 }
 
-
 const currentPage: any = ref(1)
 const pageSize: any = ref(10)
 const total: any = ref(0)

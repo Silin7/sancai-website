@@ -47,7 +47,7 @@ function getBannerlist() {
         meta: [
           { name: 'description', content: res.description },
           { name: 'keywords', content: res.keywords },
-        ]
+        ],
       })
     }
   })
@@ -55,6 +55,7 @@ function getBannerlist() {
 
 // 用户端-获取所有启用且未删除的视频分类（支持多级分类结构）
 const videocates: any = ref([])
+const videocateActive: any = ref('')
 
 function getVideocates() {
   videocatesApi().then((res: any) => {
@@ -62,23 +63,30 @@ function getVideocates() {
       videocates.value = res
     }
   })
-  videolistbycateApi('1').then((res: any) => {
-    if (res) {
-      console.log('-------->', res)
-    }
-  })
-  videodetailApi('1').then((res: any) => {
-    if (res) {
-      console.log('-------->', res)
-    }
-  })
 }
-
-// 平台分类 change
-const videocateActive: any = ref('')
 
 function videocateClick(item: any) {
   videocateActive.value = item.id
+  getVideolistbycate()
+}
+
+// 用户端-根据分类ID获取视频列表（分页，返回精简信息）
+const currentPage: any = ref(1)
+const pageSize: any = ref(10)
+const total: any = ref()
+const videoList: any = ref([])
+
+function getVideolistbycate() {
+  // IN DOUBT videocateActive 传空应该查询所有的
+  videolistbycateApi(videocateActive.value || '1', {
+    page: currentPage.value,
+    pageSize: pageSize.value,
+  }).then((res: any) => {
+    if (res) {
+      total.value = res.total
+      videoList.value = res.items
+    }
+  })
 }
 
 // 视频类型 change
@@ -95,10 +103,15 @@ function videospscClick(code: any) {
   videospscActive.value = code
 }
 
+const handleCurrentChange = (val: number) => {
+  console.log(`current page: ${val}`)
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
   getVideocates()
+  getVideolistbycate()
 })
 
 onBeforeUnmount(() => {
@@ -108,13 +121,30 @@ onBeforeUnmount(() => {
 const input2: any = ref()
 const selectvalue: any = ref('01')
 
-const currentPage2 = ref(2)
-const pageSize2 = ref(100)
-const handleSizeChange = (val: number) => {
-  console.log(`${val} items per page`)
+// 时分秒过滤器
+function convertSecondsToHMS(seconds: any) {
+  var hours = Math.floor(seconds / 3600)
+  var minutes = Math.floor((seconds % 3600) / 60)
+  var remainingSeconds = seconds % 60
+  var returnStr = ''
+  if (hours) {
+    returnStr += hours + '小时'
+  }
+  returnStr += minutes + '分钟'
+  if (remainingSeconds) {
+    returnStr += remainingSeconds + '秒 '
+  }
+  return returnStr
 }
-const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`)
+
+function watchVideo(item: any) {
+  videodetailApi(item.id).then((res: any) => {
+    if (res) {
+      console.log('-------->', res.status)
+      console.log('-------->', res.vurl)
+      windowOpen(res.vurl)
+    }
+  })
 }
 </script>
 
@@ -149,34 +179,52 @@ const handleCurrentChange = (val: number) => {
           </div>
           <div class="containerClassRow">
             <button :class="videocateActive === '' ? 'containerClassColActive' : 'containerClassCol'"
-              @click="videocateClick({ id: '' })">全部</button>
+              @click="videocateClick({ id: '' })">
+              全部
+            </button>
             <button v-for="(item, index) in videocates" :key="index"
               :class="videocateActive === item.id ? 'containerClassColActive' : 'containerClassCol'"
-              @click="videocateClick(item)">{{ item.name }}</button>
+              @click="videocateClick(item)">
+              {{ item.name }}
+            </button>
           </div>
           <div class="containerClassTbox">
             <div class="containerClassText">视频类型</div>
           </div>
           <div class="containerClassRow">
             <button :class="videosplxActive === '' ? 'containerClassColActive' : 'containerClassCol'"
-              @click="videosplxClick('')">全部</button>
+              @click="videosplxClick('')">
+              全部
+            </button>
             <button :class="videosplxActive === '01' ? 'containerClassColActive' : 'containerClassCol'"
-              @click="videosplxClick('01')">免费</button>
+              @click="videosplxClick('01')">
+              免费
+            </button>
             <button :class="videosplxActive === '02' ? 'containerClassColActive' : 'containerClassCol'"
-              @click="videosplxClick('02')">付费</button>
+              @click="videosplxClick('02')">
+              付费
+            </button>
           </div>
           <div class="containerClassTbox">
             <div class="containerClassText">视频时长</div>
           </div>
           <div class="containerClassRow">
             <button :class="videospscActive === '' ? 'containerClassColActive' : 'containerClassCol'"
-              @click="videospscClick('')">全部</button>
+              @click="videospscClick('')">
+              全部
+            </button>
             <button :class="videospscActive === '01' ? 'containerClassColActive' : 'containerClassCol'"
-              @click="videospscClick('01')">10分钟以内</button>
+              @click="videospscClick('01')">
+              10分钟以内
+            </button>
             <button :class="videospscActive === '02' ? 'containerClassColActive' : 'containerClassCol'"
-              @click="videospscClick('02')">10-30分钟</button>
+              @click="videospscClick('02')">
+              10-30分钟
+            </button>
             <button :class="videospscActive === '03' ? 'containerClassColActive' : 'containerClassCol'"
-              @click="videospscClick('03')">30分钟以上</button>
+              @click="videospscClick('03')">
+              30分钟以上
+            </button>
           </div>
           <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索视频..."
             :prefix-icon="Search" />
@@ -196,12 +244,14 @@ const handleCurrentChange = (val: number) => {
             </div>
           </div>
           <div class="containerProductsBox">
-            <div class="containerProductsItem" v-for="index in 4" :key="index">
+            <div class="containerProductsItem" v-for="(item, index) in videoList" :key="index">
               <div class="containerPiImg">
-                <div v-if="index % 2 === 0" class="containerPiTime">45分钟</div>
+                <div v-if="index % 2 === 0" class="containerPiTime">
+                  {{ convertSecondsToHMS(item.vlength) }}
+                </div>
                 <div v-else class="containerPiBuy"><i class="fa fa-check"></i>已购买</div>
-                <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" style="width: 100%; height: 100%" />
-                <div class="containerPiplayerBox">
+                <img :src="fileURL + item.thumbnail" alt="" style="width: 100%; height: 100%" />
+                <div class="containerPiplayerBox" @click="watchVideo(item)">
                   <div class="containerPiplayerICon">
                     <i class="fa fa-play"></i>
                   </div>
@@ -212,14 +262,16 @@ const handleCurrentChange = (val: number) => {
               </div>
               <div class="containerPiBox">
                 <div class="supplierPiTop">
-                  <div class="supplierPiTitle">杭州筑智信息技术有限公司</div>
-                  <div v-if="index % 2 === 0" class="supplierPingFen">¥299</div>
-                  <div v-else class="supplierPingFen2">¥299</div>
+                  <div class="supplierPiTitle">{{ item.title }}</div>
+                  <div v-if="index % 2 === 0" class="supplierPingFen">¥{{ item.price }}</div>
+                  <div v-else class="supplierPingFen2">¥99.90</div>
                 </div>
-                <div class="containerPiInfo">基于BIM技术的多专业碰撞检查服务，提前发现设计冲突</div>
+                <!--  IN DOUBT description 不应该有个用富文本 -->
+                <div class="containerPiInfo">{{ item.description }}</div>
                 <div class="containerPiClass">
-                  <div class="containerPiCitrm">人工服务</div>
-                  <div class="containerPiCitrm">全建筑类别</div>
+                  <div v-for="(item2, index2) in item.tag.split(' ')" :key="index" class="containerPiCitrm">
+                    {{ item2 }}
+                  </div>
                 </div>
                 <div class="containerPiPbox">
                   <div class="containerPiPice">
@@ -232,15 +284,14 @@ const handleCurrentChange = (val: number) => {
                   </div>
                 </div>
               </div>
-              <button v-if="index % 2 === 0" class="containerPiRbtn">查看详情</button>
-              <button v-else class="containerPiRbtn2">查看详情</button>
+              <button v-if="index % 2 === 0" class="containerPiRbtn" @click="watchVideo(item)">立即观看</button>
+              <button v-else class="containerPiRbtn2">继续观看</button>
             </div>
           </div>
-
           <div class="containerPagination">
-            <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2"
-              :page-sizes="[100, 200, 300, 400]" size="default" background layout="prev, pager, next" prev-text="上一页"
-              next-text="下一页" :total="400" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+            <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20]"
+              size="default" background layout="prev, pager, next" prev-text="上一页" next-text="下一页" :total="total"
+              @current-change="handleCurrentChange" />
           </div>
         </div>
       </div>
@@ -352,7 +403,9 @@ const handleCurrentChange = (val: number) => {
           color: #fff;
           background-color: rgb(22 93 255);
           border-radius: 9999px;
-          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          box-shadow:
+            0 10px 15px -3px rgb(0 0 0 / 0.1),
+            0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (max-width: 768px) {
             padding: 0.75rem 1.5rem;
@@ -394,7 +447,9 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 992px) {
           padding: 1rem;
@@ -444,7 +499,9 @@ const handleCurrentChange = (val: number) => {
             margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            box-shadow:
+              0 10px 15px -3px rgb(0 0 0 / 0.1),
+              0 4px 6px -4px rgb(0 0 0 / 0.1);
             border: 1px solid rgb(243 244 246);
             border-radius: 9999px;
 
@@ -486,7 +543,9 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 1140px) {
           padding: 1rem 0;
@@ -536,7 +595,9 @@ const handleCurrentChange = (val: number) => {
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             width: calc(33.3% - 1rem);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            box-shadow:
+              0 10px 15px -3px rgb(0 0 0 / 0.1),
+              0 4px 6px -4px rgb(0 0 0 / 0.1);
             border-radius: 0.75rem;
             background-color: #fff;
 
@@ -770,8 +831,6 @@ const handleCurrentChange = (val: number) => {
           }
         }
 
-
-
         .containerPagination {
           display: flex;
           justify-content: center;
@@ -793,7 +852,9 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: #fff;
         background-image: linear-gradient(to bottom right, #165dff, #36cfc9);
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 768px) {
           padding: 1rem;
@@ -863,7 +924,9 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 992px) {
           padding: 1rem;

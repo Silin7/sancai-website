@@ -11,6 +11,8 @@ export function videodetailApi(videoid: any) {
 }
 
 // 用户端-根据分类ID获取视频列表（分页，返回精简信息）
-export function videolistbycateApi(cateid: any) {
-  return api.get(`/api/client/video/list-by-cate/${cateid}`)
+export function videolistbycateApi(cateid: any, params: any) {
+  return api.get(`/api/client/video/list-by-cate/${cateid}`, {
+    params,
+  })
 }
