@@ -80,6 +80,9 @@ function getProductpcatebyitemid() {
   productmaterialsbycateApi({
     page: 1,
     pageSize: 999,
+    cate_id: 8,
+    sub_cate_id: 9,
+    three_cate_id: 10,
   }).then((res: any) => {
     console.log('222222-------->', res)
     // if (res) {
