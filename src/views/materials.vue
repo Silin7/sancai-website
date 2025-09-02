@@ -6,6 +6,7 @@ import { fileURL } from '@/api/baseConfig'
 import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
 import { bannerlistApi, secpositionsApi, syspseoApi } from '@/api/modules/basic'
+import { productpcatebyitemidApi, productmaterialsApi, productmaterialsbycateApi } from '@/api/modules/product'
 import formatCurrency from '@/hooks/formatCurrency'
 import usePagination from '@/hooks/usePagination'
 
@@ -53,6 +54,48 @@ function getBannerlist() {
     }
   })
 }
+
+// 用户端-根据item_id获取启用的产品分类（按sort从小到大排序，item_id对应：0=数字技工/方案论证，1=材料/设备，2=智能建造装备，3=信息化产品/服务）
+const pcateChildren: any = ref([])
+const pcateChildrenActive: any = ref("")
+
+function getProductpcatebyitemid() {
+  productpcatebyitemidApi({
+    page: 1,
+    pageSize: 999,
+    item_id: '1'
+  }).then((res: any) => {
+    if (res) {
+      pcateChildren.value = res.items
+    }
+  })
+  productmaterialsApi({
+    page: 1,
+    pageSize: 999,
+  }).then((res: any) => {
+    console.log('111111-------->', res)
+    // if (res) {
+    // }
+  })
+  productmaterialsbycateApi({
+    page: 1,
+    pageSize: 999,
+  }).then((res: any) => {
+    console.log('222222-------->', res)
+    // if (res) {
+    // }
+  })
+}
+
+
+function pcateChildrenClick(id: any) {
+  pcateChildrenActive.value = id
+}
+
+// { code: "0", text: "数字技工/方案论证" },
+// { code: "1", text: "材料/设备" },
+// { code: "2", text: "智能建造装备" },
+// { code: "3", text: "信息化产品/服务" },
 
 // 高级搜索状态
 const searchState: any = ref(false)
@@ -149,6 +192,7 @@ function currentChange(pageNo = 1) {
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
+  getProductpcatebyitemid()
 })
 
 onBeforeUnmount(() => {
@@ -184,19 +228,21 @@ const handleCurrentChange = (val: number) => {
       <div class="containerLeft">
         <div class="containerClass">
           <div class="containerClassRow">
-            <button class="containerClassCol">数字技工/方案论证</button>
+            <button class="containerClassCol" @click="pageJump('scheme')">数字技工/方案论证</button>
             <button class="containerClassColActive">材料/设备</button>
-            <button class="containerClassCol">智能建造装备</button>
-            <button class="containerClassCol">信息化产品/服务</button>
+            <button class="containerClassCol" @click="pageJump('sale')">智能建造装备</button>
+            <button class="containerClassCol" @click="pageJump('products')">信息化产品/服务</button>
           </div>
           <div class="containerClassRow">
-            <button class="containerClassColActive">全部</button>
-            <button class="containerClassCol">城市更新</button>
-            <button class="containerClassCol">四好建设</button>
-            <button class="containerClassCol">智能家居</button>
-            <button class="containerClassCol">智能建造</button>
-            <button class="containerClassCol">节能系统</button>
-            <button class="containerClassCol">其他</button>
+            <button :class="[pcateChildrenActive === '' ? 'containerClassColActive' : 'containerClassCol']"
+              @click="pcateChildrenClick('')">
+              全部
+            </button>
+            <button v-for="(item, index) in pcateChildren" :key="index"
+              :class="[pcateChildrenActive === item.id ? 'containerClassColActive' : 'containerClassCol']"
+              @click="pcateChildrenClick(item.id)">
+              {{ item.name }}
+            </button>
           </div>
           <div class="containerGjss">
             <button v-if="searchState" class="" @click="searchStateClick">

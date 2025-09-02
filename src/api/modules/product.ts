@@ -1,0 +1,106 @@
+import api from '@/api/index'
+
+// 用户端-获取所有启用的产品分类（按上级分类、排序值升序）
+export function productpcateApi(params: any) {
+  return api.get('/api/client/product/pcates', {
+    params,
+  })
+}
+
+// 用户端-根据上级分类ID获取下级分类（仅返回启用的分类）
+export function productpcatechildrenApi(params: any) {
+  return api.get('/api/client/product/pcates/children', {
+    params,
+  })
+}
+
+// 用户端-根据item_id获取启用的产品分类（按sort从小到大排序，item_id对应：0=数字技工/方案论证，1=材料/设备，2=智能建造装备，3=信息化产品/服务）
+export function productpcatebyitemidApi(params: any) {
+  return api.get('/api/client/product/pcates/by-item-id', {
+    params,
+  })
+}
+
+// 用户端-获取所有审核通过的数字技工/方案论证（不含description字段）
+export function producthrApi(params: any) {
+  return api.get('/api/client/product/human-resources', {
+    params,
+  })
+}
+
+// 用户端-按主分类、二级分类筛选数字技工/方案论证（不含description）
+export function producthrbycateApi(params: any) {
+  return api.get('/api/client/product/human-resources/by-cate', {
+    params,
+  })
+}
+
+// 用户端-多条件检索数字技工/方案论证（不含description）
+export function producthrsearchApi(params: any) {
+  return api.get('/api/client/product/human-resources/search', {
+    params,
+  })
+}
+
+// 用户端-获取所有审核通过的材料（不含description字段）
+export function productmaterialsApi(params: any) {
+  return api.get('/api/client/product/materials', {
+    params,
+  })
+}
+
+// 用户端-按主分类、二级分类、三级分类筛选材料（不含description）
+export function productmaterialsbycateApi(params: any) {
+  return api.get('/api/client/product/materials/by-cate', {
+    params,
+  })
+}
+
+// 用户端-多条件检索材料（不含description）
+export function productmaterialssearchApi(params: any) {
+  return api.get('/api/client/product/materials/search', {
+    params,
+  })
+}
+
+// 用户端-获取所有审核通过的装备（不含description字段）
+export function productequipmentsApi(params: any) {
+  return api.get('/api/client/product/equipments', {
+    params,
+  })
+}
+
+// 用户端-按信息类型（租赁/销售）+主/二级分类筛选装备（不含description）
+export function productequipmentsbytypecateApi(params: any) {
+  return api.get('/api/client/product/equipments/by-type-cate', {
+    params,
+  })
+}
+
+// 用户端-多条件检索装备（不含description）
+export function productequipmentssearchApi(params: any) {
+  return api.get('/api/client/product/equipments/search', {
+    params,
+  })
+}
+
+// 用户端-获取所有审核通过的信息化产品（不含description字段）
+export function producteitproductsApi(params: any) {
+  return api.get('/api/client/product/it-products', {
+    params,
+  })
+}
+
+// 用户端-按信息类型（租赁/销售）+主/二级分类筛选装备（不含description）
+export function producteitbytypecateApi(params: any) {
+  return api.get('/api/client/product/it-products/by-type-cate', {
+    params,
+  })
+}
+
+// 用户端-多条件检索装备（不含description）
+export function producteitsearchApi(params: any) {
+  return api.get('/api/client/product/it-products/search', {
+    params,
+  })
+}
