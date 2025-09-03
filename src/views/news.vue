@@ -86,8 +86,10 @@ function getArticles() {
     cateId: articlesAid.value,
     // IN DOUBT cateId 查询条件无效
   }).then((res: any) => {
-    total.value = res.total
-    articles.value = res.items
+    if (res) {
+      total.value = res.total
+      articles.value = res.items
+    }
   })
 }
 
@@ -97,8 +99,10 @@ function getArticlescate() {
     page: currentPage.value,
     pageSize: pageSize.value,
   }).then((res: any) => {
-    total.value = res.total
-    articles.value = res.items
+    if (res) {
+      total.value = res.total
+      articles.value = res.items
+    }
   })
 }
 
