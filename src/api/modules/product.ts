@@ -28,6 +28,11 @@ export function producthrApi(params: any) {
   })
 }
 
+// 用户端-根据ID获取数字技工/方案论证详细数据（含分类、地区、供应商等完整关联信息）
+export function producthridApi(id: any) {
+  return api.get('/api/client/product/human-resources/' + id)
+}
+
 // 用户端-按主分类、二级分类筛选数字技工/方案论证（不含description）
 export function producthrbycateApi(params: any) {
   return api.get('/api/client/product/human-resources/by-cate', {
@@ -47,6 +52,11 @@ export function productmaterialsApi(params: any) {
   return api.get('/api/client/product/materials', {
     params,
   })
+}
+
+// 用户端-根据ID获取材料详细数据（含三级分类、地区、供应商等完整关联信息）
+export function productmaterialsidApi(id: any) {
+  return api.get('/api/client/product/materials/' + id)
 }
 
 // 用户端-按主分类、二级分类、三级分类筛选材料（不含description）
@@ -70,6 +80,11 @@ export function productequipmentsApi(params: any) {
   })
 }
 
+// 用户端-根据ID获取装备详细数据（含租赁/销售类型、分类、供应商等完整关联信息）
+export function productequipmentsidApi(id: any) {
+  return api.get('/api/client/product/equipments/' + id)
+}
+
 // 用户端-按信息类型（租赁/销售）+主/二级分类筛选装备（不含description）
 export function productequipmentsbytypecateApi(params: any) {
   return api.get('/api/client/product/equipments/by-type-cate', {
@@ -85,10 +100,15 @@ export function productequipmentssearchApi(params: any) {
 }
 
 // 用户端-获取所有审核通过的信息化产品（不含description字段）
-export function producteitproductsApi(params: any) {
+export function producteitApi(params: any) {
   return api.get('/api/client/product/it-products', {
     params,
   })
+}
+
+// 用户端-根据ID获取信息化产品详细数据（含演示地址、分类、供应商等完整关联信息）
+export function producteitidApi(id: any) {
+  return api.get('/api/client/product/it-products/' + id)
 }
 
 // 用户端-按信息类型（租赁/销售）+主/二级分类筛选装备（不含description）

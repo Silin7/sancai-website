@@ -29,3 +29,18 @@ export function sysinfosApi() {
 export function syspseoApi(positionid: any) {
   return api.get(`/api/client/sysbase/pseo/${positionid}`)
 }
+
+// 用户端-获取所有未删除的省份列表（不分页，按排序升序）
+export function sysprovincesApi() {
+  return api.get('/api/client/sysbase/provinces')
+}
+
+// 用户端-根据省份ID获取该省份下所有未删除的城市（不分页，按排序升序，含省份名称）
+export function syscitiesApi(provinceid: any) {
+  return api.get(`/api/client/sysbase/cities/${provinceid}`)
+}
+
+// 用户端-根据城市ID获取该城市下所有未删除的县区（不分页，按排序升序，含省份/城市名称）
+export function syscountiesApi(cityid: any) {
+  return api.get(`/api/client/sysbase/counties/${cityid}`)
+}
