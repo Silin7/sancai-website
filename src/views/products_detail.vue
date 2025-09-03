@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
+import { fileURL } from '@/api/baseConfig'
 import formatCurrency from '@/hooks/formatCurrency'
 import { productmaterialsidApi } from '@/api/modules/product'
 
@@ -60,8 +61,8 @@ const value1 = ref(4.8)
     <div class="pdCbox">
       <div class="pdcLeft">
         <div class="pdclJbcs">
-          <img src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-            alt="" />
+          <img v-if="productDetails.imgs" :src="fileURL + productDetails.imgs[0]" alt="产品图片" />
+          <img v-else src="" alt="产品图片">
           <div class="pdcljCenter">
             <div class="pdcljcTop">
               <div class="pdcljctItem">
