@@ -1,6 +1,32 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import dayjs from 'dayjs'
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
+import formatCurrency from '@/hooks/formatCurrency'
+import { productmaterialsidApi } from '@/api/modules/product'
+
+// 路由信息
+const route = useRoute()
+
+// 产品信息
+const pathname: any = ref('')
+const productid: any = ref('')
+const productDetails: any = ref({})
+
+function getProductmaterialsid() {
+  productmaterialsidApi('1').then((res: any) => {
+    if (res) {
+      productDetails.value = res
+    }
+  })
+}
+
+onMounted(() => {
+  productid.value = route.query.id
+  pathname.value = route.query.name
+  getProductmaterialsid()
+})
 
 const value1 = ref(4.8)
 </script>
@@ -12,12 +38,23 @@ const value1 = ref(4.8)
         <div class="pdNavigation">
           <span @click="pageJump('home')">首页</span>
           <span class="pdNavigationXg">/</span>
-          <span @click="pageJump('scheme')">数字技工/方案论证</span>
+          <span v-if="pathname === 'scheme'" @click="pageJump('scheme')">
+            数字技工/方案论证
+          </span>
+          <span v-if="pathname === 'materials'" @click="pageJump('materials')">
+            材料/设备
+          </span>
+          <span v-if="pathname === 'sale'" @click="pageJump('sale')">
+            智能建造装备
+          </span>
+          <span v-if="pathname === 'products'" @click="pageJump('products')">
+            信息化产品/服务
+          </span>
           <span class="pdNavigationXg">/</span>
-          <span class="pdNavigationSp">BIM+多专业碰撞检查服务</span>
+          <span class="pdNavigationSp">{{ productDetails.materialname }}</span>
         </div>
-        <div class="pdHtitle">BIM+多专业碰撞检查服务</div>
-        <div class="pdHsubTitle">全专业模型整合与碰撞检测，提前规避施工风险</div>
+        <div class="pdHtitle">{{ productDetails.materialname }}</div>
+        <!-- <div class="pdHsubTitle">全专业模型整合与碰撞检测，提前规避施工风险</div> -->
       </div>
     </div>
     <div class="pdCbox">
@@ -29,15 +66,15 @@ const value1 = ref(4.8)
             <div class="pdcljcTop">
               <div class="pdcljctItem">
                 <span>除税价：</span>
-                <span class="pdcljctiSp1">¥4,500.00</span>
+                <span class="pdcljctiSp1">¥{{ formatCurrency(productDetails.afertaxprice, 2) }}</span>
               </div>
               <div class="pdcljctItem">
                 <span>含税价：</span>
-                <span class="pdcljctiSp2">¥5,000.00</span>
+                <span class="pdcljctiSp2">¥{{ formatCurrency(productDetails.pretaxprice, 2) }}</span>
               </div>
               <div class="pdcljctItem">
                 <span>税率：</span>
-                <span class="pdcljctiSp1">13%</span>
+                <span class="pdcljctiSp1">{{ productDetails.taxrate }}%</span>
               </div>
             </div>
             <button class="pdcljcLxgys">
@@ -52,14 +89,14 @@ const value1 = ref(4.8)
           <div class="pdcljRight">
             <div class="pdcljrTitle">基本参数</div>
             <div class="pdcljrItem">
-              <span>格型号：</span>
-              <span>全专业模型整合V2.0</span>
+              <span>规格型号：</span>
+              <span>{{ productDetails.specification }}</span>
             </div>
             <div class="pdcljrItem">
               <span>品牌名称：</span>
-              <span>筑智科技</span>
+              <span>{{ productDetails.brand }}</span>
             </div>
-            <div class="pdcljrItem">
+            <!-- <div class="pdcljrItem">
               <span>服务周期：</span>
               <span>5-7个工作日</span>
             </div>
@@ -70,16 +107,17 @@ const value1 = ref(4.8)
             <div class="pdcljrItem">
               <span>交付成果：</span>
               <span>碰撞检查报告+优化建议</span>
-            </div>
+            </div> -->
             <div class="pdcljrItem">
               <span>报价时间：</span>
-              <span>2025-06-15</span>
+              <span>{{ dayjs(productDetails.quote_time).format('YYYY-MM-DD') }}</span>
             </div>
           </div>
         </div>
         <div class="pdclXq">
           <div class="pdclxTitle">服务详情</div>
-          <div class="pdclxSub">
+          <div class="" v-html="productDetails.description"></div>
+          <!-- <div class="pdclxSub">
             BIM+多专业碰撞检查服务是基于建筑信息模型（BIM）技术，对建筑、结构、机电等各专业模型进行整合分析，提前发现并解决设计中的碰撞冲突，减少施工阶段的返工和变更，降低工程成本。
           </div>
           <div class="pdclxItem">
@@ -206,7 +244,7 @@ const value1 = ref(4.8)
                 <div class="pdclxicIp">碰撞点可视化模型（BIM格式）</div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="pdcCptj">
           <div class="pdccTitle">相关产品推荐</div>
@@ -391,12 +429,13 @@ const value1 = ref(4.8)
 
       .pdclJbcs {
         margin-bottom: 2rem;
-        padding: 1.5rem;
+        padding: 1rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (min-width: 992px) {
+          padding: 1.5rem;
           display: flex;
           justify-content: space-between;
         }
