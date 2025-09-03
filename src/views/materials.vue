@@ -1,16 +1,23 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { ElMessage } from 'element-plus'
 import dayjs from 'dayjs'
 import { useHead } from '@vueuse/head'
-import { Search } from '@element-plus/icons-vue'
-import { fileURL } from '@/api/baseConfig'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
-import { bannerlistApi, secpositionsApi, syspseoApi, sysprovincesApi, syscitiesApi } from '@/api/modules/basic'
-import { productpcatebyitemidApi, productmaterialsApi, productmaterialssearchApi } from '@/api/modules/product'
 import formatCurrency from '@/hooks/formatCurrency'
-import usePagination from '@/hooks/usePagination'
+import { fileURL } from '@/api/baseConfig'
+import {
+  bannerlistApi,
+  secpositionsApi,
+  syspseoApi,
+  sysprovincesApi,
+  syscitiesApi,
+} from '@/api/modules/basic'
+import {
+  productpcatechildrenApi,
+  productmaterialssearchApi,
+} from '@/api/modules/product'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -51,43 +58,82 @@ function getBannerlist() {
         meta: [
           { name: 'description', content: res.description },
           { name: 'keywords', content: res.keywords },
-        ]
+        ],
       })
     }
   })
 }
 
-// 用户端-根据item_id获取启用的产品分类（按sort从小到大排序，item_id对应：0=数字技工/方案论证，1=材料/设备，2=智能建造装备，3=信息化产品/服务）
-const pcateChildren: any = ref([])
-const pcateChildrenActive: any = ref("")
+// 一级分类
+const pcateOne: any = ref([])
+const pcateOneActive: any = ref('')
 
-function getProductpcatebyitemid() {
-  productpcatebyitemidApi({
+function getPcateOne(pid: any = 0) {
+  productpcatechildrenApi({
     page: 1,
     pageSize: 999,
-    item_id: '1'
+    parent_id: pid,
   }).then((res: any) => {
-    if (res) {
-      pcateChildren.value = res.items
+    if (res && res.items.length > 0) {
+      const levelone = res.items.filter((element: any) => element.item_id === 1)
+      pcateOne.value = levelone
     }
   })
-  // productmaterialsbycateApi({
-  //   page: 1,
-  //   pageSize: 999,
-  //   cate_id: 8,
-  //   sub_cate_id: 9,
-  //   three_cate_id: 10,
-  // }).then((res: any) => {
-  //   console.log('222222-------->', res)
-  //   // if (res) {
-  //   // }
-  // })
 }
 
-function pcateChildrenClick(id: any) {
-  pcateChildrenActive.value = id
+function pcateOneClick(id: any) {
+  pcateOneActive.value = id
+  pcateTwo.value = []
+  pcateTwoActive.value = ''
+  if (id !== '') {
+    getPcateTwo(id)
+  }
 }
 
+// 二级分类
+const pcateTwo: any = ref([])
+const pcateTwoActive: any = ref('')
+
+function getPcateTwo(pid: any) {
+  productpcatechildrenApi({
+    page: 1,
+    pageSize: 999,
+    parent_id: pid,
+  }).then((res: any) => {
+    if (res && res.items.length > 0) {
+      pcateTwo.value = res.items
+    }
+  })
+}
+
+function pcateTwoClick(id: any) {
+  pcateTwoActive.value = id
+  pcateThree.value = []
+  pcateThreeActive.value = ''
+  if (id !== '') {
+    getPcateThree(id)
+  }
+}
+
+// 三级分类
+const pcateThree: any = ref([])
+const pcateThreeActive: any = ref('')
+
+function getPcateThree(pid: any) {
+  productpcatechildrenApi({
+    page: 1,
+    pageSize: 999,
+    parent_id: pid,
+  }).then((res: any) => {
+    if (res && res.items.length > 0) {
+      pcateThree.value = res.items
+    }
+  })
+}
+
+function pcateThreeClick(id: any) {
+  pcateThreeActive.value = id
+}
 
 // 高级搜索状态
 const searchState: any = ref(false)
@@ -144,59 +190,49 @@ const productDataList: any = ref([])
 function getProductmaterialssearch() {
   tableLoading.value = true
   if (searchForm.value.province_id && !searchForm.value.city_id) {
-    ElMessage.error("请选择所在城市")
+    ElMessage.error('请选择所在城市')
     return
   }
   productmaterialssearchApi({
     page: currentPage.value,
     pageSize: pageSize.value,
     ...searchForm.value,
-  }).then((res: any) => {
-    if (res) {
-      total.value = res.total
-      productDataList.value = res.items
-    }
-  }).finally(() => {
-    tableLoading.value = false
   })
+    .then((res: any) => {
+      if (res) {
+        total.value = res.total
+        productDataList.value = res.items
+      }
+    })
+    .finally(() => {
+      tableLoading.value = false
+    })
 }
 
-function getDataList() {
-  tableLoading.value = true
-  // groupPage({
-  //   ...queryForm,
-  //   pageNo: pagination.value.pageNo,
-  //   pageSize: pagination.value.pageSize,
-  // }).then((res: any) => {
-  //   if (res && res.code === 0) {
-  //     pagination.value.total = res.data.total
-  //     productDataList.value = res.data.list
-  //     tableLoading.value = false
-  //   }
-  //   else {
-  //     message.error(res.msg)
-  //     tableLoading.value = false
-  //   }
-  // })
+// current-page 改变时触发
+function handleCurrentChange(val: number) {
+  currentPage.value = val
+  getProductmaterialssearch()
 }
 
-// 分页
-const { pagination, onSizeChange, onCurrentChange } = usePagination()
-
-// 每页数量切换
-function sizeChange(pageSize: number) {
-  onSizeChange(pageSize).then(() => getDataList())
+// page-size 改变时触发
+function handleSizeChange(val: number) {
+  pageSize.value = val
+  getProductmaterialssearch()
 }
 
-// 当前页码切换（翻页）
-function currentChange(pageNo = 1) {
-  onCurrentChange(pageNo).then(() => getDataList())
+// 产品详情
+function productRowClick(row: any) {
+  pageJump('products_detail', {
+    id: row.id,
+    name: 'materials',
+  })
 }
 
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
-  getProductpcatebyitemid()
+  getPcateOne()
   getSysprovinces()
   getProductmaterialssearch()
 })
@@ -204,16 +240,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWindowWidth)
 })
-
-const input2: any = ref()
-const selectvalue: any = ref('01')
-
-const handleSizeChange = (val: number) => {
-  console.log(`${val} items per page`)
-}
-const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`)
-}
 </script>
 
 <template>
@@ -237,14 +263,42 @@ const handleCurrentChange = (val: number) => {
             <button class="containerClassCol" @click="pageJump('sale')">智能建造装备</button>
             <button class="containerClassCol" @click="pageJump('products')">信息化产品/服务</button>
           </div>
+          <!-- 一级分类 -->
           <div class="containerClassRow">
-            <button :class="[pcateChildrenActive === '' ? 'containerClassColActive' : 'containerClassCol']"
-              @click="pcateChildrenClick('')">
+            <button :class="[
+              pcateOneActive === '' ? 'containerClassColActive' : 'containerClassCol',
+            ]" @click="pcateOneClick('')">
               全部
             </button>
-            <button v-for="(item, index) in pcateChildren" :key="index"
-              :class="[pcateChildrenActive === item.id ? 'containerClassColActive' : 'containerClassCol']"
-              @click="pcateChildrenClick(item.id)">
+            <button v-for="(item, index) in pcateOne" :key="index" :class="[
+              pcateOneActive === item.id ? 'containerClassColActive' : 'containerClassCol',
+            ]" @click="pcateOneClick(item.id)">
+              {{ item.name }}
+            </button>
+          </div>
+          <!-- 二级分类 -->
+          <div v-if="pcateOneActive !== ''" class="containerClassRow">
+            <button :class="[
+              pcateTwoActive === '' ? 'containerClassColActive' : 'containerClassCol',
+            ]" @click="pcateTwoClick('')">
+              全部
+            </button>
+            <button v-for="(item, index) in pcateTwo" :key="index" :class="[
+              pcateTwoActive === item.id ? 'containerClassColActive' : 'containerClassCol',
+            ]" @click="pcateTwoClick(item.id)">
+              {{ item.name }}
+            </button>
+          </div>
+          <!-- 三级分类 -->
+          <div v-if="pcateTwoActive !== ''" class="containerClassRow">
+            <button :class="[
+              pcateThreeActive === '' ? 'containerClassColActive' : 'containerClassCol',
+            ]" @click="pcateThreeClick('')">
+              全部
+            </button>
+            <button v-for="(item, index) in pcateThree" :key="index" :class="[
+              pcateThreeActive === item.id ? 'containerClassColActive' : 'containerClassCol',
+            ]" @click="pcateThreeClick(item.id)">
               {{ item.name }}
             </button>
           </div>
@@ -294,12 +348,12 @@ const handleCurrentChange = (val: number) => {
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">报价开始日期</div>
                   <el-date-picker v-model="searchForm.quote_time_start" type="date" placeholder="yyyy/mm/dd"
-                    value-format="x" style="width: 100%;; height: 40px" />
+                    value-format="x" style="width: 100%; height: 40px" />
                 </el-col>
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">报价结束日期</div>
                   <el-date-picker v-model="searchForm.quote_time_end" type="date" placeholder="yyyy/mm/dd"
-                    value-format="x" style="width: 100%;; height: 40px" />
+                    value-format="x" style="width: 100%; height: 40px" />
                 </el-col>
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">价格区间</div>
@@ -313,19 +367,17 @@ const handleCurrentChange = (val: number) => {
                 </el-col>
               </el-row>
               <button class="searchBtn" @click="getProductmaterialssearch">
-                <i class="fa fa-search "></i>搜索
+                <i class="fa fa-search"></i>搜索
               </button>
             </div>
           </div>
-          <!-- <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索产品..."
-            :prefix-icon="Search" /> -->
         </div>
         <div class="containerProducts">
           <!-- 数据表格 -->
-          <el-table v-loading="tableLoading" :data="productDataList" highlight-current-row>
+          <el-table v-loading="tableLoading" :data="productDataList" highlight-current-row @row-click="productRowClick">
             <el-table-column :show-overflow-tooltip="true" align="center" label="材料名称" width="120">
               <template #default="scope">
-                <span style="color: #165DFF;">{{ scope.row.materialname }}</span>
+                <span style="color: #165dff">{{ scope.row.materialname }}</span>
               </template>
             </el-table-column>
             <el-table-column :show-overflow-tooltip="true" align="center" prop="specification" label="规格" />
@@ -333,12 +385,12 @@ const handleCurrentChange = (val: number) => {
             <el-table-column :show-overflow-tooltip="true" align="center" prop="unit_name" label="单位" />
             <el-table-column align="center" label="含税价">
               <template #default="scope">
-                <span style="color: #165DFF; font-weight: 700;">¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
+                <span style="color: #165dff; font-weight: 700">¥{{ formatCurrency(scope.row.pretaxprice, 2) }}</span>
               </template>
             </el-table-column>
             <el-table-column align="center" label="未含税价">
               <template #default="scope">
-                <span style="color: #00B42A; font-weight: 700;">¥{{ formatCurrency(scope.row.afertaxprice) }}</span>
+                <span style="color: #00b42a; font-weight: 700">¥{{ formatCurrency(scope.row.afertaxprice, 2) }}</span>
               </template>
             </el-table-column>
             <el-table-column align="center" label="税率">
@@ -443,7 +495,9 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 1140px) {
           padding: 1rem;
@@ -460,10 +514,11 @@ const handleCurrentChange = (val: number) => {
             margin: 0 0.75rem 0.75rem 0;
             padding: 0.5rem 1.25rem;
             color: rgb(1 32 96);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            box-shadow:
+              0 10px 15px -3px rgb(0 0 0 / 0.1),
+              0 4px 6px -4px rgb(0 0 0 / 0.1);
             border: 1px solid rgb(243 244 246);
             border-radius: 9999px;
-            ;
 
             @media (max-width: 768px) {
               margin: 0 0.5rem 0.5rem 0;
@@ -497,7 +552,6 @@ const handleCurrentChange = (val: number) => {
         }
 
         .containerGjss {
-
           button {
             margin-bottom: 1rem;
             color: rgb(22 93 255);
@@ -534,7 +588,9 @@ const handleCurrentChange = (val: number) => {
         border-radius: 1rem;
         color: rgb(1 32 96);
         background-color: #fff;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (max-width: 1140px) {
           padding: 1rem;
