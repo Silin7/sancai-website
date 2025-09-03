@@ -14,10 +14,7 @@ import {
   sysprovincesApi,
   syscitiesApi,
 } from '@/api/modules/basic'
-import {
-  productpcatechildrenApi,
-  productmaterialssearchApi,
-} from '@/api/modules/product'
+import { productpcatechildrenApi, productmaterialssearchApi } from '@/api/modules/product'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -66,7 +63,7 @@ function getBannerlist() {
 
 // 一级分类
 const pcateOne: any = ref([])
-const pcateOneActive: any = ref('')
+const pcateOneId: any = ref('')
 
 function getPcateOne(pid: any = 0) {
   productpcatechildrenApi({
@@ -82,17 +79,18 @@ function getPcateOne(pid: any = 0) {
 }
 
 function pcateOneClick(id: any) {
-  pcateOneActive.value = id
+  pcateOneId.value = id
   pcateTwo.value = []
-  pcateTwoActive.value = ''
+  pcateTwoId.value = ''
   if (id !== '') {
     getPcateTwo(id)
   }
+  getProductmaterialssearch()
 }
 
 // 二级分类
 const pcateTwo: any = ref([])
-const pcateTwoActive: any = ref('')
+const pcateTwoId: any = ref('')
 
 function getPcateTwo(pid: any) {
   productpcatechildrenApi({
@@ -107,17 +105,18 @@ function getPcateTwo(pid: any) {
 }
 
 function pcateTwoClick(id: any) {
-  pcateTwoActive.value = id
+  pcateTwoId.value = id
   pcateThree.value = []
-  pcateThreeActive.value = ''
+  pcateThreeId.value = ''
   if (id !== '') {
     getPcateThree(id)
   }
+  getProductmaterialssearch()
 }
 
 // 三级分类
 const pcateThree: any = ref([])
-const pcateThreeActive: any = ref('')
+const pcateThreeId: any = ref('')
 
 function getPcateThree(pid: any) {
   productpcatechildrenApi({
@@ -132,7 +131,8 @@ function getPcateThree(pid: any) {
 }
 
 function pcateThreeClick(id: any) {
-  pcateThreeActive.value = id
+  pcateThreeId.value = id
+  getProductmaterialssearch()
 }
 
 // 高级搜索状态
@@ -157,12 +157,14 @@ function getSysprovinces() {
 
 function provinceChange(value: any) {
   citiesList.value = []
-  searchForm.value.city_id = ''
-  syscitiesApi(value).then((res: any) => {
-    if (res) {
-      citiesList.value = res
-    }
-  })
+  searchForm.value.city_id = null
+  if (value) {
+    syscitiesApi(value).then((res: any) => {
+      if (res) {
+        citiesList.value = res
+      }
+    })
+  }
 }
 
 // 数据查询
@@ -191,13 +193,24 @@ function getProductmaterialssearch() {
   tableLoading.value = true
   if (searchForm.value.province_id && !searchForm.value.city_id) {
     ElMessage.error('请选择所在城市')
+    tableLoading.value = false
     return
   }
-  productmaterialssearchApi({
+  let parameter: any = {
     page: currentPage.value,
     pageSize: pageSize.value,
     ...searchForm.value,
-  })
+  }
+  if (pcateOneId.value !== '') {
+    parameter.cate_id = pcateOneId.value
+  }
+  if (pcateTwoId.value !== '') {
+    parameter.sub_cate_id = pcateTwoId.value
+  }
+  if (pcateThreeId.value !== '') {
+    parameter.three_cate_id = pcateThreeId.value
+  }
+  productmaterialssearchApi(parameter)
     .then((res: any) => {
       if (res) {
         total.value = res.total
@@ -265,39 +278,36 @@ onBeforeUnmount(() => {
           </div>
           <!-- 一级分类 -->
           <div class="containerClassRow">
-            <button :class="[
-              pcateOneActive === '' ? 'containerClassColActive' : 'containerClassCol',
-            ]" @click="pcateOneClick('')">
+            <button :class="[pcateOneId === '' ? 'containerClassColActive' : 'containerClassCol']"
+              @click="pcateOneClick('')">
               全部
             </button>
             <button v-for="(item, index) in pcateOne" :key="index" :class="[
-              pcateOneActive === item.id ? 'containerClassColActive' : 'containerClassCol',
+              pcateOneId === item.id ? 'containerClassColActive' : 'containerClassCol',
             ]" @click="pcateOneClick(item.id)">
               {{ item.name }}
             </button>
           </div>
           <!-- 二级分类 -->
-          <div v-if="pcateOneActive !== ''" class="containerClassRow">
-            <button :class="[
-              pcateTwoActive === '' ? 'containerClassColActive' : 'containerClassCol',
-            ]" @click="pcateTwoClick('')">
+          <div v-if="pcateOneId !== ''" class="containerClassRow">
+            <button :class="[pcateTwoId === '' ? 'containerClassColActive' : 'containerClassCol']"
+              @click="pcateTwoClick('')">
               全部
             </button>
             <button v-for="(item, index) in pcateTwo" :key="index" :class="[
-              pcateTwoActive === item.id ? 'containerClassColActive' : 'containerClassCol',
+              pcateTwoId === item.id ? 'containerClassColActive' : 'containerClassCol',
             ]" @click="pcateTwoClick(item.id)">
               {{ item.name }}
             </button>
           </div>
           <!-- 三级分类 -->
-          <div v-if="pcateTwoActive !== ''" class="containerClassRow">
-            <button :class="[
-              pcateThreeActive === '' ? 'containerClassColActive' : 'containerClassCol',
-            ]" @click="pcateThreeClick('')">
+          <div v-if="pcateTwoId !== ''" class="containerClassRow">
+            <button :class="[pcateThreeId === '' ? 'containerClassColActive' : 'containerClassCol']"
+              @click="pcateThreeClick('')">
               全部
             </button>
             <button v-for="(item, index) in pcateThree" :key="index" :class="[
-              pcateThreeActive === item.id ? 'containerClassColActive' : 'containerClassCol',
+              pcateThreeId === item.id ? 'containerClassColActive' : 'containerClassCol',
             ]" @click="pcateThreeClick(item.id)">
               {{ item.name }}
             </button>
@@ -331,17 +341,18 @@ onBeforeUnmount(() => {
               <el-row :gutter="10">
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">材料名称</div>
-                  <el-input v-model="searchForm.product_name" style="width: 100%; height: 40px"
-                    placeholder="请输入材料名称..." />
+                  <el-input v-model="searchForm.product_name" style="width: 100%; height: 40px" placeholder="请输入材料名称..."
+                    clearable />
                 </el-col>
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">规格型号</div>
                   <el-input v-model="searchForm.specification" style="width: 100%; height: 40px"
-                    placeholder="请输入规格型号..." />
+                    placeholder="请输入规格型号..." clearable />
                 </el-col>
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">品牌名称</div>
-                  <el-input v-model="searchForm.brand" style="width: 100%; height: 40px" placeholder="请输入品牌名称..." />
+                  <el-input v-model="searchForm.brand" style="width: 100%; height: 40px" placeholder="请输入品牌名称..."
+                    clearable />
                 </el-col>
               </el-row>
               <el-row :gutter="10">
