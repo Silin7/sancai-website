@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import dayjs from 'dayjs'
 import { useHead } from '@vueuse/head'
 import { Search } from '@element-plus/icons-vue'
 import { fileURL } from '@/api/baseConfig'
 import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
-import { bannerlistApi, secpositionsApi, syspseoApi } from '@/api/modules/basic'
-import { productpcatebyitemidApi, productmaterialsApi, productmaterialsbycateApi } from '@/api/modules/product'
+import { bannerlistApi, secpositionsApi, syspseoApi, sysprovincesApi, syscitiesApi } from '@/api/modules/basic'
+import { productpcatebyitemidApi, productmaterialsApi, productmaterialssearchApi } from '@/api/modules/product'
 import formatCurrency from '@/hooks/formatCurrency'
 import usePagination from '@/hooks/usePagination'
 
@@ -69,96 +71,95 @@ function getProductpcatebyitemid() {
       pcateChildren.value = res.items
     }
   })
-  productmaterialsApi({
-    page: 1,
-    pageSize: 999,
-  }).then((res: any) => {
-    console.log('111111-------->', res)
-    // if (res) {
-    // }
-  })
-  productmaterialsbycateApi({
-    page: 1,
-    pageSize: 999,
-    cate_id: 8,
-    sub_cate_id: 9,
-    three_cate_id: 10,
-  }).then((res: any) => {
-    console.log('222222-------->', res)
-    // if (res) {
-    // }
-  })
+  // productmaterialsbycateApi({
+  //   page: 1,
+  //   pageSize: 999,
+  //   cate_id: 8,
+  //   sub_cate_id: 9,
+  //   three_cate_id: 10,
+  // }).then((res: any) => {
+  //   console.log('222222-------->', res)
+  //   // if (res) {
+  //   // }
+  // })
 }
-
 
 function pcateChildrenClick(id: any) {
   pcateChildrenActive.value = id
 }
 
-// { code: "0", text: "数字技工/方案论证" },
-// { code: "1", text: "材料/设备" },
-// { code: "2", text: "智能建造装备" },
-// { code: "3", text: "信息化产品/服务" },
 
 // 高级搜索状态
 const searchState: any = ref(false)
+const searchForm: any = ref({})
 
 function searchStateClick() {
   searchState.value = !searchState.value
 }
 
+// 省 列表
+const provincesList: any = ref([])
+const citiesList: any = ref([])
+
+function getSysprovinces() {
+  sysprovincesApi().then((res: any) => {
+    if (res) {
+      provincesList.value = res
+    }
+  })
+}
+
+function provinceChange(value: any) {
+  citiesList.value = []
+  searchForm.value.city_id = ''
+  syscitiesApi(value).then((res: any) => {
+    if (res) {
+      citiesList.value = res
+    }
+  })
+}
+
 // 数据查询
 const tableLoading = ref(false)
-const groupData = ref([
-  {
-    data1: '高强度螺纹钢',
-    data2: 'HRB400E Φ25mm',
-    data3: '首钢',
-    data4: '吨',
-    data5: '4400',
-    data6: '523.23',
-    data7: '10%',
-    data8: '北京首钢股份',
-    data9: '2025-06-18',
-    data10: '抗震达标',
-  },
-  {
-    data1: 'C30预拌高性能混凝土',
-    data2: 'C30 泵送型',
-    data3: '中建商砼',
-    data4: '立方米',
-    data5: '8800',
-    data6: '6423.24',
-    data7: '10%',
-    data8: '中建商品混凝土有限公司',
-    data9: '2025-06-15',
-    data10: '抗渗',
-  },
-  {
-    data1: '挤塑保温板',
-    data2: '30mm 阻燃型',
-    data3: '欧文斯科',
-    data4: '平方米',
-    data5: '480',
-    data6: '3453',
-    data7: '10%',
-    data8: '欧文斯科宁中国',
-    data9: '2025-06-10',
-    data10: '阻燃',
-  },
-  {
-    data1: '智能安防系统套装',
-    data2: 'SH-8000 家庭版',
-    data3: '海康威视',
-    data4: '套',
-    data5: '22000',
-    data6: '1280',
-    data7: '10%',
-    data8: '海康威视数字技术有限公司',
-    data9: '2025-06-05',
-    data10: '高清',
-  },
-])
+const currentPage: any = ref(1)
+const pageSize: any = ref(10)
+const total: any = ref(0)
+const productDataList: any = ref([])
+
+// function getProductmaterialssearch() {
+//   tableLoading.value = true
+//   productmaterialsApi({
+//     page: currentPage.value,
+//     pageSize: pageSize.value,
+//   }).then((res: any) => {
+//     if (res) {
+//       total.value = res.total
+//       productDataList.value = res.items
+//     }
+//   }).finally(() => {
+//     tableLoading.value = false
+//   })
+// }
+
+function getProductmaterialssearch() {
+  tableLoading.value = true
+  if (searchForm.value.province_id && !searchForm.value.city_id) {
+    ElMessage.error("请选择所在城市")
+    return
+  }
+  productmaterialssearchApi({
+    page: currentPage.value,
+    pageSize: pageSize.value,
+    ...searchForm.value,
+  }).then((res: any) => {
+    if (res) {
+      total.value = res.total
+      productDataList.value = res.items
+    }
+  }).finally(() => {
+    tableLoading.value = false
+  })
+}
 
 function getDataList() {
   tableLoading.value = true
@@ -169,7 +170,7 @@ function getDataList() {
   // }).then((res: any) => {
   //   if (res && res.code === 0) {
   //     pagination.value.total = res.data.total
-  //     groupData.value = res.data.list
+  //     productDataList.value = res.data.list
   //     tableLoading.value = false
   //   }
   //   else {
@@ -196,6 +197,8 @@ onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
   getProductpcatebyitemid()
+  getSysprovinces()
+  getProductmaterialssearch()
 })
 
 onBeforeUnmount(() => {
@@ -205,8 +208,6 @@ onBeforeUnmount(() => {
 const input2: any = ref()
 const selectvalue: any = ref('01')
 
-const currentPage2 = ref(2)
-const pageSize2 = ref(100)
 const handleSizeChange = (val: number) => {
   console.log(`${val} items per page`)
 }
@@ -260,56 +261,60 @@ const handleCurrentChange = (val: number) => {
               <el-row :gutter="10">
                 <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb10">
                   <div class="supplierClassText">所在省份</div>
-                  <el-select v-model="selectvalue" placeholder="Select" size="large">
-                    <el-option label="全部省份" value="01" />
-                    <el-option label="山东省" value="02" />
-                    <el-option label="山西省" value="03" />
+                  <el-select v-model="searchForm.province_id" placeholder="Select" size="large" clearable
+                    @change="provinceChange">
+                    <el-option v-for="(item, index) in provincesList" :key="index" :label="item.name"
+                      :value="item.id" />
                   </el-select>
                 </el-col>
                 <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="mb10">
                   <div class="supplierClassText">所在城市</div>
-                  <el-select v-model="selectvalue" placeholder="Select" size="large">
-                    <el-option label="全部省份" value="01" />
-                    <el-option label="山东省" value="02" />
-                    <el-option label="山西省" value="03" />
+                  <el-select v-model="searchForm.city_id" placeholder="Select" size="large" clearable>
+                    <el-option v-for="(item, index) in citiesList" :key="index" :label="item.name" :value="item.id" />
                   </el-select>
                 </el-col>
               </el-row>
               <el-row :gutter="10">
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">材料名称</div>
-                  <el-input v-model="input2" style="width: 100%; height: 40px" placeholder="请输入材料名称..." />
+                  <el-input v-model="searchForm.product_name" style="width: 100%; height: 40px"
+                    placeholder="请输入材料名称..." />
                 </el-col>
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">规格型号</div>
-                  <el-input v-model="input2" style="width: 100%; height: 40px" placeholder="请输入规格型号..." />
+                  <el-input v-model="searchForm.specification" style="width: 100%; height: 40px"
+                    placeholder="请输入规格型号..." />
                 </el-col>
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">品牌名称</div>
-                  <el-input v-model="input2" style="width: 100%; height: 40px" placeholder="请输入品牌名称..." />
+                  <el-input v-model="searchForm.brand" style="width: 100%; height: 40px" placeholder="请输入品牌名称..." />
                 </el-col>
               </el-row>
               <el-row :gutter="10">
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">报价开始日期</div>
-                  <el-date-picker v-model="input2" type="date" placeholder="yyyy/mm/dd"
-                    style="width: 100%;; height: 40px" />
+                  <el-date-picker v-model="searchForm.quote_time_start" type="date" placeholder="yyyy/mm/dd"
+                    value-format="x" style="width: 100%;; height: 40px" />
                 </el-col>
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">报价结束日期</div>
-                  <el-date-picker v-model="input2" type="date" placeholder="yyyy/mm/dd"
-                    style="width: 100%;; height: 40px" />
+                  <el-date-picker v-model="searchForm.quote_time_end" type="date" placeholder="yyyy/mm/dd"
+                    value-format="x" style="width: 100%;; height: 40px" />
                 </el-col>
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
                   <div class="supplierClassText">价格区间</div>
                   <div class="frbc">
-                    <el-input v-model="input2" style="width: calc(50% - 0.5rem); height: 40px" placeholder="最低价" />
+                    <el-input-number v-model="searchForm.price_min" :min="0"
+                      style="width: calc(50% - 0.5rem); height: 40px" placeholder="最低价" />
                     -
-                    <el-input v-model="input2" style="width: calc(50% - 0.5rem); height: 40px" placeholder="最低价" />
+                    <el-input-number v-model="searchForm.price_max" :min="0"
+                      style="width: calc(50% - 0.5rem); height: 40px" placeholder="最高价" />
                   </div>
                 </el-col>
               </el-row>
-              <button class="searchBtn"><i class="fa fa-search "></i>搜索</button>
+              <button class="searchBtn" @click="getProductmaterialssearch">
+                <i class="fa fa-search "></i>搜索
+              </button>
             </div>
           </div>
           <!-- <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索产品..."
@@ -317,34 +322,42 @@ const handleCurrentChange = (val: number) => {
         </div>
         <div class="containerProducts">
           <!-- 数据表格 -->
-          <el-table v-loading="tableLoading" :data="groupData" highlight-current-row>
+          <el-table v-loading="tableLoading" :data="productDataList" highlight-current-row>
             <el-table-column :show-overflow-tooltip="true" align="center" label="材料名称" width="120">
               <template #default="scope">
-                <span style="color: #165DFF;">{{ scope.row.data1 }}</span>
+                <span style="color: #165DFF;">{{ scope.row.materialname }}</span>
               </template>
             </el-table-column>
-            <el-table-column :show-overflow-tooltip="true" align="center" prop="data2" label="规格" />
-            <el-table-column :show-overflow-tooltip="true" align="center" prop="data3" label="品牌" />
-            <el-table-column :show-overflow-tooltip="true" align="center" prop="data4" label="单位" />
+            <el-table-column :show-overflow-tooltip="true" align="center" prop="specification" label="规格" />
+            <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌" />
+            <el-table-column :show-overflow-tooltip="true" align="center" prop="unit_name" label="单位" />
             <el-table-column align="center" label="含税价">
               <template #default="scope">
-                <span style="color: #165DFF; font-weight: 700;">¥{{ formatCurrency(scope.row.data5) }}</span>
+                <span style="color: #165DFF; font-weight: 700;">¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
               </template>
             </el-table-column>
             <el-table-column align="center" label="未含税价">
               <template #default="scope">
-                <span style="color: #00B42A; font-weight: 700;">¥{{ formatCurrency(scope.row.data6) }}</span>
+                <span style="color: #00B42A; font-weight: 700;">¥{{ formatCurrency(scope.row.afertaxprice) }}</span>
               </template>
             </el-table-column>
-            <el-table-column :show-overflow-tooltip="true" align="center" prop="data7" label="税率" />
-            <el-table-column :show-overflow-tooltip="true" align="center" prop="data8" label="供应商" />
-            <el-table-column :show-overflow-tooltip="true" align="center" prop="data9" label="报价时间" />
-            <el-table-column :show-overflow-tooltip="true" align="center" prop="data10" label="备注" />
+            <el-table-column align="center" label="税率">
+              <template #default="scope">
+                <span>{{ scope.row.taxrate }}%</span>
+              </template>
+            </el-table-column>
+            <el-table-column :show-overflow-tooltip="true" align="center" prop="supplier_name" label="供应商" />
+            <el-table-column align="center" label="报价时间">
+              <template #default="scope">
+                <span>{{ dayjs(scope.row.quote_time).format('YYYY-MM-DD') }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column :show-overflow-tooltip="true" align="center" prop="memo" label="备注" />
           </el-table>
           <!-- 分页 -->
           <div class="containerPagination">
-            <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2" :page-sizes="[10, 20]"
-              size="default" background layout="prev, pager, next" prev-text="上一页" next-text="下一页" :total="400"
+            <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20]"
+              size="default" background layout="prev, pager, next" prev-text="上一页" next-text="下一页" :total="total"
               @size-change="handleSizeChange" @current-change="handleCurrentChange" />
           </div>
         </div>
