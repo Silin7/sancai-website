@@ -121,8 +121,7 @@ function getSecpositions() {
   secpositionsApi().then((res: any) => {
     if (res && res.length > 0) {
       for (let i = 0; i < res.length; i++) {
-        // IN DOUBT 根据路由判断 尽量不根据 name 判断
-        if (res[i].name === window.localStorage.getItem('selectedName')) {
+        if (res[i].url === window.localStorage.getItem('selectedName')) {
           positionid.value = res[i].id
           getBannerlist()
           break

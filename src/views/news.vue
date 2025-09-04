@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useHead } from '@vueuse/head'
-import { fileURL } from '@/api/baseConfig'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
+import { fileURL } from '@/api/baseConfig'
 import { bannerlistApi, secpositionsApi, syspseoApi } from '@/api/modules/basic'
 import { articlescatesApi, articlesApi, articlescateApi } from '@/api/modules/article'
 
@@ -22,8 +22,7 @@ function getSecpositions() {
   secpositionsApi().then((res: any) => {
     if (res && res.length > 0) {
       for (let i = 0; i < res.length; i++) {
-        // IN DOUBT 根据路由判断 尽量不根据 name 判断
-        if (res[i].name === window.localStorage.getItem('selectedName')) {
+        if (res[i].url === window.localStorage.getItem('selectedName')) {
           positionid.value = res[i].id
           getBannerlist()
           break
@@ -46,7 +45,7 @@ function getBannerlist() {
         meta: [
           { name: 'description', content: res.description },
           { name: 'keywords', content: res.keywords },
-        ]
+        ],
       })
     }
   })
@@ -164,9 +163,11 @@ const selectvalue: any = ref('01')
             </div>
           </div>
           <div v-if="total > 0" class="newsProductsBox">
-            <div class="newsProductsItem" v-for="(item, index) in articles" :key="index" @click="pageJump('news_detail', {
-              articlesid: item.id
-            })">
+            <div class="newsProductsItem" v-for="(item, index) in articles" :key="index" @click="
+              pageJump('news_detail', {
+                articlesid: item.id,
+              })
+              ">
               <div class="newsPiImgBox">
                 <img :src="fileURL + item.thumbnail" class="newsPiImg" />
                 <div class="newsPiImgTag">政策</div>
@@ -279,7 +280,9 @@ const selectvalue: any = ref('01')
           color: #fff;
           background-color: rgb(22 93 255);
           border-radius: 9999px;
-          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          box-shadow:
+            0 10px 15px -3px rgb(0 0 0 / 0.1),
+            0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (max-width: 768px) {
             padding: 0.75rem 1.5rem;

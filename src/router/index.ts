@@ -373,7 +373,7 @@ router.beforeEach((to, from, next) => {
     const headerStore = useHeaderStore()
     headerStore.setSelectedTab(to.meta.stcode as string)
     window.localStorage.setItem('selectedTab', to.meta.stcode as string)
-    window.localStorage.setItem('selectedName', to.meta.title as string)
+    window.localStorage.setItem('selectedName', to.path as string)
   }
 
   next()

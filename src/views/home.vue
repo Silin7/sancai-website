@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useHead } from '@vueuse/head'
-import { fileURL } from '@/api/baseConfig'
-import backToTop from '@/hooks/backToTop'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 // import sideleft from '@/components/sideleft.vue'
 import sideright from '@/components/sideright.vue'
 import pageJump from '@/hooks/pageJump'
+import backToTop from '@/hooks/backToTop'
 import windowOpen from '@/hooks/windowOpen'
+import { fileURL } from '@/api/baseConfig'
 import { secpositionsApi, seccontentApi, bannerlistApi, vippartnersApi, syspseoApi } from '@/api/modules/basic'
 import { solutioncateApi, pcateApi, allpcateApi, allaiappApi, flinktopApi } from '@/api/modules/common'
 
@@ -25,8 +25,7 @@ function getSecpositions() {
   secpositionsApi().then((res: any) => {
     if (res && res.length > 0) {
       for (let i = 0; i < res.length; i++) {
-        // IN DOUBT 根据路由判断 尽量不根据 name 判断
-        if (res[i].name === window.localStorage.getItem('selectedName')) {
+        if (res[i].url === window.localStorage.getItem('selectedName')) {
           positionid.value = res[i].id
           getBannerlist()
           break
