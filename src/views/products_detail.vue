@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
 import { fileURL } from '@/api/baseConfig'
 import formatCurrency from '@/hooks/formatCurrency'
-import { productmaterialsidApi } from '@/api/modules/product'
+import { producthridApi, productmaterialsidApi, productequipmentsidApi, producteitidApi } from '@/api/modules/product'
 
 // 路由信息
 const route = useRoute()
@@ -15,18 +15,42 @@ const pathname: any = ref('')
 const productid: any = ref('')
 const productDetails: any = ref({})
 
-function getProductmaterialsid() {
-  productmaterialsidApi('1').then((res: any) => {
-    if (res) {
-      productDetails.value = res
-    }
-  })
+// 材料/设备
+function getProductDetailsid() {
+  if (pathname.value === 'scheme') {
+    producthridApi(productid.value).then((res: any) => {
+      if (res) {
+        productDetails.value = res
+      }
+    })
+  }
+  if (pathname.value === 'materials') {
+    productmaterialsidApi(productid.value).then((res: any) => {
+      if (res) {
+        productDetails.value = res
+      }
+    })
+  }
+  if (pathname.value === 'sale') {
+    productequipmentsidApi(productid.value).then((res: any) => {
+      if (res) {
+        productDetails.value = res
+      }
+    })
+  }
+  if (pathname.value === 'products') {
+    producteitidApi(productid.value).then((res: any) => {
+      if (res) {
+        productDetails.value = res
+      }
+    })
+  }
 }
 
 onMounted(() => {
   productid.value = route.query.id
   pathname.value = route.query.name
-  getProductmaterialsid()
+  getProductDetailsid()
 })
 
 const value1 = ref(4.8)
@@ -52,9 +76,15 @@ const value1 = ref(4.8)
             信息化产品/服务
           </span>
           <span class="pdNavigationXg">/</span>
-          <span class="pdNavigationSp">{{ productDetails.materialname }}</span>
+          <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{ productDetails.servicename }}</span>
+          <span v-if="pathname === 'materials'" class="pdNavigationSp">{{ productDetails.materialname }}</span>
+          <span v-if="pathname === 'sale'" class="pdNavigationSp">{{ productDetails.equipmentname }}</span>
+          <span v-if="pathname === 'products'" class="pdNavigationSp">{{ productDetails.itname }}</span>
         </div>
-        <div class="pdHtitle">{{ productDetails.materialname }}</div>
+        <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
+        <div v-if="pathname === 'materials'" class="pdHtitle">{{ productDetails.materialname }}</div>
+        <div v-if="pathname === 'sale'" class="pdHtitle">{{ productDetails.equipmentname }}</div>
+        <div v-if="pathname === 'products'" class="pdHtitle">{{ productDetails.itname }}</div>
         <!-- <div class="pdHsubTitle">全专业模型整合与碰撞检测，提前规避施工风险</div> -->
       </div>
     </div>
@@ -82,14 +112,14 @@ const value1 = ref(4.8)
               <i class="fa fa-phone"></i>
               <span>联系供应商</span>
             </button>
-            <button class="pdcljcJrgwc">
+            <!-- <button class="pdcljcJrgwc">
               <i class="fa fa-shopping-cart"></i>
               <span>加入购物车</span>
-            </button>
+            </button> -->
           </div>
           <div class="pdcljRight">
             <div class="pdcljrTitle">基本参数</div>
-            <div class="pdcljrItem">
+            <div v-if="pathname !== 'scheme'" class="pdcljrItem">
               <span>规格型号：</span>
               <span>{{ productDetails.specification }}</span>
             </div>
@@ -282,18 +312,18 @@ const value1 = ref(4.8)
       <div class="pdcRight">
         <div class="pdcrTitle">供应商信息</div>
         <div class="pdcrTop frss">
-          <img src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-            alt="" />
+          <img v-if="productDetails.supplier_info && productDetails.supplier_info.company_imgs"
+            :src="fileURL + productDetails.supplier_info.company_imgs[0]" alt="" />
           <div>
-            <div class="pdcrtTitle">杭州筑智信息技术有限公司</div>
-            <div class="pdcrtRate">
+            <div v-if="productDetails.supplier_info" class="pdcrtTitle">{{ productDetails.supplier_info.company_name }}
+            </div>
+            <!-- <div class="pdcrtRate">
               <el-rate v-model="value1" allow-half />
               <span> 4.8</span>
-            </div>
-            <div class="pdcrtTag">
-              <span>优质供应商</span>
-              <span class="pdcrtagShu">|</span>
-              <span>BIM技术服务</span>
+            </div> -->
+            <div v-if="productDetails.supplier_info" class="pdcrtTag">
+              <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{ item }}</span>
+              <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
         </div>
@@ -303,7 +333,7 @@ const value1 = ref(4.8)
           </div>
           <div class="pdcrPbox">
             <p>公司地址</p>
-            <p>浙江省杭州市滨江区江南大道1000号智慧大厦15层</p>
+            <p v-if="productDetails.supplier_info">{{ productDetails.supplier_info.company_address }}</p>
           </div>
         </div>
         <div class="pdcrItem">
@@ -312,7 +342,7 @@ const value1 = ref(4.8)
           </div>
           <div class="pdcrPbox">
             <p>联系电话</p>
-            <p>400-888-9001</p>
+            <p v-if="productDetails.supplier_info">{{ productDetails.supplier_info.tel }}</p>
           </div>
         </div>
         <div class="pdcrItem">
@@ -321,7 +351,7 @@ const value1 = ref(4.8)
           </div>
           <div class="pdcrPbox">
             <p>电子邮箱</p>
-            <p>service@zhuzhi.com</p>
+            <p v-if="productDetails.supplier_info">{{ productDetails.supplier_info.email }}</p>
           </div>
         </div>
         <div class="pdcrItem">
@@ -330,7 +360,9 @@ const value1 = ref(4.8)
           </div>
           <div class="pdcrPbox">
             <p>成立时间</p>
-            <p>2025年</p>
+            <p v-if="productDetails.supplier_info">
+              {{ dayjs(productDetails.supplier_info.establish_time).format('YYYY年MM月DD日') }}
+            </p>
           </div>
         </div>
         <button class="pdcrGysxq">
@@ -827,12 +859,17 @@ const value1 = ref(4.8)
         }
 
         .pdcrtTag {
+          margin-top: 0.5rem;
           color: rgb(107 114 128);
           font-size: 0.875rem;
           line-height: 1.25rem;
 
           .pdcrtagShu {
             margin: 0.25rem;
+          }
+
+          span:last-child {
+            display: none;
           }
         }
       }

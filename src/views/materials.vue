@@ -235,7 +235,7 @@ function handleSizeChange(val: number) {
 }
 
 // 产品详情
-function productRowClick(row: any) {
+function goProductsDetail(row: any) {
   pageJump('products_detail', {
     id: row.id,
     name: 'materials',
@@ -385,10 +385,12 @@ onBeforeUnmount(() => {
         </div>
         <div class="containerProducts">
           <!-- 数据表格 -->
-          <el-table v-loading="tableLoading" :data="productDataList" highlight-current-row @row-click="productRowClick">
+          <el-table v-loading="tableLoading" :data="productDataList" highlight-current-row>
             <el-table-column :show-overflow-tooltip="true" align="center" label="材料名称" width="120">
               <template #default="scope">
-                <span style="color: #165dff">{{ scope.row.materialname }}</span>
+                <span @click="goProductsDetail(scope.row)" style="color: #165dff; cursor: pointer;">
+                  {{ scope.row.materialname }}
+                </span>
               </template>
             </el-table-column>
             <el-table-column :show-overflow-tooltip="true" align="center" prop="specification" label="规格" />
