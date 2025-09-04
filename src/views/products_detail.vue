@@ -1,89 +1,104 @@
-  <script setup lang="ts">
-  import dayjs from 'dayjs'
-  import { onMounted, ref } from 'vue'
-  import { useRoute } from 'vue-router'
-  import pageJump from '@/hooks/pageJump'
-  import { fileURL } from '@/api/baseConfig'
-  import formatCurrency from '@/hooks/formatCurrency'
-  import {
-    producthridApi,
-    productmaterialsidApi,
-    productequipmentsidApi,
-    producteitidApi,
-    producthrrelatedApi,
-    productmaterialsrelatedApi,
-    productequipmentsrelatedApi,
-    producteitrelatedApi,
-  } from '@/api/modules/product'
+<script setup lang="ts">
+import dayjs from 'dayjs'
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import pageJump from '@/hooks/pageJump'
+import { fileURL } from '@/api/baseConfig'
+import formatCurrency from '@/hooks/formatCurrency'
+import {
+  producthridApi,
+  productmaterialsidApi,
+  productequipmentsidApi,
+  producteitidApi,
+  producthrrelatedApi,
+  productmaterialsrelatedApi,
+  productequipmentsrelatedApi,
+  producteitrelatedApi,
+} from '@/api/modules/product'
 
-  // 路由信息
-  const route = useRoute()
+// 路由信息
+const route = useRoute()
 
-  // 产品信息
-  const pathname: any = ref('')
-  const productid: any = ref('')
-  const productDetails: any = ref({})
-  const productRelated: any = ref([])
+// 产品信息
+const pathname: any = ref('')
+const productid: any = ref('')
+const productDetails: any = ref({})
+const productRelated: any = ref([])
 
-  // 材料/设备
-  function getProductDetailsid() {
-    if (pathname.value === 'scheme') {
-      producthridApi(productid.value).then((res: any) => {
-        if (res) {
-          productDetails.value = res
-        }
-      })
-      producthrrelatedApi(productid.value).then((res: any) => {
-        if (res) {
-          productRelated.value = res
-        }
-      })
-    }
-    if (pathname.value === 'materials') {
-      productmaterialsidApi(productid.value).then((res: any) => {
-        if (res) {
-          productDetails.value = res
-        }
-      })
-      productmaterialsrelatedApi(productid.value).then((res: any) => {
-        if (res) {
-          productRelated.value = res
-        }
-      })
-    }
-    if (pathname.value === 'sale') {
-      productequipmentsidApi(productid.value).then((res: any) => {
-        if (res) {
-          productDetails.value = res
-        }
-      })
-      productequipmentsrelatedApi(productid.value).then((res: any) => {
-        if (res) {
-          productRelated.value = res
-        }
-      })
-    }
-    if (pathname.value === 'products') {
-      producteitidApi(productid.value).then((res: any) => {
-        if (res) {
-          productDetails.value = res
-        }
-      })
-      producteitrelatedApi(productid.value).then((res: any) => {
-        if (res) {
-          productRelated.value = res
-        }
-      })
-    }
+// 材料/设备
+function getProductDetailsid() {
+  if (pathname.value === 'scheme') {
+    producthridApi(productid.value).then((res: any) => {
+      if (res) {
+        productDetails.value = res
+      }
+    })
+    producthrrelatedApi(productid.value).then((res: any) => {
+      if (res) {
+        productRelated.value = res.items
+      }
+    })
   }
+  if (pathname.value === 'materials') {
+    productmaterialsidApi(productid.value).then((res: any) => {
+      if (res) {
+        productDetails.value = res
+      }
+    })
+    productmaterialsrelatedApi(productid.value).then((res: any) => {
+      if (res) {
+        productRelated.value = res.items
+      }
+    })
+  }
+  if (pathname.value === 'sale') {
+    productequipmentsidApi(productid.value).then((res: any) => {
+      if (res) {
+        productDetails.value = res
+      }
+    })
+    productequipmentsrelatedApi(productid.value).then((res: any) => {
+      if (res) {
+        productRelated.value = res.items
+      }
+    })
+  }
+  if (pathname.value === 'products') {
+    producteitidApi(productid.value).then((res: any) => {
+      if (res) {
+        productDetails.value = res
+      }
+    })
+    producteitrelatedApi(productid.value).then((res: any) => {
+      if (res) {
+        productRelated.value = res.items
+      }
+    })
+  }
+}
 
-  onMounted(() => {
-    productid.value = route.query.id
-    pathname.value = route.query.name
-    getProductDetailsid()
-  })
+// 相关产品 查看详情
+function xgcpDetailClick(item: any) {
+  // 新建页面打开
+  const url = window.location.href.split('?id=')[0] + `?id=${item.id}&name=${pathname.value}`
+  window.open(url, '_blank')
+  // 当前页面打开
+  // pageJump('products_detail', {
+  //   id: item.id,
+  //   name: pathname.value,
+  // })
+  // setTimeout(() => {
+  //   location.reload()
+  // }, 200)
+}
 
-  const value1 = ref(4.8)
+onMounted(() => {
+  productid.value = route.query.id
+  pathname.value = route.query.name
+  getProductDetailsid()
+})
+
+const value1 = ref(4.8)
 </script>
 
 <template>
@@ -102,16 +117,16 @@
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-            }}</span>
+          }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -314,29 +329,19 @@
         <div class="pdcCptj">
           <div class="pdccTitle">相关产品推荐</div>
           <div class="pdccCgBox">
-            <div class="pdccCgItem">
-              <img
-                src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                alt="" />
+            <div v-for="(item, index) in productRelated" :key="index" class="pdccCgItem">
+              <img v-if="item.imgs" :src="fileURL + item.imgs[0]" alt="产品图片" />
               <div class="pdccgiContent">
-                <div class="pdccgicTitle">施工进度模拟论证服务</div>
-                <div class="pdccgicSub">4D进度模拟与关键节点可行性分析</div>
-                <div class="frbc">
-                  <div class="pdccgicPice">¥10,000.00</div>
-                  <button>查看详情</button>
+                <div v-if="pathname === 'scheme'" class="pdccgicTitle">{{ item.servicename }}</div>
+                <div v-if="pathname === 'materials'" class="pdccgicTitle">
+                  {{ item.materialname }}
                 </div>
-              </div>
-            </div>
-            <div class="pdccCgItem">
-              <img
-                src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                alt="" />
-              <div class="pdccgiContent">
-                <div class="pdccgicTitle">施工进度模拟论证服务</div>
-                <div class="pdccgicSub">4D进度模拟与关键节点可行性分析</div>
+                <div v-if="pathname === 'sale'" class="pdccgicTitle">{{ item.equipmentname }}</div>
+                <div v-if="pathname === 'products'" class="pdccgicTitle">{{ item.itname }}</div>
+                <!-- <div class="pdccgicSub">4D进度模拟与关键节点可行性分析</div> -->
                 <div class="frbc">
-                  <div class="pdccgicPice">¥10,000.00</div>
-                  <button>查看详情</button>
+                  <div class="pdccgicPice">¥{{ formatCurrency(item.pretaxprice, 2) }}</div>
+                  <button @click="xgcpDetailClick(item)">查看详情</button>
                 </div>
               </div>
             </div>
@@ -345,7 +350,7 @@
       </div>
       <div class="pdcRight">
         <div class="pdcrTitle">供应商信息</div>
-        <div class="pdcrTop frss">
+        <div class="pdcrTop frsc">
           <img v-if="productDetails.supplier_info && productDetails.supplier_info.company_imgs"
             :src="fileURL + productDetails.supplier_info.company_imgs[0]" alt="" />
           <div>
@@ -359,7 +364,7 @@
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-                }}</span>
+              }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
@@ -432,8 +437,8 @@
       max-width: 1536px;
       color: rgb(1 32 96);
 
-      @media (max-width: 992px) {
-        padding: 6rem 1rem 2rem;
+      @media (max-width: 768px) {
+        padding: 5rem 1rem 1rem;
       }
 
       .pdNavigation {
@@ -462,7 +467,7 @@
       }
 
       .pdHtitle {
-        margin-bottom: 0.5rem;
+        // margin-bottom: 0.5rem;
         font-size: clamp(1.5rem, 4vw, 2.5rem);
         line-height: 3.75rem;
         font-weight: 700;
@@ -479,7 +484,7 @@
   .pdCbox {
     position: relative;
     margin: 0 auto;
-    padding: 2.5rem 1rem;
+    padding: 1rem;
     width: 100%;
     max-width: 1536px;
     color: rgb(1 32 96);
@@ -641,6 +646,10 @@
           0 10px 15px -3px rgb(0 0 0 / 0.1),
           0 4px 6px -4px rgb(0 0 0 / 0.1);
 
+        @media (max-width: 768px) {
+          padding: 1rem;
+        }
+
         .pdclxTitle {
           margin-bottom: 1.5rem;
           padding-bottom: 0.5rem;
@@ -775,18 +784,27 @@
 
       .pdcCptj {
         padding: 1.5rem;
+        padding-bottom: 0.5rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
         box-shadow:
           0 10px 15px -3px rgb(0 0 0 / 0.1),
           0 4px 6px -4px rgb(0 0 0 / 0.1);
 
+        @media (max-width: 768px) {
+          padding: 1rem 1rem 0 1rem;
+        }
+
         .pdccTitle {
           margin-bottom: 1.5rem;
-          padding-bottom: 0.5rem;
+          // padding-bottom: 0.5rem;
           font-weight: 700;
           font-size: 1.25rem;
           line-height: 1.75rem;
+
+          @media (max-width: 768px) {
+            margin-bottom: 1rem;
+          }
         }
 
         .pdccCgBox {
@@ -806,7 +824,7 @@
             border: 1px solid rgb(229 231 235);
 
             @media (min-width: 992px) {
-              margin-bottom: 0;
+              // margin-bottom: 0;
               width: calc(50% - 0.5rem);
             }
 
@@ -845,10 +863,6 @@
             }
           }
 
-          .pdccCgItem:last-child {
-            margin-bottom: 0;
-          }
-
           .pdccCgItem:hover {
             @media (min-width: 768px) {
               cursor: pointer;
@@ -859,7 +873,7 @@
     }
 
     .pdcRight {
-      padding: 1.5rem;
+      padding: 1rem;
       width: 100%;
       height: 100%;
       background-color: rgb(255 255 255);
@@ -869,15 +883,19 @@
         0 4px 6px -4px rgb(0 0 0 / 0.1);
 
       @media (min-width: 992px) {
+        padding: 1.5rem;
         width: calc(33.3% - 1rem);
       }
 
       .pdcrTitle {
         margin-bottom: 1.5rem;
-        padding-bottom: 0.5rem;
         font-weight: 700;
         font-size: 1.25rem;
         line-height: 1.75rem;
+
+        @media (max-width: 768px) {
+          margin-bottom: 1rem;
+        }
       }
 
       .pdcrTop {
