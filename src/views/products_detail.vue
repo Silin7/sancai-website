@@ -1,59 +1,89 @@
-<script setup lang="ts">
-import dayjs from 'dayjs'
-import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
-import pageJump from '@/hooks/pageJump'
-import { fileURL } from '@/api/baseConfig'
-import formatCurrency from '@/hooks/formatCurrency'
-import { producthridApi, productmaterialsidApi, productequipmentsidApi, producteitidApi } from '@/api/modules/product'
+  <script setup lang="ts">
+  import dayjs from 'dayjs'
+  import { onMounted, ref } from 'vue'
+  import { useRoute } from 'vue-router'
+  import pageJump from '@/hooks/pageJump'
+  import { fileURL } from '@/api/baseConfig'
+  import formatCurrency from '@/hooks/formatCurrency'
+  import {
+    producthridApi,
+    productmaterialsidApi,
+    productequipmentsidApi,
+    producteitidApi,
+    producthrrelatedApi,
+    productmaterialsrelatedApi,
+    productequipmentsrelatedApi,
+    producteitrelatedApi,
+  } from '@/api/modules/product'
 
-// 路由信息
-const route = useRoute()
+  // 路由信息
+  const route = useRoute()
 
-// 产品信息
-const pathname: any = ref('')
-const productid: any = ref('')
-const productDetails: any = ref({})
+  // 产品信息
+  const pathname: any = ref('')
+  const productid: any = ref('')
+  const productDetails: any = ref({})
+  const productRelated: any = ref([])
 
-// 材料/设备
-function getProductDetailsid() {
-  if (pathname.value === 'scheme') {
-    producthridApi(productid.value).then((res: any) => {
-      if (res) {
-        productDetails.value = res
-      }
-    })
+  // 材料/设备
+  function getProductDetailsid() {
+    if (pathname.value === 'scheme') {
+      producthridApi(productid.value).then((res: any) => {
+        if (res) {
+          productDetails.value = res
+        }
+      })
+      producthrrelatedApi(productid.value).then((res: any) => {
+        if (res) {
+          productRelated.value = res
+        }
+      })
+    }
+    if (pathname.value === 'materials') {
+      productmaterialsidApi(productid.value).then((res: any) => {
+        if (res) {
+          productDetails.value = res
+        }
+      })
+      productmaterialsrelatedApi(productid.value).then((res: any) => {
+        if (res) {
+          productRelated.value = res
+        }
+      })
+    }
+    if (pathname.value === 'sale') {
+      productequipmentsidApi(productid.value).then((res: any) => {
+        if (res) {
+          productDetails.value = res
+        }
+      })
+      productequipmentsrelatedApi(productid.value).then((res: any) => {
+        if (res) {
+          productRelated.value = res
+        }
+      })
+    }
+    if (pathname.value === 'products') {
+      producteitidApi(productid.value).then((res: any) => {
+        if (res) {
+          productDetails.value = res
+        }
+      })
+      producteitrelatedApi(productid.value).then((res: any) => {
+        if (res) {
+          productRelated.value = res
+        }
+      })
+    }
   }
-  if (pathname.value === 'materials') {
-    productmaterialsidApi(productid.value).then((res: any) => {
-      if (res) {
-        productDetails.value = res
-      }
-    })
-  }
-  if (pathname.value === 'sale') {
-    productequipmentsidApi(productid.value).then((res: any) => {
-      if (res) {
-        productDetails.value = res
-      }
-    })
-  }
-  if (pathname.value === 'products') {
-    producteitidApi(productid.value).then((res: any) => {
-      if (res) {
-        productDetails.value = res
-      }
-    })
-  }
-}
 
-onMounted(() => {
-  productid.value = route.query.id
-  pathname.value = route.query.name
-  getProductDetailsid()
-})
+  onMounted(() => {
+    productid.value = route.query.id
+    pathname.value = route.query.name
+    getProductDetailsid()
+  })
 
-const value1 = ref(4.8)
+  const value1 = ref(4.8)
 </script>
 
 <template>
@@ -63,26 +93,30 @@ const value1 = ref(4.8)
         <div class="pdNavigation">
           <span @click="pageJump('home')">首页</span>
           <span class="pdNavigationXg">/</span>
-          <span v-if="pathname === 'scheme'" @click="pageJump('scheme')">
-            数字技工/方案论证
-          </span>
-          <span v-if="pathname === 'materials'" @click="pageJump('materials')">
-            材料/设备
-          </span>
-          <span v-if="pathname === 'sale'" @click="pageJump('sale')">
-            智能建造装备
-          </span>
+          <span v-if="pathname === 'scheme'" @click="pageJump('scheme')"> 数字技工/方案论证 </span>
+          <span v-if="pathname === 'materials'" @click="pageJump('materials')"> 材料/设备 </span>
+          <span v-if="pathname === 'sale'" @click="pageJump('sale')"> 智能建造装备 </span>
           <span v-if="pathname === 'products'" @click="pageJump('products')">
             信息化产品/服务
           </span>
           <span class="pdNavigationXg">/</span>
-          <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{ productDetails.servicename }}</span>
-          <span v-if="pathname === 'materials'" class="pdNavigationSp">{{ productDetails.materialname }}</span>
-          <span v-if="pathname === 'sale'" class="pdNavigationSp">{{ productDetails.equipmentname }}</span>
-          <span v-if="pathname === 'products'" class="pdNavigationSp">{{ productDetails.itname }}</span>
+          <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
+            productDetails.servicename
+            }}</span>
+          <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
+            productDetails.materialname
+            }}</span>
+          <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
+            productDetails.equipmentname
+            }}</span>
+          <span v-if="pathname === 'products'" class="pdNavigationSp">{{
+            productDetails.itname
+            }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
-        <div v-if="pathname === 'materials'" class="pdHtitle">{{ productDetails.materialname }}</div>
+        <div v-if="pathname === 'materials'" class="pdHtitle">
+          {{ productDetails.materialname }}
+        </div>
         <div v-if="pathname === 'sale'" class="pdHtitle">{{ productDetails.equipmentname }}</div>
         <div v-if="pathname === 'products'" class="pdHtitle">{{ productDetails.itname }}</div>
         <!-- <div class="pdHsubTitle">全专业模型整合与碰撞检测，提前规避施工风险</div> -->
@@ -92,7 +126,7 @@ const value1 = ref(4.8)
       <div class="pdcLeft">
         <div class="pdclJbcs">
           <img v-if="productDetails.imgs" :src="fileURL + productDetails.imgs[0]" alt="产品图片" />
-          <img v-else src="" alt="产品图片">
+          <img v-else src="" alt="产品图片" />
           <div class="pdcljCenter">
             <div class="pdcljcTop">
               <div class="pdcljctItem">
@@ -315,14 +349,17 @@ const value1 = ref(4.8)
           <img v-if="productDetails.supplier_info && productDetails.supplier_info.company_imgs"
             :src="fileURL + productDetails.supplier_info.company_imgs[0]" alt="" />
           <div>
-            <div v-if="productDetails.supplier_info" class="pdcrtTitle">{{ productDetails.supplier_info.company_name }}
+            <div v-if="productDetails.supplier_info" class="pdcrtTitle">
+              {{ productDetails.supplier_info.company_name }}
             </div>
             <!-- <div class="pdcrtRate">
               <el-rate v-model="value1" allow-half />
               <span> 4.8</span>
             </div> -->
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
-              <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{ item }}</span>
+              <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
+                item
+                }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
@@ -333,7 +370,9 @@ const value1 = ref(4.8)
           </div>
           <div class="pdcrPbox">
             <p>公司地址</p>
-            <p v-if="productDetails.supplier_info">{{ productDetails.supplier_info.company_address }}</p>
+            <p v-if="productDetails.supplier_info">
+              {{ productDetails.supplier_info.company_address }}
+            </p>
           </div>
         </div>
         <div class="pdcrItem">
@@ -465,7 +504,9 @@ const value1 = ref(4.8)
         padding: 1rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (min-width: 992px) {
           padding: 1.5rem;
@@ -563,7 +604,6 @@ const value1 = ref(4.8)
             width: calc(33.3%);
           }
 
-
           .pdcljrTitle {
             font-weight: 700;
             font-size: 1.125rem;
@@ -597,7 +637,9 @@ const value1 = ref(4.8)
         padding: 1.5rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         .pdclxTitle {
           margin-bottom: 1.5rem;
@@ -695,7 +737,9 @@ const value1 = ref(4.8)
               width: 100%;
               background-color: rgb(255 255 255);
               border-radius: 0.5rem;
-              box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+              box-shadow:
+                0 10px 15px -3px rgb(0 0 0 / 0.1),
+                0 4px 6px -4px rgb(0 0 0 / 0.1);
               border: 1px solid rgb(229 231 235);
 
               @media (min-width: 992px) {
@@ -733,7 +777,9 @@ const value1 = ref(4.8)
         padding: 1.5rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         .pdccTitle {
           margin-bottom: 1.5rem;
@@ -754,7 +800,9 @@ const value1 = ref(4.8)
             width: 100%;
             background-color: rgb(255 255 255);
             border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            box-shadow:
+              0 10px 15px -3px rgb(0 0 0 / 0.1),
+              0 4px 6px -4px rgb(0 0 0 / 0.1);
             border: 1px solid rgb(229 231 235);
 
             @media (min-width: 992px) {
@@ -816,7 +864,9 @@ const value1 = ref(4.8)
       height: 100%;
       background-color: rgb(255 255 255);
       border-radius: 1rem;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      box-shadow:
+        0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
 
       @media (min-width: 992px) {
         width: calc(33.3% - 1rem);

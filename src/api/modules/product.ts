@@ -47,6 +47,11 @@ export function producthrsearchApi(params: any) {
   })
 }
 
+// 用户端-获取数字技工相关产品（通过路径参数传递当前产品ID）
+export function producthrrelatedApi(id: any) {
+  return api.get('/api/client/product/human-resources/related/' + id)
+}
+
 // 用户端-获取所有审核通过的材料（不含description字段）
 export function productmaterialsApi(params: any) {
   return api.get('/api/client/product/materials', {
@@ -71,6 +76,11 @@ export function productmaterialssearchApi(params: any) {
   return api.get('/api/client/product/materials/search', {
     params,
   })
+}
+
+// 用户端-获取材料相关产品（通过路径参数传递当前产品ID）
+export function productmaterialsrelatedApi(id: any) {
+  return api.get('/api/client/product/materials/related/' + id)
 }
 
 // 用户端-获取所有审核通过的装备（不含description字段）
@@ -99,6 +109,11 @@ export function productequipmentssearchApi(params: any) {
   })
 }
 
+// 用户端-获取装备相关产品（通过路径参数传递当前产品ID）
+export function productequipmentsrelatedApi(id: any) {
+  return api.get('/api/client/product/equipments/related/' + id)
+}
+
 // 用户端-获取所有审核通过的信息化产品（不含description字段）
 export function producteitApi(params: any) {
   return api.get('/api/client/product/it-products', {
@@ -123,4 +138,9 @@ export function producteitsearchApi(params: any) {
   return api.get('/api/client/product/it-products/search', {
     params,
   })
+}
+
+// 用户端-获取信息化产品相关产品（通过路径参数传递当前产品ID）
+export function producteitrelatedApi(id: any) {
+  return api.get('/api/client/product/it-products/related/' + id)
 }
