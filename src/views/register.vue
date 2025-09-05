@@ -1,31 +1,49 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
+import { sendverificationcodeApi, verifyverificationcodeApi } from '@/api/modules/yzm'
 
-const checked1: any = ref(true)
-const checked2: any = ref(false)
 const checked3: any = ref(false)
-const phone: any = ref('')
+const phone: any = ref('13256605200')
 const password: any = ref('')
-const yzm: any = ref('')
+const code: any = ref('')
+
+function hqyzm1() {
+  if (!phone.value) {
+    ElMessage({
+      type: 'error',
+      message: '请输入手机号',
+    })
+    return
+  }
+  if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(phone.value)) {
+    ElMessage({
+      type: 'error',
+      message: '手机号格式错误',
+    })
+    return
+  }
+  sendverificationcodeApi({
+    phone: phone.value
+  }).then((res: any) => {
+    console.log('-------->', res)
+  })
+}
+function hqyzm2() {
+  verifyverificationcodeApi({
+    phone: phone.value,
+    code: '985136'
+  }).then((res: any) => {
+    console.log('-------->', res)
+  })
+}
 </script>
 
 <template>
   <div class="registerPage">
     <div class="registerbox">
       <div class="hyzc">欢迎注册</div>
-      <div class="typebox frsc">
-        <div>
-          <img v-if="checked1" src="@/assets/register/checked.png" alt="" />
-          <img v-else src="@/assets/register/unchecked.png" alt="" />
-          <span>供方</span>
-        </div>
-        <div>
-          <img v-if="checked2" src="@/assets/register/checked.png" alt="" />
-          <img v-else src="@/assets/register/unchecked.png" alt="" />
-          <span>需方</span>
-        </div>
-      </div>
       <div class="fromitem frsc">
         <img src="@/assets/register/user.png" alt="" />
         <el-input v-model="phone" style="width: 100%" placeholder="请输入手机号" clearable />
@@ -36,8 +54,9 @@ const yzm: any = ref('')
       </div>
       <div class="fromitem frsc">
         <img src="@/assets/register/yzm.png" alt="" />
-        <el-input v-model="yzm" style="width: calc(100% - 140px)" placeholder="短信验证码" clearable />
-        <button>获取验证码</button>
+        <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="短信验证码" clearable />
+        <button @click="hqyzm1">获取验证码1</button>
+        <button @click="hqyzm2">获取验证码2</button>
       </div>
       <div class="statement">
         <img v-if="checked3" src="@/assets/register/checked.png" alt="" />
@@ -51,7 +70,7 @@ const yzm: any = ref('')
           theurl: 'privacy-policy-statement'
         })">《新材网隐私政策声明》</span>
       </div>
-      <button class="createAccount">创建账号</button>
+      <button class="createAccount" @click="">创建账号</button>
       <div class="gologin">已有账号？<span @click="pageJump('login')">立即登录</span></div>
     </div>
     <div class="copyright">
