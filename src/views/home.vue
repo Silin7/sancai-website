@@ -7,8 +7,18 @@ import pageJump from '@/hooks/pageJump'
 import backToTop from '@/hooks/backToTop'
 import windowOpen from '@/hooks/windowOpen'
 import { fileURL } from '@/api/baseConfig'
-import { secpositionsApi, seccontentApi, bannerlistApi, vippartnersApi, syspseoApi } from '@/api/modules/basic'
-import { solutioncateApi, pcateApi, allpcateApi, allaiappApi, flinktopApi } from '@/api/modules/common'
+import {
+  secpositionsApi,
+  bannerlistApi,
+  vippartnersApi,
+  syspseoApi,
+} from '@/api/modules/basic'
+import {
+  solutioncateApi,
+  allpcateApi,
+  allaiappApi,
+  flinktopApi,
+} from '@/api/modules/common'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -36,9 +46,9 @@ function getSecpositions() {
 }
 
 function getBannerlist() {
-  // 用户端-按板块位置ID获取最新启用的板块内容（含完整位置信息）
-  seccontentApi(positionid.value).then((res: any) => {
-    console.log('sec-content', res)
+  // 用户端-按板块位置ID获取所有启用的Banner（含位置名称）
+  bannerlistApi(positionid.value).then((res: any) => {
+    bannerData.value = res[0]
   })
   // 用户端-根据页面ID（page_id）获取启用的SEO配置详情（含页面名称）
   syspseoApi(positionid.value).then((res: any) => {
@@ -48,13 +58,9 @@ function getBannerlist() {
         meta: [
           { name: 'description', content: res.description },
           { name: 'keywords', content: res.keywords },
-        ]
+        ],
       })
     }
-  })
-  // 用户端-按板块位置ID获取所有启用的Banner（含位置名称）
-  bannerlistApi(positionid.value).then((res: any) => {
-    bannerData.value = res[0]
   })
 }
 
@@ -153,7 +159,7 @@ function getAllaiapp() {
         if (item.cate_id === 1) {
           bidcostAi.value.push(item)
         }
-      });
+      })
     }
   })
 }
@@ -357,9 +363,10 @@ onBeforeUnmount(() => {
           <div class="solutionsSubBoxOut">
             <div class="solutionsSubBox">
               <template v-for="(item, index) in solutionChild" :key="index">
-                <div v-if="item.parent_id === solutionPactive"
-                  :class="['solutionsSubItem', item.id === solutionCactive ? 'solutionsActive' : '']"
-                  @click="solutionCchange(item)">
+                <div v-if="item.parent_id === solutionPactive" :class="[
+                  'solutionsSubItem',
+                  item.id === solutionCactive ? 'solutionsActive' : '',
+                ]" @click="solutionCchange(item)">
                   {{ item.name }}
                 </div>
               </template>
@@ -436,7 +443,7 @@ onBeforeUnmount(() => {
             @click="windowOpen(item.link_url, true)">
             <img :src="fileURL + item.logo" alt="" class="pyClassitemfa" />
             <div class="pyClassitemtext">{{ item.name }}</div>
-            <div class="pyClassiteminfo">{{ item.remark }} </div>
+            <div class="pyClassiteminfo">{{ item.remark }}</div>
           </div>
         </div>
       </div>
@@ -600,8 +607,11 @@ onBeforeUnmount(() => {
                 background-color: rgb(22 93 255 / 0.1);
                 border-radius: 0.5rem;
                 --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-                --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
-                box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+                --tw-shadow-colored:
+                  0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+                box-shadow:
+                  var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+                  var(--tw-shadow);
               }
 
               .bannerGridright {
@@ -626,7 +636,9 @@ onBeforeUnmount(() => {
             .bannerGriditem:hover {
               @media (min-width: 768px) {
                 cursor: pointer;
-                box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+                box-shadow:
+                  0 10px 15px -3px rgb(0 0 0 / 0.1),
+                  0 4px 6px -4px rgb(0 0 0 / 0.1);
                 animation: jumpUpwards 300ms ease-in-out forwards;
               }
             }
@@ -805,7 +817,9 @@ onBeforeUnmount(() => {
           color: rgb(1 32 96);
           background-color: #fff;
           border-radius: 0.5rem;
-          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          box-shadow:
+            0 10px 15px -3px rgb(0 0 0 / 0.1),
+            0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (max-width: 768px) {
             margin: 0 0.25rem;
@@ -876,7 +890,7 @@ onBeforeUnmount(() => {
             i {
               font-size: 1.25rem;
               color: #165dff;
-              margin-right: 0.75rem
+              margin-right: 0.75rem;
             }
 
             .containerGridimginfo {
@@ -956,7 +970,9 @@ onBeforeUnmount(() => {
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             background-color: #fff;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            box-shadow:
+              0 10px 15px -3px rgb(0 0 0 / 0.1),
+              0 4px 6px -4px rgb(0 0 0 / 0.1);
 
             @media (max-width: 768px) {
               margin: 0 0.25rem;
@@ -991,7 +1007,9 @@ onBeforeUnmount(() => {
         width: 100%;
         height: 700px;
         border-radius: 1rem;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow:
+          0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         .solutionsImgTitleMoud {
           position: absolute;
@@ -1166,7 +1184,7 @@ onBeforeUnmount(() => {
 
             i {
               font-size: 1.5rem;
-              color: #165dff
+              color: #165dff;
             }
           }
 
@@ -1184,7 +1202,7 @@ onBeforeUnmount(() => {
 
             i {
               font-size: 1.5rem;
-              color: #722ed1
+              color: #722ed1;
             }
           }
 
@@ -1199,7 +1217,9 @@ onBeforeUnmount(() => {
         .aiClassitem:hover {
           @media (min-width: 768px) {
             cursor: pointer;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            box-shadow:
+              0 10px 15px -3px rgb(0 0 0 / 0.1),
+              0 4px 6px -4px rgb(0 0 0 / 0.1);
             animation: jumpUpwards 300ms ease-in-out forwards;
           }
         }
@@ -1269,7 +1289,9 @@ onBeforeUnmount(() => {
           justify-content: center;
           align-items: center;
           background-color: #fff;
-          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          box-shadow:
+            0 10px 15px -3px rgb(0 0 0 / 0.1),
+            0 4px 6px -4px rgb(0 0 0 / 0.1);
           border-radius: 0.75rem;
 
           @media (min-width: 992px) {
@@ -1410,9 +1432,11 @@ onBeforeUnmount(() => {
       }
 
       .pyClassitem:hover {
-        @media (min-width: 768px) {
+        @media (min-width:768px) {
           cursor: pointer;
-          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          box-shadow:
+            0 10px 15px -3px rgb(0 0 0 / 0.1),
+            0 4px 6px -4px rgb(0 0 0 / 0.1);
           animation: jumpUpwards 300ms ease-in-out forwards;
         }
       }

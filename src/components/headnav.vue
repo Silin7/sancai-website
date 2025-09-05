@@ -22,7 +22,7 @@ const selectedTab = computed(() => {
 
 function tabRouterPush(item: any) {
   if (item.children && item.children.length > 0) {
-    item.zhankai = !item.zhankai
+    item.expanded = !item.expanded
     return
   }
   pageJump(item.name)
@@ -33,7 +33,7 @@ const menuList: any = ref([
   { id: '1', title: '系统首页', path: '/', name: 'home', children: [] },
   {
     title: '人材机信价格库',
-    zhankai: false,
+    expanded: false,
     children: [
       { id: '2', title: '数字技工/方案论证', path: '/scheme', name: 'scheme' },
       { id: '3', title: '材料/设备', path: '/materials', name: 'materials' },
@@ -73,7 +73,7 @@ watch(
       console.log('-------->', selectedTab.value)
     } else {
       menuList.value.forEach((element: any) => {
-        element.zhankai = false
+        element.expanded = false
       })
     }
   },
@@ -150,10 +150,10 @@ onBeforeUnmount(() => {
           :class="['collapseItem', selectedTab === item.name ? 'collapseActive' : '']" @click="tabRouterPush(item)">
           <div class="frbc">
             <span>{{ item.title }}</span>
-            <i v-if="item.children.length > 0 && item.zhankai" class="fa fa-chevron-up"></i>
-            <i v-if="item.children.length > 0 && !item.zhankai" class="fa fa-chevron-down"></i>
+            <i v-if="item.children.length > 0 && item.expanded" class="fa fa-chevron-up"></i>
+            <i v-if="item.children.length > 0 && !item.expanded" class="fa fa-chevron-down"></i>
           </div>
-          <div v-if="item.children.length > 0 && item.zhankai" class="collapseChildren">
+          <div v-if="item.children.length > 0 && item.expanded" class="collapseChildren">
             <div v-for="(item2, index2) in item.children" :key="index2"
               :class="['collapseCitem', selectedTab === item2.name ? 'collapseActive' : '']"
               @click="tabRouterPush(item2)">
