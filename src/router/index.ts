@@ -231,6 +231,18 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/rpassword',
+    name: 'rpassword',
+    component: () => import('@/views/rpassword.vue'),
+    meta: {
+      title: '注册',
+      stcode: 'rpassword',
+      website: true,
+      hashead: true,
+      hasfoot: false,
+    },
+  },
+  {
     path: '/user/index',
     name: 'user-index',
     component: () => import('@/views/user/index.vue'),

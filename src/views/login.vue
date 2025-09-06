@@ -172,7 +172,7 @@ function getBaselogincode() {
           <button v-else @click="getCode">获取验证码</button>
         </div>
         <div v-if="state === 'mm'" class="frec">
-          <button class="forgotPassword">忘记密码</button>
+          <button class="forgotPassword" @click="pageJump('rpassword')">忘记密码</button>
         </div>
       </div>
       <button class="createAccount" @click="loginByCoode">登录</button>

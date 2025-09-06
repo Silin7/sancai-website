@@ -44,3 +44,31 @@ export function baseloginpwdApi(data: any) {
     },
   })
 }
+
+// 找回密码
+export function baseforgotdpwdApi(data: any) {
+  return api.post('/api/client/base/forgot-password', null, {
+    params: {
+      ...data,
+    },
+  })
+}
+
+// 退出登录
+export function baselogoutdApi(data: any) {
+  return api.post('/api/client/base/logout', null, {
+    params: {
+      ...data,
+    },
+  })
+}
+
+// 检查登录状态
+export function checkloinApi() {
+  return api.get('/api/client/base/check-login')
+}
+
+// 获取当前用户信息
+export function currentuserApi() {
+  return api.get('/api/client/base/current-user')
+}

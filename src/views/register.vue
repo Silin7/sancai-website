@@ -9,7 +9,7 @@ import {
 } from '@/api/modules/login'
 
 const isreadRuler: any = ref(false)
-const phone: any = ref('13256605200')
+const phone: any = ref('')
 const password: any = ref('')
 const code: any = ref('')
 
@@ -75,10 +75,10 @@ function ceateAccount() {
     })
     return
   }
-  if (password.value.length < 8 || password.value.length > 16) {
+  if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/.test(password.value)) {
     ElMessage({
       type: 'error',
-      message: '请输入8-16位密码',
+      message: '请输入8-20位密码（含字母和数字）',
     })
     return
   }
@@ -134,59 +134,32 @@ function getBaseregister() {
       </div>
       <div class="fromitem frsc">
         <img src="@/assets/register/pwd.png" alt="" />
-        <el-input
-          type="password"
-          show-password
-          v-model="password"
-          style="width: 100%"
-          placeholder="请输入8-16位密码"
-          clearable
-        />
+        <el-input type="password" show-password v-model="password" style="width: 100%" placeholder="请输入8-20位密码（含字母和数字）"
+          clearable />
       </div>
       <div class="fromitem frsc">
         <img src="@/assets/register/yzm.png" alt="" />
-        <el-input
-          v-model="code"
-          style="width: calc(100% - 140px)"
-          placeholder="短信验证码"
-          clearable
-        />
+        <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="短信验证码" clearable />
         <div v-if="countdown < 60 && countdown > 0" class="djsTimeStyle">
           已发送（{{ countdown }}）
         </div>
         <button v-else @click="getCode">获取验证码</button>
       </div>
       <div class="statement">
-        <img
-          v-if="isreadRuler"
-          src="@/assets/register/checked.png"
-          alt=""
-          @click="isreadRuler = !isreadRuler"
-        />
-        <img
-          v-else
-          src="@/assets/register/unchecked.png"
-          alt=""
-          @click="isreadRuler = !isreadRuler"
-        />
+        <img v-if="isreadRuler" src="@/assets/register/checked.png" alt="" @click="isreadRuler = !isreadRuler" />
+        <img v-else src="@/assets/register/unchecked.png" alt="" @click="isreadRuler = !isreadRuler" />
         我已阅读并同意
-        <span
-          @click="
-            pageJump('article_detail', {
-              theurl: 'user-service-agreement',
-            })
-          "
-          >《新材网用户服务协议》</span
-        >
+        <span @click="
+          pageJump('article_detail', {
+            theurl: 'user-service-agreement',
+          })
+          ">《新材网用户服务协议》</span>
         和
-        <span
-          @click="
-            pageJump('article_detail', {
-              theurl: 'privacy-policy-statement',
-            })
-          "
-          >《新材网隐私政策声明》</span
-        >
+        <span @click="
+          pageJump('article_detail', {
+            theurl: 'privacy-policy-statement',
+          })
+          ">《新材网隐私政策声明》</span>
       </div>
       <button class="createAccount" @click="ceateAccount">创建账号</button>
       <div class="gologin">已有账号？<span @click="pageJump('login')">立即登录</span></div>
