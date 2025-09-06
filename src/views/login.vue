@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
+import {
+  sendverificationcodeApi,
+  verifyverificationcodeApi,
+  baselogincodeApi,
+  baseloginpwdApi,
+} from '@/api/modules/login'
 
 const state: any = ref('kj')
 
@@ -8,12 +15,122 @@ function setState(code: string) {
   state.value = code
 }
 
-const checked1: any = ref(true)
-const checked2: any = ref(false)
-const checked3: any = ref(false)
 const phone: any = ref('')
 const password: any = ref('')
-const yzm: any = ref('')
+const code: any = ref('')
+
+function getCode() {
+  if (!phone.value) {
+    ElMessage({
+      type: 'error',
+      message: '请输入手机号',
+    })
+    return
+  }
+  if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(phone.value)) {
+    ElMessage({
+      type: 'error',
+      message: '手机号格式错误',
+    })
+    return
+  }
+  sendverificationcodeApi({
+    phone: phone.value,
+  }).then((res: any) => {
+    if (res) {
+      countdownChange()
+    }
+  })
+}
+
+// 验证码倒计时
+const countdown: any = ref(60)
+const verificationTimer: any = ref(null)
+
+function countdownChange() {
+  verificationTimer.value = setInterval(() => {
+    countdown.value -= 1
+    // 清除定时器
+    if (countdown.value === 0) {
+      clearInterval(verificationTimer.value)
+      countdown.value = 60
+    }
+  }, 1000)
+}
+
+// 验证码登录
+function loginByCoode() {
+  if (!phone.value) {
+    ElMessage({
+      type: 'error',
+      message: '请输入手机号',
+    })
+    return
+  }
+  if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(phone.value)) {
+    ElMessage({
+      type: 'error',
+      message: '手机号格式错误',
+    })
+    return
+  }
+  // 快捷登录
+  if (state.value === 'kj') {
+    if (!code.value) {
+      ElMessage({
+        type: 'error',
+        message: '请输入验证码',
+      })
+      return
+    }
+    verifyverificationcodeApi({
+      phone: phone.value,
+      code: code.value,
+    }).then((res: any) => {
+      if (res) {
+        getBaselogincode()
+      }
+    })
+  }
+  // 密码登录
+  if (state.value === 'mm') {
+    if (!password.value) {
+      ElMessage({
+        type: 'error',
+        message: '请输入密码',
+      })
+      return
+    }
+    baseloginpwdApi({
+      phone: phone.value,
+      password: password.value,
+    }).then((res: any) => {
+      if (res) {
+        ElMessage({
+          type: 'success',
+          message: '登录成功',
+        })
+        pageJump('home')
+      }
+    })
+  }
+}
+
+// 验证码登录
+function getBaselogincode() {
+  baselogincodeApi({
+    phone: phone.value,
+    code: code.value,
+  }).then((res: any) => {
+    if (res) {
+      ElMessage({
+        type: 'success',
+        message: '登录成功',
+      })
+      pageJump('home')
+    }
+  })
+}
 </script>
 
 <template>
@@ -34,19 +151,34 @@ const yzm: any = ref('')
         </div>
         <div v-if="state === 'mm'" class="fromitem frsc">
           <img src="@/assets/register/pwd.png" alt="" />
-          <el-input v-model="password" style="width: 100%" placeholder="请输入8-16位密码" clearable />
+          <el-input
+            v-model="password"
+            style="width: 100%"
+            placeholder="请输入8-16位密码"
+            clearable
+          />
         </div>
         <div v-if="state === 'kj'" class="fromitem frsc">
           <img src="@/assets/register/yzm.png" alt="" />
-          <el-input v-model="yzm" style="width: calc(100% - 140px)" placeholder="短信验证码" clearable />
-          <button>获取验证码</button>
+          <el-input
+            v-model="code"
+            style="width: calc(100% - 140px)"
+            placeholder="短信验证码"
+            clearable
+          />
+          <div v-if="countdown < 60 && countdown > 0" class="djsTimeStyle">
+            已发送（{{ countdown }}）
+          </div>
+          <button v-else @click="getCode">获取验证码</button>
         </div>
         <div v-if="state === 'mm'" class="frec">
           <button class="forgotPassword">忘记密码</button>
         </div>
       </div>
-      <button class="createAccount">登录</button>
-      <div v-if="state === 'kj'" class="gologin">还没账户？<span @click="pageJump('register')">免费注册</span></div>
+      <button class="createAccount" @click="loginByCoode">登录</button>
+      <div v-if="state === 'kj'" class="gologin">
+        还没账户？<span @click="pageJump('register')">免费注册</span>
+      </div>
     </div>
     <div class="copyright">
       Copyright ©2025 新材网 版权所有 浙ICP备123456789-1号浙公网安备37000000号
@@ -71,7 +203,9 @@ const yzm: any = ref('')
     margin: 4rem 0 2rem;
     padding: 2rem 1rem;
     background: rgba(255, 255, 255, 1);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    box-shadow:
+      0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
 
     @media (min-width: 768px) {
       position: absolute;
@@ -99,7 +233,6 @@ const yzm: any = ref('')
         text-align: left;
         vertical-align: top;
         border-bottom: 3px solid #fff;
-
       }
 
       .hyzc:first-child {
@@ -120,7 +253,7 @@ const yzm: any = ref('')
     .fromBox {
       margin: 20px 0;
 
-      @media (min-width:768px) {
+      @media (min-width: 768px) {
         margin: 70px 50px 0;
       }
 
@@ -150,6 +283,11 @@ const yzm: any = ref('')
           letter-spacing: 0px;
           line-height: 16px;
           color: rgba(42, 130, 228, 1);
+        }
+
+        .djsTimeStyle {
+          font-size: 0.85rem;
+          color: rgba(128, 128, 128, 1);
         }
       }
 

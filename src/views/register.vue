@@ -2,14 +2,18 @@
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
-import { sendverificationcodeApi, verifyverificationcodeApi } from '@/api/modules/yzm'
+import {
+  sendverificationcodeApi,
+  verifyverificationcodeApi,
+  baseregisterApi,
+} from '@/api/modules/login'
 
-const checked3: any = ref(false)
+const isreadRuler: any = ref(false)
 const phone: any = ref('13256605200')
 const password: any = ref('')
 const code: any = ref('')
 
-function hqyzm1() {
+function getCode() {
   if (!phone.value) {
     ElMessage({
       type: 'error',
@@ -25,17 +29,97 @@ function hqyzm1() {
     return
   }
   sendverificationcodeApi({
-    phone: phone.value
+    phone: phone.value,
   }).then((res: any) => {
-    console.log('-------->', res)
+    if (res) {
+      countdownChange()
+    }
   })
 }
-function hqyzm2() {
+
+// 验证码倒计时
+const countdown: any = ref(60)
+const verificationTimer: any = ref(null)
+
+function countdownChange() {
+  verificationTimer.value = setInterval(() => {
+    countdown.value -= 1
+    // 清除定时器
+    if (countdown.value === 0) {
+      clearInterval(verificationTimer.value)
+      countdown.value = 60
+    }
+  }, 1000)
+}
+
+// 创建账号
+function ceateAccount() {
+  if (!phone.value) {
+    ElMessage({
+      type: 'error',
+      message: '请输入手机号',
+    })
+    return
+  }
+  if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(phone.value)) {
+    ElMessage({
+      type: 'error',
+      message: '手机号格式错误',
+    })
+    return
+  }
+  if (!password.value) {
+    ElMessage({
+      type: 'error',
+      message: '请输入密码',
+    })
+    return
+  }
+  if (password.value.length < 8 || password.value.length > 16) {
+    ElMessage({
+      type: 'error',
+      message: '请输入8-16位密码',
+    })
+    return
+  }
+  if (!code.value) {
+    ElMessage({
+      type: 'error',
+      message: '请输入验证码',
+    })
+    return
+  }
+  if (!isreadRuler.value) {
+    ElMessage({
+      type: 'error',
+      message: '请勾选底部声明',
+    })
+    return
+  }
   verifyverificationcodeApi({
     phone: phone.value,
-    code: '985136'
+    code: code.value,
   }).then((res: any) => {
-    console.log('-------->', res)
+    if (res) {
+      getBaseregister()
+    }
+  })
+}
+
+// 手机号注册
+function getBaseregister() {
+  baseregisterApi({
+    phone: phone.value,
+    password: password.value,
+    code: code.value,
+  }).then((res: any) => {
+    if (res) {
+      ElMessage({
+        type: 'success',
+        message: '账号创建成功',
+      })
+      pageJump('login')
+    }
   })
 }
 </script>
@@ -50,27 +134,61 @@ function hqyzm2() {
       </div>
       <div class="fromitem frsc">
         <img src="@/assets/register/pwd.png" alt="" />
-        <el-input v-model="password" style="width: 100%" placeholder="请输入8-16位密码" clearable />
+        <el-input
+          type="password"
+          show-password
+          v-model="password"
+          style="width: 100%"
+          placeholder="请输入8-16位密码"
+          clearable
+        />
       </div>
       <div class="fromitem frsc">
         <img src="@/assets/register/yzm.png" alt="" />
-        <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="短信验证码" clearable />
-        <button @click="hqyzm1">获取验证码1</button>
-        <button @click="hqyzm2">获取验证码2</button>
+        <el-input
+          v-model="code"
+          style="width: calc(100% - 140px)"
+          placeholder="短信验证码"
+          clearable
+        />
+        <div v-if="countdown < 60 && countdown > 0" class="djsTimeStyle">
+          已发送（{{ countdown }}）
+        </div>
+        <button v-else @click="getCode">获取验证码</button>
       </div>
       <div class="statement">
-        <img v-if="checked3" src="@/assets/register/checked.png" alt="" />
-        <img v-else src="@/assets/register/unchecked.png" alt="" />
+        <img
+          v-if="isreadRuler"
+          src="@/assets/register/checked.png"
+          alt=""
+          @click="isreadRuler = !isreadRuler"
+        />
+        <img
+          v-else
+          src="@/assets/register/unchecked.png"
+          alt=""
+          @click="isreadRuler = !isreadRuler"
+        />
         我已阅读并同意
-        <span @click="pageJump('article_detail', {
-          theurl: 'user-service-agreement'
-        })">《新材网用户服务协议》</span>
+        <span
+          @click="
+            pageJump('article_detail', {
+              theurl: 'user-service-agreement',
+            })
+          "
+          >《新材网用户服务协议》</span
+        >
         和
-        <span @click="pageJump('article_detail', {
-          theurl: 'privacy-policy-statement'
-        })">《新材网隐私政策声明》</span>
+        <span
+          @click="
+            pageJump('article_detail', {
+              theurl: 'privacy-policy-statement',
+            })
+          "
+          >《新材网隐私政策声明》</span
+        >
       </div>
-      <button class="createAccount" @click="">创建账号</button>
+      <button class="createAccount" @click="ceateAccount">创建账号</button>
       <div class="gologin">已有账号？<span @click="pageJump('login')">立即登录</span></div>
     </div>
     <div class="copyright">
@@ -96,7 +214,9 @@ function hqyzm2() {
     margin-top: 4rem;
     padding: 2rem 1rem;
     background: rgba(255, 255, 255, 1);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    box-shadow:
+      0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
 
     @media (min-width: 768px) {
       position: absolute;
@@ -172,6 +292,11 @@ function hqyzm2() {
         letter-spacing: 0px;
         line-height: 16px;
         color: rgba(42, 130, 228, 1);
+      }
+
+      .djsTimeStyle {
+        font-size: 0.85rem;
+        color: rgba(128, 128, 128, 1);
       }
     }
 
