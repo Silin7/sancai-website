@@ -4,7 +4,7 @@ import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import {
   sendverificationcodeApi,
-  verifyverificationcodeApi,
+  // verifyverificationcodeApi,
   baseforgotdpwdApi,
   checkloinApi,
   currentuserApi,
@@ -106,17 +106,18 @@ function ceateAccount() {
     })
     return
   }
-  verifyverificationcodeApi({
-    phone: phone.value,
-    code: code.value,
-  }).then((res: any) => {
-    if (res) {
-      getBaseforgotdpwd()
-    }
-  })
+  getBaseforgotdpwd()
+  // verifyverificationcodeApi({
+  //   phone: phone.value,
+  //   code: code.value,
+  // }).then((res: any) => {
+  //   if (res) {
+  //     getBaseforgotdpwd()
+  //   }
+  // })
 }
 
-// 手机号注册
+// 找回密码
 function getBaseforgotdpwd() {
   baseforgotdpwdApi({
     phone: phone.value,

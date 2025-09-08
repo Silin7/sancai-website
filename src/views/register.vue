@@ -96,14 +96,15 @@ function ceateAccount() {
     })
     return
   }
-  verifyverificationcodeApi({
-    phone: phone.value,
-    code: code.value,
-  }).then((res: any) => {
-    if (res) {
-      getBaseregister()
-    }
-  })
+  getBaseregister()
+  // verifyverificationcodeApi({
+  //   phone: phone.value,
+  //   code: code.value,
+  // }).then((res: any) => {
+  //   if (res) {
+  //     getBaseregister()
+  //   }
+  // })
 }
 
 // 手机号注册

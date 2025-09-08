@@ -4,7 +4,7 @@ import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import {
   sendverificationcodeApi,
-  verifyverificationcodeApi,
+  // verifyverificationcodeApi,
   baselogincodeApi,
   baseloginpwdApi,
 } from '@/api/modules/login'
@@ -83,14 +83,14 @@ function loginByCoode() {
       })
       return
     }
-    verifyverificationcodeApi({
-      phone: phone.value,
-      code: code.value,
-    }).then((res: any) => {
-      if (res) {
-        getBaselogincode()
-      }
-    })
+    // verifyverificationcodeApi({
+    //   phone: phone.value,
+    //   code: code.value,
+    // }).then((res: any) => {
+    //   if (res) {
+    //   }
+    // })
+    getBaselogincode()
   }
   // 密码登录
   if (state.value === 'mm') {
@@ -151,21 +151,12 @@ function getBaselogincode() {
         </div>
         <div v-if="state === 'mm'" class="fromitem frsc">
           <img src="@/assets/register/pwd.png" alt="" />
-          <el-input
-            v-model="password"
-            style="width: 100%"
-            placeholder="请输入8-16位密码"
-            clearable
-          />
+          <el-input type="password" show-password v-model="password" style="width: 100%" placeholder="请输入8-16位密码"
+            clearable />
         </div>
         <div v-if="state === 'kj'" class="fromitem frsc">
           <img src="@/assets/register/yzm.png" alt="" />
-          <el-input
-            v-model="code"
-            style="width: calc(100% - 140px)"
-            placeholder="短信验证码"
-            clearable
-          />
+          <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="短信验证码" clearable />
           <div v-if="countdown < 60 && countdown > 0" class="djsTimeStyle">
             已发送（{{ countdown }}）
           </div>
