@@ -150,7 +150,9 @@ onBeforeUnmount(() => {
                 </div>
                 <div class="digitizeClassitemtext">{{ item.name }}</div>
                 <div class="digitizeClassiteminfo">{{ item.description2 }}</div>
-                <button @click="pageJump('requirements')">提交需求</button>
+                <button @click="pageJump('requirements', {
+                  id: item.id
+                })">提交需求</button>
               </div>
             </template>
           </div>

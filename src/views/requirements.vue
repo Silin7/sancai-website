@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { requirementsbycateApi } from '@/api/modules/datasolution'
+
+// 路由信息
+const route = useRoute()
 
 const selectvalue1: any = ref('标的名称')
 const selectvalue2: any = ref('CIM+人房管理')
@@ -9,6 +14,20 @@ const checkvalue1: any = ref(true)
 const checkvalue2: any = ref(false)
 const checkvalue3: any = ref(false)
 const checkvalue4: any = ref(false)
+
+const datasolutionid: any = ref("")
+const datasolutionData: any = ref({})
+
+onMounted(() => {
+  datasolutionid.value = route.query.id
+  requirementsbycateApi({
+    cate_id: datasolutionid.value,
+  }).then((res: any) => {
+    if (res) {
+      datasolutionData.value = res
+    }
+  })
+})
 </script>
 
 <template>
@@ -19,7 +38,7 @@ const checkvalue4: any = ref(false)
         基于BIM模型实现工程全生命周期计算与动态信息管控，聚焦CIM+人房管理场景，助力城市空间与人口数据精细化治理，为智慧化管理提供精准支撑。
       </div>
       <div class="requirementsCont">
-        <div class="requCtitle">信息化产品/服务需求表(由需方填写)</div>
+        <div class="requCtitle">{{ datasolutionData.name }}</div>
         <div class="supplierClassFx">
           <div class="supplierClassFxItem">
             <div class="supplierClassText">类别</div>
@@ -30,6 +49,12 @@ const checkvalue4: any = ref(false)
             <div class="supplierClassText">产品/服务</div>
             <el-input v-model="selectvalue2" style="width: 100%; height: 50px; font-size: 1rem" placeholder=" "
               disabled />
+          </div>
+        </div>
+        <div class="supplierClassFx" style="margin-top: 2rem">
+          <div class="supplierClassFxItem2">
+            <div class="supplierClassText">用途</div>
+            <el-input  v-model="datasolutionData.usefor" style="width: 100%; font-size: 1rem" placeholder="" />
           </div>
         </div>
         <div class="supplierClassFx" style="margin-top: 2rem">

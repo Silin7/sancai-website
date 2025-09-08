@@ -6,7 +6,7 @@ import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
 import { fileURL } from '@/api/baseConfig'
 import { bannerlistApi, secpositionsApi, syspseoApi } from '@/api/modules/basic'
-import { videocatesApi, videodetailApi, videolistbycateApi } from '@/api/modules/video'
+import { videocatesApi, videolistbycateApi } from '@/api/modules/video'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -135,16 +135,6 @@ function convertSecondsToHMS(seconds: any) {
   }
   return returnStr
 }
-
-function watchVideo(item: any) {
-  videodetailApi(item.id).then((res: any) => {
-    if (res) {
-      console.log('-------->', res.status)
-      console.log('-------->', res.vurl)
-      windowOpen(res.vurl)
-    }
-  })
-}
 </script>
 
 <template>
@@ -243,14 +233,15 @@ function watchVideo(item: any) {
             </div>
           </div>
           <div class="containerProductsBox">
-            <div class="containerProductsItem" v-for="(item, index) in videoList" :key="index">
+            <div class="containerProductsItem" v-for="(item, index) in videoList" :key="index"
+              @click="pageJump('video_detail', { id: item.id })">
               <div class="containerPiImg">
                 <div v-if="index % 2 === 0" class="containerPiTime">
                   {{ convertSecondsToHMS(item.vlength) }}
                 </div>
                 <div v-else class="containerPiBuy"><i class="fa fa-check"></i>已购买</div>
                 <img :src="fileURL + item.thumbnail" alt="" style="width: 100%; height: 100%" />
-                <div class="containerPiplayerBox" @click="watchVideo(item)">
+                <div class="containerPiplayerBox">
                   <div class="containerPiplayerICon">
                     <i class="fa fa-play"></i>
                   </div>
@@ -283,7 +274,7 @@ function watchVideo(item: any) {
                   </div>
                 </div>
               </div>
-              <button v-if="index % 2 === 0" class="containerPiRbtn" @click="watchVideo(item)">立即观看</button>
+              <button v-if="index % 2 === 0" class="containerPiRbtn">立即观看</button>
               <button v-else class="containerPiRbtn2">继续观看</button>
             </div>
           </div>
