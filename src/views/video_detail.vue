@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import { onMounted, ref } from 'vue'
+import qrcode from 'qrcode';
+import { onMounted, onUnmounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
 import { fileURL } from '@/api/baseConfig'
 // import formatCurrency from '@/hooks/formatCurrency'
 import { videodetailApi } from '@/api/modules/video'
+import { wxpayvideocreateApi, wxpayvideostatusApi } from '@/api/modules/pay'
 
 // 路由信息
 const route = useRoute()
@@ -20,12 +22,41 @@ function getVideodetail() {
   })
 }
 
+// 用户端-创建视频购买支付订单（item_id=0），生成微信支付二维码
+const dialogVisible: any = ref(false)
+const qrCodeData = ref('');
+const wxpayvideocreate: any = ref({})
+const verificationTimer: any = ref(null)
+
+function getWxpayvideocreate() {
+  wxpayvideocreateApi(videoid.value).then(async (res: any) => {
+    if (res) {
+      dialogVisible.value = true
+      wxpayvideocreate.value = res
+      qrCodeData.value = await qrcode.toDataURL(wxpayvideocreate.value.code_url, { scale: 4 });
+      verificationTimer.value = setInterval(() => {
+        // 清除定时器
+        getWxpayvideostatus()
+      }, 3000)
+    }
+  })
+}
+
+function getWxpayvideostatus() {
+  wxpayvideostatusApi(videoid.value).then((res: any) => {
+    console.log('-------->', res)
+  })
+  clearInterval(verificationTimer.value)
+}
+
 onMounted(() => {
   videoid.value = route.query.id
   getVideodetail()
 })
 
-const value1 = ref(4.8)
+onUnmounted(() => {
+  clearInterval(verificationTimer.value)
+})
 
 // 时分秒过滤器
 function convertSecondsToHMS(seconds: any) {
@@ -49,8 +80,7 @@ function convertSecondsToHMS(seconds: any) {
     <div class="pdCbox">
       <div class="pdcLeft">
         <div class="pdclJbcs">
-          <video v-if="videoDetails.vurl" :poster="fileURL + videoDetails.thumbnail" controls="true"
-            preload="metadata">
+          <video v-if="videoDetails.vurl" :poster="fileURL + videoDetails.thumbnail" controls="true" preload="metadata">
             <!-- 示例视频源（实际项目中替换为真实视频地址） -->
             <source :src="videoDetails.vurl" type="video/mp4">
             您的浏览器不支持HTML5视频播放，请升级浏览器
@@ -62,20 +92,25 @@ function convertSecondsToHMS(seconds: any) {
                 <i class="fa fa-clock-o mr-2 text-primary"></i>
                 <span>总时长：{{ convertSecondsToHMS(videoDetails.vlength) }}</span>
               </div>
-              <div class="videoTagItem">
+              <!-- <div class="videoTagItem">
                 <i class="fa fa-eye mr-2 text-primary"></i>
                 <span>播放量：12,840次</span>
-              </div>
+              </div> -->
               <div class="videoTagItem">
                 <i class="fa fa-calendar mr-2 text-primary"></i>
-                <span>更新时间：2024-03-15</span>
+                <span>更新时间：{{ dayjs(videoDetails.updated_at).format('YYYY-MM-DD') }}</span>
               </div>
-              <div class="videoTagItem">
+              <div v-if="videoDetails.keywords" class="videoTagItem">
                 <i class="fa fa-tag mr-2 text-primary"></i>
-                <span>分类：BIM技术 / CAD / 造价工程师</span>
+                <span>分类：
+                  <span v-for="(item, index) in videoDetails.keywords.split(' ')" :key="index">
+                    <span>{{ item }}</span>
+                    <span v-if="index < videoDetails.keywords.split(' ').length - 1"> / </span>
+                  </span>
+                </span>
               </div>
             </div>
-            <button>
+            <button @click="getWxpayvideocreate">
               <i class="fa fa-shopping-cart"></i>
               <span>立即购买 ¥{{ videoDetails.price }}</span>
             </button>
@@ -88,20 +123,28 @@ function convertSecondsToHMS(seconds: any) {
       </div>
       <div class="pdcRight">
         <div class="pdcrTitle"><i class="fa fa-info-circle"></i>视频信息</div>
-        <div class="pdcrItem">
+        <!-- <div class="pdcrItem">
           <p>形式</p>
           <p>录播</p>
-        </div>
+        </div> -->
         <div class="pdcrItem">
           <p>时长</p>
           <p>{{ convertSecondsToHMS(videoDetails.vlength) }}</p>
         </div>
         <div class="pdcrItem">
           <p>适合人群</p>
-          <p>造价工程师、BIM初学者、建筑从业者</p>
+          <p v-if="videoDetails.keywords">
+            <span v-for="(item, index) in videoDetails.keywords.split(' ')" :key="index">
+              <span>{{ item }}</span>
+              <span v-if="index < videoDetails.keywords.split(' ').length - 1">、 </span>
+            </span>
+          </p>
         </div>
       </div>
     </div>
+    <el-dialog v-model="dialogVisible" title="请使用微信扫描二维码" width="600">
+      <img :src="qrCodeData" :alt="wxpayvideocreate.code_url" style="width: 100%;" />
+    </el-dialog>
   </div>
 </template>
 

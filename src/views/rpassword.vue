@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onUnmounted, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import {
@@ -133,6 +133,10 @@ function getBaseforgotdpwd() {
     }
   })
 }
+
+onUnmounted(() => {
+  clearInterval(verificationTimer.value)
+})
 </script>
 
 <template>

@@ -6,10 +6,6 @@ import { requirementsbycateApi, solutionordersApi } from '@/api/modules/datasolu
 // 路由信息
 const route = useRoute()
 
-const selectvalue1: any = ref('标的名称')
-const selectvalue2: any = ref('CIM+人房管理')
-const selectvalue3: any = ref('')
-
 const datasolutionid: any = ref("")
 const datasolutionData: any = ref({})
 
@@ -37,9 +33,21 @@ function tijiaoxuqiu() {
     item.value3.push(`其他(${item.remark || ''})`)
     requirements.value[item.name] = item.value3
   }
-  datasolutionData.value.requirements = requirements.value
-
-  // solutionordersApi(datasolutionData.value)
+  solutionordersApi({
+    "thetype": datasolutionData.value.thetype,
+    "cate_id": datasolutionData.value.cate_id,
+    "product_name": datasolutionData.value.product_name,
+    "usefor": datasolutionData.value.usefor,
+    "description": datasolutionData.value.description,
+    "requirements": requirements.value,
+    "memo": datasolutionData.value.memo,
+    "company_name": datasolutionData.value.company_name,
+    "tel": datasolutionData.value.tel,
+    "contact_person": datasolutionData.value.contact_person,
+    user_id: '8'
+  }).then((res: any) => {
+    console.log('-------->', res)
+  })
 }
 
 onMounted(() => {
@@ -60,13 +68,20 @@ onMounted(() => {
         <div class="supplierClassFx">
           <div class="supplierClassFxItem">
             <div class="supplierClassText">类别</div>
+            <el-input v-model="datasolutionData.product_name" style="width: 100%;  height: 40px;" placeholder="标的名称" />
+          </div>
+          <div class="supplierClassFxItem">
+            <!--  -->
+            <div class="supplierClassText">产品/服务</div>
             <el-select v-model="datasolutionData.thetype" placeholder="请选择类别" size="large" clearable
               style="width: 100%; height: 40px;">
               <el-option label="产品" value="0" />
               <el-option label="服务" value="1" />
             </el-select>
           </div>
-          <div class="supplierClassFxItem">
+        </div>
+        <div class="supplierClassFx">
+          <div class="supplierClassFxItem2">
             <div class="supplierClassText">用途</div>
             <el-input v-model="datasolutionData.usefor" style="width: 100%;  height: 40px;" placeholder="请填写用途" />
           </div>
@@ -80,7 +95,7 @@ onMounted(() => {
         </div>
         <div class="requCstitle">技术需求（可多选）</div>
         <div v-for="(item, index) in datasolutionData.multiitems" :key="index">
-          <div class="requCstimu">{{ index + 1 }}. 实时数据采集</div>
+          <div class="requCstimu">{{ index + 1 }}. {{ item.name }}</div>
           <div class="requCstibox">
             <div class="requCstiItems">
               <el-radio-group v-if="item.thetype === '单选'" v-model="item.value" style="margin-right: 1rem;">
@@ -104,16 +119,16 @@ onMounted(() => {
           <div class="supplierClassFxItem">
             <div class="supplierClassText">公司名称</div>
             <el-input v-model="datasolutionData.company_name" style="width: 100%;  height: 40px;"
-              placeholder="请填写其他特殊需求或补充说明" />
+              placeholder="请填写公司名称" />
           </div>
           <div class="supplierClassFxItem">
             <div class="supplierClassText">公司联系人</div>
             <el-input v-model="datasolutionData.contact_person" style="width: 100%;  height: 40px;"
-              placeholder="请填写其他特殊需求或补充说明" />
+              placeholder="请填写公司联系人" />
           </div>
           <div class="supplierClassFxItem">
             <div class="supplierClassText">联系人电话</div>
-            <el-input v-model="datasolutionData.tel" style="width: 100%;  height: 40px;" placeholder="请填写其他特殊需求或补充说明" />
+            <el-input v-model="datasolutionData.tel" style="width: 100%;  height: 40px;" placeholder="请填写联系人电话" />
           </div>
         </div>
         <div class="supplierClassFx2">

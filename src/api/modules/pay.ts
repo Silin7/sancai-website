@@ -1,16 +1,12 @@
 import api from '@/api/index'
 
 // 用户端-创建视频购买支付订单（item_id=0），生成微信支付二维码
-export function wxpayvideocreateApi(videoid: any, data: any) {
-  return api.post(`/api/client/wxpay/video/${videoid}/create`, null, {
-    params: {
-      ...data,
-    },
-  })
+export function wxpayvideocreateApi(videoid: any) {
+  return api.post(`/api/client/wxpay/video/${videoid}/create`)
 }
 
 // 用户端-查询视频支付状态（返回PayRecord的status字段）
-export function deletecasesApi(videoid: any) {
+export function wxpayvideostatusApi(videoid: any) {
   return api.get(`/api/client/wxpay/video/${videoid}/status`)
 }
 
