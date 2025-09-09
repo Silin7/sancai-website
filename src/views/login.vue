@@ -110,6 +110,9 @@ function loginByCoode() {
           type: 'success',
           message: '登录成功',
         })
+        window.localStorage.setItem('token', res.token)
+        window.localStorage.setItem('userinfo', JSON.stringify(res.user_info))
+        window.localStorage.setItem('permission', JSON.stringify(res.permission))
         pageJump('home')
       }
     })
@@ -127,6 +130,9 @@ function getBaselogincode() {
         type: 'success',
         message: '登录成功',
       })
+      window.localStorage.setItem('token', res.token)
+      window.localStorage.setItem('userinfo', JSON.stringify(res.user_info))
+      window.localStorage.setItem('permission', JSON.stringify(res.permission))
       pageJump('home')
     }
   })
