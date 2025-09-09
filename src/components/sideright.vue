@@ -112,7 +112,7 @@ function iconMouseleave() {
     }
 
     .aiBtn:hover {
-      @media (max-width: 768px) {
+      @media (min-width: 768px) {
         cursor: pointer;
         transform: scale(1.05);
       }
@@ -136,7 +136,7 @@ function iconMouseleave() {
     }
 
     .float-btn:hover {
-      @media (max-width: 768px) {
+      @media (min-width: 768px) {
         cursor: pointer;
         color: #fff;
         background-color: #165dff;

@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
 import { fileURL } from '@/api/baseConfig'
-import formatCurrency from '@/hooks/formatCurrency'
+// import formatCurrency from '@/hooks/formatCurrency'
 import { videodetailApi } from '@/api/modules/video'
 
 // 路由信息
@@ -26,6 +26,22 @@ onMounted(() => {
 })
 
 const value1 = ref(4.8)
+
+// 时分秒过滤器
+function convertSecondsToHMS(seconds: any) {
+  var hours = Math.floor(seconds / 3600)
+  var minutes = Math.floor((seconds % 3600) / 60)
+  var remainingSeconds = seconds % 60
+  var returnStr = ''
+  if (hours) {
+    returnStr += hours + '小时'
+  }
+  returnStr += minutes + '分钟'
+  if (remainingSeconds) {
+    returnStr += remainingSeconds + '秒 '
+  }
+  return returnStr
+}
 </script>
 
 <template>
@@ -33,54 +49,36 @@ const value1 = ref(4.8)
     <div class="pdCbox">
       <div class="pdcLeft">
         <div class="pdclJbcs">
-          <img v-if="videoDetails.imgs" :src="fileURL + videoDetails.imgs[0]" alt="产品图片" />
-          <img v-else src="" alt="产品图片" />
-          <div class="pdcljCenter">
-            <div class="pdcljcTop">
-              <div class="pdcljctItem">
-                <span>除税价：</span>
-                <span class="pdcljctiSp1">¥{{ formatCurrency(videoDetails.afertaxprice, 2) }}</span>
+          <video v-if="videoDetails.vurl" :poster="fileURL + videoDetails.thumbnail" controls="true"
+            preload="metadata">
+            <!-- 示例视频源（实际项目中替换为真实视频地址） -->
+            <source :src="videoDetails.vurl" type="video/mp4">
+            您的浏览器不支持HTML5视频播放，请升级浏览器
+          </video>
+          <div class="videoInfoBox">
+            <div class="videoTitle">{{ videoDetails.title }}</div>
+            <div class="videoTags">
+              <div class="videoTagItem">
+                <i class="fa fa-clock-o mr-2 text-primary"></i>
+                <span>总时长：{{ convertSecondsToHMS(videoDetails.vlength) }}</span>
               </div>
-              <div class="pdcljctItem">
-                <span>含税价：</span>
-                <span class="pdcljctiSp2">¥{{ formatCurrency(videoDetails.pretaxprice, 2) }}</span>
+              <div class="videoTagItem">
+                <i class="fa fa-eye mr-2 text-primary"></i>
+                <span>播放量：12,840次</span>
               </div>
-              <div class="pdcljctItem">
-                <span>税率：</span>
-                <span class="pdcljctiSp1">{{ videoDetails.taxrate }}%</span>
+              <div class="videoTagItem">
+                <i class="fa fa-calendar mr-2 text-primary"></i>
+                <span>更新时间：2024-03-15</span>
+              </div>
+              <div class="videoTagItem">
+                <i class="fa fa-tag mr-2 text-primary"></i>
+                <span>分类：BIM技术 / CAD / 造价工程师</span>
               </div>
             </div>
-            <button class="pdcljcLxgys">
-              <i class="fa fa-phone"></i>
-              <span>联系视频</span>
-            </button>
-            <!-- <button class="pdcljcJrgwc">
+            <button>
               <i class="fa fa-shopping-cart"></i>
-              <span>加入购物车</span>
-            </button> -->
-          </div>
-          <div class="pdcljRight">
-            <div class="pdcljrTitle">基本参数</div>
-            <div class="pdcljrItem">
-              <span>品牌名称：</span>
-              <span>{{ videoDetails.brand }}</span>
-            </div>
-            <!-- <div class="pdcljrItem">
-              <span>服务周期：</span>
-              <span>5-7个工作日</span>
-            </div>
-            <div class="pdcljrItem">
-              <span>服务方式：</span>
-              <span>线上+线下结合</span>
-            </div>
-            <div class="pdcljrItem">
-              <span>交付成果：</span>
-              <span>碰撞检查报告+优化建议</span>
-            </div> -->
-            <div class="pdcljrItem">
-              <span>报价时间：</span>
-              <span>{{ dayjs(videoDetails.quote_time).format('YYYY-MM-DD') }}</span>
-            </div>
+              <span>立即购买 ¥{{ videoDetails.price }}</span>
+            </button>
           </div>
         </div>
         <div class="pdclXq">
@@ -89,73 +87,19 @@ const value1 = ref(4.8)
         </div>
       </div>
       <div class="pdcRight">
-        <div class="pdcrTitle">视频信息</div>
-        <div class="pdcrTop frsc">
-          <img v-if="videoDetails.supplier_info && videoDetails.supplier_info.company_imgs"
-            :src="fileURL + videoDetails.supplier_info.company_imgs[0]" alt="" />
-          <div>
-            <div v-if="videoDetails.supplier_info" class="pdcrtTitle">
-              {{ videoDetails.supplier_info.company_name }}
-            </div>
-            <!-- <div class="pdcrtRate">
-              <el-rate v-model="value1" allow-half />
-              <span> 4.8</span>
-            </div> -->
-            <div v-if="videoDetails.supplier_info" class="pdcrtTag">
-              <span v-for="(item, index) in videoDetails.supplier_info.tags" :key="index">{{
-                item
-                }}</span>
-              <span v-for="(item, index) in videoDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
-            </div>
-          </div>
+        <div class="pdcrTitle"><i class="fa fa-info-circle"></i>视频信息</div>
+        <div class="pdcrItem">
+          <p>形式</p>
+          <p>录播</p>
         </div>
         <div class="pdcrItem">
-          <div class="pdcrIbox frcc">
-            <i class="fa fa-check"></i>
-          </div>
-          <div class="pdcrPbox">
-            <p>公司地址</p>
-            <p v-if="videoDetails.supplier_info">
-              {{ videoDetails.supplier_info.company_address }}
-            </p>
-          </div>
+          <p>时长</p>
+          <p>{{ convertSecondsToHMS(videoDetails.vlength) }}</p>
         </div>
         <div class="pdcrItem">
-          <div class="pdcrIbox frcc">
-            <i class="fa fa-check"></i>
-          </div>
-          <div class="pdcrPbox">
-            <p>联系电话</p>
-            <p v-if="videoDetails.supplier_info">{{ videoDetails.supplier_info.tel }}</p>
-          </div>
+          <p>适合人群</p>
+          <p>造价工程师、BIM初学者、建筑从业者</p>
         </div>
-        <div class="pdcrItem">
-          <div class="pdcrIbox frcc">
-            <i class="fa fa-check"></i>
-          </div>
-          <div class="pdcrPbox">
-            <p>电子邮箱</p>
-            <p v-if="videoDetails.supplier_info">{{ videoDetails.supplier_info.email }}</p>
-          </div>
-        </div>
-        <div class="pdcrItem">
-          <div class="pdcrIbox frcc">
-            <i class="fa fa-check"></i>
-          </div>
-          <div class="pdcrPbox">
-            <p>成立时间</p>
-            <p v-if="videoDetails.supplier_info">
-              {{ dayjs(videoDetails.supplier_info.establish_time).format('YYYY年MM月DD日') }}
-            </p>
-          </div>
-        </div>
-        <button class="pdcrGysxq">
-          <span>查看视频详情</span>
-        </button>
-        <button class="pdcrZxzx">
-          <i class="fa fa-comment"></i>
-          <span>在线咨询</span>
-        </button>
       </div>
     </div>
   </div>
@@ -191,74 +135,48 @@ const value1 = ref(4.8)
 
       .pdclJbcs {
         margin-bottom: 2rem;
-        padding: 1rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
         box-shadow:
           0 10px 15px -3px rgb(0 0 0 / 0.1),
           0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-        @media (min-width: 992px) {
+        video {
+          width: 100%;
+        }
+
+        .videoInfoBox {
           padding: 1.5rem;
-          display: flex;
-          justify-content: space-between;
-        }
 
-        img {
-          width: 100%;
-          height: 16rem;
-          border-radius: 0.5rem;
-
-          @media (min-width: 992px) {
-            width: calc(33.4% - 2rem);
-            height: 16rem;
-            border-radius: 0.5rem;
-          }
-        }
-
-        .pdcljCenter {
-          margin-top: 1rem;
-          width: 100%;
-
-          @media (min-width: 992px) {
-            margin-top: 0;
-            width: calc(33.3%);
-          }
-
-          .pdcljcTop {
+          @media (max-width: 768px) {
             padding: 1rem;
-            background-color: rgb(249 250 251);
-            border-radius: 0.5rem;
+          }
 
-            .pdcljctItem {
-              margin-bottom: 0.25rem;
-              font-size: 0.875rem;
-              line-height: 1.25rem;
-              color: rgb(107 114 128);
+          .videoTitle {
+            margin-bottom: 1rem;
+            color: rgb(1 32 96 / var(--tw-text-opacity, 1));
+            font-weight: 700;
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+          }
 
-              .pdcljctiSp1 {
-                font-weight: 500;
-                font-size: 1.125rem;
-                line-height: 1.75rem;
-                color: rgb(1 32 96);
-              }
+          .videoTags {
+            color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+            display: flex;
+            flex-wrap: wrap;
 
-              .pdcljctiSp2 {
-                font-weight: 700;
-                font-size: 1.25rem;
-                line-height: 1.75rem;
-                color: rgb(22 93 255);
-              }
+            i {
+              margin-right: 0.5rem;
+              color: rgb(22 93 255 / var(--tw-text-opacity, 1));
+            }
+
+            .videoTagItem {
+              margin-bottom: 1rem;
+              margin-right: 1rem;
             }
           }
 
-          .pdcljcLxgys {
-            margin-top: 1rem;
-            padding: 0.75rem 1rem;
-            width: 100%;
-            text-align: center;
-            font-weight: 500;
-            line-height: 1.5rem;
+          button {
+            padding: 0.75rem 1.5rem;
             color: #fff;
             background-color: rgb(22 93 255 / 0.9);
             border-radius: 0.5rem;
@@ -268,55 +186,10 @@ const value1 = ref(4.8)
             }
           }
 
-          .pdcljcJrgwc {
-            margin-top: 1rem;
-            padding: 0.75rem 1rem;
-            width: 100%;
-            text-align: center;
-            font-weight: 500;
-            line-height: 1.5rem;
-            color: rgb(55 65 81);
-            border: 1px solid rgb(209 213 219);
-            border-radius: 0.5rem;
-
-            i {
-              margin-right: 0.5rem;
-            }
-          }
-        }
-
-        .pdcljRight {
-          margin-top: 1rem;
-          width: 100%;
-
-          @media (min-width: 992px) {
-            margin-top: 0;
-            width: calc(33.3%);
-          }
-
-          .pdcljrTitle {
-            font-weight: 700;
-            font-size: 1.125rem;
-            line-height: 1.75rem;
-            margin-bottom: 1rem;
-          }
-
-          .pdcljrItem {
-            margin-top: 0.75rem;
-            display: flex;
-            align-items: center;
-
-            span:first-child {
-              width: 6rem;
-              font-size: 0.875rem;
-              line-height: 1.25rem;
-              color: rgb(107 114 128);
-            }
-
-            span:last-child {
-              font-size: 0.875rem;
-              line-height: 1.25rem;
-              color: rgb(1 32 96);
+          button:hover {
+            @media (min-width: 768px) {
+              cursor: pointer;
+              transform: scale(1.05);
             }
           }
         }
@@ -581,6 +454,11 @@ const value1 = ref(4.8)
         @media (max-width: 768px) {
           margin-bottom: 1rem;
         }
+
+        i {
+          margin-right: 0.5rem;
+          color: rgb(22 93 255 / var(--tw-text-opacity, 1));
+        }
       }
 
       .pdcrTop {
@@ -630,63 +508,13 @@ const value1 = ref(4.8)
       .pdcrItem {
         position: relative;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
         line-height: 1.5rem;
         padding-bottom: 1rem;
 
-        .pdcrIbox {
-          flex-shrink: 0;
-          margin-right: 0.75rem;
-          width: 2rem;
-          height: 2rem;
-          color: rgb(22 93 255);
-          background-color: rgb(22 93 255 / 0.1);
-          border-radius: 9999px;
-        }
-
-        .pdcrPbox {
-          p:first-child {
-            font-weight: 500;
-            font-size: 0.875rem;
-            line-height: 1.5rem;
-            color: rgb(75 85 99);
-          }
-
-          p:last-child {
-            font-weight: 500;
-            line-height: 1.5rem;
-          }
-        }
-      }
-
-      .pdcrGysxq {
-        margin-top: 1rem;
-        padding: 0.75rem 1rem;
-        width: 100%;
-        text-align: center;
-        font-weight: 500;
-        line-height: 1.5rem;
-        color: rgb(22 93 255);
-        border: 1px solid rgb(22 93 255);
-        border-radius: 0.5rem;
-
-        i {
-          margin-right: 0.5rem;
-        }
-      }
-
-      .pdcrZxzx {
-        margin-top: 1rem;
-        padding: 0.75rem 1rem;
-        width: 100%;
-        text-align: center;
-        font-weight: 500;
-        line-height: 1.5rem;
-        color: rgb(22 93 255);
-        background-color: rgb(22 93 255 / 0.2);
-        border-radius: 0.5rem;
-
-        i {
-          margin-right: 0.5rem;
+        p:first-child {
+          color: rgb(107 114 128 / var(--tw-text-opacity, 1));
         }
       }
     }
