@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { baseURL } from './baseConfig'
+import pageJump from '@/hooks/pageJump'
 
 const api = axios.create({
   baseURL,
@@ -29,8 +30,16 @@ api.interceptors.response.use(
     }
   },
   (error) => {
-    ElMessage.error(error.response.data.msg)
-    return Promise.reject(error)
+    if (error.response.data.code === 401) {
+      ElMessage.error('登录信息失效，请重新登录')
+      window.localStorage.removeItem('token')
+      window.localStorage.removeItem('userinfo')
+      window.localStorage.removeItem('permission')
+      pageJump('login')
+    } else {
+      ElMessage.error(error.response.data.msg)
+      return Promise.reject(error)
+    }
   },
 )
 

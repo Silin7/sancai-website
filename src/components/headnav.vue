@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref, computed, watch } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import useHeaderStore from '@/store/modules/header'
+import { baselogoutdApi } from '@/api/modules/login'
 
 const windowWidth = ref(window.innerWidth)
 const windowScrollY = ref(window.scrollY)
@@ -17,6 +19,7 @@ function handleScroll() {
 const headerStore = useHeaderStore()
 
 const selectedTab = computed(() => {
+  getUserInfo()
   return headerStore.selectedTab
 })
 
@@ -63,12 +66,43 @@ function menuMouseleave() {
   menuChildShow.value = false
 }
 
-// // 登陆后的用户信息
-// const userInfo: any = ref({})
+// 登陆后的用户信息
+const userInfo: any = ref({})
 
-// function getUserInfo() {
+function getUserInfo() {
+  if (window.localStorage.getItem('userinfo')) {
+    userInfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
+  } else {
+    userInfo.value = {}
+  }
+}
 
-// }
+// 退出登录
+function logoutFunction() {
+  ElMessageBox.confirm('确定要退出登录吗？ ', '退出登录', {
+    confirmButtonText: '确认',
+    cancelButtonText: '取消',
+    type: 'warning',
+  })
+    .then(() => {
+      baselogoutdApi({}).then((res: any) => {
+        if (res) {
+          ElMessage({
+            type: 'success',
+            message: '退出成功',
+          })
+          menuChildShow.value = false
+          window.localStorage.removeItem('token')
+          window.localStorage.removeItem('userinfo')
+          window.localStorage.removeItem('permission')
+          pageJump('login')
+        }
+      })
+    })
+    .catch(() => {
+      console.log('取消退出')
+    })
+}
 
 // 移动端
 const drawerVisible = ref(false)
@@ -92,6 +126,7 @@ watch(
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   window.addEventListener('scroll', handleScroll)
+  getUserInfo()
 })
 
 onBeforeUnmount(() => {
@@ -131,13 +166,21 @@ onBeforeUnmount(() => {
             <i class="fa fa-bars"></i>
           </div>
         </div>
-        <div v-if="windowWidth > 1290" class="headbtns">
-          <div class="headLogin">
-            <div class="btnHeng1"></div>
-            <button @click="pageJump('login')">登录</button>
-            <div class="btnHeng2"></div>
+        <!-- userInfo.name -->
+        <div v-if="windowWidth > 1290">
+          <div v-if="userInfo.name" class="username">
+            <i class="fa fa-user-circle mr-2"></i>
+            <span class="nameStyle">{{ userInfo.name }}</span>
+            <span class="logoutStyle" @click="logoutFunction">退出</span>
           </div>
-          <button class="registerbtn" @click="pageJump('register')">注册</button>
+          <div v-else class="headbtns">
+            <div class="headLogin">
+              <div class="btnHeng1"></div>
+              <button @click="pageJump('login')">登录</button>
+              <div class="btnHeng2"></div>
+            </div>
+            <button class="registerbtn" @click="pageJump('register')">注册</button>
+          </div>
         </div>
       </div>
     </div>
@@ -169,7 +212,14 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </div>
-      <div class="mobileBtns">
+      <div v-if="userInfo.name" class="mobileBtns">
+        <div class="frcc">
+          <i class="fa fa-user-circle mr-2"></i>
+          <span class="nameStyle">{{ userInfo.name }}</span>
+        </div>
+        <span class="logoutStyle" @click="logoutFunction">退出</span>
+      </div>
+      <div v-else class="mobileBtns">
         <button class="mobileDlbtn" @click="tabRouterPush({ name: 'login' })">登录</button>
         <button class="mobileZcbtn" @click="tabRouterPush({ name: 'register' })">注册</button>
       </div>
@@ -199,7 +249,7 @@ onBeforeUnmount(() => {
     }
 
     .headnav {
-      width: calc(100% - 130px);
+      width: calc(100% - 160px);
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -343,6 +393,32 @@ onBeforeUnmount(() => {
       .drawerIcon {
         font-size: 1.25rem;
         color: #fff;
+      }
+    }
+
+    .username {
+      color: #fff;
+      display: flex;
+      align-items: center;
+
+      .nameStyle {
+        display: inline-block;
+        max-width: 6rem;
+        white-space: nowrap;
+        /* 防止文本换行 */
+        overflow: hidden;
+        /* 隐藏溢出的文本 */
+        text-overflow: ellipsis;
+        /* 显示省略号 */
+      }
+
+      .logoutStyle {
+        margin-left: 0.5rem;
+      }
+
+      .logoutStyle:hover {
+        cursor: pointer;
+        color: #165dff;
       }
     }
 
@@ -491,6 +567,29 @@ onBeforeUnmount(() => {
   .mobileBtns {
     margin-top: 1rem;
     padding: 0 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    color: rgb(22 93 255);
+
+    .nameStyle {
+      display: inline-block;
+      max-width: 8rem;
+      white-space: nowrap;
+      /* 防止文本换行 */
+      overflow: hidden;
+      /* 隐藏溢出的文本 */
+      text-overflow: ellipsis;
+      /* 显示省略号 */
+    }
+
+    .logoutStyle {
+      margin-left: 0.5rem;
+    }
+
+    .logoutStyle:hover {
+      cursor: pointer;
+      color: #165dff;
+    }
 
     button {
       margin-bottom: 0.5rem;

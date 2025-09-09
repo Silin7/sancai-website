@@ -142,7 +142,7 @@ function convertSecondsToHMS(seconds: any) {
         </div>
       </div>
     </div>
-    <el-dialog v-model="dialogVisible" title="请使用微信扫描二维码" width="600">
+    <el-dialog v-model="dialogVisible" title="请使用微信扫描二维码" width="60%">
       <img :src="qrCodeData" :alt="wxpayvideocreate.code_url" style="width: 100%;" />
     </el-dialog>
   </div>
