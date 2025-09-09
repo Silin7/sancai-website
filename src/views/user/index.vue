@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import pageJump from '@/hooks/pageJump'
+import { companyinfoApi, certificatesApi } from '@/api/modules/admin'
 
 const data1: any = ref({
   jcnum: 23,
@@ -17,6 +18,15 @@ const data2: any = ref([
   { state: 'del', title: '下架机械产品「混凝土搅拌机」', date: '2025-07-05 16:45' },
   { state: 'scuss', title: '处理报价单 #20250704001', date: '2025-07-04 11:20' },
 ])
+
+onMounted(() => {
+  companyinfoApi('').then((res: any) => {
+    console.log('-------->', res)
+  })
+  certificatesApi('').then((res: any) => {
+    console.log('-------->', res)
+  })
+})
 </script>
 
 <template>

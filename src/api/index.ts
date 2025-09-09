@@ -31,11 +31,11 @@ api.interceptors.response.use(
   },
   (error) => {
     if (error.response.data.code === 401) {
-      ElMessage.error('登录信息失效，请重新登录')
-      window.localStorage.removeItem('token')
-      window.localStorage.removeItem('userinfo')
-      window.localStorage.removeItem('permission')
-      pageJump('login')
+      // ElMessage.error('登录信息失效，请重新登录')
+      // window.localStorage.removeItem('token')
+      // window.localStorage.removeItem('userinfo')
+      // window.localStorage.removeItem('permission')
+      // pageJump('login')
     } else {
       ElMessage.error(error.response.data.msg)
       return Promise.reject(error)
