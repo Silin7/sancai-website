@@ -17,6 +17,7 @@ api.interceptors.request.use((request) => {
   // 设置请求头
   if (request.headers && localStorage.getItem('token')) {
     request.headers.token = `Bearer ${localStorage.getItem('token') ?? ''}`
+    request.headers.Authorization = `Bearer ${localStorage.getItem('token') ?? ''}`
   }
   return request
 })
