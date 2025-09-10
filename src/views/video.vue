@@ -52,6 +52,17 @@ function getBannerlist() {
   })
 }
 
+// 登陆后的用户信息
+const userInfo: any = ref({})
+
+function getUserInfo() {
+  if (window.localStorage.getItem('userinfo')) {
+    userInfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
+  } else {
+    userInfo.value = {}
+  }
+}
+
 // 用户端-获取所有启用且未删除的视频分类（支持多级分类结构）
 const videocates: any = ref([])
 const videocateActive: any = ref('')
@@ -109,6 +120,7 @@ const handleCurrentChange = (val: number) => {
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
+  getUserInfo()
   getVideocates()
   getVideolistbycate()
 })
@@ -293,11 +305,12 @@ function convertSecondsToHMS(seconds: any) {
               <i class="fa fa-user"></i>
             </div>
             <div>
-              <div class="containerLoginName">游客，您好</div>
-              <div class="containerLoginTips">登录解锁更多功能</div>
+              <div class="containerLoginName">{{ userInfo.name ?? '游客' }}，您好</div>
+              <div v-if="userInfo.name" class="containerLoginTips">登录成功</div>
+              <div v-if="!userInfo.name" class="containerLoginTips">登录解锁更多功能</div>
             </div>
           </div>
-          <button class="containerLoginBtn">登录 / 注册</button>
+          <button v-if="!userInfo.name" class="containerLoginBtn" @click="pageJump('login')">登录 / 注册</button>
           <div class="containerLoginMy">
             <div>
               <div class="containerLoginMn">0</div>
