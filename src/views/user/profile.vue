@@ -58,7 +58,7 @@ const submitForm = async (formEl: any) => {
             <i class="fa fa-home mr-1"></i>首页
           </a>
           <span class="breadcrumb-separator">/</span>
-          <span>用户资料</span>
+          <span>企业资料</span>
         </div>
         <div class="action-buttons">
           <button class="action-btn back-btn" @click="pageJump('user-index')">
@@ -69,7 +69,7 @@ const submitForm = async (formEl: any) => {
       <!-- 列表标题 -->
       <h2 class="list-title">
         <i class="fa fa-user text-primary"></i>
-        编辑用户资料
+        编辑企业资料
       </h2>
       <el-form label-position="top" ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
         <el-form-item label="公司名称" prop="companyName">

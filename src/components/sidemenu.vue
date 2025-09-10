@@ -46,7 +46,7 @@ function signOut() {
       </el-menu-item>
       <el-menu-item index="user-profile" @click="pageJump('user-profile')">
         <i class="fa fa-file-text"></i>
-        <span>用户资料</span>
+        <span>企业资料</span>
       </el-menu-item>
       <el-menu-item index="user-renlist" @click="pageJump('user-renlist')">
         <i class="fa fa-users"></i>

@@ -269,7 +269,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'user-profile',
     component: () => import('@/views/user/profile.vue'),
     meta: {
-      title: '新材网-用户资料',
+      title: '新材网-企业资料',
       stcode: 'user-profile',
       website: false,
     },

@@ -249,8 +249,9 @@ onBeforeUnmount(() => {
     }
 
     .headnav {
-      width: calc(100% - 160px);
-      display: flex;
+      width: calc(100% - 220px);
+      max-width: 1200px;
+        display: flex;
       align-items: center;
       justify-content: flex-start;
 
@@ -403,7 +404,7 @@ onBeforeUnmount(() => {
 
       .nameStyle {
         display: inline-block;
-        max-width: 6rem;
+        max-width: 8rem;
         white-space: nowrap;
         /* 防止文本换行 */
         overflow: hidden;
