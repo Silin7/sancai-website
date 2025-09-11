@@ -2,6 +2,7 @@
 import '@wangeditor/editor/dist/css/style.css'
 import { onMounted, reactive, ref, shallowRef, onBeforeUnmount, watch } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import { productpcatechildrenApi } from '@/api/modules/product'
 import { sysprovincesApi, syscitiesApi } from '@/api/modules/basic'

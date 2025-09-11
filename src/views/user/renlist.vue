@@ -21,7 +21,7 @@ const groupData = ref([])
 
 function getDataList() {
   tableLoading.value = true
-  const parameters = {
+  const parameters: any = {
     page: pagination.value.pageNo,
     page_size: pagination.value.pageSize,
   }
@@ -122,11 +122,11 @@ onMounted(() => {
                     <Search />
                   </el-icon>
                 </template>
-                <el-option label="全部类别" value="" />
-                <el-option v-for="(item, index) in pcateOne" :key="index" :label="item.name" :value="item.id" />
-              </el-select>
-            </el-form-item>
-          </el-col> -->
+<el-option label="全部类别" value="" />
+<el-option v-for="(item, index) in pcateOne" :key="index" :label="item.name" :value="item.id" />
+</el-select>
+</el-form-item>
+</el-col> -->
           <el-col :span="6">
             <el-form-item>
               <el-select size="large" v-model="queryForm.status" placeholder="选择状态" clearable
