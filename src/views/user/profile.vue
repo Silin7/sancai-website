@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import '@wangeditor/editor/dist/css/style.css'
 import { onMounted, reactive, ref, shallowRef, onBeforeUnmount, watch } from 'vue'
-import { ElMessage } from 'element-plus'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import { sysprovincesApi, syscitiesApi } from '@/api/modules/basic'
 import { companyinfoApi, savecompanyinfoApi } from '@/api/modules/admin'
@@ -181,7 +181,7 @@ onMounted(() => {
           <div style="border: 1px solid #e4e7ed; width: 100%">
             <Toolbar style="border-bottom: 1px solid #e4e7ed" :editor="editorRef" :defaultConfig="toolbarConfig"
               mode="default" />
-            <Editor style="height: 500px; overflow-y: hidden" v-model="ruleForm.company_intro"
+            <Editor style="height: 300px; overflow-y: hidden" v-model="ruleForm.company_intro"
               :defaultConfig="editorConfig" mode="default" @onCreated="handleCreated" />
           </div>
         </el-form-item>

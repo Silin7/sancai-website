@@ -9,11 +9,7 @@ export function companyinfoApi(params: any) {
 
 // 保存当前用户的企业信息（创建/更新）
 export function savecompanyinfoApi(data: any) {
-  return api.post('/api/client/ucompany/my-company', null, {
-    params: {
-      ...data,
-    },
-  })
+  return api.post('/api/client/ucompany/my-company', data)
 }
 
 // 获取当前用户企业的资质列表
@@ -78,4 +74,41 @@ export function ucompanylistApi(params: any) {
 // 查询企业详情（公开）
 export function ucompanydetailApi(companyid: any) {
   return api.get(`/api/client/ucompany/${companyid}`)
+}
+
+// 新增数字技工服务
+export function humanresourceaddApi(data: any) {
+  return api.post('/api/client/uproduct/human-resource/add', data)
+}
+
+// 编辑数字技工服务
+export function humanresourceeditApi(data: any) {
+  return api.post('/api/client/uproduct/human-resource/edit', data)
+}
+
+// 数字技工服务调价
+export function humanresourceadjustpriceApi(data: any) {
+  return api.post('/api/client/uproduct/human-resource/adjust-price', data)
+}
+
+// 数字技工服务列表
+export function humanresourcelistApi(params: any) {
+  return api.get('/api/client/uproduct/human-resource/list', {
+    params,
+  })
+}
+
+
+// 数字技工服务调价历史
+export function humanresourcepricehistoryApi(params: any) {
+  return api.get('/api/client/uproduct/human-resource/price-history', {
+    params,
+  })
+}
+
+// 数字技工服务详情
+export function humanresourcedetailApi(params: any) {
+  return api.get('/api/client/uproduct/human-resource/detail', {
+    params,
+  })
 }
