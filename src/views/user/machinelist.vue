@@ -5,66 +5,42 @@ import pageJump from '@/hooks/pageJump'
 import usePagination from '@/hooks/usePagination'
 import formatCurrency from '@/hooks/formatCurrency'
 import useDebounce from '@/utils/useDebounce'
+import { equipmentlistApi } from '@/api/modules/admin'
+import { fileURL } from '@/api/baseConfig'
 
 // 查询条件
 const queryForm: any = reactive({
-  name: '',
-  state: 'all',
-  status: 'all',
+  equipmentname: '',
+  thetype: '',
+  status: '',
 })
 
 // 数据查询
 const tableLoading = ref(false)
-const groupData = ref([
-  {
-    data1: 'https://www.silin7.cn/lbxx.jpg',
-    data2: '优质螺纹钢',
-    data3: '宝钢/Φ16-25mm',
-    data4: '4850',
-    data5: '吨',
-    data6: '已上架',
-    data7: 'yishangjia',
-    data8: '2025-07-01',
-  },
-  {
-    data1: 'https://www.silin7.cn/lbxx.jpg',
-    data2: 'PVC管材',
-    data3: '联塑/DN25',
-    data4: '12.5',
-    data5: '米',
-    data6: '草稿',
-    data7: 'caogao',
-    data8: '2025-06-28',
-  },
-  {
-    data1: 'https://www.silin7.cn/lbxx.jpg',
-    data2: '环保实木地板',
-    data3: '大自然/1210×165×15mm',
-    data4: '298',
-    data5: '㎡',
-    data6: '已下架',
-    data7: 'yixiajia',
-    data8: '2025-04-02',
-  },
-])
+const groupData = ref([])
 
 function getDataList() {
   tableLoading.value = true
-  // groupPage({
-  //   ...queryForm,
-  //   pageNo: pagination.value.pageNo,
-  //   pageSize: pagination.value.pageSize,
-  // }).then((res: any) => {
-  //   if (res && res.code === 0) {
-  //     pagination.value.total = res.data.total
-  //     groupData.value = res.data.list
-  //     tableLoading.value = false
-  //   }
-  //   else {
-  //     message.error(res.msg)
-  //     tableLoading.value = false
-  //   }
-  // })
+  const parameters: any = {
+    page: pagination.value.pageNo,
+    page_size: pagination.value.pageSize,
+  }
+  if (queryForm.equipmentname) {
+    parameters['equipmentname'] = queryForm.equipmentname
+  }
+  if (queryForm.thetype) {
+    parameters['thetype'] = queryForm.thetype
+  }
+  if (queryForm.status) {
+    parameters['status'] = queryForm.status
+  }
+  equipmentlistApi(parameters).then((res: any) => {
+    if (res) {
+      pagination.value.total = res.total
+      groupData.value = res.items
+      tableLoading.value = false
+    }
+  })
 }
 
 // 分页
@@ -82,10 +58,6 @@ function currentChange(pageNo = 1) {
 
 onMounted(() => {
   getDataList()
-
-  setTimeout(() => {
-    tableLoading.value = false
-  }, 1000)
 })
 </script>
 
@@ -117,39 +89,39 @@ onMounted(() => {
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item>
-              <el-input size="large" v-model="queryForm.name" placeholder="搜索机械名称、类型..." clearable :prefix-icon="Search"
-                @input="useDebounce().fn(getDataList)" />
+              <el-input size="large" v-model="queryForm.equipmentname" placeholder="搜索机械名称" clearable
+                :prefix-icon="Search" @input="useDebounce().fn(getDataList)" />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item>
-              <el-select size="large" v-model="queryForm.state" placeholder="选择类型" clearable
+              <el-select size="large" v-model="queryForm.thetype" placeholder="选择类型" clearable
                 @change="useDebounce().fn(getDataList)">
                 <template #prefix>
                   <el-icon>
                     <Search />
                   </el-icon>
                 </template>
-                <el-option label="全部类型" value="all" />
-                <el-option label="智慧工地装备" value="zhgdzb" />
-                <el-option label="智能施工装备" value="znsgzb" />
-                <el-option label="建筑机器人" value="jzjqr" />
+                <el-option label="全部类型" value="" />
+                <el-option label="装备租赁" value="0" />
+                <el-option label="装备销售" value="1" />
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item>
-              <el-select size="large" v-model="queryForm.status" placeholder="选择材质" clearable
+              <el-select size="large" v-model="queryForm.status" placeholder="选择状态" clearable
                 @change="useDebounce().fn(getDataList)">
                 <template #prefix>
                   <el-icon>
                     <Search />
                   </el-icon>
                 </template>
-                <el-option label="全部状态" value="all" />
-                <el-option label="已上架" value="yishangjia" />
-                <el-option label="已下架" value="yixiajia" />
-                <el-option label="草稿" value="caigao" />
+                <el-option label="全部状态" value="" />
+                <el-option label="待审核" value="0" />
+                <el-option label="审核通过" value="1" />
+                <el-option label="驳回" value="2" />
+                <el-option label="关闭" value="3" />
               </el-select>
             </el-form-item>
           </el-col>
@@ -164,40 +136,49 @@ onMounted(() => {
       <el-table v-loading="tableLoading" :data="groupData" border highlight-current-row>
         <el-table-column align="center" label="机械图片">
           <template #default="scope">
-            <img :src="scope.row.data1" style="width: 40px; height: 40px; border-radius: 5px" />
+            <img v-if="scope.row.imgs && scope.row.imgs.length > 0" :src="fileURL + scope.row.imgs[0]"
+              style="width: 40px; height: 40px; border-radius: 5px" />
           </template>
         </el-table-column>
-        <el-table-column :show-overflow-tooltip="true" align="center" prop="data2" label="机械名称" />
-        <el-table-column :show-overflow-tooltip="true" align="center" prop="data3" label="类型/规格" />
-        <el-table-column align="center" label="价格" width="120">
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="equipmentname" label="机械名称" />
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌/规格" />
+        <el-table-column align="center" label="税前价格" width="120">
           <template #default="scope">
-            <span>¥{{ formatCurrency(scope.row.data4) }}/{{ scope.row.data5 }}</span>
+            <span>¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="税后价格" width="120">
+          <template #default="scope">
+            <span>¥{{ formatCurrency(scope.row.afertaxprice) }}</span>
           </template>
         </el-table-column>
         <el-table-column align="center" label="状态" width="120">
           <template #default="scope">
-            <el-tag v-if="scope.row.data7 === 'yishangjia'" type="success" style="border-radius: 50px">
+            <el-tag v-if="scope.row.status === 0" type="warning" style="border-radius: 50px">
               <i class="fa fa-check-circle"></i>
-              <span style="margin-left: 5px">已上架</span>
+              <span style="margin-left: 5px">待审核</span>
             </el-tag>
-            <el-tag v-if="scope.row.data7 === 'caogao'" type="warning" style="border-radius: 50px">
+            <el-tag v-if="scope.row.status === 1" type="success" style="border-radius: 50px">
               <i class="fa fa-edit"></i>
-              <span style="margin-left: 5px">草稿</span>
+              <span style="margin-left: 5px">审核通过</span>
             </el-tag>
-            <el-tag v-if="scope.row.data7 === 'yixiajia'" type="danger" style="border-radius: 50px">
+            <el-tag v-if="scope.row.status === 2" type="danger" style="border-radius: 50px">
               <i class="fa fa-ban"></i>
-              <span style="margin-left: 5px">已下架</span>
+              <span style="margin-left: 5px">驳回</span>
+            </el-tag>
+            <el-tag v-if="scope.row.status === 3" type="info" style="border-radius: 50px">
+              <i class="fa fa-ban"></i>
+              <span style="margin-left: 5px">关闭</span>
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column :show-overflow-tooltip="true" align="center" prop="data8" label="更新时间" />
-        <el-table-column align="center" label="操作" width="160">
+        <el-table-column align="center" label="操作" width="80">
           <template #default="scope">
             <div class="table-operate">
-              <!-- @click="groupAddOrUpdateFunc('edit', scope.row.id)" -->
-              <el-button text type="primary"> 编辑 </el-button>
-              <el-button v-if="scope.$index % 2 === 0" text type="danger"> 删除 </el-button>
-              <el-button v-else text type="danger"> 下架 </el-button>
+              <el-button text type="primary" @click="pageJump('user-machinefrom', { product_id: scope.row.id })"> 编辑
+              </el-button>
+              <!-- <el-button v-if="scope.$index % 2 === 0" text type="danger"> 删除 </el-button>
+              <el-button v-else text type="danger"> 下架 </el-button> -->
             </div>
           </template>
         </el-table-column>
