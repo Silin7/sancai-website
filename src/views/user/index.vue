@@ -17,12 +17,27 @@ const data2: any = ref([
   { state: 'del', title: '下架机械产品「混凝土搅拌机」', date: '2025-07-05 16:45' },
   { state: 'scuss', title: '处理报价单 #20250704001', date: '2025-07-04 11:20' },
 ])
+
+// 登陆后的用户信息
+const userInfo: any = ref({})
+
+function getUserInfo() {
+  if (window.localStorage.getItem('userinfo')) {
+    userInfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
+  } else {
+    userInfo.value = {}
+  }
+}
+
+onMounted(() => {
+  getUserInfo()
+})
 </script>
 
 <template>
   <div class="page-main">
     <div class="welcome-section">
-      <h1 class="welcome-title">欢迎回来，用户名</h1>
+      <h1 class="welcome-title">欢迎回来，{{ userInfo.name || '用户' }}</h1>
       <p class="welcome-message">
         今天是<span>{{ dayjs().format('YYYY年MM月DD日') }}{{ dayjs().locale('zh-cn').format('dddd') }}</span>，以下是您的平台数据概览
       </p>

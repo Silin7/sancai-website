@@ -74,10 +74,6 @@ function getPcateOne(pid: any = 0) {
 onMounted(() => {
   getPcateOne()
   getDataList()
-
-  setTimeout(() => {
-    tableLoading.value = false
-  }, 1000)
 })
 </script>
 
@@ -87,9 +83,7 @@ onMounted(() => {
       <!-- 顶部导航栏 -->
       <div class="form-nav">
         <div class="breadcrumb">
-          <a @click="pageJump('user-index')">
-            <i class="fa fa-home mr-1"></i>首页
-          </a>
+          <a @click="pageJump('user-index')"> <i class="fa fa-home mr-1"></i>首页 </a>
           <span class="breadcrumb-separator">/</span>
           <span>数字技工/方案论证</span>
         </div>
@@ -161,7 +155,7 @@ onMounted(() => {
             <span>¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="税前价格" width="120">
+        <el-table-column align="center" label="税后价格" width="120">
           <template #default="scope">
             <span>¥{{ formatCurrency(scope.row.afertaxprice) }}</span>
           </template>
@@ -186,13 +180,13 @@ onMounted(() => {
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="操作" width="160">
+        <el-table-column align="center" label="操作" width="80">
           <template #default="scope">
             <div class="table-operate">
-              <!-- @click="groupAddOrUpdateFunc('edit', scope.row.id)" -->
-              <el-button text type="primary"> 编辑 </el-button>
-              <el-button v-if="scope.$index % 2 === 0" text type="danger"> 删除 </el-button>
-              <el-button v-else text type="danger"> 下架 </el-button>
+              <el-button text type="primary" @click="pageJump('user-renfrom', { product_id: scope.row.id })"> 编辑
+              </el-button>
+              <!-- <el-button v-if="scope.$index % 2 === 0" text type="danger"> 删除 </el-button>
+              <el-button v-else text type="danger"> 下架 </el-button> -->
             </div>
           </template>
         </el-table-column>

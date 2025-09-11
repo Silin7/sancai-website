@@ -1,5 +1,21 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
+
+// 登陆后的用户信息
+const userInfo: any = ref({})
+
+function getUserInfo() {
+  if (window.localStorage.getItem('userinfo')) {
+    userInfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
+  } else {
+    userInfo.value = {}
+  }
+}
+
+onMounted(() => {
+  getUserInfo()
+})
 </script>
 
 <template>
@@ -13,7 +29,7 @@ import pageJump from '@/hooks/pageJump'
         U
         <!-- <img src="@/assets/avatar.jpg" /> -->
       </div>
-      <span class="title">用户名</span>
+      <span class="title">{{ userInfo.name || '用户' }}</span>
     </div>
   </div>
 </template>

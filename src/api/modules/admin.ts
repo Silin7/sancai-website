@@ -98,7 +98,6 @@ export function humanresourcelistApi(params: any) {
   })
 }
 
-
 // 数字技工服务调价历史
 export function humanresourcepricehistoryApi(params: any) {
   return api.get('/api/client/uproduct/human-resource/price-history', {
@@ -109,6 +108,114 @@ export function humanresourcepricehistoryApi(params: any) {
 // 数字技工服务详情
 export function humanresourcedetailApi(params: any) {
   return api.get('/api/client/uproduct/human-resource/detail', {
+    params,
+  })
+}
+
+// 新增材料/设备
+export function materialaddApi(data: any) {
+  return api.post('/api/client/uproduct/material/add', data)
+}
+
+// 编辑材料/设备（不含价格）
+export function materialeditApi(data: any) {
+  return api.post('/api/client/uproduct/material/edit', data)
+}
+
+// 材料/设备调价
+export function materialadjustpriceApi(data: any) {
+  return api.post('/api/client/uproduct/material/adjust-price', data)
+}
+
+// 材料/设备列表
+export function materiallistApi(params: any) {
+  return api.get('/api/client/uproduct/material/list', {
+    params,
+  })
+}
+
+// 材料/设备调价历史
+export function materialpricehistoryApi(params: any) {
+  return api.get('/api/client/uproduct/material/price-history', {
+    params,
+  })
+}
+
+// 材料/设备详情
+export function materialdetailApi(params: any) {
+  return api.get('/api/client/uproduct/material/detail', {
+    params,
+  })
+}
+
+// 新增智能建造装备
+export function equipmentaddApi(data: any) {
+  return api.post('/api/client/uproduct/equipment/add', data)
+}
+
+// 编辑智能建造装备（不含价格）
+export function equipmenteditApi(data: any) {
+  return api.post('/api/client/uproduct/equipment/edit', data)
+}
+
+// 智能建造装备调价
+export function equipmentadjustpriceApi(data: any) {
+  return api.post('/api/client/uproduct/equipment/adjust-price', data)
+}
+
+// 智能建造装备列表
+export function equipmentlistApi(params: any) {
+  return api.get('/api/client/uproduct/equipment/list', {
+    params,
+  })
+}
+
+// 智能建造装备调价历史
+export function equipmentpricehistoryApi(params: any) {
+  return api.get('/api/client/uproduct/equipment/price-history', {
+    params,
+  })
+}
+
+// 智能建造装备详情
+export function equipmentdetailApi(params: any) {
+  return api.get('/api/client/uproduct/equipment/detail', {
+    params,
+  })
+}
+
+// 新增信息化产品/服务
+export function itproductaddApi(data: any) {
+  return api.post('/api/client/uproduct/it-product/add', data)
+}
+
+// 编辑信息化产品/服务（不含价格）
+export function itproducteditApi(data: any) {
+  return api.post('/api/client/uproduct/it-product/edit', data)
+}
+
+// 信息化产品/服务调价
+export function itproductadjustpriceApi(data: any) {
+  return api.post('/api/client/uproduct/it-product/adjust-price', data)
+}
+
+// 信息化产品/服务列表
+export function itproductlistApi(params: any) {
+  return api.get('/api/client/uproduct/it-product/list', {
+    params,
+  })
+}
+
+// 信息化产品/服务调价历史
+export function itproductpricehistoryApi(params: any) {
+  return api.get('/api/client/uproduct/it-product/price-history', {
+    params,
+  })
+}
+
+// 信息化产品/服务详情
+export function itproductdetailApi(params: any) {
+  return api.get('/api/client/uproduct/it-product/detail', {
     params,
   })
 }

@@ -1,66 +1,260 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-import type { UploadFile } from 'element-plus'
-import { Delete, Download, Plus, ZoomIn } from '@element-plus/icons-vue'
+import '@wangeditor/editor/dist/css/style.css'
+import { onMounted, reactive, ref, shallowRef, onBeforeUnmount, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
+import { productpcatechildrenApi } from '@/api/modules/product'
+import { sysprovincesApi, syscitiesApi } from '@/api/modules/basic'
+import { materialaddApi, materialeditApi, materialdetailApi } from '@/api/modules/admin'
 
 const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
-  materialName: '',
-  categoryLevel1: '',
-  categoryLevel2: '',
-  categoryLevel3: '',
+  id: '',
+  materialname: '',
   brand: '',
+  cate_id: '',
+  sub_cate_id: '',
+  three_cate_id: '',
   material: '',
-  spec: '',
-  priceBeforeTax: null,
-  priceAfterTax: null,
-  minQty: null,
-  unit: '',
-  serviceDescription: '',
+  specification: '',
+  pretaxprice: null,
+  afertaxprice: null,
+  taxrate: null,
+  unit_id: 1, // 默认1，暂时未用
+  lowest: null,
+  province_id: '',
+  city_id: '',
+  technical_params: '',
+  solution: '',
+  description: '',
+  imgs: ['https://www.silin7.cn/fucheng-files/systemModule/logo.png'],
 })
 const rules: any = reactive({
-  materialName: [{ required: true, message: '请输入材料名称', trigger: 'blur' }],
-  categoryLevel1: [{ required: true, message: '请选择产品类别', trigger: 'change' }],
-  categoryLevel2: [{ required: true, message: '请选择二级分类', trigger: 'change' }],
-  categoryLevel3: [{ required: true, message: '请选择三级分类', trigger: 'change' }],
+  materialname: [{ required: true, message: '请输入材料名称', trigger: 'blur' }],
   brand: [{ required: true, message: '请输入品牌', trigger: 'blur' }],
+  cate_id: [{ required: true, message: '请选择主分类', trigger: 'change' }],
+  sub_cate_id: [{ required: true, message: '请选择二级分类', trigger: 'change' }],
+  three_cate_id: [{ required: true, message: '请选择三级分类', trigger: 'change' }],
   material: [{ required: true, message: '请输入材质', trigger: 'blur' }],
-  spec: [{ required: true, message: '请输入规格型号', trigger: 'blur' }],
-  priceBeforeTax: [{ required: true, message: '请输入单价（含税）', trigger: 'blur' }],
-  priceAfterTax: [{ required: true, message: '请输入单价（不含税）', trigger: 'blur' }],
-  minQty: [{ required: true, message: '请输入最低采购数量', trigger: 'blur' }],
-  unit: [{ required: true, message: '请选择单位 ', trigger: 'change' }],
-  serviceDescription: [{ required: true, message: '请输入材料内容介绍', trigger: 'blur' }],
+  specification: [{ required: true, message: '请输入规格型号', trigger: 'blur' }],
+  pretaxprice: [{ required: true, message: '税前价格', trigger: 'blur' }],
+  afertaxprice: [{ required: true, message: '税后价格', trigger: 'blur' }],
+  taxrate: [{ required: true, message: '请输入税率', trigger: 'blur' }],
+  unit_id: [{ required: true, message: '请选择单位', trigger: 'change' }],
+  lowest: [{ required: true, message: '请输入最低采购数量', trigger: 'blur' }],
+  province_id: [{ required: true, message: '请选择省份', trigger: 'change' }],
+  city_id: [{ required: true, message: '请选择城市', trigger: 'change' }],
+  technical_params: [{ required: true, message: '请输入技术参数', trigger: 'blur' }],
+  solution: [{ required: true, message: '请输入解决方案', trigger: 'blur' }],
+  description: [{ required: true, message: '请输入产品描述', trigger: 'blur' }],
 })
 
 const submitForm = async (formEl: any) => {
   if (!formEl) return
   await formEl.validate((valid: any, fields: any) => {
     if (valid) {
-      console.log('submit!')
+      if (product_id === '') {
+        materialaddApi(ruleForm).then((res: any) => {
+          if (res) {
+            ElMessage({
+              type: 'success',
+              message: '保存成功',
+            })
+            pageJump('user-cailist')
+          }
+        })
+      } else {
+        materialeditApi(ruleForm).then((res: any) => {
+          if (res) {
+            ElMessage({
+              type: 'success',
+              message: '保存成功',
+            })
+            pageJump('user-cailist')
+          }
+        })
+      }
     } else {
       console.log('error submit!', fields)
     }
   })
 }
 
+// 产品分类 - start
+const pcateOne: any = ref([])
+const pcateTwo: any = ref([])
+const pcateThree: any = ref([])
+
+function getPcateOne(pid: any = 0) {
+  productpcatechildrenApi({
+    page: 1,
+    pageSize: 999,
+    parent_id: pid,
+  }).then((res: any) => {
+    if (res && res.items.length > 0) {
+      const levelone = res.items.filter((element: any) => element.item_id === 1)
+      pcateOne.value = levelone
+    }
+  })
+}
+
+watch(
+  () => ruleForm.cate_id,
+  (newVal) => {
+    if (newVal) {
+      productpcatechildrenApi({
+        page: 1,
+        pageSize: 999,
+        parent_id: newVal,
+      }).then((res: any) => {
+        if (res && res.items.length > 0) {
+          pcateTwo.value = res.items
+        }
+      })
+    }
+  },
+  { immediate: true },
+)
+
+function pcateOneChange() {
+  ruleForm.sub_cate_id = ''
+}
+
+watch(
+  () => ruleForm.sub_cate_id,
+  (newVal) => {
+    if (newVal) {
+      productpcatechildrenApi({
+        page: 1,
+        pageSize: 999,
+        parent_id: newVal,
+      }).then((res: any) => {
+        if (res && res.items.length > 0) {
+          pcateThree.value = res.items
+        }
+      })
+    }
+  },
+  { immediate: true },
+)
+
+function pcateTwoChange() {
+  ruleForm.three_cate_id = ''
+}
+// 产品分类 - end
+
+// 省市区 - start
+const provincesList: any = ref([])
+const citiesList: any = ref([])
+
+function getSysprovinces() {
+  sysprovincesApi().then((res: any) => {
+    if (res) {
+      provincesList.value = res
+    }
+  })
+}
+
+watch(
+  () => ruleForm.province_id,
+  (newVal) => {
+    if (newVal) {
+      syscitiesApi(newVal).then((res: any) => {
+        if (res) {
+          citiesList.value = res
+        }
+      })
+    }
+  },
+  { immediate: true },
+)
+
+function provinceChange() {
+  ruleForm.city_id = ''
+}
+// 省市区 - end
+
+// 产品图片 - start
 const dialogImageUrl = ref('')
 const dialogVisible = ref(false)
 const disabled = ref(false)
 
-const handleRemove = (file: UploadFile) => {
+const handleRemove = (file: any) => {
   console.log(file)
 }
 
-const handlePictureCardPreview = (file: UploadFile) => {
-  dialogImageUrl.value = file.url!
+const handlePictureCardPreview = (file: any) => {
+  dialogImageUrl.value = file.url
   dialogVisible.value = true
 }
 
-const handleDownload = (file: UploadFile) => {
+const handleDownload = (file: any) => {
   console.log(file)
 }
+// 产品图片 - end
+
+// 编辑器实例 - start
+const editorRef1 = shallowRef()
+const editorRef2 = shallowRef()
+const editorRef3 = shallowRef()
+
+const toolbarConfig = {
+  toolbarKeys: ['fontSize', 'bold', 'underline'],
+}
+const editorConfig1 = { placeholder: '请详细描述材料技术参数(如:屈服强度2400MPa，抗拉强度>540MPa)' }
+const editorConfig2 = { placeholder: '请描述材料适用的解决方案(如:适用于高层建筑框架结构，配台混凝土浇筑使用)' }
+const editorConfig3 = { placeholder: '请详细描述产品特性、用途、执行标准等' }
+
+onBeforeUnmount(() => {
+  const editor1 = editorRef1.value
+  if (editor1 == null) return
+  editor1.destroy()
+  const editor2 = editorRef2.value
+  if (editor2 == null) return
+  editor2.destroy()
+  const editor3 = editorRef3.value
+  if (editor3 == null) return
+  editor3.destroy()
+})
+
+const handleCreated1 = (editor: any) => {
+  editorRef1.value = editor
+}
+const handleCreated2 = (editor: any) => {
+  editorRef2.value = editor
+}
+const handleCreated3 = (editor: any) => {
+  editorRef3.value = editor
+}
+// 编辑器实例 - end
+
+
+const routeInfo = useRoute()
+const product_id: any = routeInfo.query.product_id || ''
+
+onMounted(() => {
+  getPcateOne()
+  getSysprovinces()
+  // 编辑时，获取产品信息
+  if (product_id) {
+    materialdetailApi({ product_id }).then((res: any) => {
+      if (res) {
+        Object.keys(ruleForm).forEach((key) => {
+          if (Object.prototype.hasOwnProperty.call(res, key)) {
+            ruleForm[key] = res[key]
+          }
+        })
+      }
+    })
+  }
+  // unitApi().then((res: any) => {
+  //   if (res) {
+  //     console.log('单位列表-------->', res)
+  //   }
+  // })
+})
 </script>
 
 <template>
@@ -90,41 +284,8 @@ const handleDownload = (file: UploadFile) => {
       <el-form label-position="top" ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="auto">
         <el-row :gutter="20">
           <el-col :span="8">
-            <el-form-item label="材料名称" prop="materialName">
-              <el-input size="large" v-model="ruleForm.materialName" placeholder="请输入材料名称" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="产品类别" prop="categoryLevel1">
-              <el-select size="large" v-model="ruleForm.categoryLevel1" placeholder="选择产品类别" clearable
-                style="width: 100%">
-                <el-option label="全部材质" value="all" />
-                <el-option label="钢材" value="gangcai" />
-                <el-option label="木材" value="mucai" />
-                <el-option label="塑料" value="suliao" />
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="二级分类" prop="categoryLevel2">
-              <el-select size="large" v-model="ruleForm.categoryLevel2" placeholder="选择二级分类" clearable
-                style="width: 100%">
-                <el-option label="全部材质" value="all" />
-                <el-option label="钢材" value="gangcai" />
-                <el-option label="木材" value="mucai" />
-                <el-option label="塑料" value="suliao" />
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="三级分类" prop="categoryLevel3">
-              <el-select size="large" v-model="ruleForm.categoryLevel3" placeholder="选择三级分类" clearable
-                style="width: 100%">
-                <el-option label="全部材质" value="all" />
-                <el-option label="钢材" value="gangcai" />
-                <el-option label="木材" value="mucai" />
-                <el-option label="塑料" value="suliao" />
-              </el-select>
+            <el-form-item label="材料名称" prop="materialname">
+              <el-input size="large" v-model="ruleForm.materialname" placeholder="请输入材料名称" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -133,45 +294,116 @@ const handleDownload = (file: UploadFile) => {
             </el-form-item>
           </el-col>
           <el-col :span="8">
+            <el-form-item label="主类别" prop="cate_id">
+              <el-select size="large" v-model="ruleForm.cate_id" placeholder="选择主类别" clearable style="width: 100%"
+                @change="pcateOneChange">
+                <el-option v-for="(item, index) in pcateOne" :key="index" :label="item.name" :value="item.id" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="二级分类" prop="sub_cate_id">
+              <el-select size="large" v-model="ruleForm.sub_cate_id" placeholder="选择二级分类" clearable style="width: 100%"
+                @change="pcateTwoChange">
+                <el-option v-for="(item, index) in pcateTwo" :key="index" :label="item.name" :value="item.id" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="三级分类" prop="three_cate_id">
+              <el-select size="large" v-model="ruleForm.three_cate_id" placeholder="选择三级分类" clearable
+                style="width: 100%">
+                <el-option v-for="(item, index) in pcateThree" :key="index" :label="item.name" :value="item.id" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
             <el-form-item label="材质" prop="material">
               <el-input size="large" v-model="ruleForm.material" placeholder="请输入材质" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="规格型号" prop="spec">
-              <el-input size="large" v-model="ruleForm.spec" placeholder="请输入规格型号" />
+            <el-form-item label="规格型号" prop="specification">
+              <el-input size="large" v-model="ruleForm.specification" placeholder="请输入规格型号" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="单价（含税）" prop="priceBeforeTax">
-              <el-input-number size="large" v-model="ruleForm.priceBeforeTax" placeholder="请输入单价（含税） " :min="0"
+            <el-form-item label="税前价格(元)" prop="pretaxprice">
+              <el-input-number size="large" v-model="ruleForm.pretaxprice" placeholder="请输入税前价格(元)" :min="0"
                 style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="单价（不含税）" prop="priceAfterTax">
-              <el-input-number size="large" v-model="ruleForm.priceAfterTax" placeholder="请输入单价（不含税）" :min="0"
+            <el-form-item label="税后价格(元)" prop="afertaxprice">
+              <el-input-number size="large" v-model="ruleForm.afertaxprice" placeholder="请输入税后价格(元)" :min="0"
                 style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="最低采购数量" prop="minQty">
-              <el-input-number size="large" v-model="ruleForm.minQty" placeholder="请输入最低采购数量" :min="0"
+            <el-form-item label="税率(%)" prop="taxrate">
+              <el-input-number size="large" v-model="ruleForm.taxrate" placeholder="请输入税率(%)" :min="0"
                 style="width: 100%" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="单位" prop="unit">
-              <el-select size="large" v-model="ruleForm.unit" placeholder="选择单位" clearable style="width: 100%">
-                <el-option label="全部材质" value="all" />
-                <el-option label="钢材" value="gangcai" />
-                <el-option label="木材" value="mucai" />
-                <el-option label="塑料" value="suliao" />
+            <el-form-item label="单位" prop="unit_id">
+              <el-select size="large" v-model="ruleForm.unit_id" placeholder="选择单位">
+                <el-option label="件" :value="1" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="最低采购数量" prop="lowest">
+              <el-input-number size="large" v-model="ruleForm.lowest" placeholder="请输入最低采购数量" :min="0"
+                style="width: 100%" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="省份" prop="province_id">
+              <el-select size="large" v-model="ruleForm.province_id" placeholder="选择省份" @change="provinceChange">
+                <el-option v-for="(item, index) in provincesList" :key="index" :label="item.name" :value="item.id" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="城市" prop="city_id">
+              <el-select size="large" v-model="ruleForm.city_id" placeholder="选择城市">
+                <el-option v-for="(item, index) in citiesList" :key="index" :label="item.name" :value="item.id" />
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="产品图片" prop="serviceDescription">
+            <el-form-item label="技术参数" prop="technical_params">
+              <div style="border: 1px solid #e4e7ed; width: 100%">
+                <Toolbar style="border-bottom: 1px solid #e4e7ed" :editor="editorRef1" :defaultConfig="toolbarConfig"
+                  mode="default" />
+                <Editor style="height: 300px; overflow-y: hidden" v-model="ruleForm.technical_params"
+                  :defaultConfig="editorConfig1" mode="default" @onCreated="handleCreated1" />
+              </div>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="解决方案" prop="solution">
+              <div style="border: 1px solid #e4e7ed; width: 100%">
+                <Toolbar style="border-bottom: 1px solid #e4e7ed" :editor="editorRef2" :defaultConfig="toolbarConfig"
+                  mode="default" />
+                <Editor style="height: 300px; overflow-y: hidden" v-model="ruleForm.solution"
+                  :defaultConfig="editorConfig2" mode="default" @onCreated="handleCreated2" />
+              </div>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="产品描述" prop="description">
+              <div style="border: 1px solid #e4e7ed; width: 100%">
+                <Toolbar style="border-bottom: 1px solid #e4e7ed" :editor="editorRef3" :defaultConfig="toolbarConfig"
+                  mode="default" />
+                <Editor style="height: 300px; overflow-y: hidden" v-model="ruleForm.description"
+                  :defaultConfig="editorConfig3" mode="default" @onCreated="handleCreated3" />
+              </div>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="产品图片" prop="imgs">
               <el-upload action="#" :multiple="true" list-type="picture-card" :auto-upload="false">
                 <el-icon>
                   <Plus />
@@ -207,12 +439,6 @@ const handleDownload = (file: UploadFile) => {
             <p class="tips">
               <i class="fa fa-info-circle mr-1"></i>支持多张图片上传，点击图片可设置为主要展示图片
             </p>
-          </el-col>
-          <el-col :span="24">
-            <el-form-item label="产品描述 (最多300字)" prop="serviceDescription">
-              <el-input v-model="ruleForm.serviceDescription" type="textarea" :autosize="{ minRows: 5, maxRows: 10 }"
-                placeholder="请输入产品详细描述，包括特性、用途、注意事项等（最多300字）" :maxlength="300" show-word-limit />
-            </el-form-item>
           </el-col>
         </el-row>
       </el-form>
