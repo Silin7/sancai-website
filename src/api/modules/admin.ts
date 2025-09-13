@@ -1,5 +1,10 @@
 import api from '@/api/index'
 
+// 获取有效案例类型列表（仅主分类）
+export function casetypesApi() {
+  return api.get('/api/client/ucompany/casetypes')
+}
+
 // 获取当前用户的企业信息
 export function companyinfoApi(params: any) {
   return api.get('/api/client/ucompany/my-company', {
@@ -34,6 +39,11 @@ export function deletecertificatesApi(certid: any) {
   return api.delete(`/api/client/ucompany/certificates/${certid}`)
 }
 
+// 根据ID获取企业资质详情
+export function detailcertificatesApi(certid: any) {
+  return api.get(`/api/client/ucompany/certificates/${certid}`)
+}
+
 // 获取当前用户企业的案例列表
 export function casesApi(params: any) {
   return api.get('/api/client/ucompany/cases', {
@@ -47,13 +57,18 @@ export function savecasesApi(data: any) {
 }
 
 // 更新企业案例
-export function updatecasesApi(certid: any) {
-  return api.put(`/api/client/ucompany/cases/${certid}`)
+export function updatecasesApi(certid: any, data: any) {
+  return api.put(`/api/client/ucompany/cases/${certid}`, data)
 }
 
 // 删除企业案例
 export function deletecasesApi(certid: any) {
   return api.delete(`/api/client/ucompany/cases/${certid}`)
+}
+
+// 根据ID获取企业案例详情
+export function detailcasesApi(certid: any) {
+  return api.get(`/api/client/ucompany/cases/${certid}`)
 }
 
 // 查询企业列表（公开）
@@ -210,4 +225,9 @@ export function itproductdetailApi(params: any) {
   return api.get('/api/client/uproduct/it-product/detail', {
     params,
   })
+}
+
+// 用户上传图片
+export function iuploadimgApi(data: any) {
+  return api.post('/api/client/upload/upload/image', data)
 }

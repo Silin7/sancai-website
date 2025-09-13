@@ -1,12 +1,13 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import { onMounted, reactive, ref } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { Search, Plus } from '@element-plus/icons-vue'
 import pageJump from '@/hooks/pageJump'
 import usePagination from '@/hooks/usePagination'
 import useDebounce from '@/utils/useDebounce'
 import { currentcompanyApi } from '@/api/modules/login'
-import { certificatesApi } from '@/api/modules/admin'
-import { ElMessage } from 'element-plus'
+import { certificatesApi, deletecertificatesApi } from '@/api/modules/admin'
 
 // 查询条件
 const queryForm: any = reactive({
@@ -37,7 +38,7 @@ function getDataList() {
   certificatesApi(parameters).then((res: any) => {
     if (res) {
       pagination.value.total = res.total
-      groupData.value = res.items
+      groupData.value = res.data
       tableLoading.value = false
     }
   })
@@ -55,6 +56,37 @@ function sizeChange(pageSize: number) {
 function currentChange(pageNo = 1) {
   onCurrentChange(pageNo).then(() => getDataList())
 }
+
+// 删除资质 - start
+function getDeletecases(id: any) {
+  ElMessageBox.confirm(
+    '确定要删除该资质吗？',
+    '删除提示',
+    {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning',
+    }
+  )
+    .then(() => {
+      deletecertificatesApi(id).then((res: any) => {
+        if (res) {
+          ElMessage({
+            type: 'success',
+            message: '删除成功',
+          })
+          getDataList()
+        }
+      })
+      // ElMessage({
+      //   type: 'success',
+      //   message: 'Delete completed',
+      // })
+    })
+    .catch(() => {
+    })
+}
+// 删除资质 - end
 
 const companyid: any = ref('')
 const companyname: any = ref('')
@@ -103,7 +135,7 @@ onMounted(() => {
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item>
-              <el-input size="large" v-model="queryForm.name" placeholder="搜索服务名称..." clearable :prefix-icon="Search"
+              <el-input size="large" v-model="queryForm.name" placeholder="资质名称" clearable :prefix-icon="Search"
                 @input="useDebounce().fn(getDataList)" />
             </el-form-item>
           </el-col>
@@ -155,6 +187,12 @@ onMounted(() => {
       <el-table v-loading="tableLoading" :data="groupData" border highlight-current-row>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="name" label="资质名称" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="qualification_type_name" label="资质类型" />
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="obtain_time_str" label="获得时间" width="120" />
+        <el-table-column align="center" label="有效期" width="220">
+          <template #default="scope">
+            {{ scope.row.valid_start_str }} ~ {{ scope.row.valid_end_str }}
+          </template>
+        </el-table-column>
         <el-table-column align="center" label="状态" width="120">
           <template #default="scope">
             <el-tag v-if="scope.row.status === 0" type="warning" style="border-radius: 50px">
@@ -175,7 +213,7 @@ onMounted(() => {
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="操作" width="80">
+        <el-table-column align="center" label="操作" width="120">
           <template #default="scope">
             <div class="table-operate">
               <el-button text type="primary" @click="pageJump('user-qyzzfrom', {
@@ -184,8 +222,7 @@ onMounted(() => {
                 companyname
               })"> 编辑
               </el-button>
-              <!-- <el-button v-if="scope.$index % 2 === 0" text type="danger"> 删除 </el-button>
-              <el-button v-else text type="danger"> 下架 </el-button> -->
+              <el-button text type="danger" @click="getDeletecases(scope.row.id)"> 删除 </el-button>
             </div>
           </template>
         </el-table-column>

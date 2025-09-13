@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
+import { baseURL } from '@/api/baseConfig'
 import { unitApi } from '@/api/modules/common'
 import { productpcatechildrenApi } from '@/api/modules/product'
 import { sysprovincesApi, syscitiesApi } from '@/api/modules/basic'
@@ -179,6 +180,10 @@ const handleCreated2 = (editor: any) => {
 const dialogImageUrl = ref('')
 const dialogVisible = ref(false)
 const disabled = ref(false)
+const uploadHeader = {
+  token: `Bearer ${localStorage.getItem('token') ?? ''}`,
+  Authorization: `Bearer ${localStorage.getItem('token') ?? ''}`
+}
 
 const handleRemove = (file: any) => {
   console.log(file)
@@ -344,7 +349,8 @@ onMounted(() => {
           </el-col>
           <el-col :span="24">
             <el-form-item label="产品图片" prop="imgs">
-              <el-upload action="#" :multiple="true" list-type="picture-card" :auto-upload="false">
+              <el-upload :action="baseURL + '/api/client/upload/upload/image'" :headers="uploadHeader" :multiple="true"
+                list-type="picture-card" :auto-upload="true">
                 <el-icon>
                   <Plus />
                 </el-icon>

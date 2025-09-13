@@ -5,7 +5,8 @@ import { useRoute } from 'vue-router'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
-import { savecertificatesApi, updatecertificatesApi, humanresourcedetailApi } from '@/api/modules/admin'
+import { baseURL, fileURL } from '@/api/baseConfig'
+import { savecertificatesApi, updatecertificatesApi, detailcertificatesApi } from '@/api/modules/admin'
 
 const routeInfo = useRoute()
 const ruleFormRef: any = ref()
@@ -19,7 +20,7 @@ const ruleForm: any = reactive({
   valid_start: '',
   valid_end: '',
   description: '',
-  qualification_imgs: ['https://www.silin7.cn/fucheng-files/systemModule/logo.png'],
+  qualification_imgs: [],
 })
 const rules: any = reactive({
   brand: [{ required: true, message: '请输入品牌', trigger: 'blur' }],
@@ -35,8 +36,16 @@ const submitForm = async (formEl: any) => {
   if (!formEl) return
   await formEl.validate((valid: any, fields: any) => {
     if (valid) {
+      const data = { ...ruleForm }
+      data.qualification_imgs = ruleForm.qualification_imgs.map((item: any) => {
+        if (item.response && item.response.data.url) {
+          return item.response.data.url
+        } else {
+          return item.name
+        }
+      })
       if (id === '') {
-        savecertificatesApi(ruleForm).then((res: any) => {
+        savecertificatesApi(data).then((res: any) => {
           if (res) {
             ElMessage({
               type: 'success',
@@ -46,7 +55,7 @@ const submitForm = async (formEl: any) => {
           }
         })
       } else {
-        updatecertificatesApi(id.value, ruleForm).then((res: any) => {
+        updatecertificatesApi(id, data).then((res: any) => {
           if (res) {
             ElMessage({
               type: 'success',
@@ -89,35 +98,47 @@ const handleCreated2 = (editor: any) => {
 }
 // 编辑器实例 - end
 
-// 证书图片 - start
+// 资质图片 - start
 const dialogImageUrl = ref('')
 const dialogVisible = ref(false)
 const disabled = ref(false)
+const uploadHeader = {
+  Authorization: `Bearer ${localStorage.getItem('token') ?? ''}`
+}
 
 const handleRemove = (file: any) => {
-  console.log(file)
+  ruleForm.qualification_imgs.forEach((item: any, index: number) => {
+    if (item.uid === file.uid) {
+      ruleForm.qualification_imgs.splice(index, 1)
+    }
+  })
 }
 
 const handlePictureCardPreview = (file: any) => {
   dialogImageUrl.value = file.url
   dialogVisible.value = true
 }
-
-const handleDownload = (file: any) => {
-  console.log(file)
-}
-// 证书图片 - end
+// 资质图片 - end
 
 const id: any = routeInfo.query.id || ''
 
 onMounted(() => {
-  // 编辑时，获取证书信息
+  // 编辑时，获取资质信息
   if (id) {
-    humanresourcedetailApi({ id }).then((res: any) => {
+    detailcertificatesApi(id).then((res: any) => {
       if (res) {
         Object.keys(ruleForm).forEach((key) => {
           if (Object.prototype.hasOwnProperty.call(res, key)) {
-            ruleForm[key] = res[key]
+            if (key === 'qualification_imgs' && res[key] && res[key].length > 0) {
+              ruleForm[key] = res[key].map((item: any) => {
+                return {
+                  name: item,
+                  url: fileURL + item,
+                }
+              })
+            } else {
+              ruleForm[key] = res[key]
+            }
           }
         })
       }
@@ -160,9 +181,9 @@ onMounted(() => {
               <el-select size="large" v-model="ruleForm.qualification_type_id" placeholder="选择资质类型" clearable
                 style="width: 100%">
                 <el-option label="营业执照" value="1" />
-                <el-option label="行业资质证书" value="2" />
-                <el-option label="荣誉证书" value="3" />
-                <el-option label="其他证书" value="4" />
+                <el-option label="行业资质资质" value="2" />
+                <el-option label="荣誉资质" value="3" />
+                <el-option label="其他资质" value="4" />
               </el-select>
             </el-form-item>
           </el-col>
@@ -190,23 +211,18 @@ onMounted(() => {
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="证书图片" prop="qualification_imgs">
-              <el-upload action="#" :multiple="true" list-type="picture-card" :auto-upload="false">
+            <el-form-item label="资质图片" prop="qualification_imgs">
+              <el-upload :action="baseURL + '/api/client/upload/upload/image'" :headers="uploadHeader" :multiple="true"
+                v-model:file-list="ruleForm.qualification_imgs" list-type="picture-card" :auto-upload="true">
                 <el-icon>
                   <Plus />
                 </el-icon>
-
                 <template #file="{ file }">
                   <div>
                     <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
                     <span class="el-upload-list__item-actions">
                       <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
                         <el-icon><zoom-in /></el-icon>
-                      </span>
-                      <span v-if="!disabled" class="el-upload-list__item-delete" @click="handleDownload(file)">
-                        <el-icon>
-                          <Download />
-                        </el-icon>
                       </span>
                       <span v-if="!disabled" class="el-upload-list__item-delete" @click="handleRemove(file)">
                         <el-icon>
@@ -217,15 +233,13 @@ onMounted(() => {
                   </div>
                 </template>
               </el-upload>
-
               <el-dialog v-model="dialogVisible">
-                <img w-full :src="dialogImageUrl" alt="Preview Image" />
+                <el-image :src="dialogImageUrl" alt="Preview Image" fit="widthFix" style="width: 100%" />
               </el-dialog>
             </el-form-item>
-
-            <p class="tips">
+            <!-- <p class="tips">
               <i class="fa fa-info-circle mr-1"></i>支持多张图片上传，点击图片可设置为主要展示图片
-            </p>
+            </p> -->
           </el-col>
           <el-col :span="24">
             <el-form-item label="资质描述" prop="description">
