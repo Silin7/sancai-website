@@ -48,6 +48,14 @@ function signOut() {
         <i class="fa fa-file-text"></i>
         <span>企业资料</span>
       </el-menu-item>
+      <el-menu-item index="user-qyzzlist" @click="pageJump('user-qyzzlist')">
+        <i class="fa fa-users"></i>
+        <span>企业资质</span>
+      </el-menu-item>
+      <el-menu-item index="user-qyallist" @click="pageJump('user-qyallist')">
+        <i class="fa fa-users"></i>
+        <span>企业案例</span>
+      </el-menu-item>
       <el-menu-item index="user-renlist" @click="pageJump('user-renlist')">
         <i class="fa fa-users"></i>
         <span>数字技工/方案论证</span>

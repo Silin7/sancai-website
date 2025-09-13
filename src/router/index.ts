@@ -275,6 +275,46 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/user/qyzzlist',
+    name: 'user-qyzzlist',
+    component: () => import('@/views/user/qyzzlist.vue'),
+    meta: {
+      title: '新材网-企业资质',
+      stcode: 'user-qyzzlist',
+      website: false,
+    },
+  },
+  {
+    path: '/user/qyzzfrom',
+    name: 'user-qyzzfrom',
+    component: () => import('@/views/user/qyzzfrom.vue'),
+    meta: {
+      title: '新材网-企业资质',
+      stcode: 'user-qyzzlist',
+      website: false,
+    },
+  },
+  {
+    path: '/user/qyallist',
+    name: 'user-qyallist',
+    component: () => import('@/views/user/qyallist.vue'),
+    meta: {
+      title: '新材网-企业案例',
+      stcode: 'user-qyallist',
+      website: false,
+    },
+  },
+  {
+    path: '/user/qyalfrom',
+    name: 'user-qyalfrom',
+    component: () => import('@/views/user/qyalfrom.vue'),
+    meta: {
+      title: '新材网-企业案例',
+      stcode: 'user-qyallist',
+      website: false,
+    },
+  },
+  {
     path: '/user/renlist',
     name: 'user-renlist',
     component: () => import('@/views/user/renlist.vue'),
