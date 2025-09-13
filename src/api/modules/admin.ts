@@ -21,16 +21,12 @@ export function certificatesApi(params: any) {
 
 // 新增企业资质
 export function savecertificatesApi(data: any) {
-  return api.post('/api/client/ucompany/certificates', null, {
-    params: {
-      ...data,
-    },
-  })
+  return api.post('/api/client/ucompany/certificates', data)
 }
 
 // 更新企业资质
-export function updatecertificatesApi(certid: any) {
-  return api.put(`/api/client/ucompany/certificates/${certid}`)
+export function updatecertificatesApi(certid: any, data: any) {
+  return api.put(`/api/client/ucompany/certificates/${certid}`, data)
 }
 
 // 删除企业资质
@@ -47,11 +43,7 @@ export function casesApi(params: any) {
 
 // 新增企业案例
 export function savecasesApi(data: any) {
-  return api.post('/api/client/ucompany/cases', null, {
-    params: {
-      ...data,
-    },
-  })
+  return api.post('/api/client/ucompany/cases', data)
 }
 
 // 更新企业案例

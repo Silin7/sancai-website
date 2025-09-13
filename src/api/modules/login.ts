@@ -72,3 +72,8 @@ export function checkloinApi() {
 export function currentuserApi() {
   return api.get('/api/client/base/current-user')
 }
+
+// 获取当前用户的企业信息
+export function currentcompanyApi() {
+  return api.get('/api/client/base/current-company')
+}

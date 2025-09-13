@@ -111,7 +111,11 @@ onMounted(() => {
   companyinfoApi('')
     .then((res: any) => {
       if (res) {
-        Object.assign(ruleForm, res)
+        Object.keys(ruleForm).forEach((key) => {
+          if (Object.prototype.hasOwnProperty.call(res, key)) {
+            ruleForm[key] = res[key]
+          }
+        })
       }
     })
     .finally(() => {
