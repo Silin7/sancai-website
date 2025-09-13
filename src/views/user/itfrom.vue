@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
-// import { unitApi } from '@/api/modules/common'
+import { unitApi } from '@/api/modules/common'
 import { productpcatechildrenApi } from '@/api/modules/product'
 import { sysprovincesApi, syscitiesApi } from '@/api/modules/basic'
 import { itproductaddApi, itproducteditApi, itproductdetailApi } from '@/api/modules/admin'
@@ -24,8 +24,8 @@ const ruleForm: any = reactive({
   pretaxprice: null,
   afertaxprice: null,
   taxrate: null,
-  unit_id: 1, // 默认1，暂时未用
-  // demo_url: '',
+  unit_id: '',
+  demo_url: '',
   province_id: '',
   city_id: '',
   solution: '',
@@ -46,7 +46,7 @@ const rules: any = reactive({
   afertaxprice: [{ required: true, message: '请输入税后价格', trigger: 'blur' }],
   taxrate: [{ required: true, message: '请输入税率', trigger: 'blur' }],
   unit_id: [{ required: true, message: '请选择单位', trigger: 'change' }],
-  // demo_url: [{ required: false, message: '请输入演示地址', trigger: 'blur' }],
+  demo_url: [{ required: true, message: '请输入演示地址', trigger: 'blur' }],
   province_id: [{ required: true, message: '请选择省份', trigger: 'change' }],
   city_id: [{ required: true, message: '请选择城市', trigger: 'change' }],
   solution: [{ required: true, message: '请输入解决方案', trigger: 'blur' }],
@@ -212,6 +212,7 @@ const handleDownload = (file: any) => {
 
 const routeInfo = useRoute()
 const product_id: any = routeInfo.query.product_id || ''
+const unitlist: any = ref([])
 
 onMounted(() => {
   getPcateOne()
@@ -228,11 +229,14 @@ onMounted(() => {
       }
     })
   }
-  // unitApi().then((res: any) => {
-  //   if (res) {
-  //     console.log('单位列表-------->', res)
-  //   }
-  // })
+  // 单位列表
+  unitApi({
+    type: 1
+  }).then((res: any) => {
+    if (res) {
+      unitlist.value = res
+    }
+  })
 })
 </script>
 
@@ -337,15 +341,15 @@ onMounted(() => {
           <el-col :span="8">
             <el-form-item label="单位" prop="unit_id">
               <el-select size="large" v-model="ruleForm.unit_id" placeholder="选择单位">
-                <el-option label="件" :value="1" />
+                <el-option v-for="(item, index) in unitlist" :key="index" :label="item.name" :value="item.id" />
               </el-select>
             </el-form-item>
           </el-col>
-          <!-- <el-col :span="8">
+          <el-col :span="8">
             <el-form-item label="演示地址" prop="demo_url">
               <el-input size="large" v-model="ruleForm.demo_url" placeholder="请输入演示地址" />
             </el-form-item>
-          </el-col> -->
+          </el-col>
           <el-col :span="8">
             <el-form-item label="省份" prop="province_id">
               <el-select size="large" v-model="ruleForm.province_id" placeholder="选择省份" @change="provinceChange">

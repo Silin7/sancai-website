@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
+import { unitApi } from '@/api/modules/common'
 import { productpcatechildrenApi } from '@/api/modules/product'
 import { sysprovincesApi, syscitiesApi } from '@/api/modules/basic'
 import { materialaddApi, materialeditApi, materialdetailApi } from '@/api/modules/admin'
@@ -22,7 +23,7 @@ const ruleForm: any = reactive({
   pretaxprice: null,
   afertaxprice: null,
   taxrate: null,
-  unit_id: 1, // 默认1，暂时未用
+  unit_id: '',
   lowest: null,
   province_id: '',
   city_id: '',
@@ -233,6 +234,7 @@ const handleCreated3 = (editor: any) => {
 
 const routeInfo = useRoute()
 const product_id: any = routeInfo.query.product_id || ''
+const unitlist: any = ref([])
 
 onMounted(() => {
   getPcateOne()
@@ -249,11 +251,14 @@ onMounted(() => {
       }
     })
   }
-  // unitApi().then((res: any) => {
-  //   if (res) {
-  //     console.log('单位列表-------->', res)
-  //   }
-  // })
+  // 单位列表
+  unitApi({
+    type: 2
+  }).then((res: any) => {
+    if (res) {
+      unitlist.value = res
+    }
+  })
 })
 </script>
 
@@ -348,7 +353,7 @@ onMounted(() => {
           <el-col :span="8">
             <el-form-item label="单位" prop="unit_id">
               <el-select size="large" v-model="ruleForm.unit_id" placeholder="选择单位">
-                <el-option label="件" :value="1" />
+                <el-option v-for="(item, index) in unitlist" :key="index" :label="item.name" :value="item.id" />
               </el-select>
             </el-form-item>
           </el-col>

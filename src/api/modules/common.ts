@@ -21,8 +21,10 @@ export function allaiappApi() {
 }
 
 // 根据类型获取单位列表
-export function unitApi() {
-  return api.get('/api/client/syscate/unit')
+export function unitApi(params: any) {
+  return api.get('/api/client/syscate/unit', {
+    params
+  })
 }
 
 // 获取前20个友情链接
