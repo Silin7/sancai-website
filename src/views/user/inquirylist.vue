@@ -136,32 +136,36 @@ onMounted(() => {
       </el-form>
       <!-- 数据表格 -->
       <el-table v-loading="tableLoading" :data="groupData" border highlight-current-row>
-        <el-table-column :show-overflow-tooltip="true" align="center" prop="data1" label="服务名称" />
-        <el-table-column :show-overflow-tooltip="true" align="center" prop="data2" label="订单号" />
-        <el-table-column :show-overflow-tooltip="true" align="center" prop="data3" label="订购客户" />
-        <el-table-column :show-overflow-tooltip="true" align="center" prop="data4" label="联系方式" />
-        <el-table-column :show-overflow-tooltip="true" align="center" prop="data5" label="下单日期" />
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="code" label="订单编号" />
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="product_name" label="需求项目名" />
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="cate_name" label="所属分类" />
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="company_name" label="公司名称" />
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="contact_person" label="联系人" />
         <el-table-column align="center" label="状态" width="120">
           <template #default="scope">
-            <el-tag v-if="scope.row.data7 === 'yishangjia'" type="success" style="border-radius: 50px">
+            <el-tag v-if="scope.row.status === 0" type="warning" style="border-radius: 50px">
               <i class="fa fa-check-circle"></i>
-              <span style="margin-left: 5px">已上架</span>
+              <span style="margin-left: 5px">待审核</span>
             </el-tag>
-            <el-tag v-if="scope.row.data7 === 'caogao'" type="warning" style="border-radius: 50px">
+            <el-tag v-if="scope.row.status === 1" type="success" style="border-radius: 50px">
               <i class="fa fa-edit"></i>
-              <span style="margin-left: 5px">草稿</span>
+              <span style="margin-left: 5px">审核通过</span>
             </el-tag>
-            <el-tag v-if="scope.row.data7 === 'yixiajia'" type="danger" style="border-radius: 50px">
+            <el-tag v-if="scope.row.status === 2" type="danger" style="border-radius: 50px">
               <i class="fa fa-ban"></i>
-              <span style="margin-left: 5px">已下架</span>
+              <span style="margin-left: 5px">驳回</span>
+            </el-tag>
+            <el-tag v-if="scope.row.status === 3" type="info" style="border-radius: 50px">
+              <i class="fa fa-ban"></i>
+              <span style="margin-left: 5px">关闭</span>
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="操作" width="160">
+        <el-table-column align="center" label="操作" width="80">
           <template #default="scope">
             <div class="table-operate">
-              <!-- @click="groupAddOrUpdateFunc('edit', scope.row.id)" -->
-              <el-button text type="info"> 查看 </el-button>
+              <el-button text type="primary" @click="pageJump('user-inquiryfrom', { order_id: scope.row.id })"> 查看
+              </el-button>
             </div>
           </template>
         </el-table-column>

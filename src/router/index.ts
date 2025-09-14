@@ -405,6 +405,16 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/user/inquiryfrom',
+    name: 'user-inquiryfrom',
+    component: () => import('@/views/user/inquiryfrom.vue'),
+    meta: {
+      title: '新材网-报价单',
+      stcode: 'user-inquiryfrom',
+      website: false,
+    },
+  },
+  {
     path: '/user/editpwd',
     name: 'user-editpwd',
     component: () => import('@/views/user/editpwd.vue'),
