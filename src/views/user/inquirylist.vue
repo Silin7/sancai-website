@@ -36,7 +36,7 @@ function getDataList() {
   solutionorderslistApi(parameters).then((res: any) => {
     if (res) {
       pagination.value.total = res.total
-      groupData.value = res.items
+      groupData.value = res.data
       tableLoading.value = false
     }
   })
