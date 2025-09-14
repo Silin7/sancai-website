@@ -206,7 +206,7 @@ const handleCurrentChange = (val: number) => {
             <button class="containerClassCol">节能系统</button>
             <button class="containerClassCol">其他</button>
           </div>
-          <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索产品..."
+          <el-input v-model="input2" style="width: 100%; height: 40px; font-size: 1rem" placeholder="搜索产品..."
             :prefix-icon="Search" />
         </div>
         <div class="containerProducts">

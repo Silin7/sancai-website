@@ -4,7 +4,10 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
+import useDebounce from '@/utils/useDebounce'
 import { fileURL } from '@/api/baseConfig'
+import { sysprovincesApi, syscitiesApi } from '@/api/modules/basic'
+import { suppliercompaniesApi } from '@/api/modules/supplier'
 import { bannerlistApi, secpositionsApi, syspseoApi } from '@/api/modules/basic'
 
 // 可视窗口宽度
@@ -45,8 +48,58 @@ function getBannerlist() {
         meta: [
           { name: 'description', content: res.description },
           { name: 'keywords', content: res.keywords },
-        ]
+        ],
       })
+    }
+  })
+}
+
+// 省 列表
+const province_id: any = ref('')
+const provincesList: any = ref([])
+const city_id: any = ref('')
+const citiesList: any = ref([])
+const company_name: any = ref('')
+
+function getSysprovinces() {
+  sysprovincesApi().then((res: any) => {
+    if (res) {
+      provincesList.value = res
+    }
+  })
+}
+
+function provinceChange(value: any) {
+  citiesList.value = []
+  city_id.value = ''
+  if (value) {
+    syscitiesApi(value).then((res: any) => {
+      if (res) {
+        citiesList.value = res
+      }
+    })
+  }
+}
+
+// 供应商公司列表
+const currentPage: any = ref(1)
+const pageSize: any = ref(10)
+const total: any = ref(0)
+const suppliercompanies: any = ref([])
+
+// 用户端-获取供应商公司列表（含完整字段，按创建时间倒序）
+function getSuppliercompanies() {
+  suppliercompaniesApi({
+    page: currentPage.value,
+    pageSize: pageSize.value,
+    province_id: province_id.value,
+    city_id: city_id.value,
+    company_name: company_name.value,
+  }).then((res: any) => {
+    console.log(res.data)
+    if (res && res.data.length > 0) {
+      suppliercompanies.value = res.data
+      total.value = res.total
     }
   })
 }
@@ -54,6 +107,8 @@ function getBannerlist() {
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
+  getSysprovinces()
+  getSuppliercompanies()
 })
 
 onBeforeUnmount(() => {
@@ -61,17 +116,6 @@ onBeforeUnmount(() => {
 })
 
 const selectvalue: any = ref('01')
-
-const currentPage2 = ref(2)
-const pageSize2 = ref(100)
-const handleSizeChange = (val: number) => {
-  console.log(`${val} items per page`)
-}
-const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`)
-}
-
-const input2: any = ref()
 </script>
 
 <template>
@@ -95,29 +139,27 @@ const input2: any = ref()
         <div class="supplierClassFx">
           <div class="supplierClassFxItem">
             <div class="supplierClassText">所在省份</div>
-            <el-select v-model="selectvalue" placeholder="Select" size="large">
-              <el-option label="全部省份" value="01" />
-              <el-option label="山东省" value="02" />
-              <el-option label="山西省" value="03" />
+            <el-select v-model="province_id" placeholder="Select" size="large" clearable @change="provinceChange">
+              <el-option v-for="(item, index) in provincesList" :key="index" :label="item.name" :value="item.id" />
             </el-select>
           </div>
           <div class="supplierClassFxItem">
             <div class="supplierClassText">所在城市</div>
-            <el-select v-model="selectvalue" placeholder="Select" size="large">
-              <el-option label="全部城市" value="01" />
+            <el-select v-model="city_id" placeholder="Select" size="large" clearable @change="getSuppliercompanies">
+              <el-option v-for="(item, index) in citiesList" :key="index" :label="item.name" :value="item.id" />
             </el-select>
           </div>
         </div>
-        <div class="supplierClassText">类别</div>
+        <!-- <div class="supplierClassText">类别</div>
         <div class="supplierClassRow">
           <button class="supplierClassColActive">全部</button>
           <button class="supplierClassCol">数字技工/方案论证</button>
           <button class="supplierClassCol">材料/设备</button>
           <button class="supplierClassCol">智能建造装备</button>
           <button class="supplierClassCol">信息化产品/服务</button>
-        </div>
-        <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索供应商名称或主营项目..."
-          :prefix-icon="Search" />
+        </div> -->
+        <el-input v-model="company_name" style="width: 100%; height: 40px; font-size: 1rem" placeholder="搜索供应商名称..."
+          :prefix-icon="Search" @input="useDebounce().fn(getSuppliercompanies)" />
       </div>
       <!-- 供应商列表 -->
       <div class="supplierProducts">
@@ -135,58 +177,59 @@ const input2: any = ref()
           </div>
         </div>
         <div class="supplierProductsBox">
-          <div class="supplierProductsItem" v-for="index in 5" :key="index">
+          <div class="supplierProductsItem" v-for="(item, index) in suppliercompanies" :key="index">
             <div class="supplierPiContent">
               <div class="supplierPiImgBox">
-                <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="supplierPiImg" />
+                <img v-if="item.company_imgs" :src="fileURL + item.company_imgs[0]" alt="企业图片" class="supplierPiImg" />
+                <!-- <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" /> -->
                 <!-- <div class="supplierPiImgTag">政策</div> -->
               </div>
               <div class="supplierPiBox">
                 <div class="supplierPiTop">
-                  <div class="supplierPiTitle">杭州筑智信息技术有限公司</div>
-                  <div class="supplierPingFen">
+                  <div class="supplierPiTitle">{{ item.company_name }}</div>
+                  <!-- <div class="supplierPingFen">
                     <i class="fa fa-star"></i>
                     <span>4.8</span>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="supplierPiInfo">
                   <i class="fa fa-tags"></i>
-                  主营：BIM技术服务、工程数字化咨询、智能设计方案
+                  主营：{{ item.main_business }}
                 </div>
                 <div class="supplierPiInfo">
                   <i class="fa fa-map-marker"></i>
-                  所在地：浙江省 杭州市滨江区
+                  所在地：{{ item.province_name }}{{ item.city_name }}
                   <i class="fa fa-building-o"></i>
-                  成立于2015年
+                  成立时间：{{ item.establish_time_str }}
                 </div>
                 <div class="supplierPiTags">
-                  <div class="supplierPiTag">甲级BIM咨询资质</div>
-                  <div class="supplierPiTag">施工模拟</div>
-                  <div class="supplierPiTag">数字孪生建模</div>
+                  <div v-for="(item2, index2) in item.tags" :key="index2" class="supplierPiTag">
+                    {{ item2 }}
+                  </div>
                 </div>
-                <div class="supplierPiFuwu">
+                <!-- <div class="supplierPiFuwu">
                   <i class="fa fa-check-circle"></i>
-                  服务过300+大型项目，含市政、商业综合体领域
-                </div>
+                  {{ item.company_intro }}
+                </div> -->
               </div>
             </div>
             <div class="supplierPiClass">
               <div class="supplierPiCitrm">
                 <i class="fa fa-phone"></i>
-                <span class="supplierPiClassSpan">400-888-9001 </span>
+                <span class="supplierPiClassSpan">{{ item.tel }}</span>
               </div>
-              <div class="supplierPiCright" @click="pageJump('supplier_detail')">
+              <div class="supplierPiCright" @click="pageJump('supplier_detail', { supplierid: item.id })">
                 <button>查看详情</button>
                 <i class="fa fa-angle-right"></i>
               </div>
             </div>
           </div>
         </div>
+        <!-- 分页 -->
         <div class="supplierPagination">
-          <!-- total, sizes, prev, pager, next, jumper -->
-          <el-pagination v-model:current-page="currentPage2" v-model:page-size="pageSize2" :page-sizes="[10, 20]"
-            size="default" background layout="prev, pager, next" prev-text="上一页" next-text="下一页" :total="400"
-            @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+          <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" size="default" background
+            layout="prev, pager, next" prev-text="上一页" next-text="下一页" :total="total"
+            @current-change="getSuppliercompanies" />
         </div>
       </div>
     </div>
@@ -264,7 +307,9 @@ const input2: any = ref()
       border-radius: 1rem;
       color: rgb(1 32 96);
       background-color: #fff;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      box-shadow:
+        0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
 
       @media (max-width: 992px) {
         padding: 1rem;
@@ -306,7 +351,9 @@ const input2: any = ref()
           margin: 0 0.75rem 0.75rem 0;
           padding: 0.5rem 1.25rem;
           color: rgb(1 32 96);
-          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          box-shadow:
+            0 10px 15px -3px rgb(0 0 0 / 0.1),
+            0 4px 6px -4px rgb(0 0 0 / 0.1);
           border: 1px solid rgb(243 244 246);
           border-radius: 9999px;
 
@@ -347,7 +394,9 @@ const input2: any = ref()
       border-radius: 1rem;
       color: rgb(1 32 96);
       background-color: #fff;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      box-shadow:
+        0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
 
       @media (max-width: 992px) {
         padding: 1rem;
@@ -386,7 +435,9 @@ const input2: any = ref()
           flex-shrink: 0;
           margin-bottom: 1.5rem;
           padding: 1.5rem;
-          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+          box-shadow:
+            0 10px 15px -3px rgb(0 0 0 / 0.1),
+            0 4px 6px -4px rgb(0 0 0 / 0.1);
           border-radius: 0.75rem;
           width: calc(50% - 1rem);
 

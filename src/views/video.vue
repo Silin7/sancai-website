@@ -227,7 +227,7 @@ function convertSecondsToHMS(seconds: any) {
               30分钟以上
             </button>
           </div>
-          <el-input v-model="input2" style="width: 100%; height: 50px; font-size: 1rem" placeholder="搜索视频..."
+          <el-input v-model="input2" style="width: 100%; height: 40px; font-size: 1rem" placeholder="搜索视频..."
             :prefix-icon="Search" />
         </div>
         <!-- 精选视频 -->

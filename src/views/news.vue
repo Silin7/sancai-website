@@ -212,8 +212,8 @@ const selectvalue: any = ref('01')
               </div>
             </div>
             <div class="newsPagination">
-              <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20]"
-                size="default" background layout="prev, pager, next" prev-text="上一页" next-text="下一页" :total="total"
+              <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" size="default" background
+                layout="prev, pager, next" prev-text="上一页" next-text="下一页" :total="total"
                 @current-change="getArticles" />
             </div>
           </div>
