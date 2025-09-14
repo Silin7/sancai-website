@@ -1,6 +1,37 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
+import { fileURL } from '@/api/baseConfig'
+import { articlescateApi, suppliercompaniescertificatesApi, suppliercertificatescertidApi, suppliercompaniescasesApi, suppliercasescertidApi } from '@/api/modules/supplier'
+
+// 路由信息
+const route = useRoute()
+const supplierid: any = ref("")
+const supplierDetails: any = ref({})
+const gyszzList: any = ref([])
+const gysalList: any = ref([])
+
+function getSupplierdetail() {
+  // 供应商详情
+  articlescateApi(supplierid.value).then((res: any) => {
+    if (res) {
+      supplierDetails.value = res.data
+    }
+    // 供应商资质
+    suppliercompaniescertificatesApi(supplierid.value).then((res: any) => {
+      if (res && res.data.length > 0) {
+        gyszzList.value = res.data
+      }
+    })
+    // 供应商案例
+    suppliercompaniescasesApi(supplierid.value).then((res: any) => {
+      if (res && res.data.length > 0) {
+        gysalList.value = res.data
+      }
+    })
+  })
+}
 
 const windowWidth = ref(window.innerWidth)
 
@@ -10,10 +41,22 @@ function updateWindowWidth() {
 
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
+  supplierid.value = route.query.supplierid
+  getSupplierdetail()
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWindowWidth)
+})
+
+// 获取供应商企业已审核资质详情
+suppliercertificatescertidApi(1).then((res: any) => {
+  console.log('供应商企业已审核资质详情', res)
+})
+
+// 获取供应商企业已审核案例详情
+suppliercasescertidApi(2).then((res: any) => {
+  console.log('供应商企业已审核资质详情', res)
 })
 
 const state = ref('gsjs')
@@ -32,42 +75,40 @@ const state = ref('gsjs')
         </div>
 
         <div class="sdhGys">
-          <img src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-            alt="" />
+          <img v-if="supplierDetails.company_imgs" :src="fileURL + supplierDetails.company_imgs[0]" alt="企业图片"
+            class="supplierPiImg" />
           <div class="sdhgCenter">
             <div class="sdhgcTop">
-              <div class="sdhgctTitle">杭州筑智信息技术有限公司</div>
-              <div class="sdhgctInfo">
+              <div class="sdhgctTitle">{{ supplierDetails.company_name }}</div>
+              <!-- <div class="sdhgctInfo">
                 <i class="fa fa-star"></i>
                 <span>4.8</span>
                 <span>|</span>
                 <span>优质供应商</span>
-              </div>
+              </div> -->
             </div>
             <div class="sdhgcCbox">
               <div class="sdhgcCitem">
                 <i class="fa fa-tags"></i>
-                <span>主营：BIM技术服务、工程数字化咨询、智能设计方案</span>
+                <span>主营：{{ supplierDetails.main_business }}</span>
               </div>
               <div class="sdhgcCitem">
                 <i class="fa fa-map-marker"></i>
-                <span>浙江省 杭州市滨江区</span>
+                <span>{{ supplierDetails.province_name }}{{ supplierDetails.city_name }}</span>
               </div>
               <div class="sdhgcCitem">
                 <i class="fa fa-building-o"></i>
-                <span>成立于2015年</span>
+                <span>成立于{{ supplierDetails.establish_time_str }}</span>
               </div>
               <div class="sdhgcCitem">
                 <i class="fa fa-users"></i>
-                <span>企业规模：200-500人</span>
+                <span>企业规模：{{ supplierDetails.scale_name }}</span>
               </div>
             </div>
             <div class="sdhgcTags">
-              <div class="sdhgcTag">甲级BIM咨询资质</div>
-              <div class="sdhgcTag">施工模拟</div>
-              <div class="sdhgcTag">数字孪生建模</div>
-              <div class="sdhgcTag">工程数字化</div>
-              <div class="sdhgcTag">智慧工地</div>
+              <div v-for="(item, index) in supplierDetails.tags" :key="index" class="sdhgcTag">
+                {{ item }}
+              </div>
             </div>
           </div>
           <div class="sdhgRight">
@@ -101,7 +142,8 @@ const state = ref('gsjs')
         </div>
         <div v-if="state === 'gsjs'" class="sdclGsjj">
           <div class="sdclxTitle">公司简介</div>
-          <div class="sdclxSub">
+          <div class="sdclxSub" v-html="supplierDetails.company_intro"></div>
+          <!-- <div class="sdclxSub">
             BIM+杭州筑智信息技术有限公司成立于2015年，是国内领先的建筑行业数字化解决方案提供商。公司专注于为建筑行业客户提供BIM技术应用、工程数字化咨询、智能设计方案及数字孪生建模等全方位服务。
           </div>
           <div class="sdclxSub">
@@ -109,8 +151,8 @@ const state = ref('gsjs')
           </div>
           <div class="sdclxSub">
             自成立以来，筑智信息始终坚持"以技术驱动建筑创新"的理念，先后为300+大型项目提供数字化服务，涵盖市政工程、商业综合体、轨道交通、医疗建筑等多个领域，服务客户包括中建、中铁、万科等知名企业。
-          </div>
-          <div class="sdclxItem">
+          </div> -->
+          <!-- <div class="sdclxItem">
             <div class="sdclxiTitle">核心优势</div>
             <div class="sdclxiIbox">
               <div class="sdclxiInfo">
@@ -141,66 +183,42 @@ const state = ref('gsjs')
                 </div>
               </div>
             </div>
-          </div>
-          <div class="sdclxItem">
+          </div> -->
+          <div v-if="gyszzList && gyszzList.length > 0" class="sdclxItem">
             <div class="sdclxiTitle">资质证书</div>
             <div class="sdclxiCgBox">
-              <div class="sdclxiCgItem">
-                <img
-                  src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt="" />
-                <div class="sdclxicIp">甲级BIM咨询资质</div>
-              </div>
-              <div class="sdclxiCgItem">
-                <img
-                  src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt="" />
-                <div class="sdclxicIp">ISO9001质量管理体系认证</div>
-              </div>
-              <div class="sdclxiCgItem">
-                <img
-                  src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt="" />
-                <div class="sdclxicIp">高新技术企业认证</div>
-              </div>
-              <div class="sdclxiCgItem">
-                <img
-                  src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt="" />
-                <div class="sdclxicIp">软件企业认定证书</div>
+              <div v-for="(item, index) in gyszzList" :key="index" class="sdclxiCgItem">
+                <img v-if="item.qualification_imgs" :src="fileURL + item.qualification_imgs[0]" alt="企业图片"
+                  class="supplierPiImg" />
+                <div class="sdclxicIp">{{ item.name }}</div>
               </div>
             </div>
           </div>
         </div>
         <div v-if="state === 'hzal'" class="sdclHzal">
-          <div class="sdclHzalRow">
+          <!-- <div class="sdclHzalRow">
             <button class="sdclHzalColActive">全部案例</button>
             <button class="sdclHzalCol">商业综合体</button>
             <button class="sdclHzalCol">市政工程</button>
             <button class="sdclHzalCol">轨道交通</button>
             <button class="sdclHzalCol">医疗建筑</button>
-          </div>
+          </div> -->
           <div class="sdclHzalBox">
-            <div class="sdclHzalItem" v-for="index in 4" :key="index">
+            <div class="sdclHzalItem" v-for="(item, index) in gysalList" :key="index">
               <div class="sdclHzalImgBox">
-                <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="sdclHzalImg" />
-                <div class="sdclHzalImgTag">商业综合体</div>
+                <img v-if="item.case_imgs" :src="fileURL + item.case_imgs[0]" alt="企业案例" class="sdclHzalImg" />
+                <div class="sdclHzalImgTag">{{ item.case_type_name }}</div>
               </div>
               <div class="sdclHzalBox">
-                <div class="sdclHzalTitle">住建部发布《建筑业数字化转型发展指南》推动行业升级</div>
+                <div class="sdclHzalTitle">{{ item.name }}</div>
                 <div class="sdclHzalInfo">
-                  近日，住房和城乡建设部正式发布《建筑业数字化转型发展指南》，提出到2025年，建筑业数字化转型取得明显进展，打造一批建筑产业互联网平台，培育一批行业级、企业级数字建造解决方案。指南明确了数字化转型的重点任务和保障措施，为行业发展指明方向。
+                  {{ item.description }}
+                  <!-- 近日，住房和城乡建设部正式发布《建筑业数字化转型发展指南》，提出到2025年，建筑业数字化转型取得明显进展，打造一批建筑产业互联网平台，培育一批行业级、企业级数字建造解决方案。指南明确了数字化转型的重点任务和保障措施，为行业发展指明方向。 -->
                 </div>
 
                 <div class="sdclHzalClass">
-                  <div class="sdclHzalCitrm">
-                    <span class="sdclHzalClassSpan">BIM建模</span>
-                  </div>
-                  <div class="sdclHzalCitrm">
-                    <span class="sdclHzalClassSpan">施工模拟</span>
-                  </div>
-                  <div class="sdclHzalCitrm">
-                    <span class="sdclHzalClassSpan">管线优化</span>
+                  <div v-for="(item2, index2) in item.case_tags" :key="index2" class="sdclHzalCitrm">
+                    <span class="sdclHzalClassSpan">{{ item2 }}</span>
                   </div>
                 </div>
                 <div class="sdclHzalCright">
@@ -254,7 +272,7 @@ const state = ref('gsjs')
                   <p>浙江省杭州市滨江区江南大道1000号智慧大厦15层</p>
                 </div>
               </div>
-              <img src="https://picsum.photos/600/300?random=701" alt="公司位置地图" class="sdLxfsFsdz" />
+              <!-- <img src="https://picsum.photos/600/300?random=701" alt="公司位置地图" class="sdLxfsFsdz" /> -->
             </div>
             <div class="sdLxfsItem">
               <div class="sdLxfsRi">
@@ -263,8 +281,7 @@ const state = ref('gsjs')
                 </div>
                 <div class="sdLxfsRiCt">
                   <p>联系电话</p>
-                  <p>400-888-9001（业务咨询）</p>
-                  <p>0571-8888-7777（公司总机）</p>
+                  <p>{{ supplierDetails.tel }}</p>
                 </div>
               </div>
               <div class="sdLxfsRi">
@@ -273,8 +290,7 @@ const state = ref('gsjs')
                 </div>
                 <div class="sdLxfsRiCt">
                   <p>电子邮箱</p>
-                  <p>info@zhuzhi.com（ general inquiries）</p>
-                  <p>service@zhuzhi.com（技术支持）</p>
+                  <p>{{ supplierDetails.email }}</p>
                 </div>
               </div>
               <div class="sdLxfsRi">
@@ -283,17 +299,17 @@ const state = ref('gsjs')
                 </div>
                 <div class="sdLxfsRiCt">
                   <p>官方平台</p>
-                  <a>www.zhuzhi.com（公司官网）</a>
-                  <p>微信公众号：筑智信息服务平台</p>
+                  <a :href="supplierDetails.official_website" target="_blank">{{ supplierDetails.official_website }}</a>
+                  <!-- <p>微信公众号：筑智信息服务平台</p> -->
                 </div>
               </div>
-              <div class="sdLxfsRi">
+              <!-- <div class="sdLxfsRi">
                 <img src="https://picsum.photos/600/300?random=701" alt="二维码" class="sdLxfsEwm" />
                 <div class="sdLxfsEbox">
                   <p>扫码关注</p>
                   <p>获取最新产品及服务信息</p>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -913,6 +929,7 @@ const state = ref('gsjs')
               }
 
               .sdclHzalTitle {
+                width: 100%;
                 margin-bottom: 1rem;
                 font-size: 1.25rem;
                 line-height: 1.75rem;

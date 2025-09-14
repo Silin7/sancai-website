@@ -1,66 +1,45 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
-import { Search } from '@element-plus/icons-vue'
+import { Search, Plus } from '@element-plus/icons-vue'
 import pageJump from '@/hooks/pageJump'
 import usePagination from '@/hooks/usePagination'
+import formatCurrency from '@/hooks/formatCurrency'
 import useDebounce from '@/utils/useDebounce'
+import { solutionorderslistApi, requirementsbycateApi } from '@/api/modules/admin'
 
 // 查询条件
 const queryForm: any = reactive({
-  name: '',
-  state: 'all',
-  status: 'all',
+  itname: '',
+  thetype: '',
+  status: '',
 })
 
 // 数据查询
 const tableLoading = ref(false)
-const groupData = ref([
-  {
-    data1: 'BIM技术应用论证',
-    data2: '数字技术应用论证',
-    data3: 'BIM+应用',
-    data4: '15000',
-    data5: '16500',
-    data6: '已上架',
-    data7: 'yishangjia',
-  },
-  {
-    data1: '智慧工地实施方案论证',
-    data2: '数字实施方案论证',
-    data3: '实施流程与进度计划论证',
-    data4: '8000',
-    data5: '8800',
-    data6: '草稿',
-    data7: 'caogao',
-  },
-  {
-    data1: 'AI赋能应用论证',
-    data2: '数字技术应用论证',
-    data3: 'AI赋能应用',
-    data4: '20000',
-    data5: '22000',
-    data6: '已下架',
-    data7: 'yixiajia',
-  },
-])
+const groupData = ref([])
 
 function getDataList() {
   tableLoading.value = true
-  // groupPage({
-  //   ...queryForm,
-  //   pageNo: pagination.value.pageNo,
-  //   pageSize: pagination.value.pageSize,
-  // }).then((res: any) => {
-  //   if (res && res.code === 0) {
-  //     pagination.value.total = res.data.total
-  //     groupData.value = res.data.list
-  //     tableLoading.value = false
-  //   }
-  //   else {
-  //     message.error(res.msg)
-  //     tableLoading.value = false
-  //   }
-  // })
+  const parameters: any = {
+    page: pagination.value.pageNo,
+    page_size: pagination.value.pageSize,
+  }
+  if (queryForm.itname) {
+    parameters['itname'] = queryForm.itname
+  }
+  if (queryForm.thetype) {
+    parameters['thetype'] = queryForm.thetype
+  }
+  if (queryForm.status) {
+    parameters['status'] = queryForm.status
+  }
+  solutionorderslistApi(parameters).then((res: any) => {
+    if (res) {
+      pagination.value.total = res.total
+      groupData.value = res.items
+      tableLoading.value = false
+    }
+  })
 }
 
 // 分页
@@ -78,10 +57,13 @@ function currentChange(pageNo = 1) {
 
 onMounted(() => {
   getDataList()
-
-  setTimeout(() => {
-    tableLoading.value = false
-  }, 1000)
+  requirementsbycateApi({
+    cate_id : 1,
+  }).then((res: any) => {
+    if (res) {
+      console.log('需求分类', res)
+    }
+  })
 })
 </script>
 
@@ -133,7 +115,7 @@ onMounted(() => {
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <!-- <el-col :span="6">
             <el-form-item>
               <el-select size="large" v-model="queryForm.state" placeholder="选择日期" clearable
                 @change="useDebounce().fn(getDataList)">
@@ -149,7 +131,7 @@ onMounted(() => {
                 <el-option label="自定义" value="custom" />
               </el-select>
             </el-form-item>
-          </el-col>
+          </el-col> -->
         </el-row>
       </el-form>
       <!-- 数据表格 -->
@@ -179,10 +161,7 @@ onMounted(() => {
           <template #default="scope">
             <div class="table-operate">
               <!-- @click="groupAddOrUpdateFunc('edit', scope.row.id)" -->
-              <!-- <el-button text type="info"> 查看 </el-button> -->
-              <el-button text type="primary"> 编辑 </el-button>
-              <el-button v-if="scope.$index % 2 === 0" text type="danger"> 删除 </el-button>
-              <el-button v-else text type="danger"> 下架 </el-button>
+              <el-button text type="info"> 查看 </el-button>
             </div>
           </template>
         </el-table-column>
