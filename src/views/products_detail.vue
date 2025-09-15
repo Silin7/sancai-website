@@ -117,16 +117,16 @@ const value1 = ref(4.8)
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-          }}</span>
+            }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -161,10 +161,10 @@ const value1 = ref(4.8)
               <i class="fa fa-phone"></i>
               <span>联系供应商</span>
             </button>
-            <!-- <button class="pdcljcJrgwc">
+            <button class="pdcljcJrgwc">
               <i class="fa fa-shopping-cart"></i>
               <span>加入购物车</span>
-            </button> -->
+            </button>
           </div>
           <div class="pdcljRight">
             <div class="pdcljrTitle">基本参数</div>
@@ -364,7 +364,7 @@ const value1 = ref(4.8)
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-              }}</span>
+                }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
