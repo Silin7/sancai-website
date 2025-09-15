@@ -418,6 +418,11 @@ const value1 = ref(4.8)
         </button>
       </div>
     </div>
+    <div class="gwcBox frcc">
+      <el-badge :value="2">
+        <i class="fa fa-cart-plus"></i>
+      </el-badge>
+    </div>
   </div>
 </template>
 
@@ -1006,6 +1011,22 @@ const value1 = ref(4.8)
       }
     }
   }
+
+  .gwcBox {
+    position: fixed;
+    right: 20px;
+    bottom: calc(-1.75rem + 50vh);
+    z-index: 9999;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: linear-gradient(135deg, #165dff 0%, #36cfc9 100%);
+    border-radius: 50%;
+
+    i {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+  }
 }
 </style>
 
@@ -1017,5 +1038,11 @@ const value1 = ref(4.8)
 
 .pdcrTop .el-rate__icon {
   margin-right: 0 !important;
+}
+
+.gwcBox .el-badge__content {
+  height: 14px !important;
+  line-height: 14px !important;
+  padding: 0 4px !important;
 }
 </style>
