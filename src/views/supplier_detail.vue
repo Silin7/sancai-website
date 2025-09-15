@@ -238,7 +238,9 @@ onBeforeUnmount(() => {
             <button class="sdclHzalCol">医疗建筑</button>
           </div> -->
           <div class="sdclHzalBox">
-            <div class="sdclHzalItem" v-for="(item, index) in gysalList" :key="index">
+            <div class="sdclHzalItem" v-for="(item, index) in gysalList" :key="index" @click="pageJump('supplier_al', {
+              alid: item.id
+            })">
               <div class="sdclHzalImgBox">
                 <img v-if="item.case_imgs" :src="fileURL + item.case_imgs[0]" alt="企业案例" class="sdclHzalImg" />
                 <div class="sdclHzalImgTag">{{ item.case_type_name }}</div>
@@ -279,7 +281,7 @@ onBeforeUnmount(() => {
           <div class="sdclCplbBox">
             <div class="sdclCplbItem" v-for="(item, index) in gyscpList" :key="index" @click="gyscpDetail(item)">
               <div class="sdclCplbImgBox">
-                <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="sdclCplbImg" />
+                <img v-if="item.imgs" :src="fileURL + item.imgs[0]" alt="产品图片" class="sdclCplbImg" />
                 <div class="sdclCplbImgTag">{{ item.product_type_name }}</div>
               </div>
               <div class="sdclCplbBox2">

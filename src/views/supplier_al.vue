@@ -2,83 +2,23 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
-import formatCurrency from '@/hooks/formatCurrency'
 import { fileURL } from '@/api/baseConfig'
-import { articlescateApi, suppliercompaniescertificatesApi, suppliercompaniescasesApi, suppliercompaniesproductsApi } from '@/api/modules/supplier'
+import { articlescateApi, suppliercasescertidApi } from '@/api/modules/supplier'
 
 // 路由信息
 const route = useRoute()
 
-const tabstate = ref('gsjs')
-const supplierid: any = ref("")
-const supplierDetails: any = ref({})
-const gyszzList: any = ref([])
-const gysalList: any = ref([])
-const gyscpState = ref('')
-const gyscpList: any = ref([])
+const alid: any = ref('')
+const alDetails: any = ref({})
 
 function getSupplierdetail() {
-  // 供应商详情
-  articlescateApi(supplierid.value).then((res: any) => {
+  // 案例详情
+  suppliercasescertidApi(alid.value).then((res: any) => {
     if (res) {
-      supplierDetails.value = res.data
-    }
-    // 供应商资质
-    suppliercompaniescertificatesApi(supplierid.value).then((res: any) => {
-      if (res && res.data.length > 0) {
-        gyszzList.value = res.data
-      }
-    })
-    // 供应商案例
-    suppliercompaniescasesApi(supplierid.value).then((res: any) => {
-      if (res && res.data.length > 0) {
-        gysalList.value = res.data
-      }
-    })
-    // 供应商产品
-    suppliercompaniesproductsApi(supplierid.value).then((res: any) => {
-      if (res && res.data.length > 0) {
-        gyscpList.value = res.data
-      }
-    })
-  })
-}
-
-// 产品状态切换
-function gyscpStateChange(state: string) {
-  gyscpState.value = state
-  // 供应商产品
-  suppliercompaniesproductsApi(supplierid.value).then((res: any) => {
-    if (res && res.data.length > 0) {
-      if (state === '') {
-        gyscpList.value = res.data
-      } else {
-        gyscpList.value = res.data.filter((item: any) => {
-          return item.product_type.toString() === state
-        })
-      }
+      alDetails.value = res.data
     }
   })
 }
-
-// 产品详情
-function gyscpDetail(item: any) {
-  const query = {
-    id: item.id,
-    name: '',
-  }
-  if (item.product_type === 0) {
-    query.name = 'scheme'
-  } else if (item.product_type === 1) {
-    query.name = 'materials'
-  } else if (item.product_type === 2) {
-    query.name = 'sale'
-  } else if (item.product_type === 3) {
-    query.name = 'products'
-  }
-  pageJump('products_detail', query)
-}
-
 const windowWidth = ref(window.innerWidth)
 
 function updateWindowWidth() {
@@ -87,7 +27,7 @@ function updateWindowWidth() {
 
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
-  supplierid.value = route.query.supplierid
+  alid.value = route.query.alid
   getSupplierdetail()
 })
 
@@ -105,15 +45,20 @@ onBeforeUnmount(() => {
           <span class="sdNavigationXg">/</span>
           <span @click="pageJump('supplier')">供应商列表</span>
           <span class="sdNavigationXg">/</span>
-          <span class="sdNavigationSp">杭州筑智信息技术有限公司</span>
+          <span class="sdNavigationXg" @click="pageJump('supplier_detail', { supplierid: alDetails.company_id })">
+            {{ alDetails.company_name }}
+          </span>
+          <span class="sdNavigationXg">/</span>
+          <span class="sdNavigationSp">
+            {{ alDetails.name }}
+          </span>
         </div>
 
         <div class="sdhGys">
-          <img v-if="supplierDetails.company_imgs" :src="fileURL + supplierDetails.company_imgs[0]" alt="企业图片"
-            class="supplierPiImg" />
+          <img v-if="alDetails.case_imgs" :src="fileURL + alDetails.case_imgs[0]" alt="企业图片" class="supplierPiImg" />
           <div class="sdhgCenter">
             <div class="sdhgcTop">
-              <div class="sdhgctTitle">{{ supplierDetails.company_name }}</div>
+              <div class="sdhgctTitle">{{ alDetails.name }}</div>
               <!-- <div class="sdhgctInfo">
                 <i class="fa fa-star"></i>
                 <span>4.8</span>
@@ -123,235 +68,36 @@ onBeforeUnmount(() => {
             </div>
             <div class="sdhgcCbox">
               <div class="sdhgcCitem">
-                <i class="fa fa-tags"></i>
-                <span>主营：{{ supplierDetails.main_business }}</span>
-              </div>
-              <div class="sdhgcCitem">
-                <i class="fa fa-map-marker"></i>
-                <span>{{ supplierDetails.province_name }}{{ supplierDetails.city_name }}</span>
+                <i class="fa fa-calendar"></i>
+                <span>项目周期：{{ alDetails.start_time_str }} 至 {{ alDetails.end_time_str }}</span>
               </div>
               <div class="sdhgcCitem">
                 <i class="fa fa-building-o"></i>
-                <span>成立于{{ supplierDetails.establish_time_str }}</span>
-              </div>
-              <div class="sdhgcCitem">
-                <i class="fa fa-users"></i>
-                <span>企业规模：{{ supplierDetails.scale_name }}</span>
+                <span>服务企业：{{ alDetails.company_name }}</span>
               </div>
             </div>
             <div class="sdhgcTags">
-              <div v-for="(item, index) in supplierDetails.tags" :key="index" class="sdhgcTag">
+              <div v-for="(item, index) in alDetails.case_tags" :key="index" class="sdhgcTag">
                 {{ item }}
               </div>
             </div>
-          </div>
-          <div class="sdhgRight">
-            <button class="sdhgcLxgys">
-              <i class="fa fa-phone"></i>
-              <span>联系供应商</span>
-            </button>
-            <button class="sdhgcJrgwc">
-              <i class="fa fa-star-o"></i>
-              <span>收藏</span>
-            </button>
           </div>
         </div>
       </div>
     </div>
     <div class="sdCbox">
       <div class="sdcIContent">
-        <div class="sdclFl">
-          <button :class="tabstate === 'gsjs' ? 'sdclflAc' : ''" @click="tabstate = 'gsjs'">
-            公司简介
-          </button>
-          <button :class="tabstate === 'hzal' ? 'sdclflAc' : ''" @click="tabstate = 'hzal'">
-            合作案例
-          </button>
-          <button :class="tabstate === 'cplb' ? 'sdclflAc' : ''" @click="tabstate = 'cplb'">
-            产品列表
-          </button>
-          <button :class="tabstate === 'lxfs' ? 'sdclflAc' : ''" @click="tabstate = 'lxfs'">
-            联系方式
-          </button>
-        </div>
-        <div v-if="tabstate === 'gsjs'" class="sdclGsjj">
-          <div class="sdclxTitle">公司简介</div>
-          <div class="sdclxSub" v-html="supplierDetails.company_intro"></div>
-          <!-- <div class="sdclxSub">
-            BIM+杭州筑智信息技术有限公司成立于2015年，是国内领先的建筑行业数字化解决方案提供商。公司专注于为建筑行业客户提供BIM技术应用、工程数字化咨询、智能设计方案及数字孪生建模等全方位服务。
-          </div>
-          <div class="sdclxSub">
-            公司拥有一支由BIM工程师、建筑设计师、软件开发工程师组成的专业团队，核心成员均具有10年以上建筑行业经验。凭借深厚的行业积累和技术实力，公司已获得甲级BIM咨询资质、ISO9001质量管理体系认证等多项资质认证。
-          </div>
-          <div class="sdclxSub">
-            自成立以来，筑智信息始终坚持"以技术驱动建筑创新"的理念，先后为300+大型项目提供数字化服务，涵盖市政工程、商业综合体、轨道交通、医疗建筑等多个领域，服务客户包括中建、中铁、万科等知名企业。
-          </div> -->
-          <!-- <div class="sdclxItem">
-            <div class="sdclxiTitle">核心优势</div>
-            <div class="sdclxiIbox">
-              <div class="sdclxiInfo">
-                <div class="sdclxiFa">
-                  <i class="fa fa-lightbulb-o"></i>
-                </div>
-                <div class="sdclxiTt">技术领先</div>
-                <div class="sdclxiSt">
-                  拥有自主研发的BIM协同平台，掌握数字孪生核心技术，技术实力行业领先
-                </div>
-              </div>
-              <div class="sdclxiInfo">
-                <div class="sdclxiFa">
-                  <i class="fa fa-lightbulb-o"></i>
-                </div>
-                <div class="sdclxiTt">专业团队</div>
-                <div class="sdclxiSt">
-                  100+专业技术人员，核心成员均有10年以上行业经验，服务经验丰富
-                </div>
-              </div>
-              <div class="sdclxiInfo">
-                <div class="sdclxiFa">
-                  <i class="fa fa-lightbulb-o"></i>
-                </div>
-                <div class="sdclxiTt">品质保障</div>
-                <div class="sdclxiSt">
-                  严格的质量管理体系，标准化服务流程，确保项目交付质量与效率
-                </div>
-              </div>
-            </div>
-          </div> -->
-          <div v-if="gyszzList && gyszzList.length > 0" class="sdclxItem">
-            <div class="sdclxiTitle">资质证书</div>
-            <div class="sdclxiCgBox">
-              <div v-for="(item, index) in gyszzList" :key="index" class="sdclxiCgItem">
-                <img v-if="item.qualification_imgs" :src="fileURL + item.qualification_imgs[0]" alt="企业图片"
-                  class="supplierPiImg" />
-                <div class="sdclxicIp">{{ item.name }}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div v-if="tabstate === 'hzal'" class="sdclHzal">
-          <!-- <div class="sdclHzalRow">
-            <button class="sdclHzalColActive">全部案例</button>
-            <button class="sdclHzalCol">商业综合体</button>
-            <button class="sdclHzalCol">市政工程</button>
-            <button class="sdclHzalCol">轨道交通</button>
-            <button class="sdclHzalCol">医疗建筑</button>
-          </div> -->
-          <div class="sdclHzalBox">
-            <div class="sdclHzalItem" v-for="(item, index) in gysalList" :key="index">
-              <div class="sdclHzalImgBox">
-                <img v-if="item.case_imgs" :src="fileURL + item.case_imgs[0]" alt="企业案例" class="sdclHzalImg" />
-                <div class="sdclHzalImgTag">{{ item.case_type_name }}</div>
-              </div>
-              <div class="sdclHzalBox">
-                <div class="sdclHzalTitle">{{ item.name }}</div>
-                <div class="sdclHzalInfo">
-                  {{ item.description }}
-                  <!-- 近日，住房和城乡建设部正式发布《建筑业数字化转型发展指南》，提出到2025年，建筑业数字化转型取得明显进展，打造一批建筑产业互联网平台，培育一批行业级、企业级数字建造解决方案。指南明确了数字化转型的重点任务和保障措施，为行业发展指明方向。 -->
-                </div>
-
-                <div class="sdclHzalClass">
-                  <div v-for="(item2, index2) in item.case_tags" :key="index2" class="sdclHzalCitrm">
-                    <span class="sdclHzalClassSpan">{{ item2 }}</span>
-                  </div>
-                </div>
-                <div class="sdclHzalCright">
-                  <button>查看详情</button>
-                  <i class="fa fa-angle-right"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div v-if="tabstate === 'cplb'" class="sdclHzal">
-          <div class="sdclHzalRow">
-            <button :class="gyscpState === '' ? 'sdclHzalColActive' : 'sdclHzalCol'"
-              @click="gyscpStateChange('')">全部产品</button>
-            <button :class="gyscpState === '0' ? 'sdclHzalColActive' : 'sdclHzalCol'"
-              @click="gyscpStateChange('0')">数字技工/方案论证</button>
-            <button :class="gyscpState === '1' ? 'sdclHzalColActive' : 'sdclHzalCol'"
-              @click="gyscpStateChange('1')">材料/设备</button>
-            <button :class="gyscpState === '2' ? 'sdclHzalColActive' : 'sdclHzalCol'"
-              @click="gyscpStateChange('2')">智能建造装备</button>
-            <button :class="gyscpState === '3' ? 'sdclHzalColActive' : 'sdclHzalCol'"
-              @click="gyscpStateChange('3')">信息化产品/服务</button>
-          </div>
-          <div class="sdclCplbBox">
-            <div class="sdclCplbItem" v-for="(item, index) in gyscpList" :key="index" @click="gyscpDetail(item)">
-              <div class="sdclCplbImgBox">
-                <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="sdclCplbImg" />
-                <div class="sdclCplbImgTag">{{ item.product_type_name }}</div>
-              </div>
-              <div class="sdclCplbBox2">
-                <div v-if="item.product_type === 0" class="sdclCplbTitle">{{ item.servicename }}</div>
-                <div v-if="item.product_type === 1" class="sdclCplbTitle">{{ item.materialname }}</div>
-                <div v-if="item.product_type === 2" class="sdclCplbTitle">{{ item.equipmentname }}</div>
-                <div v-if="item.product_type === 3" class="sdclCplbTitle">{{ item.itname }}</div>
-                <div class="sdclCplbInfo">
-                  {{ item.description }}
-                </div>
-                <div class="sdclCplbCbtm">
-                  <div class="sdclCplbCprice">¥ {{ formatCurrency(item.pretaxprice, 2) }}</div>
-                  <div class="sdclCplbCright">
-                    <button>详情</button>
-                    <i class="fa fa-arrow-right"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div v-if="tabstate === 'lxfs'" class="sdclGsjj">
-          <div class="sdclxTitle">联系方式</div>
-          <div class="sdLxfsBox">
-            <div class="sdLxfsItem">
-              <div class="frsc">
-                <div class="sdLxfsIbox frcc">
-                  <i class="fa fa-map-marker"></i>
-                </div>
-                <div class="sdLxfsGsdz">
-                  <p>公司地址</p>
-                  <p>浙江省杭州市滨江区江南大道1000号智慧大厦15层</p>
-                </div>
-              </div>
-              <!-- <img src="https://picsum.photos/600/300?random=701" alt="公司位置地图" class="sdLxfsFsdz" /> -->
-            </div>
-            <div class="sdLxfsItem">
-              <div class="sdLxfsRi">
-                <div class="sdLxfsRiFa frcc">
-                  <i class="fa fa-map-marker"></i>
-                </div>
-                <div class="sdLxfsRiCt">
-                  <p>联系电话</p>
-                  <p>{{ supplierDetails.tel }}</p>
-                </div>
-              </div>
-              <div class="sdLxfsRi">
-                <div class="sdLxfsRiFa frcc">
-                  <i class="fa fa-map-marker"></i>
-                </div>
-                <div class="sdLxfsRiCt">
-                  <p>电子邮箱</p>
-                  <p>{{ supplierDetails.email }}</p>
-                </div>
-              </div>
-              <div class="sdLxfsRi">
-                <div class="sdLxfsRiFa frcc">
-                  <i class="fa fa-map-marker"></i>
-                </div>
-                <div class="sdLxfsRiCt">
-                  <p>官方平台</p>
-                  <a :href="supplierDetails.official_website" target="_blank">{{ supplierDetails.official_website }}</a>
-                  <!-- <p>微信公众号：筑智信息服务平台</p> -->
-                </div>
-              </div>
-              <!-- <div class="sdLxfsRi">
-                <img src="https://picsum.photos/600/300?random=701" alt="二维码" class="sdLxfsEwm" />
-                <div class="sdLxfsEbox">
-                  <p>扫码关注</p>
-                  <p>获取最新产品及服务信息</p>
-                </div>
-              </div> -->
+        <div class="sdclGsjj">
+          <div class="sdclxTitle">案例简介</div>
+          <div class="sdclxSub">{{ alDetails.description }}</div>
+          <div class="fengebox"></div>
+          <div class="sdclxTitle">项目概况</div>
+          <div class="sdclxSub" v-html="alDetails.content"></div>
+          <div class="fengebox"></div>
+          <div class="frcc">
+            <div class="gobackcompany" @click="pageJump('supplier_detail', { supplierid: alDetails.company_id })">
+              <i class="fa fa-arrow-left mr-2"></i>
+              返回到{{ alDetails.company_name }}详情页
             </div>
           </div>
         </div>
@@ -425,7 +171,7 @@ onBeforeUnmount(() => {
           box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
           @media (min-width: 992px) {
-            width: 8rem;
+            width: 18%;
           }
         }
 
@@ -612,6 +358,32 @@ onBeforeUnmount(() => {
 
         @media (min-width: 992px) {
           padding: 1.5rem;
+        }
+
+        .fengebox {
+          width: 100%;
+          height: 1rem;
+        }
+
+        .gobackcompany {
+          margin: 0 auto;
+          display: inline-block;
+          padding-top: 0.75rem;
+          padding-bottom: 0.75rem;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+          border-radius: 0.5rem;
+          line-height: 30px;
+          color: rgb(22 93 255);
+          border: 1px solid rgb(22 93 255);
+        }
+
+        .gobackcompany:hover {
+          @media (min-width: 768px) {
+            cursor: pointer;
+            color: rgb(255 255 255);
+            background-color: rgb(22 93 255);
+          }
         }
 
         .sdclxTitle {

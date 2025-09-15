@@ -171,6 +171,18 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/supplier_al',
+    name: 'supplier_al',
+    component: () => import('@/views/supplier_al.vue'),
+    meta: {
+      title: '供应商',
+      stcode: 'supplier',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('@/views/about.vue'),
