@@ -33,3 +33,8 @@ export function suppliercompaniescasesApi(companyid: any) {
 export function suppliercasescertidApi(certid: any) {
   return api.get(`/api/client/supplier/cases/${certid}`)
 }
+
+// 根据供应商企业ID获取其关联的所有产品（含四类产品，带类别标识）
+export function suppliercompaniesproductsApi(certid: any) {
+  return api.get(`/api/client/supplier/companies/${certid}/products`)
+}

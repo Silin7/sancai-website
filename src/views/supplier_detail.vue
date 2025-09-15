@@ -2,15 +2,20 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
+import formatCurrency from '@/hooks/formatCurrency'
 import { fileURL } from '@/api/baseConfig'
-import { articlescateApi, suppliercompaniescertificatesApi, suppliercertificatescertidApi, suppliercompaniescasesApi, suppliercasescertidApi } from '@/api/modules/supplier'
+import { articlescateApi, suppliercompaniescertificatesApi, suppliercompaniescasesApi, suppliercompaniesproductsApi } from '@/api/modules/supplier'
 
 // 路由信息
 const route = useRoute()
+
+const tabstate = ref('gsjs')
 const supplierid: any = ref("")
 const supplierDetails: any = ref({})
 const gyszzList: any = ref([])
 const gysalList: any = ref([])
+const gyscpState = ref('')
+const gyscpList: any = ref([])
 
 function getSupplierdetail() {
   // 供应商详情
@@ -30,7 +35,48 @@ function getSupplierdetail() {
         gysalList.value = res.data
       }
     })
+    // 供应商产品
+    suppliercompaniesproductsApi(supplierid.value).then((res: any) => {
+      if (res && res.data.length > 0) {
+        gyscpList.value = res.data
+      }
+    })
   })
+}
+
+// 产品状态切换
+function gyscpStateChange(state: string) {
+  gyscpState.value = state
+  // 供应商产品
+  suppliercompaniesproductsApi(supplierid.value).then((res: any) => {
+    if (res && res.data.length > 0) {
+      if (state === '') {
+        gyscpList.value = res.data
+      } else {
+        gyscpList.value = res.data.filter((item: any) => {
+          return item.product_type.toString() === state
+        })
+      }
+    }
+  })
+}
+
+// 产品详情
+function gyscpDetail(item: any) {
+  const query = {
+    id: item.id,
+    name: '',
+  }
+  if (item.product_type === 0) {
+    query.name = 'scheme'
+  } else if (item.product_type === 1) {
+    query.name = 'materials'
+  } else if (item.product_type === 2) {
+    query.name = 'sale'
+  } else if (item.product_type === 3) {
+    query.name = 'products'
+  }
+  pageJump('products_detail', query)
 }
 
 const windowWidth = ref(window.innerWidth)
@@ -48,18 +94,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWindowWidth)
 })
-
-// 获取供应商企业已审核资质详情
-suppliercertificatescertidApi(1).then((res: any) => {
-  console.log('供应商企业已审核资质详情', res)
-})
-
-// 获取供应商企业已审核案例详情
-suppliercasescertidApi(2).then((res: any) => {
-  console.log('供应商企业已审核资质详情', res)
-})
-
-const state = ref('gsjs')
 </script>
 
 <template>
@@ -71,7 +105,7 @@ const state = ref('gsjs')
           <span class="sdNavigationXg">/</span>
           <span @click="pageJump('supplier')">供应商列表</span>
           <span class="sdNavigationXg">/</span>
-          <span class="sdNavigationSp">杭州筑智信息技术有限公司</span>
+          <span class="sdNavigationSp">{{ supplierDetails.company_name }}</span>
         </div>
 
         <div class="sdhGys">
@@ -127,20 +161,20 @@ const state = ref('gsjs')
     <div class="sdCbox">
       <div class="sdcIContent">
         <div class="sdclFl">
-          <button :class="state === 'gsjs' ? 'sdclflAc' : ''" @click="state = 'gsjs'">
+          <button :class="tabstate === 'gsjs' ? 'sdclflAc' : ''" @click="tabstate = 'gsjs'">
             公司简介
           </button>
-          <button :class="state === 'hzal' ? 'sdclflAc' : ''" @click="state = 'hzal'">
+          <button :class="tabstate === 'hzal' ? 'sdclflAc' : ''" @click="tabstate = 'hzal'">
             合作案例
           </button>
-          <button :class="state === 'cplb' ? 'sdclflAc' : ''" @click="state = 'cplb'">
+          <button :class="tabstate === 'cplb' ? 'sdclflAc' : ''" @click="tabstate = 'cplb'">
             产品列表
           </button>
-          <button :class="state === 'lxfs' ? 'sdclflAc' : ''" @click="state = 'lxfs'">
+          <button :class="tabstate === 'lxfs' ? 'sdclflAc' : ''" @click="tabstate = 'lxfs'">
             联系方式
           </button>
         </div>
-        <div v-if="state === 'gsjs'" class="sdclGsjj">
+        <div v-if="tabstate === 'gsjs'" class="sdclGsjj">
           <div class="sdclxTitle">公司简介</div>
           <div class="sdclxSub" v-html="supplierDetails.company_intro"></div>
           <!-- <div class="sdclxSub">
@@ -195,7 +229,7 @@ const state = ref('gsjs')
             </div>
           </div>
         </div>
-        <div v-if="state === 'hzal'" class="sdclHzal">
+        <div v-if="tabstate === 'hzal'" class="sdclHzal">
           <!-- <div class="sdclHzalRow">
             <button class="sdclHzalColActive">全部案例</button>
             <button class="sdclHzalCol">商业综合体</button>
@@ -229,27 +263,35 @@ const state = ref('gsjs')
             </div>
           </div>
         </div>
-        <div v-if="state === 'cplb'" class="sdclHzal">
+        <div v-if="tabstate === 'cplb'" class="sdclHzal">
           <div class="sdclHzalRow">
-            <button class="sdclHzalColActive">全部产品</button>
-            <button class="sdclHzalCol">BIM软件</button>
-            <button class="sdclHzalCol">数字化平台</button>
-            <button class="sdclHzalCol">咨询服务</button>
-            <button class="sdclHzalCol">培训课程</button>
+            <button :class="gyscpState === '' ? 'sdclHzalColActive' : 'sdclHzalCol'"
+              @click="gyscpStateChange('')">全部产品</button>
+            <button :class="gyscpState === '0' ? 'sdclHzalColActive' : 'sdclHzalCol'"
+              @click="gyscpStateChange('0')">数字技工/方案论证</button>
+            <button :class="gyscpState === '1' ? 'sdclHzalColActive' : 'sdclHzalCol'"
+              @click="gyscpStateChange('1')">材料/设备</button>
+            <button :class="gyscpState === '2' ? 'sdclHzalColActive' : 'sdclHzalCol'"
+              @click="gyscpStateChange('2')">智能建造装备</button>
+            <button :class="gyscpState === '3' ? 'sdclHzalColActive' : 'sdclHzalCol'"
+              @click="gyscpStateChange('3')">信息化产品/服务</button>
           </div>
           <div class="sdclCplbBox">
-            <div class="sdclCplbItem" v-for="index in 6" :key="index">
+            <div class="sdclCplbItem" v-for="(item, index) in gyscpList" :key="index" @click="gyscpDetail(item)">
               <div class="sdclCplbImgBox">
                 <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="sdclCplbImg" />
-                <div class="sdclCplbImgTag">BIM软件</div>
+                <div class="sdclCplbImgTag">{{ item.product_type_name }}</div>
               </div>
-              <div class="sdclCplbBox">
-                <div class="sdclCplbTitle">筑智BIM协同管理平台</div>
+              <div class="sdclCplbBox2">
+                <div v-if="item.product_type === 0" class="sdclCplbTitle">{{ item.servicename }}</div>
+                <div v-if="item.product_type === 1" class="sdclCplbTitle">{{ item.materialname }}</div>
+                <div v-if="item.product_type === 2" class="sdclCplbTitle">{{ item.equipmentname }}</div>
+                <div v-if="item.product_type === 3" class="sdclCplbTitle">{{ item.itname }}</div>
                 <div class="sdclCplbInfo">
-                  集成化BIM协同管理平台，支持多专业协同设计、模型审查、碰撞检查及施工模拟。
+                  {{ item.description }}
                 </div>
                 <div class="sdclCplbCbtm">
-                  <div class="sdclCplbCprice">¥ 28,000/套起</div>
+                  <div class="sdclCplbCprice">¥ {{ formatCurrency(item.pretaxprice, 2) }}</div>
                   <div class="sdclCplbCright">
                     <button>详情</button>
                     <i class="fa fa-arrow-right"></i>
@@ -259,7 +301,7 @@ const state = ref('gsjs')
             </div>
           </div>
         </div>
-        <div v-if="state === 'lxfs'" class="sdclGsjj">
+        <div v-if="tabstate === 'lxfs'" class="sdclGsjj">
           <div class="sdclxTitle">联系方式</div>
           <div class="sdLxfsBox">
             <div class="sdLxfsItem">
@@ -1036,7 +1078,7 @@ const state = ref('gsjs')
               }
             }
 
-            .sdclCplbBox {
+            .sdclCplbBox2 {
               width: 100%;
               padding: 1rem;
 
