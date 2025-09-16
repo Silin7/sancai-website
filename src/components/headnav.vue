@@ -174,11 +174,6 @@ onBeforeUnmount(() => {
         </div>
         <!-- userInfo.name -->
         <div v-if="windowWidth > 1290">
-          <!-- <div v-if="userInfo.name" class="username">
-            <i class="fa fa-user-circle mr-2"></i>
-            <span class="nameStyle">{{ userInfo.name }}</span>
-            <span class="logoutStyle" @click="logoutFunction">退出</span>
-          </div> -->
           <div v-if="userInfo.name" ref="buttonRef" v-click-outside="onClickOutside" class="username">
             <i class="fa fa-user-circle mr-2"></i>
             <span class="nameStyle">{{ userInfo.name }}</span>
@@ -421,26 +416,15 @@ onBeforeUnmount(() => {
       color: #fff;
       display: flex;
       align-items: center;
+      font-size: 1.25rem;
 
       .nameStyle {
         display: inline-block;
         max-width: 210px;
         white-space: nowrap;
-        /* 防止文本换行 */
         overflow: hidden;
-        /* 隐藏溢出的文本 */
         text-overflow: ellipsis;
-        /* 显示省略号 */
       }
-
-      // .logoutStyle {
-      //   margin-left: 0.5rem;
-      // }
-
-      // .logoutStyle:hover {
-      //   cursor: pointer;
-      //   color: #165dff;
-      // }
     }
 
     .username:hover {
