@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref, computed, watch } from 'vue'
+import { onMounted, onBeforeUnmount, ref, computed, watch, unref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import useHeaderStore from '@/store/modules/header'
@@ -123,6 +123,12 @@ watch(
   },
 )
 
+const buttonRef = ref()
+const popoverRef = ref()
+function onClickOutside() {
+  unref(popoverRef).popperRef?.delayHide?.()
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   window.addEventListener('scroll', handleScroll)
@@ -168,10 +174,24 @@ onBeforeUnmount(() => {
         </div>
         <!-- userInfo.name -->
         <div v-if="windowWidth > 1290">
-          <div v-if="userInfo.name" class="username">
+          <!-- <div v-if="userInfo.name" class="username">
             <i class="fa fa-user-circle mr-2"></i>
             <span class="nameStyle">{{ userInfo.name }}</span>
             <span class="logoutStyle" @click="logoutFunction">退出</span>
+          </div> -->
+          <div v-if="userInfo.name" ref="buttonRef" v-click-outside="onClickOutside" class="username">
+            <i class="fa fa-user-circle mr-2"></i>
+            <span class="nameStyle">{{ userInfo.name }}</span>
+            <el-popover placement="bottom" :virtual-ref="buttonRef" virtual-triggering :width="160" trigger="click">
+              <div class="userPopover">
+                <div class="popoverItem" @click="pageJump('user-index')">
+                  用户中心
+                </div>
+                <div class="popoverItem" @click="logoutFunction">
+                  退出登录
+                </div>
+              </div>
+            </el-popover>
           </div>
           <div v-else class="headbtns">
             <div class="headLogin">
@@ -251,7 +271,7 @@ onBeforeUnmount(() => {
     .headnav {
       width: calc(100% - 220px);
       max-width: 1200px;
-        display: flex;
+      display: flex;
       align-items: center;
       justify-content: flex-start;
 
@@ -404,7 +424,7 @@ onBeforeUnmount(() => {
 
       .nameStyle {
         display: inline-block;
-        max-width: 8rem;
+        max-width: 210px;
         white-space: nowrap;
         /* 防止文本换行 */
         overflow: hidden;
@@ -413,13 +433,19 @@ onBeforeUnmount(() => {
         /* 显示省略号 */
       }
 
-      .logoutStyle {
-        margin-left: 0.5rem;
-      }
+      // .logoutStyle {
+      //   margin-left: 0.5rem;
+      // }
 
-      .logoutStyle:hover {
+      // .logoutStyle:hover {
+      //   cursor: pointer;
+      //   color: #165dff;
+      // }
+    }
+
+    .username:hover {
+      @media (min-width: 1291px) {
         cursor: pointer;
-        color: #165dff;
       }
     }
 
@@ -616,6 +642,18 @@ onBeforeUnmount(() => {
   .headlogo:hover {
     transform: scale(1.05);
   }
+}
+
+.popoverItem {
+  line-height: 44px;
+  color: #262626;
+  text-align: center;
+  cursor: pointer;
+}
+
+.popoverItem:hover {
+  color: #165dff;
+  background-color: #eee;
 }
 </style>
 
