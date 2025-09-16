@@ -182,7 +182,7 @@ onUnmounted(() => {
   padding: 1rem;
   width: 100vw;
   height: 100vh;
-  background-image: url('../assets/banner00.jpeg');
+  background-image: url('../assets/login-banner.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-attachment: fixed;
