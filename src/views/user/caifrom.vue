@@ -19,6 +19,7 @@ const ruleForm: any = reactive({
   cate_id: '',
   sub_cate_id: '',
   three_cate_id: '',
+  scene: '',
   material: '',
   specification: '',
   pretaxprice: null,
@@ -32,6 +33,7 @@ const ruleForm: any = reactive({
   solution: '',
   description: '',
   imgs: [],
+  memo: '',
 })
 const rules: any = reactive({
   materialname: [{ required: true, message: '请输入材料名称', trigger: 'blur' }],
@@ -39,6 +41,7 @@ const rules: any = reactive({
   cate_id: [{ required: true, message: '请选择主分类', trigger: 'change' }],
   sub_cate_id: [{ required: true, message: '请选择二级分类', trigger: 'change' }],
   three_cate_id: [{ required: true, message: '请选择三级分类', trigger: 'change' }],
+  scene: [{ required: true, message: '请输入应用场景', trigger: 'blur' }],
   material: [{ required: true, message: '请输入材质', trigger: 'blur' }],
   specification: [{ required: true, message: '请输入规格型号', trigger: 'blur' }],
   pretaxprice: [{ required: true, message: '税前价格', trigger: 'blur' }],
@@ -341,6 +344,11 @@ onMounted(() => {
                 style="width: 100%">
                 <el-option v-for="(item, index) in pcateThree" :key="index" :label="item.name" :value="item.id" />
               </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="应用场景" prop="scene">
+              <el-input size="large" v-model="ruleForm.scene" placeholder="请输入应用场景" />
             </el-form-item>
           </el-col>
           <el-col :span="8">

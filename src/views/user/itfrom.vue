@@ -15,7 +15,7 @@ const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
   id: '',
   itname: '',
-  thetype: '', // 产品类型，0-信息化产品，1-信息化服务
+  thetype: '',
   brand: '',
   cate_id: '',
   sub_cate_id: '',
@@ -295,7 +295,6 @@ onMounted(() => {
           <el-col :span="8">
             <el-form-item label="产品类型" prop="thetype">
               <el-select size="large" v-model="ruleForm.thetype" placeholder="请选择产品类型" clearable style="width: 100%">
-                <el-option label="全部类型" value="" />
                 <el-option label="信息化产品" :value="0" />
                 <el-option label="信息化服务" :value="1" />
               </el-select>

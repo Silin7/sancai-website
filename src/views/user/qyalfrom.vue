@@ -189,13 +189,13 @@ onMounted(() => {
           </el-col>
           <el-col :span="8">
             <el-form-item label="项目开始时间" prop="start_time">
-              <el-date-picker v-model="ruleForm.start_time" type="date" placeholder="请选择项目开始时间"
+              <el-date-picker v-model="ruleForm.start_time" type="date" placeholder="请选择项目开始时间" value-format="x"
                 style="width: 100%; height: 40px;" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="项目结束时间" prop="end_time">
-              <el-date-picker v-model="ruleForm.end_time" type="date" placeholder="请选择项目结束时间"
+              <el-date-picker v-model="ruleForm.end_time" type="date" placeholder="请选择项目结束时间" value-format="x"
                 style="width: 100%; height: 40px;" />
             </el-form-item>
           </el-col>
