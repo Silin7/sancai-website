@@ -180,10 +180,10 @@ onMounted(() => {
             <el-form-item label="资质类型" prop="qualification_type_id">
               <el-select size="large" v-model="ruleForm.qualification_type_id" placeholder="选择资质类型" clearable
                 style="width: 100%">
-                <el-option label="营业执照" value="1" />
-                <el-option label="行业资质资质" value="2" />
-                <el-option label="荣誉资质" value="3" />
-                <el-option label="其他资质" value="4" />
+                <el-option label="营业执照" :value="1" />
+                <el-option label="行业资质资质" :value="2" />
+                <el-option label="荣誉资质" :value="3" />
+                <el-option label="其他资质" :value="4" />
               </el-select>
             </el-form-item>
           </el-col>

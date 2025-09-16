@@ -148,7 +148,6 @@ onMounted(() => {
                     <Search />
                   </el-icon>
                 </template>
-                <el-option label="全部资质" value="" />
                 <el-option label="营业执照" value="1" />
                 <el-option label="行业资质证书" value="2" />
                 <el-option label="荣誉证书" value="3" />
@@ -165,7 +164,6 @@ onMounted(() => {
                     <Search />
                   </el-icon>
                 </template>
-                <el-option label="全部状态" value="" />
                 <el-option label="待审核" value="0" />
                 <el-option label="审核通过" value="1" />
                 <el-option label="驳回" value="2" />

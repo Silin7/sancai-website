@@ -10,9 +10,8 @@ import { fileURL } from '@/api/baseConfig'
 
 // 查询条件
 const queryForm: any = reactive({
-  materialname: '',
-  brand: '',
-  material: '',
+  // materialname: '',
+  status: '',
 })
 
 // 数据查询
@@ -25,14 +24,11 @@ function getDataList() {
     page: pagination.value.pageNo,
     page_size: pagination.value.pageSize,
   }
-  if (queryForm.materialname) {
-    parameters['materialname'] = queryForm.materialname
-  }
-  if (queryForm.brand) {
-    parameters['brand'] = queryForm.brand
-  }
-  if (queryForm.material) {
-    parameters['material'] = queryForm.material
+  // if (queryForm.materialname) {
+  //   parameters['materialname'] = queryForm.materialname
+  // }
+  if (queryForm.status) {
+    parameters['status'] = queryForm.status
   }
   materiallistApi(parameters).then((res: any) => {
     if (res) {
@@ -87,22 +83,26 @@ onMounted(() => {
       <!-- 查询条件 -->
       <el-form :model="queryForm">
         <el-row :gutter="20">
-          <el-col :span="6">
+          <!-- <el-col :span="6">
             <el-form-item>
-              <el-input size="large" v-model="queryForm.materialname" placeholder="搜索产品名称" clearable
-                :prefix-icon="Search" @input="useDebounce().fn(getDataList)" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item>
-              <el-input size="large" v-model="queryForm.brand" placeholder="搜索品牌" clearable :prefix-icon="Search"
+              <el-input size="large" v-model="queryForm.materialname" placeholder="产品名称" clearable :prefix-icon="Search"
                 @input="useDebounce().fn(getDataList)" />
             </el-form-item>
-          </el-col>
+          </el-col> -->
           <el-col :span="6">
             <el-form-item>
-              <el-input size="large" v-model="queryForm.material" placeholder="搜索材质" clearable :prefix-icon="Search"
-                @input="useDebounce().fn(getDataList)" />
+              <el-select size="large" v-model="queryForm.status" placeholder="选择状态" clearable
+                @change="useDebounce().fn(getDataList)">
+                <template #prefix>
+                  <el-icon>
+                    <Search />
+                  </el-icon>
+                </template>
+                <el-option label="待审核" value="0" />
+                <el-option label="审核通过" value="1" />
+                <el-option label="驳回" value="2" />
+                <el-option label="关闭" value="3" />
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="6">

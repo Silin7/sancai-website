@@ -9,8 +9,6 @@ import { solutionorderslistApi, requirementsbycateApi } from '@/api/modules/admi
 
 // 查询条件
 const queryForm: any = reactive({
-  itname: '',
-  thetype: '',
   status: '',
 })
 
@@ -23,12 +21,6 @@ function getDataList() {
   const parameters: any = {
     page: pagination.value.pageNo,
     page_size: pagination.value.pageSize,
-  }
-  if (queryForm.itname) {
-    parameters['itname'] = queryForm.itname
-  }
-  if (queryForm.thetype) {
-    parameters['thetype'] = queryForm.thetype
   }
   if (queryForm.status) {
     parameters['status'] = queryForm.status
@@ -58,7 +50,7 @@ function currentChange(pageNo = 1) {
 onMounted(() => {
   getDataList()
   requirementsbycateApi({
-    cate_id : 1,
+    cate_id: 1,
   }).then((res: any) => {
     if (res) {
       console.log('需求分类', res)
@@ -95,12 +87,6 @@ onMounted(() => {
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item>
-              <el-input size="large" v-model="queryForm.name" placeholder="搜索订单号、客户名称..." clearable
-                :prefix-icon="Search" @input="useDebounce().fn(getDataList)" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item>
               <el-select size="large" v-model="queryForm.status" placeholder="选择状态" clearable
                 @change="useDebounce().fn(getDataList)">
                 <template #prefix>
@@ -108,30 +94,13 @@ onMounted(() => {
                     <Search />
                   </el-icon>
                 </template>
-                <el-option label="全部状态" value="all" />
-                <el-option label="待报价" value="pending" />
-                <el-option label="已报价" value="completed" />
-                <el-option label="已取消" value="canceled" />
+                <el-option label="待审核" value="0" />
+                <el-option label="审核通过" value="1" />
+                <el-option label="驳回" value="2" />
+                <el-option label="关闭" value="3" />
               </el-select>
             </el-form-item>
           </el-col>
-          <!-- <el-col :span="6">
-            <el-form-item>
-              <el-select size="large" v-model="queryForm.state" placeholder="选择日期" clearable
-                @change="useDebounce().fn(getDataList)">
-                <template #prefix>
-                  <el-icon>
-                    <Search />
-                  </el-icon>
-                </template>
-                <el-option label="全部日期" value="all" />
-                <el-option label="今天" value="today" />
-                <el-option label="本周" value="week" />
-                <el-option label="本月" value="month" />
-                <el-option label="自定义" value="custom" />
-              </el-select>
-            </el-form-item>
-          </el-col> -->
         </el-row>
       </el-form>
       <!-- 数据表格 -->

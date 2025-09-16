@@ -10,8 +10,8 @@ import { productpcatechildrenApi } from '@/api/modules/product'
 
 // 查询条件
 const queryForm: any = reactive({
-  servicename: '',
-  sub_cate_id: '',
+  // servicename: '',
+  // sub_cate_id: '',
   status: '',
 })
 
@@ -25,12 +25,12 @@ function getDataList() {
     page: pagination.value.pageNo,
     page_size: pagination.value.pageSize,
   }
-  if (queryForm.servicename) {
-    parameters['servicename'] = queryForm.servicename
-  }
-  if (queryForm.sub_cate_id) {
-    parameters['sub_cate_id'] = queryForm.sub_cate_id
-  }
+  // if (queryForm.servicename) {
+  //   parameters['servicename'] = queryForm.servicename
+  // }
+  // if (queryForm.sub_cate_id) {
+  //   parameters['sub_cate_id'] = queryForm.sub_cate_id
+  // }
   if (queryForm.status) {
     parameters['status'] = queryForm.status
   }
@@ -101,12 +101,12 @@ onMounted(() => {
       <!-- 查询条件 -->
       <el-form :model="queryForm">
         <el-row :gutter="20">
-          <el-col :span="6">
+          <!-- <el-col :span="6">
             <el-form-item>
-              <el-input size="large" v-model="queryForm.servicename" placeholder="搜索服务名称..." clearable
-                :prefix-icon="Search" @input="useDebounce().fn(getDataList)" />
+              <el-input size="large" v-model="queryForm.servicename" placeholder="服务名称" clearable :prefix-icon="Search"
+                @input="useDebounce().fn(getDataList)" />
             </el-form-item>
-          </el-col>
+          </el-col> -->
           <!-- <el-col :span="6">
             <el-form-item>
               <el-select size="large" v-model="queryForm.sub_cate_id" placeholder="选择类别" clearable
@@ -130,7 +130,6 @@ onMounted(() => {
                     <Search />
                   </el-icon>
                 </template>
-                <el-option label="全部状态" value="" />
                 <el-option label="待审核" value="0" />
                 <el-option label="审核通过" value="1" />
                 <el-option label="驳回" value="2" />

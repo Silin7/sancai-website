@@ -10,8 +10,8 @@ import { fileURL } from '@/api/baseConfig'
 
 // 查询条件
 const queryForm: any = reactive({
-  equipmentname: '',
-  thetype: '',
+  // equipmentname: '',
+  // thetype: '',
   status: '',
 })
 
@@ -25,12 +25,12 @@ function getDataList() {
     page: pagination.value.pageNo,
     page_size: pagination.value.pageSize,
   }
-  if (queryForm.equipmentname) {
-    parameters['equipmentname'] = queryForm.equipmentname
-  }
-  if (queryForm.thetype) {
-    parameters['thetype'] = queryForm.thetype
-  }
+  // if (queryForm.equipmentname) {
+  //   parameters['equipmentname'] = queryForm.equipmentname
+  // }
+  // if (queryForm.thetype) {
+  //   parameters['thetype'] = queryForm.thetype
+  // }
   if (queryForm.status) {
     parameters['status'] = queryForm.status
   }
@@ -87,13 +87,13 @@ onMounted(() => {
       <!-- 查询条件 -->
       <el-form :model="queryForm">
         <el-row :gutter="20">
-          <el-col :span="6">
+          <!-- <el-col :span="6">
             <el-form-item>
-              <el-input size="large" v-model="queryForm.equipmentname" placeholder="搜索机械名称" clearable
+              <el-input size="large" v-model="queryForm.equipmentname" placeholder="机械名称" clearable
                 :prefix-icon="Search" @input="useDebounce().fn(getDataList)" />
             </el-form-item>
-          </el-col>
-          <el-col :span="6">
+          </el-col> -->
+          <!-- <el-col :span="6">
             <el-form-item>
               <el-select size="large" v-model="queryForm.thetype" placeholder="选择类型" clearable
                 @change="useDebounce().fn(getDataList)">
@@ -102,12 +102,11 @@ onMounted(() => {
                     <Search />
                   </el-icon>
                 </template>
-                <el-option label="全部类型" value="" />
-                <el-option label="装备租赁" value="0" />
-                <el-option label="装备销售" value="1" />
-              </el-select>
-            </el-form-item>
-          </el-col>
+<el-option label="装备租赁" value="0" />
+<el-option label="装备销售" value="1" />
+</el-select>
+</el-form-item>
+</el-col> -->
           <el-col :span="6">
             <el-form-item>
               <el-select size="large" v-model="queryForm.status" placeholder="选择状态" clearable
@@ -117,7 +116,6 @@ onMounted(() => {
                     <Search />
                   </el-icon>
                 </template>
-                <el-option label="全部状态" value="" />
                 <el-option label="待审核" value="0" />
                 <el-option label="审核通过" value="1" />
                 <el-option label="驳回" value="2" />

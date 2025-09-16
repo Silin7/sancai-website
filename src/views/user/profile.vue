@@ -10,7 +10,9 @@ import { companyinfoApi, savecompanyinfoApi } from '@/api/modules/admin'
 const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
   company_name: '',
+  province_id: '',
   province_name: '',
+  city_id: '',
   city_name: '',
   company_address: '',
   tags: [],
