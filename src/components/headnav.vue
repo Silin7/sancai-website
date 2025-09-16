@@ -232,7 +232,13 @@ onBeforeUnmount(() => {
           <i class="fa fa-user-circle mr-2"></i>
           <span class="nameStyle">{{ userInfo.name }}</span>
         </div>
-        <span class="logoutStyle" @click="logoutFunction">退出</span>
+        <!-- <span class="logoutStyle" @click="logoutFunction">退出</span> -->
+      </div>
+      <div v-if="userInfo.name" class="mobileBtns">
+        <div class="frcc">
+          <i class="fa fa-sign-out mr-2"></i>
+          <span @click="logoutFunction">退出登录</span>
+        </div>
       </div>
       <div v-else class="mobileBtns">
         <button class="mobileDlbtn" @click="tabRouterPush({ name: 'login' })">登录</button>
@@ -604,7 +610,7 @@ onBeforeUnmount(() => {
 
     button {
       margin-bottom: 0.5rem;
-      width: 100%;
+      width: calc(50% - 0.25rem);
       line-height: 1.5rem;
       padding: 0.5rem 0;
       border-radius: 9999px;
