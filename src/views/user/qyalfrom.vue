@@ -105,7 +105,7 @@ const pcateOne: any = ref([])
 
 function getPcateOne() {
   casetypesApi().then((res: any) => {
-    if (res && res.data.length > 0) {
+    if (res) {
       pcateOne.value = res.data
     }
   })

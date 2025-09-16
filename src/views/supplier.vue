@@ -97,7 +97,7 @@ function getSuppliercompanies() {
     company_name: company_name.value,
   }).then((res: any) => {
     console.log(res.data)
-    if (res && res.data.length > 0) {
+    if (res) {
       suppliercompanies.value = res.data
       total.value = res.total
     }
