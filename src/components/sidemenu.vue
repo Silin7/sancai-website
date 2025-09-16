@@ -76,6 +76,10 @@ function signOut() {
         <i class="fa fa-file-powerpoint-o"></i>
         <span>报价单</span>
       </el-menu-item>
+      <el-menu-item index="user-quotationlist" @click="pageJump('user-quotationlist')">
+        <i class="fa fa-file-powerpoint-o"></i>
+        <span>询价单</span>
+      </el-menu-item>
       <el-menu-item index="user-editpwd" @click="pageJump('user-editpwd')">
         <i class="fa fa-key"></i>
         <span>改密码</span>
