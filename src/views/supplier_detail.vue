@@ -25,19 +25,19 @@ function getSupplierdetail() {
     }
     // 供应商资质
     suppliercompaniescertificatesApi(supplierid.value).then((res: any) => {
-      if (res && res.data.length > 0) {
+      if (res) {
         gyszzList.value = res.data
       }
     })
     // 供应商案例
     suppliercompaniescasesApi(supplierid.value).then((res: any) => {
-      if (res && res.data.length > 0) {
+      if (res) {
         gysalList.value = res.data
       }
     })
     // 供应商产品
     suppliercompaniesproductsApi(supplierid.value).then((res: any) => {
-      if (res && res.data.length > 0) {
+      if (res) {
         gyscpList.value = res.data
       }
     })
@@ -49,7 +49,7 @@ function gyscpStateChange(state: string) {
   gyscpState.value = state
   // 供应商产品
   suppliercompaniesproductsApi(supplierid.value).then((res: any) => {
-    if (res && res.data.length > 0) {
+    if (res) {
       if (state === '') {
         gyscpList.value = res.data
       } else {

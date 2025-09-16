@@ -2,8 +2,9 @@
 import { computed, ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Fold, Expand } from '@element-plus/icons-vue'
-import pageJump from '@/hooks/pageJump'
 import useHeaderStore from '@/store/modules/header'
+import pageJump from '@/hooks/pageJump'
+import { baselogoutdApi } from '@/api/modules/login'
 
 const headerStore = useHeaderStore()
 
@@ -26,9 +27,17 @@ function signOut() {
     type: 'warning',
   })
     .then(() => {
-      ElMessage({
-        type: 'success',
-        message: '退出成功',
+      baselogoutdApi({}).then((res: any) => {
+        if (res) {
+          ElMessage({
+            type: 'success',
+            message: '退出成功',
+          })
+          window.localStorage.removeItem('token')
+          window.localStorage.removeItem('userinfo')
+          window.localStorage.removeItem('permission')
+          pageJump('login')
+        }
       })
     })
     .catch(() => {
@@ -75,6 +84,10 @@ function signOut() {
       <el-menu-item index="user-inquirylist" @click="pageJump('user-inquirylist')">
         <i class="fa fa-file-powerpoint-o"></i>
         <span>报价单</span>
+      </el-menu-item>
+      <el-menu-item index="user-quotationlist" @click="pageJump('user-quotationlist')">
+        <i class="fa fa-file-powerpoint-o"></i>
+        <span>询价单</span>
       </el-menu-item>
       <el-menu-item index="user-editpwd" @click="pageJump('user-editpwd')">
         <i class="fa fa-key"></i>

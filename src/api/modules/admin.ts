@@ -255,3 +255,15 @@ export function requirementsbycateApi(params: any) {
 export function solutionordersdetailApi(orderid: any) {
   return api.get(`/api/client/solution/orders/${orderid}`)
 }
+
+// 获取当前用户的询价单列表
+export function inquiryorderslistApi(params: any) {
+  return api.get('/api/client/inquiry/orders', {
+    params,
+  })
+}
+
+// 获取询价单详情
+export function inquiryordersdetailApi(inquiryid: any) {
+  return api.get(`/api/client/inquiry/orders/${inquiryid}`)
+}

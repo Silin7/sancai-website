@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 import '@wangeditor/editor/dist/css/style.css'
 import { onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -6,6 +8,9 @@ import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import { baseURL, fileURL } from '@/api/baseConfig'
 import { casetypesApi, savecasesApi, updatecasesApi, detailcasesApi } from '@/api/modules/admin'
+
+// utc 时间转换
+dayjs.extend(utc)
 
 const routeInfo = useRoute()
 const ruleFormRef: any = ref()
@@ -37,6 +42,8 @@ const submitForm = async (formEl: any) => {
   await formEl.validate((valid: any, fields: any) => {
     if (valid) {
       const data = { ...ruleForm }
+      data.start_time = dayjs(data.start_time).utc().valueOf();
+      data.end_time = dayjs(data.end_time).utc().valueOf();
       data.case_imgs = ruleForm.case_imgs.map((item: any) => {
         if (item.response && item.response.data.url) {
           return item.response.data.url
@@ -98,7 +105,7 @@ const pcateOne: any = ref([])
 
 function getPcateOne() {
   casetypesApi().then((res: any) => {
-    if (res && res.data.length > 0) {
+    if (res) {
       pcateOne.value = res.data
     }
   })
@@ -183,13 +190,13 @@ onMounted(() => {
           <el-col :span="8">
             <el-form-item label="项目开始时间" prop="start_time">
               <el-date-picker v-model="ruleForm.start_time" type="date" placeholder="请选择项目开始时间" value-format="x"
-                style="width: 100%;" />
+                style="width: 100%; height: 40px;" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="项目结束时间" prop="end_time">
               <el-date-picker v-model="ruleForm.end_time" type="date" placeholder="请选择项目结束时间" value-format="x"
-                style="width: 100%;" />
+                style="width: 100%; height: 40px;" />
             </el-form-item>
           </el-col>
           <el-col :span="24">

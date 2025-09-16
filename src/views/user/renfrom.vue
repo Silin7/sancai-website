@@ -29,6 +29,7 @@ const ruleForm: any = reactive({
   solution: '',
   description: '',
   imgs: [],
+  memo: '',
 })
 const rules: any = reactive({
   servicename: [{ required: true, message: '请输入服务名称', trigger: 'blur' }],

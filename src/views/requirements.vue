@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import { requirementsbycateApi, solutionordersApi } from '@/api/modules/datasolution'
 
 // 路由信息
@@ -22,14 +23,74 @@ function getRequirementsbycate() {
 
 // 提交需求
 function tijiaoxuqiu() {
+  if (!datasolutionData.value.product_name) {
+    ElMessage({
+      type: 'error',
+      message: '请填写标的名称',
+    })
+    return
+  }
+  if (!datasolutionData.value.thetype) {
+    ElMessage({
+      type: 'error',
+      message: '请选择类别',
+    })
+    return
+  }
+  if (!datasolutionData.value.usefor) {
+    ElMessage({
+      type: 'error',
+      message: '请填写用途',
+    })
+    return
+  }
+  if (!datasolutionData.value.description) {
+    ElMessage({
+      type: 'error',
+      message: '请填写应用简述',
+    })
+    return
+  }
+  if (!datasolutionData.value.company_name) {
+    ElMessage({
+      type: 'error',
+      message: '请填写公司名称',
+    })
+    return
+  }
+  if (!datasolutionData.value.contact_person) {
+    ElMessage({
+      type: 'error',
+      message: '请填写公司联系人',
+    })
+    return
+  }
+  if (!datasolutionData.value.tel) {
+    ElMessage({
+      type: 'error',
+      message: '请填写联系人电话',
+    })
+    return
+  }
+  if (!/^(?:(?:\+|00)86)?1[3-9]\d{9}$/.test(datasolutionData.value.tel)) {
+    ElMessage({
+      type: 'error',
+      message: '联系人电话格式错误',
+    })
+    return
+  }
   datasolutionData.value.requirements = {}
   const requirements: any = ref({})
   for (let i = 0; i < datasolutionData.value.multiitems.length; i++) {
     const item = datasolutionData.value.multiitems[i]
-    item.value3 = item.value
-    if (item.thetype === '单选') {
-      item.value3 = [item.value3]
+    if (!item.value) {
+      ElMessage({
+        type: 'error',
+        message: `请选择第${i + 1}条技术需求信息`,
+      })
+      return
     }
+    item.value3 = Array.from(new Set(item.value));
     item.value3.push(`其他(${item.remark || ''})`)
     requirements.value[item.name] = item.value3
   }
@@ -46,7 +107,11 @@ function tijiaoxuqiu() {
     "contact_person": datasolutionData.value.contact_person,
     user_id: window.localStorage.getItem('userinfo') ? JSON.parse(window.localStorage.getItem('userinfo') || '').id : ''
   }).then((res: any) => {
-    console.log('-------->', res)
+    ElMessage({
+      type: 'success',
+      message: '需求提交成功',
+    })
+    datasolutionData.value = {}
   })
 }
 
@@ -67,12 +132,12 @@ onMounted(() => {
         <div class="requCtitle">{{ datasolutionData.name }}</div>
         <div class="supplierClassFx">
           <div class="supplierClassFxItem">
-            <div class="supplierClassText">类别</div>
+            <div class="supplierClassText"><span style="color: #f56c6c;">*</span>标的名称</div>
             <el-input v-model="datasolutionData.product_name" style="width: 100%;  height: 40px;" placeholder="标的名称" />
           </div>
           <div class="supplierClassFxItem">
             <!--  -->
-            <div class="supplierClassText">产品/服务</div>
+            <div class="supplierClassText"><span style="color: #f56c6c;">*</span>产品/服务</div>
             <el-select v-model="datasolutionData.thetype" placeholder="请选择类别" size="large" clearable
               style="width: 100%; height: 40px;">
               <el-option label="产品" value="0" />
@@ -82,13 +147,13 @@ onMounted(() => {
         </div>
         <div class="supplierClassFx">
           <div class="supplierClassFxItem2">
-            <div class="supplierClassText">用途</div>
+            <div class="supplierClassText"><span style="color: #f56c6c;">*</span>用途</div>
             <el-input v-model="datasolutionData.usefor" style="width: 100%;  height: 40px;" placeholder="请填写用途" />
           </div>
         </div>
         <div class="supplierClassFx" style="margin-top: 2rem">
           <div class="supplierClassFxItem2">
-            <div class="supplierClassText">应用简述（可另附页）</div>
+            <div class="supplierClassText"><span style="color: #f56c6c;">*</span>应用简述（可另附页）</div>
             <el-input type="textarea" v-model="datasolutionData.description" :autosize="{ minRows: 3, maxRows: 3 }"
               style="width: 100%;" placeholder="请描述CIM+人房管理系统的应用场景、目标及预期效果等" />
           </div>
@@ -117,17 +182,17 @@ onMounted(() => {
         </div>
         <div class="supplierClassFx2">
           <div class="supplierClassFxItem">
-            <div class="supplierClassText">公司名称</div>
+            <div class="supplierClassText"><span style="color: #f56c6c;">*</span>公司名称</div>
             <el-input v-model="datasolutionData.company_name" style="width: 100%;  height: 40px;"
               placeholder="请填写公司名称" />
           </div>
           <div class="supplierClassFxItem">
-            <div class="supplierClassText">公司联系人</div>
+            <div class="supplierClassText"><span style="color: #f56c6c;">*</span>公司联系人</div>
             <el-input v-model="datasolutionData.contact_person" style="width: 100%;  height: 40px;"
               placeholder="请填写公司联系人" />
           </div>
           <div class="supplierClassFxItem">
-            <div class="supplierClassText">联系人电话</div>
+            <div class="supplierClassText"><span style="color: #f56c6c;">*</span>联系人电话</div>
             <el-input v-model="datasolutionData.tel" style="width: 100%;  height: 40px;" placeholder="请填写联系人电话" />
           </div>
         </div>

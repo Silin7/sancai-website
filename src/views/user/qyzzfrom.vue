@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 import '@wangeditor/editor/dist/css/style.css'
 import { onMounted, reactive, ref, shallowRef, onBeforeUnmount, watch } from 'vue'
 import { useRoute } from 'vue-router'
@@ -7,6 +9,9 @@ import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import { baseURL, fileURL } from '@/api/baseConfig'
 import { savecertificatesApi, updatecertificatesApi, detailcertificatesApi } from '@/api/modules/admin'
+
+// utc 时间转换
+dayjs.extend(utc)
 
 const routeInfo = useRoute()
 const ruleFormRef: any = ref()
@@ -37,6 +42,9 @@ const submitForm = async (formEl: any) => {
   await formEl.validate((valid: any, fields: any) => {
     if (valid) {
       const data = { ...ruleForm }
+      data.obtain_time = dayjs(data.obtain_time).utc().valueOf();
+      data.valid_start = dayjs(data.valid_start).utc().valueOf();
+      data.valid_end = dayjs(data.valid_end).utc().valueOf();
       data.qualification_imgs = ruleForm.qualification_imgs.map((item: any) => {
         if (item.response && item.response.data.url) {
           return item.response.data.url
@@ -195,19 +203,19 @@ onMounted(() => {
           <el-col :span="8">
             <el-form-item label="获得时间" prop="obtain_time">
               <el-date-picker v-model="ruleForm.obtain_time" type="date" placeholder="请选择获得时间" value-format="x"
-                style="width: 100%;" />
+                style="width: 100%; height: 40px;" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="有效期开始" prop="valid_start">
               <el-date-picker v-model="ruleForm.valid_start" type="date" placeholder="请选择有效期开始" value-format="x"
-                style="width: 100%;" />
+                style="width: 100%; height: 40px;" />
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="有效期结束" prop="valid_end">
               <el-date-picker v-model="ruleForm.valid_end" type="date" placeholder="请选择有效期结束" value-format="x"
-                style="width: 100%;" />
+                style="width: 100%; height: 40px;" />
             </el-form-item>
           </el-col>
           <el-col :span="24">

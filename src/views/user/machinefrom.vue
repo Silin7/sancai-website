@@ -15,10 +15,12 @@ const ruleFormRef: any = ref()
 const ruleForm: any = reactive({
   id: '',
   equipmentname: '',
+  thetype: '',
   brand: '',
   cate_id: '',
   sub_cate_id: '',
   scene: '',
+  specification: '',
   technical_params: '',
   pretaxprice: null,
   afertaxprice: null,
@@ -29,13 +31,16 @@ const ruleForm: any = reactive({
   solution: '',
   description: '',
   imgs: [],
+  memo: '',
 })
 const rules: any = reactive({
   equipmentname: [{ required: true, message: '请输入装备名称', trigger: 'blur' }],
+  thetype: [{ required: true, message: '请选择装备类型', trigger: 'change' }],
   brand: [{ required: true, message: '请输入品牌', trigger: 'blur' }],
   cate_id: [{ required: true, message: '请选择主类别', trigger: 'change' }],
   sub_cate_id: [{ required: true, message: '请选择子类别', trigger: 'change' }],
   scene: [{ required: true, message: '请输入应用场景', trigger: 'blur' }],
+  specification: [{ required: true, message: '请输入规格型号', trigger: 'blur' }],
   technical_params: [{ required: true, message: '请输入技术参数', trigger: 'blur' }],
   pretaxprice: [{ required: true, message: '请输入税前价格', trigger: 'blur' }],
   afertaxprice: [{ required: true, message: '请输入税后价格', trigger: 'blur' }],
@@ -277,6 +282,14 @@ onMounted(() => {
             </el-form-item>
           </el-col>
           <el-col :span="8">
+            <el-form-item label="装备类型" prop="thetype">
+              <el-select size="large" v-model="ruleForm.thetype" placeholder="请选择装备类型" clearable style="width: 100%">
+                <el-option label="装备租赁" :value="0" />
+                <el-option label="装备销售" :value="1" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
             <el-form-item label="品牌" prop="brand">
               <el-input size="large" v-model="ruleForm.brand" placeholder="请输入品牌" />
             </el-form-item>
@@ -299,6 +312,11 @@ onMounted(() => {
           <el-col :span="8">
             <el-form-item label="应用场景" prop="scene">
               <el-input size="large" v-model="ruleForm.scene" placeholder="请输入应用场景" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="规格型号" prop="specification">
+              <el-input size="large" v-model="ruleForm.specification" placeholder="请输入规格型号" />
             </el-form-item>
           </el-col>
           <el-col :span="8">

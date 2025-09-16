@@ -62,7 +62,7 @@ const pcateOne: any = ref([])
 
 function getPcateOne() {
   casetypesApi().then((res: any) => {
-    if (res && res.data.length > 0) {
+    if (res) {
       pcateOne.value = res.data
     }
   })
@@ -204,8 +204,9 @@ onMounted(() => {
         </el-table-column>
         <el-table-column align="center" label="案例标签">
           <template #default="scope">
-            <el-tag type="primary" v-for="(item, index) in scope.row.case_tags" :key="index"
-              style="margin-right: 10px;"> {{ item }}</el-tag>
+            <el-tag type="primary" v-for="(item, index) in scope.row.case_tags" :key="index" style="margin: 5px;">
+              {{ item }}
+            </el-tag>
           </template>
         </el-table-column>
         <el-table-column align="center" label="状态" width="120">

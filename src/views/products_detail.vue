@@ -96,7 +96,7 @@ function xgcpDetailClick(item: any) {
 }
 
 // 购物车
-const gwcdata: any = ref(JSON.parse(window.localStorage.getItem('gwcdata') || '') || [])
+const gwcdata: any = ref(window.localStorage.getItem('gwcdata') ? JSON.parse(window.localStorage.getItem('gwcdata') || '') : [])
 const gwcVisible: any = ref(false)
 
 function gwcVisibleShow() {
@@ -222,16 +222,16 @@ const value1 = ref(4.8)
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-            }}</span>
+          }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -469,7 +469,7 @@ const value1 = ref(4.8)
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-                }}</span>
+              }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
@@ -528,13 +528,7 @@ const value1 = ref(4.8)
         <i class="fa fa-cart-plus"></i>
       </el-badge>
     </div>
-    <el-dialog v-model="gwcVisible" title="我的购物车" width="80%">
-      <div v-if="gwcdata && gwcdata.length > 0" class="frec">
-        <button class="xjgDolwnload" @click="dolwnloadXjd">
-          <i class="fa fa-cloud-download mr-2"></i>
-          <span>下载询价单</span>
-        </button>
-      </div>
+    <el-dialog v-model="gwcVisible" title="我的询价单" width="80%">
       <el-table :data="gwcdata" border highlight-current-row>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="name" label="产品名称" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌" />

@@ -427,6 +427,26 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/user/quotationlist',
+    name: 'user-quotationlist',
+    component: () => import('@/views/user/quotationlist.vue'),
+    meta: {
+      title: '新材网-询价单',
+      stcode: 'user-quotationlist',
+      website: false,
+    },
+  },
+  {
+    path: '/user/quotationfrom',
+    name: 'user-quotationfrom',
+    component: () => import('@/views/user/quotationfrom.vue'),
+    meta: {
+      title: '新材网-询价单',
+      stcode: 'user-quotationlist',
+      website: false,
+    },
+  },
+  {
     path: '/user/editpwd',
     name: 'user-editpwd',
     component: () => import('@/views/user/editpwd.vue'),
