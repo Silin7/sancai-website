@@ -25,11 +25,8 @@ onMounted(() => {
       <!-- <span class="title">前端框架-VUE3</span> -->
     </div>
     <div class="avatar-name">
-      <div class="avatar-box frcc">
-        U
-        <!-- <img src="@/assets/avatar.jpg" /> -->
-      </div>
-      <span class="title">{{ userInfo.name || '用户' }}</span>
+      <i class="fa fa-user-circle mr-2"></i>
+      <span>{{ userInfo.name || '未登录' }}</span>
     </div>
   </div>
 </template>
@@ -60,31 +57,12 @@ onMounted(() => {
   }
 
   .avatar-name {
+    cursor: pointer;
     display: flex;
     align-items: center;
-
-    .avatar-box {
-      margin-right: 10px;
-      width: 36px;
-      height: 36px;
-      font-weight: 500;
-      color: #ffffff;
-      background-color: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-    }
-
-    // img {
-    //   margin-right: 10px;
-    //   width: 36px;
-    //   height: 36px;
-    //   border-radius: 50%;
-    // }
-
-    .title {
-      font-size: 14px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.9);
-    }
+    color: #ffffff;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
   }
 }
 </style>

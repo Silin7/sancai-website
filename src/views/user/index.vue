@@ -11,12 +11,12 @@ const data1: any = ref({
   bjnum: 5,
 })
 
-const data2: any = ref([
-  { state: 'add', title: '新增建材产品「高强度钢筋」', date: '今天 14:30' },
-  { state: 'edit', title: '编辑信息化产品「智慧工地管理系统」', date: '昨天 09:15' },
-  { state: 'del', title: '下架机械产品「混凝土搅拌机」', date: '2025-07-05 16:45' },
-  { state: 'scuss', title: '处理报价单 #20250704001', date: '2025-07-04 11:20' },
-])
+// const data2: any = ref([
+//   { state: 'add', title: '新增建材产品「高强度钢筋」', date: '今天 14:30' },
+//   { state: 'edit', title: '编辑信息化产品「智慧工地管理系统」', date: '昨天 09:15' },
+//   { state: 'del', title: '下架机械产品「混凝土搅拌机」', date: '2025-07-05 16:45' },
+//   { state: 'scuss', title: '处理报价单 #20250704001', date: '2025-07-04 11:20' },
+// ])
 
 // 登陆后的用户信息
 const userInfo: any = ref({})
@@ -142,7 +142,7 @@ onMounted(() => {
         </div>
       </el-col>
     </el-row>
-    <h2 class="section-title" style="margin-top: 20px">
+    <!-- <h2 class="section-title" style="margin-top: 20px">
       <i class="fa fa-history"></i>
       最近活动
     </h2>
@@ -167,7 +167,7 @@ onMounted(() => {
           </div>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </template>
 
