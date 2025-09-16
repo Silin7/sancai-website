@@ -71,6 +71,12 @@ onMounted(() => {
           if (Object.prototype.hasOwnProperty.call(res.data, key)) {
             ruleForm[key] = res.data[key]
           }
+          // if (key === 'requirements' && ruleForm.requirements) {
+          //   ruleForm['requirementskey'] = []
+          //   for (let key in ruleForm.requirements) {
+          //     ruleForm['requirementskey'].push(key)
+          //   }
+          // }
         })
       }
     })
@@ -134,6 +140,20 @@ onMounted(() => {
               <el-input size="large" disabled v-model="ruleForm.tel" placeholder="请输入联系方式" />
             </el-form-item>
           </el-col>
+          <!-- <el-checkbox v-model="ruleForm.requirements" disabled>{{ item2 }}</el-checkbox> -->
+          <el-col :span="24">
+            <el-form-item label="需求详情" prop="cate_name">
+              <div v-for="(item, index) in ruleForm.requirements" :key="index" style="width: 100%;">
+                <div>
+                  <span>{{ index }}：</span>
+                  <span v-for="(item2, index2) in item" :key="index2" class="disabledstyle">
+                    <i class="fa fa-check-square"></i>
+                    {{ item2 }}
+                  </span>
+                </div>
+              </div>
+            </el-form-item>
+          </el-col>
           <el-col :span="24">
             <el-form-item label="需求描述" prop="description">
               <el-input type="textarea" disabled v-model="ruleForm.description" :autosize="{ minRows: 3, maxRows: 3 }"
@@ -158,11 +178,8 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.tips {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  margin-top: -0.25rem;
-  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
-  color: #c0c4cc;
+.disabledstyle {
+  margin-left: 10px;
+  color: #a8abb2;
 }
 </style>

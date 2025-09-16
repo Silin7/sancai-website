@@ -15,7 +15,9 @@ import {
   productmaterialsrelatedApi,
   productequipmentsrelatedApi,
   producteitrelatedApi,
+  inquirydownloadfromcartApi,
 } from '@/api/modules/product'
+import { checkloinApi } from '@/api/modules/login'
 
 // 路由信息
 const route = useRoute()
@@ -108,6 +110,7 @@ function addToCart() {
     product_type: pathname.value,
     id: productDetails.value.id,
     name: '',
+    type: '',
     brand: productDetails.value.brand,
     pretaxprice: productDetails.value.pretaxprice,
     afertaxprice: productDetails.value.afertaxprice,
@@ -116,15 +119,19 @@ function addToCart() {
   }
   if (pathname.value === 'scheme') {
     data['name'] = productDetails.value.servicename
+    data['type'] = '0'
   }
   if (pathname.value === 'materials') {
     data['name'] = productDetails.value.materialname
+    data['type'] = '1'
   }
   if (pathname.value === 'sale') {
     data['name'] = productDetails.value.equipmentname
+    data['type'] = '2'
   }
   if (pathname.value === 'products') {
     data['name'] = productDetails.value.itname
+    data['type'] = '3'
   }
   gwcdata.value.push(data)
   window.localStorage.setItem('gwcdata', JSON.stringify(gwcdata.value))
@@ -140,6 +147,53 @@ function gwcDelete(index: number) {
   ElMessage({
     message: '已删除',
     type: 'success',
+  })
+}
+
+// 询价单下载
+function dolwnloadXjd() {
+  checkloinApi().then((res: any) => {
+    if (res && res.status) {
+      console.log('-------->', gwcdata.value)
+      const inquiry_items: any = ref([])
+      for (let i = 0; i < gwcdata.value.length; i++) {
+        inquiry_items.value.push({
+          product_id: gwcdata.value[i].id,
+          product_type: gwcdata.value[i].type,
+        })
+      }
+      const user_id = window.localStorage.getItem('userinfo') ? JSON.parse(window.localStorage.getItem('userinfo') || '').id : ''
+      inquirydownloadfromcartApi({
+        user_id: user_id,
+        inquiry_items: inquiry_items.value,
+      }).then((res: any) => {
+        console.log('res -------->', res)
+        // 创建下载链接
+        const url = window.URL.createObjectURL(new Blob([res]));
+        console.log('url -------->', url)
+        const a = document.createElement('a');
+        a.href = url;
+
+        // // 从响应头获取文件名
+        // const contentDisposition = res.headers['content-disposition'];
+        // console.log('contentDisposition -------->', contentDisposition)
+        // const filename = contentDisposition.match(/filename="(.+)"/)[1];
+        a.download = 'aaa.xlsx'; // 设置默认文件名
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+
+        // if (res && res.url) {
+        //   window.open(res.url, '_blank')
+        //   // 清空购物车
+        //   gwcdata.value = []
+        //   window.localStorage.setItem('gwcdata', JSON.stringify(gwcdata.value))
+        //   gwcVisible.value = false
+        // }
+      })
+    }
   })
 }
 
@@ -168,16 +222,16 @@ const value1 = ref(4.8)
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-          }}</span>
+            }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -415,7 +469,7 @@ const value1 = ref(4.8)
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-              }}</span>
+                }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
@@ -475,6 +529,12 @@ const value1 = ref(4.8)
       </el-badge>
     </div>
     <el-dialog v-model="gwcVisible" title="我的购物车" width="80%">
+      <div v-if="gwcdata && gwcdata.length > 0" class="frec">
+        <button class="xjgDolwnload" @click="dolwnloadXjd">
+          <i class="fa fa-cloud-download mr-2"></i>
+          <span>下载询价单</span>
+        </button>
+      </div>
       <el-table :data="gwcdata" border highlight-current-row>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="name" label="产品名称" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌" />
@@ -1110,6 +1170,17 @@ const value1 = ref(4.8)
       cursor: pointer;
       transform: scale(1.05);
     }
+  }
+
+  .xjgDolwnload {
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.5rem;
+    color: #fff;
+    background-color: rgb(22 93 255 / 0.9);
+    border-radius: 0.5rem;
   }
 }
 </style>

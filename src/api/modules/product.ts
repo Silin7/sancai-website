@@ -1,4 +1,6 @@
+import axios from 'axios'
 import api from '@/api/index'
+import { baseURL } from '../baseConfig'
 
 // 用户端-获取所有启用的产品分类（按上级分类、排序值升序）
 export function productpcateApi(params: any) {
@@ -143,4 +145,34 @@ export function producteitsearchApi(params: any) {
 // 用户端-获取信息化产品相关产品（通过路径参数传递当前产品ID）
 export function producteitrelatedApi(id: any) {
   return api.get('/api/client/product/it-products/related/' + id)
+}
+
+// 用户端-从购物车下载询价单Excel并保存到数据库（需登录且账号活跃）
+export function inquirydownloadfromcartApi(data: any) {
+  // return api.post('/api/client/inquiry/download-from-cart', data)
+  return axios({
+    baseURL,
+    url: '/api/client/inquiry/download-from-cart',
+    method: 'POST',
+    responseType: 'blob', // 重要
+    data,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
+      token: `Bearer ${localStorage.getItem('token') ?? ''}`,
+      Authorization: `Bearer ${localStorage.getItem('token') ?? ''}`,
+    },
+  })
+}
+
+// 获取当前用户的询价单列表
+export function inquiryorderslistApi(params: any) {
+  return api.get('/api/client/inquiry/orders', {
+    params,
+  })
+}
+
+// 获取询价单详情
+export function inquiryordersdetailsApi(inquiryid: any) {
+  return api.get(`/api/client/inquiry/orders/${inquiryid}`)
 }

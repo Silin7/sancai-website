@@ -422,7 +422,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/inquiryfrom.vue'),
     meta: {
       title: '新材网-报价单',
-      stcode: 'user-inquiryfrom',
+      stcode: 'user-inquirylist',
       website: false,
     },
   },

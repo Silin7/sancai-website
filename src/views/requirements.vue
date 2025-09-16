@@ -44,7 +44,7 @@ function tijiaoxuqiu() {
     "company_name": datasolutionData.value.company_name,
     "tel": datasolutionData.value.tel,
     "contact_person": datasolutionData.value.contact_person,
-    user_id: '8'
+    user_id: window.localStorage.getItem('userinfo') ? JSON.parse(window.localStorage.getItem('userinfo') || '').id : ''
   }).then((res: any) => {
     console.log('-------->', res)
   })
