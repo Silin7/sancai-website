@@ -177,7 +177,8 @@ const selectvalue: any = ref('01')
           </div>
         </div>
         <div class="supplierProductsBox">
-          <div class="supplierProductsItem" v-for="(item, index) in suppliercompanies" :key="index">
+          <div class="supplierProductsItem" v-for="(item, index) in suppliercompanies" :key="index"
+            @click="pageJump('supplier_detail', { supplierid: item.id })">
             <div class="supplierPiContent">
               <div class="supplierPiImgBox">
                 <img v-if="item.company_imgs" :src="fileURL + item.company_imgs[0]" alt="企业图片" class="supplierPiImg" />
@@ -218,7 +219,7 @@ const selectvalue: any = ref('01')
                 <i class="fa fa-phone"></i>
                 <span class="supplierPiClassSpan">{{ item.tel }}</span>
               </div>
-              <div class="supplierPiCright" @click="pageJump('supplier_detail', { supplierid: item.id })">
+              <div class="supplierPiCright">
                 <button>查看详情</button>
                 <i class="fa fa-angle-right"></i>
               </div>

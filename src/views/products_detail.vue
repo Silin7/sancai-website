@@ -2,6 +2,7 @@
 import dayjs from 'dayjs'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import { fileURL } from '@/api/baseConfig'
 import formatCurrency from '@/hooks/formatCurrency'
@@ -92,6 +93,56 @@ function xgcpDetailClick(item: any) {
   // }, 200)
 }
 
+// 购物车
+const gwcdata: any = ref(JSON.parse(window.localStorage.getItem('gwcdata') || '') || [])
+const gwcVisible: any = ref(false)
+
+function gwcVisibleShow() {
+  gwcVisible.value = true
+}
+
+// 加入购物车
+function addToCart() {
+  // 这里可以添加加入购物车的逻辑
+  const data = {
+    product_type: pathname.value,
+    id: productDetails.value.id,
+    name: '',
+    brand: productDetails.value.brand,
+    pretaxprice: productDetails.value.pretaxprice,
+    afertaxprice: productDetails.value.afertaxprice,
+    taxrate: productDetails.value.taxrate,
+    supplier_name: productDetails.value.supplier_name,
+  }
+  if (pathname.value === 'scheme') {
+    data['name'] = productDetails.value.servicename
+  }
+  if (pathname.value === 'materials') {
+    data['name'] = productDetails.value.materialname
+  }
+  if (pathname.value === 'sale') {
+    data['name'] = productDetails.value.equipmentname
+  }
+  if (pathname.value === 'products') {
+    data['name'] = productDetails.value.itname
+  }
+  gwcdata.value.push(data)
+  window.localStorage.setItem('gwcdata', JSON.stringify(gwcdata.value))
+  ElMessage({
+    message: '已加入询价单',
+    type: 'success',
+  })
+}
+
+function gwcDelete(index: number) {
+  gwcdata.value.splice(index, 1)
+  window.localStorage.setItem('gwcdata', JSON.stringify(gwcdata.value))
+  ElMessage({
+    message: '已删除',
+    type: 'success',
+  })
+}
+
 onMounted(() => {
   productid.value = route.query.id
   pathname.value = route.query.name
@@ -117,16 +168,16 @@ const value1 = ref(4.8)
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-            }}</span>
+          }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -161,9 +212,9 @@ const value1 = ref(4.8)
               <i class="fa fa-phone"></i>
               <span>联系供应商</span>
             </button>
-            <button class="pdcljcJrgwc">
+            <button class="pdcljcJrgwc" @click="addToCart">
               <i class="fa fa-shopping-cart"></i>
-              <span>加入购物车</span>
+              <span>加入询价单</span>
             </button>
           </div>
           <div class="pdcljRight">
@@ -364,7 +415,7 @@ const value1 = ref(4.8)
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-                }}</span>
+              }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
@@ -409,7 +460,7 @@ const value1 = ref(4.8)
             </p>
           </div>
         </div>
-        <button class="pdcrGysxq">
+        <button class="pdcrGysxq" @click="pageJump('supplier_detail', { supplierid: productDetails.supplier_info.id })">
           <span>查看供应商详情</span>
         </button>
         <button class="pdcrZxzx">
@@ -418,11 +469,36 @@ const value1 = ref(4.8)
         </button>
       </div>
     </div>
-    <div class="gwcBox frcc">
-      <el-badge :value="2">
+    <div class="gwcBox frcc" @click="gwcVisibleShow">
+      <el-badge :value="gwcdata.length">
         <i class="fa fa-cart-plus"></i>
       </el-badge>
     </div>
+    <el-dialog v-model="gwcVisible" title="我的购物车" width="80%">
+      <el-table :data="gwcdata" border highlight-current-row>
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="name" label="产品名称" />
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌" />
+        <el-table-column align="center" label="税前价格" width="120">
+          <template #default="scope">
+            <span>¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="税后价格" width="120">
+          <template #default="scope">
+            <span>¥{{ formatCurrency(scope.row.afertaxprice) }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="supplier_name" label="供应商" />
+        <el-table-column align="center" label="操作" width="80">
+          <template #default="scope">
+            <div class="table-operate">
+              <el-button text type="danger" @click="gwcDelete(scope.$index)"> 删除
+              </el-button>
+            </div>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 
@@ -1015,7 +1091,8 @@ const value1 = ref(4.8)
   .gwcBox {
     position: fixed;
     right: 20px;
-    bottom: calc(-1.75rem + 50vh);
+    bottom: 20vh;
+    // bottom: calc(-1.75rem + 50vh);
     z-index: 9999;
     width: 3.5rem;
     height: 3.5rem;
@@ -1025,6 +1102,13 @@ const value1 = ref(4.8)
     i {
       color: #fff;
       font-size: 1.5rem;
+    }
+  }
+
+  .gwcBox:hover {
+    @media (min-width: 768px) {
+      cursor: pointer;
+      transform: scale(1.05);
     }
   }
 }
