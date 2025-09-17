@@ -6,6 +6,7 @@ import windowOpen from '@/hooks/windowOpen'
 import { fileURL } from '@/api/baseConfig'
 import { bannerlistApi, secpositionsApi, syspseoApi } from '@/api/modules/basic'
 import { allaiappApi } from '@/api/modules/common'
+import { aialtopApi } from '@/api/modules/ai'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -72,10 +73,22 @@ function getAllaiapp() {
   })
 }
 
+// AI应用成功案例 TOP
+const aialtop: any = ref([])
+
+function getAialtop() {
+  aialtopApi().then((res: any) => {
+    if (res) {
+      aialtop.value = res
+    }
+  })
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
   getAllaiapp()
+  getAialtop()
 })
 
 onBeforeUnmount(() => {
@@ -149,16 +162,17 @@ onBeforeUnmount(() => {
         <div class="caseHeng"></div>
         <div class="caseInfo">探索建筑业AI应用的实际效果与价值</div>
         <div class="caseClassbox">
-          <div v-for="index in 3" :key="index" class="caseClassitem">
+          <div v-for="(item, index) in aialtop" :key="index" class="caseClassitem">
             <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="caseClassitemfa" />
             <div class="caseClassitembox">
-              <div class="caseClassitemFrsc">
-                <div class="caseClassitemZnsj">智能设计</div>
-                <div class="caseClassitemSpan">2024年5月</div>
+              <div v-if="item.tags" class="caseClassitemFrsc">
+                <div v-for="(item2, index2) in item.tags.split(',')" :key="index2" class="caseClassitemZnsj">{{ item2 }}
+                </div>
+                <!-- <div class="caseClassitemSpan">2024年5月</div> -->
               </div>
-              <div class="caseClassitemtext">杭州某商业综合体AI优化设计</div>
+              <div class="caseClassitemtext">{{ item.title }}</div>
               <div class="caseClassiteminfo">
-                应用AI辅助设计工具，优化建筑结构，节省材料成本12%，缩短设计周期30%
+                {{ item.description }}
               </div>
               <div class="frsc">
                 <button class="caseClassitembtn" @click="pageJump('ai_detail')">
@@ -476,6 +490,7 @@ onBeforeUnmount(() => {
             margin-bottom: 1rem;
 
             .caseClassitemZnsj {
+              margin-right: 0.5rem;
               padding: 0.25rem 0.75rem;
               font-size: 0.875rem;
               line-height: 1.25rem;
@@ -483,6 +498,10 @@ onBeforeUnmount(() => {
               color: rgb(22 93 255);
               background-color: rgb(22 93 255 / 0.1);
               border-radius: 9999px;
+            }
+
+            .caseClassitemZnsj:last-child {
+              margin-right: 0;
             }
 
             .caseClassitemSpan {
