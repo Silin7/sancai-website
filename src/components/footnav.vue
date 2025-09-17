@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
+import useHeaderStore from '@/store/modules/header'
 import { sysinfosApi } from '@/api/modules/basic'
 
 // 可视窗口宽度
@@ -24,6 +25,12 @@ function getSysinfosApi() {
   })
 }
 
+const headerStore = useHeaderStore()
+
+const selectedTab = computed(() => {
+  return headerStore.selectedTab
+})
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getSysinfosApi()
@@ -36,7 +43,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="footnav">
-    <div class="footTop">
+    <div v-if="selectedTab === 'home'" class="footTop">
       <el-row :gutter="20" class="footRow">
         <el-col :xs="24" :sm="12" :md="6" :lg="6" :xl="6" class="footCol">
           <div class="frsc">
@@ -124,18 +131,18 @@ onBeforeUnmount(() => {
       </el-row>
     </div>
     <div class="footBottom">
-      <div class="footInfo">© 2025 杭州三才工程信息科技有限公司. 保留所有权利.</div>
-      <div class="footInfo">浙ICP备12345678号-1</div>
+      <div class="footInfo">{{ sysInfos.sys_company }}</div>
+      <div class="footInfo">{{ sysInfos.sys_filing }}</div>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
 .footnav {
-  padding: 2rem 2rem 2rem;
+  padding: 2rem 2rem;
   background-color: #012060;
 
   .footTop {
-    margin: 0 auto;
+    margin: 0 auto 2rem;
     max-width: 1536px;
 
     .footRow {
@@ -246,7 +253,6 @@ onBeforeUnmount(() => {
   }
 
   .footBottom {
-    padding-top: 2rem;
 
     .footInfo {
       text-align: center;

@@ -217,6 +217,7 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .newsPage {
   background-color: #f9fafb;
+  min-height: calc(100vh - 120px);
   overflow-x: hidden;
 
   .nsbannerBox {

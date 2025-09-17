@@ -150,6 +150,7 @@ function convertSecondsToHMS(seconds: any) {
 
 <style lang="scss" scoped>
 .pdPage {
+  min-height: calc(100vh - 120px);
   background-color: #f9fafb;
   overflow-x: hidden;
 

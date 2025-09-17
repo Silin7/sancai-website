@@ -421,8 +421,9 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .aidPage {
-  background-color: #f9fafb;
   overflow-x: hidden;
+  min-height: calc(100vh - 120px);
+  background-color: #f9fafb;
 
   .aidHbox {
     .aidHcontent {

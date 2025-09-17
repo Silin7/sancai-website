@@ -213,6 +213,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .requirementsPage {
+  min-height: calc(100vh - 120px);
   background-color: #f9fafb;
   overflow-x: hidden;
 

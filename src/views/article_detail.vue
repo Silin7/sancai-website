@@ -54,6 +54,7 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .adPage {
   overflow-x: hidden;
+  min-height: calc(100vh - 120px);
   background: #fff;
 
   .adCbox {

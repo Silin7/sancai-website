@@ -141,8 +141,9 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .ndPage {
-  background-color: #fff;
   overflow-x: hidden;
+  min-height: calc(100vh - 120px);
+  background-color: #fff;
 
   .ndHbox {
     background-color: #f0f7ff;

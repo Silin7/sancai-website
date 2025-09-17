@@ -284,16 +284,16 @@ const value1 = ref(4.8)
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-          }}</span>
+            }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -531,7 +531,7 @@ const value1 = ref(4.8)
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-              }}</span>
+                }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
@@ -626,6 +626,7 @@ const value1 = ref(4.8)
 
 <style lang="scss" scoped>
 .pdPage {
+  min-height: calc(100vh - 120px);
   background-color: #f9fafb;
   overflow-x: hidden;
 

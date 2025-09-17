@@ -457,6 +457,7 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .materialsPage {
+  min-height: calc(100vh - 120px);
   background-color: #f9fafb;
 
   .prbannerBox {

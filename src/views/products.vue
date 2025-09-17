@@ -608,6 +608,8 @@ onBeforeUnmount(() => {
 
 <style lang="scss">
 .materialsPage {
+  min-height: calc(100vh - 120px);
+
   .el-input__wrapper {
     border-radius: 0.5rem;
   }
