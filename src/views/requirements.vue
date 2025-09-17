@@ -9,6 +9,7 @@ const route = useRoute()
 
 const datasolutionid: any = ref("")
 const datasolutionData: any = ref({})
+const introduction: any = ref("")
 
 // init 获取基本信息
 function getRequirementsbycate() {
@@ -17,6 +18,7 @@ function getRequirementsbycate() {
   }).then((res: any) => {
     if (res) {
       datasolutionData.value = res
+      introduction.value = res.usefor || ''
     }
   })
 }
@@ -124,9 +126,9 @@ onMounted(() => {
 <template>
   <div class="requirementsPage">
     <div class="requirementsHead">
-      <div class="requHtitle">CIM+人房管理</div>
+      <div class="requHtitle">{{ datasolutionData.cate_name }}</div>
       <div class="requHsub">
-        基于BIM模型实现工程全生命周期计算与动态信息管控，聚焦CIM+人房管理场景，助力城市空间与人口数据精细化治理，为智慧化管理提供精准支撑。
+        {{ introduction }}
       </div>
       <div class="requirementsCont">
         <div class="requCtitle">{{ datasolutionData.name }}</div>
