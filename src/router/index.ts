@@ -276,16 +276,16 @@ const routes: Array<RouteRecordRaw> = [
       website: false,
     },
   },
-  // {
-  //   path: '/user/vip',
-  //   name: 'user-vip',
-  //   component: () => import('@/views/user/vip.vue'),
-  //   meta: {
-  //     title: '新材网-VIP',
-  //     stcode: 'user-vip',
-  //     website: false,
-  //   },
-  // },
+  {
+    path: '/user/upgradevip',
+    name: 'user-upgradevip',
+    component: () => import('@/views/user/upgradevip.vue'),
+    meta: {
+      title: '新材网-升级VIP',
+      stcode: 'user-upgradevip',
+      website: false,
+    },
+  },
   {
     path: '/user/profile',
     name: 'user-profile',
