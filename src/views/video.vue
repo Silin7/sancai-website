@@ -130,7 +130,6 @@ onBeforeUnmount(() => {
 })
 
 const input2: any = ref()
-const selectvalue: any = ref('01')
 
 // 时分秒过滤器
 function convertSecondsToHMS(seconds: any) {
@@ -234,15 +233,6 @@ function convertSecondsToHMS(seconds: any) {
         <div class="containerProducts">
           <div class="containerProductsTitle">
             <div class="containerProductsTitleText">精选视频</div>
-            <div class="containerProductsTitlePxfs">
-              <span v-if="windowWidth > 1140">排序方式：</span>
-              <el-select v-model="selectvalue" placeholder="Select" size="large" style="width: 140px">
-                <el-option label="最新视频" value="01" />
-                <el-option label="价格从低到高" value="02" />
-                <el-option label="价格从高到低" value="03" />
-                <el-option label="最多人学习" value="04" />
-              </el-select>
-            </div>
           </div>
           <div class="containerProductsBox">
             <div class="containerProductsItem" v-for="(item, index) in videoList" :key="index"

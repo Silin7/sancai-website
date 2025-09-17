@@ -115,8 +115,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWindowWidth)
 })
-
-const selectvalue: any = ref('01')
 </script>
 
 <template>
@@ -153,14 +151,6 @@ const selectvalue: any = ref('01')
         <div class="newsProducts">
           <div class="newsProductsTitle">
             <div class="newsProductsTitleText">最新资讯</div>
-            <div class="newsProductsTitlePxfs">
-              <span v-if="windowWidth > 1140">排序方式：</span>
-              <el-select v-model="selectvalue" placeholder="Select" size="large" style="width: 110px">
-                <el-option label="最新发布" value="01" />
-                <el-option label="最热文章" value="02" />
-                <el-option label="最多评论" value="03" />
-              </el-select>
-            </div>
           </div>
           <div v-if="total > 0" class="newsProductsBox">
             <div class="newsProductsItem" v-for="(item, index) in articles" :key="index" @click="

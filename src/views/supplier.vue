@@ -114,8 +114,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWindowWidth)
 })
-
-const selectvalue: any = ref('01')
 </script>
 
 <template>
@@ -165,16 +163,6 @@ const selectvalue: any = ref('01')
       <div class="supplierProducts">
         <div class="supplierProductsTitle">
           <div class="supplierProductsTitleText">供应商列表</div>
-          <div class="supplierProductsTitlePxfs">
-            <span v-if="windowWidth > 1140">排序方式：</span>
-            <el-select v-model="selectvalue" placeholder="Select" size="large" style="width: 110px">
-              <el-option label="默认排序" value="01" />
-              <el-option label="名称升序" value="02" />
-              <el-option label="名称降序" value="03" />
-              <el-option label="按地区" value="04" />
-              <el-option label="按评分" value="05" />
-            </el-select>
-          </div>
         </div>
         <div class="supplierProductsBox">
           <div class="supplierProductsItem" v-for="(item, index) in suppliercompanies" :key="index"
