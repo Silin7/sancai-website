@@ -89,6 +89,7 @@ onBeforeUnmount(() => {
       <!-- aibanner -->
       <div class="aibannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
         <img :src="fileURL + bannerData.imgurl" alt="aibanner" />
+        <!-- <img src="@/assets/banner/ai.jpg" alt="dsbanner" /> -->
         <div class="aibannerAbsolute">
           <div class="aibannerContent">
             <div class="aibannerTitle">AI赋能建筑业 开启智能建造新时代</div>
@@ -179,16 +180,16 @@ onBeforeUnmount(() => {
 
   .aibannerBox {
     position: relative;
+    padding-top: 80px;
     width: 100vw;
-    height: 40rem;
 
     @media (max-width: 768px) {
-      height: 30rem;
+      padding-top: 64px;
     }
 
     img {
       width: 100vw;
-      height: 100%;
+      height: 368px;
     }
 
     .aibannerAbsolute {

@@ -259,12 +259,13 @@ onBeforeUnmount(() => {
     <!-- BANNER -->
     <div class="prbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
       <img :src="fileURL + bannerData.imgurl" alt="mabanner" />
-      <div class="prbannerAbsolute">
+      <!-- <img src="@/assets/banner/scheme.jpg" alt="dsbanner" /> -->
+      <!-- <div class="prbannerAbsolute">
         <div class="prbannerContent">
-          <!-- <div class="prbannerTitle">材料/设备</div> -->
-          <!-- <div class="prbannerSubtitle">绿色化 数字化 智能化</div> -->
+          <div class="prbannerTitle">材料/设备</div>
+          <div class="prbannerSubtitle">绿色化 数字化 智能化</div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="containerBox">
       <div class="containerLeft">
@@ -436,16 +437,16 @@ onBeforeUnmount(() => {
 
   .prbannerBox {
     position: relative;
+    padding-top: 80px;
     width: 100vw;
-    height: 40rem;
 
     @media (max-width: 768px) {
-      height: 30rem;
+      padding-top: 64px;
     }
 
     img {
       width: 100vw;
-      height: 100%;
+      height: 368px;
     }
 
     .prbannerAbsolute {

@@ -121,6 +121,7 @@ onBeforeUnmount(() => {
     <!-- BANNER -->
     <div class="srbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
       <img :src="fileURL + bannerData.imgurl" alt="srbanner" />
+      <!-- <img src="@/assets/banner/supplier.jpg" alt="dsbanner" /> -->
       <div class="srbannerAbsolute">
         <div class="srbannerContent">
           <div class="srbannerTitle">供应商列表</div>
@@ -232,16 +233,16 @@ onBeforeUnmount(() => {
 
   .srbannerBox {
     position: relative;
+    padding-top: 80px;
     width: 100vw;
-    height: 40rem;
 
     @media (max-width: 768px) {
-      height: 30rem;
+      padding-top: 64px;
     }
 
     img {
       width: 100vw;
-      height: 100%;
+      height: 368px;
     }
 
     .srbannerAbsolute {
@@ -266,15 +267,15 @@ onBeforeUnmount(() => {
           font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           line-height: 1.25;
-          color: rgb(1 32 96);
+          color: rgb(255 255 255);
         }
 
         .srbannerSubtitle {
           margin-bottom: 2rem;
-          max-width: 42rem;
+          max-width: 60rem;
           font-size: clamp(1rem, 4vw, 1.25rem);
           font-weight: 500;
-          color: rgb(1 32 96 / 0.9);
+          color: rgb(255 255 255 / 0.9);
         }
       }
     }

@@ -122,6 +122,7 @@ onBeforeUnmount(() => {
     <!-- BANNER -->
     <div class="nsbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
       <img :src="fileURL + bannerData.imgurl" alt="nsbanner" />
+      <!-- <img src="@/assets/banner/news.jpg" alt="dsbanner" /> -->
       <div class="nsbannerAbsolute">
         <div class="nsbannerContent">
           <div class="nsbannerTitle">热点资讯</div>
@@ -220,16 +221,16 @@ onBeforeUnmount(() => {
 
   .nsbannerBox {
     position: relative;
+    padding-top: 80px;
     width: 100vw;
-    height: 40rem;
 
     @media (max-width: 768px) {
-      height: 30rem;
+      padding-top: 64px;
     }
 
     img {
       width: 100vw;
-      height: 100%;
+      height: 368px;
     }
 
     .nsbannerAbsolute {
@@ -254,15 +255,15 @@ onBeforeUnmount(() => {
           font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           line-height: 1.25;
-          color: rgb(1 32 96 / var(--tw-text-opacity, 1));
+          color: rgb(255 255 255);
         }
 
         .nsbannerSubtitle {
           margin-bottom: 2rem;
-          max-width: 42rem;
+          max-width: 60rem;
           font-size: clamp(1.25rem, 4vw, 1.5rem);
           font-weight: 500;
-          color: rgb(1 32 96 / 0.9);
+          color: rgb(255 255 255 / 0.9);
         }
 
         .nsbannerLlspbtn {

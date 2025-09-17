@@ -67,6 +67,7 @@ onBeforeUnmount(() => {
       <!-- BANNER -->
       <div class="abbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
         <img :src="fileURL + bannerData.imgurl" alt="abbanner" />
+        <!-- <img src="@/assets/banner/about.jpg" alt="dsbanner" /> -->
         <div class="abbannerAbsolute">
           <div class="abbannerContent">
             <div class="abbannerTitle">杭州三才工程信息科技有限公司</div>
@@ -308,16 +309,16 @@ onBeforeUnmount(() => {
 
   .abbannerBox {
     position: relative;
+    padding-top: 80px;
     width: 100vw;
-    height: 40rem;
 
     @media (max-width: 768px) {
-      height: 30rem;
+      padding-top: 64px;
     }
 
     img {
       width: 100vw;
-      height: 100%;
+      height: 368px;
     }
 
     .abbannerAbsolute {
@@ -331,7 +332,7 @@ onBeforeUnmount(() => {
         margin: 0 auto;
         padding: 10rem 2rem 0;
         width: 100%;
-        max-width: 1720px;
+        max-width: 1536px;
 
         @media (max-width: 768px) {
           padding: 6rem 1rem 0;
@@ -342,7 +343,7 @@ onBeforeUnmount(() => {
           font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           line-height: 1.25;
-          color: #fff;
+          color: rgb(255 255 255);
         }
 
         .abbannerSubtitle {
@@ -409,7 +410,7 @@ onBeforeUnmount(() => {
       margin: 0 auto;
       padding: 0 1rem;
       width: 100%;
-      max-width: 1720px;
+      max-width: 1536px;
 
       .introtTitle {
         font-size: clamp(1.5rem, 4vw, 2.5rem);
@@ -582,7 +583,7 @@ onBeforeUnmount(() => {
     margin: 0 auto;
     padding: 4rem 1rem 5rem;
     width: 100%;
-    max-width: 1720px;
+    max-width: 1536px;
 
     @media (max-width: 768px) {
       padding: 2rem 1rem;
@@ -714,7 +715,7 @@ onBeforeUnmount(() => {
       margin: 0 auto;
       padding: 0 1rem;
       width: 100%;
-      max-width: 1720px;
+      max-width: 1536px;
 
       .businessTitle {
         font-size: clamp(1.5rem, 4vw, 2.5rem);
@@ -840,7 +841,7 @@ onBeforeUnmount(() => {
       margin: 0 auto;
       padding: 0 1rem;
       width: 100%;
-      max-width: 1720px;
+      max-width: 1536px;
 
       .futureTitle {
         font-size: clamp(1.5rem, 4vw, 2.5rem);
@@ -917,7 +918,7 @@ onBeforeUnmount(() => {
     margin: 0 auto;
     padding: 6rem 1rem;
     width: 100%;
-    max-width: 1720px;
+    max-width: 1536px;
 
     @media (max-width: 768px) {
       padding: 2rem 1rem;

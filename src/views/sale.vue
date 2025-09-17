@@ -60,6 +60,14 @@ function getBannerlist() {
   })
 }
 
+// 租赁 / 销售
+const thetype: any = ref('')
+
+function thetypeClick(code: any) {
+  thetype.value = code
+  getProductmaterialssearch()
+}
+
 // 一级分类
 const pcateOne: any = ref([])
 const pcateOneId: any = ref('')
@@ -200,6 +208,9 @@ function getProductmaterialssearch() {
     pageSize: pageSize.value,
     ...searchForm.value,
   }
+  if (thetype.value !== '') {
+    parameter.thetype = thetype.value
+  }
   if (pcateOneId.value !== '') {
     parameter.cate_id = pcateOneId.value
   }
@@ -259,12 +270,13 @@ onBeforeUnmount(() => {
     <!-- BANNER -->
     <div class="prbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
       <img :src="fileURL + bannerData.imgurl" alt="mabanner" />
-      <div class="prbannerAbsolute">
+      <!-- <img src="@/assets/banner/sale.jpg" alt="dsbanner" /> -->
+      <!-- <div class="prbannerAbsolute">
         <div class="prbannerContent">
-          <!-- <div class="prbannerTitle">材料/设备</div> -->
-          <!-- <div class="prbannerSubtitle">绿色化 数字化 智能化</div> -->
+          <div class="prbannerTitle">材料/设备</div>
+          <div class="prbannerSubtitle">绿色化 数字化 智能化</div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="containerBox">
       <div class="containerLeft">
@@ -274,6 +286,19 @@ onBeforeUnmount(() => {
             <button class="containerClassCol" @click="pageJump('materials')">材料/设备</button>
             <button class="containerClassColActive">智能建造装备</button>
             <button class="containerClassCol" @click="pageJump('products')">信息化产品/服务</button>
+          </div>
+          <!-- 0=租赁，1=销售 -->
+          <div class="containerClassRow">
+            <button :class="[thetype === '' ? 'containerClassColActive' : 'containerClassCol']"
+              @click="thetypeClick('')">
+              全部
+            </button>
+            <button :class="[thetype === 0 ? 'containerClassColActive' : 'containerClassCol']" @click="thetypeClick(0)">
+              租赁
+            </button>
+            <button :class="[thetype === 1 ? 'containerClassColActive' : 'containerClassCol']" @click="thetypeClick(1)">
+              销售
+            </button>
           </div>
           <!-- 一级分类 -->
           <div class="containerClassRow">
@@ -436,16 +461,16 @@ onBeforeUnmount(() => {
 
   .prbannerBox {
     position: relative;
+    padding-top: 80px;
     width: 100vw;
-    height: 40rem;
 
     @media (max-width: 768px) {
-      height: 30rem;
+      padding-top: 64px;
     }
 
     img {
       width: 100vw;
-      height: 100%;
+      height: 368px;
     }
 
     .prbannerAbsolute {

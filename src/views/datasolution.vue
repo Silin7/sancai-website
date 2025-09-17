@@ -102,6 +102,7 @@ onBeforeUnmount(() => {
       <!-- BANNER -->
       <div class="dsbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
         <img :src="fileURL + bannerData.imgurl" alt="dsbanner" />
+        <!-- <img src="@/assets/banner/datasolution.jpg" alt="dsbanner" /> -->
         <div class="dsbannerAbsolute">
           <div class="dsbannerContent">
             <div class="dsbannerTitle">为新城建提供绿色化 数字化 智能化综合解决方案</div>
@@ -183,16 +184,16 @@ onBeforeUnmount(() => {
 
   .dsbannerBox {
     position: relative;
+    padding-top: 80px;
     width: 100vw;
-    height: 40rem;
 
     @media (max-width: 768px) {
-      height: 30rem;
+      padding-top: 64px;
     }
 
     img {
       width: 100vw;
-      height: 100%;
+      height: 368px;
     }
 
     .dsbannerAbsolute {

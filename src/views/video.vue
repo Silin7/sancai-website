@@ -153,6 +153,7 @@ function convertSecondsToHMS(seconds: any) {
     <!-- BANNER -->
     <div class="prbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
       <img :src="fileURL + bannerData.imgurl" alt="prbanner" />
+      <!-- <img src="@/assets/banner/video.jpg" alt="dsbanner" /> -->
       <div class="prbannerAbsolute">
         <div class="prbannerContent">
           <div class="prbannerTitle">专业视频课程</div>
@@ -346,16 +347,16 @@ function convertSecondsToHMS(seconds: any) {
 
   .prbannerBox {
     position: relative;
+    padding-top: 80px;
     width: 100vw;
-    height: 40rem;
 
     @media (max-width: 768px) {
-      height: 30rem;
+      padding-top: 64px;
     }
 
     img {
       width: 100vw;
-      height: 100%;
+      height: 368px;
     }
 
     .prbannerAbsolute {
@@ -380,15 +381,15 @@ function convertSecondsToHMS(seconds: any) {
           font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           line-height: 1.25;
-          color: rgb(1 32 96);
+          color: rgb(255 255 255);
         }
 
         .prbannerSubtitle {
-          max-width: 42rem;
           margin-bottom: 2rem;
+          max-width: 60rem;
           font-size: clamp(1rem, 4vw, 1.25rem);
           font-weight: 500;
-          color: rgb(1 32 96 / 0.9);
+          color: rgb(255 255 255 / 0.9);
         }
 
         .bannerllkcbtn {
