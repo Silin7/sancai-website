@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import pageJump from '@/hooks/pageJump'
+import { homestatisticApi } from '@/api/modules/admin'
 
 const data1: any = ref({
   jcnum: 23,
@@ -18,38 +19,49 @@ const data1: any = ref({
 //   { state: 'scuss', title: '处理报价单 #20250704001', date: '2025-07-04 11:20' },
 // ])
 
-// 登陆后的用户信息
-const userInfo: any = ref({})
+// // 登陆后的用户信息
+// const userInfo: any = ref({})
 
-function getUserInfo() {
-  if (window.localStorage.getItem('userinfo')) {
-    userInfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
-  } else {
-    userInfo.value = {}
-  }
+// function getUserInfo() {
+//   if (window.localStorage.getItem('userinfo')) {
+//     userInfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
+//   } else {
+//     userInfo.value = {}
+//   }
+// }
+
+const homeStatistic: any = ref({})
+
+function getHomestatistic() {
+  homestatisticApi().then((res: any) => {
+    if (res) {
+      homeStatistic.value = res.data
+    }
+  })
 }
 
 onMounted(() => {
-  getUserInfo()
+  // getUserInfo()
+  getHomestatistic()
 })
 </script>
 
 <template>
   <div class="page-main">
     <div class="welcome-section">
-      <h1 class="welcome-title">欢迎回来，{{ userInfo.name || '用户' }}</h1>
+      <h1 class="welcome-title">欢迎回来，{{ homeStatistic.user_name || '用户' }}</h1>
       <p class="welcome-message">
         今天是<span>{{ dayjs().format('YYYY年MM月DD日') }}{{ dayjs().locale('zh-cn').format('dddd') }}</span>，以下是您的平台数据概览
       </p>
     </div>
-    <el-row :gutter="24">
+    <el-row v-if="homeStatistic.product_statistics" :gutter="24">
       <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
         <div class="stat-card">
           <div class="stat-icon" style="background-color: #e8f3ff; color: #377dff">
             <i class="fa fa-dropbox"></i>
           </div>
-          <div class="stat-value">{{ data1.jcnum }}</div>
-          <div class="stat-label">已发布建材产品</div>
+          <div class="stat-value">{{ homeStatistic.product_statistics[0].count }}</div>
+          <div class="stat-label">{{ homeStatistic.product_statistics[0].product_type_name }}</div>
         </div>
       </el-col>
       <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
@@ -57,8 +69,10 @@ onMounted(() => {
           <div class="stat-icon" style="background-color: #e6f7ed; color: #52c41a">
             <i class="fa fa-wrench"></i>
           </div>
-          <div class="stat-value">{{ data1.jxnum }}</div>
-          <div class="stat-label">已发布机械产品</div>
+          <!-- <div class="stat-value">{{ data1.jxnum }}</div>
+          <div class="stat-label">已发布机械产品</div> -->
+          <div class="stat-value">{{ homeStatistic.product_statistics[1].count }}</div>
+          <div class="stat-label">{{ homeStatistic.product_statistics[1].product_type_name }}</div>
         </div>
       </el-col>
       <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
@@ -66,8 +80,10 @@ onMounted(() => {
           <div class="stat-icon" style="background-color: #fff2e8; color: #fa8c16">
             <i class="fa fa-info-circle"></i>
           </div>
-          <div class="stat-value">{{ data1.itnum }}</div>
-          <div class="stat-label">已发布信息化产品</div>
+          <!-- <div class="stat-value">{{ data1.itnum }}</div>
+          <div class="stat-label">已发布信息化产品</div> -->
+          <div class="stat-value">{{ homeStatistic.product_statistics[2].count }}</div>
+          <div class="stat-label">{{ homeStatistic.product_statistics[2].product_type_name }}</div>
         </div>
       </el-col>
       <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
@@ -75,8 +91,10 @@ onMounted(() => {
           <div class="stat-icon" style="background-color: #f6e9ff; color: #722ed1">
             <i class="fa fa-file-powerpoint-o"></i>
           </div>
-          <div class="stat-value">{{ data1.bjnum }}</div>
-          <div class="stat-label">待处理报价单</div>
+          <!-- <div class="stat-value">{{ data1.bjnum }}</div>
+          <div class="stat-label">待处理报价单</div> -->
+          <div class="stat-value">{{ homeStatistic.product_statistics[3].count }}</div>
+          <div class="stat-label">{{ homeStatistic.product_statistics[3].product_type_name }}</div>
         </div>
       </el-col>
     </el-row>

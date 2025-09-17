@@ -1,5 +1,10 @@
 import api from '@/api/index'
 
+// 用户中心 - 首页
+export function homestatisticApi() {
+  return api.get('/api/client/statistic/statistics')
+}
+
 // 获取有效案例类型列表（仅主分类）
 export function casetypesApi() {
   return api.get('/api/client/ucompany/casetypes')
