@@ -259,8 +259,6 @@ function convertSecondsToHMS(seconds: any) {
                   <div v-if="index % 2 === 0" class="supplierPingFen">¥{{ item.price }}</div>
                   <div v-else class="supplierPingFen2">¥99.90</div>
                 </div>
-                <!--  IN DOUBT description 不应该有个用富文本 -->
-                <div class="containerPiInfo">{{ item.description }}</div>
                 <div class="containerPiClass">
                   <div v-for="(item2, index2) in item.tag.split(' ')" :key="index" class="containerPiCitrm">
                     {{ item2 }}
