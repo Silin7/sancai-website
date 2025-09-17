@@ -147,24 +147,6 @@ export function producteitrelatedApi(id: any) {
   return api.get('/api/client/product/it-products/related/' + id)
 }
 
-// 用户端-从购物车下载询价单Excel并保存到数据库（需登录且账号活跃）
-export function inquirydownloadfromcartApi(data: any) {
-  // return api.post('/api/client/inquiry/download-from-cart', data)
-  return axios({
-    baseURL,
-    url: '/api/client/inquiry/download-from-cart',
-    method: 'POST',
-    responseType: 'blob', // 重要
-    data,
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': '*',
-      token: `Bearer ${localStorage.getItem('token') ?? ''}`,
-      Authorization: `Bearer ${localStorage.getItem('token') ?? ''}`,
-    },
-  })
-}
-
 // 获取当前用户的询价单列表
 export function inquiryorderslistApi(params: any) {
   return api.get('/api/client/inquiry/orders', {

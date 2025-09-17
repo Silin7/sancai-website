@@ -54,7 +54,7 @@ onMounted(() => {
   <div class="page-main">
     <div class="welcome-section">
       <h1 class="welcome-title">欢迎回来，{{ homeStatistic.user_name || '用户' }} <span
-          style="margin-left: 1rem; color: #1f69ff;" @click="shengjiVip">升级VIP</span></h1>
+          style="margin-left: 1rem; color: #1f69ff; cursor: pointer;" @click="shengjiVip">升级VIP</span></h1>
       <p class="welcome-message">
         今天是<span>{{ dayjs().format('YYYY年MM月DD日') }}{{ dayjs().locale('zh-cn').format('dddd') }}</span>，以下是您的平台数据概览
       </p>
