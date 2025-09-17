@@ -44,3 +44,8 @@ export function syscitiesApi(provinceid: any) {
 export function syscountiesApi(cityid: any) {
   return api.get(`/api/client/sysbase/counties/${cityid}`)
 }
+
+// 用户端-按板块位置ID获取最新N条启用的板块内容（含完整位置信息，默认10条）
+export function seccontentlistApi(positionid: any) {
+  return api.get(`/api/client/sysbase/sec-content-list/${positionid}`)
+}

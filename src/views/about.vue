@@ -4,7 +4,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
 import { fileURL } from '@/api/baseConfig'
-import { bannerlistApi, secpositionsApi, syspseoApi } from '@/api/modules/basic'
+import { bannerlistApi, secpositionsApi, syspseoApi, seccontentlistApi } from '@/api/modules/basic'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -21,10 +21,14 @@ function getSecpositions() {
   secpositionsApi().then((res: any) => {
     if (res && res.length > 0) {
       for (let i = 0; i < res.length; i++) {
-        if (res[i].url === window.localStorage.getItem('selectedName')) {
-          positionid.value = res[i].id
+        const item = res[i]
+        if (item.url === window.localStorage.getItem('selectedName')) {
+          positionid.value = item.id
           getBannerlist()
-          break
+        }
+        // 代表成果
+        if (item.url === 'aboutresult') {
+          getSeccontentlist(item.id)
         }
       }
     }
@@ -47,6 +51,15 @@ function getBannerlist() {
         ]
       })
     }
+  })
+}
+
+// 代表成果
+const seccontentList: any = ref([])
+
+function getSeccontentlist(id: any) {
+  seccontentlistApi(id).then((res: any) => {
+    seccontentList.value = res
   })
 }
 
@@ -153,10 +166,8 @@ onBeforeUnmount(() => {
         <div class="achievementHeng"></div>
         <div class="achievementInfo">在实践探索中，我们不断突破创新，取得了丰硕成果</div>
         <div class="achievementRidbox">
-          <div v-for="index in 4" :key="index" class="achievementRiditem">
-            <img
-              src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-              alt="" style="width: 100%; height: 12rem" />
+          <div v-for="(item, index) in seccontentList" :key="index" class="achievementRiditem">
+            <img :src="fileURL + item.secimg" alt="" style="width: 100%; height: 12rem" />
             <div class="achievementRidimgbox">
               <div class="achievementRidimgfx">
                 <div class="achievementRidimgFrsc">
@@ -176,10 +187,10 @@ onBeforeUnmount(() => {
                     style="color: rgb(22 163 74); background-color: rgb(220 252 231)">
                     <i class="fa fa-certificate"></i>
                   </div>
-                  <div class="achievementRidtitle">城市标志性建筑数字化服务</div>
+                  <div class="achievementRidtitle">{{ item.title }}</div>
                 </div>
                 <div class="achievementGridinfo">
-                  完成省内外多个城市标志性建筑的工程数字化咨询服务，提升项目管理效率30%以上
+                  {{ item.descriptioncontent }}
                 </div>
               </div>
             </div>
@@ -667,7 +678,14 @@ onBeforeUnmount(() => {
               font-weight: 700;
               font-size: 1.25rem;
               line-height: 1.75rem;
+              height: 1.75rem;
               color: rgb(1 32 96);
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 1;
+              line-clamp: 1;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
           }
 
@@ -675,6 +693,13 @@ onBeforeUnmount(() => {
             font-size: 1rem;
             line-height: 1.5rem;
             color: rgb(75 85 99);
+            height: 3rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
       }
