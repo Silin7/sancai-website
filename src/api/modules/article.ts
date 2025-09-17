@@ -1,5 +1,10 @@
 import api from '@/api/index'
 
+// 用户端-获取最新6条推荐文章（公开接口）
+export function articlesrecommendedApi() {
+  return api.get('/api/client/articles/recommended')
+}
+
 // 用户端-获取所有启用的文章分类（公开接口）
 export function articlescatesApi() {
   return api.get('/api/client/articles/cates')
@@ -31,7 +36,7 @@ export function articlescollectApi(articleid: any) {
 
 // 用户端-获取所有启用的单页文章（简化字段：ID、链接标识、标题、简介）
 export function articleallsimpleApi() {
-  return api.get("/api/client/particle/particles/all-simple")
+  return api.get('/api/client/particle/particles/all-simple')
 }
 
 // 用户端 - 按链接标识获取单页文章详情（如'about-us'获取关于我们页面）

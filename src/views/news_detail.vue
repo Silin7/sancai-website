@@ -2,7 +2,8 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
-import { articledetailApi } from '@/api/modules/article'
+import { fileURL } from '@/api/baseConfig'
+import { articledetailApi, articlesrecommendedApi } from '@/api/modules/article'
 
 // 路由信息
 const route = useRoute()
@@ -24,11 +25,41 @@ function getArticlesdetail() {
   })
 }
 
+// 用户端-获取最新6条推荐文章（公开接口）
+const articlesRecommended: any = ref([])
+
+function getArticlesrecommended() {
+  articlesrecommendedApi().then((res: any) => {
+    if (res) {
+      articlesRecommended.value = res
+    }
+    // res.forEach((element: any) => {
+    //   articlesRecommended.value.push(element)
+    // });
+  })
+}
+
+// 相关推荐 查看详情
+function xgtjDetailClick(item: any) {
+  // 新建页面login-banner.jpg
+  const url = window.location.href.split('?articlesid=')[0] + `?articlesid=${item.id}`
+  window.open(url, '_blank')
+  // 当前页面login-banner.jpg
+  // pageJump('products_detail', {
+  //   id: item.id,
+  //   name: pathname.value,
+  // })
+  // setTimeout(() => {
+  //   location.reload()
+  // }, 200)
+}
+
 
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   articlesid.value = route.query.articlesid
   getArticlesdetail()
+  getArticlesrecommended()
 })
 
 onBeforeUnmount(() => {
@@ -51,24 +82,21 @@ onBeforeUnmount(() => {
     </div>
     <div class="ndCbox">
       <div class="ndCtitle">{{ articledetail.title }}</div>
-      <div class="ndCzuoz">
+      <!-- <div class="ndCzuoz">
         <img src="@/assets/32.jpg" alt="" />
         <div class="zuozeInfo">
           <p>作者：李明</p>
           <p>三才工程研究院 BIM技术专家</p>
         </div>
-      </div>
+      </div> -->
       <div class="ndCFuwb">
         <div v-html="articledetail.content"></div>
       </div>
-      <div class="ndCTags">
+      <div v-if="articledetail.keywords" class="ndCTags">
         <div class="ndcTagLabel">标签：</div>
-        <div class="ndcTag">BIM技术</div>
-        <div class="ndcTag">超高层建筑</div>
-        <div class="ndcTag">数字化建造</div>
-        <div class="ndcTag">上海中心</div>
+        <div v-for="(item, index) in articledetail.keywords.split(',')" :key="index" class="ndcTag">{{ item }}</div>
       </div>
-      <div class="ndCzuobtm">
+      <!-- <div class="ndCzuobtm">
         <img src="@/assets/32.jpg" alt="" />
         <div class="zuozeInfo">
           <p>作者：李明</p>
@@ -77,25 +105,26 @@ onBeforeUnmount(() => {
             李明先生是国内知名的BIM技术专家，曾参与多个国家级重点工程的BIM技术应用，包括上海中心大厦、北京大兴国际机场等项目。在BIM技术研发、标准制定和工程应用方面有丰富经验。
           </p>
         </div>
-      </div>
+      </div> -->
       <div class="ndCtitle2">相关推荐</div>
       <!-- 资讯列表 -->
       <div class="newsdBox">
-        <div class="newsdItem" v-for="index in 3" :key="index">
+        <div class="newsdItem" v-for="(item, index) in articlesRecommended" :key="index"
+          :style="(index + 1) % 3 === 0 ? 'margin-right: 0' : ''" @click="xgtjDetailClick(item)">
           <div class="newsPiImgBox">
-            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="newsPiImg" />
-            <div class="newsPiImgTag">政策</div>
+            <img v-if="item.thumbnail" :src="fileURL + item.thumbnail" class="newsPiImg" />
+            <div class="newsPiImgTag">{{ item.cate_name }}</div>
           </div>
           <div class="newsPiBox" :style="windowWidth > 992 ? '' : 'margin-top:1rem; width: 100%;'">
-            <div class="newsPiTitle">住建部发布《建筑业数字化转型发展指南》推动行业升级</div>
+            <div class="newsPiTitle">{{ item.title }}</div>
             <div class="newsPiInfo">
-              近日，住房和城乡建设部正式发布《建筑业数字化转型发展指南》，提出到2025年，建筑业数字化转型取得明显进展，打造一批建筑产业互联网平台，培育一批行业级、企业级数字建造解决方案。指南明确了数字化转型的重点任务和保障措施，为行业发展指明方向。
+              {{ item.description }}
             </div>
             <div class="newsPiClass">
               <div class="newsPiCleft">
                 <div class="newsPiCitrm">
                   <i class="fa fa-calendar"></i>
-                  <span class="newsPiClassSpan">2023-12-15</span>
+                  <span class="newsPiClassSpan">{{ item.created_at }}</span>
                 </div>
                 <div class="newsPiCitrm">
                   <i class="fa fa-eye"></i>
@@ -299,9 +328,13 @@ onBeforeUnmount(() => {
     .newsdBox {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+
+      @media (min-width: 768px) {
+        width: calc(100% + 1.5rem);
+      }
 
       .newsdItem {
+        margin-right: 1.5rem;
         margin-bottom: 1.5rem;
         padding: 1rem;
         width: calc(33.3% - 1rem);
@@ -309,6 +342,7 @@ onBeforeUnmount(() => {
         border-radius: 0.75rem;
 
         @media (max-width: 992px) {
+          margin-right: 0;
           width: 100%;
         }
 
