@@ -457,6 +457,16 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/user/vip',
+    name: 'user-vip',
+    component: () => import('@/views/user/vip.vue'),
+    meta: {
+      title: '新材网-VIP',
+      stcode: 'user-vip',
+      website: false,
+    },
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/home',
   },
