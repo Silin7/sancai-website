@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import axios from 'axios'
 import dayjs from 'dayjs'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
-import { fileURL } from '@/api/baseConfig'
+import { baseURL, fileURL } from '@/api/baseConfig'
 import formatCurrency from '@/hooks/formatCurrency'
 import {
   producthridApi,
@@ -152,9 +153,8 @@ function gwcDelete(index: number) {
 
 // 询价单下载
 function dolwnloadXjd() {
-  checkloinApi().then((res: any) => {
+  checkloinApi().then(async (res: any) => {
     if (res && res.status) {
-      console.log('-------->', gwcdata.value)
       const inquiry_items: any = ref([])
       for (let i = 0; i < gwcdata.value.length; i++) {
         inquiry_items.value.push({
@@ -163,36 +163,99 @@ function dolwnloadXjd() {
         })
       }
       const user_id = window.localStorage.getItem('userinfo') ? JSON.parse(window.localStorage.getItem('userinfo') || '').id : ''
-      inquirydownloadfromcartApi({
-        user_id: user_id,
-        inquiry_items: inquiry_items.value,
-      }).then((res: any) => {
-        console.log('res -------->', res)
-        // 创建下载链接
-        const url = window.URL.createObjectURL(new Blob([res]));
-        console.log('url -------->', url)
-        const a = document.createElement('a');
-        a.href = url;
+      try {
+        const response = await axios({
+          method: 'POST',
+          url: baseURL + '/api/client/inquiry/download-from-cart',
+          responseType: 'blob',
+          data: {
+            user_id: user_id,
+            inquiry_items: inquiry_items.value,
+          },
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Access-Control-Allow-Origin': '*',
+            token: `Bearer ${localStorage.getItem('token') ?? ''}`,
+            Authorization: `Bearer ${localStorage.getItem('token') ?? ''}`,
+          },
+        })
 
-        // // 从响应头获取文件名
-        // const contentDisposition = res.headers['content-disposition'];
-        // console.log('contentDisposition -------->', contentDisposition)
-        // const filename = contentDisposition.match(/filename="(.+)"/)[1];
-        a.download = 'aaa.xlsx'; // 设置默认文件名
+        // 验证响应数据是否为Blob
+        if (!(response.data instanceof Blob)) {
+          const errorText: any = await new Promise(resolve => {
+            const reader = new FileReader()
+            reader.onload = () => resolve(reader.result)
+            reader.readAsText(response.data)
+          })
+          throw new Error(`响应数据格式错误，内容：${errorText.slice(0, 100)}...`)
+        }
 
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
+        // 验证Excel文件类型
+        const validContentTypes = [
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+          'application/vnd.ms-excel',
+          'application/octet-stream'
+        ]
+        const contentType = response.headers['content-type'] || ''
+        if (!validContentTypes.some(type => contentType.includes(type))) {
+          throw new Error(`响应类型不合法：${contentType}，预期Excel文件`)
+        }
 
-        // if (res && res.url) {
-        //   window.open(res.url, '_blank')
-        //   // 清空购物车
-        //   gwcdata.value = []
-        //   window.localStorage.setItem('gwcdata', JSON.stringify(gwcdata.value))
-        //   gwcVisible.value = false
-        // }
-      })
+        // 解析文件名
+        let filename = `询价单_${new Date().getTime()}_${new Date().toISOString().slice(0, 10).replace(/-/g, '')}.xlsx`
+        const disposition = response.headers['content-disposition'] || ''
+        if (disposition) {
+          const utf8Match = disposition.match(/filename\*=UTF-8''([^;]+)/i)
+          if (utf8Match && utf8Match[1]) {
+            filename = decodeURIComponent(utf8Match[1])
+          } else {
+            const quoteMatch = disposition.match(/filename="([^"]+)"/i)
+            if (quoteMatch && quoteMatch[1]) {
+              filename = quoteMatch[1]
+            } else {
+              const plainMatch = disposition.match(/filename=([^;]+)/i)
+              if (plainMatch && plainMatch[1]) {
+                filename = plainMatch[1].trim()
+              }
+            }
+          }
+        }
+        // 处理文件名特殊字符（避免系统无法识别）
+        filename = filename.replace(/[\\/:*?"<>|]/g, '-')
+
+        // 触发浏览器下载
+        const urlObject = URL.createObjectURL(response.data)
+        const a = document.createElement('a')
+        a.href = urlObject
+        a.download = filename
+        a.style.display = 'none'
+        document.body.appendChild(a)
+        a.click()
+
+        // 延迟清理下载资源（给浏览器足够时间触发下载）
+        setTimeout(() => {
+          document.body.removeChild(a)
+          URL.revokeObjectURL(urlObject)
+        }, 1000)
+
+        // // 3. 关键修正：先销毁加载提示，再显示成功提示
+        // loadingInstance.destroy()
+        // message.success(`询价单导出成功，文件名：${filename}`, { key: loadingKey })
+
+        gwcdata.value = []
+        window.localStorage.setItem('gwcdata', JSON.stringify(gwcdata.value))
+        gwcVisible.value = false
+
+        ElMessage({
+          message: '正在下载询价单，请稍后...',
+          type: 'success',
+        })
+      } catch (error) {
+        ElMessage({
+          message: '询价单下载失败',
+          type: 'error',
+        })
+      }
     }
   })
 }
@@ -222,16 +285,16 @@ const value1 = ref(4.8)
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-          }}</span>
+            }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -469,7 +532,7 @@ const value1 = ref(4.8)
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-              }}</span>
+                }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
@@ -529,6 +592,12 @@ const value1 = ref(4.8)
       </el-badge>
     </div>
     <el-dialog v-model="gwcVisible" title="我的询价单" width="80%">
+      <div v-if="gwcdata && gwcdata.length > 0" class="frec">
+        <button class="xjgDolwnload" @click="dolwnloadXjd">
+          <i class="fa fa-cloud-download mr-2"></i>
+          <span>下载询价单</span>
+        </button>
+      </div>
       <el-table :data="gwcdata" border highlight-current-row>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="name" label="产品名称" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌" />
