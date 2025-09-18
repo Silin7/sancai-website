@@ -12,6 +12,7 @@ import {
   bannerlistApi,
   vippartnersApi,
   syspseoApi,
+  seccontentlistApi,
 } from '@/api/modules/basic'
 import {
   solutioncateApi,
@@ -35,10 +36,27 @@ function getSecpositions() {
   secpositionsApi().then((res: any) => {
     if (res && res.length > 0) {
       for (let i = 0; i < res.length; i++) {
-        if (res[i].url === window.localStorage.getItem('selectedName')) {
-          positionid.value = res[i].id
+        const item = res[i]
+        if (item.url === window.localStorage.getItem('selectedName')) {
+          positionid.value = item.id
           getBannerlist()
           break
+        }
+        // 首页-创建背景	home-cjbj
+        if (item.url === 'home-cjbj') {
+          getSeccontentlist1(item.id)
+        }
+        // 首页-涵盖范围	home-hgfw
+        if (item.url === 'home-hgfw') {
+          getSeccontentlist2(item.id)
+        }
+        // 首页-应用对象	home-yydx
+        if (item.url === 'home-yydx') {
+          getSeccontentlist3(item.id)
+        }
+        // 首页-系统创建	home-xtcj
+        if (item.url === 'home-xtcj') {
+          getSeccontentlist4(item.id)
         }
       }
     }
@@ -61,6 +79,42 @@ function getBannerlist() {
         ],
       })
     }
+  })
+}
+
+// 创建背景
+const homecjbj: any = ref({})
+
+function getSeccontentlist1(id: any) {
+  seccontentlistApi(id).then((res: any) => {
+    homecjbj.value = res[0]
+  })
+}
+
+// 涵盖范围
+const homehgfw: any = ref({})
+
+function getSeccontentlist2(id: any) {
+  seccontentlistApi(id).then((res: any) => {
+    homehgfw.value = res[0]
+  })
+}
+
+// 应用对象
+const homeyydx: any = ref({})
+
+function getSeccontentlist3(id: any) {
+  seccontentlistApi(id).then((res: any) => {
+    homeyydx.value = res[0]
+  })
+}
+
+// 系统创建
+const homextcj: any = ref({})
+
+function getSeccontentlist4(id: any) {
+  seccontentlistApi(id).then((res: any) => {
+    homextcj.value = res[0]
   })
 }
 
@@ -273,48 +327,60 @@ onBeforeUnmount(() => {
             <div class="featuresRoundedItem">
               <div class="featuresRoundedTop">
                 <div class="featuresRoundedShu"></div>
-                <div class="featuresRoundedTitle">创建背景</div>
+                <div class="featuresRoundedTitle">{{ homecjbj.title }}</div>
               </div>
-              <div class="featuresRoundedInfo1">
+              <div class="featuresRoundedInfo2">
+                {{ homecjbj.descriptioncontent }}
+              </div>
+              <!-- <div class="featuresRoundedInfo1">
                 当前，建筑行业正在以科技创新推动现代化转型，新一代绿色化智能化建筑材料构筑新质生产力，逐步成为推动建筑业高质量发展的重要力量之一。
               </div>
               <div class="featuresRoundedInfo2">
                 尤其在 “双碳背景和新型工业化建筑”
                 发展模式下，需求拉动供给的同时，创新供给也创造了新需求，市场供需将发生显著变化，具有绿色化、集成化和智能化特征的新材料新产品与新服务，已逐步迈向市场，将极大地影响生产方式、建造成本和运行管理模式的创新。
-              </div>
+              </div> -->
             </div>
             <div class="featuresRoundedItem">
               <div class="featuresRoundedTop">
                 <div class="featuresRoundedShu"></div>
-                <div class="featuresRoundedTitle">涵盖范围</div>
+                <div class="featuresRoundedTitle">{{ homehgfw.title }}</div>
               </div>
-              <div class="featuresRoundedInfo1">
+              <div class="featuresRoundedInfo2">
+                {{ homehgfw.descriptioncontent }}
+              </div>
+              <!-- <div class="featuresRoundedInfo1">
                 价格查询系统信息涵盖新技术、新材料、新工艺、新服务和造价新型要素（例如，AI、BIM、IoT、GIS、DT、VR/AR、倾斜摄影和三维扫描融合应用）。
               </div>
               <div class="featuresRoundedInfo2">
                 适用于绿色低碳、数字智能等高科技含量的新兴业态，以及持续提升城市基础设施韧性和既有建筑更新改造新时代
                 "好房子" 的建造需求。
-              </div>
+              </div> -->
             </div>
             <div class="featuresRoundedItem">
               <div class="featuresRoundedTop">
                 <div class="featuresRoundedShu"></div>
-                <div class="featuresRoundedTitle">应用对象</div>
+                <div class="featuresRoundedTitle">{{ homeyydx.title }}</div>
               </div>
               <div class="featuresRoundedInfo2">
+                {{ homeyydx.descriptioncontent }}
+              </div>
+              <!-- <div class="featuresRoundedInfo2">
                 新材网价格查询系统，竭诚为货物采购单位和其他有关单位提供丰富的
                 "原料"信息及其市场价格，供有关单位实施货物采购和预测工程费用参考。
-              </div>
+              </div> -->
             </div>
             <div class="featuresRoundedItem" style="margin-bottom: 0">
               <div class="featuresRoundedTop">
                 <div class="featuresRoundedShu"></div>
-                <div class="featuresRoundedTitle">系统创建</div>
+                <div class="featuresRoundedTitle">{{ homextcj.title }}</div>
               </div>
               <div class="featuresRoundedInfo2">
+                {{ homextcj.descriptioncontent }}
+              </div>
+              <!-- <div class="featuresRoundedInfo2">
                 本系统由 “杭州三才工程信息科技有限公司”
                 创建，应用过程中如有建议，请联系我们，以便进行完善。
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
