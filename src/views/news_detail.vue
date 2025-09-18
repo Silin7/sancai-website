@@ -128,7 +128,7 @@ onBeforeUnmount(() => {
                 </div>
                 <div class="newsPiCitrm">
                   <i class="fa fa-eye"></i>
-                  <span class="newsPiClassSpan">1568次预览</span>
+                  <span class="newsPiClassSpan">{{ item.views }}次预览</span>
                 </div>
               </div>
             </div>

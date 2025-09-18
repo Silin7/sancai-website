@@ -1,121 +1,48 @@
 <script setup lang="ts">
-import * as echarts from 'echarts'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
+import { aialdetailsApi } from '@/api/modules/ai'
 
-var myChart: any = null
-const echartsMain = ref(null)
+// 路由信息
+const route = useRoute()
 
-function echartsInit() {
-  // 基于准备好的dom，初始化echarts实例
-  myChart = echarts.init(echartsMain.value)
-  // 指定图表的配置项和数据
-  const option = {
-    color: ['#3B82F690', '#10B98190', '#f59e0b90'],
-    title: {
-      text: '',
-    },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'cross',
-        label: {
-          backgroundColor: '#6a7985',
-        },
-      },
-    },
-    legend: {
-      bottom: 0,
-      data: ['BIM服务', '高性能材料', '智能建造装备'],
-    },
-    grid: {
-      left: 10,
-      right: 20,
-      top: 20,
-      bottom: 40,
-      containLabel: true,
-    },
-    xAxis: [
-      {
-        type: 'category',
-        boundaryGap: false,
-        data: ['1月', '2月', '3月', '4月', '5月', '6月'],
-      },
-    ],
-    yAxis: [
-      {
-        type: 'value',
-        offset: 0,
-        splitNumber: 8,
-        scale: true,
-        axisLine: {
-          show: true,
-          lineStyle: {
-            cap: 'round',
-          },
-        },
-        axisLabel: {
-          formatter: function (value: any, index: number) {
-            return value / 100 + 'k'
-          },
-        },
-      },
-    ],
-    series: [
-      {
-        name: 'BIM服务',
-        type: 'line',
-        stack: 'Total',
-        areaStyle: {},
-        emphasis: {
-          focus: 'series',
-        },
-        data: [4200, 4500, 4300, 4800, 4600, 5000],
-      },
-      {
-        name: '高性能材料',
-        type: 'line',
-        stack: 'Total',
-        areaStyle: {},
-        emphasis: {
-          focus: 'series',
-        },
-        data: [800, 820, 850, 840, 870, 850],
-      },
-      {
-        name: '智能建造装备',
-        type: 'line',
-        stack: 'Total',
-        areaStyle: {},
-        emphasis: {
-          focus: 'series',
-        },
-        data: [11000, 11500, 12000, 11800, 12200, 12000],
-      },
-    ],
-  }
-  myChart.setOption(option)
-}
-
+// 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
 
 function uaipdateWindowWidth() {
   windowWidth.value = window.innerWidth
-  if (myChart) {
-    myChart.resize()
-  }
 }
 
+// 案例详情
+const aialid: any = ref('')
+const articledetail: any = ref({})
+
+function getAialdetail() {
+  aialdetailsApi(aialid.value).then((res: any) => {
+    articledetail.value = res
+  })
+}
+
+// // 用户端-获取最新6条推荐案例（公开接口）
+// const aialRecommended: any = ref([])
+
+// function getAialrecommended() {
+//   aialrecommendedApi().then((res: any) => {
+//     if (res) {
+//       aialRecommended.value = res
+//     }
+//   })
+// }
+
 onMounted(() => {
-  echartsInit()
   window.addEventListener('resize', uaipdateWindowWidth)
+  aialid.value = route.query.aialid
+  getAialdetail()
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', uaipdateWindowWidth)
-  if (myChart != null && myChart.dispose) {
-    myChart.dispose()
-  }
 })
 </script>
 
@@ -272,7 +199,6 @@ onBeforeUnmount(() => {
             </div>
             <div class="aipdclxItem">
               <div class="aipdclxiCgBox">
-                <div ref="echartsMain" style="width: 100%; height: 320px" />
                 <div class="aipdclxiCgItem">
                   <div class="aipdclxiCgItitle"><i class="fa fa-clock-o"></i>效率提升</div>
                   <div class="aipdclxiCgItrm">
