@@ -108,6 +108,8 @@ onMounted(() => {
         <el-table-column :show-overflow-tooltip="true" align="center" prop="code" label="订单编号" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="product_name" label="需求项目名" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="cate_name" label="所属分类" />
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="pre_tax_price" label="税前价格(元)" />
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="after_tax_price" label="税后价格(元)" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="company_name" label="公司名称" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="contact_person" label="联系人" />
         <el-table-column align="center" label="状态" width="120">

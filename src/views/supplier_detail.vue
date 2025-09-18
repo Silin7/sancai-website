@@ -79,6 +79,9 @@ function gyscpDetail(item: any) {
   pageJump('products_detail', query)
 }
 
+// 供应商联系方式 弹框
+const dialogVisible: any = ref(false)
+
 const windowWidth = ref(window.innerWidth)
 
 function updateWindowWidth() {
@@ -146,10 +149,11 @@ onBeforeUnmount(() => {
             </div>
           </div>
           <div class="sdhgRight">
-            <button class="sdhgcLxgys">
+            <button class="sdhgcLxgys" @click="dialogVisible = true">
               <i class="fa fa-phone"></i>
               <span>联系供应商</span>
             </button>
+            <!-- <span><a :href="'tel:' + supplierDetails.tel">联系供应商</a></span> -->
             <button class="sdhgcJrgwc">
               <i class="fa fa-star-o"></i>
               <span>收藏</span>
@@ -359,6 +363,13 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </div>
+
+    <el-dialog v-model="dialogVisible" title="供应商联系方式" width="320px">
+      <div style="padding: 1rem 0;">
+        <i class="fa fa-phone mr-2" style="color: #2d6dff;"></i>
+        {{ supplierDetails.tel }}
+      </div>
+    </el-dialog>
   </div>
 </template>
 
