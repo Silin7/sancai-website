@@ -28,7 +28,11 @@ function getSecpositions() {
         }
         // 代表成果
         if (item.url === 'aboutresult') {
-          getSeccontentlist(item.id)
+          getSeccontentlist1(item.id)
+        }
+        // 核心业务
+        if (item.url === 'corebusiness') {
+          getSeccontentlist2(item.id)
         }
       }
     }
@@ -55,11 +59,20 @@ function getBannerlist() {
 }
 
 // 代表成果
-const seccontentList: any = ref([])
+const seccontentList1: any = ref([])
 
-function getSeccontentlist(id: any) {
+function getSeccontentlist1(id: any) {
   seccontentlistApi(id).then((res: any) => {
-    seccontentList.value = res
+    seccontentList1.value = res
+  })
+}
+
+// 核心业务
+const seccontentList2: any = ref([])
+
+function getSeccontentlist2(id: any) {
+  seccontentlistApi(id).then((res: any) => {
+    seccontentList2.value = res
   })
 }
 
@@ -166,7 +179,7 @@ onBeforeUnmount(() => {
         <div class="achievementHeng"></div>
         <div class="achievementInfo">在实践探索中，我们不断突破创新，取得了丰硕成果</div>
         <div class="achievementRidbox">
-          <div v-for="(item, index) in seccontentList" :key="index" class="achievementRiditem">
+          <div v-for="(item, index) in seccontentList1" :key="index" class="achievementRiditem">
             <img :src="fileURL + item.secimg" alt="" style="width: 100%; height: 12rem" />
             <div class="achievementRidimgbox">
               <div class="achievementRidimgfx">
@@ -205,18 +218,20 @@ onBeforeUnmount(() => {
           <div class="businessInfo">立足应用视角，提供切实可行的数字化解决方案</div>
           <div class="serviceCardBox">
             <el-row :gutter="16">
-              <el-col v-for="index in 3" :key="index" :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
+              <el-col v-for="(item, index) in seccontentList2" :key="index" :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
                 <div class="serviceCardItem">
                   <div class="frsc">
-                    <div class="serviceCardItemIcon frcc">
+                    <img :src="fileURL + item.secimg" alt=""
+                      style="margin-right: 1rem; width: 4rem; height: 4rem; border-radius: 0.75rem;" />
+                    <!-- <div class="serviceCardItemIcon frcc">
                       <i class="fa fa-video-camera"></i>
-                    </div>
-                    <div class="serviceCardItemTt">视频制作</div>
+                    </div> -->
+                    <div class="serviceCardItemTt">{{ item.title }}</div>
                   </div>
                   <div class="serviceCardItemSub">
-                    我们制作专业的工程数字化教学视频，内容涵盖BIM技术应用、工程造价管理、智能建造等前沿领域。视频内容注重实操性，解决工程实践中的具体问题。
+                    {{ item.descriptioncontent }}
                   </div>
-                  <div class="serviceCardItemYycj">应用场景：</div>
+                  <!-- <div class="serviceCardItemYycj">应用场景：</div>
                   <div class="serviceCardItemJsbox">
                     <div class="serviceCardItemJsitem">
                       <i class="fa fa-check-circle"></i>
@@ -238,7 +253,7 @@ onBeforeUnmount(() => {
                   <button>
                     <span>查看案例</span>
                     <i class="fa fa-arrow-right"></i>
-                  </button>
+                  </button> -->
                 </div>
               </el-col>
             </el-row>
@@ -628,7 +643,7 @@ onBeforeUnmount(() => {
       padding-top: 2.5rem;
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      // justify-content: space-between;
       align-items: center;
 
       .achievementRiditem {
@@ -639,6 +654,7 @@ onBeforeUnmount(() => {
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         @media (min-width: 992px) {
+          margin-right: 1rem;
           width: calc(25% - 1rem);
         }
 
