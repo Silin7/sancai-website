@@ -170,7 +170,7 @@ onBeforeUnmount(() => {
                 </div>
                 <div class="newsPiClass">
                   <div class="newsPiCleft">
-                    <div v-if="windowWidth > 480" class="newsPiCitrm">
+                    <div class="newsPiCitrm">
                       <i class="fa fa-calendar"></i>
                       <span class="newsPiClassSpan">{{ item.created_at }}</span>
                     </div>
@@ -178,10 +178,10 @@ onBeforeUnmount(() => {
                       <i class="fa fa-eye"></i>
                       <span class="newsPiClassSpan">1568次预览</span>
                     </div>
-                    <div class="newsPiCitrm">
+                    <!-- <div class="newsPiCitrm">
                       <i class="fa fa-comment-o"></i>
                       <span class="newsPiClassSpan">42条评论</span>
-                    </div>
+                    </div> -->
                   </div>
                   <div v-if="windowWidth > 480" class="newsPiCright">
                     <button>阅读全文</button>
@@ -190,10 +190,6 @@ onBeforeUnmount(() => {
                 </div>
                 <div v-if="windowWidth <= 480" class="newsPiClass" style="margin-top: 1rem">
                   <div class="newsPiCleft">
-                    <div class="newsPiCitrm">
-                      <i class="fa fa-calendar"></i>
-                      <span class="newsPiClassSpan">2023-12-15</span>
-                    </div>
                     <div class="newsPiCright">
                       <button>阅读全文</button>
                       <i class="fa fa-angle-right"></i>
