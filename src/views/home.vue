@@ -42,6 +42,10 @@ function getSecpositions() {
           getBannerlist()
           break
         }
+        // 首页-系统简介banner	home-xtjj-banner
+        if (item.url === 'home-xtjj-banner') {
+          getSeccontentlist0(item.id)
+        }
         // 首页-创建背景	home-cjbj
         if (item.url === 'home-cjbj') {
           getSeccontentlist1(item.id)
@@ -79,6 +83,15 @@ function getBannerlist() {
         ],
       })
     }
+  })
+}
+
+// 创建背景
+const homextjjbanner: any = ref({})
+
+function getSeccontentlist0(id: any) {
+  seccontentlistApi(id).then((res: any) => {
+    homextjjbanner.value = res[0]
   })
 }
 
@@ -317,7 +330,8 @@ onBeforeUnmount(() => {
       <!-- 系统简介 -->
       <div class="featuresBox">
         <div class="featuresImgTitleBox">
-          <img src="@/assets/index_about.jpg" class="featuresImg" />
+          <!--  -->
+          <img :src="fileURL + homextjjbanner.secimg" class="featuresImg" />
           <div class="featuresImgTitle">
             <div class="featuresImgTitleCentent">系统简介</div>
           </div>
