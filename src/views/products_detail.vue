@@ -284,16 +284,16 @@ const value1 = ref(4.8)
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-            }}</span>
+          }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -362,7 +362,7 @@ const value1 = ref(4.8)
           </div>
         </div>
         <div class="pdclXq">
-          <div class="pdclxTitle">服务详情</div>
+          <div class="pdclxTitle">详情</div>
           <div class="" v-html="productDetails.description"></div>
           <!-- <div class="pdclxSub">
             BIM+多专业碰撞检查服务是基于建筑信息模型（BIM）技术，对建筑、结构、机电等各专业模型进行整合分析，提前发现并解决设计中的碰撞冲突，减少施工阶段的返工和变更，降低工程成本。
@@ -531,7 +531,7 @@ const value1 = ref(4.8)
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-                }}</span>
+              }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
