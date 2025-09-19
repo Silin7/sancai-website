@@ -106,8 +106,7 @@ onBeforeUnmount(() => {
               <i class="fa fa-info-circle"></i>
               项目背景
             </div>
-            <div class="aipdclxSub">
-              {{ aialdetail.project_background }}
+            <div class="aipdclxSub" v-html="aialdetail.project_background">
             </div>
             <!-- <div class="aipdclxSub">
               杭州某商业综合体项目总建筑面积约12万平方米，包含商业购物中心、办公塔楼及配套设施。项目初期面临三大核心挑战：
@@ -126,7 +125,7 @@ onBeforeUnmount(() => {
               <i class="fa fa-lightbulb-o"></i>
               AI应用方案
             </div>
-            <div class="aipdclxAiyy">{{ aialdetail.application_solution }}</div>
+            <div class="aipdclxAiyy" v-html="aialdetail.application_solution"></div>
             <!-- <div class="aipdclxAiyy">
               <div class="aipdclxAyi1">
                 <div class="aipdclxAyi1t">智能协同设计</div>
@@ -179,7 +178,7 @@ onBeforeUnmount(() => {
               <i class="fa fa-tasks"></i>
               实施过程
             </div>
-            <div v-html="aialdetail.content"></div>
+            <div class="aipdclxItem" v-html="aialdetail.content"></div>
             <!-- <div class="aipdclxItem">
               <div class="">
                 <div class="aipdclxiInfo fwlcBorder">
@@ -269,9 +268,9 @@ onBeforeUnmount(() => {
               <!-- <i class="fa fa-info-circle"></i> -->
               项目概览
             </div>
-            <div class="aipdcrxUl">
-              {{ aialdetail.project_overview }}
-              <!-- <div>
+            <div class="aipdcrxUl" v-html="aialdetail.project_overview"></div>
+            <!-- <div class="aipdcrxUl">
+              <div>
                 <span>项目名称</span>
                 <span>杭州某商业综合体</span>
               </div>
@@ -298,8 +297,8 @@ onBeforeUnmount(() => {
               <div>
                 <span>应用AI工具</span>
                 <span>AI协同设计平台、智能能耗模拟系统、空间优化算法</span>
-              </div> -->
-            </div>
+              </div>
+            </div> -->
           </div>
           <div class="aipdclRitem">
             <div class="aipdcrxTitle">
