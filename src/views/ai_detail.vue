@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
+import { fileURL } from '@/api/baseConfig'
 import { aialdetailsApi } from '@/api/modules/ai'
+import { sysinfosApi } from '@/api/modules/basic'
 
 // 路由信息
 const route = useRoute()
@@ -16,11 +19,30 @@ function uaipdateWindowWidth() {
 
 // 案例详情
 const aialid: any = ref('')
-const articledetail: any = ref({})
+const aialdetail: any = ref({})
 
 function getAialdetail() {
   aialdetailsApi(aialid.value).then((res: any) => {
-    articledetail.value = res
+    aialdetail.value = res
+    if (aialdetail.value.tags) {
+      aialdetail.value.tags = aialdetail.value.tags.split(',')
+    } else {
+      aialdetail.value.tags = []
+    }
+  })
+}
+
+// 用户端-获取所有有效系统信息（如系统名称、版权信息等，按Key排序）
+const sysInfos: any = ref({})
+
+function getSysinfosApi() {
+  sysinfosApi().then((res: any) => {
+    if (res && res.length > 0) {
+      for (let i = 0; i < res.length; i++) {
+        const item = res[i]
+        sysInfos.value[item.ky] = item.val
+      }
+    }
   })
 }
 
@@ -39,6 +61,7 @@ onMounted(() => {
   window.addEventListener('resize', uaipdateWindowWidth)
   aialid.value = route.query.aialid
   getAialdetail()
+  getSysinfosApi()
 })
 
 onBeforeUnmount(() => {
@@ -55,23 +78,25 @@ onBeforeUnmount(() => {
           <span class="aidNavigationXg">/</span>
           <span @click="pageJump('ai')">AI赋能应用</span>
           <span class="aidNavigationXg">/</span>
-          <span class="aidNavigationSp">AI应用成功案例</span>
+          <span class="aidNavigationSp">{{ aialdetail.title }}</span>
         </div>
       </div>
     </div>
     <div class="aidCbox">
       <div class="adicTop">
-        <div class="adictTitle">杭州某商业综合体AI优化设计</div>
+        <div class="adictTitle">{{ aialdetail.title }}</div>
         <div class="adictTags">
-          <span class="adictTag adictTag1">智能设计</span>
-          <span class="adictTag adictTag2"> <i class="fa fa-calendar-o mr-1"></i> 2024年5月 </span>
-          <span class="adictTag adictTag2"> <i class="fa fa-map-marker mr-1"></i> 杭州市 </span>
-          <span class="adictTag adictTag2"> <i class="fa fa-building-o mr-1"></i> 商业综合体 </span>
+          <span v-for="(item, index) in aialdetail.tags" :key="index" class="adictTag adictTag1">{{ item }}</span>
+          <span class="adictTag adictTag2">
+            <i class="fa fa-calendar-o mr-1"></i>
+            {{ dayjs(aialdetail.created_at).format('YYYY年MM月') }}
+          </span>
+          <!-- <span class="adictTag adictTag2"> <i class="fa fa-map-marker mr-1"></i> 杭州市 </span>
+          <span class="adictTag adictTag2"> <i class="fa fa-building-o mr-1"></i> 商业综合体 </span> -->
         </div>
-        <div class="adictImgs">
-          <img src="@/assets/967-800x600.jpg" alt="" />
-          <img src="@/assets/324-800x600.jpg" alt="" />
-        </div>
+        <!-- <div class="adictImgs">
+          <img v-for="(item, index) in aialdetail.imgs" :key="index" :src="fileURL + item" alt="" />
+        </div> -->
       </div>
 
       <div class="aipdCbox">
@@ -82,6 +107,9 @@ onBeforeUnmount(() => {
               项目背景
             </div>
             <div class="aipdclxSub">
+              {{ aialdetail.project_background }}
+            </div>
+            <!-- <div class="aipdclxSub">
               杭州某商业综合体项目总建筑面积约12万平方米，包含商业购物中心、办公塔楼及配套设施。项目初期面临三大核心挑战：
             </div>
             <div class="aipdclxUl">
@@ -91,14 +119,15 @@ onBeforeUnmount(() => {
             </div>
             <div class="aipdclxSub">
               为解决上述问题，项目团队引入AI辅助设计工具，通过智能算法优化设计方案，实现设计效率与建筑性能的双重提升。
-            </div>
+            </div> -->
           </div>
           <div class="aipdclXq">
             <div class="aipdclxTitle">
               <i class="fa fa-lightbulb-o"></i>
               AI应用方案
             </div>
-            <div class="aipdclxAiyy">
+            <div class="aipdclxAiyy">{{ aialdetail.application_solution }}</div>
+            <!-- <div class="aipdclxAiyy">
               <div class="aipdclxAyi1">
                 <div class="aipdclxAyi1t">智能协同设计</div>
                 <div class="aipdclxAyi1st">基于AI的多专业模型整合与冲突检测</div>
@@ -143,15 +172,15 @@ onBeforeUnmount(() => {
                   最终采用的优化方案使商业区域有效租赁面积增加8%，预计年客流量提升15%，商铺坪效提高10%。
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="aipdclXq">
             <div class="aipdclxTitle">
               <i class="fa fa-tasks"></i>
               实施过程
             </div>
-
-            <div class="aipdclxItem">
+            <div v-html="aialdetail.content"></div>
+            <!-- <div class="aipdclxItem">
               <div class="">
                 <div class="aipdclxiInfo fwlcBorder">
                   <div class="aipdclxiNbox frcc">1</div>
@@ -190,9 +219,9 @@ onBeforeUnmount(() => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
-          <div class="aipdclXq">
+          <!-- <div class="aipdclXq">
             <div class="aipdclxTitle">
               <i class="fa fa-chart"></i>
               实施成果
@@ -231,7 +260,7 @@ onBeforeUnmount(() => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <div class="aipdclRbox">
@@ -241,7 +270,8 @@ onBeforeUnmount(() => {
               项目概览
             </div>
             <div class="aipdcrxUl">
-              <div>
+              {{ aialdetail.project_overview }}
+              <!-- <div>
                 <span>项目名称</span>
                 <span>杭州某商业综合体</span>
               </div>
@@ -268,7 +298,7 @@ onBeforeUnmount(() => {
               <div>
                 <span>应用AI工具</span>
                 <span>AI协同设计平台、智能能耗模拟系统、空间优化算法</span>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="aipdclRitem">
@@ -277,9 +307,7 @@ onBeforeUnmount(() => {
               相关图片
             </div>
             <div class="aipdcrxGtp">
-              <img src="@/assets/967-800x600.jpg" alt="" />
-              <img src="@/assets/324-800x600.jpg" alt="" />
-              <img src="@/assets/967-800x600.jpg" alt="" />
+              <img v-for="(item, index) in aialdetail.imgs" :key="index" :src="fileURL + item" alt="" />
             </div>
           </div>
           <div class="aipdclRitem">
@@ -293,18 +321,17 @@ onBeforeUnmount(() => {
             <div class="aipdcrxBtns">
               <button>
                 <i class="fa fa-phone"></i>
-                400-888-9001
+                {{ sysInfos.sys_tel }}
               </button>
               <button>
                 <i class="fa fa-envelope"></i>
-                ai@zhuzhi.com
+                {{ sysInfos.sys_email }}
               </button>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="aipdcCptj">
+      <!--<div class="aipdcCptj">
         <div class="aipdccTitle">相关案例推荐</div>
         <div class="aipdccCgBox">
           <div class="aipdccCgItem">
@@ -340,7 +367,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -403,7 +430,7 @@ onBeforeUnmount(() => {
     }
 
     .adicTop {
-      padding: 2rem;
+      padding: 2rem 2rem 1rem;
       box-shadow:
         0 10px 15px -3px rgb(0 0 0 / 0.1),
         0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -422,7 +449,7 @@ onBeforeUnmount(() => {
       }
 
       .adictTags {
-        margin-bottom: 1rem;
+        // margin-bottom: 1rem;
         display: flex;
         flex-wrap: wrap;
 
@@ -456,12 +483,12 @@ onBeforeUnmount(() => {
         justify-content: space-between;
 
         img {
+          margin-bottom: 1rem;
           width: calc(50% - 1rem);
           height: 20rem;
           border-radius: 0.75rem;
 
           @media (max-width: 768px) {
-            margin-bottom: 1rem;
             width: 100%;
           }
         }
