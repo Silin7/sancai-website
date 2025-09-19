@@ -119,18 +119,34 @@ onBeforeUnmount(() => {
 <template>
   <div class="supplierPage">
     <!-- BANNER -->
-    <div class="srbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="fileURL + bannerData.imgurl" alt="srbanner" />
-      <!-- <img src="@/assets/banner/supplier.jpg" alt="dsbanner" /> -->
-      <div class="srbannerAbsolute">
-        <div class="srbannerContent">
-          <div class="srbannerTitle">供应商列表</div>
-          <div class="srbannerSubtitle">
-            汇聚优质建筑行业供应商资源，提供全方位的人材机信服务，助力项目高效推进
+    <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
+      <img :src="fileURL + bannerData.imgurl" alt="" />
+      <div class="bannerAbsolute">
+        <div class="bannerContent">
+          <div class="bannerTitle">{{ bannerData.maintitle }}</div>
+          <div v-if="bannerData.subtitle" class="bannerSubtitle">
+            {{ bannerData.subtitle }}
+          </div>
+          <div class="frsc">
+            <button v-if="bannerData.leftbtn && !bannerData.leftbtn_url" class="bannerLeftBtn">
+              {{ bannerData.leftbtn }}
+            </button>
+            <button v-if="bannerData.leftbtn && bannerData.leftbtn_url" class="bannerLeftBtn"
+              @click.stop="pageJump(bannerData.leftbtn_url)">
+              {{ bannerData.leftbtn }}
+            </button>
+            <button v-if="bannerData.rightbtn && !bannerData.rightbtn_url" class="bannerRightBtn">
+              {{ bannerData.rightbtn }}
+            </button>
+            <button v-if="bannerData.rightbtn && bannerData.rightbtn_url" class="bannerRightBtn"
+              @click.stop="pageJump(bannerData.rightbtn_url)">
+              {{ bannerData.rightbtn }}
+            </button>
           </div>
         </div>
       </div>
     </div>
+
     <div class="supplierBox">
       <!-- 供应商筛选 -->
       <div class="supplierClass">
@@ -231,56 +247,6 @@ onBeforeUnmount(() => {
   min-height: calc(100vh - 120px);
   background-color: #f9fafb;
   overflow-x: hidden;
-
-  .srbannerBox {
-    position: relative;
-    padding-top: 80px;
-    width: 100vw;
-
-    @media (max-width: 768px) {
-      padding-top: 64px;
-    }
-
-    img {
-      width: 100vw;
-      height: 368px;
-    }
-
-    .srbannerAbsolute {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      width: 100vw;
-
-      .srbannerContent {
-        margin: 0 auto;
-        padding: 10rem 2rem 0;
-        width: 100%;
-        max-width: 1536px;
-
-        @media (max-width: 768px) {
-          padding: 6rem 1rem 0;
-        }
-
-        .srbannerTitle {
-          margin-bottom: 1.5rem;
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 700;
-          line-height: 1.25;
-          color: rgb(255 255 255);
-        }
-
-        .srbannerSubtitle {
-          margin-bottom: 2rem;
-          max-width: 60rem;
-          font-size: clamp(1rem, 4vw, 1.25rem);
-          font-weight: 500;
-          color: rgb(255 255 255 / 0.9);
-        }
-      }
-    }
-  }
 
   .supplierBox {
     margin: 0 auto;

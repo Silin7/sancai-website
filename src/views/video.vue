@@ -151,16 +151,30 @@ function convertSecondsToHMS(seconds: any) {
 <template>
   <div class="productsPage">
     <!-- BANNER -->
-    <div class="prbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="fileURL + bannerData.imgurl" alt="prbanner" />
-      <!-- <img src="@/assets/banner/video.jpg" alt="dsbanner" /> -->
-      <div class="prbannerAbsolute">
-        <div class="prbannerContent">
-          <div class="prbannerTitle">行业视频演示</div>
-          <div class="prbannerSubtitle">
-            本系列视频聚焦数字化与AI技术深度融合的行业实践，全景呈现“技术+场景”的创新生态，助力建筑行业从传统经验模式迈向数据智能时代。
+    <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
+      <img :src="fileURL + bannerData.imgurl" alt="" />
+      <div class="bannerAbsolute">
+        <div class="bannerContent">
+          <div class="bannerTitle">{{ bannerData.maintitle }}</div>
+          <div v-if="bannerData.subtitle" class="bannerSubtitle">
+            {{ bannerData.subtitle }}
           </div>
-          <button class="bannerllkcbtn" @click.stop="">浏览视频</button>
+          <div class="frsc">
+            <button v-if="bannerData.leftbtn && !bannerData.leftbtn_url" class="bannerLeftBtn">
+              {{ bannerData.leftbtn }}
+            </button>
+            <button v-if="bannerData.leftbtn && bannerData.leftbtn_url" class="bannerLeftBtn"
+              @click.stop="pageJump(bannerData.leftbtn_url)">
+              {{ bannerData.leftbtn }}
+            </button>
+            <button v-if="bannerData.rightbtn && !bannerData.rightbtn_url" class="bannerRightBtn">
+              {{ bannerData.rightbtn }}
+            </button>
+            <button v-if="bannerData.rightbtn && bannerData.rightbtn_url" class="bannerRightBtn"
+              @click.stop="pageJump(bannerData.rightbtn_url)">
+              {{ bannerData.rightbtn }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -343,77 +357,6 @@ function convertSecondsToHMS(seconds: any) {
   min-height: calc(100vh - 120px);
   background-color: #f9fafb;
   overflow-x: hidden;
-
-  .prbannerBox {
-    position: relative;
-    padding-top: 80px;
-    width: 100vw;
-
-    @media (max-width: 768px) {
-      padding-top: 64px;
-    }
-
-    img {
-      width: 100vw;
-      height: 368px;
-    }
-
-    .prbannerAbsolute {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      width: 100vw;
-
-      .prbannerContent {
-        margin: 0 auto;
-        padding: 10rem 2rem 0;
-        width: 100%;
-        max-width: 1536px;
-
-        @media (max-width: 768px) {
-          padding: 6rem 1rem 0;
-        }
-
-        .prbannerTitle {
-          margin-bottom: 1.5rem;
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 700;
-          line-height: 1.25;
-          color: rgb(255 255 255);
-        }
-
-        .prbannerSubtitle {
-          margin-bottom: 2rem;
-          max-width: 60rem;
-          font-size: clamp(1rem, 4vw, 1.25rem);
-          font-weight: 500;
-          color: rgb(255 255 255 / 0.9);
-        }
-
-        .bannerllkcbtn {
-          padding: 0.75rem 2rem;
-          color: #fff;
-          background-color: rgb(22 93 255);
-          border-radius: 9999px;
-          box-shadow:
-            0 10px 15px -3px rgb(0 0 0 / 0.1),
-            0 4px 6px -4px rgb(0 0 0 / 0.1);
-
-          @media (max-width: 768px) {
-            padding: 0.75rem 1.5rem;
-          }
-        }
-
-        .bannerllkcbtn:hover {
-          @media (min-width: 768px) {
-            transform: scale(1.05);
-            box-shadow: 2px 2px 10px 0 rgb(22 93 255);
-          }
-        }
-      }
-    }
-  }
 
   .containerBox {
     margin: 0 auto;

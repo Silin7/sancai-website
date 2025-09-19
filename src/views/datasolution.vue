@@ -100,21 +100,34 @@ onBeforeUnmount(() => {
   <div>
     <div class="datasolutionPage">
       <!-- BANNER -->
-      <div class="dsbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-        <img :src="fileURL + bannerData.imgurl" alt="dsbanner" />
-        <!-- <img src="@/assets/banner/datasolution.jpg" alt="dsbanner" /> -->
-        <div class="dsbannerAbsolute">
-          <div class="dsbannerContent">
-            <div class="dsbannerTitle">为新城建提供绿色化 数字化 智能化综合解决方案</div>
-            <!-- <div class="dsbannerSubtitle">
-              信息技术深度赋能城市建设 有效应对并满足建设管理过程中多维度、多场景需求
-            </div> -->
+      <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
+        <img :src="fileURL + bannerData.imgurl" alt="" />
+        <div class="bannerAbsolute">
+          <div class="bannerContent">
+            <div class="bannerTitle">{{ bannerData.maintitle }}</div>
+            <div v-if="bannerData.subtitle" class="bannerSubtitle">
+              {{ bannerData.subtitle }}
+            </div>
             <div class="frsc">
-              <button class="dsbannerJgkbtn" @click.stop="pageJump('requirements')">提交需求</button>
+              <button v-if="bannerData.leftbtn && !bannerData.leftbtn_url" class="bannerLeftBtn">
+                {{ bannerData.leftbtn }}
+              </button>
+              <button v-if="bannerData.leftbtn && bannerData.leftbtn_url" class="bannerLeftBtn"
+                @click.stop="pageJump(bannerData.leftbtn_url)">
+                {{ bannerData.leftbtn }}
+              </button>
+              <button v-if="bannerData.rightbtn && !bannerData.rightbtn_url" class="bannerRightBtn">
+                {{ bannerData.rightbtn }}
+              </button>
+              <button v-if="bannerData.rightbtn && bannerData.rightbtn_url" class="bannerRightBtn"
+                @click.stop="pageJump(bannerData.rightbtn_url)">
+                {{ bannerData.rightbtn }}
+              </button>
             </div>
           </div>
         </div>
       </div>
+
       <!-- 介绍区域  -->
       <div class="introdsOut">
         <div class="introdsBox">
@@ -182,73 +195,6 @@ onBeforeUnmount(() => {
   overflow-x: hidden;
   min-height: calc(100vh - 120px);
   background-color: #f9fafb;
-
-  .dsbannerBox {
-    position: relative;
-    padding-top: 80px;
-    width: 100vw;
-
-    @media (max-width: 768px) {
-      padding-top: 64px;
-    }
-
-    img {
-      width: 100vw;
-      height: 368px;
-    }
-
-    .dsbannerAbsolute {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      width: 100vw;
-
-      .dsbannerContent {
-        margin: 0 auto;
-        padding: 10rem 2rem 0;
-        width: 100%;
-        max-width: 1536px;
-
-        @media (max-width: 768px) {
-          padding: 6rem 1rem 0;
-        }
-
-        .dsbannerTitle {
-          margin-bottom: 1.5rem;
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 700;
-          color: #fff;
-        }
-
-        .dsbannerSubtitle {
-          margin-bottom: 2rem;
-          font-size: clamp(1.25rem, 4vw, 1.5rem);
-          font-weight: 500;
-          color: rgb(255 255 255 / 0.9);
-        }
-
-        .dsbannerJgkbtn {
-          padding: 0.75rem 2rem;
-          color: #fff;
-          background-color: rgb(22 93 255);
-          border-radius: 9999px;
-          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-
-          @media (max-width: 768px) {
-            padding: 0.75rem 1.5rem;
-          }
-        }
-
-        .dsbannerJgkbtn:hover {
-          @media (min-width: 768px) {
-            transform: scale(1.05);
-            box-shadow: 2px 2px 10px 0 rgb(22 93 255);
-          }
-        }
-      }
-    }
-  }
 
   .introdsOut {
     padding: 6rem 1rem;

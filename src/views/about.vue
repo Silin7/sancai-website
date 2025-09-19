@@ -91,20 +91,34 @@ onBeforeUnmount(() => {
   <div>
     <div class="aboutPage">
       <!-- BANNER -->
-      <div class="abbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-        <img :src="fileURL + bannerData.imgurl" alt="abbanner" />
-        <!-- <img src="@/assets/banner/about.jpg" alt="dsbanner" /> -->
-        <div class="abbannerAbsolute">
-          <div class="abbannerContent">
-            <div class="abbannerTitle">杭州三才工程信息科技有限公司</div>
-            <div class="abbannerSubtitle">工程项目数字化服务与产品的国家高新技术企业</div>
+      <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
+        <img :src="fileURL + bannerData.imgurl" alt="" />
+        <div class="bannerAbsolute">
+          <div class="bannerContent">
+            <div class="bannerTitle">{{ bannerData.maintitle }}</div>
+            <div v-if="bannerData.subtitle" class="bannerSubtitle">
+              {{ bannerData.subtitle }}
+            </div>
             <div class="frsc">
-              <button class="abbannerJgkbtn" @click.stop="">了解我们</button>
-              <button class="abbannerJjfabtn" @click.stop="">核心业务</button>
+              <button v-if="bannerData.leftbtn && !bannerData.leftbtn_url" class="bannerLeftBtn">
+                {{ bannerData.leftbtn }}
+              </button>
+              <button v-if="bannerData.leftbtn && bannerData.leftbtn_url" class="bannerLeftBtn"
+                @click.stop="pageJump(bannerData.leftbtn_url)">
+                {{ bannerData.leftbtn }}
+              </button>
+              <button v-if="bannerData.rightbtn && !bannerData.rightbtn_url" class="bannerRightBtn">
+                {{ bannerData.rightbtn }}
+              </button>
+              <button v-if="bannerData.rightbtn && bannerData.rightbtn_url" class="bannerRightBtn"
+                @click.stop="pageJump(bannerData.rightbtn_url)">
+                {{ bannerData.rightbtn }}
+              </button>
             </div>
           </div>
         </div>
       </div>
+
       <!-- 公司简介 -->
       <div class="introtOut">
         <div class="introtBox">
@@ -333,95 +347,6 @@ onBeforeUnmount(() => {
   min-height: calc(100vh - 120px);
   background-color: #f9fafb;
   overflow-x: hidden;
-
-  .abbannerBox {
-    position: relative;
-    padding-top: 80px;
-    width: 100vw;
-
-    @media (max-width: 768px) {
-      padding-top: 64px;
-    }
-
-    img {
-      width: 100vw;
-      height: 368px;
-    }
-
-    .abbannerAbsolute {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      width: 100vw;
-
-      .abbannerContent {
-        margin: 0 auto;
-        padding: 10rem 2rem 0;
-        width: 100%;
-        max-width: 1536px;
-
-        @media (max-width: 768px) {
-          padding: 6rem 1rem 0;
-        }
-
-        .abbannerTitle {
-          margin-bottom: 1.5rem;
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 700;
-          line-height: 1.25;
-          color: rgb(255 255 255);
-        }
-
-        .abbannerSubtitle {
-          margin-bottom: 2rem;
-          max-width: 42rem;
-          font-size: clamp(1.25rem, 4vw, 1.5rem);
-          font-weight: 500;
-          color: rgb(255 255 255 / 0.9);
-        }
-
-        .abbannerJgkbtn {
-          padding: 0.75rem 2rem;
-          color: #fff;
-          background-color: rgb(22 93 255);
-          border-radius: 9999px;
-          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-
-          @media (max-width: 768px) {
-            padding: 0.75rem 1.5rem;
-          }
-        }
-
-        .abbannerJgkbtn:hover {
-          @media (min-width: 768px) {
-            transform: scale(1.05);
-            box-shadow: 2px 2px 10px 0 rgb(22 93 255);
-          }
-        }
-
-        .abbannerJjfabtn {
-          margin-left: 20px;
-          padding: 0.75rem 2rem;
-          color: #fff;
-          background-color: rgba(255 255 255 / 0.2);
-          border: 1px solid rgba(255 255 255 / 0.3);
-          border-radius: 9999px;
-
-          @media (max-width: 768px) {
-            padding: 0.75rem 1.5rem;
-          }
-        }
-
-        .abbannerJjfabtn:hover {
-          @media (min-width: 768px) {
-            transform: scale(1.05);
-            box-shadow: 2px 2px 10px 0 rgba(255 255 255 / 0.2);
-          }
-        }
-      }
-    }
-  }
 
   .introtOut {
     padding: 6rem 0;

@@ -268,16 +268,34 @@ onBeforeUnmount(() => {
 <template>
   <div class="materialsPage">
     <!-- BANNER -->
-    <div class="prbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="fileURL + bannerData.imgurl" alt="mabanner" />
-      <!-- <img src="@/assets/banner/sale.jpg" alt="dsbanner" /> -->
-      <!-- <div class="prbannerAbsolute">
-        <div class="prbannerContent">
-          <div class="prbannerTitle">材料/设备</div>
-          <div class="prbannerSubtitle">绿色化 数字化 智能化</div>
+    <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
+      <img :src="fileURL + bannerData.imgurl" alt="" />
+      <div class="bannerAbsolute">
+        <div class="bannerContent">
+          <div class="bannerTitle">{{ bannerData.maintitle }}</div>
+          <div v-if="bannerData.subtitle" class="bannerSubtitle">
+            {{ bannerData.subtitle }}
+          </div>
+          <div class="frsc">
+            <button v-if="bannerData.leftbtn && !bannerData.leftbtn_url" class="bannerLeftBtn">
+              {{ bannerData.leftbtn }}
+            </button>
+            <button v-if="bannerData.leftbtn && bannerData.leftbtn_url" class="bannerLeftBtn"
+              @click.stop="pageJump(bannerData.leftbtn_url)">
+              {{ bannerData.leftbtn }}
+            </button>
+            <button v-if="bannerData.rightbtn && !bannerData.rightbtn_url" class="bannerRightBtn">
+              {{ bannerData.rightbtn }}
+            </button>
+            <button v-if="bannerData.rightbtn && bannerData.rightbtn_url" class="bannerRightBtn"
+              @click.stop="pageJump(bannerData.rightbtn_url)">
+              {{ bannerData.rightbtn }}
+            </button>
+          </div>
         </div>
-      </div> -->
+      </div>
     </div>
+
     <div class="containerBox">
       <div class="containerLeft">
         <div class="containerClass">
@@ -459,54 +477,6 @@ onBeforeUnmount(() => {
 .materialsPage {
   min-height: calc(100vh - 120px);
   background-color: #f9fafb;
-
-  .prbannerBox {
-    position: relative;
-    padding-top: 80px;
-    width: 100vw;
-
-    @media (max-width: 768px) {
-      padding-top: 64px;
-    }
-
-    img {
-      width: 100vw;
-      height: 368px;
-    }
-
-    .prbannerAbsolute {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      width: 100vw;
-
-      .prbannerContent {
-        margin: 0 auto;
-        padding: 10rem 2rem 0;
-        width: 100%;
-        max-width: 1536px;
-
-        @media (max-width: 768px) {
-          padding: 6rem 1rem 0;
-        }
-
-        .prbannerTitle {
-          margin-bottom: 2rem;
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 700;
-          color: #fff;
-        }
-
-        .prbannerSubtitle {
-          margin-bottom: 2rem;
-          font-size: clamp(1.25rem, 4vw, 1.5rem);
-          font-weight: 500;
-          color: rgb(255 255 255 / 0.9);
-        }
-      }
-    }
-  }
 
   .containerBox {
     margin: 0 auto;

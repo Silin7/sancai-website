@@ -99,18 +99,30 @@ onBeforeUnmount(() => {
 <template>
   <div>
     <div class="aiPage">
-      <!-- aibanner -->
-      <div class="aibannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-        <img :src="fileURL + bannerData.imgurl" alt="aibanner" />
-        <!-- <img src="@/assets/banner/ai.jpg" alt="dsbanner" /> -->
-        <div class="aibannerAbsolute">
-          <div class="aibannerContent">
-            <div class="aibannerTitle">AI赋能建筑业 开启智能建造新时代</div>
-            <!-- <div class="aibannerSubtitle">
-              人工智能驱动工程设计、施工与运维创新，为建筑业注入全新动能
-            </div> -->
+      <!-- BANNER -->
+      <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
+        <img :src="fileURL + bannerData.imgurl" alt="" />
+        <div class="bannerAbsolute">
+          <div class="bannerContent">
+            <div class="bannerTitle">{{ bannerData.maintitle }}</div>
+            <div v-if="bannerData.subtitle" class="bannerSubtitle">
+              {{ bannerData.subtitle }}
+            </div>
             <div class="frsc">
-              <button class="aibannerJgkbtn" @click.stop="">搜索AI应用</button>
+              <button v-if="bannerData.leftbtn && !bannerData.leftbtn_url" class="bannerLeftBtn">
+                {{ bannerData.leftbtn }}
+              </button>
+              <button v-if="bannerData.leftbtn && bannerData.leftbtn_url" class="bannerLeftBtn"
+                @click.stop="pageJump(bannerData.leftbtn_url)">
+                {{ bannerData.leftbtn }}
+              </button>
+              <button v-if="bannerData.rightbtn && !bannerData.rightbtn_url" class="bannerRightBtn">
+                {{ bannerData.rightbtn }}
+              </button>
+              <button v-if="bannerData.rightbtn && bannerData.rightbtn_url" class="bannerRightBtn"
+                @click.stop="pageJump(bannerData.rightbtn_url)">
+                {{ bannerData.rightbtn }}
+              </button>
             </div>
           </div>
         </div>
@@ -194,73 +206,6 @@ onBeforeUnmount(() => {
   overflow-x: hidden;
   min-height: calc(100vh - 120px);
   background-color: #f9fafb;
-
-  .aibannerBox {
-    position: relative;
-    padding-top: 80px;
-    width: 100vw;
-
-    @media (max-width: 768px) {
-      padding-top: 64px;
-    }
-
-    img {
-      width: 100vw;
-      height: 368px;
-    }
-
-    .aibannerAbsolute {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      width: 100vw;
-
-      .aibannerContent {
-        margin: 0 auto;
-        padding: 10rem 2rem 0;
-        width: 100%;
-        max-width: 1536px;
-
-        @media (max-width: 768px) {
-          padding: 6rem 1rem 0;
-        }
-
-        .aibannerTitle {
-          margin-bottom: 1.5rem;
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 700;
-          color: #fff;
-        }
-
-        .aibannerSubtitle {
-          margin-bottom: 2rem;
-          font-size: clamp(1.25rem, 4vw, 1.5rem);
-          font-weight: 500;
-          color: rgb(255 255 255 / 0.9);
-        }
-
-        .aibannerJgkbtn {
-          padding: 0.75rem 2rem;
-          color: #fff;
-          background-color: rgb(22 93 255);
-          border-radius: 9999px;
-          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-
-          @media (max-width: 768px) {
-            padding: 0.75rem 1.5rem;
-          }
-        }
-
-        .aibannerJgkbtn:hover {
-          @media (min-width: 768px) {
-            transform: scale(1.05);
-            box-shadow: 2px 2px 10px 0 rgb(22 93 255);
-          }
-        }
-      }
-    }
-  }
 
   .introaiOut {
     padding: 6rem 1rem;

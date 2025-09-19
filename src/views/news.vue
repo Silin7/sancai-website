@@ -120,16 +120,30 @@ onBeforeUnmount(() => {
 <template>
   <div class="newsPage">
     <!-- BANNER -->
-    <div class="nsbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="fileURL + bannerData.imgurl" alt="nsbanner" />
-      <!-- <img src="@/assets/banner/news.jpg" alt="dsbanner" /> -->
-      <div class="nsbannerAbsolute">
-        <div class="nsbannerContent">
-          <div class="nsbannerTitle">热点资讯</div>
-          <div class="nsbannerSubtitle">
-            聚焦建筑行业数字化转型，提供最新政策、标准、案例和市场动态
+    <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
+      <img :src="fileURL + bannerData.imgurl" alt="" />
+      <div class="bannerAbsolute">
+        <div class="bannerContent">
+          <div class="bannerTitle">{{ bannerData.maintitle }}</div>
+          <div v-if="bannerData.subtitle" class="bannerSubtitle">
+            {{ bannerData.subtitle }}
           </div>
-          <button class="nsbannerLlspbtn" @click.stop="">浏览视频</button>
+          <div class="frsc">
+            <button v-if="bannerData.leftbtn && !bannerData.leftbtn_url" class="bannerLeftBtn">
+              {{ bannerData.leftbtn }}
+            </button>
+            <button v-if="bannerData.leftbtn && bannerData.leftbtn_url" class="bannerLeftBtn"
+              @click.stop="pageJump(bannerData.leftbtn_url)">
+              {{ bannerData.leftbtn }}
+            </button>
+            <button v-if="bannerData.rightbtn && !bannerData.rightbtn_url" class="bannerRightBtn">
+              {{ bannerData.rightbtn }}
+            </button>
+            <button v-if="bannerData.rightbtn && bannerData.rightbtn_url" class="bannerRightBtn"
+              @click.stop="pageJump(bannerData.rightbtn_url)">
+              {{ bannerData.rightbtn }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -215,77 +229,6 @@ onBeforeUnmount(() => {
   background-color: #f9fafb;
   min-height: calc(100vh - 120px);
   overflow-x: hidden;
-
-  .nsbannerBox {
-    position: relative;
-    padding-top: 80px;
-    width: 100vw;
-
-    @media (max-width: 768px) {
-      padding-top: 64px;
-    }
-
-    img {
-      width: 100vw;
-      height: 368px;
-    }
-
-    .nsbannerAbsolute {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      width: 100vw;
-
-      .nsbannerContent {
-        margin: 0 auto;
-        padding: 10rem 2rem 0;
-        width: 100%;
-        max-width: 1536px;
-
-        @media (max-width: 768px) {
-          padding: 6rem 1rem 0;
-        }
-
-        .nsbannerTitle {
-          margin-bottom: 1.5rem;
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 700;
-          line-height: 1.25;
-          color: rgb(255 255 255);
-        }
-
-        .nsbannerSubtitle {
-          margin-bottom: 2rem;
-          max-width: 60rem;
-          font-size: clamp(1.25rem, 4vw, 1.5rem);
-          font-weight: 500;
-          color: rgb(255 255 255 / 0.9);
-        }
-
-        .nsbannerLlspbtn {
-          padding: 0.75rem 2rem;
-          color: #fff;
-          background-color: rgb(22 93 255);
-          border-radius: 9999px;
-          box-shadow:
-            0 10px 15px -3px rgb(0 0 0 / 0.1),
-            0 4px 6px -4px rgb(0 0 0 / 0.1);
-
-          @media (max-width: 768px) {
-            padding: 0.75rem 1.5rem;
-          }
-        }
-
-        .nsbannerLlspbtn:hover {
-          @media (min-width: 768px) {
-            transform: scale(1.05);
-            box-shadow: 2px 2px 10px 0 rgb(22 93 255);
-          }
-        }
-      }
-    }
-  }
 
   .newsBox {
     margin: 0 auto;
