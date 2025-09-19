@@ -156,11 +156,11 @@ function convertSecondsToHMS(seconds: any) {
       <!-- <img src="@/assets/banner/video.jpg" alt="dsbanner" /> -->
       <div class="prbannerAbsolute">
         <div class="prbannerContent">
-          <div class="prbannerTitle">专业视频课程</div>
+          <div class="prbannerTitle">行业视频演示</div>
           <div class="prbannerSubtitle">
             本系列视频聚焦数字化与AI技术深度融合的行业实践，全景呈现“技术+场景”的创新生态，助力建筑行业从传统经验模式迈向数据智能时代。
           </div>
-          <button class="bannerllkcbtn" @click.stop="">浏览课程</button>
+          <button class="bannerllkcbtn" @click.stop="">浏览视频</button>
         </div>
       </div>
     </div>
