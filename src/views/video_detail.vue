@@ -7,7 +7,7 @@ import pageJump from '@/hooks/pageJump'
 import { fileURL } from '@/api/baseConfig'
 // import formatCurrency from '@/hooks/formatCurrency'
 import { videodetailApi } from '@/api/modules/video'
-import { wxpayvideocreateApi, wxpayvideostatusApi } from '@/api/modules/pay'
+import { wxpayvideocreateApi, alipayvideocreateApi, payvideostatusApi } from '@/api/modules/pay'
 
 // 路由信息
 const route = useRoute()
@@ -25,29 +25,43 @@ function getVideodetail() {
 // 用户端-创建视频购买支付订单（item_id=0），生成微信支付二维码
 const dialogVisible: any = ref(false)
 const qrCodeData = ref('');
-const wxpayvideocreate: any = ref({})
+const payvideocreate: any = ref({})
 const verificationTimer: any = ref(null)
 
+// 微信支付
 function getWxpayvideocreate() {
   wxpayvideocreateApi(videoid.value).then(async (res: any) => {
     if (res) {
       dialogVisible.value = true
-      wxpayvideocreate.value = res
-      qrCodeData.value = await qrcode.toDataURL(wxpayvideocreate.value.code_url, { scale: 4 });
-      verificationTimer.value = setInterval(() => {
-        // 清除定时器
-        getWxpayvideostatus()
-      }, 3000)
+      payvideocreate.value = res
+      qrCodeData.value = await qrcode.toDataURL(payvideocreate.value.qr_code, { scale: 4 });
+
+      // 查询支付状态
+      // verificationTimer.value = setInterval(() => {
+      //   getpayvideostatus()
+      // }, 3000)
     }
   })
 }
 
-function getWxpayvideostatus() {
-  wxpayvideostatusApi(videoid.value).then((res: any) => {
-    console.log('-------->', res)
+// {"code":400,"msg":"创建支付宝订单失败：'AlipayTradeCreateRequest' object has no attribute（请稍后重试）","data":null}
+// 支付宝支付
+function getAlpayvideocreate() {
+  alipayvideocreateApi(videoid.value).then((res: any) => {
+    if (res) {
+      console.log('-------->', res)
+    }
   })
-  clearInterval(verificationTimer.value)
 }
+
+
+// 查询支付状态
+// function getpayvideostatus() {
+//   payvideostatusApi('0', videoid.value).then((res: any) => {
+//     console.log('-------->', res)
+//   })
+//   clearInterval(verificationTimer.value)
+// }
 
 onMounted(() => {
   videoid.value = route.query.id
@@ -73,6 +87,49 @@ function convertSecondsToHMS(seconds: any) {
   }
   return returnStr
 }
+
+// 视频源
+const isBuy: any = ref(false)
+const videoPlayer: any = ref(null);
+const showTimeLimitMessage: any = ref(false);
+const timeLimit: any = 3; // 限制播放时间（秒）
+const isTimeLimited: any = ref(false);
+
+// 处理视频时间更新
+const handleTimeUpdate = () => {
+  if (!videoPlayer.value || isTimeLimited.value) return;
+
+  // 当播放时间超过限制时暂停视频
+  if (videoPlayer.value.currentTime >= timeLimit && !isBuy.value) {
+    videoPlayer.value.pause();
+    isTimeLimited.value = true;
+    showTimeLimitMessage.value = true;
+  }
+};
+
+// 处理播放事件
+const handlePlay = () => {
+  // 如果已经达到时间限制，则不允许继续播放
+  if (isTimeLimited.value) {
+    videoPlayer.value.pause();
+    showTimeLimitMessage.value = true;
+  }
+};
+
+// 处理视频结束事件
+const handleEnded = () => {
+  showTimeLimitMessage.value = false;
+  isTimeLimited.value = false;
+};
+
+// 重置视频
+const resetVideo = () => {
+  if (videoPlayer.value) {
+    videoPlayer.value.currentTime = 0;
+    isTimeLimited.value = false;
+    showTimeLimitMessage.value = false;
+  }
+};
 </script>
 
 <template>
@@ -80,11 +137,27 @@ function convertSecondsToHMS(seconds: any) {
     <div class="pdCbox">
       <div class="pdcLeft">
         <div class="pdclJbcs">
-          <video v-if="videoDetails.vurl" :poster="fileURL + videoDetails.thumbnail" controls="true" preload="metadata">
-            <!-- 示例视频源（实际项目中替换为真实视频地址） -->
-            <source :src="videoDetails.vurl" type="video/mp4">
-            您的浏览器不支持HTML5视频播放，请升级浏览器
-          </video>
+          <div class="pdclJbcsVideo">
+            <video v-if="videoDetails.vurl" ref="videoPlayer" :poster="fileURL + videoDetails.thumbnail" controls="true"
+              preload="metadata" @timeupdate="handleTimeUpdate" @play="handlePlay" @ended="handleEnded">
+              <source :src="videoDetails.vurl" type="video/mp4">
+              您的浏览器不支持HTML5视频播放，请升级浏览器
+            </video>
+
+            <!-- 超时提示 -->
+            <div v-if="showTimeLimitMessage" class="timeLimitMessage">
+              <p>视频已播放1分钟，如需继续观看，请解锁完整版本</p>
+              <button @click="resetVideo" class="resetBtn">重新播放</button>
+            </div>
+          </div>
+          <!-- <div class="video-container">
+            <video ref="videoPlayer" :src="videoDetails.vurl" controls @timeupdate="handleTimeUpdate" @play="handlePlay"
+              @ended="handleEnded" class="video-player"></video>
+            <div v-if="showTimeLimitMessage" class="timeLimitMessage">
+              <p>视频已播放1分钟，如需继续观看，请解锁完整版本</p>
+              <button @click="resetVideo" class="resetBtn">重新播放</button>
+            </div>
+          </div> -->
           <div class="videoInfoBox">
             <div class="videoTitle">{{ videoDetails.title }}</div>
             <div class="videoTags">
@@ -116,34 +189,52 @@ function convertSecondsToHMS(seconds: any) {
             </button>
           </div>
         </div>
-        <div class="pdclXq">
+        <!-- <div class="pdclXq">
           <div class="pdclxTitle">介绍</div>
           <div class="" v-html="videoDetails.content"></div>
-        </div>
+        </div> -->
       </div>
       <div class="pdcRight">
         <div class="pdcrTitle"><i class="fa fa-info-circle"></i>视频信息</div>
-        <!-- <div class="pdcrItem">
-          <p>形式</p>
-          <p>录播</p>
-        </div> -->
         <div class="pdcrItem">
-          <p>时长</p>
+          <p>时长：</p>
           <p>{{ convertSecondsToHMS(videoDetails.vlength) }}</p>
         </div>
         <div class="pdcrItem">
-          <p>适合人群</p>
-          <p v-if="videoDetails.keywords">
-            <span v-for="(item, index) in videoDetails.keywords.split(' ')" :key="index">
-              <span>{{ item }}</span>
-              <span v-if="index < videoDetails.keywords.split(' ').length - 1">、 </span>
-            </span>
-          </p>
+          <p>视频供方：</p>
+          <p>{{ videoDetails.source }}</p>
         </div>
       </div>
     </div>
-    <el-dialog v-model="dialogVisible" title="请使用微信扫描二维码" width="320px">
-      <img :src="qrCodeData" :alt="wxpayvideocreate.code_url" style="width: 100%;" />
+    <el-dialog v-model="dialogVisible" title="选择支付方式" width="600">
+      <div class="payment-methods">
+        <div class="payment-method wechat">
+          <div class="method-header">
+            <img src="@/assets/user/weixin.png" alt="微信支付" class="icon" />
+            <span>微信支付</span>
+          </div>
+          <div class="course-box">
+            <img :src="qrCodeData" :alt="payvideocreate.qr_code" style="width: 100%;" />
+          </div>
+          <div class="course-info">
+            <p>BIM建模基础与实战</p>
+            <p>支付金额：<span class="price">¥299</span></p>
+            <p>请用微信扫码支付，支付后可下载视频</p>
+          </div>
+        </div>
+        <div class="payment-method alipay">
+          <div class="method-header">
+            <img src="@/assets/user/alipay.png" alt="支付宝支付" class="icon" />
+            <span>支付宝支付</span>
+          </div>
+          <button class="pay-btn" @click="getAlpayvideocreate">去支付宝支付</button>
+          <div class="course-info">
+            <p>BIM建模基础与实战</p>
+            <p>支付金额：<span class="price">¥299</span></p>
+            <p>点击按钮后，页面将跳转到支付宝官网完成支付</p>
+          </div>
+        </div>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -178,6 +269,7 @@ function convertSecondsToHMS(seconds: any) {
       }
 
       .pdclJbcs {
+        overflow: hidden;
         margin-bottom: 2rem;
         background-color: rgb(255 255 255);
         border-radius: 1rem;
@@ -185,8 +277,41 @@ function convertSecondsToHMS(seconds: any) {
           0 10px 15px -3px rgb(0 0 0 / 0.1),
           0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-        video {
-          width: 100%;
+        .pdclJbcsVideo {
+          position: relative;
+
+          video {
+            width: 100%;
+          }
+
+          .timeLimitMessage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+
+            .resetBtn {
+              margin-top: 15px;
+              padding: 8px 16px;
+              background-color: rgb(22 93 255 / 0.6);
+              color: white;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              transition: background-color 0.3s;
+            }
+
+            .resetBtn:hover {
+              background-color: rgb(22 93 255);
+            }
+          }
         }
 
         .videoInfoBox {
@@ -567,12 +692,70 @@ function convertSecondsToHMS(seconds: any) {
 </style>
 
 <style>
-/* 评分 style */
-.el-rate {
-  padding-bottom: 0.25rem !important;
+.payment-methods {
+  display: flex;
+  gap: 20px;
 }
 
-.pdcrTop .el-rate__icon {
-  margin-right: 0 !important;
+.payment-method {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.method-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.course-box {
+  margin-bottom: 2rem;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  background-color: #f3f4f6;
+  border-radius: 0.5rem;
+}
+
+.course-cover {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.course-info p {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.course-info p:first-child {
+  color: rgb(1 32 96);
+}
+
+.price {
+  color: red;
+  font-weight: bold;
+}
+
+.pay-btn {
+  display: block;
+  background-color: #1677ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin: 0 auto 2rem;
+}
+
+.pay-btn:hover {
+  background-color: #0e66d4;
 }
 </style>
