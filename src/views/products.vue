@@ -399,16 +399,16 @@ onBeforeUnmount(() => {
             <el-table-column :show-overflow-tooltip="true" align="center" prop="specification" label="规格" />
             <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌" />
             <el-table-column :show-overflow-tooltip="true" align="center" prop="unit_name" label="单位" />
-            <el-table-column align="center" label="含税价">
+            <el-table-column align="center" label="除税价">
               <template #default="scope">
                 <span style="color: #165dff; font-weight: 700">¥{{ formatCurrency(scope.row.pretaxprice, 2) }}</span>
               </template>
             </el-table-column>
-            <el-table-column align="center" label="未含税价">
+            <!-- <el-table-column align="center" label="未含税价">
               <template #default="scope">
                 <span style="color: #00b42a; font-weight: 700">¥{{ formatCurrency(scope.row.afertaxprice, 2) }}</span>
               </template>
-            </el-table-column>
+            </el-table-column> -->
             <el-table-column align="center" label="税率">
               <template #default="scope">
                 <span>{{ scope.row.taxrate }}%</span>

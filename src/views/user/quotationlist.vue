@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
-import { Search } from '@element-plus/icons-vue'
 import pageJump from '@/hooks/pageJump'
 import usePagination from '@/hooks/usePagination'
 import formatCurrency from '@/hooks/formatCurrency'
-import useDebounce from '@/utils/useDebounce'
 import { inquiryorderslistApi } from '@/api/modules/admin'
 
 // 查询条件
@@ -75,53 +73,12 @@ onMounted(() => {
         <i class="fa fa-file-powerpoint-o"></i>
         询价单列表
       </h2>
-      <!-- 查询条件 -->
-      <!-- <el-form :model="queryForm">
-        <el-row :gutter="20">
-          <el-col :span="6">
-            <el-form-item>
-              <el-select size="large" v-model="queryForm.status" placeholder="选择状态" clearable
-                @change="useDebounce().fn(getDataList)">
-                <template #prefix>
-                  <el-icon>
-                    <Search />
-                  </el-icon>
-                </template>
-<el-option label="待报价" value="0" />
-<el-option label="已报价" value="1" />
-<el-option label="已取消" value="2" />
-<el-option label="己关闭" value="3" />
-</el-select>
-</el-form-item>
-</el-col>
-</el-row>
-</el-form> -->
       <!-- 数据表格 -->
       <el-table v-loading="tableLoading" :data="groupData" border highlight-current-row>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="inquiry_no" label="订单编号" />
         <el-table-column align="center" label="总价">
           <template #default="scope">
             <span>¥{{ formatCurrency(scope.row.total_amount) }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" label="状态">
-          <template #default="scope">
-            <el-tag v-if="scope.row.status === '待报价'" type="warning" style="border-radius: 50px">
-              <i class="fa fa-check-circle"></i>
-              <span style="margin-left: 5px">待报价</span>
-            </el-tag>
-            <el-tag v-if="scope.row.status === '已报价'" type="success" style="border-radius: 50px">
-              <i class="fa fa-edit"></i>
-              <span style="margin-left: 5px">已报价</span>
-            </el-tag>
-            <el-tag v-if="scope.row.status === '已取消'" type="info" style="border-radius: 50px">
-              <i class="fa fa-ban"></i>
-              <span style="margin-left: 5px">已取消</span>
-            </el-tag>
-            <el-tag v-if="scope.row.status === '己关闭'" type="danger" style="border-radius: 50px">
-              <i class="fa fa-ban"></i>
-              <span style="margin-left: 5px">己关闭</span>
-            </el-tag>
           </template>
         </el-table-column>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="create_time" label="创建时间" />

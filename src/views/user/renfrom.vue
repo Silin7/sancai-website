@@ -39,7 +39,7 @@ const rules: any = reactive({
   scene: [{ required: true, message: '请输入应用场景', trigger: 'blur' }],
   technical_params: [{ required: true, message: '请输入技术参数', trigger: 'blur' }],
   pretaxprice: [{ required: true, message: '请输入税前价格', trigger: 'blur' }],
-  afertaxprice: [{ required: true, message: '请输入税后价格', trigger: 'blur' }],
+  // afertaxprice: [{ required: true, message: '请输入税后价格', trigger: 'blur' }],
   taxrate: [{ required: true, message: '请输入税率', trigger: 'blur' }],
   unit_id: [{ required: true, message: '请选择单位', trigger: 'change' }],
   province_id: [{ required: true, message: '请选择省份', trigger: 'change' }],
@@ -60,6 +60,7 @@ const submitForm = async (formEl: any) => {
           return item.name
         }
       })
+      data.afertaxprice = Number((data.pretaxprice * (1 + data.taxrate / 100)).toFixed(2))
       if (product_id === '') {
         humanresourceaddApi(data).then((res: any) => {
           if (res) {
@@ -311,12 +312,12 @@ onMounted(() => {
                 style="width: 100%" />
             </el-form-item>
           </el-col>
-          <el-col :span="8">
+          <!-- <el-col :span="8">
             <el-form-item label="税后价格(元)" prop="afertaxprice">
               <el-input-number size="large" v-model="ruleForm.afertaxprice" placeholder="请输入税后价格(元)" :min="0"
                 style="width: 100%" />
             </el-form-item>
-          </el-col>
+          </el-col> -->
           <el-col :span="8">
             <el-form-item label="税率(%)" prop="taxrate">
               <el-input-number size="large" v-model="ruleForm.taxrate" placeholder="请输入税率(%)" :min="0"
