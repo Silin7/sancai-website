@@ -82,12 +82,14 @@ onMounted(() => {
           </template>
         </el-table-column>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="create_time" label="创建时间" />
-        <el-table-column align="center" label="操作" width="80">
+        <el-table-column align="center" label="操作" width="120">
           <template #default="scope">
             <div class="table-operate">
               <el-button text type="primary"
-                @click="pageJump('user-quotationfrom', { inquiry_id: scope.row.inquiry_id })"> 查看
+                @click="pageJump('user-quotationfrom', { inquiry_id: scope.row.inquiry_id })">
+                查看
               </el-button>
+              <!-- <el-button text type="danger">撤销</el-button> -->
             </div>
           </template>
         </el-table-column>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import '@wangeditor/editor/dist/css/style.css'
-import { onMounted, reactive, ref, watch } from 'vue'
+import { h, onMounted, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
 import formatCurrency from '@/hooks/formatCurrency'
@@ -34,6 +34,35 @@ onMounted(() => {
     })
   }
 })
+
+// 合计行
+const getSummaries = (param: any) => {
+  const { columns, data } = param
+  const sums: (any)[] = []
+  columns.forEach((column: any, index: any) => {
+    if (index === 0) {
+      sums[index] = h('div', { style: { textDecoration: 'underline' } }, [
+        '合计',
+      ])
+      return
+    }
+    const values = data.map((item: any) => Number(item[column.property]))
+    if (!values.every((value: any) => Number.isNaN(value))) {
+      sums[index] = `$ ${values.reduce((prev: any, curr: any) => {
+        const value = Number(curr)
+        if (!Number.isNaN(value)) {
+          return prev + curr
+        } else {
+          return prev
+        }
+      }, 0)}`
+    } else {
+      sums[index] = 'N/A'
+    }
+  })
+
+  return sums
+}
 </script>
 
 <template>
@@ -73,7 +102,8 @@ onMounted(() => {
           </el-col>
           <el-col :span="24">
             <el-form-item label=" 产品明细 " prop="product_items">
-              <el-table :data="ruleForm.product_items" border highlight-current-row>
+              <el-table :data="ruleForm.product_items" border :summary-method="getSummaries" show-summary
+                highlight-current-row>
                 <el-table-column :show-overflow-tooltip="true" align="center" prop="product_type" label="产品类型" />
                 <el-table-column :show-overflow-tooltip="true" align="center" prop="product_name" label="产品名称" />
                 <el-table-column align="center" label="税前价格">
@@ -81,12 +111,14 @@ onMounted(() => {
                     <span>¥{{ formatCurrency(scope.row.untax_price) }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="税后价格">
+                <el-table-column align="center" label="税率">
                   <template #default="scope">
-                    <span>¥{{ formatCurrency(scope.row.tax_price) }}</span>
+                    <span>{{ formatCurrency(scope.row.tax_rate) }}%</span>
                   </template>
                 </el-table-column>
-                <el-table-column :show-overflow-tooltip="true" align="center" prop="tax_rate" label="税率" />
+                <!-- <el-table-column  align="center" prop="shuliang" label="数量" />
+                <el-table-column  align="center" prop="danwei" label="单位" />
+                <el-table-column  align="center" prop="xiaoji" label="小计" /> -->
                 <el-table-column :show-overflow-tooltip="true" align="center" prop="supplier_name" label="供应商" />
               </el-table>
             </el-form-item>

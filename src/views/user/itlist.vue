@@ -168,8 +168,9 @@ onMounted(() => {
             <div class="table-operate">
               <el-button text type="primary" @click="pageJump('user-itfrom', { product_id: scope.row.id })"> 编辑
               </el-button>
-              <!-- <el-button v-if="scope.$index % 2 === 0" text type="danger"> 删除 </el-button>
-              <el-button v-else text type="danger"> 下架 </el-button> -->
+              <!-- <el-button text type="warning"> 下架 </el-button>
+              <el-button text type="success"> 上架 </el-button>
+              <el-button text type="danger"> 删除 </el-button> -->
             </div>
           </template>
         </el-table-column>
