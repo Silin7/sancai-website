@@ -143,7 +143,7 @@ onBeforeUnmount(() => {
           <div class="applicationClassbox">
             <div v-for="(item, index) in businessAi" :key="index" class="applicationClassitem">
               <div class="applicationClassitemfa frcc">
-                <i class="fa fa-pencil"></i>
+                <i :class="item.icon"></i>
               </div>
               <div class="applicationClassitemtext">{{ item.name }}</div>
               <!-- <div class="applicationClassiteminfo">
@@ -159,7 +159,7 @@ onBeforeUnmount(() => {
           <div class="applicationClassbox">
             <div v-for="(item, index) in bidcostAi" :key="index" class="applicationClassitem">
               <div class="applicationClassitemfa frcc">
-                <i class="fa fa-pencil"></i>
+                <i :class="item.icon"></i>
               </div>
               <div class="applicationClassitemtext">{{ item.name }}</div>
               <!-- <div class="applicationClassiteminfo">AI自动复核工程文本，减少人为错误</div> -->
