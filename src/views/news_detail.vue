@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
@@ -82,6 +83,10 @@ onBeforeUnmount(() => {
     </div>
     <div class="ndCbox">
       <div class="ndCtitle">{{ articledetail.title }}</div>
+      <div class="ndSubtitle">
+        <span>文章来源：{{ articledetail.source }}</span>
+        <span>发布时间：{{ dayjs(articledetail.updated_at).format('YYYY-MM-DD HH:mm:ss') }}</span>
+      </div>
       <!-- <div class="ndCzuoz">
         <img src="@/assets/32.jpg" alt="" />
         <div class="zuozeInfo">
@@ -106,8 +111,8 @@ onBeforeUnmount(() => {
           </p>
         </div>
       </div> -->
-      <div class="ndCtitle2">相关推荐</div>
-      <!-- 资讯列表 -->
+
+      <!-- <div class="ndCtitle2">相关推荐</div>
       <div class="newsdBox">
         <div class="newsdItem" v-for="(item, index) in articlesRecommended" :key="index"
           :style="(index + 1) % 3 === 0 ? 'margin-right: 0' : ''" @click="xgtjDetailClick(item)">
@@ -134,7 +139,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -143,7 +148,7 @@ onBeforeUnmount(() => {
 .ndPage {
   overflow-x: hidden;
   min-height: calc(100vh - 120px);
-  background-color: #fff;
+  background-color: #f9fafb;
 
   .ndHbox {
     background-color: #f0f7ff;
@@ -189,14 +194,18 @@ onBeforeUnmount(() => {
 
   .ndCbox {
     position: relative;
-    margin: 0 auto;
-    padding: 2.5rem 1rem;
-    width: 100%;
+    margin: 1rem;
+    padding: 1rem;
     max-width: 1536px;
     color: rgb(1 32 96);
+    background-color: #fff;
+    border-radius: 1rem;
+    border: 1px solid #e0e7ff;
 
-    @media (max-width: 768px) {
-      padding: 1rem;
+    @media (min-width: 768px) {
+      width: 100%;
+      margin: 2rem auto;
+      padding: 2.5rem;
     }
 
     .ndCtitle {
@@ -204,6 +213,19 @@ onBeforeUnmount(() => {
       font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 700;
       text-align: center;
+    }
+
+    .ndSubtitle {
+      margin-bottom: 1rem;
+      text-align: center;
+
+      span {
+        margin: 0 0.5rem;
+        color: rgb(107 114 128);
+        font-weight: 500;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+      }
     }
 
     .ndCtitle2 {
@@ -242,6 +264,7 @@ onBeforeUnmount(() => {
 
     .ndCFuwb {
       padding: 1rem 0;
+      line-height: 180%;
       // background-color: #f1f1f1;
       // border-radius: 0.5rem;
     }
@@ -251,7 +274,7 @@ onBeforeUnmount(() => {
       flex-wrap: wrap;
       align-items: center;
       border-top: 1px solid rgb(229 231 235);
-      padding: 1.5rem 0;
+      padding: 1.5rem 0 0;
 
       .ndcTagLabel {
         margin-bottom: 0.5rem;
