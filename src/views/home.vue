@@ -265,7 +265,6 @@ onBeforeUnmount(() => {
       <!-- BANNER -->
       <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
         <div class="bannerAnchor">
-          <!-- v-if="windowWidth > 1140"  -->
           <img v-if="windowWidth > 1140" :src="fileURL + bannerData.imgurl" alt="banner" class="bannerImage" />
           <div class="bannerAbsolute">
             <div class="bannerContent">
@@ -548,25 +547,25 @@ onBeforeUnmount(() => {
       max-width: 1536px;
 
       @media (min-width: 992px) {
-        height: 34.5rem;
+        height: 25.5rem;
       }
 
       @media (max-width: 992px) and (min-width: 768px) {
-        height: 40rem;
+        height: 30.75rem;
       }
 
       @media (max-width: 768px) {
-        height: 41.25rem;
+        height: 36.25rem;
       }
 
       .bannerImage {
         position: absolute;
-        right: 0;
+        right: 2rem;
         top: 0;
         z-index: 0;
         width: auto;
-        max-width: 100%;
-        height: 100%;
+        max-width: 80%;
+        height: 80%;
 
         @media (max-width: 768px) {
           height: auto;
@@ -578,12 +577,7 @@ onBeforeUnmount(() => {
       .bannerAbsolute {
         position: absolute;
         z-index: 1;
-        padding-top: 10rem;
         width: 100%;
-
-        @media (max-width: 768px) {
-          padding-top: 5rem;
-        }
 
         .bannerContent {
           margin: 0 auto;
