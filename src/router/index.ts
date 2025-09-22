@@ -219,6 +219,18 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/engineeringai',
+    name: 'engineeringai',
+    component: () => import('@/views/engineeringai.vue'),
+    meta: {
+      title: '工程造价+AI',
+      stcode: 'engineeringai',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
     path: '/article_detail',
     name: 'article_detail',
     component: () => import('@/views/article_detail.vue'),

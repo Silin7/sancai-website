@@ -50,7 +50,7 @@ const menuList: any = ref([
   { id: '9', title: '供应商', path: '/supplier', name: 'supplier', children: [] },
   { id: '10', title: '关于三才', path: '/about', name: 'about', children: [] },
   { id: '11', title: '热点资讯', path: '/news', name: 'news', children: [] },
-  // { title: '工程造价+AI', path: '/engineering-ai', name: 'engineeringai', children: [] },
+  { id: '12', title: '工程造价+AI', path: '/engineeringai', name: 'engineeringai', children: [] },
 ])
 
 // menuChild show Mouseenter Mouseleave
@@ -270,8 +270,8 @@ onBeforeUnmount(() => {
     }
 
     .headnav {
-      width: calc(100% - 220px);
-      max-width: 1200px;
+      width: calc(100% - 150px);
+      max-width: 1280px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -301,7 +301,7 @@ onBeforeUnmount(() => {
           flex-flow: column;
 
           @media (min-width: 1551px) {
-            margin-left: 2rem;
+            margin-left: 1.75rem;
           }
 
           @media (max-width: 1550px) and (min-width: 1351px) {
