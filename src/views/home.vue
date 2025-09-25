@@ -20,6 +20,7 @@ import {
   allaiappApi,
   flinktopApi,
 } from '@/api/modules/common'
+import { productpcatechildrenApi } from '@/api/modules/product'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -40,7 +41,6 @@ function getSecpositions() {
         if (item.url === window.localStorage.getItem('selectedName')) {
           positionid.value = item.id
           getBannerlist()
-          break
         }
         // 首页-系统简介banner	home-xtjj-banner
         if (item.url === 'home-xtjj-banner') {
@@ -61,6 +61,10 @@ function getSecpositions() {
         // 首页-系统创建	home-xtcj
         if (item.url === 'home-xtcj') {
           getSeccontentlist4(item.id)
+        }
+        // 首页-人材机信价格库	home-rcjx
+        if (item.url === 'home-rcjx') {
+          getSeccontentlist5(item.id)
         }
       }
     }
@@ -183,31 +187,35 @@ function solutionCchange(item: any) {
 }
 
 // 人材机信价格库
-const pcatePactive: any = ref('')
-const pcatePform: any = ref({})
-const pcateParent: any = ref([])
+const pcatePactive: any = ref(0)
+const pcateZhu: any = ref([])
+const pcateAll: any = ref([])
 const pcateChild: any = ref([])
-function getAllpcate() {
-  allpcateApi().then((res: any) => {
-    pcateParent.value = []
-    pcateChild.value = []
-    if (res && res.length > 0) {
-      for (let i = 0; i < res.length; i++) {
-        if (res[i].parent_id === 0) {
-          pcateParent.value.push(res[i])
-        } else {
-          pcateChild.value.push(res[i])
-        }
-      }
-      pcatePactive.value = pcateParent.value[0].id
-      pcatePform.value = pcateParent.value[0]
+
+function getSeccontentlist5(id: any) {
+  seccontentlistApi(id).then((res: any) => {
+    pcateZhu.value = res
+  })
+}
+
+function getPcateOne(pid: any = 0) {
+  productpcatechildrenApi({
+    page: 1,
+    pageSize: 999,
+    parent_id: pid,
+  }).then((res: any) => {
+    if (res && res.items.length > 0) {
+      pcateAll.value = res.items
+      const levelone = pcateAll.value.filter((element: any) => element.item_id === pcatePactive.value)
+      pcateChild.value = levelone
     }
   })
 }
 
-function pcatePchange(item: any) {
-  pcatePactive.value = item.id
-  pcatePform.value = item
+function pcatePchange(id: any) {
+  pcatePactive.value = id
+  const levelone = pcateAll.value.filter((element: any) => element.item_id === pcatePactive.value)
+  pcateChild.value = levelone
 }
 
 // 人工智能应用
@@ -247,7 +255,7 @@ onMounted(() => {
   getSecpositions()
   getVippartners()
   getSolutioncate()
-  getAllpcate()
+  getPcateOne()
   getAllaiapp()
   getFlinktop()
 })
@@ -404,23 +412,37 @@ onBeforeUnmount(() => {
         <div class="containerHeng"></div>
         <div class="containerSubBoxOut">
           <div class="containerSubBox">
-            <div v-for="(item, index) in pcateParent" :key="index"
-              :class="['containerSubItem', item.id === pcatePactive ? 'containerActive' : '']"
-              @click="pcatePchange(item)">
-              {{ item.name }}
+            <div :class="pcatePactive === 0 ? 'containerSubItem containerActive' : 'containerSubItem'"
+              @click="pcatePchange(0)">
+              数字技工/方案论证
+            </div>
+            <div :class="pcatePactive === 1 ? 'containerSubItem containerActive' : 'containerSubItem'"
+              @click="pcatePchange(1)">
+              材料/设备
+            </div>
+            <div :class="pcatePactive === 2 ? 'containerSubItem containerActive' : 'containerSubItem'"
+              @click="pcatePchange(2)">
+              智能建造装备
+            </div>
+            <div :class="pcatePactive === 3 ? 'containerSubItem containerActive' : 'containerSubItem'"
+              @click="pcatePchange(3)">
+              信息化产品/服务
             </div>
           </div>
         </div>
         <div class="containerGridbox">
-          <img :src="pcatePform.img" alt="" />
+          <template v-for="(item, index) in pcateZhu" :key="index">
+            <img v-if="pcatePactive === 0 && item.title === '数字技工/方案论证'" :src="fileURL + item.secimg" />
+            <img v-if="pcatePactive === 1 && item.title === '材料/设备'" :src="fileURL + item.secimg" />
+            <img v-if="pcatePactive === 2 && item.title === '智能建造装备'" :src="fileURL + item.secimg" />
+            <img v-if="pcatePactive === 3 && item.title === '信息化产品/服务'" :src="fileURL + item.secimg" />
+          </template>
           <div class="containerGridMaod">
             <div class="containerGridContent">
-              <template v-for="(item, index) in pcateChild" :key="index">
-                <div v-if="item.parent_id === pcatePactive" class="containerGridItem">
-                  <i :class="['fa', item.theicon]"></i>
-                  <div class="containerGridimginfo">{{ item.name }}</div>
-                </div>
-              </template>
+              <div v-for="(item, index) in pcateChild" :key="index" class="containerGridItem">
+                <i :class="['fa', item.theicon]"></i>
+                <div class="containerGridimginfo">{{ item.name }}</div>
+              </div>
             </div>
           </div>
         </div>
