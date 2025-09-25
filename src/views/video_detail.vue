@@ -35,11 +35,11 @@ function getWxpayvideocreate() {
       dialogVisible.value = true
       payvideocreate.value = res
       qrCodeData.value = await qrcode.toDataURL(payvideocreate.value.qr_code, { scale: 4 });
-
+      console.log('微信支付 -------->', res)
       // 查询支付状态
-      // verificationTimer.value = setInterval(() => {
-      //   getpayvideostatus()
-      // }, 3000)
+      verificationTimer.value = setInterval(() => {
+        getpayvideostatus()
+      }, 3000)
     }
   })
 }
@@ -49,19 +49,19 @@ function getWxpayvideocreate() {
 function getAlpayvideocreate() {
   alipayvideocreateApi(videoid.value).then((res: any) => {
     if (res) {
-      console.log('-------->', res)
+      console.log('支付宝支付 -------->', res)
     }
   })
 }
 
 
 // 查询支付状态
-// function getpayvideostatus() {
-//   payvideostatusApi('0', videoid.value).then((res: any) => {
-//     console.log('-------->', res)
-//   })
-//   clearInterval(verificationTimer.value)
-// }
+function getpayvideostatus() {
+  payvideostatusApi('0', videoid.value).then((res: any) => {
+    console.log('-------->', res)
+  })
+  clearInterval(verificationTimer.value)
+}
 
 onMounted(() => {
   videoid.value = route.query.id
