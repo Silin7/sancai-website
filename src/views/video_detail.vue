@@ -143,21 +143,13 @@ const resetVideo = () => {
               <source :src="videoDetails.vurl" type="video/mp4">
               您的浏览器不支持HTML5视频播放，请升级浏览器
             </video>
-
             <!-- 超时提示 -->
             <div v-if="showTimeLimitMessage" class="timeLimitMessage">
               <p>视频已播放1分钟，如需继续观看，请解锁完整版本</p>
-              <button @click="resetVideo" class="resetBtn">重新播放</button>
+              <!-- <button @click="resetVideo" class="resetBtn">重新播放</button> -->
+              <button @click="getWxpayvideocreate" class="resetBtn">立即购买</button>
             </div>
           </div>
-          <!-- <div class="video-container">
-            <video ref="videoPlayer" :src="videoDetails.vurl" controls @timeupdate="handleTimeUpdate" @play="handlePlay"
-              @ended="handleEnded" class="video-player"></video>
-            <div v-if="showTimeLimitMessage" class="timeLimitMessage">
-              <p>视频已播放1分钟，如需继续观看，请解锁完整版本</p>
-              <button @click="resetVideo" class="resetBtn">重新播放</button>
-            </div>
-          </div> -->
           <div class="videoInfoBox">
             <div class="videoTitle">{{ videoDetails.title }}</div>
             <div class="videoTags">
