@@ -7,7 +7,7 @@ import pageJump from '@/hooks/pageJump'
 import { fileURL } from '@/api/baseConfig'
 // import formatCurrency from '@/hooks/formatCurrency'
 import { videodetailApi } from '@/api/modules/video'
-import { wxpayvideocreateApi, alipayvideocreateApi, payvideostatusApi } from '@/api/modules/pay'
+import { wxpayvideocreateApi, alipayvideocreateApi, payvideostatusApi, videoplayApi, videodownloadApi } from '@/api/modules/pay'
 
 // 路由信息
 const route = useRoute()
@@ -54,18 +54,52 @@ function getAlpayvideocreate() {
   })
 }
 
-
-// 查询支付状态
+// 查询支付状态 -- 0待支付 1已支付 -1已过期 -2未支付
 function getpayvideostatus() {
   payvideostatusApi('0', videoid.value).then((res: any) => {
-    console.log('-------->', res)
+    if (res) {
+      if (res.status === -1 || res.status === -2) {
+        clearInterval(verificationTimer.value)
+      }
+      else if (res.status === 1) {
+        dialogVisible.value = false
+        isBuy.value = true
+        getVideoPlay()
+        getVideoDownload()
+        clearInterval(verificationTimer.value)
+      }
+    }
   })
-  clearInterval(verificationTimer.value)
+}
+
+// 获取视频播放地址
+function getVideoPlay() {
+  videoplayApi(videoid.value).then((res: any) => {
+    if (res) {
+      console.log('获取播放地址 -------->', res)
+      // videoDetails.value.vurl = res.play_url
+    }
+  })
+}
+
+// 获取视频下载地址
+function getVideoDownload() {
+  videodownloadApi(videoid.value).then((res: any) => {
+    if (res) {
+      console.log('获取下载地址 -------->', res)
+      // videoDetails.value.vurl = res.download_url
+    }
+  })
 }
 
 onMounted(() => {
   videoid.value = route.query.id
   getVideodetail()
+  // 查询支付状态
+  getpayvideostatus()
+  verificationTimer.value = setInterval(() => {
+    getpayvideostatus()
+  }, 3000)
 })
 
 onUnmounted(() => {
@@ -100,6 +134,7 @@ const handleTimeUpdate = () => {
   if (!videoPlayer.value || isTimeLimited.value) return;
 
   // 当播放时间超过限制时暂停视频
+  console.log('当播放时间超过限制时暂停视频 -------->', videoPlayer.value.currentTime >= timeLimit && !isBuy.value)
   if (videoPlayer.value.currentTime >= timeLimit && !isBuy.value) {
     videoPlayer.value.pause();
     isTimeLimited.value = true;
@@ -210,7 +245,7 @@ const resetVideo = () => {
           </div>
           <div class="course-info">
             <p>BIM建模基础与实战</p>
-            <p>支付金额：<span class="price">¥299</span></p>
+            <p>支付金额：<span class="price">¥{{ videoDetails.price }}</span></p>
             <p>请用微信扫码支付，支付后可下载视频</p>
           </div>
         </div>
@@ -222,7 +257,7 @@ const resetVideo = () => {
           <button class="pay-btn" @click="getAlpayvideocreate">去支付宝支付</button>
           <div class="course-info">
             <p>BIM建模基础与实战</p>
-            <p>支付金额：<span class="price">¥299</span></p>
+            <p>支付金额：<span class="price">¥{{ videoDetails.price }}</span></p>
             <p>点击按钮后，页面将跳转到支付宝官网完成支付</p>
           </div>
         </div>
