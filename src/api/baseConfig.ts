@@ -1,4 +1,4 @@
-const baseURL = 'http://xcapi.duoqixin.com'
+const baseURL = 'https://xcapi.duoqixin.com'
 const fileURL = 'http://xcadmin.duoqixin.com'
 
 export { baseURL, fileURL }
