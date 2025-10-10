@@ -9,7 +9,6 @@ const route = useRoute()
 
 const datasolutionid: any = ref('')
 const datasolutionData: any = ref({})
-const introduction: any = ref('')
 
 // init 获取基本信息
 function getRequirementsbycate() {
@@ -18,7 +17,7 @@ function getRequirementsbycate() {
   }).then((res: any) => {
     if (res) {
       datasolutionData.value = res
-      introduction.value = res.usefor || ''
+      datasolutionData.value.product_name = datasolutionData.value.name
     }
   })
 }
@@ -36,13 +35,6 @@ function tijiaoxuqiu() {
     ElMessage({
       type: 'error',
       message: '请选择类别',
-    })
-    return
-  }
-  if (!datasolutionData.value.usefor) {
-    ElMessage({
-      type: 'error',
-      message: '请填写用途',
     })
     return
   }
@@ -100,7 +92,6 @@ function tijiaoxuqiu() {
     thetype: datasolutionData.value.thetype,
     cate_id: datasolutionData.value.cate_id,
     product_name: datasolutionData.value.product_name,
-    usefor: datasolutionData.value.usefor,
     description: datasolutionData.value.description,
     requirements: requirements.value,
     memo: datasolutionData.value.memo,
@@ -129,11 +120,7 @@ onMounted(() => {
   <div class="requirementsPage">
     <div class="requirementsHead">
       <div class="requHtitle">{{ datasolutionData.cate_name }}</div>
-      <div class="requHsub">
-        {{ introduction }}
-      </div>
       <div class="requirementsCont">
-        <div class="requCtitle">{{ datasolutionData.name }}</div>
         <div class="supplierClassFx">
           <div class="supplierClassFxItem">
             <div class="supplierClassText"><span style="color: #f56c6c">*</span>标的名称</div>
@@ -141,7 +128,7 @@ onMounted(() => {
           </div>
           <div class="supplierClassFxItem">
             <!--  -->
-            <div class="supplierClassText"><span style="color: #f56c6c">*</span>产品/服务</div>
+            <div class="supplierClassText"><span style="color: #f56c6c">*</span>类别</div>
             <el-select v-model="datasolutionData.thetype" placeholder="请选择类别" size="large" clearable
               style="width: 100%; height: 40px">
               <el-option label="产品" value="0" />
@@ -149,19 +136,13 @@ onMounted(() => {
             </el-select>
           </div>
         </div>
-        <div class="supplierClassFx">
-          <div class="supplierClassFxItem2">
-            <div class="supplierClassText"><span style="color: #f56c6c">*</span>用途</div>
-            <el-input v-model="datasolutionData.usefor" style="width: 100%; height: 40px" placeholder="请填写用途" />
-          </div>
-        </div>
         <div class="supplierClassFx" style="margin-top: 2rem">
           <div class="supplierClassFxItem2">
             <div class="supplierClassText">
-              <span style="color: #f56c6c">*</span>应用简述（可另附页）
+              <span style="color: #f56c6c">*</span>应用简述
             </div>
             <el-input type="textarea" v-model="datasolutionData.description" :autosize="{ minRows: 3, maxRows: 3 }"
-              style="width: 100%" placeholder="请描述CIM+人房管理系统的应用场景、目标及预期效果等" />
+              style="width: 100%" placeholder="请描述应用场景、目标及预期效果等" />
           </div>
         </div>
         <div class="requCstitle">技术需求（可多选）</div>
