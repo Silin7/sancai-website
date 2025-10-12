@@ -314,7 +314,7 @@ function convertSecondsToHMS(seconds: any) {
             </div>
           </div>
           <button v-if="!userInfo.name" class="containerLoginBtn" @click="pageJump('login')">登录 / 注册</button>
-          <div class="containerLoginMy">
+          <!-- <div class="containerLoginMy">
             <div>
               <div class="containerLoginMn">0</div>
               <div class="containerLoginMt">我的视频</div>
@@ -327,7 +327,7 @@ function convertSecondsToHMS(seconds: any) {
               <div class="containerLoginMn">0</div>
               <div class="containerLoginMt">收藏视频</div>
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- 热门视频 -->
         <div class="containerHot">
