@@ -344,7 +344,7 @@ onUnmounted(() => {
     font-weight: 500;
     letter-spacing: 0px;
     line-height: 26px;
-    color: rgba(245, 245, 245, 1);
+    color: rgba(0, 0, 0, 1);
     text-align: center;
 
     @media (min-width: 768px) {

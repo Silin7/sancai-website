@@ -338,8 +338,11 @@ onUnmounted(() => {
       width: calc(100% - 100px);
       height: 48px;
       border-radius: 111px;
-      color: rgba(56, 56, 56, 1);
-      background: rgba(229, 229, 229, 1);
+      color: #fff;
+      background:
+        linear-gradient(117.41deg, rgba(2, 93, 244, 1) 0%, rgba(7, 91, 237, 1) 100%),
+        rgba(204, 204, 204, 1);
+      box-shadow: -1px 4px 6px rgba(4, 71, 177, 0.29);
     }
 
     .gologin {
@@ -369,7 +372,7 @@ onUnmounted(() => {
     font-weight: 500;
     letter-spacing: 0px;
     line-height: 26px;
-    color: rgba(245, 245, 245, 1);
+    color: rgba(0, 0, 0, 1);
     text-align: center;
 
     @media (min-width: 768px) {
