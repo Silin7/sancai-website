@@ -1,17 +1,24 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import qrcode from 'qrcode';
+import qrcode from 'qrcode'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import { fileURL } from '@/api/baseConfig'
 // import formatCurrency from '@/hooks/formatCurrency'
 import { videodetailApi } from '@/api/modules/video'
-import { wxpayvideocreateApi, alipayvideocreateApi, payvideostatusApi, videoplayApi, videodownloadApi } from '@/api/modules/pay'
+import {
+  wxpayvideocreateApi,
+  alipayvideocreateApi,
+  payvideostatusApi,
+  videoplayApi,
+  videodownloadApi,
+} from '@/api/modules/pay'
 
 // 路由信息
 const route = useRoute()
-const videoid: any = ref("")
+const videoid: any = ref('')
 const videoDetails: any = ref({})
 
 function getVideodetail() {
@@ -23,8 +30,9 @@ function getVideodetail() {
 }
 
 // 用户端-创建视频购买支付订单（item_id=0），生成微信支付二维码
+const payStatus: any = ref()
 const dialogVisible: any = ref(false)
-const qrCodeData = ref('');
+const qrCodeData = ref('')
 const payvideocreate: any = ref({})
 const verificationTimer: any = ref(null)
 
@@ -34,7 +42,7 @@ function getWxpayvideocreate() {
     if (res) {
       dialogVisible.value = true
       payvideocreate.value = res
-      qrCodeData.value = await qrcode.toDataURL(payvideocreate.value.qr_code, { scale: 4 });
+      qrCodeData.value = await qrcode.toDataURL(payvideocreate.value.qr_code, { scale: 4 })
       console.log('微信支付 -------->', res)
       // 查询支付状态
       verificationTimer.value = setInterval(() => {
@@ -58,13 +66,13 @@ function getAlpayvideocreate() {
 function getpayvideostatus() {
   payvideostatusApi('0', videoid.value).then((res: any) => {
     if (res) {
+      payStatus.value = res.status
       if (res.status === -1 || res.status === -2) {
         clearInterval(verificationTimer.value)
-      }
-      else if (res.status === 1) {
+      } else if (res.status === 1) {
         dialogVisible.value = false
         isBuy.value = true
-        getVideoPlay()
+        // getVideoPlay()
         getVideoDownload()
         clearInterval(verificationTimer.value)
       }
@@ -72,24 +80,59 @@ function getpayvideostatus() {
   })
 }
 
-// 获取视频播放地址
-function getVideoPlay() {
-  videoplayApi(videoid.value).then((res: any) => {
+// // 获取视频播放地址
+// function getVideoPlay() {
+//   videoplayApi(videoid.value).then((res: any) => {
+//     if (res) {
+//       console.log('获取播放地址 -------->', res)
+//       // videoDetails.value.vurl = res.play_url
+//     }
+//   })
+// }
+
+// 获取视频下载地址
+const videoLink: any = ref(false)
+function getVideoDownload() {
+  videodownloadApi(videoid.value).then((res: any) => {
     if (res) {
-      console.log('获取播放地址 -------->', res)
-      // videoDetails.value.vurl = res.play_url
+      videoLink.value = res
     }
   })
 }
 
-// 获取视频下载地址
-function getVideoDownload() {
-  videodownloadApi(videoid.value).then((res: any) => {
-    if (res) {
-      console.log('获取下载地址 -------->', res)
-      // videoDetails.value.vurl = res.download_url
-    }
+function downloadMp4() {
+  ElMessage({
+    message: '开始下载',
+    type: 'warning',
   })
+  let url = videoLink.value.download_url //下载的文件URL
+  // let fileName = url.slice(url.lastIndexOf("/") + 1); //下载的文件名换成自己的
+  let fileName = videoLink.value.title //下载的文件名字
+  var xhr = new XMLHttpRequest()
+  xhr.open('GET', url, true)
+  xhr.responseType = 'blob' // 返回类型blob
+  xhr.onload = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let blob = xhr.response
+      let downLoadUrl = window.URL.createObjectURL(
+        new Blob([blob], {
+          // type: item.type === "video" ? "video/mp4" : "image/jpeg",
+          type: 'video/mp4', //这里限制了视频，上面的可以放开限制下载图片
+          // type: videoLink.value.format, //这里限制了视频，上面的可以放开限制下载图片
+        }),
+      )
+      let a = document.createElement('a')
+      a.download = fileName
+      a.href = downLoadUrl
+      a.style.display = 'none'
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+    }
+  }
+  xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
+  xhr.setRequestHeader('Access-Control-Allow-Origin', '*')
+  xhr.send()
 }
 
 onMounted(() => {
@@ -124,47 +167,50 @@ function convertSecondsToHMS(seconds: any) {
 
 // 视频源
 const isBuy: any = ref(false)
-const videoPlayer: any = ref(null);
-const showTimeLimitMessage: any = ref(false);
-const timeLimit: any = 3; // 限制播放时间（秒）
-const isTimeLimited: any = ref(false);
+const videoPlayer: any = ref(null)
+const showTimeLimitMessage: any = ref(false)
+const timeLimit: any = 3 // 限制播放时间（秒）
+const isTimeLimited: any = ref(false)
 
 // 处理视频时间更新
 const handleTimeUpdate = () => {
-  if (!videoPlayer.value || isTimeLimited.value) return;
+  if (!videoPlayer.value || isTimeLimited.value) return
 
   // 当播放时间超过限制时暂停视频
-  console.log('当播放时间超过限制时暂停视频 -------->', videoPlayer.value.currentTime >= timeLimit && !isBuy.value)
+  console.log(
+    '当播放时间超过限制时暂停视频 -------->',
+    videoPlayer.value.currentTime >= timeLimit && !isBuy.value,
+  )
   if (videoPlayer.value.currentTime >= timeLimit && !isBuy.value) {
-    videoPlayer.value.pause();
-    isTimeLimited.value = true;
-    showTimeLimitMessage.value = true;
+    videoPlayer.value.pause()
+    isTimeLimited.value = true
+    showTimeLimitMessage.value = true
   }
-};
+}
 
 // 处理播放事件
 const handlePlay = () => {
   // 如果已经达到时间限制，则不允许继续播放
   if (isTimeLimited.value) {
-    videoPlayer.value.pause();
-    showTimeLimitMessage.value = true;
+    videoPlayer.value.pause()
+    showTimeLimitMessage.value = true
   }
-};
+}
 
 // 处理视频结束事件
 const handleEnded = () => {
-  showTimeLimitMessage.value = false;
-  isTimeLimited.value = false;
-};
+  showTimeLimitMessage.value = false
+  isTimeLimited.value = false
+}
 
-// 重置视频
-const resetVideo = () => {
-  if (videoPlayer.value) {
-    videoPlayer.value.currentTime = 0;
-    isTimeLimited.value = false;
-    showTimeLimitMessage.value = false;
-  }
-};
+// // 重新播放
+// const resetVideo = () => {
+//   if (videoPlayer.value) {
+//     videoPlayer.value.currentTime = 0;
+//     isTimeLimited.value = false;
+//     showTimeLimitMessage.value = false;
+//   }
+// };
 </script>
 
 <template>
@@ -175,7 +221,7 @@ const resetVideo = () => {
           <div class="pdclJbcsVideo">
             <video v-if="videoDetails.vurl" ref="videoPlayer" :poster="fileURL + videoDetails.thumbnail" controls="true"
               preload="metadata" @timeupdate="handleTimeUpdate" @play="handlePlay" @ended="handleEnded">
-              <source :src="videoDetails.vurl" type="video/mp4">
+              <source :src="videoDetails.vurl" type="video/mp4" />
               您的浏览器不支持HTML5视频播放，请升级浏览器
             </video>
             <!-- 超时提示 -->
@@ -210,7 +256,11 @@ const resetVideo = () => {
                 </span>
               </div>
             </div>
-            <button @click="getWxpayvideocreate">
+            <button v-if="payStatus === 1" @click="downloadMp4">
+              <i class="fa fa-download"></i>
+              <span>立即下载</span>
+            </button>
+            <button v-else @click="getWxpayvideocreate">
               <i class="fa fa-shopping-cart"></i>
               <span>立即购买 ¥{{ videoDetails.price }}</span>
             </button>
@@ -241,11 +291,13 @@ const resetVideo = () => {
             <span>微信支付</span>
           </div>
           <div class="course-box">
-            <img :src="qrCodeData" :alt="payvideocreate.qr_code" style="width: 100%;" />
+            <img :src="qrCodeData" :alt="payvideocreate.qr_code" style="width: 100%" />
           </div>
           <div class="course-info">
             <p>BIM建模基础与实战</p>
-            <p>支付金额：<span class="price">¥{{ videoDetails.price }}</span></p>
+            <p>
+              支付金额：<span class="price">¥{{ videoDetails.price }}</span>
+            </p>
             <p>请用微信扫码支付，支付后可下载视频</p>
           </div>
         </div>
@@ -257,7 +309,9 @@ const resetVideo = () => {
           <button class="pay-btn" @click="getAlpayvideocreate">去支付宝支付</button>
           <div class="course-info">
             <p>BIM建模基础与实战</p>
-            <p>支付金额：<span class="price">¥{{ videoDetails.price }}</span></p>
+            <p>
+              支付金额：<span class="price">¥{{ videoDetails.price }}</span>
+            </p>
             <p>点击按钮后，页面将跳转到支付宝官网完成支付</p>
           </div>
         </div>
