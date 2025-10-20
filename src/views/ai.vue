@@ -105,8 +105,8 @@ onBeforeUnmount(() => {
         <div class="bannerAbsolute">
           <div class="bannerContent">
             <div class="bannerTitle">{{ bannerData.maintitle }}</div>
-            <div v-if="bannerData.subtitle" class="bannerSubtitle">
-              {{ bannerData.subtitle }}
+            <div v-if="bannerData.description" class="bannerSubtitle">
+              {{ bannerData.description }}
             </div>
             <div class="frsc">
               <button v-if="bannerData.leftbtn && !bannerData.leftbtn_url" class="bannerLeftBtn">
@@ -128,13 +128,13 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 介绍区域  -->
-      <div class="introaiOut">
+      <!-- <div class="introaiOut">
         <div class="introaiBox">
           <p class="introaiText">
             随着新一轮科技革命和产业变革深入发展，人工智能（AI）技术突飞猛进，已成为提升产业能级的重要引擎。目前，以DeepSeeK、通义千问为代表的国产大模型正在快速发展与商业应用，人工智能（AI）将逐步渗透到各类行业。建筑业探索应用也将是必由之路，以数据、算法和算力为核心要素，驱动工程设计、工程施工和运营维护多维度创新应用，可实现优化资源配置、提升生产效率和创新组织管理新范式，为产业转型发展注入新动能。
           </p>
         </div>
-      </div>
+      </div> -->
       <!-- 人工智能应用 -->
       <div class="applicationOut">
         <div class="applicationBox">
