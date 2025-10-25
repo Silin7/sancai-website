@@ -128,10 +128,10 @@ onBeforeUnmount(() => {
             <div class="introtLeft">
               <div class="introtInfo">
                 <p>
-                  杭州三才工程信息科技有限公司成立于2014年5月，总部位于浙江省杭州市。我们以"网络强国"和"数字中国"建设思想为指引，专注于提供工程项目数字化服务与产品，是国家高新技术企业。
+                  杭州三才工程信息科技有限公司成立于2014年5月，总部位于浙江省杭州市，专注于提供工程项目数字化服务与产品的国家高新技术企业。公司主营工程造价咨询、BIM咨询、CIM咨询及智慧管理软件开发，以“网络强国”和“数字中国”思想建设为指引，致力于推动AI、BIM等新一代信息技术深度融入工程咨询全过程，打造可视化、智能化、动态化的数字化服务新模式。
                 </p>
                 <p>
-                  公司主营工程造价咨询、BIM咨询、CIM咨询、智慧管理软件开发，致力于推动建筑行业数字化转型，为新型基础设施建设提供专业支持。
+                  目前，公司正积极推进人工智能技术在工程建设领域的深度应用，开展AI智能体的研发与探索，聚焦智能算量、智能审图、智能审价等典型场景，依托数据驱动与AI模型提升工程管理效率与决策水平，助力行业实现智能化升级与高质量发展。
                 </p>
               </div>
               <ul>
@@ -151,38 +151,111 @@ onBeforeUnmount(() => {
                 </div>
               </div>
             </div>
-            <div class="introtRight">
-              <div class="introtRightTitle">发展历程</div>
-              <div class="introtRightItem">
-                <div class="introtRightItemD"></div>
-                <div class="introtRightItemY">2014年</div>
-                <div class="introtRightItemT">公司成立，专注于工程造价咨询服务</div>
+            <img src="@/assets/aboutUs.png" alt="" class="aboutUs" />
+          </div>
+          <div v-if="windowWidth > 768" class="introtRight">
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY">2014年</div>
+              <div class="introtRightItemT">公司成立，专注于工程造价咨询服务</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY introtRightopacity">2016年</div>
+              <div class="introtRightItemT introtRightopacity">拓展BIM咨询服务，完成首个大型BIM项目</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY">2018年</div>
+              <div class="introtRightItemT">参编首部BIM专业书籍，获得国家高新技术企业认证</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY introtRightopacity">2020年</div>
+              <div class="introtRightItemT introtRightopacity">开展CIM咨询业务，开发智慧管理软件平台</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY">2021年</div>
+              <div class="introtRightItemT">获得国家行业科学技术奖，被多家主流媒体报道</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY introtRightopacity">2023年</div>
+              <div class="introtRightItemT introtRightopacity">聚焦BIM、CIM技术，全面实施数字化转型</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY">2025年至今</div>
+              <div class="introtRightItemT">研发AI智能体，加速AI与建筑业深度融合</div>
+            </div>
+          </div>
+          <div v-if="windowWidth > 768" class="introtRight">
+            <div class="introtRightItem2">
+              <div class="introtRightItemY introtRightopacity">2014年</div>
+              <div class="introtRightItemT introtRightopacity">公司成立，专注于工程造价咨询服务</div>
+            </div>
+            <div class="introtRightItem2">
+              <div class="introtRightItemY">2016年</div>
+              <div class="introtRightItemT">拓展BIM咨询服务，完成首个大型BIM项目</div>
+            </div>
+            <div class="introtRightItem2">
+              <div class="introtRightItemY introtRightopacity">2018年</div>
+              <div class="introtRightItemT introtRightopacity">参编首部BIM专业书籍，获得国家高新技术企业认证</div>
+            </div>
+            <div class="introtRightItem2">
+              <div class="introtRightItemY">2020年</div>
+              <div class="introtRightItemT">开展CIM咨询业务，开发智慧管理软件平台</div>
+            </div>
+            <div class="introtRightItem2">
+              <div class="introtRightItemY introtRightopacity">2021年</div>
+              <div class="introtRightItemT introtRightopacity">获得国家行业科学技术奖，被多家主流媒体报道</div>
+            </div>
+            <div class="introtRightItem2">
+              <div class="introtRightItemY">2023年</div>
+              <div class="introtRightItemT">聚焦BIM、CIM技术，全面实施数字化转型
               </div>
-              <div class="introtRightItem">
-                <div class="introtRightItemD"></div>
-                <div class="introtRightItemY">2016年</div>
-                <div class="introtRightItemT">拓展BIM咨询服务，完成首个大型BIM项目</div>
-              </div>
-              <div class="introtRightItem">
-                <div class="introtRightItemD"></div>
-                <div class="introtRightItemY">2018年</div>
-                <div class="introtRightItemT">参编首部BIM专业书籍，获得国家高新技术企业认证</div>
-              </div>
-              <div class="introtRightItem">
-                <div class="introtRightItemD"></div>
-                <div class="introtRightItemY">2020年</div>
-                <div class="introtRightItemT">开展CIM咨询业务，开发智慧管理软件平台</div>
-              </div>
-              <div class="introtRightItem">
-                <div class="introtRightItemD"></div>
-                <div class="introtRightItemY">2021年</div>
-                <div class="introtRightItemT">获得国家行业科学技术奖，被多家主流媒体报道</div>
-              </div>
-              <div class="introtRightItem">
-                <div class="introtRightItemD"></div>
-                <div class="introtRightItemY">2023年至今</div>
-                <div class="introtRightItemT">聚焦BIM、CIM技术，全面实施数字化转型</div>
-              </div>
+            </div>
+            <div class="introtRightItem2">
+              <div class="introtRightItemY introtRightopacity">2025年至今</div>
+              <div class="introtRightItemT introtRightopacity">研发AI智能体，加速AI与建筑业深度融合</div>
+            </div>
+          </div>
+          <div v-else class="introtRight2">
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY">2014年</div>
+              <div class="introtRightItemT">公司成立，专注于工程造价咨询服务</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY">2016年</div>
+              <div class="introtRightItemT">拓展BIM咨询服务，完成首个大型BIM项目</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY">2018年</div>
+              <div class="introtRightItemT">参编首部BIM专业书籍，获得国家高新技术企业认证</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY">2020年</div>
+              <div class="introtRightItemT">开展CIM咨询业务，开发智慧管理软件平台</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY">2021年</div>
+              <div class="introtRightItemT">获得国家行业科学技术奖，被多家主流媒体报道</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY">2023年</div>
+              <div class="introtRightItemT">聚焦BIM、CIM技术，全面实施数字化转型</div>
+            </div>
+            <div class="introtRightItem">
+              <div class="introtRightItemD"></div>
+              <div class="introtRightItemY">2025年至今</div>
+              <div class="introtRightItemT">研发AI智能体，加速AI与建筑业深度融合</div>
             </div>
           </div>
         </div>
@@ -384,9 +457,10 @@ onBeforeUnmount(() => {
       }
 
       .introtContent {
+        margin-bottom: 2rem;
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
+        align-items: flex-end;
 
         .introtLeft {
           margin-right: 2rem;
@@ -475,56 +549,108 @@ onBeforeUnmount(() => {
           }
         }
 
-        .introtRight {
+        .aboutUs {
           width: calc(50% - 1rem);
-          padding: 2rem;
-          background-color: rgb(249 250 251);
-          border-radius: 1rem;
 
           @media (max-width: 768px) {
             margin-top: 2rem;
-            padding: 1rem;
             width: 100%;
           }
+        }
+      }
 
-          .introtRightTitle {
+      .introtRight2 {
+        margin-top: 2rem;
+        padding: 1rem;
+        width: 100%;
+
+        .introtRightTitle {
+          font-weight: 700;
+          font-size: 1.5rem;
+          line-height: 2rem;
+          text-align: center;
+          margin-bottom: 1.5rem;
+          color: rgb(1 32 96);
+        }
+
+        .introtRightItem {
+          position: relative;
+          padding-left: 2rem;
+          padding-bottom: 2rem;
+          border-left: 2px solid rgb(22 93 255);
+
+          .introtRightItemD {
+            position: absolute;
+            left: -9px;
+            top: 0px;
+            height: 1rem;
+            width: 1rem;
+            border-radius: 9999px;
+            background-color: rgb(22 93 255);
+          }
+
+          .introtRightItemY {
             font-weight: 700;
-            font-size: 1.5rem;
-            line-height: 2rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            margin-bottom: 0.5rem;
             color: rgb(1 32 96);
           }
 
-          .introtRightItem {
-            position: relative;
-            padding-left: 2rem;
-            padding-bottom: 2rem;
-            border-left: 2px solid rgb(22 93 255);
-
-            .introtRightItemD {
-              position: absolute;
-              left: -9px;
-              top: 0px;
-              height: 1rem;
-              width: 1rem;
-              border-radius: 9999px;
-              background-color: rgb(22 93 255);
-            }
-
-            .introtRightItemY {
-              font-weight: 700;
-              font-size: 1.25rem;
-              line-height: 1.75rem;
-              margin-bottom: 0.5rem;
-              color: rgb(1 32 96);
-            }
-
-            .introtRightItemT {
-              line-height: 1.5rem;
-              color: rgb(75 85 99);
-            }
+          .introtRightItemT {
+            line-height: 1.5rem;
+            color: rgb(75 85 99);
           }
+        }
+      }
+
+      .introtRight {
+        display: flex;
+
+        @media (max-width: 768px) {
+          margin-top: 2rem;
+          padding: 1rem;
+          width: 100%;
+        }
+
+        .introtRightopacity {
+          opacity: 0;
+        }
+
+        .introtRightItem {
+          position: relative;
+          padding: 0 1rem 2rem;
+          border-bottom: 2px solid rgb(22 93 255);
+        }
+
+        .introtRightItem2 {
+          position: relative;
+          padding: 2rem 1rem 0;
+        }
+
+        .introtRightItemD {
+          position: absolute;
+          left: -9px;
+          bottom: -9px;
+          height: 1rem;
+          width: 1rem;
+          border-radius: 9999px;
+          background-color: rgb(22 93 255);
+        }
+
+        .introtRightItemY {
+          text-align: center;
+          font-weight: 700;
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+          margin-bottom: 0.5rem;
+          color: rgb(1 32 96);
+        }
+
+        .introtRightItemT {
+          text-align: center;
+          line-height: 1.5rem;
+          color: rgb(75 85 99);
         }
       }
     }
