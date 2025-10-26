@@ -289,7 +289,7 @@ onBeforeUnmount(() => {
       <div class="containerLeft">
         <div class="containerClass">
           <div class="containerClassRow">
-            <button class="containerClassColActive">数字技工/方案论证</button>
+            <button class="containerClassColActive">数字技术应用论证/数字实施方案论证</button>
             <button class="containerClassCol" @click="pageJump('materials')">材料/设备</button>
             <button class="containerClassCol" @click="pageJump('sale')">智能建造装备</button>
             <button class="containerClassCol" @click="pageJump('products')">信息化产品/服务</button>
@@ -404,14 +404,15 @@ onBeforeUnmount(() => {
         <div class="containerProducts">
           <!-- 数据表格 -->
           <el-table v-loading="tableLoading" :data="productDataList" highlight-current-row>
-            <el-table-column :show-overflow-tooltip="true" align="center" label="服务名称" width="120">
+            <el-table-column align="center" label="服务名称">
               <template #default="scope">
                 <span @click="goProductsDetail(scope.row)" style="color: #165dff; cursor: pointer;">
                   {{ scope.row.servicename }}
                 </span>
               </template>
             </el-table-column>
-            <!-- <el-table-column :show-overflow-tooltip="true" align="center" prop="specification" label="规格" /> -->
+            <el-table-column :show-overflow-tooltip="true" align="center" prop="scene" label="场景" />
+            <el-table-column :show-overflow-tooltip="true" align="center" prop="dimension" label="论证维度" />
             <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌" />
             <el-table-column :show-overflow-tooltip="true" align="center" prop="unit_name" label="单位" />
             <el-table-column align="center" label="除税价">

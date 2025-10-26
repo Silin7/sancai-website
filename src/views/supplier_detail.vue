@@ -274,7 +274,7 @@ onBeforeUnmount(() => {
             <button :class="gyscpState === '' ? 'sdclHzalColActive' : 'sdclHzalCol'"
               @click="gyscpStateChange('')">全部产品</button>
             <button :class="gyscpState === '0' ? 'sdclHzalColActive' : 'sdclHzalCol'"
-              @click="gyscpStateChange('0')">数字技工/方案论证</button>
+              @click="gyscpStateChange('0')">数字技术应用论证/数字实施方案论证</button>
             <button :class="gyscpState === '1' ? 'sdclHzalColActive' : 'sdclHzalCol'"
               @click="gyscpStateChange('1')">材料/设备</button>
             <button :class="gyscpState === '2' ? 'sdclHzalColActive' : 'sdclHzalCol'"

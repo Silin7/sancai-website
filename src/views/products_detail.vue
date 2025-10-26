@@ -275,7 +275,7 @@ const value1 = ref(4.8)
         <div class="pdNavigation">
           <span @click="pageJump('home')">首页</span>
           <span class="pdNavigationXg">/</span>
-          <span v-if="pathname === 'scheme'" @click="pageJump('scheme')"> 数字技工/方案论证 </span>
+          <span v-if="pathname === 'scheme'" @click="pageJump('scheme')"> 数字技术应用论证/数字实施方案论证 </span>
           <span v-if="pathname === 'materials'" @click="pageJump('materials')"> 材料/设备 </span>
           <span v-if="pathname === 'sale'" @click="pageJump('sale')"> 智能建造装备 </span>
           <span v-if="pathname === 'products'" @click="pageJump('products')">

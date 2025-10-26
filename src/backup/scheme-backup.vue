@@ -183,7 +183,7 @@ const handleCurrentChange = (val: number) => {
       <img :src="fileURL + bannerData.imgurl" alt="scbanner" />
       <div class="prbannerAbsolute">
         <div class="prbannerContent">
-          <div class="prbannerTitle">数字技工/方案论证</div>
+          <div class="prbannerTitle">数字技术应用论证/数字实施方案论证</div>
         </div>
       </div>
     </div>
@@ -191,7 +191,7 @@ const handleCurrentChange = (val: number) => {
       <div class="containerLeft">
         <div class="containerClass">
           <div class="containerClassRow">
-            <button class="containerClassColActive">数字技工/方案论证</button>
+            <button class="containerClassColActive">数字技术应用论证/数字实施方案论证</button>
             <button class="containerClassCol">材料/设备</button>
             <button class="containerClassCol">智能建造装备</button>
             <button class="containerClassCol">信息化产品/服务</button>

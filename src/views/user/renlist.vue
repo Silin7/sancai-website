@@ -85,7 +85,7 @@ onMounted(() => {
         <div class="breadcrumb">
           <a @click="pageJump('user-index')"> <i class="fa fa-home mr-1"></i>首页 </a>
           <span class="breadcrumb-separator">/</span>
-          <span>数字技工/方案论证</span>
+          <span>数字技术应用论证/数字实施方案论证</span>
         </div>
         <div class="action-buttons">
           <button class="action-btn back-btn" @click="pageJump('user-index')">

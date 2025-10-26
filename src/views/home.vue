@@ -414,7 +414,7 @@ onBeforeUnmount(() => {
           <div class="containerSubBox">
             <div :class="pcatePactive === 0 ? 'containerSubItem containerActive' : 'containerSubItem'"
               @click="pcatePchange(0)">
-              数字技工/方案论证
+              数字技术应用论证/数字实施方案论证
             </div>
             <div :class="pcatePactive === 1 ? 'containerSubItem containerActive' : 'containerSubItem'"
               @click="pcatePchange(1)">
@@ -432,7 +432,7 @@ onBeforeUnmount(() => {
         </div>
         <div class="containerGridbox">
           <template v-for="(item, index) in pcateZhu" :key="index">
-            <img v-if="pcatePactive === 0 && item.title === '数字技工/方案论证'" :src="fileURL + item.secimg" />
+            <img v-if="pcatePactive === 0 && item.title === '数字技术应用论证/数字实施方案论证'" :src="fileURL + item.secimg" />
             <img v-if="pcatePactive === 1 && item.title === '材料/设备'" :src="fileURL + item.secimg" />
             <img v-if="pcatePactive === 2 && item.title === '智能建造装备'" :src="fileURL + item.secimg" />
             <img v-if="pcatePactive === 3 && item.title === '信息化产品/服务'" :src="fileURL + item.secimg" />

@@ -16,33 +16,33 @@ export function productpcatechildrenApi(params: any) {
   })
 }
 
-// 用户端-根据item_id获取启用的产品分类（按sort从小到大排序，item_id对应：0=数字技工/方案论证，1=材料/设备，2=智能建造装备，3=信息化产品/服务）
+// 用户端-根据item_id获取启用的产品分类（按sort从小到大排序，item_id对应：0=数字技术应用论证/数字实施方案论证，1=材料/设备，2=智能建造装备，3=信息化产品/服务）
 export function productpcatebyitemidApi(params: any) {
   return api.get('/api/client/product/pcates/by-item-id', {
     params,
   })
 }
 
-// 用户端-获取所有审核通过的数字技工/方案论证（不含description字段）
+// 用户端-获取所有审核通过的数字技术应用论证/数字实施方案论证（不含description字段）
 export function producthrApi(params: any) {
   return api.get('/api/client/product/human-resources', {
     params,
   })
 }
 
-// 用户端-根据ID获取数字技工/方案论证详细数据（含分类、地区、供应商等完整关联信息）
+// 用户端-根据ID获取数字技术应用论证/数字实施方案论证详细数据（含分类、地区、供应商等完整关联信息）
 export function producthridApi(id: any) {
   return api.get('/api/client/product/human-resources/' + id)
 }
 
-// 用户端-按主分类、二级分类筛选数字技工/方案论证（不含description）
+// 用户端-按主分类、二级分类筛选数字技术应用论证/数字实施方案论证（不含description）
 export function producthrbycateApi(params: any) {
   return api.get('/api/client/product/human-resources/by-cate', {
     params,
   })
 }
 
-// 用户端-多条件检索数字技工/方案论证（不含description）
+// 用户端-多条件检索数字技术应用论证/数字实施方案论证（不含description）
 export function producthrsearchApi(params: any) {
   return api.get('/api/client/product/human-resources/search', {
     params,

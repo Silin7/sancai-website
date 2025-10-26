@@ -67,7 +67,7 @@ function signOut() {
       </el-menu-item>
       <el-menu-item index="user-renlist" @click="pageJump('user-renlist')">
         <i class="fa fa-users"></i>
-        <span>数字技工/方案论证</span>
+        <span>数字技术应用论证/数字实施方案论证</span>
       </el-menu-item>
       <el-menu-item index="user-cailist" @click="pageJump('user-cailist')">
         <i class="fa fa-dropbox"></i>

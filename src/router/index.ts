@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'scheme',
     component: () => import('@/views/scheme.vue'),
     meta: {
-      title: '数字技工/方案论证',
+      title: '数字技术应用论证/数字实施方案论证',
       stcode: 'scheme',
       website: true,
       hashead: true,
@@ -353,7 +353,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'user-renlist',
     component: () => import('@/views/user/renlist.vue'),
     meta: {
-      title: '新材网-数字技工/方案论证',
+      title: '新材网-数字技术应用论证/数字实施方案论证',
       stcode: 'user-renlist',
       website: false,
     },
@@ -363,7 +363,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'user-renfrom',
     component: () => import('@/views/user/renfrom.vue'),
     meta: {
-      title: '新材网-数字技工/方案论证',
+      title: '新材网-数字技术应用论证/数字实施方案论证',
       stcode: 'user-renlist',
       website: false,
     },

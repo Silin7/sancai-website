@@ -274,7 +274,7 @@ onBeforeUnmount(() => {
       <div class="containerLeft">
         <div class="containerClass">
           <div class="containerClassRow">
-            <button class="containerClassCol" @click="pageJump('scheme')">数字技工/方案论证</button>
+            <button class="containerClassCol" @click="pageJump('scheme')">数字技术应用论证/数字实施方案论证</button>
             <button class="containerClassCol" @click="pageJump('materials')">材料/设备</button>
             <button class="containerClassCol" @click="pageJump('sale')">智能建造装备</button>
             <button class="containerClassColActive">信息化产品/服务</button>
@@ -343,7 +343,7 @@ onBeforeUnmount(() => {
               </el-row>
               <el-row :gutter="10">
                 <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="mb10">
-                  <div class="supplierClassText">材料名称</div>
+                  <div class="supplierClassText">服务名称</div>
                   <el-input v-model="searchForm.product_name" style="width: 100%; height: 40px" placeholder="请输入材料名称..."
                     clearable />
                 </el-col>
@@ -389,14 +389,16 @@ onBeforeUnmount(() => {
         <div class="containerProducts">
           <!-- 数据表格 -->
           <el-table v-loading="tableLoading" :data="productDataList" highlight-current-row>
-            <el-table-column :show-overflow-tooltip="true" align="center" label="材料名称" width="120">
+            <el-table-column align="center" label="服务名称" width="120">
               <template #default="scope">
                 <span @click="goProductsDetail(scope.row)" style="color: #165dff; cursor: pointer;">
                   {{ scope.row.itname }}
                 </span>
               </template>
             </el-table-column>
-            <el-table-column :show-overflow-tooltip="true" align="center" prop="specification" label="规格" />
+            <el-table-column :show-overflow-tooltip="true" align="center" prop="specification" label="规格型号" />
+            <el-table-column :show-overflow-tooltip="true" align="center" prop="scene" label="场景" />
+            <el-table-column :show-overflow-tooltip="true" align="center" prop="technical_params" label="技术参数" />
             <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌" />
             <el-table-column :show-overflow-tooltip="true" align="center" prop="unit_name" label="单位" />
             <el-table-column align="center" label="除税价">
@@ -420,6 +422,7 @@ onBeforeUnmount(() => {
                 <span>{{ dayjs(scope.row.quote_time).format('YYYY-MM-DD') }}</span>
               </template>
             </el-table-column>
+            <el-table-column :show-overflow-tooltip="true" align="center" prop="solution" label="解决方案" />
             <el-table-column :show-overflow-tooltip="true" align="center" prop="memo" label="备注" />
           </el-table>
           <!-- 分页 -->

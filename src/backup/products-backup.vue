@@ -192,7 +192,7 @@ const handleCurrentChange = (val: number) => {
       <div class="containerLeft">
         <div class="containerClass">
           <div class="containerClassRow">
-            <button class="containerClassCol">数字技工/方案论证</button>
+            <button class="containerClassCol">数字技术应用论证/数字实施方案论证</button>
             <button class="containerClassCol">材料/设备</button>
             <button class="containerClassCol">智能建造装备</button>
             <button class="containerClassColActive">信息化产品/服务</button>
