@@ -149,7 +149,9 @@ onBeforeUnmount(() => {
               <!-- <div class="applicationClassiteminfo">
                 基于BIM模型实现工程量精准计算与动态成本管控
               </div> -->
-              <button>立即体验</button>
+              <button @click="pageJump('ai_detail', {
+                aixqid: item.id
+              })">立即体验</button>
             </div>
           </div>
         </div>
@@ -163,7 +165,9 @@ onBeforeUnmount(() => {
               </div>
               <div class="applicationClassitemtext">{{ item.name }}</div>
               <!-- <div class="applicationClassiteminfo">AI自动复核工程文本，减少人为错误</div> -->
-              <button>立即体验</button>
+              <button @click="pageJump('ai_detail', {
+                aixqid: item.id
+              })">立即体验</button>
             </div>
           </div>
         </div>
