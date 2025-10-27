@@ -174,7 +174,7 @@ onBeforeUnmount(() => {
         <div class="caseHeng"></div>
         <div class="caseInfo">探索建筑业AI应用的实际效果与价值</div>
         <div class="caseClassbox">
-          <div v-for="(item, index) in aialtop" :key="index" class="caseClassitem" @click="pageJump('ai_detail', {
+          <div v-for="(item, index) in aialtop" :key="index" class="caseClassitem" @click="pageJump('aicase_detail', {
             aialid: item.id
           })">
             <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="caseClassitemfa" />
