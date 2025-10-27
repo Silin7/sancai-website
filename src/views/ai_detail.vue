@@ -100,55 +100,56 @@ onBeforeUnmount(() => {
         </div>
         <button>联系我们</button>
       </div>
-      <div class="">
-        <div class="">
-          <div class="">产品简介</div>
-          <div class="">
+      <div class="adicCpjj">
+        <div class="adicCpjjLeft">
+          <div class="adicCpjjLeftTitle">产品简介</div>
+          <div class="adicCpjjLeftInfo">
             AI辅助设计工具是基于深度学习和计算机视觉技术开发的智能化设计辅助系统，专为建筑、土木工程等领域打造。
+            <br>
             <br>
             该工具整合了海量建筑设计数据和工程规范，能够自动识别设计需求、生成初步方案、优化设计细节，帮助设计师大幅提升工作效率，降低设计误差，实现设计过程的智能化升级。
           </div>
-          <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="caseClassitemfa" />
         </div>
+        <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="caseClassitemfa" />
       </div>
-      <div class="">
-        <div class="">核心功能</div>
-        <div class="">
+      <div class="adicHxgn">
+        <div class="adicHxgnTitle">核心功能</div>
+        <div class="adicHxgnItem">
           <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
           <div class="">
             <div class="">智能方案生成</div>
             <div class="">根据用户输入的设计需求和约束条件，自动生成多个优化设计方案供选择。</div>
           </div>
         </div>
-        <div class="">
+        <div class="adicHxgnItem">
           <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
           <div class="">
             <div class="">参数化建模</div>
             <div class="">实时对照最新行业规范和标准，自动识别设计违规点并给出优化建议。</div>
           </div>
         </div>
-        <div class="">
+        <div class="adicHxgnItem">
           <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
           <div class="">
             <div class="">设计规范检查</div>
             <div class="">实时对照最新行业规范和标准，自动识别设计违规点并给出优化建议。</div>
           </div>
         </div>
-        <div class="">
+        <div class="adicHxgnItem">
           <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
           <div class="">
             <div class="">性能优化分析</div>
             <div class="">自动进行结构性能、能耗、采光等多维度分析，提供优化方向和解决方案。</div>
           </div>
         </div>
-        <div class="">
+        <div class="adicHxgnItem">
           <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
           <div class="">
             <div class="">多格式导出</div>
             <div class="">支持导出CAD、BIM、PDF等多种格式文件，无缝对接后续设计和施工流程。</div>
           </div>
         </div>
-        <div class="">
+        <div class="adicHxgnItem">
           <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
           <div class="">
             <div class="">自然语言交互</div>
@@ -377,6 +378,63 @@ onBeforeUnmount(() => {
           box-shadow: 0 10px 15px -3px rgb(22 93 255 / 0.1), 0 4px 6px -4px rgb(22 93 255 / 0.1);
           animation: jumpUpwards 300ms ease-in-out forwards;
         }
+      }
+    }
+
+    .adicCpjj {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .adicCpjjLeft {
+        width: calc(100% - 480px);
+
+        .adicCpjjLeftTitle {
+          color: rgb(1 32 96);
+          font-weight: 700;
+          font-size: 1.5rem;
+          line-height: 2rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .adicCpjjLeftInfo {
+          margin-bottom: 1rem;
+          font-size: 1.125rem;
+          line-height: 1.725;
+          color: rgb(75 85 99);
+        }
+      }
+
+      img {
+        width: 460px;
+        height: 280px;
+        border-radius: 0.75rem;
+      }
+    }
+
+    .adicHxgn {
+      margin-top: 2rem;
+      padding: 2rem;
+      border-radius: 1rem;
+      -tw-bg-opacity: 1;
+      background-color: rgb(240 247 255);
+
+      @media (max-width: 768px) {
+        padding: 1rem;
+      }
+
+      .adicHxgnTitle {
+        text-align: center;
+        color: rgb(1 32 96);
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .adicHxgnItem {
+        border: 1px solid red;
       }
     }
   }
