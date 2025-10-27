@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="aidPage">
+  <div class="aicasePage">
     <div class="aidHbox">
       <div class="aidHcontent">
         <div class="aidNavigation">
@@ -372,7 +372,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss" scoped>
-.aidPage {
+.aicasePage {
   overflow-x: hidden;
   min-height: calc(100vh - 120px);
   background-color: #f9fafb;
