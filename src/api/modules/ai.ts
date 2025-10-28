@@ -17,3 +17,10 @@ export function aiallistApi(params: any) {
 export function aialdetailsApi(caseid: any) {
   return api.get(`/api/client/case/${caseid}`)
 }
+
+// 获取AI赋能应用详情（含关联板块内容）
+export function aidetailsApi(params: any) {
+  return api.get('/api/client/syscate/aiappdetail', {
+    params,
+  })
+}

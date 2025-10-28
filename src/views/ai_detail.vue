@@ -3,7 +3,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
 import { fileURL } from '@/api/baseConfig'
-import { aialdetailsApi } from '@/api/modules/ai'
+import { aidetailsApi } from '@/api/modules/ai'
 import { sysinfosApi } from '@/api/modules/basic'
 
 // 路由信息
@@ -18,15 +18,17 @@ function uaipdateWindowWidth() {
 
 // 案例详情
 const aixqid: any = ref('')
-const aialdetail: any = ref({})
+const aixqdetail: any = ref({})
 
 function getAialdetail() {
-  aialdetailsApi(aixqid.value).then((res: any) => {
-    aialdetail.value = res
-    if (aialdetail.value.tags) {
-      aialdetail.value.tags = aialdetail.value.tags.split(',')
+  aidetailsApi({
+    app_id: aixqid.value
+  }).then((res: any) => {
+    aixqdetail.value = res
+    if (aixqdetail.value.tags) {
+      aixqdetail.value.tags = aixqdetail.value.tags.split(',')
     } else {
-      aialdetail.value.tags = []
+      aixqdetail.value.tags = []
     }
   })
 }
@@ -74,24 +76,19 @@ onBeforeUnmount(() => {
           <span class="aidNavigationXg">/</span>
           <span @click="pageJump('ai')">AI赋能应用</span>
           <span class="aidNavigationXg">/</span>
-          <!-- <span class="aidNavigationSp">{{ aialdetail.title }}</span> -->
-          <span class="aidNavigationSp">AI辅助设计工具</span>
+          <span class="aidNavigationSp">{{ aixqdetail.name }}</span>
         </div>
       </div>
     </div>
     <div class="aidCbox">
       <div class="adicTopOut">
         <div class="adicTop">
-          <div class="adictTitle">AI辅助设计工具</div>
-          <!-- <div class="adictTitle">{{ aialdetail.title }}</div> -->
+          <div class="adictTitle">{{ aixqdetail.name }}</div>
           <div class="adictTags">
-            <!-- <span v-for="(item, index) in aialdetail.tags" :key="index" class="adictTag adictTag1">{{ item }}</span>
-          <span class="adictTag adictTag2">
-            {{ dayjs(aialdetail.created_at).format('YYYY年MM月') }}
-          </span> -->
-            <span class="adictTag adictTag1">AI设计</span>
-            <span class="adictTag adictTag2">智能建模</span>
-            <span class="adictTag adictTag3">效率提升</span>
+            <span v-for="(item, index) in aixqdetail.tags" :key="index"
+              :class="['adictTag', index % 3 === 0 ? 'adictTag1' : index % 3 === 1 ? 'adictTag2' : 'adictTag3']">
+              {{ item }}
+            </span>
           </div>
         </div>
         <button @click="scrollBottom">联系我们</button>
@@ -99,14 +96,9 @@ onBeforeUnmount(() => {
       <div class="adicCpjj">
         <div class="adicCpjjLeft">
           <div class="adicCpjjLeftTitle">产品简介</div>
-          <div class="adicCpjjLeftInfo">
-            AI辅助设计工具是基于深度学习和计算机视觉技术开发的智能化设计辅助系统，专为建筑、土木工程等领域打造。
-            <br>
-            <br>
-            该工具整合了海量建筑设计数据和工程规范，能够自动识别设计需求、生成初步方案、优化设计细节，帮助设计师大幅提升工作效率，降低设计误差，实现设计过程的智能化升级。
-          </div>
+          <div v-html="aixqdetail.content" class="adicCpjjLeftInfo"></div>
         </div>
-        <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="caseClassitemfa" />
+        <img :src="fileURL + aixqdetail.img" alt="" class="caseClassitemfa" />
       </div>
       <div class="adicHxgn">
         <div class="adicHxgnTitle">核心功能</div>
