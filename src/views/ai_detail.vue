@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import pageJump from '@/hooks/pageJump'
@@ -46,16 +45,13 @@ function getSysinfosApi() {
   })
 }
 
-// // 用户端-获取最新6条推荐案例（公开接口）
-// const aialRecommended: any = ref([])
-
-// function getAialrecommended() {
-//   aialrecommendedApi().then((res: any) => {
-//     if (res) {
-//       aialRecommended.value = res
-//     }
-//   })
-// }
+// 联系我们 滚动到底部
+function scrollBottom() {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: 'smooth'
+  });
+}
 
 onMounted(() => {
   window.addEventListener('resize', uaipdateWindowWidth)
@@ -98,7 +94,7 @@ onBeforeUnmount(() => {
             <span class="adictTag adictTag3">效率提升</span>
           </div>
         </div>
-        <button>联系我们</button>
+        <button @click="scrollBottom">联系我们</button>
       </div>
       <div class="adicCpjj">
         <div class="adicCpjjLeft">
@@ -114,109 +110,141 @@ onBeforeUnmount(() => {
       </div>
       <div class="adicHxgn">
         <div class="adicHxgnTitle">核心功能</div>
-        <div class="adicHxgnItem">
-          <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-          <div class="">
-            <div class="">智能方案生成</div>
-            <div class="">根据用户输入的设计需求和约束条件，自动生成多个优化设计方案供选择。</div>
+        <div class="adicHxgnContent">
+          <div class="adicHxgnItem">
+            <div class="adicHxgnItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicHxgnItemRight">
+              <div class="adicHxgnItemT">智能方案生成</div>
+              <div class="adicHxgnItemI">根据用户输入的设计需求和约束条件，自动生成多个优化设计方案供选择。</div>
+            </div>
           </div>
-        </div>
-        <div class="adicHxgnItem">
-          <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-          <div class="">
-            <div class="">参数化建模</div>
-            <div class="">实时对照最新行业规范和标准，自动识别设计违规点并给出优化建议。</div>
+          <div class="adicHxgnItem">
+            <div class="adicHxgnItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicHxgnItemRight">
+              <div class="adicHxgnItemT">参数化建模</div>
+              <div class="adicHxgnItemI">实时对照最新行业规范和标准，自动识别设计违规点并给出优化建议。</div>
+            </div>
           </div>
-        </div>
-        <div class="adicHxgnItem">
-          <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-          <div class="">
-            <div class="">设计规范检查</div>
-            <div class="">实时对照最新行业规范和标准，自动识别设计违规点并给出优化建议。</div>
+          <div class="adicHxgnItem">
+            <div class="adicHxgnItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicHxgnItemRight">
+              <div class="adicHxgnItemT">参数化建模</div>
+              <div class="adicHxgnItemI">支持全参数化建模，修改任一参数即可自动更新整个模型，大幅提升设计灵活性。</div>
+            </div>
           </div>
-        </div>
-        <div class="adicHxgnItem">
-          <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-          <div class="">
-            <div class="">性能优化分析</div>
-            <div class="">自动进行结构性能、能耗、采光等多维度分析，提供优化方向和解决方案。</div>
+          <div class="adicHxgnItem">
+            <div class="adicHxgnItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicHxgnItemRight">
+              <div class="adicHxgnItemT">性能优化分析</div>
+              <div class="adicHxgnItemI">自动进行结构性能、能耗、采光等多维度分析，提供优化方向和解决方案。</div>
+            </div>
           </div>
-        </div>
-        <div class="adicHxgnItem">
-          <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-          <div class="">
-            <div class="">多格式导出</div>
-            <div class="">支持导出CAD、BIM、PDF等多种格式文件，无缝对接后续设计和施工流程。</div>
+          <div class="adicHxgnItem">
+            <div class="adicHxgnItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicHxgnItemRight">
+              <div class="adicHxgnItemT">多格式导出</div>
+              <div class="adicHxgnItemI">支持导出CAD、BIM、PDF等多种格式文件，无缝对接后续设计和施工流程。</div>
+            </div>
           </div>
-        </div>
-        <div class="adicHxgnItem">
-          <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-          <div class="">
-            <div class="">自然语言交互</div>
-            <div class="">支持通过自然语言描述设计需求，AI自动理解并转化为设计参数和方案。</div>
-          </div>
-        </div>
-      </div>
-      <div class="">
-        <div class="">适用场景</div>
-        <div class="">
-          <div class="">
-            <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-            <div class="">建筑方案设计</div>
-            <div class="">住宅、商业、办公等各类建筑的概念设计和方案设计阶段。</div>
-          </div>
-          <div class="">
-            <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-            <div class="">市政工程设计</div>
-            <div class="">道路、桥梁、管网等市政基础设施的设计和优化。</div>
-          </div>
-          <div class="">
-            <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-            <div class="">室内装修设计</div>
-            <div class="">住宅、商业空间等室内装修方案设计和施工图生成。</div>
-          </div>
-          <div class="">
-            <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-            <div class="">城市规划设计</div>
-            <div class="">片区规划、控制性详细规划等城市规划设计工作。</div>
+          <div class="adicHxgnItem">
+            <div class="adicHxgnItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicHxgnItemRight">
+              <div class="adicHxgnItemT">自然语言交互</div>
+              <div class="adicHxgnItemI">支持通过自然语言描述设计需求，AI自动理解并转化为设计参数和方案。</div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="">
-        <div class="">技术优势</div>
-        <div class="">
-          <div class="">
-            <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-            <div class="">深度学习算法</div>
-            <div class="">基于海量设计数据训练的深度学习模型，具备强大的设计理解和生成能力。</div>
+      <div class="adicSycj">
+        <div class="adicSycjTitle">适用场景</div>
+        <div class="adicSycjContent">
+          <div class="adicSycjItem">
+            <div class="adicSycjItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicSycjItemT">建筑方案设计</div>
+            <div class="adicSycjItemI">住宅、商业、办公等各类建筑的概念设计和方案设计阶段。</div>
           </div>
-          <div class="">
-            <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-            <div class="">海量数据支撑</div>
-            <div class="">整合了10万+优质设计案例和最新行业规范，确保设计方案的专业性和合规性。</div>
+          <div class="adicSycjItem">
+            <div class="adicSycjItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicSycjItemT">市政工程设计</div>
+            <div class="adicSycjItemI">道路、桥梁、管网等市政基础设施的设计和优化。</div>
           </div>
-          <div class="">
-            <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-            <div class="">无缝集成能力</div>
-            <div class="">可与主流设计软件无缝集成，不改变现有工作流程，降低学习和使用成本。</div>
+          <div class="adicSycjItem">
+            <div class="adicSycjItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicSycjItemT">室内装修设计</div>
+            <div class="adicSycjItemI">住宅、商业空间等室内装修方案设计和施工图生成。</div>
+          </div>
+          <div class="adicSycjItem">
+            <div class="adicSycjItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicSycjItemT">城市规划设计</div>
+            <div class="adicSycjItemI">片区规划、控制性详细规划等城市规划设计工作。</div>
           </div>
         </div>
       </div>
-      <div class="">
-        <div class="">联系我们</div>
-        <div class="">如需了解更多AI辅助设计工具的详细信息，或预约产品演示，欢迎通过以下方式联系我们，专业顾问将为您提供一对一服务。</div>
-        <div class="">
-          <div class="">
-            <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-            <div class="">咨询热线</div>
-            <div class="">400-123-4567</div>
-            <div class="">周一至周五 9:00-18:00</div>
+      <div class="adicJsys">
+        <div class="adicJsysTitle">技术优势</div>
+        <div class="adicJsysContent">
+          <div class="adicJsysItem">
+            <div class="adicJsysItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicJsysItemT">深度学习算法</div>
+            <div class="adicJsysItemI">基于海量设计数据训练的深度学习模型，具备强大的设计理解和生成能力。</div>
           </div>
-          <div class="">
-            <i class="fa fa-weibo" style="font-size: 1rem; color: #fff"></i>
-            <div class="">咨询邮箱</div>
-            <div class="">ai_design@xincai.com</div>
-            <div class="">24小时内回复邮件咨询</div>
+          <div class="adicJsysItem">
+            <div class="adicJsysItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicJsysItemT">海量数据支撑</div>
+            <div class="adicJsysItemI">整合了10万+优质设计案例和最新行业规范，确保设计方案的专业性和合规性。</div>
+          </div>
+          <div class="adicJsysItem">
+            <div class="adicJsysItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicJsysItemT">无缝集成能力</div>
+            <div class="adicJsysItemI">可与主流设计软件无缝集成，不改变现有工作流程，降低学习和使用成本。</div>
+          </div>
+        </div>
+      </div>
+      <div class="adicLxwm">
+        <div class="adicLxwmTitle">联系我们</div>
+        <div class="adicLxwmInfo">如需了解更多AI辅助设计工具的详细信息，或预约产品演示，欢迎通过以下方式联系我们，专业顾问将为您提供一对一服务。</div>
+        <div class="adicLxwmContent">
+          <div class="adicLxwmItem">
+            <div class="adicLxwmItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicLxwmItemI1">咨询热线</div>
+            <div class="adicLxwmItemI2">400-123-4567</div>
+            <div class="adicLxwmItemI3">周一至周五 9:00-18:00</div>
+          </div>
+          <div class="adicLxwmItem">
+            <div class="adicLxwmItemFa">
+              <i class="fa fa-weibo"></i>
+            </div>
+            <div class="adicLxwmItemI1">咨询邮箱</div>
+            <div class="adicLxwmItemI2">ai_design@xincai.com</div>
+            <div class="adicLxwmItemI3">24小时内回复邮件咨询</div>
           </div>
         </div>
       </div>
@@ -285,6 +313,7 @@ onBeforeUnmount(() => {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
 
       @media (max-width: 768px) {
         padding: 1rem 0;
@@ -361,15 +390,16 @@ onBeforeUnmount(() => {
       }
 
       button {
-        color: #fff;
-        padding-top: 0.75rem;
-        padding-bottom: 0.75rem;
-        padding-left: 2rem;
-        padding-right: 2rem;
+        padding: 0.75rem 2rem;
         font-size: 1.125rem;
         line-height: 1.75rem;
+        color: #fff;
         background-color: rgb(22 93 255 / 0.9);
         border-radius: 9999px;
+
+        @media (max-width: 768px) {
+          margin-top: 1rem;
+        }
       }
 
       button:hover {
@@ -386,9 +416,14 @@ onBeforeUnmount(() => {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
 
       .adicCpjjLeft {
         width: calc(100% - 480px);
+
+        @media (max-width: 768px) {
+          width: 100%;
+        }
 
         .adicCpjjLeftTitle {
           color: rgb(1 32 96);
@@ -410,6 +445,11 @@ onBeforeUnmount(() => {
         width: 460px;
         height: 280px;
         border-radius: 0.75rem;
+
+        @media (max-width: 768px) {
+          width: 100%;
+          height: auto;
+        }
       }
     }
 
@@ -417,11 +457,10 @@ onBeforeUnmount(() => {
       margin-top: 2rem;
       padding: 2rem;
       border-radius: 1rem;
-      -tw-bg-opacity: 1;
       background-color: rgb(240 247 255);
 
       @media (max-width: 768px) {
-        padding: 1rem;
+        padding: 1rem 0;
       }
 
       .adicHxgnTitle {
@@ -433,8 +472,308 @@ onBeforeUnmount(() => {
         margin-bottom: 1.5rem;
       }
 
-      .adicHxgnItem {
-        border: 1px solid red;
+      .adicHxgnContent {
+        width: calc(100% + 1rem);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+
+        .adicHxgnItem {
+          overflow: hidden;
+          margin: 0 1rem 1rem 0;
+          padding: 1.5rem;
+          width: calc(33.3% - 1rem);
+          display: flex;
+
+          @media (max-width: 768px) {
+            width: 100%;
+            margin: 0 0 1rem 0;
+            padding: 1rem;
+          }
+
+          .adicHxgnItemFa {
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+            border-radius: 999px;
+            background-color: rgb(22 93 255 / 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            i {
+              font-size: 1.25rem;
+              color: rgb(22 93 255);
+            }
+          }
+
+          .adicHxgnItemRight {
+            width: calc(100% - 40px - 1rem);
+
+            .adicHxgnItemT {
+              margin-bottom: 0.75rem;
+              font-size: 1.25rem;
+              line-height: 1.75rem;
+              font-weight: 700;
+              color: rgb(1 32 96);
+            }
+
+            .adicHxgnItemI {
+              font-size: 1rem;
+              line-height: 1.5rem;
+              color: rgb(75 85 99);
+            }
+          }
+        }
+      }
+    }
+
+    .adicSycj {
+      margin-top: 2rem;
+      padding: 2rem;
+      border-radius: 1rem;
+
+      @media (max-width: 768px) {
+        padding: 1rem 0;
+      }
+
+      .adicSycjTitle {
+        text-align: center;
+        color: rgb(1 32 96);
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .adicSycjContent {
+        width: calc(100% + 1rem);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+
+        .adicSycjItem {
+          overflow: hidden;
+          margin: 0 1rem 1rem 0;
+          padding: 1.5rem;
+          width: calc(25% - 1rem);
+          display: flex;
+          flex-flow: column;
+          background-color: #fff;
+          border-radius: 0.75rem;
+          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+          @media (max-width: 768px) {
+            width: 100%;
+            margin: 0 0 1rem 0;
+            padding: 1rem;
+          }
+
+          .adicSycjItemFa {
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            background-color: rgb(22 93 255 / 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            i {
+              font-size: 1.25rem;
+              color: rgb(22 93 255);
+            }
+          }
+
+          .adicSycjItemT {
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            font-weight: 700;
+            color: rgb(1 32 96);
+          }
+
+          .adicSycjItemI {
+            font-size: 1rem;
+            line-height: 1.5rem;
+            color: rgb(75 85 99);
+          }
+        }
+      }
+    }
+
+    .adicJsys {
+      margin-top: 2rem;
+      padding: 2rem;
+      border-radius: 1rem;
+      background-color: #fff;
+
+      @media (max-width: 768px) {
+        padding: 1rem;
+      }
+
+      .adicJsysTitle {
+        text-align: center;
+        color: rgb(1 32 96);
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .adicJsysContent {
+        width: calc(100% + 1rem);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+
+        .adicJsysItem {
+          overflow: hidden;
+          margin: 0 1rem 1rem 0;
+          padding: 1.5rem;
+          width: calc(33.3% - 1rem);
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+          align-items: center;
+          border-radius: 0.75rem;
+          border: 1px solid rgb(243 244 246);
+
+          @media (max-width: 768px) {
+            width: 100%;
+            margin: 0 0 1rem 0;
+            padding: 1rem;
+          }
+
+          .adicJsysItemFa {
+            width: 4rem;
+            height: 4rem;
+            margin-bottom: 1rem;
+            border-radius: 999px;
+            background-color: rgb(22 93 255 / 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            i {
+              font-size: 1.25rem;
+              color: rgb(22 93 255);
+            }
+          }
+
+          .adicJsysItemT {
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            font-weight: 700;
+            color: rgb(1 32 96);
+          }
+
+          .adicJsysItemI {
+            font-size: 1rem;
+            line-height: 1.5rem;
+            color: rgb(75 85 99);
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .adicLxwm {
+      margin-top: 2rem;
+      padding: 2rem;
+      border-radius: 1rem;
+      color: #fff;
+      background-color: rgb(22 93 255);
+
+      @media (max-width: 768px) {
+        padding: 1rem;
+      }
+
+      .adicLxwmTitle {
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .adicLxwmInfo {
+        line-height: 1.625;
+        color: rgb(255 255 255 / 0.9);
+        text-align: center;
+
+        @media (min-width: 768px) {
+          margin-bottom: 2rem;
+        }
+      }
+
+      .adicLxwmContent {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .adicLxwmItem {
+        width: 30%;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+
+        @media (max-width: 768px) {
+          width: 100%;
+          margin-top: 2rem;
+        }
+
+        .adicLxwmItemFa {
+          width: 4rem;
+          height: 4rem;
+          margin-bottom: 1rem;
+          border-radius: 999px;
+          background-color: rgb(255 255 255 / 0.2);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          i {
+            font-size: 1.25rem;
+            color: #fff;
+          }
+        }
+
+        .adicLxwmItemI1 {
+          margin-bottom: 0.5rem;
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+          font-weight: 700;
+        }
+
+        .adicLxwmItemI2 {
+          margin-bottom: 0.5rem;
+          line-height: 1.5rem;
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+        }
+
+        .adicLxwmItemI3 {
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          color: rgb(255 255 255 / 0.7);
+        }
       }
     }
   }
