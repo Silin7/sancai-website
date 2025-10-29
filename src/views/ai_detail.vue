@@ -102,7 +102,16 @@ onBeforeUnmount(() => {
       </div>
       <div class="adicHxgn">
         <div class="adicHxgnTitle">核心功能</div>
-        <div class="adicHxgnContent">
+        <div v-if="aixqdetail?.sec_contents_by_mode?.[1]" class="adicHxgnContent">
+          <div v-for="(item, index) in aixqdetail.sec_contents_by_mode[1]" :key="index" class="adicHxgnItem">
+            <img :src="fileURL + item.secimg" alt="" class="adicHxgnItemFa">
+            <div class="adicHxgnItemRight">
+              <div class="adicHxgnItemT">{{ item.title }}</div>
+              <div class="adicHxgnItemI">{{ item.description }}</div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="adicHxgnContent">
           <div class="adicHxgnItem">
             <div class="adicHxgnItemFa">
               <i class="fa fa-weibo"></i>
@@ -157,11 +166,18 @@ onBeforeUnmount(() => {
               <div class="adicHxgnItemI">支持通过自然语言描述设计需求，AI自动理解并转化为设计参数和方案。</div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="adicSycj">
         <div class="adicSycjTitle">适用场景</div>
-        <div class="adicSycjContent">
+        <div v-if="aixqdetail?.sec_contents_by_mode?.[2]" class="adicSycjContent">
+          <div v-for="(item, index) in aixqdetail.sec_contents_by_mode[2]" :key="index" class="adicSycjItem">
+            <img :src="fileURL + item.secimg" alt="" class="adicSycjItemFa">
+            <div class="adicSycjItemT">{{ item.title }}</div>
+            <div class="adicSycjItemI">{{ item.description }}</div>
+          </div>
+        </div>
+        <!-- <div class="adicSycjContent">
           <div class="adicSycjItem">
             <div class="adicSycjItemFa">
               <i class="fa fa-weibo"></i>
@@ -190,11 +206,18 @@ onBeforeUnmount(() => {
             <div class="adicSycjItemT">城市规划设计</div>
             <div class="adicSycjItemI">片区规划、控制性详细规划等城市规划设计工作。</div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="adicJsys">
         <div class="adicJsysTitle">技术优势</div>
-        <div class="adicJsysContent">
+        <div v-if="aixqdetail?.sec_contents_by_mode?.[3]" class="adicJsysContent">
+          <div v-for="(item, index) in aixqdetail.sec_contents_by_mode[3]" :key="index" class="adicJsysItem">
+            <img :src="fileURL + item.secimg" alt="" class="adicJsysItemFa">
+            <div class="adicJsysItemT">{{ item.title }}</div>
+            <div class="adicJsysItemI">{{ item.description }}</div>
+          </div>
+        </div>
+        <!-- <div class="adicJsysContent">
           <div class="adicJsysItem">
             <div class="adicJsysItemFa">
               <i class="fa fa-weibo"></i>
@@ -216,7 +239,7 @@ onBeforeUnmount(() => {
             <div class="adicJsysItemT">无缝集成能力</div>
             <div class="adicJsysItemI">可与主流设计软件无缝集成，不改变现有工作流程，降低学习和使用成本。</div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="adicLxwm">
         <div class="adicLxwmTitle">联系我们</div>
@@ -227,7 +250,7 @@ onBeforeUnmount(() => {
               <i class="fa fa-weibo"></i>
             </div>
             <div class="adicLxwmItemI1">咨询热线</div>
-            <div class="adicLxwmItemI2">400-123-4567</div>
+            <div class="adicLxwmItemI2">{{ sysInfos.sys_tel }}</div>
             <div class="adicLxwmItemI3">周一至周五 9:00-18:00</div>
           </div>
           <div class="adicLxwmItem">
@@ -235,7 +258,7 @@ onBeforeUnmount(() => {
               <i class="fa fa-weibo"></i>
             </div>
             <div class="adicLxwmItemI1">咨询邮箱</div>
-            <div class="adicLxwmItemI2">ai_design@xincai.com</div>
+            <div class="adicLxwmItemI2">{{ sysInfos.sys_email }}</div>
             <div class="adicLxwmItemI3">24小时内回复邮件咨询</div>
           </div>
         </div>
