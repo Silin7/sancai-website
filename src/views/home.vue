@@ -498,7 +498,9 @@ onBeforeUnmount(() => {
             <div class="aiSubtitle">业务管理+AI赋能组价</div>
           </div>
           <div class="aiClassbox">
-            <div v-for="(item, index) in businessAi" :key="index" class="aiClassitem">
+            <div v-for="(item, index) in businessAi" :key="index" class="aiClassitem" @click="pageJump('ai_detail', {
+              aixqid: item.id
+            })">
               <div class="aiClassitemfa frcc">
                 <i class="fa fa-paint-brush"></i>
               </div>
@@ -512,7 +514,9 @@ onBeforeUnmount(() => {
             <div class="aiSubtitle">招标造价+AI应用服务</div>
           </div>
           <div class="aiClassbox">
-            <div v-for="(item, index) in bidcostAi" :key="index" class="aiClassitem">
+            <div v-for="(item, index) in bidcostAi" :key="index" class="aiClassitem" @click="pageJump('ai_detail', {
+              aixqid: item.id
+            })">
               <div class="aiClassitemfa2 frcc">
                 <i class="fa fa-check-circle"></i>
               </div>
