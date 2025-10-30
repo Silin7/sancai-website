@@ -459,7 +459,7 @@ onBeforeUnmount(() => {
         </div>
         <div class="containerGridbox">
           <template v-for="(item, index) in pcateZhu" :key="index">
-            <img v-if="pcatePactive === 0 && item.title === '数字技术应用论证/数字实施方案论证'" :src="fileURL + item.secimg" />
+            <img v-if="pcatePactive === 0 && item.title === '数字技工/方案论证'" :src="fileURL + item.secimg" />
             <img v-if="pcatePactive === 1 && item.title === '材料/设备'" :src="fileURL + item.secimg" />
             <img v-if="pcatePactive === 2 && item.title === '智能建造装备'" :src="fileURL + item.secimg" />
             <img v-if="pcatePactive === 3 && item.title === '信息化产品/服务'" :src="fileURL + item.secimg" />
@@ -501,7 +501,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
           <div class="solutionsImg">
-            <img :src="solutionCform.img" alt="" style="width: 100%; height: 44rem" />
+            <img :src="fileURL + solutionCform.img" alt="" style="width: 100%; height: 44rem" />
             <div class="solutionsImgTitleMoud">
               <div class="solutionsImgTitle1">{{ solutionCform.description1 }}</div>
               <div class="solutionsImgTitle2">{{ solutionCform.name }}</div>
