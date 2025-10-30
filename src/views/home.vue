@@ -218,6 +218,33 @@ function pcatePchange(id: any) {
   pcateChild.value = levelone
 }
 
+function rcjxJump(item: any) {
+  if (pcatePactive.value === 0) {
+    pageJump('scheme', {
+      id: item.id,
+    })
+    return
+  }
+  if (pcatePactive.value === 1) {
+    pageJump('materials', {
+      id: item.id,
+    })
+    return
+  }
+  if (pcatePactive.value === 2) {
+    pageJump('sale', {
+      id: item.id,
+    })
+    return
+  }
+  if (pcatePactive.value === 3) {
+    pageJump('products', {
+      id: item.id,
+    })
+    return
+  }
+}
+
 // 人工智能应用
 const businessAi: any = ref([])
 const bidcostAi: any = ref([])
@@ -439,8 +466,8 @@ onBeforeUnmount(() => {
           </template>
           <div class="containerGridMaod">
             <div class="containerGridContent">
-              <div v-for="(item, index) in pcateChild" :key="index" class="containerGridItem">
-                <i :class="['fa', item.theicon]"></i>
+              <div v-for="(item, index) in pcateChild" :key="index" class="containerGridItem" @click="rcjxJump(item)">
+                <i :class="item.theicon"></i>
                 <div class="containerGridimginfo">{{ item.name }}</div>
               </div>
             </div>
@@ -502,7 +529,7 @@ onBeforeUnmount(() => {
               aixqid: item.id
             })">
               <div class="aiClassitemfa frcc">
-                <i class="fa fa-paint-brush"></i>
+                <i :class="item.icon"></i>
               </div>
               <div class="aiClassitemtext">{{ item.name }}</div>
             </div>
@@ -518,7 +545,7 @@ onBeforeUnmount(() => {
               aixqid: item.id
             })">
               <div class="aiClassitemfa2 frcc">
-                <i class="fa fa-check-circle"></i>
+                <i :class="item.icon"></i>
               </div>
               <div class="aiClassitemtext">{{ item.name }}</div>
             </div>

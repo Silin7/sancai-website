@@ -2,6 +2,7 @@
 import dayjs from 'dayjs'
 import { useHead } from '@vueuse/head'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import windowOpen from '@/hooks/windowOpen'
@@ -31,7 +32,7 @@ function getSecpositions() {
   secpositionsApi().then((res: any) => {
     if (res && res.length > 0) {
       for (let i = 0; i < res.length; i++) {
-        if (res[i].url === window.localStorage.getItem('selectedName')) {
+        if (res[i].url == window.localStorage.getItem('selectedName')) {
           positionid.value = res[i].id
           getBannerlist()
           break
@@ -79,7 +80,7 @@ function getPcateOne(pid: any = 0) {
     parent_id: pid,
   }).then((res: any) => {
     if (res && res.items.length > 0) {
-      const levelone = res.items.filter((element: any) => element.item_id === 2)
+      const levelone = res.items.filter((element: any) => element.item_id == 2)
       pcateOne.value = levelone
     }
   })
@@ -252,10 +253,17 @@ function goProductsDetail(row: any) {
   })
 }
 
+const route = useRoute()
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   getSecpositions()
   getPcateOne()
+  getPcateOne()
+  if (route.query.id) {
+    searchForm.value.cate_id = route.query.id
+    pcateOneId.value = route.query.id
+    getPcateTwo(route.query.id)
+  }
   getSysprovinces()
   getProductmaterialssearch()
 })
@@ -307,49 +315,49 @@ onBeforeUnmount(() => {
           </div>
           <!-- 0=租赁，1=销售 -->
           <div class="containerClassRow">
-            <button :class="[thetype === '' ? 'containerClassColActive' : 'containerClassCol']"
+            <button :class="[thetype == '' ? 'containerClassColActive' : 'containerClassCol']"
               @click="thetypeClick('')">
               全部
             </button>
-            <button :class="[thetype === 0 ? 'containerClassColActive' : 'containerClassCol']" @click="thetypeClick(0)">
+            <button :class="[thetype == 0 ? 'containerClassColActive' : 'containerClassCol']" @click="thetypeClick(0)">
               租赁
             </button>
-            <button :class="[thetype === 1 ? 'containerClassColActive' : 'containerClassCol']" @click="thetypeClick(1)">
+            <button :class="[thetype == 1 ? 'containerClassColActive' : 'containerClassCol']" @click="thetypeClick(1)">
               销售
             </button>
           </div>
           <!-- 一级分类 -->
           <div class="containerClassRow">
-            <button :class="[pcateOneId === '' ? 'containerClassColActive' : 'containerClassCol']"
+            <button :class="[pcateOneId == '' ? 'containerClassColActive' : 'containerClassCol']"
               @click="pcateOneClick('')">
               全部
             </button>
             <button v-for="(item, index) in pcateOne" :key="index" :class="[
-              pcateOneId === item.id ? 'containerClassColActive' : 'containerClassCol',
+              pcateOneId == item.id ? 'containerClassColActive' : 'containerClassCol',
             ]" @click="pcateOneClick(item.id)">
               {{ item.name }}
             </button>
           </div>
           <!-- 二级分类 -->
           <div v-if="pcateOneId !== '' && pcateTwo.length > 0" class="containerClassRow">
-            <button :class="[pcateTwoId === '' ? 'containerClassColActive' : 'containerClassCol']"
+            <button :class="[pcateTwoId == '' ? 'containerClassColActive' : 'containerClassCol']"
               @click="pcateTwoClick('')">
               全部
             </button>
             <button v-for="(item, index) in pcateTwo" :key="index" :class="[
-              pcateTwoId === item.id ? 'containerClassColActive' : 'containerClassCol',
+              pcateTwoId == item.id ? 'containerClassColActive' : 'containerClassCol',
             ]" @click="pcateTwoClick(item.id)">
               {{ item.name }}
             </button>
           </div>
           <!-- 三级分类 -->
           <div v-if="pcateTwoId !== '' && pcateThree.length > 0" class="containerClassRow">
-            <button :class="[pcateThreeId === '' ? 'containerClassColActive' : 'containerClassCol']"
+            <button :class="[pcateThreeId == '' ? 'containerClassColActive' : 'containerClassCol']"
               @click="pcateThreeClick('')">
               全部
             </button>
             <button v-for="(item, index) in pcateThree" :key="index" :class="[
-              pcateThreeId === item.id ? 'containerClassColActive' : 'containerClassCol',
+              pcateThreeId == item.id ? 'containerClassColActive' : 'containerClassCol',
             ]" @click="pcateThreeClick(item.id)">
               {{ item.name }}
             </button>
