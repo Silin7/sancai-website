@@ -468,7 +468,7 @@ onBeforeUnmount(() => {
           <div class="containerGridMaod">
             <div class="containerGridContent">
               <div v-for="(item, index) in pcateChild" :key="index" class="containerGridItem" @click="rcjxJump(item)">
-                <i :class="item.theicon"></i>
+                <Icon :icon="item.theicon" />
                 <div class="containerGridimginfo">{{ item.name }}</div>
               </div>
             </div>
