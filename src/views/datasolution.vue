@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue';
 import { useHead } from '@vueuse/head'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
@@ -155,7 +156,7 @@ onBeforeUnmount(() => {
             <template v-for="(item, index) in solutionChild" :key="index">
               <div v-if="item.parent_id === solutionPactive" class="digitizeClassitem">
                 <div class="digitizeClassitemfa frcc">
-                  <i :class="['fa', item.theicon]"></i>
+                  <Icon :icon="item.theicon" />
                 </div>
                 <div class="digitizeClassitemtext">{{ item.name }}</div>
                 <div class="digitizeClassiteminfo">{{ item.description2 }}</div>
