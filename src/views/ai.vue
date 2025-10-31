@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue';
 import { useHead } from '@vueuse/head'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
@@ -143,7 +144,7 @@ onBeforeUnmount(() => {
           <div class="applicationClassbox">
             <div v-for="(item, index) in businessAi" :key="index" class="applicationClassitem">
               <div class="applicationClassitemfa frcc">
-                <i :class="item.icon"></i>
+                <Icon :icon="item.icon" />
               </div>
               <div class="applicationClassitemtext">{{ item.name }}</div>
               <!-- <div class="applicationClassiteminfo">
@@ -161,7 +162,7 @@ onBeforeUnmount(() => {
           <div class="applicationClassbox">
             <div v-for="(item, index) in bidcostAi" :key="index" class="applicationClassitem">
               <div class="applicationClassitemfa frcc">
-                <i :class="item.icon"></i>
+                <Icon :icon="item.icon" />
               </div>
               <div class="applicationClassitemtext">{{ item.name }}</div>
               <!-- <div class="applicationClassiteminfo">AI自动复核工程文本，减少人为错误</div> -->

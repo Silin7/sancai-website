@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue';
 import { useHead } from '@vueuse/head'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 // import sideleft from '@/components/sideleft.vue'
@@ -529,7 +530,7 @@ onBeforeUnmount(() => {
               aixqid: item.id
             })">
               <div class="aiClassitemfa frcc">
-                <i :class="item.icon"></i>
+                <Icon :icon="item.icon" />
               </div>
               <div class="aiClassitemtext">{{ item.name }}</div>
             </div>
@@ -545,7 +546,7 @@ onBeforeUnmount(() => {
               aixqid: item.id
             })">
               <div class="aiClassitemfa2 frcc">
-                <i :class="item.icon"></i>
+                <Icon :icon="item.icon" />
               </div>
               <div class="aiClassitemtext">{{ item.name }}</div>
             </div>
@@ -1309,7 +1310,7 @@ onBeforeUnmount(() => {
               height: 3rem;
             }
 
-            i {
+            svg {
               font-size: 1.5rem;
               color: #165dff;
             }
@@ -1327,7 +1328,7 @@ onBeforeUnmount(() => {
               height: 3rem;
             }
 
-            i {
+            svg {
               font-size: 1.5rem;
               color: #722ed1;
             }
