@@ -1015,7 +1015,7 @@ onBeforeUnmount(() => {
               width: 100%;
             }
 
-            i {
+            svg {
               font-size: 1.25rem;
               color: #165dff;
               margin-right: 0.75rem;
