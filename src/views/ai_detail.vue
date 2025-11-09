@@ -101,10 +101,10 @@ onBeforeUnmount(() => {
         <img :src="fileURL + aixqdetail.img" alt="" class="caseClassitemfa" />
       </div>
       <div class="adicHxgn">
-        <div class="adicHxgnTitle">核心功能</div>
-        <div v-if="aixqdetail?.sec_contents_by_mode?.[1]" class="adicHxgnContent">
-          <div v-for="(item, index) in aixqdetail.sec_contents_by_mode[1]" :key="index" class="adicHxgnItem">
-            <img :src="fileURL + item.secimg" alt="" class="adicHxgnItemFa">
+        <div class="adicHxgnTitle">{{ aixqdetail.sectionone.name }}</div>
+        <div v-if="aixqdetail?.sectionone?.items" class="adicHxgnContent">
+          <div v-for="(item, index) in aixqdetail?.sectionone?.items" :key="index" class="adicHxgnItem">
+            <img :src="fileURL + item.iconimg" alt="" class="adicHxgnItemFa">
             <div class="adicHxgnItemRight">
               <div class="adicHxgnItemT">{{ item.title }}</div>
               <div class="adicHxgnItemI">{{ item.description }}</div>
@@ -169,10 +169,10 @@ onBeforeUnmount(() => {
         </div> -->
       </div>
       <div class="adicSycj">
-        <div class="adicSycjTitle">适用场景</div>
-        <div v-if="aixqdetail?.sec_contents_by_mode?.[2]" class="adicSycjContent">
-          <div v-for="(item, index) in aixqdetail.sec_contents_by_mode[2]" :key="index" class="adicSycjItem">
-            <img :src="fileURL + item.secimg" alt="" class="adicSycjItemFa">
+        <div class="adicSycjTitle">{{ aixqdetail.sectiontwo.name }}</div>
+        <div v-if="aixqdetail?.sectiontwo?.items" class="adicSycjContent">
+          <div v-for="(item, index) in aixqdetail?.sectiontwo?.items" :key="index" class="adicSycjItem">
+            <img :src="fileURL + item.iconimg" alt="" class="adicSycjItemFa">
             <div class="adicSycjItemT">{{ item.title }}</div>
             <div class="adicSycjItemI">{{ item.description }}</div>
           </div>
@@ -209,10 +209,10 @@ onBeforeUnmount(() => {
         </div> -->
       </div>
       <div class="adicJsys">
-        <div class="adicJsysTitle">技术优势</div>
-        <div v-if="aixqdetail?.sec_contents_by_mode?.[3]" class="adicJsysContent">
-          <div v-for="(item, index) in aixqdetail.sec_contents_by_mode[3]" :key="index" class="adicJsysItem">
-            <img :src="fileURL + item.secimg" alt="" class="adicJsysItemFa">
+        <div class="adicJsysTitle">{{ aixqdetail.sectionthree.name }}</div>
+        <div v-if="aixqdetail?.sectiontwo?.items" class="adicJsysContent">
+          <div v-for="(item, index) in aixqdetail?.sectiontwo?.items" :key="index" class="adicJsysItem">
+            <img :src="fileURL + item.iconimg" alt="" class="adicJsysItemFa">
             <div class="adicJsysItemT">{{ item.title }}</div>
             <div class="adicJsysItemI">{{ item.description }}</div>
           </div>
