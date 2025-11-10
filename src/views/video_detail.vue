@@ -294,7 +294,7 @@ const handleEnded = () => {
             <img :src="qrCodeData" :alt="payvideocreate.qr_code" style="width: 100%" />
           </div>
           <div class="course-info">
-            <p>BIM建模基础与实战</p>
+            <p>{{ videoDetails.title }}</p>
             <p>
               支付金额：<span class="price">¥{{ videoDetails.price }}</span>
             </p>
@@ -308,7 +308,7 @@ const handleEnded = () => {
           </div>
           <button class="pay-btn" @click="getAlpayvideocreate">去支付宝支付</button>
           <div class="course-info">
-            <p>BIM建模基础与实战</p>
+            <p>{{ videoDetails.title }}</p>
             <p>
               支付金额：<span class="price">¥{{ videoDetails.price }}</span>
             </p>
