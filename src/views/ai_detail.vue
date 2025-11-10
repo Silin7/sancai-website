@@ -453,7 +453,7 @@ onBeforeUnmount(() => {
         .adicCpjjLeftInfo {
           margin-bottom: 1rem;
           font-size: 1.25rem;
-          line-height: 1.725;
+          line-height: 2;
           color: rgb(75 85 99);
         }
       }
