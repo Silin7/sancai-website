@@ -100,7 +100,7 @@ onBeforeUnmount(() => {
         </div>
         <img :src="fileURL + aixqdetail.img" alt="" class="caseClassitemfa" />
       </div>
-      <div class="adicHxgn">
+      <div v-if="aixqdetail.sectionone" class="adicHxgn">
         <div class="adicHxgnTitle">{{ aixqdetail.sectionone.name }}</div>
         <div v-if="aixqdetail?.sectionone?.items" class="adicHxgnContent">
           <div v-for="(item, index) in aixqdetail?.sectionone?.items" :key="index" class="adicHxgnItem">
@@ -168,7 +168,7 @@ onBeforeUnmount(() => {
           </div>
         </div> -->
       </div>
-      <div class="adicSycj">
+      <div v-if="aixqdetail.sectiontwo" class="adicSycj">
         <div class="adicSycjTitle">{{ aixqdetail.sectiontwo.name }}</div>
         <div v-if="aixqdetail?.sectiontwo?.items" class="adicSycjContent">
           <div v-for="(item, index) in aixqdetail?.sectiontwo?.items" :key="index" class="adicSycjItem">
@@ -208,10 +208,10 @@ onBeforeUnmount(() => {
           </div>
         </div> -->
       </div>
-      <div class="adicJsys">
+      <div v-if="aixqdetail.sectionthree" class="adicJsys">
         <div class="adicJsysTitle">{{ aixqdetail.sectionthree.name }}</div>
-        <div v-if="aixqdetail?.sectiontwo?.items" class="adicJsysContent">
-          <div v-for="(item, index) in aixqdetail?.sectiontwo?.items" :key="index" class="adicJsysItem">
+        <div v-if="aixqdetail?.sectionthree?.items" class="adicJsysContent">
+          <div v-for="(item, index) in aixqdetail?.sectionthree?.items" :key="index" class="adicJsysItem">
             <img :src="fileURL + item.iconimg" alt="" class="adicJsysItemFa">
             <div class="adicJsysItemT">{{ item.title }}</div>
             <div class="adicJsysItemI">{{ item.description }}</div>
@@ -325,10 +325,12 @@ onBeforeUnmount(() => {
     }
 
     .adicTopOut {
+      padding-bottom: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      border-bottom: 1px solid #eee;
 
       @media (max-width: 768px) {
         padding: 1rem 0;
@@ -450,8 +452,8 @@ onBeforeUnmount(() => {
 
         .adicCpjjLeftInfo {
           margin-bottom: 1rem;
-          font-size: 1.125rem;
-          line-height: 1.725;
+          font-size: 1.25rem;
+          line-height: 2;
           color: rgb(75 85 99);
         }
       }
