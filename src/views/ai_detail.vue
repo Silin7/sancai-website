@@ -325,10 +325,12 @@ onBeforeUnmount(() => {
     }
 
     .adicTopOut {
+      padding-bottom: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      border-bottom: 1px solid #eee;
 
       @media (max-width: 768px) {
         padding: 1rem 0;
@@ -450,7 +452,7 @@ onBeforeUnmount(() => {
 
         .adicCpjjLeftInfo {
           margin-bottom: 1rem;
-          font-size: 1.125rem;
+          font-size: 1.25rem;
           line-height: 1.725;
           color: rgb(75 85 99);
         }
