@@ -100,7 +100,7 @@ onBeforeUnmount(() => {
         </div>
         <img :src="fileURL + aixqdetail.img" alt="" class="caseClassitemfa" />
       </div>
-      <div class="adicHxgn">
+      <div v-if="aixqdetail.sectionone" class="adicHxgn">
         <div class="adicHxgnTitle">{{ aixqdetail.sectionone.name }}</div>
         <div v-if="aixqdetail?.sectionone?.items" class="adicHxgnContent">
           <div v-for="(item, index) in aixqdetail?.sectionone?.items" :key="index" class="adicHxgnItem">
@@ -168,7 +168,7 @@ onBeforeUnmount(() => {
           </div>
         </div> -->
       </div>
-      <div class="adicSycj">
+      <div v-if="aixqdetail.sectiontwo" class="adicSycj">
         <div class="adicSycjTitle">{{ aixqdetail.sectiontwo.name }}</div>
         <div v-if="aixqdetail?.sectiontwo?.items" class="adicSycjContent">
           <div v-for="(item, index) in aixqdetail?.sectiontwo?.items" :key="index" class="adicSycjItem">
@@ -208,10 +208,10 @@ onBeforeUnmount(() => {
           </div>
         </div> -->
       </div>
-      <div class="adicJsys">
+      <div v-if="aixqdetail.sectionthree" class="adicJsys">
         <div class="adicJsysTitle">{{ aixqdetail.sectionthree.name }}</div>
-        <div v-if="aixqdetail?.sectiontwo?.items" class="adicJsysContent">
-          <div v-for="(item, index) in aixqdetail?.sectiontwo?.items" :key="index" class="adicJsysItem">
+        <div v-if="aixqdetail?.sectionthree?.items" class="adicJsysContent">
+          <div v-for="(item, index) in aixqdetail?.sectionthree?.items" :key="index" class="adicJsysItem">
             <img :src="fileURL + item.iconimg" alt="" class="adicJsysItemFa">
             <div class="adicJsysItemT">{{ item.title }}</div>
             <div class="adicJsysItemI">{{ item.description }}</div>
