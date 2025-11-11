@@ -15,27 +15,28 @@ function setState(code: string) {
   state.value = code
 }
 
-const phone: any = ref('')
+const email: any = ref('')
 const password: any = ref('')
 const code: any = ref('')
 
 function getCode() {
-  if (!phone.value) {
+  if (!email.value) {
     ElMessage({
       type: 'error',
-      message: '请输入手机号',
+      message: '请输入邮箱',
     })
     return
   }
-  if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(phone.value)) {
+  if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email.value)) {
     ElMessage({
       type: 'error',
-      message: '手机号格式错误',
+      message: '邮箱格式错误',
     })
     return
   }
   sendverificationcodeApi({
-    phone: phone.value,
+    email: email.value,
+    scene: 'login',
   }).then((res: any) => {
     if (res) {
       countdownChange()
@@ -60,17 +61,17 @@ function countdownChange() {
 
 // 验证码登录
 function loginByCoode() {
-  if (!phone.value) {
+  if (!email.value) {
     ElMessage({
       type: 'error',
-      message: '请输入手机号',
+      message: '请输入邮箱',
     })
     return
   }
-  if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(phone.value)) {
+  if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email.value)) {
     ElMessage({
       type: 'error',
-      message: '手机号格式错误',
+      message: '邮箱格式错误',
     })
     return
   }
@@ -84,7 +85,7 @@ function loginByCoode() {
       return
     }
     // verifyverificationcodeApi({
-    //   phone: phone.value,
+    //   email: email.value,
     //   code: code.value,
     // }).then((res: any) => {
     //   if (res) {
@@ -102,7 +103,7 @@ function loginByCoode() {
       return
     }
     baseloginpwdApi({
-      phone: phone.value,
+      email: email.value,
       password: password.value,
     }).then((res: any) => {
       if (res) {
@@ -122,7 +123,7 @@ function loginByCoode() {
 // 验证码登录
 function getBaselogincode() {
   baselogincodeApi({
-    phone: phone.value,
+    email: email.value,
     code: code.value,
   }).then((res: any) => {
     if (res) {
@@ -157,7 +158,7 @@ onUnmounted(() => {
       <div class="fromBox">
         <div class="fromitem frsc">
           <img src="@/assets/register/user.png" alt="" />
-          <el-input v-model="phone" style="width: 100%" placeholder="请输入手机号" clearable />
+          <el-input v-model="email" style="width: 100%" placeholder="请输入邮箱" clearable />
         </div>
         <div v-if="state === 'mm'" class="fromitem frsc">
           <img src="@/assets/register/pwd.png" alt="" />
@@ -166,7 +167,7 @@ onUnmounted(() => {
         </div>
         <div v-if="state === 'kj'" class="fromitem frsc">
           <img src="@/assets/register/yzm.png" alt="" />
-          <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="短信验证码" clearable />
+          <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="邮箱验证码" clearable />
           <div v-if="countdown < 60 && countdown > 0" class="djsTimeStyle">
             已发送（{{ countdown }}）
           </div>

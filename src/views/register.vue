@@ -4,32 +4,33 @@ import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import {
   sendverificationcodeApi,
-  verifyverificationcodeApi,
+  // verifyverificationcodeApi,
   baseregisterApi,
 } from '@/api/modules/login'
 
 const isreadRuler: any = ref(false)
-const phone: any = ref('')
+const email: any = ref('')
 const password: any = ref('')
 const code: any = ref('')
 
 function getCode() {
-  if (!phone.value) {
+  if (!email.value) {
     ElMessage({
       type: 'error',
-      message: '请输入手机号',
+      message: '请输入邮箱',
     })
     return
   }
-  if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(phone.value)) {
+  if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email.value)) {
     ElMessage({
       type: 'error',
-      message: '手机号格式错误',
+      message: '邮箱格式错误',
     })
     return
   }
   sendverificationcodeApi({
-    phone: phone.value,
+    email: email.value,
+    scene: 'register',
   }).then((res: any) => {
     if (res) {
       countdownChange()
@@ -54,17 +55,17 @@ function countdownChange() {
 
 // 创建账号
 function ceateAccount() {
-  if (!phone.value) {
+  if (!email.value) {
     ElMessage({
       type: 'error',
-      message: '请输入手机号',
+      message: '请输入邮箱',
     })
     return
   }
-  if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(phone.value)) {
+  if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email.value)) {
     ElMessage({
       type: 'error',
-      message: '手机号格式错误',
+      message: '邮箱格式错误',
     })
     return
   }
@@ -98,7 +99,7 @@ function ceateAccount() {
   }
   getBaseregister()
   // verifyverificationcodeApi({
-  //   phone: phone.value,
+  //   email: email.value,
   //   code: code.value,
   // }).then((res: any) => {
   //   if (res) {
@@ -107,10 +108,10 @@ function ceateAccount() {
   // })
 }
 
-// 手机号注册
+// 邮箱注册
 function getBaseregister() {
   baseregisterApi({
-    phone: phone.value,
+    email: email.value,
     password: password.value,
     code: code.value,
   }).then((res: any) => {
@@ -135,7 +136,7 @@ onUnmounted(() => {
       <div class="hyzc">欢迎注册</div>
       <div class="fromitem frsc">
         <img src="@/assets/register/user.png" alt="" />
-        <el-input v-model="phone" style="width: 100%" placeholder="请输入手机号" clearable />
+        <el-input v-model="email" style="width: 100%" placeholder="请输入邮箱" clearable />
       </div>
       <div class="fromitem frsc">
         <img src="@/assets/register/pwd.png" alt="" />
@@ -144,7 +145,7 @@ onUnmounted(() => {
       </div>
       <div class="fromitem frsc">
         <img src="@/assets/register/yzm.png" alt="" />
-        <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="短信验证码" clearable />
+        <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="邮箱验证码" clearable />
         <div v-if="countdown < 60 && countdown > 0" class="djsTimeStyle">
           已发送（{{ countdown }}）
         </div>

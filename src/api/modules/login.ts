@@ -1,8 +1,17 @@
 import api from '@/api/index'
 
-// 发送手机验证码
+// // 发送手机验证码
+// export function sendverificationcodeApi(data: any) {
+//   return api.post('/api/client/sms/sms/send-verification-code', null, {
+//     params: {
+//       ...data,
+//     },
+//   })
+// }
+
+// 发送邮箱验证码
 export function sendverificationcodeApi(data: any) {
-  return api.post('/api/client/sms/sms/send-verification-code', null, {
+  return api.post('/api/client/base/email/send-code', null, {
     params: {
       ...data,
     },
@@ -18,7 +27,7 @@ export function verifyverificationcodeApi(data: any) {
   })
 }
 
-// 手机号注册
+// 邮箱注册
 export function baseregisterApi(data: any) {
   return api.post('/api/client/base/register', null, {
     params: {
