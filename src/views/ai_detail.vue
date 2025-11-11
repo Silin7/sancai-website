@@ -445,8 +445,8 @@ onBeforeUnmount(() => {
         .adicCpjjLeftTitle {
           color: rgb(1 32 96);
           font-weight: 700;
-          font-size: 1.5rem;
-          line-height: 2rem;
+          font-size: 2rem;
+          line-height: 2.5rem;
           margin-bottom: 1.5rem;
         }
 
@@ -455,6 +455,8 @@ onBeforeUnmount(() => {
           font-size: 1.25rem;
           line-height: 2;
           color: rgb(75 85 99);
+          font-family: 'fangsong';
+          font-weight: 700;
         }
       }
 
