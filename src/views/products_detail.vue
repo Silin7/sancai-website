@@ -111,11 +111,13 @@ function addToCart() {
     id: productDetails.value.id,
     name: '',
     type: '',
+    unit_name: productDetails.value.unit_name,
     brand: productDetails.value.brand,
     pretaxprice: productDetails.value.pretaxprice,
     afertaxprice: productDetails.value.afertaxprice,
     taxrate: productDetails.value.taxrate,
     supplier_name: productDetails.value.supplier_name,
+    quantity: '',
   }
   if (pathname.value === 'scheme') {
     data['name'] = productDetails.value.servicename
@@ -139,6 +141,10 @@ function addToCart() {
     message: '已加入询价单',
     type: 'success',
   })
+}
+
+function quantityInput() {
+  window.localStorage.setItem('gwcdata', JSON.stringify(gwcdata.value))
 }
 
 function gwcDelete(index: number) {
@@ -284,16 +290,16 @@ const value1 = ref(4.8)
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-          }}</span>
+            }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -531,7 +537,7 @@ const value1 = ref(4.8)
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-              }}</span>
+                }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
@@ -600,14 +606,25 @@ const value1 = ref(4.8)
       <el-table :data="gwcdata" border highlight-current-row>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="name" label="产品名称" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌" />
-        <el-table-column align="center" label="税前价格" width="120">
+        <el-table-column :show-overflow-tooltip="true" align="center" prop="unit_name" label="品牌" />
+        <!-- <el-table-column align="center" label="税前价格" width="120">
           <template #default="scope">
             <span>¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
           </template>
-        </el-table-column>
-        <el-table-column align="center" label="税后价格" width="120">
+        </el-table-column> -->
+        <el-table-column align="center" label="除税价" width="120">
           <template #default="scope">
-            <span>¥{{ formatCurrency(scope.row.afertaxprice) }}</span>
+            <span style="color: #165dff; font-weight: 700">¥{{ formatCurrency(scope.row.pretaxprice, 2) }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="税率">
+          <template #default="scope">
+            <span>{{ scope.row.taxrate }}%</span>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="数量">
+          <template #default="scope">
+            <el-input v-model="scope.row.quantity" style="width: 100%" placeholder="请输入" @input="quantityInput" />
           </template>
         </el-table-column>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="supplier_name" label="供应商" />
