@@ -422,7 +422,7 @@ onBeforeUnmount(() => {
       color: #fff;
       display: flex;
       align-items: center;
-      font-size: 1.25rem;
+      // font-size: 1.25rem;
 
       .nameStyle {
         display: inline-block;
