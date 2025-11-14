@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { fileURL } from '@/api/baseConfig'
+import { sysinfosApi } from '@/api/modules/basic'
 
 const windowWidth = ref(window.innerWidth)
 const windowScrollY = ref(window.scrollY)
@@ -12,15 +14,19 @@ function handleScroll() {
   windowScrollY.value = window.scrollY
 }
 
-onMounted(() => {
-  window.addEventListener('resize', updateWindowWidth)
-  window.addEventListener('scroll', handleScroll)
-})
+// 用户端-获取所有有效系统信息（如系统名称、版权信息等，按Key排序）
+const sysInfos: any = ref({})
 
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateWindowWidth)
-  window.removeEventListener('scroll', handleScroll)
-})
+function getSysinfosApi() {
+  sysinfosApi().then((res: any) => {
+    if (res && res.length > 0) {
+      for (let i = 0; i < res.length; i++) {
+        const item = res[i]
+        sysInfos.value[item.ky] = item.val
+      }
+    }
+  })
+}
 
 // 返回顶部
 const emit = defineEmits(['goTopCallback'])
@@ -40,6 +46,17 @@ function iconMouseenter(code: string) {
 function iconMouseleave() {
   mouseState.value = ''
 }
+
+onMounted(() => {
+  window.addEventListener('resize', updateWindowWidth)
+  window.addEventListener('scroll', handleScroll)
+  getSysinfosApi()
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateWindowWidth)
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
@@ -62,22 +79,24 @@ function iconMouseleave() {
       <div v-if="foldState" class="float-btn">
         <i class="fa fa-phone"></i>
       </div>
-      <span v-if="windowWidth > 600 && mouseState === 'lxwm'" class="flexSpan">联系我们</span>
+      <span v-if="windowWidth > 600 && mouseState === 'lxwm'" class="flexSpan">{{ sysInfos.sys_tel }}</span>
     </div>
 
     <div class="relativeBox" @mouseenter="iconMouseenter('gzwm')" @mouseleave="iconMouseleave">
       <div v-if="foldState" class="float-btn">
         <i class="fa fa-weixin"></i>
       </div>
-      <span v-if="windowWidth > 600 && mouseState === 'gzwm'" class="flexSpan">关注我们</span>
+      <img src="" alt="">
+      <img v-if="windowWidth > 600 && mouseState === 'gzwm'" :src="fileURL + sysInfos.sys_wechatqrcode"
+        alt="wechatqrcode" class="flexQrcode" />
     </div>
 
-    <div class="relativeBox" @mouseenter="iconMouseenter('zxly')" @mouseleave="iconMouseleave">
+    <!-- <div class="relativeBox" @mouseenter="iconMouseenter('zxly')" @mouseleave="iconMouseleave">
       <div v-if="foldState" class="float-btn">
         <i class="fa fa-pencil"></i>
       </div>
       <span v-if="windowWidth > 600 && mouseState === 'zxly'" class="flexSpan">在线留言</span>
-    </div>
+    </div> -->
 
     <div class="relativeBox" @mouseenter="iconMouseenter('top')" @mouseleave="iconMouseleave">
       <div v-if="foldState" class="float-btn" @click="goTop">
@@ -152,8 +171,8 @@ function iconMouseleave() {
       position: absolute;
       top: 1.125rem;
       right: 3.8rem;
-      padding: 0.25rem 0;
-      width: 4rem;
+      padding: 0.25rem 0.5rem;
+      min-width: 4rem;
       font-size: 0.75rem;
       line-height: 1rem;
       text-align: center;
@@ -161,6 +180,14 @@ function iconMouseleave() {
       color: #fff;
       background-color: #012060;
       border-radius: 0.25rem;
+    }
+
+    .flexQrcode {
+      position: absolute;
+      top: -3.5rem;
+      right: 3.8rem;
+      width: 10rem;
+      height: 10rem;
     }
   }
 }

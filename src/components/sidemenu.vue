@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Fold, Expand } from '@element-plus/icons-vue'
 import useHeaderStore from '@/store/modules/header'
 import pageJump from '@/hooks/pageJump'
-import { baselogoutdApi } from '@/api/modules/login'
+import { baselogoutdApi, currentuserApi } from '@/api/modules/login'
+
 
 const headerStore = useHeaderStore()
 
@@ -44,6 +45,17 @@ function signOut() {
       console.log('取消退出')
     })
 }
+
+// 用户信息
+const userType: any = ref(1)
+
+onMounted(() => {
+  currentuserApi().then((res: any) => {
+    if (res) {
+      userType.value = res.user_type
+    }
+  })
+})
 </script>
 
 <template>
@@ -65,26 +77,26 @@ function signOut() {
         <i class="fa fa-users"></i>
         <span>企业案例</span>
       </el-menu-item>
-      <el-menu-item index="user-renlist" @click="pageJump('user-renlist')">
+      <el-menu-item v-if="userType === 1" index="user-renlist" @click="pageJump('user-renlist')">
         <i class="fa fa-users"></i>
         <span>数字技术应用论证/数字实施方案论证</span>
       </el-menu-item>
-      <el-menu-item index="user-cailist" @click="pageJump('user-cailist')">
+      <el-menu-item v-if="userType === 1" index="user-cailist" @click="pageJump('user-cailist')">
         <i class="fa fa-dropbox"></i>
         <span>材料/设备</span>
       </el-menu-item>
-      <el-menu-item index="user-machinelist" @click="pageJump('user-machinelist')">
+      <el-menu-item v-if="userType === 1" index="user-machinelist" @click="pageJump('user-machinelist')">
         <i class="fa fa-wrench"></i>
         <span>智能建造装备</span>
       </el-menu-item>
-      <el-menu-item index="user-itlist" @click="pageJump('user-itlist')">
+      <el-menu-item v-if="userType === 1" index="user-itlist" @click="pageJump('user-itlist')">
         <i class="fa fa-info-circle"></i>
         <span>信息化产品/服务</span>
       </el-menu-item>
-      <el-menu-item index="user-inquirylist" @click="pageJump('user-inquirylist')">
+      <!-- <el-menu-item index="user-inquirylist" @click="pageJump('user-inquirylist')">
         <i class="fa fa-file-powerpoint-o"></i>
         <span>报价单</span>
-      </el-menu-item>
+      </el-menu-item> -->
       <el-menu-item index="user-quotationlist" @click="pageJump('user-quotationlist')">
         <i class="fa fa-file-powerpoint-o"></i>
         <span>询价单</span>

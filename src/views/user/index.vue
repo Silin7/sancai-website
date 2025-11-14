@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import pageJump from '@/hooks/pageJump'
+import { currentuserApi } from '@/api/modules/login'
 import { homestatisticApi } from '@/api/modules/admin'
 
 const data1: any = ref({
@@ -40,9 +41,18 @@ function getHomestatistic() {
   })
 }
 
+// 用户状态 user_type  1-供方 2-需方
+const userType: any = ref(1)
+
 onMounted(() => {
   // getUserInfo()
   getHomestatistic()
+
+  currentuserApi().then((res: any) => {
+    if (res) {
+      userType.value = res.user_type
+    }
+  })
 })
 </script>
 
@@ -58,7 +68,7 @@ onMounted(() => {
         今天是<span>{{ dayjs().format('YYYY年MM月DD日') }}{{ dayjs().locale('zh-cn').format('dddd') }}</span>，以下是您的平台数据概览
       </p>
     </div>
-    <el-row v-if="homeStatistic.product_statistics" :gutter="24">
+    <el-row v-if="homeStatistic.product_statistics && userType === 1" :gutter="24">
       <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
         <div class="stat-card">
           <div class="stat-icon" style="background-color: #e8f3ff; color: #377dff">
