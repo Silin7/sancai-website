@@ -21,13 +21,13 @@ const data1: any = ref({
 // ])
 
 // // 登陆后的用户信息
-// const userInfo: any = ref({})
+// const userinfo: any = ref({})
 
 // function getUserInfo() {
 //   if (window.localStorage.getItem('userinfo')) {
-//     userInfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
+//     userinfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
 //   } else {
-//     userInfo.value = {}
+//     userinfo.value = {}
 //   }
 // }
 

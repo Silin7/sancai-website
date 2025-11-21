@@ -67,13 +67,13 @@ function menuMouseleave() {
 }
 
 // 登陆后的用户信息
-const userInfo: any = ref({})
+const userinfo: any = ref({})
 
 function getUserInfo() {
   if (window.localStorage.getItem('userinfo')) {
-    userInfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
+    userinfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
   } else {
-    userInfo.value = {}
+    userinfo.value = {}
   }
 }
 
@@ -172,11 +172,11 @@ onBeforeUnmount(() => {
             <i class="fa fa-bars"></i>
           </div>
         </div>
-        <!-- userInfo.name -->
+        <!-- userinfo.name -->
         <div v-if="windowWidth > 1290">
-          <div v-if="userInfo.name" ref="buttonRef" v-click-outside="onClickOutside" class="username">
+          <div v-if="userinfo.name" ref="buttonRef" v-click-outside="onClickOutside" class="username">
             <i class="fa fa-user-circle mr-2"></i>
-            <span class="nameStyle">{{ userInfo.name }}</span>
+            <span class="nameStyle">{{ userinfo.name }}</span>
             <el-popover placement="bottom" :virtual-ref="buttonRef" virtual-triggering :width="160" trigger="click">
               <div class="userPopover">
                 <div class="popoverItem" @click="pageJump('user-index')">
@@ -227,14 +227,14 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </div>
-      <div v-if="userInfo.name" class="mobileBtns">
+      <div v-if="userinfo.name" class="mobileBtns">
         <div class="frcc">
           <i class="fa fa-user-circle mr-2"></i>
-          <span class="nameStyle">{{ userInfo.name }}</span>
+          <span class="nameStyle">{{ userinfo.name }}</span>
         </div>
         <!-- <span class="logoutStyle" @click="logoutFunction">退出</span> -->
       </div>
-      <div v-if="userInfo.name" class="mobileBtns">
+      <div v-if="userinfo.name" class="mobileBtns">
         <div class="frcc">
           <i class="fa fa-sign-out mr-2"></i>
           <span @click="logoutFunction">退出登录</span>

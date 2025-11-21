@@ -3,13 +3,13 @@ import { onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
 
 // 登陆后的用户信息
-const userInfo: any = ref({})
+const userinfo: any = ref({})
 
 function getUserInfo() {
   if (window.localStorage.getItem('userinfo')) {
-    userInfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
+    userinfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
   } else {
-    userInfo.value = {}
+    userinfo.value = {}
   }
 }
 
@@ -26,7 +26,7 @@ onMounted(() => {
     </div>
     <div class="avatar-name">
       <i class="fa fa-user-circle mr-2"></i>
-      <span>{{ userInfo.name || '未登录' }}</span>
+      <span>{{ userinfo.name || '未登录' }}</span>
     </div>
   </div>
 </template>
