@@ -65,6 +65,10 @@ onMounted(() => {
         <i class="fa fa-home"></i>
         <span>首页</span>
       </el-menu-item>
+      <el-menu-item index="user-role" @click="pageJump('user-role')">
+        <i class="fa fa-home"></i>
+        <span>管理员管理</span>
+      </el-menu-item>
       <el-menu-item index="user-profile" @click="pageJump('user-profile')">
         <i class="fa fa-file-text"></i>
         <span>企业资料</span>

@@ -301,6 +301,16 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/user/role',
+    name: 'user-role',
+    component: () => import('@/views/user/role.vue'),
+    meta: {
+      title: '新材网-管理员管理',
+      stcode: 'user-role',
+      website: false,
+    },
+  },
+  {
     path: '/user/upgradevip',
     name: 'user-upgradevip',
     component: () => import('@/views/user/upgradevip.vue'),
