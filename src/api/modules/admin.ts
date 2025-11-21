@@ -272,3 +272,47 @@ export function inquiryorderslistApi(params: any) {
 export function inquiryordersdetailApi(inquiryid: any) {
   return api.get(`/api/client/inquiry/orders/${inquiryid}`)
 }
+// 当前用户信息
+export function mainadmininfoApi(params: any) {
+  return api.get('/api/client/base/admin/main-admin/info', {
+    params,
+  })
+}
+// 发送更换主管理员验证码
+export function mainadminsendcodeApi(data: any) {
+  return api.post('/api/client/base/admin/main-admin/send-code', data)
+}
+// 更换主管理员
+export function mainadminchangeApi(data: any) {
+  return api.post('/api/client/base/admin/main-admin/change', data)
+}
+// 检索未绑定用户
+export function mainadminsearchuserApi(data: any) {
+  return api.post('/api/client/base/admin/normal-admin/search-user', data)
+}
+// 发送新增普通管理员验证码
+export function mainnormalsearchuserApi(data: any) {
+  return api.post('/api/client/base/admin/normal-admin/send-code', data)
+}
+// 新增普通管理员
+export function mainnormaladdApi(data: any) {
+  return api.post('/api/client/base/admin/normal-admin/add', data)
+}
+// 普通管理员列表
+export function normaladminlistApi(params: any) {
+  return api.get('/api/client/base/admin/normal-admin/list', {
+    params,
+  })
+}
+// 编辑普通管理员权限
+export function normaladmineditpermissionApi(params: any) {
+  return api.put('/api/client/base/admin/normal-admin/edit-permission', {
+    params,
+  })
+}
+// 删除普通管理员
+export function normaladmindeleteApi(params: any) {
+  return api.delete('/api/client/base/admin/normal-admin/delete', {
+    params,
+  })
+}

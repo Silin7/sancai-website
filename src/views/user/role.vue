@@ -1,58 +1,213 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import {
+  mainadmininfoApi,
+  mainadminsendcodeApi,
+  mainadminchangeApi,
+  normaladminlistApi,
+  mainadminsearchuserApi,
+  mainnormalsearchuserApi,
+  mainnormaladdApi,
+} from '@/api/modules/admin'
 
-const changeadminVisible = ref(false);
-const xzglyyx = ref('');
-const xzglyyxyzm = ref('');
-const addadminVisible = ref(true);
-const xzglyyx1 = ref('');
-const xzglyyxyzm1 = ref('');
+// 主管理员信息
+const mainAdminInfo: any = ref({})
+function getMainadmininfo() {
+  mainadmininfoApi({
+    company_id: company_id.value,
+  }).then((res: any) => {
+    if (res) {
+      mainAdminInfo.value = res.data
+    }
+  })
+}
+
+// 普通管理员列表
+const normaladminlist: any = ref([])
+function getNormaladminlist() {
+  normaladminlistApi({
+    company_id: company_id.value,
+  }).then((res: any) => {
+    if (res) {
+      normaladminlist.value = res.data
+    }
+  })
+}
+
+// 更新保存新主管理员
+const changeadminVisible = ref(false)
+const new_admin_email = ref('')
+const code = ref('')
+// 发送验证码
+function sendCodeFunction() {
+  if (!new_admin_email.value) {
+    ElMessage.error('请输入邮箱地址')
+    return
+  }
+  mainadminsendcodeApi({
+    new_admin_email: new_admin_email.value,
+    company_id: company_id.value,
+  }).then((res: any) => {
+    if (res) {
+      ElMessage.success('验证码已发送，请查收邮箱')
+    }
+  })
+}
+// 保存新主管理员
+function saveNewMainAdmin() {
+  if (!new_admin_email.value) {
+    ElMessage.error('请输入邮箱地址')
+    return
+  }
+  if (!code.value) {
+    ElMessage.error('请输入验证码')
+    return
+  }
+  mainadminchangeApi({
+    new_admin_email: new_admin_email.value,
+    code: code.value,
+    company_id: company_id.value,
+  }).then((res: any) => {
+    if (res) {
+      ElMessage.success('主管理员已更换成功')
+      changeadminVisible.value = false
+      getMainadmininfo()
+    }
+  })
+}
+
+// 检索未绑定用户
+const addadminVisible = ref(false)
+const user_email = ref('silin7@foxmail.com')
+const user_code = ref('')
+
+function searchUnboundUser(email: string) {
+  mainadminsearchuserApi({
+    email: email,
+    company_id: company_id.value,
+  }).then((res: any) => {
+    if (res) {
+      // 处理返回的未绑定用户信息
+    }
+  })
+}
+
+const permissions = ref({
+  "0": {
+    "create": false,
+    "delete": false,
+    "read": false,
+    "update": false
+  },
+  "1": {
+    "create": false,
+    "delete": false,
+    "read": false,
+    "update": false
+  },
+  "2": {
+    "create": false,
+    "delete": false,
+    "read": false,
+    "update": false
+  },
+  "3": {
+    "create": false,
+    "delete": false,
+    "read": false,
+    "update": false
+  }
+})
+
+// 发送新增普通管理员验证码
+function searchNormalAdminUser() {
+  if (!user_email.value) {
+    ElMessage.error('请输入邮箱地址')
+    return
+  }
+  mainnormalsearchuserApi({
+    email: user_email.value,
+    company_id: company_id.value,
+  }).then((res: any) => {
+    if (res) {
+      console.log('-------->', res)
+    }
+  })
+}
+
+function addNormalAdmin() {
+  if (!user_email.value) {
+    ElMessage.error('请输入邮箱地址')
+    return
+  }
+  if (!user_code.value) {
+    ElMessage.error('请输入验证码')
+    return
+  }
+  mainnormaladdApi({
+    company_id: company_id.value,
+    user_email: user_email.value,
+    code: user_code.value,
+    permissions: permissions.value,
+  }).then((res: any) => {
+    if (res) {
+      console.log('新增普通管理员成功', res)
+    }
+  })
+}
+
+const company_id: any = ref('')
+onMounted(() => {
+  const userinfo: any = JSON.parse(localStorage.getItem('userinfo') || '{}')
+  company_id.value = userinfo?.related_companies[0]?.company_id
+  if (company_id.value) {
+    getMainadmininfo()
+    getNormaladminlist()
+    // searchUnboundUser('silin7@foxmail.com')
+  } else {
+    ElMessage.error('无管理员信息')
+  }
+})
 </script>
 
 <template>
   <div>
     <div class="page-main">
-      <h1 class="page-title">
-        <i class="fa fa-user-plus"></i>管理员管理
-      </h1>
-      <div class="page-card" style="margin-bottom: 32px;">
+      <h1 class="page-title"><i class="fa fa-user-plus"></i>管理员管理</h1>
+      <div class="page-card" style="margin-bottom: 32px">
         <div class="card-header">
-          <h2 class="card-title">
-            <i class="fa fa-diamond"></i>主管理员信息
-          </h2>
-          <button class="btn btn-primary" onclick="openChangeMainAdminModal()">
+          <h2 class="card-title"><i class="fa fa-diamond"></i>主管理员信息</h2>
+          <button class="btn btn-primary" @click="changeadminVisible = true">
             <i class="fa fa-exchange"></i>修改主管理员
           </button>
         </div>
         <div class="admin-info">
           <div class="info-item">
             <span class="info-label">用户名：</span>
-            <span class="info-value">admin_main</span>
+            <span class="info-value">{{ mainAdminInfo.name }}</span>
           </div>
           <div class="info-item">
             <span class="info-label">邮箱：</span>
-            <span class="info-value">admin@example.com </span>
+            <span class="info-value">{{ mainAdminInfo.email }}</span>
           </div>
           <div class="info-item">
             <span class="info-label">创建时间：</span>
-            <span class="info-value">2025-01-15</span>
+            <span class="info-value">{{ mainAdminInfo.create_time }}</span>
           </div>
           <div class="info-item">
             <span class="info-label">最后登录：</span>
-            <span class="info-value">2025-07-10 09:30</span>
+            <span class="info-value">{{ mainAdminInfo.last_login }}</span>
           </div>
         </div>
       </div>
       <div class="page-card">
         <div class="card-header">
-          <h2 class="card-title">
-            <i class="fa fa-users"></i>普通管理员管理
-          </h2>
-          <button class="btn btn-primary" onclick="openChangeMainAdminModal()">
+          <h2 class="card-title"><i class="fa fa-users"></i>普通管理员管理</h2>
+          <button class="btn btn-primary" @click="addadminVisible = true">
             <i class="fa fa-plus"></i>新增普通管理员
           </button>
         </div>
-
         <div class="table-container">
           <table class="admin-table">
             <thead>
@@ -73,16 +228,16 @@ const xzglyyxyzm1 = ref('');
                     <div class="permission-title">数字技工/方案论证</div>
                     <div class="permission-checkboxes">
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled> 创建
+                        <input type="checkbox" checked disabled /> 创建
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled> 查看
+                        <input type="checkbox" checked disabled /> 查看
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled> 更新
+                        <input type="checkbox" checked disabled /> 更新
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" disabled> 删除
+                        <input type="checkbox" disabled /> 删除
                       </label>
                     </div>
                   </div>
@@ -90,16 +245,16 @@ const xzglyyxyzm1 = ref('');
                     <div class="permission-title">材料/设备</div>
                     <div class="permission-checkboxes">
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled> 创建
+                        <input type="checkbox" checked disabled /> 创建
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled> 查看
+                        <input type="checkbox" checked disabled /> 查看
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled> 更新
+                        <input type="checkbox" checked disabled /> 更新
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled> 删除
+                        <input type="checkbox" checked disabled /> 删除
                       </label>
                     </div>
                   </div>
@@ -107,16 +262,16 @@ const xzglyyxyzm1 = ref('');
                     <div class="permission-title">智能建造装备</div>
                     <div class="permission-checkboxes">
                       <label class="permission-checkbox">
-                        <input type="checkbox" disabled> 创建
+                        <input type="checkbox" disabled /> 创建
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled> 查看
+                        <input type="checkbox" checked disabled /> 查看
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" disabled> 更新
+                        <input type="checkbox" disabled /> 更新
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" disabled> 删除
+                        <input type="checkbox" disabled /> 删除
                       </label>
                     </div>
                   </div>
@@ -124,16 +279,16 @@ const xzglyyxyzm1 = ref('');
                     <div class="permission-title">信息化产品/服务</div>
                     <div class="permission-checkboxes">
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled> 创建
+                        <input type="checkbox" checked disabled /> 创建
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled> 查看
+                        <input type="checkbox" checked disabled /> 查看
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" disabled> 更新
+                        <input type="checkbox" disabled /> 更新
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" disabled> 删除
+                        <input type="checkbox" disabled /> 删除
                       </label>
                     </div>
                   </div>
@@ -159,35 +314,35 @@ const xzglyyxyzm1 = ref('');
       <div class="modal-body">
         <div class="form-group">
           <label class="form-label">新主管理员邮箱</label>
-          <input v-model="xzglyyx" type="email" class="form-input" placeholder="请输入新主管理员邮箱">
+          <input v-model="new_admin_email" type="email" class="form-input" placeholder="请输入新主管理员邮箱" />
         </div>
         <div class="form-group">
           <label class="form-label">验证码</label>
           <div class="verify-code-container">
-            <input v-model="xzglyyxyzm" type="text" class="form-input verify-code-input" placeholder="请输入验证码">
-            <button class="send-code-btn">发送验证码</button>
+            <input v-model="code" type="text" class="form-input verify-code-input" placeholder="请输入验证码" />
+            <button class="send-code-btn" @click="sendCodeFunction">发送验证码</button>
           </div>
         </div>
-        <p style="font-size: 12px; color: #909399; margin-top: 8px;">
+        <p style="font-size: 12px; color: #909399; margin-top: 8px">
           注：更换主管理员后，原主管理员将变为普通管理员，新主管理员将拥有全部系统权限
         </p>
       </div>
-      <div slot="footer" style="display: flex; justify-content: flex-end;">
+      <div slot="footer" style="display: flex; justify-content: flex-end">
         <el-button @click="changeadminVisible = false">取 消</el-button>
-        <el-button type="primary" @click="changeadminVisible = false">确 定</el-button>
+        <el-button type="primary" @click="saveNewMainAdmin">确 定</el-button>
       </div>
     </el-dialog>
     <el-dialog title="新增普通管理员" v-model="addadminVisible" width="800">
       <div class="modal-body">
         <div class="form-group">
-          <label class="form-label">新主管理员邮箱</label>
-          <input v-model="xzglyyx1" type="email" class="form-input" placeholder="请输入新主管理员邮箱">
+          <label class="form-label">管理员邮箱</label>
+          <input v-model="user_email" type="email" class="form-input" placeholder="请输入管理员邮箱" />
         </div>
         <div class="form-group">
           <label class="form-label">验证码</label>
           <div class="verify-code-container">
-            <input v-model="xzglyyxyzm1" type="text" class="form-input verify-code-input" placeholder="请输入验证码">
-            <button class="send-code-btn">发送验证码</button>
+            <input v-model="user_code" type="text" class="form-input verify-code-input" placeholder="请输入验证码" />
+            <button class="send-code-btn" @click="searchNormalAdminUser">发送验证码</button>
           </div>
         </div>
         <div class="form-group">
@@ -196,73 +351,43 @@ const xzglyyxyzm1 = ref('');
             <div class="permission-title">数字技工/方案论证</div>
             <div class="permission-checkboxes">
               <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="技工_创建"> 创建
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="技工_查看" checked> 查看
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="技工_更新"> 更新
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="技工_删除"> 删除
+                <el-checkbox label="创建" v-model="permissions['0'].create" />
+                <el-checkbox label="查看" v-model="permissions['0'].read" />
+                <el-checkbox label="更新" v-model="permissions['0'].update" />
+                <el-checkbox label="删除" v-model="permissions['0'].delete" />
               </label>
             </div>
           </div>
           <div class="permission-group">
             <div class="permission-title">材料/设备</div>
             <div class="permission-checkboxes">
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="材料_创建"> 创建
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="材料_查看" checked> 查看
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="材料_更新"> 更新
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="材料_删除"> 删除
-              </label>
+              <el-checkbox label="创建" v-model="permissions['1'].create" />
+              <el-checkbox label="查看" v-model="permissions['1'].read" />
+              <el-checkbox label="更新" v-model="permissions['1'].update" />
+              <el-checkbox label="删除" v-model="permissions['1'].delete" />
             </div>
           </div>
           <div class="permission-group">
             <div class="permission-title">智能建造装备</div>
             <div class="permission-checkboxes">
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="装备_创建"> 创建
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="装备_查看" checked> 查看
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="装备_更新"> 更新
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="装备_删除"> 删除
-              </label>
+              <el-checkbox label="创建" v-model="permissions['2'].create" />
+              <el-checkbox label="查看" v-model="permissions['2'].read" />
+              <el-checkbox label="更新" v-model="permissions['2'].update" />
+              <el-checkbox label="删除" v-model="permissions['2'].delete" />
             </div>
           </div>
           <div class="permission-group">
             <div class="permission-title">信息化产品/服务</div>
             <div class="permission-checkboxes">
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="信息化_创建"> 创建
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="信息化_查看" checked> 查看
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="信息化_更新"> 更新
-              </label>
-              <label class="permission-checkbox">
-                <input type="checkbox" name="permission" value="信息化_删除"> 删除
-              </label>
+              <el-checkbox label="创建" v-model="permissions['3'].create" />
+              <el-checkbox label="查看" v-model="permissions['3'].read" />
+              <el-checkbox label="更新" v-model="permissions['3'].update" />
+              <el-checkbox label="删除" v-model="permissions['3'].delete" />
             </div>
           </div>
         </div>
       </div>
-      <div slot="footer" style="display: flex; justify-content: flex-end;">
+      <div slot="footer" style="display: flex; justify-content: flex-end">
         <el-button @click="addadminVisible = false">取 消</el-button>
         <el-button type="primary" @click="addadminVisible = false">确 定</el-button>
       </div>
@@ -296,7 +421,11 @@ const xzglyyxyzm1 = ref('');
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
   background-color: #f5f7fa;
   color: #303133;
 }
