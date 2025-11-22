@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import {
   mainadmininfoApi,
   mainadminsendcodeApi,
   mainadminchangeApi,
   normaladminlistApi,
-  mainadminsearchuserApi,
   mainnormalsearchuserApi,
   mainnormaladdApi,
+  normaladmineditpermissionApi,
+  normaladmindeleteApi,
 } from '@/api/modules/admin'
 
 // 主管理员信息
@@ -23,22 +24,11 @@ function getMainadmininfo() {
   })
 }
 
-// 普通管理员列表
-const normaladminlist: any = ref([])
-function getNormaladminlist() {
-  normaladminlistApi({
-    company_id: company_id.value,
-  }).then((res: any) => {
-    if (res) {
-      normaladminlist.value = res.data
-    }
-  })
-}
-
 // 更新保存新主管理员
 const changeadminVisible = ref(false)
 const new_admin_email = ref('')
 const code = ref('')
+
 // 发送验证码
 function sendCodeFunction() {
   if (!new_admin_email.value) {
@@ -50,6 +40,7 @@ function sendCodeFunction() {
     company_id: company_id.value,
   }).then((res: any) => {
     if (res) {
+      countdownChange()
       ElMessage.success('验证码已发送，请查收邮箱')
     }
   })
@@ -77,48 +68,73 @@ function saveNewMainAdmin() {
   })
 }
 
-// 检索未绑定用户
-const addadminVisible = ref(false)
-const user_email = ref('silin7@foxmail.com')
-const user_code = ref('')
-
-function searchUnboundUser(email: string) {
-  mainadminsearchuserApi({
-    email: email,
+// 普通管理员列表
+const normaladminlist: any = ref([])
+function getNormaladminlist() {
+  normaladminlistApi({
     company_id: company_id.value,
   }).then((res: any) => {
     if (res) {
-      // 处理返回的未绑定用户信息
+      normaladminlist.value = res.data.items
     }
   })
 }
 
-const permissions = ref({
-  "0": {
-    "create": false,
-    "delete": false,
-    "read": false,
-    "update": false
-  },
-  "1": {
-    "create": false,
-    "delete": false,
-    "read": false,
-    "update": false
-  },
-  "2": {
-    "create": false,
-    "delete": false,
-    "read": false,
-    "update": false
-  },
-  "3": {
-    "create": false,
-    "delete": false,
-    "read": false,
-    "update": false
-  }
+// 普通管理员管理
+const addadminVisible = ref(false)
+const addadminVisibleState = ref('add')
+const user_id = ref('')
+const user_email = ref('')
+const user_code = ref('')
+const product_type_map = ref({
+  '0': '数字技工/方案论证',
+  '1': '材料/设备',
+  '2': '智能建造装备',
+  '3': '信息化产品/服务',
 })
+const permissions = ref({
+  '0': {
+    create: false,
+    delete: false,
+    read: false,
+    update: false,
+  },
+  '1': {
+    create: false,
+    delete: false,
+    read: false,
+    update: false,
+  },
+  '2': {
+    create: false,
+    delete: false,
+    read: false,
+    update: false,
+  },
+  '3': {
+    create: false,
+    delete: false,
+    read: false,
+    update: false,
+  },
+})
+
+// 新增普通管理员-弹框
+function openAddNormalAdminModal() {
+  user_email.value = ''
+  user_code.value = ''
+  addadminVisible.value = true
+  addadminVisibleState.value = 'add'
+}
+
+// 编辑普通管理员-弹框
+function openEditNormalAdminModal(item: any) {
+  addadminVisible.value = true
+  addadminVisibleState.value = 'edit'
+  user_id.value = item.id
+  product_type_map.value = item.product_type_map
+  permissions.value = item.permissions
+}
 
 // 发送新增普通管理员验证码
 function searchNormalAdminUser() {
@@ -127,34 +143,90 @@ function searchNormalAdminUser() {
     return
   }
   mainnormalsearchuserApi({
-    email: user_email.value,
+    user_email: user_email.value,
     company_id: company_id.value,
   }).then((res: any) => {
     if (res) {
-      console.log('-------->', res)
+      countdownChange()
+      ElMessage.success('验证码已发送，请查收邮箱')
     }
   })
 }
 
+// 新增普通管理员
 function addNormalAdmin() {
-  if (!user_email.value) {
-    ElMessage.error('请输入邮箱地址')
-    return
-  }
-  if (!user_code.value) {
-    ElMessage.error('请输入验证码')
-    return
-  }
-  mainnormaladdApi({
-    company_id: company_id.value,
-    user_email: user_email.value,
-    code: user_code.value,
-    permissions: permissions.value,
-  }).then((res: any) => {
-    if (res) {
-      console.log('新增普通管理员成功', res)
+  if (addadminVisibleState.value === 'add') {
+    if (!user_email.value) {
+      ElMessage.error('请输入邮箱地址')
+      return
     }
+    if (!user_code.value) {
+      ElMessage.error('请输入验证码')
+      return
+    }
+    mainnormaladdApi({
+      company_id: company_id.value,
+      user_email: user_email.value,
+      code: user_code.value,
+      permissions: permissions.value,
+    }).then((res: any) => {
+      if (res) {
+        ElMessage.success('普通管理员添加成功')
+        addadminVisible.value = false
+        getNormaladminlist()
+      }
+    })
+  }
+  if (addadminVisibleState.value === 'edit') {
+    normaladmineditpermissionApi({
+      user_id: user_id.value,
+      company_id: company_id.value,
+      permissions: permissions.value,
+    }).then((res: any) => {
+      if (res) {
+        ElMessage.success('普通管理员修改成功')
+        addadminVisible.value = false
+        getNormaladminlist()
+      }
+    })
+  }
+}
+
+// s 删除普通管理员
+function confirmDeleteAdmin(item: any) {
+  ElMessageBox.confirm('确定要删除该管理员吗？删除后该管理员将无法登录系统，相关权限将被收回。  ', '删除确认', {
+    confirmButtonText: '确认',
+    cancelButtonText: '取消',
+    type: 'warning',
   })
+    .then(() => {
+      normaladmindeleteApi({
+        user_id: item.id,
+        company_id: company_id.value,
+      }).then((res: any) => {
+        if (res) {
+          ElMessage.success('普通管理员删除成功')
+          getNormaladminlist()
+        }
+      })
+    })
+    .catch(() => {
+      console.log('取消退出')
+    })
+}
+
+// 验证码倒计时
+const countdown: any = ref(60)
+const verificationTimer: any = ref(null)
+function countdownChange() {
+  verificationTimer.value = setInterval(() => {
+    countdown.value -= 1
+    // 清除定时器
+    if (countdown.value === 0) {
+      clearInterval(verificationTimer.value)
+      countdown.value = 60
+    }
+  }, 1000)
 }
 
 const company_id: any = ref('')
@@ -164,7 +236,6 @@ onMounted(() => {
   if (company_id.value) {
     getMainadmininfo()
     getNormaladminlist()
-    // searchUnboundUser('silin7@foxmail.com')
   } else {
     ElMessage.error('无管理员信息')
   }
@@ -175,6 +246,7 @@ onMounted(() => {
   <div>
     <div class="page-main">
       <h1 class="page-title"><i class="fa fa-user-plus"></i>管理员管理</h1>
+      <!-- 主管理员 -->
       <div class="page-card" style="margin-bottom: 32px">
         <div class="card-header">
           <h2 class="card-title"><i class="fa fa-diamond"></i>主管理员信息</h2>
@@ -201,10 +273,11 @@ onMounted(() => {
           </div>
         </div>
       </div>
+      <!-- 普通管理员管理 -->
       <div class="page-card">
         <div class="card-header">
           <h2 class="card-title"><i class="fa fa-users"></i>普通管理员管理</h2>
-          <button class="btn btn-primary" @click="addadminVisible = true">
+          <button class="btn btn-primary" @click="openAddNormalAdminModal">
             <i class="fa fa-plus"></i>新增普通管理员
           </button>
         </div>
@@ -220,86 +293,35 @@ onMounted(() => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>李四</td>
-                <td>lisi@example.com</td>
+              <tr v-for="(item, index) in normaladminlist" :key="index">
+                <td>{{ item.name }}</td>
+                <td>{{ item.email }}</td>
                 <td>
-                  <div class="permission-group">
-                    <div class="permission-title">数字技工/方案论证</div>
+                  <div v-for="(item2, index2) in item.product_type_map" :key="index2" class="permission-group">
+                    <div class="permission-title">{{ item2 }}</div>
                     <div class="permission-checkboxes">
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled /> 创建
+                        <el-checkbox label="创建" v-model="item.permissions[index2].create" disabled />
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled /> 查看
+                        <el-checkbox label="查看" v-model="item.permissions[index2].read" disabled />
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled /> 更新
+                        <el-checkbox label="更新" v-model="item.permissions[index2].update" disabled />
                       </label>
                       <label class="permission-checkbox">
-                        <input type="checkbox" disabled /> 删除
-                      </label>
-                    </div>
-                  </div>
-                  <div class="permission-group">
-                    <div class="permission-title">材料/设备</div>
-                    <div class="permission-checkboxes">
-                      <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled /> 创建
-                      </label>
-                      <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled /> 查看
-                      </label>
-                      <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled /> 更新
-                      </label>
-                      <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled /> 删除
-                      </label>
-                    </div>
-                  </div>
-                  <div class="permission-group">
-                    <div class="permission-title">智能建造装备</div>
-                    <div class="permission-checkboxes">
-                      <label class="permission-checkbox">
-                        <input type="checkbox" disabled /> 创建
-                      </label>
-                      <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled /> 查看
-                      </label>
-                      <label class="permission-checkbox">
-                        <input type="checkbox" disabled /> 更新
-                      </label>
-                      <label class="permission-checkbox">
-                        <input type="checkbox" disabled /> 删除
-                      </label>
-                    </div>
-                  </div>
-                  <div class="permission-group">
-                    <div class="permission-title">信息化产品/服务</div>
-                    <div class="permission-checkboxes">
-                      <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled /> 创建
-                      </label>
-                      <label class="permission-checkbox">
-                        <input type="checkbox" checked disabled /> 查看
-                      </label>
-                      <label class="permission-checkbox">
-                        <input type="checkbox" disabled /> 更新
-                      </label>
-                      <label class="permission-checkbox">
-                        <input type="checkbox" disabled /> 删除
+                        <el-checkbox label="删除" v-model="item.permissions[index2].delete" disabled />
                       </label>
                     </div>
                   </div>
                 </td>
-                <td>2025-03-20</td>
+                <td>{{ item.create_time }}</td>
                 <td>
                   <div class="action-buttons">
-                    <button class="btn btn-outline" onclick="openEditPermissionModal()">
+                    <button class="btn btn-outline" @click="openEditNormalAdminModal(item)">
                       <i class="fa fa-edit"></i>编辑权限
                     </button>
-                    <button class="btn btn-danger" onclick="confirmDeleteAdmin()">
+                    <button class="btn btn-danger" @click="confirmDeleteAdmin(item)">
                       <i class="fa fa-trash"></i>删除
                     </button>
                   </div>
@@ -320,7 +342,10 @@ onMounted(() => {
           <label class="form-label">验证码</label>
           <div class="verify-code-container">
             <input v-model="code" type="text" class="form-input verify-code-input" placeholder="请输入验证码" />
-            <button class="send-code-btn" @click="sendCodeFunction">发送验证码</button>
+            <div v-if="countdown < 60 && countdown > 0" class="send-code-btn">
+              已发送（{{ countdown }}）
+            </div>
+            <button v-else class="send-code-btn" @click="sendCodeFunction">发送验证码</button>
           </div>
         </div>
         <p style="font-size: 12px; color: #909399; margin-top: 8px">
@@ -334,62 +359,38 @@ onMounted(() => {
     </el-dialog>
     <el-dialog title="新增普通管理员" v-model="addadminVisible" width="800">
       <div class="modal-body">
-        <div class="form-group">
+        <div v-if="addadminVisibleState === 'add'" class="form-group">
           <label class="form-label">管理员邮箱</label>
           <input v-model="user_email" type="email" class="form-input" placeholder="请输入管理员邮箱" />
         </div>
-        <div class="form-group">
+        <div v-if="addadminVisibleState === 'add'" class="form-group">
           <label class="form-label">验证码</label>
           <div class="verify-code-container">
             <input v-model="user_code" type="text" class="form-input verify-code-input" placeholder="请输入验证码" />
-            <button class="send-code-btn" @click="searchNormalAdminUser">发送验证码</button>
+            <div v-if="countdown < 60 && countdown > 0" class="send-code-btn">
+              已发送（{{ countdown }}）
+            </div>
+            <button v-else class="send-code-btn" @click="searchNormalAdminUser">发送验证码</button>
           </div>
         </div>
         <div class="form-group">
           <label class="form-label">初始权限配置</label>
-          <div class="permission-group">
-            <div class="permission-title">数字技工/方案论证</div>
+          <div v-for="(item, index) in product_type_map" :key="index" class="permission-group">
+            <div class="permission-title">{{ item }}</div>
             <div class="permission-checkboxes">
               <label class="permission-checkbox">
-                <el-checkbox label="创建" v-model="permissions['0'].create" />
-                <el-checkbox label="查看" v-model="permissions['0'].read" />
-                <el-checkbox label="更新" v-model="permissions['0'].update" />
-                <el-checkbox label="删除" v-model="permissions['0'].delete" />
+                <el-checkbox label="创建" v-model="permissions[index].create" />
+                <el-checkbox label="查看" v-model="permissions[index].read" />
+                <el-checkbox label="更新" v-model="permissions[index].update" />
+                <el-checkbox label="删除" v-model="permissions[index].delete" />
               </label>
-            </div>
-          </div>
-          <div class="permission-group">
-            <div class="permission-title">材料/设备</div>
-            <div class="permission-checkboxes">
-              <el-checkbox label="创建" v-model="permissions['1'].create" />
-              <el-checkbox label="查看" v-model="permissions['1'].read" />
-              <el-checkbox label="更新" v-model="permissions['1'].update" />
-              <el-checkbox label="删除" v-model="permissions['1'].delete" />
-            </div>
-          </div>
-          <div class="permission-group">
-            <div class="permission-title">智能建造装备</div>
-            <div class="permission-checkboxes">
-              <el-checkbox label="创建" v-model="permissions['2'].create" />
-              <el-checkbox label="查看" v-model="permissions['2'].read" />
-              <el-checkbox label="更新" v-model="permissions['2'].update" />
-              <el-checkbox label="删除" v-model="permissions['2'].delete" />
-            </div>
-          </div>
-          <div class="permission-group">
-            <div class="permission-title">信息化产品/服务</div>
-            <div class="permission-checkboxes">
-              <el-checkbox label="创建" v-model="permissions['3'].create" />
-              <el-checkbox label="查看" v-model="permissions['3'].read" />
-              <el-checkbox label="更新" v-model="permissions['3'].update" />
-              <el-checkbox label="删除" v-model="permissions['3'].delete" />
             </div>
           </div>
         </div>
       </div>
       <div slot="footer" style="display: flex; justify-content: flex-end">
         <el-button @click="addadminVisible = false">取 消</el-button>
-        <el-button type="primary" @click="addadminVisible = false">确 定</el-button>
+        <el-button type="primary" @click="addNormalAdmin">确 定</el-button>
       </div>
     </el-dialog>
   </div>
