@@ -6,33 +6,18 @@ import pageJump from '@/hooks/pageJump'
 import { currentuserApi } from '@/api/modules/login'
 import { homestatisticApi } from '@/api/modules/admin'
 
-const data1: any = ref({
-  jcnum: 23,
-  jxnum: 18,
-  itnum: 12,
-  bjnum: 5,
-})
+// 用户状态 user_type  1-供方 2-需方
+const userType: any = ref(1)
+function getUserType() {
+  currentuserApi().then((res: any) => {
+    if (res) {
+      userType.value = res.user_type
+    }
+  })
+}
 
-// const data2: any = ref([
-//   { state: 'add', title: '新增建材产品「高强度钢筋」', date: '今天 14:30' },
-//   { state: 'edit', title: '编辑信息化产品「智慧工地管理系统」', date: '昨天 09:15' },
-//   { state: 'del', title: '下架机械产品「混凝土搅拌机」', date: '2025-07-05 16:45' },
-//   { state: 'scuss', title: '处理报价单 #20250704001', date: '2025-07-04 11:20' },
-// ])
-
-// // 登陆后的用户信息
-// const userinfo: any = ref({})
-
-// function getUserInfo() {
-//   if (window.localStorage.getItem('userinfo')) {
-//     userinfo.value = JSON.parse(window.localStorage.getItem('userinfo') as string)
-//   } else {
-//     userinfo.value = {}
-//   }
-// }
-
+// 用户中心 - 首页
 const homeStatistic: any = ref({})
-
 function getHomestatistic() {
   homestatisticApi().then((res: any) => {
     if (res) {
@@ -41,18 +26,9 @@ function getHomestatistic() {
   })
 }
 
-// 用户状态 user_type  1-供方 2-需方
-const userType: any = ref(1)
-
 onMounted(() => {
-  // getUserInfo()
+  getUserType()
   getHomestatistic()
-
-  currentuserApi().then((res: any) => {
-    if (res) {
-      userType.value = res.user_type
-    }
-  })
 })
 </script>
 
@@ -83,8 +59,6 @@ onMounted(() => {
           <div class="stat-icon" style="background-color: #e6f7ed; color: #52c41a">
             <i class="fa fa-wrench"></i>
           </div>
-          <!-- <div class="stat-value">{{ data1.jxnum }}</div>
-          <div class="stat-label">已发布机械产品</div> -->
           <div class="stat-value">{{ homeStatistic.product_statistics[1].count }}</div>
           <div class="stat-label">{{ homeStatistic.product_statistics[1].product_type_name }}</div>
         </div>
@@ -94,8 +68,6 @@ onMounted(() => {
           <div class="stat-icon" style="background-color: #fff2e8; color: #fa8c16">
             <i class="fa fa-info-circle"></i>
           </div>
-          <!-- <div class="stat-value">{{ data1.itnum }}</div>
-          <div class="stat-label">已发布信息化产品</div> -->
           <div class="stat-value">{{ homeStatistic.product_statistics[2].count }}</div>
           <div class="stat-label">{{ homeStatistic.product_statistics[2].product_type_name }}</div>
         </div>
@@ -105,8 +77,6 @@ onMounted(() => {
           <div class="stat-icon" style="background-color: #f6e9ff; color: #722ed1">
             <i class="fa fa-file-powerpoint-o"></i>
           </div>
-          <!-- <div class="stat-value">{{ data1.bjnum }}</div>
-          <div class="stat-label">待处理报价单</div> -->
           <div class="stat-value">{{ homeStatistic.product_statistics[3].count }}</div>
           <div class="stat-label">{{ homeStatistic.product_statistics[3].product_type_name }}</div>
         </div>
@@ -116,7 +86,7 @@ onMounted(() => {
       <i class="fa fa-rocket"></i>
       快捷操作
     </h2>
-    <el-row :gutter="12">
+    <el-row :gutter="24">
       <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
         <div class="action-card" @click="pageJump('user-caifrom')">
           <div class="action-icon">
@@ -174,32 +144,59 @@ onMounted(() => {
         </div>
       </el-col>
     </el-row>
-    <!-- <h2 class="section-title" style="margin-top: 20px">
-      <i class="fa fa-history"></i>
-      最近活动
-    </h2>
-    <div class="recent-activity">
-      <ul class="activity-list">
-        <li v-for="(item, index) in data2" :key="index" class="activity-item">
-          <div v-if="item.state === 'add'" class="activity-icon" style="background-color: #e8f3ff; color: #377dff">
-            <i class="fa fa-plus"></i>
-          </div>
-          <div v-if="item.state === 'edit'" class="activity-icon" style="background-color: #fff2e8; color: #fa8c16">
-            <i class="fa fa-edit"></i>
-          </div>
-          <div v-if="item.state === 'del'" class="activity-icon" style="background-color: #fef0f0; color: #f5222d">
-            <i class="fa fa-ban"></i>
-          </div>
-          <div v-if="item.state === 'scuss'" class="activity-icon" style="background-color: #e6f7ed; color: #52c41a">
-            <i class="fa fa-check"></i>
-          </div>
-          <div class="activity-content">
-            <div class="activity-title">{{ item.title }}</div>
-            <div class="activity-time">{{ item.date }}</div>
-          </div>
-        </li>
-      </ul>
-    </div> -->
+    <el-row :gutter="24" style="margin-top: 20px">
+      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+        <h2 class="section-title">
+          <i class="fa fa-history"></i>
+          最近活动
+        </h2>
+        <div class="recent-activity">
+          <ul class="activity-list">
+            <li v-for="(item, index) in homeStatistic.newest_articles" :key="index" class="activity-item" @click="pageJump('news_detail', {
+              articlesid: item.id,
+            })">
+              <div class="activity-icon" style="background-color: #fff2e8; color: #fa8c16">
+                <i class="fa fa-newspaper-o"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">{{ item.title }}</div>
+                <div class="activity-time">{{ item.created_at }}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+        <h2 class="section-title">
+          <i class="fa fa-history"></i>
+          用户须知
+        </h2>
+        <div class="recent-activity">
+          未完成，敬请期待！
+          <!-- <ul class="activity-list">
+            <li v-for="(item, index) in data2" :key="index" class="activity-item">
+              <div v-if="item.state === 'add'" class="activity-icon" style="background-color: #e8f3ff; color: #377dff">
+                <i class="fa fa-plus"></i>
+              </div>
+              <div v-if="item.state === 'edit'" class="activity-icon" style="background-color: #fff2e8; color: #fa8c16">
+                <i class="fa fa-edit"></i>
+              </div>
+              <div v-if="item.state === 'del'" class="activity-icon" style="background-color: #fef0f0; color: #f5222d">
+                <i class="fa fa-ban"></i>
+              </div>
+              <div v-if="item.state === 'scuss'" class="activity-icon"
+                style="background-color: #e6f7ed; color: #52c41a">
+                <i class="fa fa-check"></i>
+              </div>
+              <div class="activity-content">
+                <div class="activity-title">{{ item.title }}</div>
+                <div class="activity-time">{{ item.date }}</div>
+              </div>
+            </li>
+          </ul> -->
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -328,6 +325,7 @@ onMounted(() => {
 
       .activity-content {
         flex: 1;
+        cursor: pointer;
 
         .activity-title {
           font-size: 14px;
