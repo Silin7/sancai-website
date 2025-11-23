@@ -200,7 +200,6 @@ onMounted(() => {
           用户须知
         </h2>
         <div class="recent-activity">
-          未完成，敬请期待！
           <div v-html="ucenterData.content" style="margin-top: 20px; line-height: 1.5;"></div>
         </div>
       </el-col>
