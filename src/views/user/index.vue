@@ -5,6 +5,10 @@ import 'dayjs/locale/zh-cn'
 import pageJump from '@/hooks/pageJump'
 import { currentuserApi } from '@/api/modules/login'
 import { homestatisticApi } from '@/api/modules/admin'
+import {
+  secpositionsApi,
+  seccontentlistApi
+} from '@/api/modules/basic'
 
 // 用户状态 user_type  1-供方 2-需方
 const userType: any = ref(1)
@@ -26,9 +30,33 @@ function getHomestatistic() {
   })
 }
 
+// 获取用户须知
+const ucenterData: any = ref({})
+function getSecpositions() {
+  secpositionsApi().then((res: any) => {
+    if (res && res.length > 0) {
+      for (let i = 0; i < res.length; i++) {
+        const item = res[i]
+        // 首页-人材机信价格库	home-rcjx
+        if (item.url === 'ucenter') {
+          console.log('-------->', item)
+          seccontentlistApi(item.id).then((res: any) => {
+            res.forEach((element: any) => {
+              if (element.title === '用户须知') {
+                ucenterData.value = element
+              }
+            })
+          })
+        }
+      }
+    }
+  })
+}
+
 onMounted(() => {
   getUserType()
   getHomestatistic()
+  getSecpositions()
 })
 </script>
 
@@ -173,27 +201,7 @@ onMounted(() => {
         </h2>
         <div class="recent-activity">
           未完成，敬请期待！
-          <!-- <ul class="activity-list">
-            <li v-for="(item, index) in data2" :key="index" class="activity-item">
-              <div v-if="item.state === 'add'" class="activity-icon" style="background-color: #e8f3ff; color: #377dff">
-                <i class="fa fa-plus"></i>
-              </div>
-              <div v-if="item.state === 'edit'" class="activity-icon" style="background-color: #fff2e8; color: #fa8c16">
-                <i class="fa fa-edit"></i>
-              </div>
-              <div v-if="item.state === 'del'" class="activity-icon" style="background-color: #fef0f0; color: #f5222d">
-                <i class="fa fa-ban"></i>
-              </div>
-              <div v-if="item.state === 'scuss'" class="activity-icon"
-                style="background-color: #e6f7ed; color: #52c41a">
-                <i class="fa fa-check"></i>
-              </div>
-              <div class="activity-content">
-                <div class="activity-title">{{ item.title }}</div>
-                <div class="activity-time">{{ item.date }}</div>
-              </div>
-            </li>
-          </ul> -->
+          <div v-html="ucenterData.content" style="margin-top: 20px; line-height: 1.5;"></div>
         </div>
       </el-col>
     </el-row>
