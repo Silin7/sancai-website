@@ -41,11 +41,12 @@ function getSecpositions() {
         if (item.url === 'ucenter') {
           console.log('-------->', item)
           seccontentlistApi(item.id).then((res: any) => {
-            res.forEach((element: any) => {
-              if (element.title === '用户须知') {
-                ucenterData.value = element
-              }
-            })
+            ucenterData.value = res
+            // res.forEach((element: any) => {
+            //   if (element.title === '用户须知') {
+            //     ucenterData.value = element
+            //   }
+            // })
           })
         }
       }
@@ -200,7 +201,9 @@ onMounted(() => {
           用户须知
         </h2>
         <div class="recent-activity">
-          <div v-html="ucenterData.content" style="margin-top: 20px; line-height: 1.5;"></div>
+          <div v-for="(item, index) in ucenterData" :key="index">
+            <div v-html="item.content" style="margin-top: 20px; line-height: 1.5;"></div>
+          </div>
         </div>
       </el-col>
     </el-row>
