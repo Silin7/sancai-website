@@ -48,11 +48,15 @@ function signOut() {
 
 // 用户信息
 const userType: any = ref(1)
+const userRole: any = ref(1)
 
 onMounted(() => {
   currentuserApi().then((res: any) => {
     if (res) {
+      // user_type  1-供方/2-需方
       userType.value = res.user_type
+      // role  0-主管理员/1-普通管理员
+      userRole.value = res.role
     }
   })
 })
@@ -65,19 +69,19 @@ onMounted(() => {
         <i class="fa fa-home"></i>
         <span>首页</span>
       </el-menu-item>
-      <el-menu-item index="user-role" @click="pageJump('user-role')">
+      <el-menu-item v-if="userRole === 0" index="user-role" @click="pageJump('user-role')">
         <i class="fa fa-home"></i>
         <span>管理员管理</span>
       </el-menu-item>
-      <el-menu-item index="user-profile" @click="pageJump('user-profile')">
+      <el-menu-item v-if="userRole === 0" index="user-profile" @click="pageJump('user-profile')">
         <i class="fa fa-file-text"></i>
         <span>企业资料</span>
       </el-menu-item>
-      <el-menu-item index="user-qyzzlist" @click="pageJump('user-qyzzlist')">
+      <el-menu-item v-if="userRole === 0" index="user-qyzzlist" @click="pageJump('user-qyzzlist')">
         <i class="fa fa-users"></i>
         <span>企业资质</span>
       </el-menu-item>
-      <el-menu-item index="user-qyallist" @click="pageJump('user-qyallist')">
+      <el-menu-item v-if="userRole === 0" index="user-qyallist" @click="pageJump('user-qyallist')">
         <i class="fa fa-users"></i>
         <span>企业案例</span>
       </el-menu-item>
