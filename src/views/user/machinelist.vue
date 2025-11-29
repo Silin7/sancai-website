@@ -145,9 +145,9 @@ onMounted(() => {
             <span>¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="税后价格" width="120">
+        <el-table-column align="center" label="税率" width="120">
           <template #default="scope">
-            <span>¥{{ formatCurrency(scope.row.afertaxprice) }}</span>
+            <span>{{ scope.row.taxrate }}%</span>
           </template>
         </el-table-column>
         <el-table-column align="center" label="状态" width="120">
