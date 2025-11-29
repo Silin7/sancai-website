@@ -6,7 +6,6 @@ import useHeaderStore from '@/store/modules/header'
 import pageJump from '@/hooks/pageJump'
 import { baselogoutdApi, currentuserApi } from '@/api/modules/login'
 
-
 const headerStore = useHeaderStore()
 
 const selectedTab = computed(() => {
@@ -49,6 +48,7 @@ function signOut() {
 // 用户信息
 const userType: any = ref(1)
 const userRole: any = ref(1)
+const userPermissions: any = ref([])
 
 onMounted(() => {
   currentuserApi().then((res: any) => {
@@ -57,6 +57,12 @@ onMounted(() => {
       userType.value = res.user_type
       // role  0-主管理员/1-普通管理员
       userRole.value = res.role
+      const permissions = res?.related_companies[0]?.permissions
+      if (res.role !== 0 && permissions) {
+        for (let key in permissions) {
+          userPermissions.value.push(key)
+        }
+      }
     }
   })
 })
@@ -85,19 +91,23 @@ onMounted(() => {
         <i class="fa fa-users"></i>
         <span>企业案例</span>
       </el-menu-item>
-      <el-menu-item v-if="userType === 1" index="user-renlist" @click="pageJump('user-renlist')">
+      <el-menu-item v-if="userRole === 0 || (userType === 1 && userPermissions.includes('0'))" index="user-renlist"
+        @click="pageJump('user-renlist')">
         <i class="fa fa-users"></i>
         <span>数字技术应用论证/数字实施方案论证</span>
       </el-menu-item>
-      <el-menu-item v-if="userType === 1" index="user-cailist" @click="pageJump('user-cailist')">
+      <el-menu-item v-if="userRole === 0 || (userType === 1 && userPermissions.includes('1'))" index="user-cailist"
+        @click="pageJump('user-cailist')">
         <i class="fa fa-dropbox"></i>
         <span>材料/设备</span>
       </el-menu-item>
-      <el-menu-item v-if="userType === 1" index="user-machinelist" @click="pageJump('user-machinelist')">
+      <el-menu-item v-if="userRole === 0 || (userType === 1 && userPermissions.includes('2'))" index="user-machinelist"
+        @click="pageJump('user-machinelist')">
         <i class="fa fa-wrench"></i>
         <span>智能建造装备</span>
       </el-menu-item>
-      <el-menu-item v-if="userType === 1" index="user-itlist" @click="pageJump('user-itlist')">
+      <el-menu-item v-if="userRole === 0 || (userType === 1 && userPermissions.includes('3'))" index="user-itlist"
+        @click="pageJump('user-itlist')">
         <i class="fa fa-info-circle"></i>
         <span>信息化产品/服务</span>
       </el-menu-item>
