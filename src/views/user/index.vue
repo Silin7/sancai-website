@@ -10,12 +10,17 @@ import {
   seccontentlistApi
 } from '@/api/modules/basic'
 
-// 用户状态 user_type  1-供方 2-需方
+// 用户信息
 const userType: any = ref(1)
+const userRole: any = ref(1)
+
 function getUserType() {
   currentuserApi().then((res: any) => {
     if (res) {
+      // user_type  1-供方/2-需方
       userType.value = res.user_type
+      // role  0-主管理员/1-普通管理员
+      userRole.value = res.role
     }
   })
 }
@@ -39,7 +44,6 @@ function getSecpositions() {
         const item = res[i]
         // 首页-人材机信价格库	home-rcjx
         if (item.url === 'ucenter') {
-          console.log('-------->', item)
           seccontentlistApi(item.id).then((res: any) => {
             ucenterData.value = res
             // res.forEach((element: any) => {
@@ -73,7 +77,7 @@ onMounted(() => {
         今天是<span>{{ dayjs().format('YYYY年MM月DD日') }}{{ dayjs().locale('zh-cn').format('dddd') }}</span>，以下是您的平台数据概览
       </p>
     </div>
-    <el-row v-if="homeStatistic.product_statistics && userType === 1" :gutter="24">
+    <el-row v-if="homeStatistic.product_statistics && userRole === 0 && userType === 1" :gutter="24">
       <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
         <div class="stat-card">
           <div class="stat-icon" style="background-color: #e8f3ff; color: #377dff">
@@ -111,11 +115,11 @@ onMounted(() => {
         </div>
       </el-col>
     </el-row>
-    <h2 class="section-title">
+    <h2 v-if="userRole === 0" class="section-title">
       <i class="fa fa-rocket"></i>
       快捷操作
     </h2>
-    <el-row :gutter="24">
+    <el-row v-if="userRole === 0" :gutter="24">
       <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
         <div class="action-card" @click="pageJump('user-caifrom')">
           <div class="action-icon">
@@ -177,7 +181,7 @@ onMounted(() => {
       <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
         <h2 class="section-title">
           <i class="fa fa-history"></i>
-          最近活动
+          最新动态
         </h2>
         <div class="recent-activity">
           <ul class="activity-list">
