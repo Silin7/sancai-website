@@ -6,7 +6,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/sancai',
+  base: '/',
   server: {
     open: true,
     host: '0.0.0.0',
