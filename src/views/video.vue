@@ -330,7 +330,7 @@ function convertSecondsToHMS(seconds: any) {
           </div> -->
         </div>
         <!-- 热门视频 -->
-        <div class="containerHot">
+        <!-- <div class="containerHot">
           <div class="containerHotTitle">热门视频</div>
           <div class="containerHotItem" v-for="index in 4" :key="index">
             <div class="containerHotLeft">
@@ -346,7 +346,7 @@ function convertSecondsToHMS(seconds: any) {
             <button>查看更多热门视频</button>
             <i class="fa fa-angle-right" style="margin-left: 0.25rem; font-size: 1.5rem"></i>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
