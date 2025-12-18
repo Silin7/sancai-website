@@ -51,20 +51,22 @@ const userRole: any = ref(1)
 const userPermissions: any = ref([])
 
 onMounted(() => {
-  currentuserApi().then((res: any) => {
-    if (res) {
-      // user_type  1-供方/2-需方
-      userType.value = res.user_type
-      // role  0-主管理员/1-普通管理员
-      userRole.value = res.role
-      const permissions = res?.related_companies[0]?.permissions
-      if (res.role !== 0 && permissions) {
-        for (let key in permissions) {
-          userPermissions.value.push(key)
+  if (window.location.hash.includes("/user/")) {
+    currentuserApi().then((res: any) => {
+      if (res) {
+        // user_type  1-供方/2-需方
+        userType.value = res.user_type
+        // role  0-主管理员/1-普通管理员
+        userRole.value = res.role
+        const permissions = res?.related_companies[0]?.permissions
+        if (res.role !== 0 && permissions) {
+          for (let key in permissions) {
+            userPermissions.value.push(key)
+          }
         }
       }
-    }
-  })
+    })
+  }
 })
 </script>
 
