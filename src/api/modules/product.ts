@@ -1,6 +1,4 @@
-import axios from 'axios'
 import api from '@/api/index'
-import { baseURL } from '../baseConfig'
 
 // 用户端-获取所有启用的产品分类（按上级分类、排序值升序）
 export function productpcateApi(params: any) {
