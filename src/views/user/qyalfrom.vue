@@ -6,7 +6,7 @@ import { onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
-import { baseURL, fileURL } from '@/api/baseConfig'
+import { uploadURL, fileURL } from '@/api/baseConfig'
 import { casetypesApi, savecasesApi, updatecasesApi, detailcasesApi } from '@/api/modules/admin'
 
 // utc 时间转换
@@ -201,7 +201,7 @@ onMounted(() => {
           </el-col>
           <el-col :span="24">
             <el-form-item label="案例图片" prop="case_imgs">
-              <el-upload :action="baseURL + '/api/client/upload/upload/image'" :headers="uploadHeader" :multiple="true"
+              <el-upload :action="uploadURL + '/api/client/upload/upload/image'" :headers="uploadHeader" :multiple="true"
                 v-model:file-list="ruleForm.case_imgs" list-type="picture-card" :auto-upload="true">
                 <el-icon>
                   <Plus />

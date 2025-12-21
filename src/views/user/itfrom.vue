@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
-import { baseURL, fileURL } from '@/api/baseConfig'
+import { uploadURL, fileURL } from '@/api/baseConfig'
 import { unitApi } from '@/api/modules/common'
 import { productpcatechildrenApi } from '@/api/modules/product'
 import { sysprovincesApi, syscitiesApi } from '@/api/modules/basic'
@@ -406,7 +406,7 @@ onMounted(() => {
           </el-col>
           <el-col :span="24">
             <el-form-item label="产品图片" prop="imgs">
-              <el-upload :action="baseURL + '/api/client/upload/upload/image'" :headers="uploadHeader" :multiple="true"
+              <el-upload :action="uploadURL + '/api/client/upload/upload/image'" :headers="uploadHeader" :multiple="true"
                 v-model:file-list="ruleForm.imgs" list-type="picture-card" :auto-upload="true">
                 <el-icon>
                   <Plus />

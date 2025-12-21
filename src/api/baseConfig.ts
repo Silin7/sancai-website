@@ -1,4 +1,5 @@
 const baseURL = 'https://xcapi.duoqixin.com'
-const fileURL = 'http://xcadmin.duoqixin.com'
+const uploadURL = 'https://api.xinhaocaiwang.com'
+const fileURL = 'https://img.duoqixin.com'
 
-export { baseURL, fileURL }
+export { baseURL, uploadURL, fileURL }
