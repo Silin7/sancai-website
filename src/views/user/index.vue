@@ -115,11 +115,11 @@ onMounted(() => {
         </div>
       </el-col>
     </el-row>
-    <h2 v-if="userRole === 0" class="section-title">
+    <h2 v-if="userRole === 0 && userType === 1" class="section-title">
       <i class="fa fa-rocket"></i>
       快捷操作
     </h2>
-    <el-row v-if="userRole === 0" :gutter="24">
+    <el-row v-if="userRole === 0 && userType === 1" :gutter="24">
       <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="3">
         <div class="action-card" @click="pageJump('user-caifrom')">
           <div class="action-icon">
