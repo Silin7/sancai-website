@@ -102,8 +102,8 @@ const getSummaries = (param: any) => {
           </el-col>
           <el-col :span="24">
             <el-form-item label=" 产品明细 " prop="product_items">
-              <el-table :data="ruleForm.product_items" border :summary-method="getSummaries" show-summary
-                highlight-current-row>
+              <!-- show-summary :summary-method="getSummaries" -->
+              <el-table :data="ruleForm.product_items" border highlight-current-row>
                 <el-table-column :show-overflow-tooltip="true" align="center" prop="product_type" label="产品类型" />
                 <el-table-column :show-overflow-tooltip="true" align="center" prop="product_name" label="产品名称" />
                 <el-table-column align="center" label="税前价格">
