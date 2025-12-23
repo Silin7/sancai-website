@@ -230,8 +230,15 @@ function countdownChange() {
 }
 
 const company_id: any = ref('')
+const userType: any = ref(1)
+const userRole: any = ref(1)
+
 onMounted(() => {
   const userinfo: any = JSON.parse(localStorage.getItem('userinfo') || '{}')
+  // user_type  1-供方/2-需方
+  userType.value = userinfo.user_type
+  // role  0-主管理员/1-普通管理员
+  userRole.value = userinfo.role
   company_id.value = userinfo?.related_companies[0]?.company_id
   if (company_id.value) {
     getMainadmininfo()
@@ -274,7 +281,7 @@ onMounted(() => {
         </div>
       </div>
       <!-- 普通管理员管理 -->
-      <div class="page-card">
+      <div v-if="userType === 1" class="page-card">
         <div class="card-header">
           <h2 class="card-title"><i class="fa fa-users"></i>普通管理员管理</h2>
           <button class="btn btn-primary" @click="openAddNormalAdminModal">
