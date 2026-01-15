@@ -147,7 +147,7 @@ onMounted(() => {
         </div>
         <div class="requCstitle">技术需求（可多选）</div>
         <div v-for="(item, index) in datasolutionData.multiitems" :key="index">
-          <div class="requCstimu">{{ index + 1 }}. {{ item.name }}</div>
+          <div class="requCstimu">{{ Number(index) + 1 }}. {{ item.name }}</div>
           <div class="requCstibox">
             <div class="requCstiItems">
               <el-radio-group v-if="item.thetype === '单选'" v-model="item.value" style="margin-right: 1rem">
