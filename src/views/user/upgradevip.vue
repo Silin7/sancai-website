@@ -91,9 +91,9 @@ const handlePayment = () => {
             @click="selectedMethod = 'wechat'">
             <img src="@/assets/user/weixin.png" alt="" style="width: 18px; height: 18px;"> 微信支付
           </button>
-          <button class="payment-btn" :class="{ selected: selectedMethod === 'alipay' }"
+          <!-- <button class="payment-btn" :class="{ selected: selectedMethod === 'alipay' }"
             @click="selectedMethod = 'alipay'">
-            <img src="@/assets/user/alipay.png" alt="" style="width: 18px; height: 18px;"> 支付宝支付 </button>
+            <img src="@/assets/user/alipay.png" alt="" style="width: 18px; height: 18px;"> 支付宝支付 </button> -->
         </div>
         <button class="confirm-btn" @click="handlePayment"><i class="fa fa-credit-card mr-2"></i>确认支付并升级</button>
       </div>

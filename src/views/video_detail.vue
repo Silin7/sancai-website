@@ -251,7 +251,7 @@ const handleEnded = () => {
                 <span>分类：
                   <span v-for="(item, index) in videoDetails.keywords.split(' ')" :key="index">
                     <span>{{ item }}</span>
-                    <span v-if="index < videoDetails.keywords.split(' ').length - 1"> / </span>
+                    <span v-if="Number(index) < videoDetails.keywords.split(' ').length - 1"> / </span>
                   </span>
                 </span>
               </div>
@@ -283,7 +283,7 @@ const handleEnded = () => {
         </div>
       </div>
     </div>
-    <el-dialog v-model="dialogVisible" title="选择支付方式" width="600">
+    <el-dialog v-model="dialogVisible" title="选择支付方式" width="400">
       <div class="payment-methods">
         <div class="payment-method wechat">
           <div class="method-header">
@@ -301,7 +301,7 @@ const handleEnded = () => {
             <p>请用微信扫码支付，支付后可下载视频</p>
           </div>
         </div>
-        <div class="payment-method alipay">
+        <!-- <div class="payment-method alipay">
           <div class="method-header">
             <img src="@/assets/user/alipay.png" alt="支付宝支付" class="icon" />
             <span>支付宝支付</span>
@@ -314,7 +314,7 @@ const handleEnded = () => {
             </p>
             <p>点击按钮后，页面将跳转到支付宝官网完成支付</p>
           </div>
-        </div>
+        </div> -->
       </div>
     </el-dialog>
   </div>
