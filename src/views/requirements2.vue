@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { datatechappApi, solutionordersApi } from '@/api/modules/datasolution'
+import { datatechappApi, datatechordersApi } from '@/api/modules/datasolution'
 
-// 路由信息
-const route = useRoute()
-
-const datasolutionid: any = ref('')
+const datasolutionid: any = ref('1')
 const datasolutionData: any = ref({})
 
 // init 获取基本信息
@@ -17,6 +13,12 @@ function getRequirementsbycate() {
       datasolutionData.value = res.data
     }
   })
+}
+
+// 多选
+const multipleSelection: any = ref([])
+const handleSelectionChange = (val: any) => {
+  multipleSelection.value = val
 }
 
 // 提交需求
@@ -56,25 +58,11 @@ function tijiaoxuqiu() {
     })
     return
   }
-  datasolutionData.value.requirements = {}
-  const requirements: any = ref({})
-  for (let i = 0; i < datasolutionData.value.multiitems.length; i++) {
-    const item = datasolutionData.value.multiitems[i]
-    if (!item.value) {
-      ElMessage({
-        type: 'error',
-        message: `请选择第${i + 1}条技术需求信息`,
-      })
-      return
-    }
-    item.value3 = Array.from(new Set(item.value))
-    item.value3.push(`其他(${item.remark || ''})`)
-    requirements.value[item.name] = item.value3
-  }
-  solutionordersApi({
-    cate_id: datasolutionData.value.cate_id,
+  datatechordersApi({
+    datatechapp_id: datasolutionid.value,
+    product_name: datasolutionData.value.cate_name,
     description: datasolutionData.value.description,
-    requirements: requirements.value,
+    requirements: multipleSelection.value,
     memo: datasolutionData.value.memo,
     company_name: datasolutionData.value.company_name,
     tel: datasolutionData.value.tel,
@@ -92,7 +80,6 @@ function tijiaoxuqiu() {
 }
 
 onMounted(() => {
-  datasolutionid.value = route.query.id || '1'
   getRequirementsbycate()
 })
 </script>
@@ -112,7 +99,8 @@ onMounted(() => {
           </div>
         </div>
         <div class="requCstitle">技术需求（可多选）</div>
-        <el-table :data="datasolutionData.multiitems" style="width: 100%" border>
+        <el-table :data="datasolutionData.multiitems" style="width: 100%" border
+          @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="50" align="center" />
           <el-table-column prop="items.technical_category" label="技术类别" min-width="200" />
           <el-table-column prop="items.application_scenario" label="应用场景" min-width="200" />

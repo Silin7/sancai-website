@@ -16,3 +16,10 @@ export function solutionordersApi(data: any) {
 export function datatechappApi(datatechapp_id: any) {
   return api.get(`/api/client/solution/datatechapp/${datatechapp_id}`)
 }
+
+// 提交技术应用需求订单
+export function datatechordersApi(data: any) {
+  return api.post('/api/client/solution/datatech-orders', {
+    ...data,
+  })
+}
