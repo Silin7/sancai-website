@@ -165,6 +165,16 @@ onBeforeUnmount(() => {
                 })">提交需求</button>
               </div>
             </template>
+            <div v-if="solutionPactive === 1" class="digitizeClassitem">
+              <div class="digitizeClassitemfa frcc">
+                <Icon icon="roentgen:building-construction" />
+              </div>
+              <div class="digitizeClassitemtext"> 数字技术应用论证需求单</div>
+              <!-- <div class="digitizeClassiteminfo">{{ item.description2 }}</div> -->
+              <button @click="pageJump('requirements2', {
+                id: 1
+              })">提交需求</button>
+            </div>
           </div>
         </div>
       </div>

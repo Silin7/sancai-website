@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { requirementsbycateApi, solutionordersApi } from '@/api/modules/datasolution'
+import { datatechappApi, solutionordersApi } from '@/api/modules/datasolution'
 
 // 路由信息
 const route = useRoute()
@@ -12,83 +12,9 @@ const datasolutionData: any = ref({})
 
 // init 获取基本信息
 function getRequirementsbycate() {
-  requirementsbycateApi({
-    cate_id: datasolutionid.value,
-  }).then((res: any) => {
+  datatechappApi(datasolutionid.value).then((res: any) => {
     if (res) {
-      datasolutionData.value = res
-      datasolutionData.value.multiitems = [
-        {
-          "jslb": "BIM 4D/5D/6D/7D & 数字孪生",
-          "yycj": "进度-成本联动预测、运维可视化、一模多用",
-          "bylzwd": "模型深度（LOD）、数据标准、4-7D 应用可行性",
-          "zjlbjszc": "BIM 资深专家、注册建筑/结构/造价工程师、正高或副高",
-          "selected": false
-        },
-        {
-          "jslb": "倾斜摄影 + LiDAR 实景捕获",
-          "yycj": "高精度地形/建筑模型，基坑计量、竣工核查",
-          "bylzwd": "精度误差、控制点布设、点云融合",
-          "zjlbjszc": "注册测绘师、UAV 摄影测量工程师、高级工程师、持有无人机驾驶执照",
-          "selected": false
-        },
-        {
-          "jslb": "机器人与自动化建造",
-          "yycj": "进度巡检、自动抹灰、装配式安装",
-          "bylzwd": "机械适配、安全性、ROI",
-          "zjlbjszc": "机器人研发工程师、施工技术/安全专家、注册安全工程师",
-          "selected": false
-        },
-        {
-          "jslb": "AI /机器学习",
-          "yycj": "进度预测、风险预警、图纸/合同语义审查",
-          "bylzwd": "数据质量、模型可解释性、合规性",
-          "zjlbjszc": "数据类专家、计算机视觉工程师、类似资深专家",
-          "selected": false
-        },
-        {
-          "jslb": "AR / VR / MR",
-          "yycj": "虚拟样板间、沉浸式交底、远程监理培训",
-          "bylzwd": "交互体验、硬件选型、BIM-XR 融合",
-          "zjlbjszc": "XR 解决方案架构师、高级软件工程师",
-          "selected": false
-        },
-        {
-          "jslb": "IoT & 智慧工地",
-          "yycj": "实时应力/环境监测、人员定位、报警联动",
-          "bylzwd": "传感器选型、网络安全、运行管理",
-          "zjlbjszc": "IoT 系统架构师、信息安全工程师、高级工程师",
-          "selected": false
-        },
-        {
-          "jslb": "参数化/生成式设计",
-          "yycj": "快速方案比选，体量-能耗-成本一体优化",
-          "bylzwd": "算法有效性、设计规范符合性",
-          "zjlbjszc": "计算设计专家、注册建筑师/结构师、高级工程师",
-          "selected": false
-        },
-        {
-          "jslb": "3D 打印 & 数字化加工",
-          "yycj": "现场打印构件，PC 构件数字溯源",
-          "bylzwd": "材料性能、结构安全、质量检测",
-          "zjlbjszc": "材料应用专家、正高或副高",
-          "selected": false
-        },
-        {
-          "jslb": "区块链 & 智能合约",
-          "yycj": "材料追溯、自动里程碑支付、供应链协同",
-          "bylzwd": "合规性、数据共享、安全",
-          "zjlbjszc": "区块链开发 Lead、注册造价工程师、高级软件工程师、律师",
-          "selected": false
-        },
-        {
-          "jslb": "碳排放 & 能耗数字化",
-          "yycj": "动态能耗模拟、ESG 合规评估、碳资产管理",
-          "bylzwd": "碳核算边界、数据接口、监管符合性",
-          "zjlbjszc": "绿色建筑专家、能源模拟工程师、高级工程师",
-          "selected": false
-        }
-      ]
+      datasolutionData.value = res.data
     }
   })
 }
@@ -166,7 +92,7 @@ function tijiaoxuqiu() {
 }
 
 onMounted(() => {
-  datasolutionid.value = route.query.id
+  datasolutionid.value = route.query.id || '1'
   getRequirementsbycate()
 })
 </script>
@@ -188,10 +114,10 @@ onMounted(() => {
         <div class="requCstitle">技术需求（可多选）</div>
         <el-table :data="datasolutionData.multiitems" style="width: 100%" border>
           <el-table-column type="selection" width="50" align="center" />
-          <el-table-column prop="jslb" label="技术类别" min-width="200" />
-          <el-table-column prop="yycj" label="应用场景" min-width="200" />
-          <el-table-column prop="bylzwd" label="必要论证维度" min-width="200" />
-          <el-table-column prop="zjlbjszc" label="专家类别/技术职称" min-width="200" />
+          <el-table-column prop="items.technical_category" label="技术类别" min-width="200" />
+          <el-table-column prop="items.application_scenario" label="应用场景" min-width="200" />
+          <el-table-column prop="items.argumentation_dimension" label="必要论证维度" min-width="200" />
+          <el-table-column prop="items.expert_category" label="专家类别/技术职称" min-width="200" />
         </el-table>
         <div class="supplierClassFx2">
           <div class="supplierClassFxItem">
