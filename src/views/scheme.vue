@@ -265,7 +265,7 @@ onBeforeUnmount(() => {
   <div class="materialsPage">
     <!-- BANNER -->
     <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="bannerData.imgurl" alt="" />
+      <img :src="bannerData.imgurl" />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">{{ bannerData.maintitle }}</div>

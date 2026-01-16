@@ -135,16 +135,16 @@ onUnmounted(() => {
     <div class="registerbox">
       <div class="hyzc">欢迎注册</div>
       <div class="fromitem frsc">
-        <img src="@/assets/register/user.png" alt="" />
+        <img src="@/assets/register/user.png" />
         <el-input v-model="email" style="width: 100%" placeholder="请输入邮箱" clearable />
       </div>
       <div class="fromitem frsc">
-        <img src="@/assets/register/pwd.png" alt="" />
+        <img src="@/assets/register/pwd.png" />
         <el-input type="password" show-password v-model="password" style="width: 100%" placeholder="请输入8-20位密码（含字母和数字）"
           clearable />
       </div>
       <div class="fromitem frsc">
-        <img src="@/assets/register/yzm.png" alt="" />
+        <img src="@/assets/register/yzm.png" />
         <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="邮箱验证码" clearable />
         <div v-if="countdown < 60 && countdown > 0" class="djsTimeStyle">
           已发送（{{ countdown }}）
@@ -152,8 +152,8 @@ onUnmounted(() => {
         <button v-else @click="getCode">获取验证码</button>
       </div>
       <div class="statement">
-        <img v-if="isreadRuler" src="@/assets/register/checked.png" alt="" @click="isreadRuler = !isreadRuler" />
-        <img v-else src="@/assets/register/unchecked.png" alt="" @click="isreadRuler = !isreadRuler" />
+        <img v-if="isreadRuler" src="@/assets/register/checked.png" @click="isreadRuler = !isreadRuler" />
+        <img v-else src="@/assets/register/unchecked.png" @click="isreadRuler = !isreadRuler" />
         我已阅读并同意
         <span @click="
           pageJump('article_detail', {

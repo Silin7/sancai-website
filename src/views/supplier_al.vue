@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="sdhGys">
-          <img v-if="alDetails.case_imgs" :src="alDetails.case_imgs[0]" alt="企业图片" class="supplierPiImg" />
+          <img v-if="alDetails.case_imgs" :src="alDetails.case_imgs[0]" class="supplierPiImg" />
           <div class="sdhgCenter">
             <div class="sdhgcTop">
               <div class="sdhgctTitle">{{ alDetails.name }}</div>

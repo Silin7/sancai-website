@@ -88,7 +88,7 @@ onBeforeUnmount(() => {
         <span>发布时间：{{ dayjs(articledetail.updated_at).format('YYYY-MM-DD HH:mm:ss') }}</span>
       </div>
       <!-- <div class="ndCzuoz">
-        <img src="@/assets/32.jpg" alt="" />
+        <img src="@/assets/32.jpg" />
         <div class="zuozeInfo">
           <p>作者：李明</p>
           <p>三才工程研究院 BIM技术专家</p>
@@ -102,7 +102,7 @@ onBeforeUnmount(() => {
         <div v-for="(item, index) in articledetail.keywords.split(',')" :key="index" class="ndcTag">{{ item }}</div>
       </div>
       <!-- <div class="ndCzuobtm">
-        <img src="@/assets/32.jpg" alt="" />
+        <img src="@/assets/32.jpg" />
         <div class="zuozeInfo">
           <p>作者：李明</p>
           <p>三才工程研究院 BIM技术专家</p>

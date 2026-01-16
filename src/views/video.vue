@@ -152,7 +152,7 @@ function convertSecondsToHMS(seconds: any) {
   <div class="productsPage">
     <!-- BANNER -->
     <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="bannerData.imgurl" alt="" />
+      <img :src="bannerData.imgurl" />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">{{ bannerData.maintitle }}</div>
@@ -257,7 +257,7 @@ function convertSecondsToHMS(seconds: any) {
                   {{ convertSecondsToHMS(item.vlength) }}
                 </div>
                 <div v-else class="containerPiBuy"><i class="fa fa-check"></i>已购买</div>
-                <img :src="item.thumbnail" alt="" style="width: 100%; height: 100%" />
+                <img :src="item.thumbnail" style="width: 100%; height: 100%" />
                 <div class="containerPiplayerBox">
                   <div class="containerPiplayerICon">
                     <i class="fa fa-play"></i>
@@ -280,7 +280,7 @@ function convertSecondsToHMS(seconds: any) {
                 </div>
                 <div class="containerPiPbox">
                   <div class="containerPiPice">
-                    <img src="@/assets/32.jpg" alt="" />
+                    <img src="@/assets/32.jpg" />
                     <span>张老师</span>
                   </div>
                   <div class="containerPiPice">

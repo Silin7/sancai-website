@@ -301,7 +301,7 @@ onBeforeUnmount(() => {
       <!-- BANNER -->
       <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
         <div class="bannerAnchor">
-          <img v-if="windowWidth > 1140" :src="bannerData.imgurl" alt="banner" class="bannerImage" />
+          <img v-if="windowWidth > 1140" :src="bannerData.imgurl" class="bannerImage" />
           <div class="bannerAbsolute">
             <div class="bannerContent">
               <div class="bannerTitle">聚焦新型城市基础设施建设再起航</div>
@@ -502,7 +502,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
           <div class="solutionsImg">
-            <img :src="solutionCform.img" alt="" style="width: 100%; height: 44rem" />
+            <img :src="solutionCform.img" style="width: 100%; height: 44rem" />
             <div class="solutionsImgTitleMoud">
               <div class="solutionsImgTitle1">{{ solutionCform.description1 }}</div>
               <div class="solutionsImgTitle2">{{ solutionCform.name }}</div>
@@ -561,7 +561,7 @@ onBeforeUnmount(() => {
           <div class="mxInfo">感谢以下单位对本平台的大力支持与合作</div>
           <div class="mxClassbox">
             <div v-for="(item, index) in vippartners" :key="index" class="mxClassitem" @click="windowOpen(item.url)">
-              <img :src="item.logoimg" alt="" class="mxClassitemfa" />
+              <img :src="item.logoimg" class="mxClassitemfa" />
               <div class="mxClassitemtext">{{ item.company_name }}</div>
             </div>
           </div>
@@ -574,7 +574,7 @@ onBeforeUnmount(() => {
         <div class="pyClassbox">
           <div v-for="(item, index) in flinktop" :key="index" class="pyClassitem"
             @click="windowOpen(item.link_url, true)">
-            <img :src="item.logo" alt="" class="pyClassitemfa" />
+            <img :src="item.logo" class="pyClassitemfa" />
             <div class="pyClassitemtext">{{ item.name }}</div>
             <div class="pyClassiteminfo">{{ item.remark }}</div>
           </div>

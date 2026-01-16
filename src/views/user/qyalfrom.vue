@@ -208,7 +208,7 @@ onMounted(() => {
                 </el-icon>
                 <template #file="{ file }">
                   <div>
-                    <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
+                    <img class="el-upload-list__item-thumbnail" :src="file.url" />
                     <span class="el-upload-list__item-actions">
                       <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
                         <el-icon><zoom-in /></el-icon>
@@ -223,7 +223,7 @@ onMounted(() => {
                 </template>
               </el-upload>
               <el-dialog v-model="dialogVisible">
-                <el-image :src="dialogImageUrl" alt="Preview Image" fit="widthFix" style="width: 100%" />
+                <el-image :src="dialogImageUrl" fit="widthFix" style="width: 100%" />
               </el-dialog>
             </el-form-item>
             <!-- <p class="tips">

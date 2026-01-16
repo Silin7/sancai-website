@@ -145,11 +145,11 @@ onUnmounted(() => {
     <div class="registerbox">
       <div class="hyzc">密码重置</div>
       <div class="fromitem frsc">
-        <img src="@/assets/register/user.png" alt="" />
+        <img src="@/assets/register/user.png" />
         <el-input v-model="email" style="width: 100%" placeholder="请输入邮箱" clearable />
       </div>
       <div class="fromitem frsc">
-        <img src="@/assets/register/yzm.png" alt="" />
+        <img src="@/assets/register/yzm.png" />
         <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="短信验证码" clearable />
         <div v-if="countdown < 60 && countdown > 0" class="djsTimeStyle">
           已发送（{{ countdown }}）
@@ -157,12 +157,12 @@ onUnmounted(() => {
         <button v-else @click="getCode">获取验证码</button>
       </div>
       <div class="fromitem frsc">
-        <img src="@/assets/register/pwd.png" alt="" />
+        <img src="@/assets/register/pwd.png" />
         <el-input type="password" show-password v-model="newpassword" style="width: 100%"
           placeholder="请输入8-20位密码（含字母和数字）" clearable />
       </div>
       <div class="fromitem frsc">
-        <img src="@/assets/register/pwd.png" alt="" />
+        <img src="@/assets/register/pwd.png" />
         <el-input type="password" show-password v-model="newpassword2" style="width: 100%" placeholder="请再次输入新密码"
           clearable />
       </div>

@@ -98,13 +98,13 @@ onBeforeUnmount(() => {
           <div class="adicCpjjLeftTitle">产品简介</div>
           <div v-html="aixqdetail.content" class="adicCpjjLeftInfo"></div>
         </div>
-        <img :src="aixqdetail.img" alt="" class="caseClassitemfa" />
+        <img :src="aixqdetail.img" class="caseClassitemfa" />
       </div>
       <div v-if="aixqdetail.sectionone" class="adicHxgn">
         <div class="adicHxgnTitle">{{ aixqdetail.sectionone.name }}</div>
         <div v-if="aixqdetail?.sectionone?.items" class="adicHxgnContent">
           <div v-for="(item, index) in aixqdetail?.sectionone?.items" :key="index" class="adicHxgnItem">
-            <img :src="item.iconimg" alt="" class="adicHxgnItemFa">
+            <img :src="item.iconimg" class="adicHxgnItemFa">
             <div class="adicHxgnItemRight">
               <div class="adicHxgnItemT">{{ item.title }}</div>
               <div class="adicHxgnItemI">{{ item.description }}</div>
@@ -172,7 +172,7 @@ onBeforeUnmount(() => {
         <div class="adicSycjTitle">{{ aixqdetail.sectiontwo.name }}</div>
         <div v-if="aixqdetail?.sectiontwo?.items" class="adicSycjContent">
           <div v-for="(item, index) in aixqdetail?.sectiontwo?.items" :key="index" class="adicSycjItem">
-            <img :src="item.iconimg" alt="" class="adicSycjItemFa">
+            <img :src="item.iconimg" class="adicSycjItemFa">
             <div class="adicSycjItemT">{{ item.title }}</div>
             <div class="adicSycjItemI">{{ item.description }}</div>
           </div>
@@ -212,7 +212,7 @@ onBeforeUnmount(() => {
         <div class="adicJsysTitle">{{ aixqdetail.sectionthree.name }}</div>
         <div v-if="aixqdetail?.sectionthree?.items" class="adicJsysContent">
           <div v-for="(item, index) in aixqdetail?.sectionthree?.items" :key="index" class="adicJsysItem">
-            <img :src="item.iconimg" alt="" class="adicJsysItemFa">
+            <img :src="item.iconimg" class="adicJsysItemFa">
             <div class="adicJsysItemT">{{ item.title }}</div>
             <div class="adicJsysItemI">{{ item.description }}</div>
           </div>

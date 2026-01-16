@@ -95,7 +95,7 @@ onBeforeUnmount(() => {
           <span class="adictTag adictTag2"> <i class="fa fa-building-o mr-1"></i> 商业综合体 </span> -->
         </div>
         <!-- <div class="adictImgs">
-          <img v-for="(item, index) in aialdetail.imgs" :key="index" :src="item" alt="" />
+          <img v-for="(item, index) in aialdetail.imgs" :key="index" :src="item" />
         </div> -->
       </div>
 
@@ -306,7 +306,7 @@ onBeforeUnmount(() => {
               相关图片
             </div>
             <div class="aipdcrxGtp">
-              <img v-for="(item, index) in aialdetail.imgs" :key="index" :src="item" alt="" />
+              <img v-for="(item, index) in aialdetail.imgs" :key="index" :src="item" />
             </div>
           </div>
           <div class="aipdclRitem">
@@ -335,7 +335,7 @@ onBeforeUnmount(() => {
         <div class="aipdccCgBox">
           <div class="aipdccCgItem">
             <img src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-              alt="" />
+              />
             <div class="aipdccgiContent">
               <span class="aipdccgicTag">智能施工</span>
               <div class="aipdccgicTitle">宁波地铁项目AI施工管理</div>
@@ -347,7 +347,7 @@ onBeforeUnmount(() => {
           </div>
           <div class="aipdccCgItem">
             <img src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-              alt="" />
+              />
             <div class="aipdccgiContent">
               <span class="aipdccgicTag">智能造价</span>
               <div class="aipdccgicTitle">施工进度模拟论证服务</div>
@@ -357,7 +357,7 @@ onBeforeUnmount(() => {
           </div>
           <div class="aipdccCgItem">
             <img src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-              alt="" />
+              />
             <div class="aipdccgiContent">
               <span class="aipdccgicTag">智能运维</span>
               <div class="aipdccgicTitle">施工进度模拟论证服务</div>

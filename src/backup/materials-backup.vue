@@ -180,7 +180,7 @@ const handleCurrentChange = (val: number) => {
   <div class="materialsPage">
     <!-- BANNER -->
     <div class="prbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="bannerData.imgurl" alt="mabanner" />
+      <img :src="bannerData.imgurl" />
       <div class="prbannerAbsolute">
         <div class="prbannerContent">
           <div class="prbannerTitle">材料/设备</div>
@@ -223,7 +223,7 @@ const handleCurrentChange = (val: number) => {
           </div>
           <div class="containerProductsBox">
             <div class="containerProductsItem" v-for="index in 4" :key="index">
-              <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="containerPiImg" />
+              <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="containerPiImg" />
               <div class="containerPiBox">
                 <div class="containerPiTitle">BIM+多专业碰撞检查</div>
                 <div class="containerPiFx">

@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
     <div class="aboutPage">
       <!-- BANNER -->
       <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-        <img :src="bannerData.imgurl" alt="" />
+        <img :src="bannerData.imgurl" />
         <div class="bannerAbsolute">
           <div class="bannerContent">
             <div class="bannerTitle">{{ bannerData.maintitle }}</div>
@@ -151,7 +151,7 @@ onBeforeUnmount(() => {
                 </div>
               </div>
             </div>
-            <img src="@/assets/aboutUs.png" alt="" class="aboutUs" />
+            <img src="@/assets/aboutUs.png" class="aboutUs" />
           </div>
           <div v-if="windowWidth > 768" class="introtRight">
             <div class="introtRightItem">
@@ -267,7 +267,7 @@ onBeforeUnmount(() => {
         <div class="achievementInfo">在实践探索中，我们不断突破创新，取得了丰硕成果</div>
         <div class="achievementRidbox">
           <div v-for="(item, index) in seccontentList1" :key="index" class="achievementRiditem">
-            <img :src="item.secimg" alt="" style="width: 100%; height: 12rem" />
+            <img :src="item.secimg" style="width: 100%; height: 12rem" />
             <div class="achievementRidimgbox">
               <div class="achievementRidimgfx">
                 <div class="achievementRidimgFrsc">
@@ -308,7 +308,7 @@ onBeforeUnmount(() => {
               <el-col v-for="(item, index) in seccontentList2" :key="index" :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
                 <div class="serviceCardItem">
                   <div class="frsc">
-                    <img :src="item.secimg" alt=""
+                    <img :src="item.secimg"
                       style="margin-right: 1rem; width: 4rem; height: 4rem; border-radius: 0.75rem;" />
                     <!-- <div class="serviceCardItemIcon frcc">
                       <i class="fa fa-video-camera"></i>
@@ -386,16 +386,16 @@ onBeforeUnmount(() => {
         <div class="mediaHeng"></div>
         <el-row :gutter="16" class="mediaRow">
           <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
-            <img src="@/assets/renminnet.png" alt="" />
+            <img src="@/assets/renminnet.png" />
           </el-col>
           <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
-            <img src="@/assets/zhejiangtv.png" alt="" />
+            <img src="@/assets/zhejiangtv.png" />
           </el-col>
           <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
-            <img src="@/assets/xinhua.png" alt="" />
+            <img src="@/assets/xinhua.png" />
           </el-col>
           <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
-            <img src="@/assets/zhejiangdaily.png" alt="" />
+            <img src="@/assets/zhejiangdaily.png" />
           </el-col>
         </el-row>
         <div class="mediaCard">
@@ -403,7 +403,7 @@ onBeforeUnmount(() => {
             "杭州三才工程信息科技有限公司在新型城市基础设施建设领域崭露头角，其工程数字化解决方案为传统建筑行业注入了新的活力。"
           </p>
           <div class="frsc">
-            <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="" class="mediaAvatal" />
+            <img src="https://randomuser.me/api/portraits/men/41.jpg" class="mediaAvatal" />
             <div>
               <div class="mediaName">张记者</div>
               <div class="mediaTv">浙江电视台经济频道</div>

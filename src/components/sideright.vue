@@ -86,8 +86,8 @@ onBeforeUnmount(() => {
       <div v-if="foldState" class="float-btn">
         <i class="fa fa-weixin"></i>
       </div>
-      <img src="" alt="">
-      <img v-if="windowWidth > 600 && mouseState === 'gzwm'" :src="sysInfos.sys_wechatqrcode" alt="wechatqrcode"
+      <img src="">
+      <img v-if="windowWidth > 600 && mouseState === 'gzwm'" :src="sysInfos.sys_wechatqrcode"
         class="flexQrcode" />
     </div>
 

@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="sdhGys">
-          <img v-if="supplierDetails.company_imgs" :src="supplierDetails.company_imgs[0]" alt="企业图片"
+          <img v-if="supplierDetails.company_imgs" :src="supplierDetails.company_imgs[0]"
             class="supplierPiImg" />
           <div class="sdhgCenter">
             <div class="sdhgcTop">
@@ -226,7 +226,7 @@ onBeforeUnmount(() => {
             <div class="sdclxiTitle">资质证书</div>
             <div class="sdclxiCgBox">
               <div v-for="(item, index) in gyszzList" :key="index" class="sdclxiCgItem">
-                <img v-if="item.qualification_imgs" :src="item.qualification_imgs[0]" alt="企业图片"
+                <img v-if="item.qualification_imgs" :src="item.qualification_imgs[0]"
                   class="supplierPiImg" />
                 <div class="sdclxicIp">{{ item.name }}</div>
               </div>
@@ -246,7 +246,7 @@ onBeforeUnmount(() => {
               alid: item.id
             })">
               <div class="sdclHzalImgBox">
-                <img v-if="item.case_imgs" :src="item.case_imgs[0]" alt="企业案例" class="sdclHzalImg" />
+                <img v-if="item.case_imgs" :src="item.case_imgs[0]" class="sdclHzalImg" />
                 <div class="sdclHzalImgTag">{{ item.case_type_name }}</div>
               </div>
               <div class="sdclHzalBox">
@@ -285,7 +285,7 @@ onBeforeUnmount(() => {
           <div class="sdclCplbBox">
             <div class="sdclCplbItem" v-for="(item, index) in gyscpList" :key="index" @click="gyscpDetail(item)">
               <div class="sdclCplbImgBox">
-                <img v-if="item.imgs" :src="item.imgs[0]" alt="产品图片" class="sdclCplbImg" />
+                <img v-if="item.imgs" :src="item.imgs[0]" class="sdclCplbImg" />
                 <div class="sdclCplbImgTag">{{ item.product_type_name }}</div>
               </div>
               <div class="sdclCplbBox2">
@@ -320,7 +320,7 @@ onBeforeUnmount(() => {
                   <p>浙江省杭州市滨江区江南大道1000号智慧大厦15层</p>
                 </div>
               </div>
-              <!-- <img src="https://picsum.photos/600/300?random=701" alt="公司位置地图" class="sdLxfsFsdz" /> -->
+              <!-- <img src="https://picsum.photos/600/300?random=701" class="sdLxfsFsdz" /> -->
             </div>
             <div class="sdLxfsItem">
               <div class="sdLxfsRi">
@@ -352,7 +352,7 @@ onBeforeUnmount(() => {
                 </div>
               </div>
               <!-- <div class="sdLxfsRi">
-                <img src="https://picsum.photos/600/300?random=701" alt="二维码" class="sdLxfsEwm" />
+                <img src="https://picsum.photos/600/300?random=701" class="sdLxfsEwm" />
                 <div class="sdLxfsEbox">
                   <p>扫码关注</p>
                   <p>获取最新产品及服务信息</p>

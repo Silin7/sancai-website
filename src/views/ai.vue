@@ -102,7 +102,7 @@ onBeforeUnmount(() => {
     <div class="aiPage">
       <!-- BANNER -->
       <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-        <img :src="bannerData.imgurl" alt="" />
+        <img :src="bannerData.imgurl" />
         <div class="bannerAbsolute">
           <div class="bannerContent">
             <div class="bannerTitle">{{ bannerData.maintitle }}</div>
@@ -182,7 +182,7 @@ onBeforeUnmount(() => {
           <div v-for="(item, index) in aialtop" :key="index" class="caseClassitem" @click="pageJump('aicase_detail', {
             aialid: item.id
           })">
-            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" alt="" class="caseClassitemfa" />
+            <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" class="caseClassitemfa" />
             <div class="caseClassitembox">
               <div v-if="item.tags" class="caseClassitemFrsc">
                 <div v-for="(item2, index2) in item.tags.split(',')" :key="index2" class="caseClassitemZnsj">{{ item2 }}

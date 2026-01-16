@@ -157,16 +157,16 @@ onUnmounted(() => {
       </div>
       <div class="fromBox">
         <div class="fromitem frsc">
-          <img src="@/assets/register/user.png" alt="" />
+          <img src="@/assets/register/user.png" />
           <el-input v-model="email" style="width: 100%" placeholder="请输入邮箱" clearable />
         </div>
         <div v-if="state === 'mm'" class="fromitem frsc">
-          <img src="@/assets/register/pwd.png" alt="" />
+          <img src="@/assets/register/pwd.png" />
           <el-input type="password" show-password v-model="password" style="width: 100%" placeholder="请输入8-16位密码"
             clearable />
         </div>
         <div v-if="state === 'kj'" class="fromitem frsc">
-          <img src="@/assets/register/yzm.png" alt="" />
+          <img src="@/assets/register/yzm.png" />
           <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="邮箱验证码" clearable />
           <div v-if="countdown < 60 && countdown > 0" class="djsTimeStyle">
             已发送（{{ countdown }}）

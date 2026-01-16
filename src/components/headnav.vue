@@ -146,7 +146,7 @@ onBeforeUnmount(() => {
     <div class="headPositon">
       <div class="headflex">
         <div class="headnav">
-          <img src="@/assets/logo.png" alt="logo" class="headlogo" @click="pageJump('home')" />
+          <img src="@/assets/logo.png" class="headlogo" @click="pageJump('home')" />
           <div v-if="windowWidth > 1290" class="menubox">
             <div v-for="(item, index) in menuList" :key="index" class="menuitem" @mouseenter="menuMouseenter(item)"
               @mouseleave="menuMouseleave" @click="tabRouterPush(item)">

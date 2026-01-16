@@ -313,8 +313,8 @@ const value1 = ref(4.8)
     <div class="pdCbox">
       <div class="pdcLeft">
         <div class="pdclJbcs">
-          <img v-if="productDetails.imgs" :src="productDetails.imgs[0]" alt="产品图片" />
-          <img v-else src="" alt="产品图片" />
+          <img v-if="productDetails.imgs" :src="productDetails.imgs[0]" />
+          <img v-else src="" />
           <div class="pdcljCenter">
             <div class="pdcljcTop">
               <div class="pdcljctItem">
@@ -487,13 +487,13 @@ const value1 = ref(4.8)
               <div class="pdclxiCgItem">
                 <img
                   src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt="" />
+                  />
                 <div class="pdclxicIp">碰撞检查报告（PDF版）</div>
               </div>
               <div class="pdclxiCgItem">
                 <img
                   src="https://fastly.picsum.photos/id/905/400/400.jpg?hmac=w2m1CjOADMCbUtrQDbyCuKR7_PNl9koTsKiL89xet5c"
-                  alt="" />
+                  />
                 <div class="pdclxicIp">碰撞点可视化模型（BIM格式）</div>
               </div>
             </div>
@@ -503,7 +503,7 @@ const value1 = ref(4.8)
           <div class="pdccTitle">相关产品推荐</div>
           <div class="pdccCgBox">
             <div v-for="(item, index) in productRelated" :key="index" class="pdccCgItem">
-              <img v-if="item.imgs" :src="item.imgs[0]" alt="产品图片" />
+              <img v-if="item.imgs" :src="item.imgs[0]" />
               <div class="pdccgiContent">
                 <div v-if="pathname === 'scheme'" class="pdccgicTitle">{{ item.servicename }}</div>
                 <div v-if="pathname === 'materials'" class="pdccgicTitle">
@@ -525,7 +525,7 @@ const value1 = ref(4.8)
         <div class="pdcrTitle">供应商信息</div>
         <div class="pdcrTop frsc">
           <img v-if="productDetails.supplier_info && productDetails.supplier_info.company_imgs"
-            :src="productDetails.supplier_info.company_imgs[0]" alt="" />
+            :src="productDetails.supplier_info.company_imgs[0]" />
           <div>
             <div v-if="productDetails.supplier_info" class="pdcrtTitle">
               {{ productDetails.supplier_info.company_name }}

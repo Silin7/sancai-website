@@ -120,7 +120,7 @@ onBeforeUnmount(() => {
   <div class="supplierPage">
     <!-- BANNER -->
     <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="bannerData.imgurl" alt="" />
+      <img :src="bannerData.imgurl" />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">{{ bannerData.maintitle }}</div>
@@ -186,7 +186,7 @@ onBeforeUnmount(() => {
             @click="pageJump('supplier_detail', { supplierid: item.id })">
             <div class="supplierPiContent">
               <div class="supplierPiImgBox">
-                <img v-if="item.company_imgs" :src="item.company_imgs[0]" alt="企业图片" class="supplierPiImg" />
+                <img v-if="item.company_imgs" :src="item.company_imgs[0]" class="supplierPiImg" />
                 <!-- <img src="@/assets/photo-1560518883-ce09059eeffa.jpg" /> -->
                 <!-- <div class="supplierPiImgTag">政策</div> -->
               </div>
