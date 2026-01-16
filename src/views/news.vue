@@ -121,7 +121,7 @@ onBeforeUnmount(() => {
   <div class="newsPage">
     <!-- BANNER -->
     <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="fileURL + bannerData.imgurl" alt="" />
+      <img :src="bannerData.imgurl" alt="" />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">{{ bannerData.maintitle }}</div>
@@ -174,7 +174,7 @@ onBeforeUnmount(() => {
               })
               ">
               <div class="newsPiImgBox">
-                <img :src="fileURL + item.thumbnail" class="newsPiImg" />
+                <img :src="item.thumbnail" class="newsPiImg" />
                 <div class="newsPiImgTag">政策</div>
               </div>
               <div class="newsPiBox">

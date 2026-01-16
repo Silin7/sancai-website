@@ -219,7 +219,7 @@ const handleEnded = () => {
       <div class="pdcLeft">
         <div class="pdclJbcs">
           <div class="pdclJbcsVideo">
-            <video v-if="videoDetails.vurl" ref="videoPlayer" :poster="fileURL + videoDetails.thumbnail" controls="true"
+            <video v-if="videoDetails.vurl" ref="videoPlayer" :poster="videoDetails.thumbnail" controls="true"
               preload="metadata" @timeupdate="handleTimeUpdate" @play="handlePlay" @ended="handleEnded">
               <source :src="videoDetails.vurl" type="video/mp4" />
               您的浏览器不支持HTML5视频播放，请升级浏览器

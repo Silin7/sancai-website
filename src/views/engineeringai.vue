@@ -78,7 +78,7 @@ onBeforeUnmount(() => {
   <div class="engineeringaiPage">
     <!-- BANNER -->
     <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="fileURL + bannerData.imgurl" alt="" />
+      <img :src="bannerData.imgurl" alt="" />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">{{ bannerData.maintitle }}</div>
@@ -109,7 +109,7 @@ onBeforeUnmount(() => {
         <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8" v-for="(item, index) in seccontentList" :key="index">
           <div class="aiClassitem">
             <div class="aiClassitemtext frsc">
-              <img :src="fileURL + item.secimg" alt="" />
+              <img :src="item.secimg" alt="" />
               <span>{{ item.title }}</span>
             </div>
             <p class="descriptioncontent">{{ item.descriptioncontent }}</p>

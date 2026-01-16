@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="sdhGys">
-          <img v-if="supplierDetails.company_imgs" :src="fileURL + supplierDetails.company_imgs[0]" alt="企业图片"
+          <img v-if="supplierDetails.company_imgs" :src="supplierDetails.company_imgs[0]" alt="企业图片"
             class="supplierPiImg" />
           <div class="sdhgCenter">
             <div class="sdhgcTop">
@@ -226,7 +226,7 @@ onBeforeUnmount(() => {
             <div class="sdclxiTitle">资质证书</div>
             <div class="sdclxiCgBox">
               <div v-for="(item, index) in gyszzList" :key="index" class="sdclxiCgItem">
-                <img v-if="item.qualification_imgs" :src="fileURL + item.qualification_imgs[0]" alt="企业图片"
+                <img v-if="item.qualification_imgs" :src="item.qualification_imgs[0]" alt="企业图片"
                   class="supplierPiImg" />
                 <div class="sdclxicIp">{{ item.name }}</div>
               </div>
@@ -246,7 +246,7 @@ onBeforeUnmount(() => {
               alid: item.id
             })">
               <div class="sdclHzalImgBox">
-                <img v-if="item.case_imgs" :src="fileURL + item.case_imgs[0]" alt="企业案例" class="sdclHzalImg" />
+                <img v-if="item.case_imgs" :src="item.case_imgs[0]" alt="企业案例" class="sdclHzalImg" />
                 <div class="sdclHzalImgTag">{{ item.case_type_name }}</div>
               </div>
               <div class="sdclHzalBox">
@@ -285,7 +285,7 @@ onBeforeUnmount(() => {
           <div class="sdclCplbBox">
             <div class="sdclCplbItem" v-for="(item, index) in gyscpList" :key="index" @click="gyscpDetail(item)">
               <div class="sdclCplbImgBox">
-                <img v-if="item.imgs" :src="fileURL + item.imgs[0]" alt="产品图片" class="sdclCplbImg" />
+                <img v-if="item.imgs" :src="item.imgs[0]" alt="产品图片" class="sdclCplbImg" />
                 <div class="sdclCplbImgTag">{{ item.product_type_name }}</div>
               </div>
               <div class="sdclCplbBox2">

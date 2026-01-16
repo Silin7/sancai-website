@@ -152,7 +152,7 @@ function convertSecondsToHMS(seconds: any) {
   <div class="productsPage">
     <!-- BANNER -->
     <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="fileURL + bannerData.imgurl" alt="" />
+      <img :src="bannerData.imgurl" alt="" />
       <div class="bannerAbsolute">
         <div class="bannerContent">
           <div class="bannerTitle">{{ bannerData.maintitle }}</div>
@@ -253,11 +253,11 @@ function convertSecondsToHMS(seconds: any) {
             <div class="containerProductsItem" v-for="(item, index) in videoList" :key="index"
               @click="pageJump('video_detail', { id: item.id })">
               <div class="containerPiImg">
-                <div v-if="index % 2 === 0" class="containerPiTime">
+                <div v-if="Number(index) % 2 === 0" class="containerPiTime">
                   {{ convertSecondsToHMS(item.vlength) }}
                 </div>
                 <div v-else class="containerPiBuy"><i class="fa fa-check"></i>已购买</div>
-                <img :src="fileURL + item.thumbnail" alt="" style="width: 100%; height: 100%" />
+                <img :src="item.thumbnail" alt="" style="width: 100%; height: 100%" />
                 <div class="containerPiplayerBox">
                   <div class="containerPiplayerICon">
                     <i class="fa fa-play"></i>
@@ -270,7 +270,7 @@ function convertSecondsToHMS(seconds: any) {
               <div class="containerPiBox">
                 <div class="supplierPiTop">
                   <div class="supplierPiTitle">{{ item.title }}</div>
-                  <div v-if="index % 2 === 0" class="supplierPingFen">¥{{ item.price }}</div>
+                  <div v-if="Number(index) % 2 === 0" class="supplierPingFen">¥{{ item.price }}</div>
                   <div v-else class="supplierPingFen2">¥99.90</div>
                 </div>
                 <div class="containerPiClass">
@@ -289,7 +289,7 @@ function convertSecondsToHMS(seconds: any) {
                   </div>
                 </div>
               </div>
-              <button v-if="index % 2 === 0" class="containerPiRbtn">立即观看</button>
+              <button v-if="Number(index) % 2 === 0" class="containerPiRbtn">立即观看</button>
               <button v-else class="containerPiRbtn2">继续观看</button>
             </div>
           </div>

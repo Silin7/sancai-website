@@ -117,7 +117,7 @@ onBeforeUnmount(() => {
         <div class="newsdItem" v-for="(item, index) in articlesRecommended" :key="index"
           :style="(index + 1) % 3 === 0 ? 'margin-right: 0' : ''" @click="xgtjDetailClick(item)">
           <div class="newsPiImgBox">
-            <img v-if="item.thumbnail" :src="fileURL + item.thumbnail" class="newsPiImg" />
+            <img v-if="item.thumbnail" :src="item.thumbnail" class="newsPiImg" />
             <div class="newsPiImgTag">{{ item.cate_name }}</div>
           </div>
           <div class="newsPiBox" :style="windowWidth > 992 ? '' : 'margin-top:1rem; width: 100%;'">

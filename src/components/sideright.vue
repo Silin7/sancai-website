@@ -87,8 +87,8 @@ onBeforeUnmount(() => {
         <i class="fa fa-weixin"></i>
       </div>
       <img src="" alt="">
-      <img v-if="windowWidth > 600 && mouseState === 'gzwm'" :src="fileURL + sysInfos.sys_wechatqrcode"
-        alt="wechatqrcode" class="flexQrcode" />
+      <img v-if="windowWidth > 600 && mouseState === 'gzwm'" :src="sysInfos.sys_wechatqrcode" alt="wechatqrcode"
+        class="flexQrcode" />
     </div>
 
     <!-- <div class="relativeBox" @mouseenter="iconMouseenter('zxly')" @mouseleave="iconMouseleave">

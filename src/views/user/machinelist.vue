@@ -134,7 +134,7 @@ onMounted(() => {
       <el-table v-loading="tableLoading" :data="groupData" border highlight-current-row>
         <el-table-column align="center" label="机械图片">
           <template #default="scope">
-            <img v-if="scope.row.imgs && scope.row.imgs.length > 0" :src="fileURL + scope.row.imgs[0]"
+            <img v-if="scope.row.imgs && scope.row.imgs.length > 0" :src="scope.row.imgs[0]"
               style="width: 40px; height: 40px; border-radius: 5px" />
           </template>
         </el-table-column>

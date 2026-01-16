@@ -102,7 +102,7 @@ onBeforeUnmount(() => {
     <div class="datasolutionPage">
       <!-- BANNER -->
       <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-        <img :src="fileURL + bannerData.imgurl" alt="" />
+        <img :src="bannerData.imgurl" alt="" />
         <div class="bannerAbsolute">
           <div class="bannerContent">
             <div class="bannerTitle">{{ bannerData.maintitle }}</div>
@@ -186,7 +186,7 @@ onBeforeUnmount(() => {
         <div class="gysClassbox">
           <div v-for="(item, index) in flinktop" :key="index" class="gysClassitem"
             @click="windowOpen(item.link_url, true)">
-            <img :src="fileURL + item.logo" alt="" class="gysClassitemfa" />
+            <img :src="item.logo" alt="" class="gysClassitemfa" />
             <div class="gysClassitemtext">{{ item.name }}</div>
             <div class="gysClassiteminfo">{{ item.remark }} </div>
           </div>

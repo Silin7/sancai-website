@@ -95,7 +95,7 @@ onBeforeUnmount(() => {
           <span class="adictTag adictTag2"> <i class="fa fa-building-o mr-1"></i> 商业综合体 </span> -->
         </div>
         <!-- <div class="adictImgs">
-          <img v-for="(item, index) in aialdetail.imgs" :key="index" :src="fileURL + item" alt="" />
+          <img v-for="(item, index) in aialdetail.imgs" :key="index" :src="item" alt="" />
         </div> -->
       </div>
 
@@ -306,7 +306,7 @@ onBeforeUnmount(() => {
               相关图片
             </div>
             <div class="aipdcrxGtp">
-              <img v-for="(item, index) in aialdetail.imgs" :key="index" :src="fileURL + item" alt="" />
+              <img v-for="(item, index) in aialdetail.imgs" :key="index" :src="item" alt="" />
             </div>
           </div>
           <div class="aipdclRitem">

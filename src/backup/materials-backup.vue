@@ -180,7 +180,7 @@ const handleCurrentChange = (val: number) => {
   <div class="materialsPage">
     <!-- BANNER -->
     <div class="prbannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-      <img :src="fileURL + bannerData.imgurl" alt="mabanner" />
+      <img :src="bannerData.imgurl" alt="mabanner" />
       <div class="prbannerAbsolute">
         <div class="prbannerContent">
           <div class="prbannerTitle">材料/设备</div>

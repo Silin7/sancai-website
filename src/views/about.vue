@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
     <div class="aboutPage">
       <!-- BANNER -->
       <div class="bannerBox" @click="windowOpen(bannerData.url, bannerData.istourl)">
-        <img :src="fileURL + bannerData.imgurl" alt="" />
+        <img :src="bannerData.imgurl" alt="" />
         <div class="bannerAbsolute">
           <div class="bannerContent">
             <div class="bannerTitle">{{ bannerData.maintitle }}</div>
@@ -267,7 +267,7 @@ onBeforeUnmount(() => {
         <div class="achievementInfo">在实践探索中，我们不断突破创新，取得了丰硕成果</div>
         <div class="achievementRidbox">
           <div v-for="(item, index) in seccontentList1" :key="index" class="achievementRiditem">
-            <img :src="fileURL + item.secimg" alt="" style="width: 100%; height: 12rem" />
+            <img :src="item.secimg" alt="" style="width: 100%; height: 12rem" />
             <div class="achievementRidimgbox">
               <div class="achievementRidimgfx">
                 <div class="achievementRidimgFrsc">
@@ -308,7 +308,7 @@ onBeforeUnmount(() => {
               <el-col v-for="(item, index) in seccontentList2" :key="index" :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
                 <div class="serviceCardItem">
                   <div class="frsc">
-                    <img :src="fileURL + item.secimg" alt=""
+                    <img :src="item.secimg" alt=""
                       style="margin-right: 1rem; width: 4rem; height: 4rem; border-radius: 0.75rem;" />
                     <!-- <div class="serviceCardItemIcon frcc">
                       <i class="fa fa-video-camera"></i>

@@ -290,16 +290,16 @@ const value1 = ref(4.8)
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-            }}</span>
+          }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -313,7 +313,7 @@ const value1 = ref(4.8)
     <div class="pdCbox">
       <div class="pdcLeft">
         <div class="pdclJbcs">
-          <img v-if="productDetails.imgs" :src="fileURL + productDetails.imgs[0]" alt="产品图片" />
+          <img v-if="productDetails.imgs" :src="productDetails.imgs[0]" alt="产品图片" />
           <img v-else src="" alt="产品图片" />
           <div class="pdcljCenter">
             <div class="pdcljcTop">
@@ -503,7 +503,7 @@ const value1 = ref(4.8)
           <div class="pdccTitle">相关产品推荐</div>
           <div class="pdccCgBox">
             <div v-for="(item, index) in productRelated" :key="index" class="pdccCgItem">
-              <img v-if="item.imgs" :src="fileURL + item.imgs[0]" alt="产品图片" />
+              <img v-if="item.imgs" :src="item.imgs[0]" alt="产品图片" />
               <div class="pdccgiContent">
                 <div v-if="pathname === 'scheme'" class="pdccgicTitle">{{ item.servicename }}</div>
                 <div v-if="pathname === 'materials'" class="pdccgicTitle">
@@ -525,7 +525,7 @@ const value1 = ref(4.8)
         <div class="pdcrTitle">供应商信息</div>
         <div class="pdcrTop frsc">
           <img v-if="productDetails.supplier_info && productDetails.supplier_info.company_imgs"
-            :src="fileURL + productDetails.supplier_info.company_imgs[0]" alt="" />
+            :src="productDetails.supplier_info.company_imgs[0]" alt="" />
           <div>
             <div v-if="productDetails.supplier_info" class="pdcrtTitle">
               {{ productDetails.supplier_info.company_name }}
@@ -537,7 +537,7 @@ const value1 = ref(4.8)
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-                }}</span>
+              }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
@@ -611,7 +611,7 @@ const value1 = ref(4.8)
           <template #default="scope">
             <span>¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
           </template>
-        </el-table-column> -->
+</el-table-column> -->
         <el-table-column align="center" label="除税价" width="120">
           <template #default="scope">
             <span style="color: #165dff; font-weight: 700">¥{{ formatCurrency(scope.row.pretaxprice, 2) }}</span>

@@ -123,17 +123,22 @@ onMounted(() => {
       <div class="requirementsCont">
         <div class="supplierClassFx">
           <div class="supplierClassFxItem">
-            <div class="supplierClassText"><span style="color: #f56c6c">*</span>标的名称</div>
-            <el-input v-model="datasolutionData.product_name" style="width: 100%; height: 40px" placeholder="标的名称" />
-          </div>
-          <div class="supplierClassFxItem">
-            <!--  -->
             <div class="supplierClassText"><span style="color: #f56c6c">*</span>类别</div>
             <el-select v-model="datasolutionData.thetype" placeholder="请选择类别" size="large" clearable
               style="width: 100%; height: 40px">
               <el-option label="产品" value="0" />
               <el-option label="服务" value="1" />
             </el-select>
+          </div>
+          <div class="supplierClassFxItem">
+            <div class="supplierClassText"><span style="color: #f56c6c">*</span>用途</div>
+            <el-input v-model="datasolutionData.yongtu" style="width: 100%; height: 40px" placeholder="用途" />
+          </div>
+        </div>
+        <div class="supplierClassFx" style="margin-top: 2rem">
+          <div class="supplierClassFxItem2">
+            <div class="supplierClassText"><span style="color: #f56c6c">*</span>标的名称</div>
+            <el-input v-model="datasolutionData.product_name" style="width: 100%; height: 40px" placeholder="标的名称" />
           </div>
         </div>
         <div class="supplierClassFx" style="margin-top: 2rem">
@@ -145,7 +150,7 @@ onMounted(() => {
               style="width: 100%" placeholder="请描述应用场景、目标及预期效果等" />
           </div>
         </div>
-        <div class="requCstitle">技术需求（可多选）</div>
+        <div class="requCstitle">论证需求（可多选）</div>
         <div v-for="(item, index) in datasolutionData.multiitems" :key="index">
           <div class="requCstimu">{{ Number(index) + 1 }}. {{ item.name }}</div>
           <div class="requCstibox">
@@ -167,7 +172,18 @@ onMounted(() => {
             <el-input v-if="item.haveother === 1" v-model="item.remark" class="requCstiElInput" placeholder="请注明" />
           </div>
         </div>
-        <div class="supplierClassFx2">
+        <div class="requCstitle">论证专家（可多选）</div>
+        <div v-for="(item, index) in datasolutionData.multiitems" :key="index">
+          <div class="requCstibox" v-if="index === 0">
+            <div class="requCstiItems">
+              <el-checkbox-group v-if="item.thetype === '多选'" v-model="item.value" style="margin-right: 1rem">
+                <el-checkbox v-for="(item2, index2) in item.items" :key="index2" :label="item2.label"
+                  :value="item2.label" />
+              </el-checkbox-group>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="supplierClassFx2">
           <div class="supplierClassFxItem">
             <div class="supplierClassText"><span style="color: #f56c6c">*</span>公司名称</div>
             <el-input v-model="datasolutionData.company_name" style="width: 100%; height: 40px" placeholder="请填写公司名称" />
@@ -181,7 +197,7 @@ onMounted(() => {
             <div class="supplierClassText"><span style="color: #f56c6c">*</span>联系人电话</div>
             <el-input v-model="datasolutionData.tel" style="width: 100%; height: 40px" placeholder="请填写联系人电话" />
           </div>
-        </div>
+        </div> -->
         <div class="supplierClassFx2">
           <div class="supplierClassFxItem2">
             <div class="supplierClassText">其他要求</div>

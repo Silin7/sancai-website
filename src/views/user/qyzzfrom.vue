@@ -141,7 +141,7 @@ onMounted(() => {
               ruleForm[key] = res[key].map((item: any) => {
                 return {
                   name: item,
-                  url: fileURL + item,
+                  url: item,
                 }
               })
             } else {
@@ -220,8 +220,9 @@ onMounted(() => {
           </el-col>
           <el-col :span="24">
             <el-form-item label="资质图片" prop="qualification_imgs">
-              <el-upload :action="uploadURL + '/api/client/upload/upload/image'" :headers="uploadHeader" :multiple="true"
-                v-model:file-list="ruleForm.qualification_imgs" list-type="picture-card" :auto-upload="true">
+              <el-upload :action="uploadURL + '/api/client/upload/upload/image'" :headers="uploadHeader"
+                :multiple="true" v-model:file-list="ruleForm.qualification_imgs" list-type="picture-card"
+                :auto-upload="true">
                 <el-icon>
                   <Plus />
                 </el-icon>
