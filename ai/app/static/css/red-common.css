@@ -1,0 +1,355 @@
+/* common.css - 所有页面共用样式 */
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    overflow-x: hidden;
+}
+
+/* 侧边导航栏样式 */
+.sidebar {
+    width: 220px;
+    background-color: #a6171c;
+    /* 主题色 */
+    color: white;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* 标题区域 - logo容器 */
+.sidebar-header {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 水平居中 */
+}
+
+/* Logo样式 - 自适应尺寸 */
+.sidebar-logo {
+    max-width: 100%;
+    /* 最大宽度不超过容器 */
+    max-height: 80px;
+    /* 限制最大高度 */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    /* 保持图片比例 */
+}
+
+/* 导航菜单样式 */
+.nav-menu {
+    flex: 1;
+    padding: 20px 0;
+    overflow-y: auto;
+}
+
+.nav-menu ul {
+    list-style-type: none;
+}
+
+.nav-menu li {
+    margin-bottom: 2px;
+}
+
+.nav-menu a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-menu a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    font-weight: 500;
+}
+
+.nav-menu a.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: white;
+}
+
+/* 菜单图标样式 */
+.menu-icon {
+    width: 22px;
+    height: 22px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.menu-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 主内容区域 */
+.main-content {
+    flex: 1;
+    margin-left: 220px;
+    min-height: 100vh;
+}
+
+/* 固定顶部栏 */
+.fixed-top-bar {
+    position: fixed;
+    top: 0;
+    left: 220px;
+    right: 0;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 999;
+}
+
+.page-title h2 {
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+}
+
+.page-title p {
+    color: #666;
+    margin-top: 2px;
+    font-size: 13px;
+}
+
+/* 用户信息区域样式 */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    position: relative;
+    /* 相对定位，用于下拉菜单的绝对定位 */
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: white !important;
+    color: #a6171c !important;
+    border: 2px solid #a6171c !important;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.user-name {
+    font-weight: 500;
+}
+
+.user-dropdown {
+    margin-left: 5px;
+    color: #888;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+    /* 旋转过渡效果 */
+}
+
+/* 下拉菜单样式 */
+.user-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    /* 定位到用户信息下方 */
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    padding: 10px 0;
+    z-index: 1000;
+    display: none;
+    /* 默认隐藏 */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+/* 下拉菜单显示状态 */
+.user-dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 下拉菜单项样式 */
+.dropdown-item {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+/* 退出登录项特殊样式 */
+.dropdown-item.logout {
+    color: #a6171c;
+    border-top: 1px solid #eee;
+    margin-top: 5px;
+    padding-top: 15px;
+    margin-top: 5px;
+}
+
+.dropdown-item.logout:hover {
+    background-color: rgba(166, 23, 28, 0.05);
+}
+
+/* 下拉菜单三角箭头 */
+.user-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    transform: rotate(45deg);
+    box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.05);
+    z-index: -1;
+}
+
+/* 内容容器基础样式 */
+.content-wrapper {
+    padding: 30px;
+    margin-top: 60px;
+    min-height: calc(100vh - 60px);
+}
+
+/* 页脚基础样式 */
+.footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}
+
+/* 按钮基础样式 */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #a6171c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #8c1418;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid #a6171c;
+    color: #a6171c;
+}
+
+.btn-outline:hover {
+    background-color: rgba(166, 23, 28, 0.1);
+}
+
+/* 响应式基础样式 */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        margin-bottom: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .fixed-top-bar {
+        left: 0;
+    }
+
+    .nav-menu ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-menu li {
+        margin: 5px;
+    }
+
+    .nav-menu a {
+        padding: 10px 15px;
+        border-radius: 4px;
+    }
+
+    .nav-menu a.active::before {
+        width: 100%;
+        height: 3px;
+        top: auto;
+        bottom: 0;
+    }
+
+    .content-wrapper {
+        margin-top: 120px;
+        /* 侧边栏变成横向 + 顶部栏 */
+    }
+
+    /* 响应式下调整logo最大高度 */
+    .sidebar-logo {
+        max-height: 60px;
+    }
+
+    /* 响应式下的下拉菜单 */
+    .user-dropdown-menu {
+        right: -20px;
+    }
+}

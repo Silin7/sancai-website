@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="red">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>滨江区审计局 | 工程造价AI助手</title>
+
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- 本地TailwindCSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
+
+  <!-- 页面专属样式 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cost-ai.css') }}">
+</head>
+
+<body class="font-sans bg-gray-50 text-gray-900 h-screen flex overflow-hidden">
+  <!-- 左侧导航栏 -->
+  <aside class="w-64 flex flex-col h-full shadow-sm z-10">
+    <!-- Logo区域 -->
+    <div class="sidebar-header flex items-center space-x-3">
+      <div class="w-10 h-10 rounded-lg logo-container flex items-center justify-center">
+        <i class="fa fa-calculator text-xl"></i>
+      </div>
+      <div>
+        <h1 class="text-lg font-bold">造价AI助手</h1>
+        <p class="text-xs text-gray-500">智能工程造价解决方案</p>
+      </div>
+    </div>
+
+    <!-- 功能导航 -->
+    <nav class="p-3 space-y-1 flex-1 overflow-y-auto scrollbar-hide">
+      <p class="text-sm font-medium text-gray-500 uppercase tracking-wider px-3 py-2">核心功能</p>
+
+      <!-- 返回仪表板 -->
+      <a href="/dashboard"
+        class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-white/10 transition-colors duration-200">
+        <i class="fa fa-home w-5 text-center"></i>
+        <span>返回仪表板</span>
+      </a>
+
+      <!-- 新对话按钮 -->
+      <button id="new-conversation"
+        class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg bg-white/10 font-medium hover:bg-white/20 transition-colors duration-200 text-white">
+        <i class="fa fa-plus-circle w-5 text-center"></i>
+        <span>新对话</span>
+      </button>
+
+
+      <!-- 历史对话区域 -->
+      <div class="mt-6">
+        <p class="text-sm font-medium text-gray-500 uppercase tracking-wider px-3 py-2">历史对话</p>
+        <div id="conversation-list" class="space-y-1">
+          <!-- 动态内容将在这里加载 -->
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- 主内容区域 -->
+  <div class="main-content">
+    <!-- 固定顶部栏 -->
+    <div class="fixed-top-bar">
+      <div class="page-title">
+        <h2>滨江区审计局 | 工程造价AI助手</h2>
+      </div>
+
+      <!-- 聊天标题 (居中) -->
+      <div class="chat-title-container" id="chatTitleContainer" style="display: none;">
+        <span class="chat-title-text" id="chatTitleText">新对话</span>
+        <i class="fa fa-chevron-down chat-title-dropdown-icon"></i>
+
+        <!-- 聊天标题下拉菜单（由 JS 动态生成内容）-->
+        <div class="chat-title-menu" id="chatTitleMenu"></div>
+      </div>
+
+      <!-- 用户信息区域 -->
+      <div class="user-info" id="userInfo">
+        <div class="user-avatar" id="user-avatar"></div>
+        <div class="user-name" id="username">加载中...</div>
+        <div class="user-dropdown">▼</div>
+
+        <!-- 下拉菜单 -->
+        <div class="user-dropdown-menu" id="userDropdownMenu">
+          <a href="/avatar" class="dropdown-item">用户资料</a>
+          <a href="/setting" class="dropdown-item">系统设置</a>
+          <a href="#" class="dropdown-item logout" id="logoutBtn">退出登录</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 实际内容区域 -->
+    <div class="content-wrapper bg-[#f9fafb] relative">
+      <!-- 对话内容区域 -->
+      <div class="flex-1 overflow-y-auto px-4 py-3 scrollbar-hide relative z-10" id="chat-container"
+        style="background-color: #f5f5f5;">
+        <!-- 消息动态渲染 -->
+      </div>
+
+      <!-- 欢迎消息区域 -->
+      <div id="welcome-message" class="relative z-10 flex flex-col items-center justify-center p-6 hidden"
+        style="background-color: #f5f5f5;">
+        <div class="max-w-2xl mx-auto animate-fade-in-up">
+          <div class="bg-white shadow-sm border border-gray-100 p-8 text-center" style="border-radius: 20px;">
+
+            <!-- 图标 + 标题 + 描述 -->
+            <div class="inline-flex items-center justify-center rounded-full bg-red-50 text-primary"
+              style="width: 56px; height: 56px; font-size: 24px; box-shadow: 0 4px 12px rgba(166, 23, 28, 0.1);">
+              <i class="fa fa-calculator"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900" style="margin-top: 0.875rem; margin-bottom: 0.375rem;">
+              欢迎使用造价AI助手</h3>
+            <p class="text-gray-500 text-sm" style="margin-bottom: 1.25rem;">智能解答工程造价问题，快速获取专业建议</p>
+
+            <!-- 2x2 示例问题网格 -->
+            <div class="grid grid-cols-2 gap-2.5">
+              <button onclick="setInput('如何计算异形柱的混凝土工程量？')"
+                class="text-left p-3 bg-gray-50 rounded-xl hover:bg-red-50 hover:text-primary transition-all text-sm text-gray-600 group border border-transparent hover:border-red-100">
+                <span class="mr-1.5">💡</span>异形柱混凝土工程量计算
+              </button>
+              <button onclick="setInput('2013清单规范中土方工程量计算规则是什么？')"
+                class="text-left p-3 bg-gray-50 rounded-xl hover:bg-red-50 hover:text-primary transition-all text-sm text-gray-600 group border border-transparent hover:border-red-100">
+                <span class="mr-1.5">📚</span>土方工程量计算规则
+              </button>
+              <button onclick="setInput('钢筋工程量如何按图集计算？')"
+                class="text-left p-3 bg-gray-50 rounded-xl hover:bg-red-50 hover:text-primary transition-all text-sm text-gray-600 group border border-transparent hover:border-red-100">
+                <span class="mr-1.5">🔧</span>钢筋工程量图集计算
+              </button>
+              <button onclick="setInput('工程造价常用的取费标准有哪些？')"
+                class="text-left p-3 bg-gray-50 rounded-xl hover:bg-red-50 hover:text-primary transition-all text-sm text-gray-600 group border border-transparent hover:border-red-100">
+                <span class="mr-1.5">📋</span>常用取费标准查询
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部输入 -->
+      <div class="input-area-wrapper p-4 md:p-6">
+        <div class="input-container max-w-4xl mx-auto">
+          <div class="input-content">
+            <!-- 文件预览区域 -->
+            <div class="file-preview-area" id="file-preview-area">
+              <!-- 动态插入文件标签 -->
+            </div>
+
+            <!-- 输入框区域 -->
+            <div class="textarea-wrapper">
+              <textarea id="user-input" class="input-textarea" rows="1" placeholder=" " maxlength="2000"></textarea>
+              <div class="placeholder-overlay">
+                请输入您的问题... 例如:水泥的价格是多少?
+              </div>
+            </div>
+
+            <!-- 底部控制栏 -->
+            <div class="controls-bar">
+              <div class="left-controls">
+                <label for="file-upload" class="icon-button" title="上传文件">
+                  <i class="fa fa-paperclip"></i>
+                </label>
+                <input type="file" id="file-upload" class="file-input" multiple accept=".pdf,.doc,.docx,.txt" disabled>
+                <span class="helper-text">支持PDF、Word</span>
+              </div>
+
+              <div class="right-controls">
+                <span class="char-count" id="char-count">0/2000</span>
+                <button class="send-button" id="send-btn">
+                  <span>发送</span>
+                  <i class="fa fa-paper-plane fa-xs"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-notice">
+          <p class="text-xs text-gray-400">AI生成内容仅供参考，请以实际国家标准、规范为准</p>
+        </div>
+      </div>
+
+      <!-- 重命名模态框 -->
+      <div id="rename-modal" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-xl shadow-2xl w-96 p-6 transform transition-all scale-100">
+          <h3 class="text-lg font-bold text-gray-900 mb-4">修改对话标题</h3>
+          <input type="text" id="rename-input"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a6171c]/50 focus:border-[#a6171c] mb-4"
+            placeholder="请输入新标题" maxlength="50">
+          <div class="flex justify-end space-x-3">
+            <button onclick="closeRenameModal()"
+              class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">取消</button>
+            <button onclick="submitRename()"
+              class="px-4 py-2 bg-[#a6171c] text-white rounded-lg hover:bg-[#8a1217] transition-colors">确认</button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 注意：ui必须最先加载（包含全局变量和工具函数），然后是conversation，最后是message -->
+      <script src="{{ url_for('static', filename='js/cost-ai_ui.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/cost-ai_conversation.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/cost-ai_message.js') }}"></script>
+</body>
+
+</html>

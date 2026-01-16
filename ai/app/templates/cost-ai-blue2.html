@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="blue">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工程造价AI助手</title>
+
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- 页面专属样式 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cost-ai.css') }}">
+
+  <!-- 蓝色主题覆盖样式 -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ========== 蓝色主题覆盖 ========== */
+    
+    /* 侧边栏 - 白色背景 */
+    aside {
+      background-color: white !important;
+      border-right: 1px solid #e5e7eb !important;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+    }
+
+    /* 悬浮效果 */
+    .hover-lift:hover {
+      box-shadow: 0 4px 12px rgba(22, 93, 255, 0.15) !important;
+    }
+
+    /* 用户头像边框 */
+    .user-avatar {
+      color: #165DFF !important;
+      border: 2px solid #165DFF !important;
+    }
+
+
+    /* 输入框聚焦 */
+    .input-container:focus-within {
+      border-color: #165DFF !important;
+      box-shadow: 0 4px 12px rgba(22, 93, 255, 0.1), 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+    }
+
+    /* 发送按钮 - 蓝色 */
+    .send-button {
+      background: #165DFF !important;
+    }
+
+    .send-button:hover:not(:disabled) {
+      background: #0E4FD8 !important;
+    }
+
+    /* 重试按钮颜色 */
+    .retry-container button {
+      color: #165DFF !important;
+    }
+
+    .retry-container button:hover {
+      color: #0E4FD8 !important;
+    }
+
+    /* ========== 对话气泡 - 白色卡片样式 ========== */
+    
+    /* AI气泡 - 白色卡片 */
+    .chat-bubble-ai {
+      background-color: #ffffff !important;
+      color: #1D2129 !important;
+      border: 1px solid #e5e7eb !important;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* 用户气泡 - 浅蓝色背景 */
+    .chat-bubble-user {
+      background-color: rgba(22, 93, 255, 0.1) !important;
+      color: #1D2129 !important;
+      border: 1px solid rgba(22, 93, 255, 0.2) !important;
+    }
+
+    /* 流式输出光标 - 蓝色 */
+    .streaming-cursor {
+      background-color: #165DFF !important;
+    }
+
+    /* 加载动画点 - 蓝色 */
+    #loading-indicator .chat-bubble-ai div div {
+      background-color: #165DFF !important;
+    }
+
+    /* ========== 历史对话列表样式覆盖（白色侧边栏） ========== */
+    
+    /* 对话项基础样式 - 覆盖红色版本的白色文字 */
+    #conversation-list > div {
+      color: #1D2129 !important;
+      background-color: transparent !important;
+    }
+
+    #conversation-list > div:hover {
+      background-color: rgba(22, 93, 255, 0.05) !important;
+    }
+
+    /* 激活状态的对话项 */
+    #conversation-list > div.bg-white {
+      background-color: rgba(22, 93, 255, 0.05) !important;
+      border-left: 4px solid #165DFF !important;
+      color: #165DFF !important;
+    }
+
+    /* 对话项内文字颜色 */
+    #conversation-list > div h3 {
+      color: #1D2129 !important;
+    }
+
+    #conversation-list > div.bg-white h3 {
+      color: #165DFF !important;
+    }
+
+    /* 三点菜单图标 */
+    #conversation-list > div span.block {
+      background-color: #86909C !important;
+    }
+
+    #conversation-list > div.bg-white span.block {
+      background-color: #165DFF !important;
+    }
+
+    /* 上下文菜单 */
+    .context-menu {
+      background-color: white !important;
+    }
+
+    .context-menu button {
+      color: #333 !important;
+    }
+
+    .context-menu button:hover {
+      color: #165DFF !important;
+      background-color: #f5f5f5 !important;
+    }
+
+    /* 隐藏元素 */
+    .hidden {
+      display: none !important;
+    }
+
+    /* 滚动条隐藏 */
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* 新对话按钮悬浮 */
+    #new-conversation:hover {
+      background-color: rgba(22, 93, 255, 0.1);
+    }
+
+    /* 示例问题按钮悬浮 */
+    .example-btn:hover {
+      background-color: rgba(22, 93, 255, 0.05) !important;
+      color: #165DFF !important;
+      border-color: rgba(22, 93, 255, 0.2) !important;
+    }
+
+    /* 取消按钮悬浮 */
+    .cancel-btn:hover {
+      background-color: #f3f4f6;
+    }
+
+    /* 确认按钮悬浮 */
+    .confirm-btn:hover {
+      background-color: #0E4FD8 !important;
+    }
+
+    /* 渐入动画 */
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in-up {
+      animation: fade-in-up 0.6s ease-out;
+    }
+  </style>
+</head>
+
+<body style="font-family: Inter, system-ui, sans-serif; background-color: #f9fafb; color: #111827; height: 100vh; display: flex; overflow: hidden;">
+  <!-- 左侧导航栏 -->
+  <aside style="width: 256px; background-color: white; border-right: 1px solid #e5e7eb; display: flex; flex-direction: column; height: 100%; box-shadow: 0 1px 2px rgba(0,0,0,0.05); z-index: 10;">
+    <!-- Logo区域 -->
+    <div style="padding: 16px; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; gap: 12px;">
+      <div style="width: 40px; height: 40px; border-radius: 8px; background-color: rgba(22,93,255,0.1); display: flex; align-items: center; justify-content: center;">
+        <i class="fa fa-calculator" style="color: #165DFF; font-size: 20px;"></i>
+      </div>
+      <div>
+        <h1 style="font-size: 18px; font-weight: bold; color: #165DFF; margin: 0;">造价AI助手</h1>
+        <p style="font-size: 12px; color: #86909C; margin: 0;">智能工程造价解决方案</p>
+      </div>
+    </div>
+
+    <!-- 功能导航 -->
+    <nav style="padding: 12px; flex: 1; display: flex; flex-direction: column; gap: 4px;" class="scrollbar-hide">
+      <p style="font-size: 12px; font-weight: 500; color: #86909C; text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 12px;">核心功能</p>
+
+      <!-- 新对话按钮 -->
+      <button id="new-conversation"
+        style="width: 100%; display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; color: #165DFF; background-color: rgba(22,93,255,0.05); font-weight: 500; border: none; cursor: pointer; font-size: 14px; text-align: left; transition: background-color 0.2s;">
+        <i class="fa fa-plus-circle" style="width: 20px; text-align: center;"></i>
+        <span>新对话</span>
+      </button>
+
+      <!-- 历史对话区域 -->
+      <div style="margin-top: 24px;">
+        <p style="font-size: 12px; font-weight: 500; color: #86909C; text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 12px;">历史对话</p>
+        <div id="conversation-list" class="scrollbar-hide" style="overflow-y: auto; height: calc(100vh - 280px); display: flex; flex-direction: column; gap: 4px;">
+          <!-- 动态内容将在这里加载 -->
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- 主内容区域 -->
+  <div class="main-content" style="flex: 1; display: flex; flex-direction: column; height: 100vh; min-width: 0; background-color: white;">
+    <!-- 固定顶部栏 -->
+    <div class="fixed-top-bar" style="height: 64px; background-color: white; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; flex-shrink: 0; z-index: 20;">
+      <div class="page-title">
+        <h2 style="font-size: 18px; font-weight: 700; color: #1f2937; letter-spacing: -0.015em; margin: 0;">工程造价AI助手</h2>
+      </div>
+
+      <!-- 聊天标题 (居中) -->
+      <div class="chat-title-container" id="chatTitleContainer" style="display: none; position: absolute; left: 50%; transform: translateX(-50%); align-items: center; gap: 8px; cursor: pointer; padding: 8px 16px; border-radius: 8px; max-width: 400px;">
+        <span class="chat-title-text" id="chatTitleText" style="font-size: 15px; font-weight: 600; color: #1f2937; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 350px;">新对话</span>
+        <i class="fa fa-chevron-down chat-title-dropdown-icon" style="color: #9ca3af; font-size: 10px; transition: transform 0.3s ease;"></i>
+
+        <!-- 聊天标题下拉菜单（由 JS 动态生成内容）-->
+        <div class="chat-title-menu" id="chatTitleMenu"></div>
+      </div>
+
+      <!-- 用户信息区域 -->
+      <div class="user-info" id="userInfo" style="display: flex; align-items: center; gap: 12px; cursor: pointer; position: relative;">
+        <div class="user-avatar" id="user-avatar" style="width: 36px; height: 36px; border-radius: 50%; background-color: white; overflow: hidden; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px;"></div>
+        <div class="user-name" id="username" style="font-weight: 500; font-size: 14px; color: #333;">加载中...</div>
+        <div class="user-dropdown" style="margin-left: 5px; color: #888; font-size: 12px; transition: transform 0.3s ease;">▼</div>
+
+        <!-- 下拉菜单 -->
+        <div class="user-dropdown-menu" id="userDropdownMenu" style="position: absolute; top: calc(100% + 10px); right: 0; background-color: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); min-width: 150px; padding: 10px 0; z-index: 1000; display: none; opacity: 0; transform: translateY(-10px); transition: all 0.3s ease;">
+          <a href="/avatar" class="dropdown-item" style="display: block; padding: 10px 20px; color: #333; text-decoration: none; font-size: 14px;">用户资料</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 实际内容区域 -->
+    <div class="content-wrapper" style="flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; background-color: #f9fafb;">
+      <!-- 对话内容区域 -->
+      <div class="scrollbar-hide" id="chat-container"
+        style="flex: 1; overflow-y: auto; padding: 16px 24px; background-color: #f5f5f5; position: relative; z-index: 10;">
+        <!-- 消息动态渲染 -->
+      </div>
+
+      <!-- 欢迎消息区域 -->
+      <div id="welcome-message" class="hidden" style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; background-color: #f5f5f5;">
+        <div class="animate-fade-in-up" style="max-width: 672px; margin: 0 auto;">
+          <div style="background-color: white; box-shadow: 0 1px 2px rgba(0,0,0,0.05); border: 1px solid #f3f4f6; padding: 32px; text-align: center; border-radius: 20px;">
+
+            <!-- 图标 + 标题 + 描述 -->
+            <div style="display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; width: 56px; height: 56px; font-size: 24px; background-color: rgba(22, 93, 255, 0.1); color: #165DFF; box-shadow: 0 4px 12px rgba(22, 93, 255, 0.1);">
+              <i class="fa fa-calculator"></i>
+            </div>
+            <h3 style="font-size: 20px; font-weight: 700; color: #111827; margin-top: 14px; margin-bottom: 6px;">欢迎使用造价AI助手</h3>
+            <p style="color: #6b7280; font-size: 14px; margin-bottom: 20px;">智能解答工程造价问题，快速获取专业建议</p>
+
+            <!-- 2x2 示例问题网格 -->
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+              <button onclick="setInput('如何计算异形柱的混凝土工程量？')" class="example-btn"
+                style="text-align: left; padding: 12px; background-color: #f9fafb; border-radius: 12px; transition: all 0.2s; font-size: 14px; color: #4b5563; border: 1px solid transparent; cursor: pointer;">
+                <span style="margin-right: 6px;">💡</span>智能化施工管理系统价格
+              </button>
+              <button onclick="setInput('2013清单规范中土方工程量计算规则是什么？')" class="example-btn"
+                style="text-align: left; padding: 12px; background-color: #f9fafb; border-radius: 12px; transition: all 0.2s; font-size: 14px; color: #4b5563; border: 1px solid transparent; cursor: pointer;">
+                <span style="margin-right: 6px;">📚</span>价格超过50万的产品有哪些
+              </button>
+              <button onclick="setInput('钢筋工程量如何按图集计算？')" class="example-btn"
+                style="text-align: left; padding: 12px; background-color: #f9fafb; border-radius: 12px; transition: all 0.2s; font-size: 14px; color: #4b5563; border: 1px solid transparent; cursor: pointer;">
+                <span style="margin-right: 6px;">🔧</span>TYF品牌有什么产品
+              </button>
+              <button onclick="setInput('工程造价常用的取费标准有哪些？')" class="example-btn"
+                style="text-align: left; padding: 12px; background-color: #f9fafb; border-radius: 12px; transition: all 0.2s; font-size: 14px; color: #4b5563; border: 1px solid transparent; cursor: pointer;">
+                <span style="margin-right: 6px;">📋</span>焊网机多少钱
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部输入 -->
+      <div class="input-area-wrapper" style="flex-shrink: 0; background-color: #f5f5f5; padding: 16px 24px;">
+        <div class="input-container" style="max-width: 896px; margin: 0 auto; background: #ffffff; border-radius: 16px; border: 1px solid transparent; transition: all 0.2s; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);">
+          <div class="input-content" style="padding: 14px; display: flex; flex-direction: column; gap: 12px;">
+            <!-- 文件预览区域 -->
+            <div class="file-preview-area" id="file-preview-area" style="display: none; padding: 8px; padding-bottom: 4px; border-bottom: 1px solid #f3f4f6; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+              <!-- 动态插入文件标签 -->
+            </div>
+
+            <!-- 输入框区域 -->
+            <div class="textarea-wrapper" style="position: relative;">
+              <textarea id="user-input" class="input-textarea" rows="1" placeholder=" " maxlength="2000"
+                style="width: 100%; max-height: 160px; padding: 6px; background: transparent; border: none; outline: none; resize: none; font-size: 16px; line-height: 1.5; color: #111827; font-family: inherit;"></textarea>
+              <div class="placeholder-overlay" style="position: absolute; top: 6px; left: 6px; color: #9ca3af; pointer-events: none; transition: opacity 0.2s;">
+                请输入您的问题... 例如:有什么防水卷材?
+              </div>
+            </div>
+
+            <!-- 底部控制栏 -->
+            <div class="controls-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 4px;">
+              <div class="left-controls" style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
+                <label for="file-upload" class="icon-button" title="上传文件" style="width: 32px; height: 32px; border-radius: 8px; border: none; background: transparent; color: #6b7280; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; flex-shrink: 0;">
+                  <i class="fa fa-paperclip"></i>
+                </label>
+                <input type="file" id="file-upload" class="file-input" multiple accept=".pdf,.doc,.docx,.txt" disabled style="display: none;">
+                <span class="helper-text" style="font-size: 12px; color: #9ca3af; white-space: nowrap;">支持PDF、Word</span>
+              </div>
+
+              <div class="right-controls" style="display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
+                <span class="char-count" id="char-count" style="font-size: 12px; color: #9ca3af; opacity: 0; transition: opacity 0.2s;">0/2000</span>
+                <button class="send-button" id="send-btn" style="color: white; border: none; border-radius: 8px; padding: 8px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: all 0.3s;">
+                  <span>发送</span>
+                  <i class="fa fa-paper-plane" style="font-size: 12px;"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-notice" style="text-align: center; margin-top: 8px;">
+          <p style="font-size: 12px; color: #9ca3af;">AI生成内容仅供参考，请以实际国家标准、规范为准</p>
+        </div>
+      </div>
+
+      <!-- 重命名模态框 -->
+      <div id="rename-modal" class="modal-overlay hidden" style="position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(2px);">
+        <div style="background-color: white; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); width: 384px; padding: 24px; transform: scale(1); transition: all 0.2s;">
+          <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 16px;">修改对话标题</h3>
+          <input type="text" id="rename-input"
+            style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px; outline: none; margin-bottom: 16px; font-size: 14px;"
+            placeholder="请输入新标题" maxlength="50">
+          <div style="display: flex; justify-content: flex-end; gap: 12px;">
+            <button onclick="closeRenameModal()" class="cancel-btn"
+              style="padding: 8px 16px; color: #4b5563; background: transparent; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.2s;">取消</button>
+            <button onclick="submitRename()" class="confirm-btn"
+              style="padding: 8px 16px; background-color: #165DFF; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.2s;">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 注意：ui必须最先加载（包含全局变量和工具函数），然后是conversation，最后是message -->
+  <script src="{{ url_for('static', filename='js/cost-ai_ui.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/cost-ai_conversation.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/cost-ai_message.js') }}"></script>
+</body>
+
+</html>
