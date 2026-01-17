@@ -55,6 +55,13 @@ function getBannerlist() {
 // 数字化解决方案
 const solutionPactive: any = ref('')
 const solutionParent: any = ref([])
+const solutionParent2: any = ref([{
+  id: 'silin-001',
+  name: '数字技术应用论证',
+}, {
+  id: 'silin-002',
+  name: '数字实施方案论证',
+}])
 const solutionChild: any = ref([])
 
 function getSolutioncate() {
@@ -150,6 +157,11 @@ onBeforeUnmount(() => {
                 @click="solutionPchange(item)">
                 {{ item.name }}
               </div>
+              <div v-for="(item, index) in solutionParent2" :key="index"
+                :class="['digitizeSubItem', item.id === solutionPactive ? 'digitizeActive' : '']"
+                @click="solutionPchange(item)">
+                {{ item.name }}
+              </div>
             </div>
           </div>
           <div class="digitizeClassbox">
@@ -165,13 +177,21 @@ onBeforeUnmount(() => {
                 })">提交需求</button>
               </div>
             </template>
-            <div v-if="solutionPactive === 1" class="digitizeClassitem">
+            <div v-if="solutionPactive === 'silin-001'" class="digitizeClassitem">
               <div class="digitizeClassitemfa frcc">
                 <Icon icon="roentgen:building-construction" />
               </div>
               <div class="digitizeClassitemtext"> 数字技术应用论证需求单</div>
-              <!-- <div class="digitizeClassiteminfo">{{ item.description2 }}</div> -->
               <button @click="pageJump('requirements2', {
+                id: 1
+              })">提交需求</button>
+            </div>
+            <div v-if="solutionPactive === 'silin-002'" class="digitizeClassitem">
+              <div class="digitizeClassitemfa frcc">
+                <Icon icon="roentgen:building-construction" />
+              </div>
+              <div class="digitizeClassitemtext"> 数字实施方案论证需求单</div>
+              <button @click="pageJump('requirements3', {
                 id: 1
               })">提交需求</button>
             </div>
