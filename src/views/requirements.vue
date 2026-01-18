@@ -90,7 +90,7 @@ function tijiaoxuqiu() {
         }
       }
       item.value3 = Array.from(new Set(item.value))
-      item.value3.push(`其他(${item.remark || ''})`)
+      // item.value3.push(`其他(${item.remark || ''})`)
       requirements.value[item.name] = item.value3
     }
     if (num.value >= 7) {
