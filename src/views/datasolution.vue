@@ -58,9 +58,6 @@ const solutionParent: any = ref([])
 const solutionParent2: any = ref([{
   id: 'silin-001',
   name: '数字技术应用论证',
-}, {
-  id: 'silin-002',
-  name: '数字实施方案论证',
 }])
 const solutionChild: any = ref([])
 
@@ -186,7 +183,7 @@ onBeforeUnmount(() => {
                 id: 1
               })">提交需求</button>
             </div>
-            <div v-if="solutionPactive === 'silin-002'" class="digitizeClassitem">
+            <!-- <div v-if="solutionPactive === 'silin-002'" class="digitizeClassitem">
               <div class="digitizeClassitemfa frcc">
                 <Icon icon="roentgen:building-construction" />
               </div>
@@ -194,7 +191,7 @@ onBeforeUnmount(() => {
               <button @click="pageJump('requirements3', {
                 id: 1
               })">提交需求</button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

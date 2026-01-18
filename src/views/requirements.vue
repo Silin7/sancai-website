@@ -73,20 +73,47 @@ function tijiaoxuqiu() {
     })
     return
   }
-  datasolutionData.value.requirements = {}
   const requirements: any = ref({})
-  for (let i = 0; i < datasolutionData.value.multiitems.length; i++) {
-    const item = datasolutionData.value.multiitems[i]
-    if (!item.value) {
+  datasolutionData.value.requirements = {}
+  if (datasolutionData.value.cate_name === '数字实施方案论证') {
+    const num = ref(0)
+    for (let i = 0; i < datasolutionData.value.multiitems.length; i++) {
+      const item = datasolutionData.value.multiitems[i]
+      if (!item.value) {
+        num.value++
+        if (item.name === '论证专家') {
+          ElMessage({
+            type: 'error',
+            message: `请选择论证专家`,
+          })
+          return
+        }
+      }
+      item.value3 = Array.from(new Set(item.value))
+      item.value3.push(`其他(${item.remark || ''})`)
+      requirements.value[item.name] = item.value3
+    }
+    if (num.value >= 7) {
       ElMessage({
         type: 'error',
-        message: `请选择第${i + 1}条技术需求信息`,
+        message: `1-7任意选一个`,
       })
       return
     }
-    item.value3 = Array.from(new Set(item.value))
-    item.value3.push(`其他(${item.remark || ''})`)
-    requirements.value[item.name] = item.value3
+  } else {
+    for (let i = 0; i < datasolutionData.value.multiitems.length; i++) {
+      const item = datasolutionData.value.multiitems[i]
+      if (!item.value) {
+        ElMessage({
+          type: 'error',
+          message: `请选择第${i + 1}条技术需求信息`,
+        })
+        return
+      }
+      item.value3 = Array.from(new Set(item.value))
+      item.value3.push(`其他(${item.remark || ''})`)
+      requirements.value[item.name] = item.value3
+    }
   }
   solutionordersApi({
     thetype: datasolutionData.value.thetype,

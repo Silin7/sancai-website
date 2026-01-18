@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import {
@@ -7,6 +7,16 @@ import {
   // verifyverificationcodeApi,
   baseregisterApi,
 } from '@/api/modules/login'
+import { sysinfosApi } from '@/api/modules/basic'
+
+const sys_filing: any = ref('')
+onMounted(() => {
+  sysinfosApi().then((res: any) => {
+    if (res) {
+      sys_filing.value = res.filter((item: any) => item.ky === 'sys_filing')[0].val
+    }
+  })
+})
 
 const isreadRuler: any = ref(false)
 const email: any = ref('')
@@ -171,7 +181,7 @@ onUnmounted(() => {
       <div class="gologin">已有账号？<span @click="pageJump('login')">立即登录</span></div>
     </div>
     <div class="copyright">
-      Copyright ©2025 新材网 版权所有 浙ICP备123456789-1号浙公网安备37000000号
+      {{ sys_filing }}
     </div>
   </div>
 </template>
