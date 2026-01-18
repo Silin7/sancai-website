@@ -57,6 +57,11 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', updateWindowWidth)
   window.removeEventListener('scroll', handleScroll)
 })
+
+// 在线咨询
+function zxzxFunction() {
+  window.open('http://kefu.xinhaocaiwang.com:5003/cost-ai', '_blank')
+}
 </script>
 
 <template>
@@ -68,7 +73,7 @@ onBeforeUnmount(() => {
       <span v-if="windowWidth > 600 && mouseState === 'ai'" class="flexSpan">智能助手</span>
     </div>
 
-    <div class="relativeBox" @mouseenter="iconMouseenter('zxzx')" @mouseleave="iconMouseleave">
+    <div class="relativeBox" @mouseenter="iconMouseenter('zxzx')" @mouseleave="iconMouseleave" @click="zxzxFunction">
       <div v-if="foldState" class="float-btn">
         <i class="fa fa-headphones"></i>
       </div>
