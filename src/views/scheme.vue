@@ -296,7 +296,7 @@ onBeforeUnmount(() => {
       <div class="containerLeft">
         <div class="containerClass">
           <div class="containerClassRow">
-            <button class="containerClassColActive">数字技术应用论证/数字实施方案论证</button>
+            <!-- <button class="containerClassColActive">数字技术应用论证/数字实施方案论证</button> -->
             <button class="containerClassCol" @click="pageJump('materials')">材料/设备</button>
             <button class="containerClassCol" @click="pageJump('sale')">智能建造装备</button>
             <button class="containerClassCol" @click="pageJump('products')">信息化产品/服务</button>

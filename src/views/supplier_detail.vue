@@ -112,8 +112,7 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="sdhGys">
-          <img v-if="supplierDetails.company_imgs" :src="supplierDetails.company_imgs[0]"
-            class="supplierPiImg" />
+          <img v-if="supplierDetails.company_imgs" :src="supplierDetails.company_imgs[0]" class="supplierPiImg" />
           <div class="sdhgCenter">
             <div class="sdhgcTop">
               <div class="sdhgctTitle">{{ supplierDetails.company_name }}</div>
@@ -226,8 +225,7 @@ onBeforeUnmount(() => {
             <div class="sdclxiTitle">资质证书</div>
             <div class="sdclxiCgBox">
               <div v-for="(item, index) in gyszzList" :key="index" class="sdclxiCgItem">
-                <img v-if="item.qualification_imgs" :src="item.qualification_imgs[0]"
-                  class="supplierPiImg" />
+                <img v-if="item.qualification_imgs" :src="item.qualification_imgs[0]" class="supplierPiImg" />
                 <div class="sdclxicIp">{{ item.name }}</div>
               </div>
             </div>
@@ -273,8 +271,8 @@ onBeforeUnmount(() => {
           <div class="sdclHzalRow">
             <button :class="gyscpState === '' ? 'sdclHzalColActive' : 'sdclHzalCol'"
               @click="gyscpStateChange('')">全部产品</button>
-            <button :class="gyscpState === '0' ? 'sdclHzalColActive' : 'sdclHzalCol'"
-              @click="gyscpStateChange('0')">数字技术应用论证/数字实施方案论证</button>
+            <!-- <button :class="gyscpState === '0' ? 'sdclHzalColActive' : 'sdclHzalCol'"
+              @click="gyscpStateChange('0')">数字技术应用论证/数字实施方案论证</button> -->
             <button :class="gyscpState === '1' ? 'sdclHzalColActive' : 'sdclHzalCol'"
               @click="gyscpStateChange('1')">材料/设备</button>
             <button :class="gyscpState === '2' ? 'sdclHzalColActive' : 'sdclHzalCol'"

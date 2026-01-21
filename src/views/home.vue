@@ -466,7 +466,18 @@ onBeforeUnmount(() => {
             <img v-if="pcatePactive === 3 && item.title === '信息化产品/服务'" :src="item.secimg" />
           </template>
           <div class="containerGridMaod">
-            <div class="containerGridContent">
+            <!-- 恢复的时候删除 v-if="pcatePactive === 0" -->
+            <div v-if="pcatePactive === 0" class="containerGridContent">
+              <div class="containerGridItem" @click="pageJump('requirements2', { id: 1 })">
+                <Icon icon="item.theicon" />
+                <div class="containerGridimginfo">数字技术应用论证</div>
+              </div>
+              <div class="containerGridItem" @click="pageJump('requirements', { id: 22 })">
+                <Icon icon="item.theicon" />
+                <div class="containerGridimginfo">数字实施方案论证</div>
+              </div>
+            </div>
+            <div v-else class="containerGridContent">
               <div v-for="(item, index) in pcateChild" :key="index" class="containerGridItem" @click="rcjxJump(item)">
                 <Icon :icon="item.theicon" />
                 <div class="containerGridimginfo">{{ item.name }}</div>

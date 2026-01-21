@@ -281,7 +281,7 @@ const value1 = ref(4.8)
         <div class="pdNavigation">
           <span @click="pageJump('home')">首页</span>
           <span class="pdNavigationXg">/</span>
-          <span v-if="pathname === 'scheme'" @click="pageJump('scheme')"> 数字技术应用论证/数字实施方案论证 </span>
+          <!-- <span v-if="pathname === 'scheme'" @click="pageJump('scheme')"> 数字技术应用论证/数字实施方案论证 </span> -->
           <span v-if="pathname === 'materials'" @click="pageJump('materials')"> 材料/设备 </span>
           <span v-if="pathname === 'sale'" @click="pageJump('sale')"> 智能建造装备 </span>
           <span v-if="pathname === 'products'" @click="pageJump('products')">
@@ -290,16 +290,16 @@ const value1 = ref(4.8)
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-          }}</span>
+            }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-          }}</span>
+            }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -537,7 +537,7 @@ const value1 = ref(4.8)
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-              }}</span>
+                }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>

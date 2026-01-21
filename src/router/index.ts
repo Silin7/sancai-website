@@ -111,6 +111,18 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/requirements2',
+    name: 'requirements2',
+    component: () => import('@/views/requirements2.vue'),
+    meta: {
+      title: '数据方案组价',
+      stcode: 'datasolution',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
     path: '/requirements3',
     name: 'requirements3',
     component: () => import('@/views/requirements3.vue'),

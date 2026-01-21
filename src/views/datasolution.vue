@@ -55,10 +55,12 @@ function getBannerlist() {
 // 数字化解决方案
 const solutionPactive: any = ref('')
 const solutionParent: any = ref([])
-const solutionParent2: any = ref([{
-  id: 'silin-001',
-  name: '数字技术应用论证',
-}])
+const solutionParent2: any = ref([
+  // {
+  //   id: 'silin-001',
+  //   name: '数字技术应用论证',
+  // }
+])
 const solutionChild: any = ref([])
 
 function getSolutioncate() {

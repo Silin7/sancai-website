@@ -28,7 +28,7 @@ function tabRouterPush(item: any) {
     item.expanded = !item.expanded
     return
   }
-  pageJump(item.name)
+  pageJump(item.name, item.query || {})
   drawerVisible.value = false
 }
 
@@ -38,7 +38,9 @@ const menuList: any = ref([
     title: '人材机信价格库',
     expanded: false,
     children: [
-      { id: '2', title: '数字技术应用论证/数字实施方案论证', path: '/scheme', name: 'scheme' },
+      { id: '21', title: '数字技术应用论证', path: '/requirements2', name: 'requirements2', query: { id: '1' } },
+      { id: '22', title: '数字实施方案论证', path: '/requirements', name: 'requirements', query: { id: '22' } },
+      // { id: '2', title: '数字技术应用论证/数字实施方案论证', path: '/scheme', name: 'scheme' },
       { id: '3', title: '材料/设备', path: '/materials', name: 'materials' },
       { id: '4', title: '智能建造装备', path: '/sale', name: 'sale' },
       { id: '5', title: '信息化产品/服务', path: '/products', name: 'products' },
