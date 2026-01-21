@@ -1,13 +1,13 @@
 import api from '@/api/index'
 
 // // 发送手机验证码
-// export function sendverificationcodeApi(data: any) {
-//   return api.post('/api/client/sms/sms/send-verification-code', null, {
-//     params: {
-//       ...data,
-//     },
-//   })
-// }
+export function sendverificationcodePhoneApi(data: any) {
+  return api.post('/api/client/sms/sms/send-verification-code', null, {
+    params: {
+      ...data,
+    },
+  })
+}
 
 // 发送邮箱验证码
 export function sendverificationcodeApi(data: any) {
@@ -21,6 +21,15 @@ export function sendverificationcodeApi(data: any) {
 // 验证手机验证码
 export function verifyverificationcodeApi(data: any) {
   return api.post('/api/client/sms/sms/verify-verification-code', null, {
+    params: {
+      ...data,
+    },
+  })
+}
+
+// 邮箱注册
+export function baseregisterPhoneApi(data: any) {
+  return api.post('/api/client/base/register-phone', null, {
     params: {
       ...data,
     },
@@ -48,6 +57,15 @@ export function baselogincodeApi(data: any) {
 // 密码登录
 export function baseloginpwdApi(data: any) {
   return api.post('/api/client/base/login/password', null, {
+    params: {
+      ...data,
+    },
+  })
+}
+
+// 发送登录验证码
+export function loginSendCodeApi(data: any) {
+  return api.post('/api/client/base/login/send-code', null, {
     params: {
       ...data,
     },
