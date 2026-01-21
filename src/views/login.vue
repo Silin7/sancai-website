@@ -25,27 +25,27 @@ function setState(code: string) {
   state.value = code
 }
 
-const email: any = ref('')
+const account: any = ref('')
 const password: any = ref('')
 const code: any = ref('')
 
 function getCode() {
-  if (!email.value) {
+  if (!account.value) {
     ElMessage({
       type: 'error',
-      message: '请输入邮箱',
+      message: '请输入账号',
     })
     return
   }
-  if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email.value)) {
-    ElMessage({
-      type: 'error',
-      message: '邮箱格式错误',
-    })
-    return
-  }
+  // if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(account.value)) {
+  //   ElMessage({
+  //     type: 'error',
+  //     message: '账号格式错误',
+  //   })
+  //   return
+  // }
   sendverificationcodeApi({
-    email: email.value,
+    account: account.value,
     scene: 'login',
   }).then((res: any) => {
     if (res) {
@@ -71,20 +71,20 @@ function countdownChange() {
 
 // 验证码登录
 function loginByCoode() {
-  if (!email.value) {
+  if (!account.value) {
     ElMessage({
       type: 'error',
-      message: '请输入邮箱',
+      message: '请输入账号',
     })
     return
   }
-  if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email.value)) {
-    ElMessage({
-      type: 'error',
-      message: '邮箱格式错误',
-    })
-    return
-  }
+  // if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(account.value)) {
+  //   ElMessage({
+  //     type: 'error',
+  //     message: '账号格式错误',
+  //   })
+  //   return
+  // }
   // 快捷登录
   if (state.value === 'kj') {
     if (!code.value) {
@@ -95,7 +95,7 @@ function loginByCoode() {
       return
     }
     // verifyverificationcodeApi({
-    //   email: email.value,
+    //   account: account.value,
     //   code: code.value,
     // }).then((res: any) => {
     //   if (res) {
@@ -113,7 +113,7 @@ function loginByCoode() {
       return
     }
     baseloginpwdApi({
-      email: email.value,
+      account: account.value,
       password: password.value,
     }).then((res: any) => {
       if (res) {
@@ -133,7 +133,7 @@ function loginByCoode() {
 // 验证码登录
 function getBaselogincode() {
   baselogincodeApi({
-    email: email.value,
+    account: account.value,
     code: code.value,
   }).then((res: any) => {
     if (res) {
@@ -168,7 +168,7 @@ onUnmounted(() => {
       <div class="fromBox">
         <div class="fromitem frsc">
           <img src="@/assets/register/user.png" />
-          <el-input v-model="email" style="width: 100%" placeholder="请输入邮箱" clearable />
+          <el-input v-model="account" style="width: 100%" placeholder="请输入账号" clearable />
         </div>
         <div v-if="state === 'mm'" class="fromitem frsc">
           <img src="@/assets/register/pwd.png" />
@@ -177,7 +177,7 @@ onUnmounted(() => {
         </div>
         <div v-if="state === 'kj'" class="fromitem frsc">
           <img src="@/assets/register/yzm.png" />
-          <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="邮箱验证码" clearable />
+          <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="账号验证码" clearable />
           <div v-if="countdown < 60 && countdown > 0" class="djsTimeStyle">
             已发送（{{ countdown }}）
           </div>

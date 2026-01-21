@@ -3,9 +3,9 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
 import {
-  sendverificationcodeApi,
+  sendverificationcodePhoneApi,
   // verifyverificationcodeApi,
-  baseregisterApi,
+  baseregisterPhoneApi,
 } from '@/api/modules/login'
 import { sysinfosApi } from '@/api/modules/basic'
 
@@ -19,28 +19,27 @@ onMounted(() => {
 })
 
 const isreadRuler: any = ref(false)
-const email: any = ref('')
+const phone: any = ref('')
 const password: any = ref('')
 const code: any = ref('')
 
 function getCode() {
-  if (!email.value) {
+  if (!phone.value) {
     ElMessage({
       type: 'error',
-      message: '请输入邮箱',
+      message: '请输入手机号',
     })
     return
   }
-  if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email.value)) {
+  if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(phone.value)) {
     ElMessage({
       type: 'error',
-      message: '邮箱格式错误',
+      message: '手机号格式错误',
     })
     return
   }
-  sendverificationcodeApi({
-    email: email.value,
-    scene: 'register',
+  sendverificationcodePhoneApi({
+    phone: phone.value,
   }).then((res: any) => {
     if (res) {
       countdownChange()
@@ -65,17 +64,17 @@ function countdownChange() {
 
 // 创建账号
 function ceateAccount() {
-  if (!email.value) {
+  if (!phone.value) {
     ElMessage({
       type: 'error',
-      message: '请输入邮箱',
+      message: '请输入手机号',
     })
     return
   }
-  if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email.value)) {
+  if (!/^(?:(?:\+|00)86)?1\d{10}$/.test(phone.value)) {
     ElMessage({
       type: 'error',
-      message: '邮箱格式错误',
+      message: '手机号格式错误',
     })
     return
   }
@@ -109,7 +108,7 @@ function ceateAccount() {
   }
   getBaseregister()
   // verifyverificationcodeApi({
-  //   email: email.value,
+  //   phone: phone.value,
   //   code: code.value,
   // }).then((res: any) => {
   //   if (res) {
@@ -118,10 +117,10 @@ function ceateAccount() {
   // })
 }
 
-// 邮箱注册
+// 手机号注册
 function getBaseregister() {
-  baseregisterApi({
-    email: email.value,
+  baseregisterPhoneApi({
+    phone: phone.value,
     password: password.value,
     code: code.value,
   }).then((res: any) => {
@@ -146,7 +145,7 @@ onUnmounted(() => {
       <div class="hyzc">欢迎注册</div>
       <div class="fromitem frsc">
         <img src="@/assets/register/user.png" />
-        <el-input v-model="email" style="width: 100%" placeholder="请输入邮箱" clearable />
+        <el-input v-model="phone" style="width: 100%" placeholder="请输入手机号" clearable />
       </div>
       <div class="fromitem frsc">
         <img src="@/assets/register/pwd.png" />
@@ -155,7 +154,7 @@ onUnmounted(() => {
       </div>
       <div class="fromitem frsc">
         <img src="@/assets/register/yzm.png" />
-        <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="邮箱验证码" clearable />
+        <el-input v-model="code" style="width: calc(100% - 140px)" placeholder="短信验证码" clearable />
         <div v-if="countdown < 60 && countdown > 0" class="djsTimeStyle">
           已发送（{{ countdown }}）
         </div>
