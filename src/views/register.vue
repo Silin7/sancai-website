@@ -19,6 +19,7 @@ onMounted(() => {
 })
 
 const isreadRuler: any = ref(false)
+const userType: any = ref(2)
 const phone: any = ref('')
 const password: any = ref('')
 const code: any = ref('')
@@ -123,6 +124,7 @@ function getBaseregister() {
     phone: phone.value,
     password: password.value,
     code: code.value,
+    userType: userType.value,
   }).then((res: any) => {
     if (res) {
       ElMessage({
@@ -143,6 +145,18 @@ onUnmounted(() => {
   <div class="registerPage">
     <div class="registerbox">
       <div class="hyzc">欢迎注册</div>
+      <div class="typebox frsc">
+        <div @click="userType = 1" class="frsc">
+          <img v-if="userType === 1" src="@/assets/register/checked.png" alt="" />
+          <img v-else src="@/assets/register/unchecked.png" alt="" />
+          <span>供方</span>
+        </div>
+        <div @click="userType = 2" class="frsc">
+          <img v-if="userType === 2" src="@/assets/register/checked.png" alt="" />
+          <img v-else src="@/assets/register/unchecked.png" alt="" />
+          <span>需方</span>
+        </div>
+      </div>
       <div class="fromitem frsc">
         <img src="@/assets/register/user.png" />
         <el-input v-model="phone" style="width: 100%" placeholder="请输入手机号" clearable />
@@ -226,7 +240,8 @@ onUnmounted(() => {
     }
 
     .typebox {
-      margin-bottom: 20px;
+      cursor: pointer;
+      margin-bottom: 30px;
 
       div {
         display: flex;
