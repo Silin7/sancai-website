@@ -186,7 +186,7 @@ function convertSecondsToHMS(seconds: any) {
         <div class="containerClass">
           <div class="frbc mb15">
             <div class="containerClassTitle">筛选视频</div>
-            <div class="containerClassNumber"><span>128</span>个视频</div>
+            <!-- <div class="containerClassNumber"><span>128</span>个视频</div> -->
           </div>
           <div class="containerClassTbox">
             <i class="fa fa-laptop"></i>
@@ -270,8 +270,8 @@ function convertSecondsToHMS(seconds: any) {
               <div class="containerPiBox">
                 <div class="supplierPiTop">
                   <div class="supplierPiTitle">{{ item.title }}</div>
-                  <div v-if="Number(index) % 2 === 0" class="supplierPingFen">¥{{ item.price }}</div>
-                  <div v-else class="supplierPingFen2">¥99.90</div>
+                  <div class="supplierPingFen">¥{{ item.price }}</div>
+                  <!-- <div v-else class="supplierPingFen2">¥99.90</div> -->
                 </div>
                 <div class="containerPiClass">
                   <div v-for="(item2, index2) in item.tag.split(' ')" :key="index" class="containerPiCitrm">
