@@ -303,14 +303,6 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </div>
-    <div class="containerGridContent">
-      <div class="containerGridItem" @click="pageJump('requirements2', { id: 1 })">
-        数字技术应用论证
-      </div>
-      <div class="containerGridItem" @click="pageJump('requirements', { id: 22 })">
-        数字实施方案论证
-      </div>
-    </div>
     <div class="containerBox">
       <div class="containerLeft">
         <div class="containerClass">
@@ -688,41 +680,6 @@ onBeforeUnmount(() => {
 
     .el-select__icon {
       color: rgb(1 32 96);
-    }
-  }
-}.containerGridContent {
-  margin: 0 auto;
-  padding-top: 1rem;
-  width: 100%;
-  max-width: 1536px;
-  display: flex;
-  justify-content: flex-end;
-
-  @media (max-width: 768px) {
-    justify-content: center;
-  }
-
-  .containerGridItem {
-    margin-right: 0.75rem;
-    padding: 0.5rem 1.25rem;
-    color: rgb(1 32 96);
-    box-shadow:
-      0 10px 15px -3px rgb(0 0 0 / 0.1),
-      0 4px 6px -4px rgb(0 0 0 / 0.1);
-    border: 1px solid rgb(243 244 246);
-    border-radius: 9999px;
-
-    @media (max-width: 768px) {
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-  }
-
-  .containerGridItem:hover {
-    @media (min-width: 768px) {
-      cursor: pointer;
-      background-color: rgb(243 244 246);
     }
   }
 }
