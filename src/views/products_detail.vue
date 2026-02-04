@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import axios from 'axios'
 import dayjs from 'dayjs'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, h } from 'vue'
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import pageJump from '@/hooks/pageJump'
@@ -156,6 +156,48 @@ function gwcDelete(index: number) {
   })
 }
 
+// 询价单合计
+const getSummaries = (param: any) => {
+  const { columns, data } = param
+  const sums: any = []
+  let totalQuantity = 0
+  let totalSubtotal = 0
+
+  // 计算所有行的数量和小计总和
+  data.forEach((item: any) => {
+    totalQuantity += Number(item.quantity) || 0
+    totalSubtotal += (Number(item.pretaxprice) || 0) * (Number(item.quantity) || 0)
+  })
+
+  columns.forEach((column: any, index: any) => {
+    if (index === 0) {
+      sums[index] = h('div', { style: { textDecoration: 'underline' } }, [
+        '合计',
+      ])
+      return
+    }
+
+    // 数量列
+    if (index === 5) {
+      sums[index] = totalQuantity
+      return
+    }
+
+    // 小计列
+    if (index === 6) {
+      sums[index] = h('span', { style: { color: '#165dff', fontWeight: '700' } }, [
+        '¥' + formatCurrency(totalSubtotal, 2)
+      ])
+      return
+    }
+
+    // 其他列留空
+    sums[index] = ''
+  })
+
+  return sums
+}
+
 // 询价单下载
 function dolwnloadXjd() {
   checkloinApi().then(async (res: any) => {
@@ -270,8 +312,6 @@ onMounted(() => {
   pathname.value = route.query.name
   getProductDetailsid()
 })
-
-const value1 = ref(4.8)
 </script>
 
 <template>
@@ -603,15 +643,10 @@ const value1 = ref(4.8)
           <span>下载询价单</span>
         </button>
       </div>
-      <el-table :data="gwcdata" border highlight-current-row>
+      <el-table :data="gwcdata" border highlight-current-row :summary-method="getSummaries" show-summary>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="name" label="产品名称" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="unit_name" label="品牌" />
-        <!-- <el-table-column align="center" label="税前价格" width="120">
-          <template #default="scope">
-            <span>¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
-          </template>
-</el-table-column> -->
         <el-table-column align="center" label="除税价" width="120">
           <template #default="scope">
             <span style="color: #165dff; font-weight: 700">¥{{ formatCurrency(scope.row.pretaxprice, 2) }}</span>
@@ -625,6 +660,13 @@ const value1 = ref(4.8)
         <el-table-column align="center" label="数量">
           <template #default="scope">
             <el-input v-model="scope.row.quantity" style="width: 100%" placeholder="请输入" @input="quantityInput" />
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="小计">
+          <template #default="scope">
+            <span style="color: #165dff; font-weight: 700">
+              ¥{{ formatCurrency(scope.row.pretaxprice * scope.row.quantity, 2) }}
+            </span>
           </template>
         </el-table-column>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="supplier_name" label="供应商" />

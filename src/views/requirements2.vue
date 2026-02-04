@@ -141,6 +141,10 @@ onMounted(() => {
   background-color: #f9fafb;
   overflow-x: hidden;
 
+  div {
+    font-size: 18px;
+  }
+
   .requirementsHead {
     padding: 6rem 2rem 2rem;
     margin: 0 auto;
@@ -234,7 +238,7 @@ onMounted(() => {
     .supplierClassText {
       margin-bottom: 0.5rem;
       font-weight: 500;
-      font-size: 0.875rem;
+      font-size: 18px;
       line-height: 1.25rem;
       color: rgb(55 65 81);
     }
@@ -319,6 +323,11 @@ onMounted(() => {
 
 <style lang="scss">
 .requirementsPage {
+
+  .el-checkbox__label {
+    font-size: 18px;
+  }
+
   .el-input__wrapper {
     border-radius: 0.5rem;
   }
