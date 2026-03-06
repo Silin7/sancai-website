@@ -7,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: () => import('@/views/home.vue'),
     meta: {
-      title: '系统首页',
+      title: '新材网',
       stcode: 'home',
       website: true,
       hashead: true,

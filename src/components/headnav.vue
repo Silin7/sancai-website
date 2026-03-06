@@ -33,7 +33,7 @@ function tabRouterPush(item: any) {
 }
 
 const menuList: any = ref([
-  { id: '1', title: '系统首页', path: '/', name: 'home', children: [] },
+  { id: '1', title: '新材网', path: '/', name: 'home', children: [] },
   {
     title: '人材机信价格库',
     expanded: false,
