@@ -3,7 +3,7 @@ import useHeaderStore from '@/store/modules/header'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/home',
+    path: '/',
     name: 'home',
     component: () => import('@/views/home.vue'),
     meta: {
@@ -553,7 +553,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // 根据路由元信息设置文档标题
-  window.document.title = (to.meta.title as string) || ''
+  window.document.title = (to.meta.title as string) || '新材网'
 
   if (useHeaderStore) {
     const headerStore = useHeaderStore()
