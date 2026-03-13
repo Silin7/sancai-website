@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import pageJump from '@/hooks/pageJump'
 import useHeaderStore from '@/store/modules/header'
 import { sysinfosApi } from '@/api/modules/basic'
+import windowOpen from '@/hooks/windowOpen'
 
 // 可视窗口宽度
 const windowWidth = ref(window.innerWidth)
@@ -85,7 +86,8 @@ onBeforeUnmount(() => {
     </div>
     <div class="footBottom">
       <div class="footInfo">{{ sysInfos.sys_company }}</div>
-      <div class="footInfo">{{ sysInfos.sys_filing }}</div>
+      <div class="footInfo footInfoHover" @click="windowOpen('https://beian.miit.gov.cn/')">{{ sysInfos.sys_filing }}
+      </div>
     </div>
   </div>
 </template>
@@ -94,7 +96,7 @@ onBeforeUnmount(() => {
   padding: 2rem;
   background-color: #012060;
 
-  @media (max-width:760.5rem) {
+  @media (max-width:768px) {
     padding: 2rem 1rem;
   }
 
@@ -147,7 +149,7 @@ onBeforeUnmount(() => {
         }
 
         .quicklink:hover {
-          @media (min-width:760.5rem) {
+          @media (min-width:768px) {
             cursor: pointer;
             color: #165dff;
           }
@@ -204,6 +206,13 @@ onBeforeUnmount(() => {
 
     .footInfo:last-child {
       margin-top: 0.5rem;
+    }
+
+    .footInfoHover:hover {
+      @media (min-width:768px) {
+        cursor: pointer;
+        color: #165dff;
+      }
     }
   }
 }
