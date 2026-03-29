@@ -128,7 +128,7 @@ onBeforeUnmount(() => {
             <div class="introtLeft">
               <div class="introtInfo">
                 <p>
-                  杭州三才工程信息科技有限公司成立于2014年5月，总部位于浙江省杭州市，专注于提供工程项目数字化服务与产品的国家高新技术企业。公司主营工程造价咨询、BIM咨询、CIM咨询及智慧管理软件开发，以“网络强国”和“数字中国”思想建设为指引，致力于推动AI、BIM等新一代信息技术深度融入工程咨询全过程，打造可视化、智能化、动态化的数字化服务新模式。
+                  杭州三才工程信息科技有限公司成立于2014年5月，总部位于浙江省杭州市，专注于提供工程项目数字化服务与产品的国家高新技术企业。公司主营工程造价咨询服务、BIM技术咨询服务、信息技术咨询服务。致力于推动AI、BIM等新一代信息技术深度融入全过程工程咨询，打造可视化、智能化、动态化的数字化服务新模式。
                 </p>
                 <p>
                   目前，公司正积极推进人工智能技术在工程建设领域的深度应用，开展AI智能体的研发与探索，聚焦智能算量、智能审图、智能审价等典型场景，依托数据驱动与AI模型提升工程管理效率与决策水平，助力行业实现智能化升级与高质量发展。
@@ -271,19 +271,19 @@ onBeforeUnmount(() => {
             <div class="achievementRidimgbox">
               <div class="achievementRidimgfx">
                 <div class="achievementRidimgFrsc">
-                  <div v-if="index % 4 == 1" class="achievementFabox"
+                  <div v-if="index as number % 4 == 1" class="achievementFabox"
                     style="color: rgb(37 99 235); background-color: rgb(219 234 254)">
                     <i class="fa fa-building"></i>
                   </div>
-                  <div v-if="index % 4 == 2" class="achievementFabox"
+                  <div v-if="index as number % 4 == 2" class="achievementFabox"
                     style="color: rgb(22 163 74); background-color: rgb(220 252 231)">
                     <i class="fa fa-book"></i>
                   </div>
-                  <div v-if="index % 4 == 3" class="achievementFabox"
+                  <div v-if="index as number % 4 == 3" class="achievementFabox"
                     style="color: rgb(147 51 234); background-color: rgb(243 232 255)">
                     <i class="fa fa-trophy"></i>
                   </div>
-                  <div v-if="index % 4 == 0" class="achievementFabox"
+                  <div v-if="index as number % 4 == 0" class="achievementFabox"
                     style="color: rgb(22 163 74); background-color: rgb(220 252 231)">
                     <i class="fa fa-certificate"></i>
                   </div>
@@ -354,7 +354,7 @@ onBeforeUnmount(() => {
           <div class="futureHeng"></div>
           <div class="futureCardBox">
             <div class="futureCardItem">
-              进入"十四五"发展新阶段，杭州三才工程信息科技有限公司将以加快数字化发展为契机，聚焦BIM、CIM技术，实施全面数字化转型。
+              进入"十五五"发展新阶段，杭州三才工程信息科技有限公司将以加快数字化发展为契机，聚焦BIM、CIM技术，实施全面数字化转型。
             </div>
             <div class="futureCardItem">
               我们将继续走智能化和智慧化发展道路，为推进和谐共生的数字生态，贡献匠心智造的力量，助力建筑行业实现高质量发展。
