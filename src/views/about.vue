@@ -268,8 +268,7 @@ onBeforeUnmount(() => {
                   </div>
                   <div class="achievementRidtitle">{{ item.title }}</div>
                 </div>
-                <div class="achievementGridinfo">
-                  {{ item.descriptioncontent }}
+                <div v-html="item.descriptioncontent" class="achievementGridinfo">
                 </div>
               </div>
             </div>
@@ -294,8 +293,7 @@ onBeforeUnmount(() => {
                     </div> -->
                     <div class="serviceCardItemTt">{{ item.title }}</div>
                   </div>
-                  <div class="serviceCardItemSub">
-                    {{ item.descriptioncontent }}
+                  <div v-html="item.descriptioncontent" class="serviceCardItemSub">
                   </div>
                 </div>
               </el-col>
