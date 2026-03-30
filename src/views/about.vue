@@ -268,7 +268,7 @@ onBeforeUnmount(() => {
                   </div>
                   <div class="achievementRidtitle">{{ item.title }}</div>
                 </div>
-                <div v-html="item.descriptioncontent" class="achievementGridinfo">
+                <div v-html="item.content" class="achievementGridinfo">
                 </div>
               </div>
             </div>
@@ -293,7 +293,7 @@ onBeforeUnmount(() => {
                     </div> -->
                     <div class="serviceCardItemTt">{{ item.title }}</div>
                   </div>
-                  <div v-html="item.descriptioncontent" class="serviceCardItemSub">
+                  <div v-html="item.content" class="serviceCardItemSub">
                   </div>
                 </div>
               </el-col>
@@ -684,13 +684,13 @@ onBeforeUnmount(() => {
             font-size: 1rem;
             line-height: 1.5rem;
             color: rgb(75 85 99);
-            height: 3rem;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            height: 6rem;
+            // display: -webkit-box;
+            // -webkit-box-orient: vertical;
+            // -webkit-line-clamp: 4;
+            // line-clamp: 4;
+            // overflow: hidden;
+            // text-overflow: ellipsis;
           }
         }
       }
