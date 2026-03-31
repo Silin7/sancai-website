@@ -85,7 +85,7 @@ onBeforeUnmount(() => {
       <div class="ndCtitle">{{ articledetail.title }}</div>
       <div class="ndSubtitle">
         <span>文章来源：{{ articledetail.source }}</span>
-        <span>发布时间：{{ dayjs(articledetail.updated_at).format('YYYY-MM-DD HH:mm:ss') }}</span>
+        <span>发布时间：{{ articledetail.publish_time }}</span>
       </div>
       <!-- <div class="ndCzuoz">
         <img src="@/assets/32.jpg" />

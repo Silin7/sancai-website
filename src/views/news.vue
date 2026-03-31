@@ -186,7 +186,7 @@ onBeforeUnmount(() => {
                   <div class="newsPiCleft">
                     <div class="newsPiCitrm">
                       <i class="fa fa-calendar"></i>
-                      <span class="newsPiClassSpan">{{ item.created_at }}</span>
+                      <span class="newsPiClassSpan">{{ item.publish_time }}</span>
                     </div>
                     <div class="newsPiCitrm">
                       <i class="fa fa-eye"></i>
