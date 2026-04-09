@@ -21,7 +21,7 @@ onMounted(() => {
 <template>
   <div class="headmenu">
     <div class="logo-title">
-      <img src="@/assets/logo.png" @click="pageJump('user-index')" />
+      <img src="@/assets/logo2.png" @click="pageJump('user-index')" />
       <!-- <span class="title">前端框架-VUE3</span> -->
     </div>
     <div class="avatar-name">
