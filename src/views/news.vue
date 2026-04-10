@@ -175,7 +175,7 @@ onBeforeUnmount(() => {
               ">
               <div class="newsPiImgBox">
                 <img :src="item.thumbnail" class="newsPiImg" />
-                <div class="newsPiImgTag">政策</div>
+                <div class="newsPiImgTag">{{ item.articlebadge }}</div>
               </div>
               <div class="newsPiBox">
                 <div class="newsPiTitle">{{ item.title }}</div>
