@@ -318,7 +318,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- 媒体报道 -->
-      <div class="mediaBox">
+      <!-- <div class="mediaBox">
         <div class="mediaTitle">媒体报道</div>
         <div class="mediaHeng"></div>
         <el-row :gutter="16" class="mediaRow">
@@ -334,7 +334,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
