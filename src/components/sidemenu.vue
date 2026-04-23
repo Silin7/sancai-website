@@ -93,22 +93,22 @@ onMounted(() => {
         <i class="fa fa-users"></i>
         <span>企业案例</span>
       </el-menu-item>
-      <el-menu-item v-if="userRole === 0 && userType === 1 && userPermissions.includes('0')" index="user-renlist"
+      <el-menu-item v-if="userRole === 0 || (userType === 1 && userPermissions.includes('0'))" index="user-renlist"
         @click="pageJump('user-renlist')">
         <i class="fa fa-users"></i>
-        <span>数字技术应用论证/数字实施方案论证</span>
+        <span style="line-height: 1.5;">数字技术应用论证<br>数字实施方案论证</span>
       </el-menu-item>
-      <el-menu-item v-if="userRole === 0 && userType === 1 && userPermissions.includes('1')" index="user-cailist"
+      <el-menu-item v-if="userRole === 0 || (userType === 1 && userPermissions.includes('1'))" index="user-cailist"
         @click="pageJump('user-cailist')">
         <i class="fa fa-dropbox"></i>
         <span>材料/设备</span>
       </el-menu-item>
-      <el-menu-item v-if="userRole === 0 && userType === 1 && userPermissions.includes('2')" index="user-machinelist"
+      <el-menu-item v-if="userRole === 0 || (userType === 1 && userPermissions.includes('2'))" index="user-machinelist"
         @click="pageJump('user-machinelist')">
         <i class="fa fa-wrench"></i>
         <span>智能建造装备</span>
       </el-menu-item>
-      <el-menu-item v-if="userRole === 0 && userType === 1 && userPermissions.includes('3')" index="user-itlist"
+      <el-menu-item v-if="userRole === 0 || (userType === 1 && userPermissions.includes('3'))" index="user-itlist"
         @click="pageJump('user-itlist')">
         <i class="fa fa-info-circle"></i>
         <span>信息化产品/服务</span>

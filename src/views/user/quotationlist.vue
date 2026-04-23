@@ -32,6 +32,27 @@ function getDataList() {
   })
 }
 
+// 格式化税率
+function formatTaxRate(taxrate: any) {
+  const rate = Number(taxrate)
+  if (!Number.isFinite(rate)) {
+    return '--'
+  }
+
+  const percent = rate * 100
+  const maxFiniteDecimals = 8
+  const epsilon = 1e-10
+
+  for (let decimals = 0; decimals <= maxFiniteDecimals; decimals++) {
+    const factor = 10 ** decimals
+    if (Math.abs(percent * factor - Math.round(percent * factor)) < epsilon) {
+      return `${percent.toFixed(decimals).replace(/\.?0+$/, '')}%`
+    }
+  }
+
+  return `${percent.toFixed(2)}%`
+}
+
 // 分页
 const { pagination, onSizeChange, onCurrentChange } = usePagination()
 
@@ -89,7 +110,11 @@ onMounted(() => {
           <el-table-column :show-overflow-tooltip="true" align="center" prop="product_name" label="产品名称" />
           <el-table-column :show-overflow-tooltip="true" align="center" prop="cate_name" label="产品类型" />
           <el-table-column :show-overflow-tooltip="true" align="center" prop="untax_price" label="不含税价格" />
-          <el-table-column :show-overflow-tooltip="true" align="center" prop="tax_rate" label="税率" />
+          <el-table-column :show-overflow-tooltip="true" align="center" prop="tax_rate" label="税率">
+            <template #default="scope">
+              <span>{{ formatTaxRate(scope.row.tax_rate) }}</span>
+            </template>
+          </el-table-column>
           <el-table-column :show-overflow-tooltip="true" align="center" prop="quantity" label="数量" />
           <el-table-column :show-overflow-tooltip="true" align="center" label="客户姓名">
             <template #default="scope">

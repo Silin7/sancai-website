@@ -43,6 +43,27 @@ function getDataList() {
   })
 }
 
+// 格式化税率
+function formatTaxRate(taxrate: any) {
+  const rate = Number(taxrate)
+  if (!Number.isFinite(rate)) {
+    return '--'
+  }
+
+  const percent = rate * 100
+  const maxFiniteDecimals = 8
+  const epsilon = 1e-10
+
+  for (let decimals = 0; decimals <= maxFiniteDecimals; decimals++) {
+    const factor = 10 ** decimals
+    if (Math.abs(percent * factor - Math.round(percent * factor)) < epsilon) {
+      return `${percent.toFixed(decimals).replace(/\.?0+$/, '')}%`
+    }
+  }
+
+  return `${percent.toFixed(2)}%`
+}
+
 // 分页
 const { pagination, onSizeChange, onCurrentChange } = usePagination()
 
@@ -147,7 +168,7 @@ onMounted(() => {
         </el-table-column>
         <el-table-column align="center" label="税率" width="120">
           <template #default="scope">
-            <span>{{ scope.row.taxrate }}%</span>
+            <span>{{ formatTaxRate(scope.row.taxrate) }}</span>
           </template>
         </el-table-column>
         <el-table-column align="center" label="状态" width="120">

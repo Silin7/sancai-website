@@ -95,6 +95,29 @@ function xgcpDetailClick(item: any) {
   // }, 200)
 }
 
+
+
+// 格式化税率
+function formatTaxRate(taxrate: any) {
+  const rate = Number(taxrate)
+  if (!Number.isFinite(rate)) {
+    return '--'
+  }
+
+  const percent = rate * 100
+  const maxFiniteDecimals = 8
+  const epsilon = 1e-10
+
+  for (let decimals = 0; decimals <= maxFiniteDecimals; decimals++) {
+    const factor = 10 ** decimals
+    if (Math.abs(percent * factor - Math.round(percent * factor)) < epsilon) {
+      return `${percent.toFixed(decimals).replace(/\.?0+$/, '')}%`
+    }
+  }
+
+  return `${percent.toFixed(2)}%`
+}
+
 // 购物车
 const gwcdata: any = ref(window.localStorage.getItem('gwcdata') ? JSON.parse(window.localStorage.getItem('gwcdata') || '') : [])
 const gwcVisible: any = ref(false)
@@ -367,7 +390,7 @@ onMounted(() => {
               </div>
               <div class="pdcljctItem">
                 <span>税率：</span>
-                <span class="pdcljctiSp1">{{ productDetails.taxrate }}%</span>
+                <span class="pdcljctiSp1">{{ formatTaxRate(productDetails.taxrate) }}</span>
               </div>
             </div>
             <button class="pdcljcLxgys">
@@ -654,7 +677,8 @@ onMounted(() => {
         </el-table-column>
         <el-table-column align="center" label="税率">
           <template #default="scope">
-            <span>{{ scope.row.taxrate }}%</span>
+            <!-- formatTaxRate -->
+            <span>{{ formatTaxRate(scope.row.taxrate) }}</span>
           </template>
         </el-table-column>
         <el-table-column align="center" label="数量">
