@@ -1,12 +1,15 @@
 <script setup lang="ts">
+import axios from 'axios'
 import { onMounted, reactive, ref } from 'vue'
-import { Search, Plus } from '@element-plus/icons-vue'
+import type { UploadRequestOptions } from 'element-plus'
+import { ElMessage } from 'element-plus'
+import { Search, Plus, Download, Upload } from '@element-plus/icons-vue'
 import pageJump from '@/hooks/pageJump'
 import usePagination from '@/hooks/usePagination'
 import formatCurrency from '@/hooks/formatCurrency'
 import useDebounce from '@/utils/useDebounce'
-import { materiallistApi } from '@/api/modules/admin'
-import { fileURL } from '@/api/baseConfig'
+import { materiallistApi, materialimportApi } from '@/api/modules/admin'
+import { baseURL } from '@/api/baseConfig'
 
 // 查询条件
 const queryForm: any = reactive({
@@ -73,6 +76,87 @@ function currentChange(pageNo = 1) {
   onCurrentChange(pageNo).then(() => getDataList())
 }
 
+const templateLoading = ref(false)
+const importLoading = ref(false)
+
+function parseDownloadFilename(disposition: string, fallback: string) {
+  if (!disposition) {
+    return fallback
+  }
+  const utf8Match = disposition.match(/filename\*=UTF-8''([^;]+)/i)
+  if (utf8Match?.[1]) {
+    return decodeURIComponent(utf8Match[1])
+  }
+  const quoteMatch = disposition.match(/filename="([^"]+)"/i)
+  if (quoteMatch?.[1]) {
+    return quoteMatch[1]
+  }
+  const plainMatch = disposition.match(/filename=([^;]+)/i)
+  if (plainMatch?.[1]) {
+    return plainMatch[1].trim()
+  }
+  return fallback
+}
+
+function triggerBlobDownload(blob: Blob, filename: string) {
+  const urlObject = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = urlObject
+  link.download = filename.replace(/[\\/:*?"<>|]/g, '-')
+  link.style.display = 'none'
+  document.body.appendChild(link)
+  link.click()
+  setTimeout(() => {
+    document.body.removeChild(link)
+    URL.revokeObjectURL(urlObject)
+  }, 1000)
+}
+
+async function downloadMaterialTemplate() {
+  templateLoading.value = true
+  try {
+    const response = await axios({
+      method: 'POST',
+      url: `${baseURL}/api/client/uproduct/material/download_template`,
+      responseType: 'blob',
+      headers: {
+        token: `Bearer ${localStorage.getItem('token') ?? ''}`,
+        Authorization: `Bearer ${localStorage.getItem('token') ?? ''}`,
+      },
+    })
+
+    if (!(response.data instanceof Blob)) {
+      throw new Error('响应数据格式错误')
+    }
+
+    const disposition = response.headers['content-disposition'] || ''
+    const filename = parseDownloadFilename(disposition, '材料产品导入模板.xlsx')
+    triggerBlobDownload(response.data, filename)
+  } catch {
+    ElMessage.error('模板下载失败')
+  } finally {
+    templateLoading.value = false
+  }
+}
+
+function handleMaterialImport(options: UploadRequestOptions) {
+  const formData = new FormData()
+  formData.append('file', options.file)
+  importLoading.value = true
+  materialimportApi(formData)
+    .then((res: any) => {
+      ElMessage.success(res?.msg || '导入成功')
+      getDataList()
+      options.onSuccess?.(res)
+    })
+    .catch((error) => {
+      options.onError?.(error)
+    })
+    .finally(() => {
+      importLoading.value = false
+    })
+}
+
 onMounted(() => {
   getDataList()
 })
@@ -126,9 +210,17 @@ onMounted(() => {
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="18">
             <el-form-item>
               <el-button size="large" :icon="Plus" color="#377dff" @click="pageJump('user-caifrom')">新增</el-button>
+              <el-button size="large" class="ml12" :icon="Download" :loading="templateLoading"
+                @click="downloadMaterialTemplate">
+                下载模板
+              </el-button>
+              <el-upload class="import-upload" :show-file-list="false" accept=".xlsx,.xls"
+                :http-request="handleMaterialImport">
+                <el-button type="success" size="large" class="ml12" :icon="Upload" :loading="importLoading">导入产品</el-button>
+              </el-upload>
             </el-form-item>
           </el-col>
         </el-row>
@@ -219,5 +311,14 @@ onMounted(() => {
 .list-title i {
   margin-right: 10px;
   color: #377dff;
+}
+
+.ml12 {
+  margin-left: 12px;
+}
+
+.import-upload {
+  display: inline-block;
+  vertical-align: top;
 }
 </style>

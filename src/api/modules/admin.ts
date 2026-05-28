@@ -166,8 +166,12 @@ export function materialdownloadtemplateApi() {
 }
 
 // 供应商Excel导入材料产品
-export function materialimportApi(data: any) {
-  return api.post('/api/client/uproduct/material/import', data)
+export function materialimportApi(data: FormData) {
+  return api.post('/api/client/uproduct/material/import', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
 }
 
 // 新增智能建造装备
