@@ -83,6 +83,13 @@ export function productmaterialsrelatedApi(id: any) {
   return api.get('/api/client/product/materials/related/' + id)
 }
 
+// 用户端-多条件检索材料
+export function productmaterialssearchkeywordApi(params: any) {
+  return api.get('/api/client/product/materials/search-keyword', {
+    params,
+  })
+}
+
 // 用户端-获取所有审核通过的装备（不含description字段）
 export function productequipmentsApi(params: any) {
   return api.get('/api/client/product/equipments', {

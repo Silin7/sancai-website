@@ -160,6 +160,16 @@ export function materialdetailApi(params: any) {
   })
 }
 
+// 下载供应商材料产品导入模板
+export function materialdownloadtemplateApi() {
+  return api.post('/api/client/uproduct/material/download_template')
+}
+
+// 供应商Excel导入材料产品
+export function materialimportApi(data: any) {
+  return api.post('/api/client/uproduct/material/import', data)
+}
+
 // 新增智能建造装备
 export function equipmentaddApi(data: any) {
   return api.post('/api/client/uproduct/equipment/add', data)

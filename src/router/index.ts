@@ -39,6 +39,18 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/materials-search',
+    name: 'materials-search',
+    component: () => import('@/views/materials-search.vue'),
+    meta: {
+      title: '材料/设备',
+      stcode: 'materials-search',
+      website: true,
+      hashead: true,
+      hasfoot: true,
+    },
+  },
+  {
     path: '/sale',
     name: 'sale',
     component: () => import('@/views/sale.vue'),

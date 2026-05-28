@@ -131,6 +131,26 @@ function onClickOutside() {
   unref(popoverRef).popperRef?.delayHide?.()
 }
 
+// 关键字搜索
+const searchDialogVisible = ref(false)
+const searchKeyword = ref('')
+
+function openSearchDialog() {
+  searchKeyword.value = ''
+  searchDialogVisible.value = true
+}
+
+function handleSearchSubmit() {
+  const keywords = searchKeyword.value.trim()
+  if (!keywords) {
+    ElMessage.warning('请输入关键字')
+    return
+  }
+  searchDialogVisible.value = false
+  drawerVisible.value = false
+  pageJump('materials-search', { keywords })
+}
+
 onMounted(() => {
   window.addEventListener('resize', updateWindowWidth)
   window.addEventListener('scroll', handleScroll)
@@ -169,6 +189,7 @@ onBeforeUnmount(() => {
                 </div>
               </div>
             </div>
+            <img src="@/assets/fangdajing.png" alt="search" class="searchIcon" @click.stop="openSearchDialog">
           </div>
           <div v-else class="drawerIcon" @click="drawerVisible = true">
             <i class="fa fa-bars"></i>
@@ -212,6 +233,15 @@ onBeforeUnmount(() => {
         </div>
         <i class="fa fa-times drawerclose" @click="drawerVisible = false"></i>
       </div>
+      <div class="mobileSearch">
+        <div class="mobileSearchBox">
+          <el-input v-model="searchKeyword" class="mobileSearchInput" placeholder="请输入检索关键字" clearable
+            @keyup.enter="handleSearchSubmit" />
+          <button type="button" class="mobileSearchBtn" @click="handleSearchSubmit">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
       <div class="mobilecollapse">
         <div v-for="(item, index) in menuList" :key="index"
           :class="['collapseItem', selectedTab === item.name ? 'collapseActive' : '']" @click="tabRouterPush(item)">
@@ -247,6 +277,13 @@ onBeforeUnmount(() => {
         <button class="mobileZcbtn" @click="tabRouterPush({ name: 'register' })">注册</button>
       </div>
     </el-drawer>
+    <el-dialog v-model="searchDialogVisible" title="材料搜索" width="480px" @closed="searchKeyword = ''">
+      <el-input v-model="searchKeyword" placeholder="请输入检索关键字" clearable @keyup.enter="handleSearchSubmit" />
+      <template #footer>
+        <el-button @click="searchDialogVisible = false">取消</el-button>
+        <el-button color="#012060" @click="handleSearchSubmit">查询</el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -293,9 +330,18 @@ onBeforeUnmount(() => {
       }
 
       .menubox {
+        width: 100%;
         display: flex;
         justify-content: space-around;
         align-items: flex-end;
+
+        .searchIcon {
+          margin-bottom: 0.6125rem;
+          width: 1.25rem;
+          height: 1.25rem;
+          cursor: pointer;
+          margin-left: 1.75rem;
+        }
 
         .menuitem {
           position: relative;
@@ -317,6 +363,7 @@ onBeforeUnmount(() => {
           .menutitle {
             color: #fff;
             line-height: 1.25rem;
+            white-space: nowrap;
 
             span {
               font-size: 1.25rem;
@@ -541,6 +588,39 @@ onBeforeUnmount(() => {
     }
   }
 
+  .mobileSearch {
+    padding: 0.75rem 0.5rem 1rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.2);
+
+    .mobileSearchBox {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .mobileSearchBtn {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      color: #fff;
+      background-color: rgb(22 93 255 / 0.9);
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+
+      i {
+        font-size: 1rem;
+      }
+    }
+
+    .mobileSearchBtn:active {
+      background-color: #165dff;
+    }
+  }
+
   .mobilecollapse {
     padding: 0.5rem;
 
@@ -685,6 +765,32 @@ onBeforeUnmount(() => {
 
     .is-active {
       color: #165dff !important;
+    }
+  }
+
+  .mobileSearch {
+    .mobileSearchInput {
+      flex: 1;
+    }
+
+    .el-input__wrapper {
+      background-color: rgb(22 93 255 / 0.1) !important;
+      border: 1px solid rgb(22 93 255 / 0.35) !important;
+      border-radius: 0.5rem !important;
+      box-shadow: none !important;
+    }
+
+    .el-input__inner {
+      color: #fff !important;
+    }
+
+    .el-input__inner::placeholder {
+      color: rgb(255 255 255 / 0.55) !important;
+    }
+
+    .el-input__clear,
+    .el-input .el-input__icon {
+      color: rgb(255 255 255 / 0.75) !important;
     }
   }
 }
