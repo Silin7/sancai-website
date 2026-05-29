@@ -340,7 +340,7 @@ onBeforeUnmount(() => {
           width: 1.25rem;
           height: 1.25rem;
           cursor: pointer;
-          margin-left: 1.75rem;
+          margin-left: 1rem;
         }
 
         .menuitem {
@@ -349,7 +349,7 @@ onBeforeUnmount(() => {
           flex-flow: column;
 
           @media (min-width: 1551px) {
-            margin-left: 1.75rem;
+            margin-left: 1.5rem;
           }
 
           @media (max-width: 1550px) and (min-width: 1351px) {
