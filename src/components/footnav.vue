@@ -44,7 +44,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="footnav">
-    <div v-if="selectedTab === 'home'" class="footTop">
+    <!-- <div v-if="selectedTab === 'home'" class="footTop">
       <div class="footRow">
         <div class="footCol">
           <div class="titleshu"></div>
@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="footBottom">
       <div class="footInfo">{{ sysInfos.sys_company }}</div>
       <div class="footInfo footInfoHover" @click="windowOpen('https://beian.miit.gov.cn/')">{{ sysInfos.sys_filing }}
