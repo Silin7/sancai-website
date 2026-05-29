@@ -353,11 +353,11 @@ onBeforeUnmount(() => {
           }
 
           @media (max-width: 1550px) and (min-width: 1351px) {
-            margin-left: 1.25rem;
+            margin-left: 1rem;
           }
 
           @media (max-width: 1350px) and (min-width: 1290px) {
-            margin-left: 0.625rem;
+            margin-left: 0.5rem;
           }
 
           .menutitle {
