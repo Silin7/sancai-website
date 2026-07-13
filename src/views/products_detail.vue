@@ -1116,8 +1116,10 @@ onMounted(() => {
             }
 
             img {
+              display: block;
               width: 100%;
-              height: 10rem;
+              aspect-ratio: 1 / 1;
+              object-fit: cover;
             }
 
             .pdccgiContent {
