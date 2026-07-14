@@ -127,7 +127,17 @@ function formatTaxRate(taxrate: any) {
               <el-table :data="ruleForm.product_items" border highlight-current-row>
                 <el-table-column :show-overflow-tooltip="true" align="center" prop="product_type" label="产品类型" />
                 <el-table-column :show-overflow-tooltip="true" align="center" prop="product_name" label="产品名称" />
-                <el-table-column align="center" label="税前价格">
+                <el-table-column align="center" label="除税价" width="120">
+                  <template #default="scope">
+                    <span>¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" label="含税价" width="120">
+                  <template #default="scope">
+                    <span>¥{{ formatCurrency(scope.row.afertaxprice) }}</span>
+                  </template>
+                </el-table-column>
+                <!-- <el-table-column align="center" label="税前价格">
                   <template #default="scope">
                     <span>¥{{ formatCurrency(scope.row.untax_price) }}</span>
                   </template>
@@ -136,7 +146,7 @@ function formatTaxRate(taxrate: any) {
                   <template #default="scope">
                     <span>{{ formatTaxRate(scope.row.tax_rate) }}</span>
                   </template>
-                </el-table-column>
+                </el-table-column> -->
                 <!-- <el-table-column  align="center" prop="shuliang" label="数量" />
                 <el-table-column  align="center" prop="danwei" label="单位" />
                 <el-table-column  align="center" prop="xiaoji" label="小计" /> -->

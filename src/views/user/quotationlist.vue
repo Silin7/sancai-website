@@ -109,12 +109,21 @@ onMounted(() => {
         <el-table v-loading="tableLoading" :data="groupData" border highlight-current-row>
           <el-table-column :show-overflow-tooltip="true" align="center" prop="product_name" label="产品名称" />
           <el-table-column :show-overflow-tooltip="true" align="center" prop="cate_name" label="产品类型" />
-          <el-table-column :show-overflow-tooltip="true" align="center" prop="untax_price" label="不含税价格" />
-          <el-table-column :show-overflow-tooltip="true" align="center" prop="tax_rate" label="税率">
+          <el-table-column align="center" label="除税价" width="120">
+            <template #default="scope">
+              <span>¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column align="center" label="含税价" width="120">
+            <template #default="scope">
+              <span>¥{{ formatCurrency(scope.row.afertaxprice) }}</span>
+            </template>
+          </el-table-column>
+          <!-- <el-table-column :show-overflow-tooltip="true" align="center" prop="tax_rate" label="税率">
             <template #default="scope">
               <span>{{ formatTaxRate(scope.row.tax_rate) }}</span>
             </template>
-          </el-table-column>
+          </el-table-column> -->
           <el-table-column :show-overflow-tooltip="true" align="center" prop="quantity" label="数量" />
           <el-table-column :show-overflow-tooltip="true" align="center" label="客户姓名">
             <template #default="scope">
