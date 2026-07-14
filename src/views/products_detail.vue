@@ -353,16 +353,16 @@ onMounted(() => {
           <span class="pdNavigationXg">/</span>
           <span v-if="pathname === 'scheme'" class="pdNavigationSp">{{
             productDetails.servicename
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'materials'" class="pdNavigationSp">{{
             productDetails.materialname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'sale'" class="pdNavigationSp">{{
             productDetails.equipmentname
-            }}</span>
+          }}</span>
           <span v-if="pathname === 'products'" class="pdNavigationSp">{{
             productDetails.itname
-            }}</span>
+          }}</span>
         </div>
         <div v-if="pathname === 'scheme'" class="pdHtitle">{{ productDetails.servicename }}</div>
         <div v-if="pathname === 'materials'" class="pdHtitle">
@@ -388,10 +388,10 @@ onMounted(() => {
                 <span>含税价：</span>
                 <span class="pdcljctiSp2">¥{{ formatCurrency(productDetails.pretaxprice, 2) }}</span>
               </div>
-              <div class="pdcljctItem">
+              <!-- <div class="pdcljctItem">
                 <span>税率：</span>
                 <span class="pdcljctiSp1">{{ formatTaxRate(productDetails.taxrate) }}</span>
-              </div>
+              </div> -->
             </div>
             <button class="pdcljcLxgys">
               <i class="fa fa-phone"></i>
@@ -600,7 +600,7 @@ onMounted(() => {
             <div v-if="productDetails.supplier_info" class="pdcrtTag">
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index">{{
                 item
-                }}</span>
+              }}</span>
               <span v-for="(item, index) in productDetails.supplier_info.tags" :key="index" class="pdcrtagShu">|</span>
             </div>
           </div>
@@ -670,23 +670,27 @@ onMounted(() => {
         <el-table-column :show-overflow-tooltip="true" align="center" prop="name" label="产品名称" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="unit_name" label="品牌" />
-        <el-table-column align="center" label="除税价" width="120">
+        <el-table-column align="center" label="除税价" width="150">
           <template #default="scope">
             <span style="color: #165dff; font-weight: 700">¥{{ formatCurrency(scope.row.pretaxprice, 2) }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="税率">
+        <el-table-column align="center" label="含税价" width="150">
           <template #default="scope">
-            <!-- formatTaxRate -->
-            <span>{{ formatTaxRate(scope.row.taxrate) }}</span>
+            <span style="color: #165dff; font-weight: 700">¥{{ formatCurrency(scope.row.afertaxprice, 2) }}</span>
           </template>
         </el-table-column>
+        <!-- <el-table-column align="center" label="税率">
+          <template #default="scope">
+            <span>{{ formatTaxRate(scope.row.taxrate) }}</span>
+          </template>
+        </el-table-column> -->
         <el-table-column align="center" label="数量">
           <template #default="scope">
             <el-input v-model="scope.row.quantity" style="width: 100%" placeholder="请输入" @input="quantityInput" />
           </template>
         </el-table-column>
-        <el-table-column align="center" label="小计">
+        <el-table-column align="center" label="小计" width="150">
           <template #default="scope">
             <span style="color: #165dff; font-weight: 700">
               ¥{{ formatCurrency(scope.row.pretaxprice * scope.row.quantity, 2) }}

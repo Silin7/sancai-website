@@ -161,16 +161,21 @@ onMounted(() => {
         </el-table-column>
         <el-table-column :show-overflow-tooltip="true" align="center" prop="equipmentname" label="机械名称" />
         <el-table-column :show-overflow-tooltip="true" align="center" prop="brand" label="品牌/规格" />
-        <el-table-column align="center" label="税前价格" width="120">
+        <el-table-column align="center" label="除税价" width="120">
           <template #default="scope">
             <span>¥{{ formatCurrency(scope.row.pretaxprice) }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="税率" width="120">
+        <el-table-column align="center" label="含税价" width="120">
+          <template #default="scope">
+            <span>¥{{ formatCurrency(scope.row.afertaxprice) }}</span>
+          </template>
+        </el-table-column>
+        <!-- <el-table-column align="center" label="税率" width="120">
           <template #default="scope">
             <span>{{ formatTaxRate(scope.row.taxrate) }}</span>
           </template>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column align="center" label="状态" width="120">
           <template #default="scope">
             <el-tag v-if="scope.row.status === 0" type="warning" style="border-radius: 50px">
